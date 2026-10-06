@@ -366,9 +366,212 @@ footer {
 
 }
 
+/* =================================
+   UNIQUE HERO SECTION
+================================= */
 
-body {
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+.hero {
+    position: relative;
+
+    width: 100%;
+    padding: 35px 20px;
+    margin-bottom: 35px;
+
+    text-align: center;
+
+    border-radius: 28px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.09),
+            rgba(255, 255, 255, 0.03)
+        );
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    overflow: hidden;
+
+    animation: heroShow 0.8s ease both;
+}
+
+
+/* =================================
+   GLOW EFFECT
+================================= */
+
+.hero::before {
+    content: "";
+
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    top: -90px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    background: rgba(100, 130, 255, 0.18);
+
+    filter: blur(50px);
+
+    border-radius: 50%;
+
+    pointer-events: none;
+}
+
+
+/* =================================
+   SALAM
+================================= */
+
+.greeting {
+    position: relative;
+
+    font-size: clamp(16px, 2.5vw, 21px);
+
+    color: #b8c5ff;
+
+    margin-bottom: 14px;
+
+    line-height: 1.8;
+
+    direction: rtl;
+
+    animation: greetingShow 0.8s ease 0.2s both;
+}
+
+
+/* =================================
+   MAIN TITLE
+================================= */
+
+.hero h2 {
+    position: relative;
+
+    font-size: clamp(26px, 5vw, 40px);
+
+    line-height: 1.2;
+
+    margin: 0 0 14px;
+
+    color: #ffffff;
+
+    letter-spacing: 0.5px;
+
+    animation: titleShow 0.8s ease 0.35s both;
+}
+
+
+/* =================================
+   TAGLINE
+================================= */
+
+.tagline {
+    position: relative;
+
+    font-size: clamp(13px, 2vw, 16px);
+
+    line-height: 1.7;
+
+    color: #aab4d4;
+
+    letter-spacing: 1.5px;
+
+    margin: 0;
+
+    animation: taglineShow 0.8s ease 0.5s both;
+}
+
+
+/* =================================
+   HERO ANIMATIONS
+================================= */
+
+@keyframes heroShow {
+
+    from {
+        opacity: 0;
+        transform: translateY(25px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+@keyframes greetingShow {
+
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+@keyframes titleShow {
+
+    from {
+        opacity: 0;
+        transform: translateY(15px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+@keyframes taglineShow {
+
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =================================
+   MOBILE
+================================= */
+
+@media (max-width: 600px) {
+
+    .hero {
+        padding: 28px 15px;
+
+        border-radius: 22px;
+
+        margin-bottom: 28px;
+    }
+
+    .greeting {
+        margin-bottom: 10px;
+    }
+
+    .hero h2 {
+        margin-bottom: 10px;
+    }
+
+    .tagline {
+        letter-spacing: 1px;
+    }
 }
