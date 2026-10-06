@@ -39,12 +39,11 @@
             padding: 20px 12px;
             min-height: 100vh;
             overflow-x: hidden;
-            /* Screen Size Onujayi Dynamic Font Scaling */
-            font-size: clamp(18px, 2.2vw, 22px);
+            font-size: 25px; /* Base Font Size 25px */
         }
 
         .container {
-            max-width: 900px;
+            max-width: 950px;
             margin: 0 auto;
         }
 
@@ -53,7 +52,7 @@
             text-align: center;
             background: var(--card-bg);
             border: 1px solid var(--card-border);
-            padding: clamp(25px, 5vw, 45px) 20px;
+            padding: 40px 20px;
             border-radius: 20px;
             margin-bottom: 35px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.3);
@@ -61,7 +60,7 @@
         }
 
         header h1 {
-            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-size: 38px; /* Main Header Title */
             color: var(--primary-accent);
             margin-bottom: 12px;
             font-weight: 800;
@@ -70,7 +69,7 @@
 
         header p {
             color: var(--text-muted);
-            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+            font-size: 24px;
             font-weight: 600;
         }
 
@@ -78,9 +77,9 @@
             margin-top: 20px;
             background: var(--box-bg);
             border-left: 5px solid var(--primary-accent);
-            padding: 16px 20px;
+            padding: 18px 22px;
             border-radius: 10px;
-            font-size: clamp(1rem, 2vw, 1.2rem);
+            font-size: 22px; /* Box Font Size 22px */
             text-align: left;
             color: var(--text-main);
         }
@@ -90,11 +89,11 @@
             background: var(--card-bg);
             border: 1px solid var(--card-border);
             border-radius: 18px;
-            padding: clamp(20px, 4vw, 35px);
+            padding: 35px 25px;
             margin-bottom: 30px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.25);
             transition: transform 0.3s ease, border-color 0.3s ease;
-            opacity: 0; /* JS Controlled Animation */
+            opacity: 0;
         }
 
         .lesson-card:hover {
@@ -103,7 +102,7 @@
         }
 
         .lesson-title {
-            font-size: clamp(1.3rem, 3vw, 1.7rem);
+            font-size: 28px; /* Lesson Title */
             color: var(--primary-accent);
             border-bottom: 1px solid var(--card-border);
             padding-bottom: 12px;
@@ -117,20 +116,20 @@
         /* --- TEXT & BOX FORMATTING --- */
         .definition {
             background: var(--box-bg);
-            padding: 16px 20px;
+            padding: 18px 22px;
             border-radius: 10px;
             margin: 15px 0;
             border-left: 4px solid var(--secondary-accent);
-            font-size: clamp(1.05rem, 2.2vw, 1.25rem);
+            font-size: 22px; /* Box Font Size 22px */
         }
 
         .example-box {
             background: var(--box-bg);
-            padding: 18px;
+            padding: 20px;
             border-radius: 12px;
             margin-top: 15px;
             border: 1px solid var(--card-border);
-            font-size: clamp(1rem, 2vw, 1.2rem);
+            font-size: 22px; /* Box Font Size 22px */
         }
 
         .example-box p {
@@ -143,12 +142,12 @@
         .formula-box {
             background: var(--box-bg);
             border: 1px dashed var(--secondary-accent);
-            padding: 14px 20px;
+            padding: 16px 22px;
             border-radius: 10px;
             margin-top: 16px;
             font-weight: 700;
             color: var(--secondary-accent);
-            font-size: clamp(1rem, 2vw, 1.15rem);
+            font-size: 22px; /* Box Font Size 22px */
             display: inline-block;
             width: 100%;
         }
@@ -165,11 +164,11 @@
             width: 100%;
             border-collapse: collapse;
             background: var(--box-bg);
-            font-size: clamp(0.95rem, 2vw, 1.1rem);
+            font-size: 22px; /* Table Font Size 22px */
         }
 
         th, td {
-            padding: 14px 18px;
+            padding: 16px 20px;
             text-align: left;
             border-bottom: 1px solid var(--card-border);
         }
@@ -177,7 +176,7 @@
         th {
             background: #1e293b;
             color: var(--primary-accent);
-            font-size: clamp(1rem, 2.2vw, 1.2rem);
+            font-size: 24px;
             font-weight: 700;
         }
 
@@ -188,15 +187,15 @@
             right: 25px;
             background: var(--primary-accent);
             color: #0f172a;
-            width: 50px;
-            height: 50px;
+            width: 55px;
+            height: 55px;
             border-radius: 50%;
             border: none;
             cursor: pointer;
             display: none;
             align-items: center;
             justify-content: center;
-            font-size: 1.3rem;
+            font-size: 24px;
             box-shadow: 0 6px 15px rgba(0,0,0,0.4);
             transition: all 0.3s ease;
             z-index: 100;
@@ -206,7 +205,7 @@
             transform: scale(1.1);
         }
 
-        /* --- ANIMATION CLASSES (JS OBSERVER) --- */
+        /* --- ANIMATION CLASSES --- */
         @keyframes headerZoomIn {
             0% { opacity: 0; transform: scale(0.8); }
             100% { opacity: 1; transform: scale(1); }
@@ -235,6 +234,14 @@
         .lesson-card.animated-active {
             opacity: 1 !important;
             transform: translateX(0) translateY(0) scale(1) !important;
+        }
+
+        /* Phone Screen Mobile Adjustments */
+        @media (max-width: 600px) {
+            body { font-size: 22px; }
+            header h1 { font-size: 30px; }
+            .lesson-title { font-size: 24px; }
+            .definition, .example-box, .formula-box, table { font-size: 20px; }
         }
     </style>
 </head>
@@ -270,7 +277,7 @@
         <div class="lesson-card anim-slide-right">
             <div class="lesson-title"><i class="fa-solid fa-cubes"></i> LESSON 2 — MAIN PARTS OF A SENTENCE (বাক্যের প্রধান অংশ)</div>
             <p>একটি সাধারণ Sentence-এর প্রধান দুটি অংশ:</p>
-            <ul style="margin-left: 25px; margin-top: 8px;">
+            <ul style="margin-left: 30px; margin-top: 8px;">
                 <li><strong>1. Subject</strong> → কর্তা</li>
                 <li><strong>2. Predicate</strong> → বিধেয়</li>
             </ul>
