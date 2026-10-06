@@ -1,32 +1,62 @@
+/* ==============================
+   RESET
+============================== */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+
+/* ==============================
+   BODY
+============================== */
+
 body {
     min-height: 100vh;
     font-family: Arial, sans-serif;
+
     background:
-        radial-gradient(circle at 10% 10%, rgba(120, 90, 255, 0.25), transparent 30%),
-        radial-gradient(circle at 90% 90%, rgba(0, 200, 255, 0.20), transparent 30%),
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(120, 90, 255, 0.25),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 90% 90%,
+            rgba(0, 200, 255, 0.20),
+            transparent 30%
+        ),
         #080b16;
+
     color: #ffffff;
     overflow-x: hidden;
 }
+
+
+/* ==============================
+   MAIN CONTAINER
+============================== */
 
 .container {
     width: 100%;
     max-width: 850px;
     margin: auto;
+
     padding: 35px 20px 25px;
 }
 
-/* Header */
+
+/* ==============================
+   HEADER
+============================== */
+
 .header {
     display: flex;
     align-items: center;
     gap: 15px;
+
     animation: slideDown 0.8s ease;
 }
 
@@ -36,175 +66,462 @@ body {
 
 .header p {
     margin-top: 4px;
+
     color: #9da5bd;
     font-size: 14px;
 }
 
-/* Back Button */
+
+/* ==============================
+   BACK BUTTON
+============================== */
+
 .back-btn {
     width: 48px;
     height: 48px;
+
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 15px;
+
     background: rgba(255, 255, 255, 0.06);
     color: #ffffff;
+
     font-size: 24px;
     cursor: pointer;
-    transition: 0.3s ease;
+
+    transition: all 0.3s ease;
 }
 
 .back-btn:hover {
     transform: translateX(-5px);
-    background: rgba(124, 92, 255, 0.2);
-    border-color: rgba(124, 92, 255, 0.5);
+
+    background: rgba(124, 92, 255, 0.20);
+    border-color: rgba(124, 92, 255, 0.50);
 }
 
-/* Welcome Section */
+
+/* ==============================
+   WELCOME SECTION
+============================== */
+
 .welcome {
     margin-top: 50px;
+
     animation: fadeUp 0.9s ease;
 }
 
 .small-text {
     color: #8c7cff;
+
     font-size: 12px;
     font-weight: bold;
+
     letter-spacing: 2px;
 }
 
 .welcome h2 {
     margin-top: 10px;
+
     font-size: clamp(28px, 5vw, 42px);
     line-height: 1.15;
 }
 
 .description {
     margin-top: 12px;
+
     color: #9da5bd;
     font-size: 16px;
 }
 
-/* Topics Grid */
+
+/* ==============================
+   TOPICS GRID
+============================== */
+
 .topics {
     display: grid;
+
+    grid-template-columns: 1fr;
     gap: 18px;
+
     margin-top: 35px;
 }
 
-/* Card Style */
+
+/* ==============================
+   TOPIC CARD
+   যতগুলো topic থাকবে,
+   সবগুলো এই ডিজাইন পাবে
+============================== */
+
 .topic {
     position: relative;
+
     display: flex;
     align-items: center;
+
     gap: 17px;
+
+    width: 100%;
+    min-height: 95px;
+
     padding: 20px;
+
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 22px;
+
     background: rgba(255, 255, 255, 0.055);
+
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
+
     text-decoration: none;
     color: inherit;
+
     overflow: hidden;
     cursor: pointer;
-    transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease;
+
     animation: cardAppear 0.7s ease both;
 }
 
-.topic:nth-child(1) { animation-delay: 0.15s; }
-.topic:nth-child(2) { animation-delay: 0.30s; }
 
-/* Shine Effect */
+/* ==============================
+   AUTOMATIC CARD ANIMATION
+============================== */
+
+/* প্রথম 10টি আলাদা delay */
+.topic:nth-child(1)  { animation-delay: 0.10s; }
+.topic:nth-child(2)  { animation-delay: 0.18s; }
+.topic:nth-child(3)  { animation-delay: 0.26s; }
+.topic:nth-child(4)  { animation-delay: 0.34s; }
+.topic:nth-child(5)  { animation-delay: 0.42s; }
+.topic:nth-child(6)  { animation-delay: 0.50s; }
+.topic:nth-child(7)  { animation-delay: 0.58s; }
+.topic:nth-child(8)  { animation-delay: 0.66s; }
+.topic:nth-child(9)  { animation-delay: 0.74s; }
+.topic:nth-child(10) { animation-delay: 0.82s; }
+
+
+/* ==============================
+   SHINE EFFECT
+============================== */
+
 .topic::before {
     content: "";
+
     position: absolute;
+
     top: 0;
     left: -120%;
+
     width: 70%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.08),
+        transparent
+    );
+
     transform: skewX(-20deg);
+
     transition: left 0.7s ease;
 }
+
+
+/* Shine সব topic-এ কাজ করবে */
 
 .topic:hover::before {
     left: 140%;
 }
 
+
+/* ==============================
+   TOPIC HOVER
+============================== */
+
 .topic:hover {
     transform: translateY(-6px) scale(1.01);
-    border-color: rgba(124, 92, 255, 0.5);
+
+    border-color: rgba(124, 92, 255, 0.50);
+
     background: rgba(255, 255, 255, 0.09);
-    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.35), 0 0 25px rgba(124, 92, 255, 0.12);
+
+    box-shadow:
+        0 15px 45px rgba(0, 0, 0, 0.35),
+        0 0 25px rgba(124, 92, 255, 0.12);
 }
 
+
+/* ==============================
+   TOPIC ICON
+============================== */
+
 .topic-icon {
-    min-width: 55px;
+    flex-shrink: 0;
+
+    width: 55px;
     height: 55px;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     border-radius: 17px;
+
     font-size: 26px;
-    background: linear-gradient(135deg, rgba(124, 92, 255, 0.25), rgba(0, 198, 255, 0.15));
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(124, 92, 255, 0.25),
+            rgba(0, 198, 255, 0.15)
+        );
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease;
 }
+
+
+/* Icon hover */
+
+.topic:hover .topic-icon {
+    transform: scale(1.08) rotate(-3deg);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(124, 92, 255, 0.35),
+            rgba(0, 198, 255, 0.25)
+        );
+}
+
+
+/* ==============================
+   TOPIC INFORMATION
+============================== */
 
 .topic-info {
     flex: 1;
+    min-width: 0;
 }
 
 .topic-info h3 {
     font-size: 19px;
+
     margin-bottom: 5px;
+
+    color: #ffffff;
 }
 
 .topic-info p {
     color: #9299af;
+
     font-size: 13px;
+
+    line-height: 1.5;
 }
 
+
+/* ==============================
+   ARROW
+============================== */
+
 .arrow {
+    flex-shrink: 0;
+
     font-size: 25px;
+
     color: #8d7cff;
-    transition: transform 0.3s ease;
+
+    transition:
+        transform 0.3s ease,
+        color 0.3s ease;
 }
 
 .topic:hover .arrow {
     transform: translateX(6px);
+
+    color: #a99cff;
 }
 
-/* Footer */
+
+/* ==============================
+   FOOTER
+============================== */
+
 footer {
     margin-top: 55px;
+
     text-align: center;
+
     color: #666d82;
+
     font-size: 12px;
+
     animation: fadeUp 1.2s ease;
 }
 
-/* Animations */
+
+/* ==============================
+   ANIMATIONS
+============================== */
+
 @keyframes slideDown {
-    from { opacity: 0; transform: translateY(-25px); }
-    to { opacity: 1; transform: translateY(0); }
+
+    from {
+        opacity: 0;
+        transform: translateY(-25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
 }
+
 
 @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(25px); }
-    to { opacity: 1; transform: translateY(0); }
+
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
 }
+
 
 @keyframes cardAppear {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
+
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
 }
 
-/* Responsive */
+
+/* ==============================
+   MOBILE
+============================== */
+
 @media (max-width: 600px) {
-    .container { padding: 25px 15px; }
-    .header h1 { font-size: 23px; }
-    .welcome { margin-top: 35px; }
-    .topic { padding: 16px; border-radius: 19px; }
-    .topic-icon { min-width: 48px; height: 48px; font-size: 22px; }
-    .topic-info h3 { font-size: 17px; }
-    .topic-info p { font-size: 12px; }
+
+    .container {
+        padding: 25px 15px;
+    }
+
+
+    .header h1 {
+        font-size: 23px;
+    }
+
+
+    .welcome {
+        margin-top: 35px;
+    }
+
+
+    .welcome h2 {
+        font-size: 30px;
+    }
+
+
+    .description {
+        font-size: 14px;
+    }
+
+
+    .topic {
+        min-height: 85px;
+
+        padding: 16px;
+
+        gap: 13px;
+
+        border-radius: 19px;
+    }
+
+
+    .topic-icon {
+        width: 48px;
+        height: 48px;
+
+        border-radius: 14px;
+
+        font-size: 22px;
+    }
+
+
+    .topic-info h3 {
+        font-size: 17px;
+    }
+
+
+    .topic-info p {
+        font-size: 12px;
+    }
+
+
+    .arrow {
+        font-size: 21px;
+    }
+
+}
+
+
+/* ==============================
+   VERY SMALL MOBILE
+============================== */
+
+@media (max-width: 380px) {
+
+    .topic {
+        padding: 14px;
+
+        gap: 10px;
+    }
+
+
+    .topic-icon {
+        width: 44px;
+        height: 44px;
+
+        font-size: 20px;
+    }
+
+
+    .topic-info h3 {
+        font-size: 16px;
+    }
+
+
+    .topic-info p {
+        font-size: 11px;
+    }
+
+
+    .arrow {
+        font-size: 19px;
+    }
+
 }
