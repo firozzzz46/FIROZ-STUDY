@@ -585,19 +585,19 @@ footer {
    RESPONSIVE PROFILE & WATERMARK BACKGROUND
    ========================================= */
 
-/* Background Overlay with Responsive Focus */
+/* Background Overlay */
 body::before {
     content: "";
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     background-image: url('bg.jpg');
     background-size: cover;
-    background-position: center top; /* মোবাইল ও পিসিতে মূল বিষয়টি যাতে কেটে না যায় */
+    background-position: center center;
     background-repeat: no-repeat;
-    opacity: 0.20; /* জলছাপের ঘনত্ব */
+    opacity: 0.20;
     z-index: -1;
     pointer-events: none;
 }
@@ -612,16 +612,23 @@ body::before {
     height: 60px;
     border: 2px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
-    flex-shrink: 0; /* মোবাইলে যেন সাইজ ছোট হয়ে না যায় */
+    flex-shrink: 0;
 }
 
-/* Mobile Specific Alignment */
+/* Prevent Text Selection */
+body {
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Mobile Responsive Optimization */
 @media (max-width: 600px) {
     body::before {
-        background-position: center center; /* মোবাইলে সেন্টারে ফোকাস রাখবে */
+        background-size: contain; /* ছবি না কেটে পুরোটা স্ক্রিনে ফিট করবে */
+        background-position: center top; /* উপরে ফোকাস রাখবে */
     }
 }
-
 
 
 
