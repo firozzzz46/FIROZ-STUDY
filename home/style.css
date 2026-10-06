@@ -580,23 +580,24 @@ footer {
 
 
 
+
 /* =========================================
-   PROFILE AND LIGHT BACKGROUND EXTRA CODE
+   RESPONSIVE PROFILE & WATERMARK BACKGROUND
    ========================================= */
 
-/* Background Overlay for Soft/Watermark Effect */
+/* Background Overlay with Responsive Focus */
 body::before {
     content: "";
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('bg.jpg'); /* আপনার ব্যাকগ্রাউন্ড ছবি */
+    width: 100vw;
+    height: 100vh;
+    background-image: url('bg.jpg');
     background-size: cover;
-    background-position: center;
+    background-position: center top; /* মোবাইল ও পিসিতে মূল বিষয়টি যাতে কেটে না যায় */
     background-repeat: no-repeat;
-    opacity: 0.20; /* আবছা ভাব নিয়ন্ত্রণ করতে (০.১০ - ০.১৫ এর মধ্যে পরিবর্তন করতে পারেন) */
+    opacity: 0.20; /* জলছাপের ঘনত্ব */
     z-index: -1;
     pointer-events: none;
 }
@@ -604,11 +605,28 @@ body::before {
 /* Header Logo / Profile Photo */
 .header .logo {
     font-size: 0;
-    background: url('profile.jpg') no-repeat center center; /* আপনার প্রোফাইল ছবি */
+    background: url('profile.jpg') no-repeat center center;
     background-size: cover;
     border-radius: 50%;
     width: 60px;
     height: 60px;
     border: 2px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+    flex-shrink: 0; /* মোবাইলে যেন সাইজ ছোট হয়ে না যায় */
+}
+
+/* Mobile Specific Alignment */
+@media (max-width: 600px) {
+    body::before {
+        background-position: center center; /* মোবাইলে সেন্টারে ফোকাস রাখবে */
+    }
+}
+
+
+
+
+body {
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
