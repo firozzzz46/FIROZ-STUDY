@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PART 1 - English Grammar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Base Reset & Modern Light Styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Hind Siliguri', 'Poppins', 'Segoe UI', Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f4f6f9; /* হালকা অফ-হোয়াইট ব্যাকগ্রাউন্ড */
+            color: #1e293b;
+            min-height: 100vh;
+            padding: 25px 12px;
+            display: flex;
+            justify-content: center;
+            font-size: 25px; /* বডি টেক্সট ২৫ পিক্সেল */
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 920px;
+        }
+
+        /* Modern Light Header */
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .back-btn {
+            background: #ffffff;
+            color: #6366f1;
+            border: 1px solid #e2e8f0;
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 22px;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: #6366f1;
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        .header h2 {
+            font-size: 24px;
+            color: #0f172a;
+            font-weight: 700;
+        }
+
+        /* Card Container (Light Premium Glass/Shadow Style) */
+        .content-card {
+            background: #ffffff;
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Title with Accent Line */
+        .part-title {
+            font-size: 28px;
+            color: #4f46e5; /* প্রিমিয়াম ইন্ডিগো কালার */
+            margin-bottom: 25px;
+            border-left: 5px solid #6366f1;
+            padding-left: 15px;
+            line-height: 1.4;
+            font-weight: 700;
+        }
+
+        /* Text Content Area */
+        .main-content {
+            line-height: 1.8;
+            font-size: 25px; /* বডি টেক্সট ২৫ পিক্সেল */
+            color: #334155;
+            margin-bottom: 30px;
+        }
+
+        .main-content h3 {
+            color: #1e1b4b;
+            margin: 35px 0 15px 0;
+            font-size: 26px;
+            border-bottom: 2px dashed #cbd5e1;
+            padding-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .main-content p {
+            margin-bottom: 15px;
+        }
+
+        .main-content ul, .main-content ol {
+            margin-left: 25px;
+            margin-bottom: 15px;
+        }
+
+        /* Beautiful Light Example Box (২২ পিক্সেল টেক্সট) */
+        .example-box {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-left: 5px solid #6366f1;
+            padding: 20px 22px;
+            border-radius: 12px;
+            margin: 20px 0;
+            font-size: 22px; /* বক্স টেক্সট ২২ পিক্সেল */
+            color: #1e293b;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+
+        .wrong-text {
+            color: #ef4444;
+            font-weight: 600;
+        }
+
+        .correct-text {
+            color: #10b981;
+            font-weight: 600;
+        }
+
+        /* Modern Table Style (২২ পিক্সেল টেক্সট) */
+        .table-responsive {
+            overflow-x: auto;
+            margin: 25px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 22px; /* টেবিল টেক্সট ২২ পিক্সেল */
+            background: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        }
+
+        th, td {
+            padding: 16px;
+            text-align: left;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        th {
+            background-color: #ee2e8f0;
+            background: linear-gradient(135deg, #e0e7ff 0%, #f1f5f9 100%);
+            color: #3730a3;
+            font-weight: 700;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        /* Smooth Slow Scroll Animations (২ সেকেন্ড সময়সীমায় স্মুথ অ্যানিমেশন) */
+        .animate-up {
+            opacity: 0;
+            transform: translateY(45px);
+            transition: transform 2s cubic-bezier(0.16, 1, 0.3, 1), opacity 2s ease-out;
+            will-change: transform, opacity;
+        }
+
+        .animate-left {
+            opacity: 0;
+            transform: translateX(-45px);
+            transition: transform 2s cubic-bezier(0.16, 1, 0.3, 1), opacity 2s ease-out;
+            will-change: transform, opacity;
+        }
+
+        .animate-zoom {
+            opacity: 0;
+            transform: scale(0.94);
+            transition: transform 2s cubic-bezier(0.16, 1, 0.3, 1), opacity 2s ease-out;
+            will-change: transform, opacity;
+        }
+
+        /* Animation Active State */
+        .animate-show {
+            opacity: 1;
+            transform: translateY(0) translateX(0) scale(1);
+        }
+
+        /* Footer Navigation Buttons */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            padding-top: 25px;
+            border-top: 2px solid #f1f5f9;
+        }
+
+        .nav-btn {
+            background: #ffffff;
+            color: #4f46e5;
+            border: 1px solid #c7d2fe;
+            padding: 12px 24px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: #6366f1;
+            color: #ffffff;
+            border-color: #6366f1;
+        }
+
+        /* Responsive Adjustment for Mobile */
+        @media (max-width: 600px) {
+            body {
+                font-size: 20px;
+            }
+            .main-content {
+                font-size: 20px;
+            }
+            .example-box, table {
+                font-size: 18px;
+            }
+            .content-card {
+                padding: 20px;
+            }
+            .part-title {
+                font-size: 22px;
+            }
+            .main-content h3 {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <main class="container">
+
+        <!-- Top Header Navigation -->
+        <header class="header animate-zoom">
+            <a href="index.html" class="back-btn">←</a>
+            <h2>English Grammar</h2>
+        </header>
+
+        <!-- Main Card Area -->
+        <article class="content-card">
+            
+            <h1 class="part-title animate-zoom">PART 1 — SENTENCE FOUNDATION (বাক্যের ভিত্তি)</h1>
+
+            <!-- ============================================= -->
+            <!-- 📚 মূল পড়া -->
+            <!-- ============================================= -->
+            <div class="main-content">
+                
+                <p class="animate-up">📚 <strong>English Grammar & Bangla Grammar Equivalent Guide</strong><br>
+                🎯 <strong>লক্ষ্য:</strong> Sentence (বাক্য) কী, Sentence-এর অংশ, Subject, Predicate, Object, Complement, Phrase, Clause, বাক্যের গঠন এবং বাক্যের প্রধান প্রকারভেদ সম্পর্কে মজবুত ভিত্তি তৈরি করা।</p>
+
+                <!-- LESSON 1 -->
+                <div class="animate-up">
+                    <h3>LESSON 1 — WHAT IS A SENTENCE? (Sentence কী?)</h3>
+                    <p>📌 <strong>Definition:</strong> A Sentence is a group of words that makes complete sense.</p>
+                    <p>🇧🇩 <strong>বাংলা:</strong> Sentence (বাক্য) হলো এমন কিছু শব্দের সমষ্টি, যা সম্পূর্ণ অর্থ প্রকাশ করে।</p>
+                    <div class="example-box">
+                        <strong>Example:</strong><br>
+                        - Firoz reads a book. — ফিরোজ একটি বই পড়ে। (এখানে সম্পূর্ণ একটি অর্থ প্রকাশ পেয়েছে। তাই এটি একটি Sentence।)<br>
+                        - <span class="wrong-text">❌ Firoz a book reads</span> → শব্দগুলো আছে, কিন্তু সঠিকভাবে সাজানো নেই।<br>
+                        - <span class="wrong-text">❌ Reads a book</span> → সম্পূর্ণ অর্থ পরিষ্কার নয়।<br>
+                        - <span class="correct-text">✅ Firoz reads a book.</span> → সম্পূর্ণ অর্থ প্রকাশ করছে।
+                    </div>
+                </div>
+
+                <!-- LESSON 2 -->
+                <div class="animate-left">
+                    <h3>LESSON 2 — MAIN PARTS OF A SENTENCE (বাক্যের প্রধান অংশ)</h3>
+                    <p>একটি সাধারণ Sentence-এর প্রধান দুটি অংশ:</p>
+                    <ol>
+                        <li>Subject → কর্তা</li>
+                        <li>Predicate → বিধেয়</li>
+                    </ol>
+                    <div class="example-box">
+                        <strong>Example:</strong> Fatiha plays football.<br>
+                        - Fatiha = Subject<br>
+                        - plays football = Predicate<br><br>
+                        📌 <strong>সহজে মনে রাখা:</strong> Subject = কে/কী? | Predicate = Subject সম্পর্কে কী বলা হচ্ছে?
+                    </div>
+                </div>
+
+                <!-- LESSON 3 & 4 -->
+                <div class="animate-up">
+                    <h3>LESSON 3 — SUBJECT (কর্তা) & LESSON 4 — PREDICATE (বিধেয়)</h3>
+                    <p>📌 <strong>Definition (Subject):</strong> The Subject is the person, animal, thing, or idea that the sentence is about.</p>
+                    <p>🇧🇩 <strong>বাংলা:</strong> Subject হলো বাক্যে যার সম্পর্কে কিছু বলা হয় অথবা যে কাজটি করে।</p>
+                    <div class="example-box">
+                        <strong>Examples:</strong><br>
+                        - Firoz reads a book. (Who reads? → Firoz = Subject)<br>
+                        - The cat is sleeping. (Who is sleeping? → The cat = Subject)
+                    </div>
+                    <p><strong>Predicate:</strong> Predicate হলো Subject সম্পর্কে যা বলা হয়।</p>
+                    <div class="example-box">
+                        <strong>Examples:</strong><br>
+                        - Firoz reads a book. (Subject: Firoz | Predicate: reads a book)<br>
+                        - The boy is playing football. (Subject: The boy | Predicate: is playing football)
+                    </div>
+                    <p>📌 <strong>সূত্র:</strong> Subject + Predicate = Complete Sentence</p>
+                </div>
+
+                <!-- LESSON 5 & 6 -->
+                <div class="animate-zoom">
+                    <h3>LESSON 5 — SUBJECT + VERB & LESSON 6 — SUBJECT + VERB + OBJECT</h3>
+                    <p>একটি সাধারণ English Sentence-এর সবচেয়ে গুরুত্বপূর্ণ ভিত্তি হলো Subject + Verb এবং Subject + Verb + Object।</p>
+                    <div class="example-box">
+                        <strong>Examples (Subject + Verb):</strong><br>
+                        - Birds fly. — পাখিরা উড়ে। (Birds → Subject, fly → Verb)<br>
+                        - Firoz works. — ফিরোজ কাজ করে।<br>
+                        - Children play. — শিশুরা খেলে।<br>
+                        - The baby sleeps. — শিশুটি ঘুমায়।
+                    </div>
+                    <div class="example-box">
+                        <strong>Examples (Subject + Verb + Object):</strong><br>
+                        - Fatiha reads a book. (Fatiha = Subject, reads = Verb, a book = Object)<br>
+                        - I eat rice. (I = Subject, eat = Verb, rice = Object)<br><br>
+                        📌 <strong>Note:</strong> এই Pattern English-এর খুব গুরুত্বপূর্ণ Sentence Structure।
+                    </div>
+                </div>
+
+                <!-- LESSON 7 & 8 -->
+                <div class="animate-left">
+                    <h3>LESSON 7 — OBJECT (কর্ম) & LESSON 8 — DIRECT & INDIRECT OBJECT</h3>
+                    <p>📌 <strong>Definition:</strong> Object হলো যার ওপর Verb-এর কাজটি প্রভাব ফেলে। সাধারণত Verb-এর পরে Object পাওয়া যায়, তবে সব বাক্যে Object থাকে না।</p>
+                    <div class="example-box">
+                        <strong>Examples:</strong><br>
+                        - I read a book. (আমি কী পড়ি? → a book = Object)<br>
+                        - He bought a phone. (সে কী কিনল? → a phone = Object)
+                    </div>
+                    <p><strong>Direct & Indirect Object:</strong> কিছু বাক্যে দুটি Object থাকতে পারে।</p>
+                    <div class="example-box">
+                        <strong>Example:</strong> Firoz gave me a book.<br>
+                        - me → Indirect Object (কাকে দিল?)<br>
+                        - a book → Direct Object (কী দিল?)<br><br>
+                        <strong>Pattern:</strong> Subject + Verb + Indirect Object + Direct Object<br>
+                        - Fatiha gave her brother a pen. (her brother = Indirect Object, a pen = Direct Object)
+                    </div>
+                </div>
+
+                <!-- LESSON 9 & 10 -->
+                <div class="animate-up">
+                    <h3>LESSON 9 — COMPLEMENT & LESSON 10 — SUBJECT & OBJECT COMPLEMENT</h3>
+                    <p>📌 <strong>Definition:</strong> Complement হলো এমন একটি অংশ, যা Subject বা Object সম্পর্কে অতিরিক্ত প্রয়োজনীয় তথ্য দেয়। Complement অনেক সময় Subject-এর পরিচয় বা অবস্থা বোঝায়।</p>
+                    <div class="example-box">
+                        <strong>Examples:</strong><br>
+                        - Firoz is a student. (a student = Subject Complement)<br>
+                        - He became a teacher. (a teacher = Complement)<br>
+                        - The sky is blue. (blue = Subject Complement)<br>
+                        - They made him captain. (captain = Object Complement)<br>
+                        - We found the book useful. (useful = Object Complement)
+                    </div>
+                </div>
+
+                <!-- LESSON 11-13 -->
+                <div class="animate-zoom">
+                    <h3>LESSON 11 — WORD ORDER & BASIC SENTENCE PATTERNS</h3>
+                    <p>English-এ শব্দের অবস্থান খুব গুরুত্বপূর্ণ। সাধারণ Pattern: Subject + Verb + Object (যেমন: I eat rice.)। <span class="wrong-text">❌ Rice I eat.</span> এভাবে সাধারণ English বাক্য বলা হয় না।</p>
+                    <div class="example-box">
+                        📌 <strong>English-এর গুরুত্বপূর্ণ Basic Patterns:</strong><br>
+                        1. S + V (Birds fly.)<br>
+                        2. S + V + O (I read books.)<br>
+                        3. S + V + C (Fatiha is a student.)<br>
+                        4. S + V + IO + DO (She gave me a pen.)<br>
+                        5. S + V + O + C (They made him captain.)
+                    </div>
+                </div>
+
+                <!-- LESSON 14 -->
+                <div class="animate-left">
+                    <h3>LESSON 14 — PHRASE & CLAUSE</h3>
+                    <p>📌 <strong>Definition (Phrase):</strong> A Phrase is a group of words that does not contain a complete Subject-Verb structure and does not express a complete thought.</p>
+                    <p>🇧🇩 <strong>বাংলা:</strong> Phrase হলো কয়েকটি শব্দের সমষ্টি, যা সম্পূর্ণ বাক্যের মতো পূর্ণ অর্থ প্রকাশ করে না। (যেমন: in the room, a beautiful flower)।</p>
+                    <p>📌 <strong>Definition (Clause):</strong> A Clause is a group of words that contains a Subject and a Verb.</p>
+                    <p>🇧🇩 <strong>বাংলা:</strong> Clause হলো এমন শব্দসমষ্টি, যেখানে সাধারণত একটি Subject ও একটি Verb থাকে। (যেমন: I went home.)</p>
+                    <div class="example-box">
+                        <strong>Phrase vs Clause:</strong><br>
+                        - Phrase: in the room (Subject + Verb নেই।)<br>
+                        - Clause: when I came (I = Subject, came = Verb)<br><br>
+                        - <strong>Main Clause / Independent Clause:</strong> নিজে সম্পূর্ণ অর্থ প্রকাশ করতে পারে (যেমন: I went home.)।<br>
+                        - <strong>Subordinate Clause / Dependent Clause:</strong> একাই সম্পূর্ণ অর্থ প্রকাশ করতে পারে না (যেমন: because I was tired)।
+                    </div>
+                </div>
+
+                <!-- LESSON 15 -->
+                <div class="animate-up">
+                    <h3>LESSON 15 — TYPES OF SENTENCE: STRUCTURE</h3>
+                    <p>Structure অনুযায়ী Sentence প্রধানত ৪ প্রকার:</p>
+                    <div class="example-box">
+                        1. <strong>Simple Sentence (সরল বাক্য):</strong> একটি Independent Clause থাকে। (যেমন: Firoz reads a book.)<br>
+                        2. <strong>Compound Sentence (যৌগিক বাক্য):</strong> দুই বা ততোধিক Independent Clause থাকে। (যেমন: I went to school, and I met Fatiha.)<br>
+                        3. <strong>Complex Sentence (জটিল বাক্য):</strong> ১টি Main Clause এবং ১টি বা একাধিক Subordinate Clause থাকে। (যেমন: I stayed home because it was raining.)<br>
+                        4. <strong>Compound-Complex Sentence (যৌগিক-জটিল বাক্য):</strong> কমপক্ষে ২টি Independent Clause + কমপক্ষে ১টি Subordinate Clause থাকে।
+                    </div>
+                </div>
+
+                <!-- LESSON 16 -->
+                <div class="animate-zoom">
+                    <h3>LESSON 16 — TYPES OF SENTENCE: PURPOSE</h3>
+                    <p>উদ্দেশ্য অনুযায়ী Sentence প্রধানত ৫ প্রকার:</p>
+                    <div class="example-box">
+                        - <strong>Assertive Sentence (বিবৃতিমূলক):</strong> তথ্য বা ঘটনা প্রকাশ করে। (He is honest.)<br>
+                        - <strong>Interrogative Sentence (প্রশ্নবোধক):</strong> প্রশ্ন করা হয়। (Are you a student?)<br>
+                        - <strong>Imperative Sentence (আদেশ/অনুরোধ):</strong> আদেশ বা অনুরোধ বোঝায়। (Open the door.)<br>
+                        - <strong>Exclamatory Sentence (বিস্ময়সূচক):</strong> তীব্র আবেগ প্রকাশ করে। (What a beautiful flower!)<br>
+                        - <strong>Optative Sentence (ইচ্ছাসূচক):</strong> ইচ্ছা বা প্রার্থনা প্রকাশ করে। (May Allah bless you.)
+                    </div>
+                </div>
+
+                <!-- LESSON 17 -->
+                <div class="animate-left">
+                    <h3>LESSON 17 — SUBJECT-VERB AGREEMENT & MISTAKES</h3>
+                    <p>📌 <strong>Subject-Verb Agreement:</strong> Subject অনুযায়ী Verb-এর রূপ সঠিক হতে হবে।</p>
+                    <div class="example-box">
+                        - He plays football. | They play football.<br>
+                        - <span class="wrong-text">❌ He play football.</span> ➔ <span class="correct-text">✅ He plays football.</span>
+                    </div>
+                    <p><strong>Common Sentence Mistakes & Corrections:</strong></p>
+                    <div class="example-box">
+                        - <span class="wrong-text">❌ He go to school.</span> ➔ <span class="correct-text">✅ He goes to school.</span><br>
+                        - <span class="wrong-text">❌ She don't like tea.</span> ➔ <span class="correct-text">✅ She doesn't like tea.</span><br>
+                        - <span class="wrong-text">❌ Firoz a student is.</span> ➔ <span class="correct-text">✅ Firoz is a student.</span>
+                    </div>
+                </div>
+
+                <!-- LESSON 18 & 19 -->
+                <div class="animate-up">
+                    <h3>LESSON 18 & 19 — ANALYSIS & PRACTICE</h3>
+                    <div class="example-box">
+                        <strong>Sentence Analysis Example:</strong> Fatiha reads a good book every day.<br>
+                        - Fatiha (Subject) | reads (Verb) | a good book (Object) | every day (Adverbial)
+                    </div>
+                    <div class="example-box">
+                        <strong>Practice Exercises:</strong><br>
+                        1. Firoz reads a book. (Subject: Firoz | Predicate: reads a book)<br>
+                        2. I eat rice. (Subject: I, Verb: eat, Object: rice)<br>
+                        3. He go to school ➔ <strong>He goes to school.</strong>
+                    </div>
+                </div>
+
+                <!-- LESSON 20 TABLE -->
+                <div class="animate-zoom">
+                    <h3>LESSON 20 — MASTER SUMMARY TABLE</h3>
+                    
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ক্যাটাগরি / বিষয়বস্তু</th>
+                                    <th>মূল ধারণা ও শর্টকাট সূত্র</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>১. বাক্যের প্রধান অংশ</td>
+                                    <td>Subject (কর্তা) ও Predicate (বিধেয়)</td>
+                                </tr>
+                                <tr>
+                                    <td>২. বাক্যের মূল উপাদান</td>
+                                    <td>Subject + Verb (+ Object / Complement)</td>
+                                </tr>
+                                <tr>
+                                    <td>৩. Object-এর প্রকার</td>
+                                    <td>Direct Object (কী?) ও Indirect Object (কাকে?)</td>
+                                </tr>
+                                <tr>
+                                    <td>৪. Complement</td>
+                                    <td>Subject Complement এবং Object Complement</td>
+                                </tr>
+                                <tr>
+                                    <td>৫. Phrase ও Clause</td>
+                                    <td>Phrase-এ S+V নেই, Clause-এ S+V থাকে</td>
+                                </tr>
+                                <tr>
+                                    <td>৬. গঠন অনুযায়ী Sentence</td>
+                                    <td>Simple, Compound, Complex, Compound-Complex</td>
+                                </tr>
+                                <tr>
+                                    <td>৭. উদ্দেশ্য অনুযায়ী Sentence</td>
+                                    <td>Assertive, Interrogative, Imperative, Exclamatory, Optative</td>
+                                </tr>
+                                <tr>
+                                    <td>৮. ভুল সংশোধন</td>
+                                    <td>Subject-Verb Agreement এবং Word Order সঠিক রাখা</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+            <!-- ============================================= -->
+
+            <!-- Bottom Navigation -->
+            <nav class="nav-buttons">
+                <a href="#" class="nav-btn">← Previous</a>
+                <a href="#" class="nav-btn">Next →</a>
+            </nav>
+
+        </article>
+
+    </main>
+
+    <!-- Smooth Slow Scroll Animation Script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const observerOptions = {
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-show');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            const animatedElements = document.querySelectorAll('.animate-up, .animate-left, .animate-zoom');
+            animatedElements.forEach(el => observer.observe(el));
+        });
+    </script>
+
+</body>
+</html>
