@@ -1894,31 +1894,48 @@
 </script>
 
 
-<!-- ================= TOP PERFECT PDF CODE ================= -->
+<!-- ================= TOP RIGHT STYLISH PDF BUTTON ================= -->
 <style>
-    .top-pdf-container {
-        text-align: center;
-        margin-bottom: 20px;
-    }
-    .top-pdf-btn {
-        background-color: #6366f1;
-        color: #ffffff;
-        border: none;
-        padding: 12px 24px;
-        font-size: 18px;
-        font-weight: 700;
-        border-radius: 12px;
-        cursor: pointer;
-        box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
-        transition: all 0.3s ease;
-    }
-    .top-pdf-btn:hover {
-        background-color: #4f46e5;
-        transform: translateY(-2px);
+    /* Header-er sathe align korar CSS */
+    .header {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
     }
 
-    /* Print / PDF Save korar somoy sob lekha spaşto rakhar CSS */
+    .top-right-pdf-btn {
+        background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+        color: #ffffff;
+        border: none;
+        padding: 8px 16px;
+        font-size: 15px;
+        font-weight: 600;
+        border-radius: 10px;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(99, 102, 241, 0.25);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        white-space: nowrap;
+    }
+
+    .top-right-pdf-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4);
+        background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
+    }
+
+    .top-right-pdf-btn:active {
+        transform: translateY(0);
+    }
+
+    /* Print / PDF save korar somoy button ebong bakigulo hide thakbe */
     @media print {
+        .top-right-pdf-btn, .back-btn, .nav-buttons {
+            display: none !important;
+        }
         body {
             background-color: #ffffff !important;
             padding: 0 !important;
@@ -1929,9 +1946,6 @@
             border: none !important;
             padding: 0 !important;
         }
-        .top-pdf-container, .back-btn, .nav-buttons {
-            display: none !important;
-        }
         .animate-up, .animate-left, .animate-zoom {
             opacity: 1 !important;
             transform: none !important;
@@ -1939,23 +1953,20 @@
     }
 </style>
 
-<div id="top-pdf-wrapper" class="top-pdf-container">
-    <button onclick="window.print()" class="top-pdf-btn">
-        📥 Save / Download PDF
-    </button>
-</div>
-
 <script>
-    // Header-er thik niche button-ti boshaye dibe
+    // Header-er bhetore daan pashe button bosiye dibe
     window.addEventListener("DOMContentLoaded", function() {
         const header = document.querySelector('.header');
-        const pdfBtn = document.getElementById('top-pdf-wrapper');
-        if (header && pdfBtn) {
-            header.parentNode.insertBefore(pdfBtn, header.nextSibling);
+        if (header) {
+            const btn = document.createElement('button');
+            btn.className = 'top-right-pdf-btn';
+            btn.onclick = function() { window.print(); };
+            btn.innerHTML = '📄 Save PDF';
+            header.appendChild(btn);
         }
     });
 </script>
-<!-- ================= END TOP PERFECT PDF CODE ================= -->
+<!-- ================= END TOP RIGHT STYLISH PDF BUTTON ================= -->
 
 
 
