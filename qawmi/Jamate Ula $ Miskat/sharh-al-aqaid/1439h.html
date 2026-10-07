@@ -1,128 +1,913 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Google Fonts for Bengali & English -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Inter:wght@700;900&display=swap" rel="stylesheet">
+<title>শরহুল আকাইদ আন-নাসাফিয়্যা — প্রশ্নোত্তর সমাধান</title>
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+<style>
+@font-face {
+    font-family: "Kalpurush";
+    src: local("Kalpurush");
+}
 
-    <style>
-        body {
-            font-family: 'Hind Siliguri', 'Inter', sans-serif;
-            background-color: #030712;
-            overflow: hidden;
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        /* Gradient glowing animation on text */
-        .glow-text {
-            background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 50%, #38bdf8 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shine 6s linear infinite;
-        }
+html {
+    scroll-behavior: smooth;
+}
 
-        @keyframes shine {
-            0% { background-position: 0% center; }
-            50% { background-position: 100% center; }
-            100% { background-position: 0% center; }
-        }
+body {
+    font-family: "Kalpurush", "Noto Sans Bengali", Arial, sans-serif;
+    background: #f8f9f7;
+    color: #202124;
+    font-size: 25px;
+    line-height: 1.85;
+    overflow-x: hidden;
+}
 
-        /* Keyframes for initial entry: Floating in from below with opacity */
-        @keyframes floatIn {
-            0% {
-                opacity: 0;
-                transform: translateY(40px) scale(0.95);
-                filter: blur(8px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-                filter: blur(0);
-            }
-        }
+/* ===== TOP BAR ===== */
+.top-bar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    padding: 12px 4%;
+    display: flex;
+    justify-content: flex-end;
+    background: rgba(255,255,255,.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid #ddd;
+    box-shadow: 0 3px 15px rgba(0,0,0,.06);
+}
 
-        /* Continuous subtle float effect once arrived */
-        @keyframes subtleFloat {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-8px);
-            }
-        }
+.pdf-btn {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 10px 22px;
+    border-radius: 12px;
+    font-family: inherit;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(135deg,#246bce,#7048c9);
+    box-shadow: 0 5px 15px rgba(60,80,180,.25);
+    transition: .3s ease;
+}
 
-        /* Animation class for Heading */
-        .animate-heading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards,
-                subtleFloat 6s ease-in-out 1.2s infinite;
-        }
+.pdf-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(60,80,180,.35);
+}
 
-        /* Animation class for Subheading (staggered delay) */
-        .animate-subheading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards,
-                subtleFloat 6s ease-in-out 1.55s infinite;
-            opacity: 0; /* Hidden until animation kicks in */
-        }
+.pdf-btn:active {
+    transform: scale(.97);
+}
 
-        /* Ambient background lighting */
-        .ambient-glow {
-            position: absolute;
-            width: 450px;
-            height: 450px;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(3, 7, 18, 0) 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            transition: left 0.4s ease-out, top 0.4s ease-out;
-        }
-    </style>
+/* ===== BOOK ===== */
+.book {
+    width: min(1200px, 94%);
+    margin: 35px auto 70px;
+}
+
+.cover {
+    text-align: center;
+    padding: 42px 25px;
+    margin-bottom: 35px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 22px;
+    box-shadow: 0 10px 35px rgba(0,0,0,.07);
+}
+
+.cover h1 {
+    font-size: clamp(30px, 5vw, 48px);
+    line-height: 1.4;
+    color: #273c75;
+    margin-bottom: 12px;
+}
+
+.cover h2 {
+    font-size: clamp(25px, 4vw, 34px);
+    color: #555;
+}
+
+.cover .year {
+    display: inline-block;
+    margin-top: 18px;
+    padding: 5px 18px;
+    border-radius: 30px;
+    background: #eef3ff;
+    color: #3455a5;
+    font-size: 23px;
+}
+
+/* ===== QUESTION ===== */
+.question {
+    margin: 38px 0 22px;
+    padding: 16px 22px;
+    background: linear-gradient(90deg,#eef4ff,#f8faff);
+    border-left: 7px solid #3f66c5;
+    border-radius: 10px;
+    color: #183b7a;
+    font-weight: bold;
+    font-size: 28px;
+    line-height: 1.6;
+}
+
+/* ===== SECTION ===== */
+.section {
+    margin: 25px 0 12px;
+    color: #7b3f98;
+    font-size: 27px;
+    font-weight: bold;
+}
+
+.subsection {
+    margin: 22px 0 8px;
+    color: #245d48;
+    font-weight: bold;
+}
+
+/* ===== CONTENT ===== */
+.answer {
+    margin-bottom: 20px;
+}
+
+.answer p {
+    margin-bottom: 14px;
+}
+
+.label {
+    font-weight: bold;
+    color: #343434;
+}
+
+.numbered {
+    margin: 10px 0 18px 8px;
+}
+
+.numbered p {
+    margin-bottom: 12px;
+}
+
+.point {
+    margin: 8px 0 8px 24px;
+}
+
+.point strong {
+    color: #8b4513;
+}
+
+/* ===== ARABIC ===== */
+.arabic {
+    direction: rtl;
+    text-align: right;
+    font-family: "Traditional Arabic", "Amiri", "Noto Naskh Arabic", serif;
+    font-size: 29px;
+    line-height: 2;
+    color: #173f63;
+    margin: 8px 0;
+}
+
+/* ===== HIGHLIGHT ===== */
+.highlight {
+    padding: 3px 8px;
+    border-radius: 6px;
+    background: #fff3cd;
+    color: #604800;
+}
+
+.conclusion {
+    margin: 18px 0;
+    padding: 15px 20px;
+    background: #f0f8f3;
+    border-left: 5px solid #3b8c61;
+    border-radius: 8px;
+}
+
+/* ===== DIVIDER ===== */
+.divider {
+    height: 1px;
+    background: linear-gradient(90deg,transparent,#ccc,transparent);
+    margin: 35px 0;
+}
+
+/* ===== ANIMATION ===== */
+.animate {
+    opacity: 0;
+    transform: translateY(25px);
+    transition: opacity .8s ease, transform .8s ease;
+}
+
+.animate.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.from-left {
+    transform: translateX(-35px);
+}
+
+.from-right {
+    transform: translateX(35px);
+}
+
+.from-left.show,
+.from-right.show {
+    transform: translateX(0);
+}
+
+/* ===== FOOTER ===== */
+footer {
+    text-align: center;
+    padding: 25px;
+    margin-top: 50px;
+    color: #777;
+    font-size: 19px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 800px) {
+    body {
+        font-size: 22px;
+        line-height: 1.8;
+    }
+
+    .book {
+        width: 94%;
+        margin-top: 20px;
+    }
+
+    .cover {
+        padding: 30px 18px;
+    }
+
+    .question {
+        font-size: 25px;
+        padding: 13px 17px;
+    }
+
+    .section,
+    .subsection {
+        font-size: 24px;
+    }
+
+    .arabic {
+        font-size: 27px;
+    }
+
+    .point {
+        margin-left: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 20px;
+        line-height: 1.75;
+    }
+
+    .top-bar {
+        padding: 8px 12px;
+    }
+
+    .pdf-btn {
+        font-size: 17px;
+        padding: 8px 15px;
+    }
+
+    .cover h1 {
+        font-size: 29px;
+    }
+
+    .cover h2 {
+        font-size: 23px;
+    }
+
+    .question {
+        font-size: 23px;
+    }
+
+    .section,
+    .subsection {
+        font-size: 22px;
+    }
+
+    .arabic {
+        font-size: 25px;
+    }
+}
+
+/* ===== PRINT / PDF ===== */
+@media print {
+
+    @page {
+        size: A4;
+        margin: 15mm 13mm 15mm 13mm;
+    }
+
+    body {
+        background: white;
+        color: black;
+        font-size: 14pt;
+        line-height: 1.65;
+    }
+
+    .top-bar {
+        display: none !important;
+    }
+
+    .book {
+        width: 100%;
+        margin: 0;
+    }
+
+    .cover {
+        box-shadow: none;
+        border: none;
+        padding: 20px 0;
+        margin-bottom: 20px;
+    }
+
+    .cover h1 {
+        color: black;
+        font-size: 25pt;
+    }
+
+    .cover h2,
+    .cover .year {
+        color: black;
+        background: none;
+    }
+
+    .question {
+        color: black;
+        background: #f4f4f4;
+        border-left: 4px solid #555;
+        font-size: 17pt;
+        break-after: avoid;
+    }
+
+    .section,
+    .subsection,
+    .label,
+    .arabic,
+    .conclusion,
+    .highlight {
+        color: black;
+    }
+
+    .conclusion {
+        background: #f5f5f5;
+        border-left: 3px solid #555;
+    }
+
+    .animate {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    .divider {
+        background: #ccc;
+    }
+
+    footer {
+        font-size: 10pt;
+    }
+
+    p,
+    .numbered p,
+    .point {
+        break-inside: avoid;
+    }
+}
+</style>
 </head>
-<body class="min-h-screen flex items-center justify-center relative select-none px-4">
 
-    <!-- Ambient glow center element -->
-    <div id="glow" class="ambient-glow top-1/2 left-1/2"></div>
+<body>
 
-    <!-- Centered minimal content with entry animations -->
-    <main class="text-center z-10 space-y-6 max-w-3xl mx-auto py-8 px-4">
-        
-        <!-- Main English Title -->
-        <h1 class="animate-heading text-5xl sm:text-7xl md:text-8xl font-black tracking-tight glow-text font-['Inter'] drop-shadow-lg">
-            Coming Soon...
-        </h1>
+<div class="top-bar">
+    <button class="pdf-btn" onclick="downloadPDF()">⬇ Download PDF</button>
+</div>
 
-        <!-- Bengali Subheading -->
-        <p class="animate-subheading text-xl sm:text-3xl md:text-4xl font-semibold text-emerald-400/90 leading-relaxed tracking-wide drop-shadow">
-            ইনশাআল্লাহ, খুব শীঘ্রই ডাটা যোগ করা হবে।
-        </p>
+<main class="book">
 
-    </main>
+<section class="cover animate">
+    <h1>শরহুল আকাইদ আন-নাসাফিয়্যা</h1>
+    <h2>প্রশ্নোত্তর সমাধান</h2>
+    <div class="year">১৪৩৯ হিজরী</div>
+</section>
 
-    <script>
-        const glow = document.getElementById('glow');
 
-        // Mouse move interactive glow background
-        window.addEventListener('mousemove', (e) => {
-            glow.style.left = e.clientX + 'px';
-            glow.style.top = e.clientY + 'px';
-        });
+<!-- ========================================================= -->
+<!-- প্রশ্ন ১ -->
+<!-- ========================================================= -->
 
-        // Touch move interactive glow background for mobile screens
-        window.addEventListener('touchmove', (e) => {
-            if (e.touches.length > 0) {
-                glow.style.left = e.touches[0].clientX + 'px';
-                glow.style.top = e.touches[0].clientY + 'px';
+<section class="animate">
+<div class="question">প্রশ্ন–১: ইলমুল কালাম</div>
+
+<div class="section">(A) কালামের সংজ্ঞা ও আশরাফুল উলুম হওয়ার ওয়াজহ</div>
+
+<div class="subsection">(১) সংজ্ঞা</div>
+
+<div class="answer">
+<p><span class="label">উত্তর:</span></p>
+
+<p class="arabic">العلم بالعقائد الدينية عن الأدلة اليقينية</p>
+
+<p>অকাট্য দলিল থেকে দ্বীনী আকিদার ইলম।</p>
+
+<p><span class="label">মুতাআখখিরীনের সংজ্ঞা:</span></p>
+
+<p class="arabic">علم يقتدر معه على إثبات العقائد الدينية بإيراد الحجج ودفع الشبه</p>
+
+<p>যে ইলমের মাধ্যমে দলিল পেশ করে আকিদা প্রমাণ এবং সংশয় খণ্ডনের সামর্থ্য অর্জিত হয়।</p>
+</div>
+
+<div class="subsection">(২) আশরাফুল উলুম হওয়ার ওয়াজহ</div>
+
+<div class="answer">
+<p><span class="label">উত্তর:</span></p>
+
+<p class="point"><strong>(ক) মা'লূমের শ্রেষ্ঠত্ব:</strong> এর আলোচ্য বিষয় আল্লাহর সত্তা, সিফাত ও নবুওয়াত। এগুলো সর্বশ্রেষ্ঠ মা'লূম, আর ইলমের মর্যাদা মা'লূমের মর্যাদা অনুযায়ী হয়।</p>
+
+<p class="point"><strong>(খ) গায়াতের শ্রেষ্ঠত্ব:</strong> এর উদ্দেশ্য দুনিয়া ও আখেরাতের সৌভাগ্য অর্জন।</p>
+
+<p class="point"><strong>(গ) দলিলের শক্তি:</strong> এর দলিল অকাট্য (يقينية), যা আকল ও নকল উভয়ের সমর্থনপুষ্ট।</p>
+
+<p class="point"><strong>(ঘ) ভিত্তি হওয়া:</strong> এটি সব শরয়ী ইলমের ভিত্তি। ফিকহ, তাফসির ও হাদিস এর ওপর নির্ভরশীল।</p>
+</div>
+
+<div class="section">(B) তাদবীনের প্রয়োজন ও সময়</div>
+
+<div class="subsection">(১) প্রয়োজন</div>
+
+<div class="answer">
+<p><span class="label">উত্তর:</span> নবী ﷺ ও সাহাবাদের যুগে আকিদা পরিষ্কার ছিল, আলাদা ইলমের দরকার পড়েনি। পরে</p>
+
+<p class="point"><strong>(ক)</strong> বিদআতি ফিরকা (খারেজি, রাফেজি, কাদারিয়া, মুতাযিলা প্রভৃতি) তৈরি হয়,</p>
+
+<p class="point"><strong>(খ)</strong> গ্রিক দর্শন অনূদিত হয়ে ইসলামী আকিদায় সংশয় ছড়ায়।</p>
+
+<p>তখন দলিলসহ আকিদা সংরক্ষণ ও বাতিলের জবাবের জন্য ইলমুল কালাম সংকলিত হয়।</p>
+</div>
+
+<div class="subsection">(২) সময়</div>
+
+<div class="answer">
+<p><span class="label">উত্তর:</span> সাহাবা যুগের শেষ ও তাবেয়ীন যুগে এর সূচনা। ইমাম আবু হানিফা (র.)-এর "আল-ফিকহুল আকবার" এর প্রথম দিককার গ্রন্থ। পরে ইমাম আশআরী ও ইমাম মাতুরিদী (র.) একে পূর্ণ রূপ দেন।</p>
+</div>
+
+<div class="section">(C) সালাফের তা'ন ও মান'</div>
+
+<div class="subsection">(১) তা'ন ও মান' কী</div>
+
+<div class="answer">
+<p><span class="label">উত্তর:</span> সালাফ থেকে বর্ণিত, তাঁরা কালামকে নিন্দা করেছেন ও শেখা থেকে নিষেধ করেছেন। যেমন ইমাম শাফেয়ী (র.) থেকে বর্ণিত আছে, শিরক ছাড়া সব গুনাহে লিপ্ত হওয়া কালাম শেখার চেয়ে ভালো।</p>
+
+<p>কারণ: এটি সাহাবাদের যুগে ছিল না (বিদআত), এবং এতে সংশয় ও বিভ্রান্তির আশঙ্কা আছে।</p>
+</div>
+
+<div class="subsection">(২) শারেহের জবাব</div>
+
+<div class="answer">
+<p><span class="label">উত্তর:</span></p>
+
+<p class="point"><strong>(ক)</strong> এ নিষেধ বিদআতি ও দার্শনিকদের কালামের ব্যাপারে, আহলে সুন্নাহর কালামের ব্যাপারে নয়।</p>
+
+<p class="point"><strong>(খ)</strong> এ নিষেধ অযোগ্য ও কমবুদ্ধির লোকদের জন্য, যারা সংশয়ে পড়ার আশঙ্কা রাখে।</p>
+
+<p class="point"><strong>(গ)</strong> সালাফ নিজেরাও বাতিলের সাথে মুনাযারা করেছেন। যেমন ইবনে আব্বাস (রা.) খারেজিদের সাথে। তাই মূল ইলমের নিন্দা উদ্দেশ্য নয়।</p>
+</div>
+
+<div class="section">(D) ফায়দা ও মুতাযিলা-আহলে সুন্নাহর ফারাক</div>
+
+<div class="subsection">(১) কালামের ফায়দা</div>
+
+<div class="answer">
+<p><span class="label">উত্তর:</span></p>
+
+<p class="point"><strong>(ক)</strong> তাকলীদের স্তর থেকে ইয়াকীনের স্তরে উন্নীত হওয়া।</p>
+<p class="point"><strong>(খ)</strong> হিদায়াত-প্রার্থীদের পথ দেখানো।</p>
+<p class="point"><strong>(গ)</strong> হঠকারীদের দলিল দ্বারা নিরুত্তর করা।</p>
+<p class="point"><strong>(ঘ)</strong> বাতিলের সংশয় থেকে দ্বীনের মূলনীতি রক্ষা করা।</p>
+<p class="point"><strong>(ঙ)</strong> শরয়ী ইলমের ভিত্তি মজবুত করা।</p>
+<p class="point"><strong>(চ)</strong> নিয়ত ও আকিদা সহীহ হওয়া।</p>
+</div>
+
+<div class="subsection">(২) মুতাযিলা ও আহলে সুন্নাহর ফারাক</div>
+
+<div class="answer">
+<p><span class="label">উত্তর:</span></p>
+
+<p class="point"><strong>সিফাত:</strong> মুতাযিলারা আল্লাহর অতিরিক্ত সিফাত অস্বীকার করে। আহলে সুন্নাহ অনাদি সিফাত সাব্যস্ত করে।</p>
+
+<p class="point"><strong>কালামুল্লাহ:</strong> মুতাযিলাদের মতে কুরআন মাখলুক। আহলে সুন্নাহর মতে কালামে নফসী কাদীম।</p>
+
+<p class="point"><strong>দর্শন:</strong> মুতাযিলারা আখেরাতে আল্লাহর দর্শন অস্বীকার করে। আহলে সুন্নাহ তা সাব্যস্ত করে।</p>
+
+<p class="point"><strong>বান্দার আমল:</strong> মুতাযিলাদের মতে বান্দা নিজের আমলের স্রষ্টা। আহলে সুন্নাহর মতে আল্লাহ স্রষ্টা, বান্দা কাসিব।</p>
+
+<p class="point"><strong>আসলাহ:</strong> মুতাযিলাদের মতে আল্লাহর ওপর আসলাহ ওয়াজিব। আহলে সুন্নাহ তা মানে না।</p>
+
+<p class="point"><strong>কবীরা গুনাহগার:</strong> মুতাযিলাদের মতে সে মুমিনও নয়, কাফিরও নয় (মানযিলা বাইনাল মানযিলাতাইন) এবং চিরজাহান্নামী। আহলে সুন্নাহর মতে সে মুমিন, আল্লাহ চাইলে মাফ করবেন।</p>
+</div>
+
+<div class="subsection">(৩) নামকরণের ওয়াজহ</div>
+
+<div class="answer">
+<p><span class="label">উত্তর:</span></p>
+
+<p class="point"><strong>মুতাযিলা:</strong> ওয়াসিল ইবনে আতা হাসান বসরী (র.)-এর মজলিস থেকে কবীরা গুনাহগারের হুকুম নিয়ে মতভেদ করে আলাদা হয়ে যান। হাসান বসরী (র.) বলেন, <span class="arabic">اعتزل عنا واصل</span>। তাই তাঁদের নাম মুতাযিলা (বিচ্ছিন্ন)।</p>
+
+<p class="point"><strong>আহলে সুন্নাহ ওয়াল জামা'আত:</strong> "সুন্নাত" মানে নবী ﷺ ও সাহাবাদের তরীকা, "জামা'আত" মানে সাহাবাদের জামা'আত। হাদিসে আছে, মুক্তিপ্রাপ্ত দল তারা, যারা <span class="arabic">ما أنا عليه وأصحابي</span>-র ওপর থাকবে (তিরমিযি)।</p>
+</div>
+</section>
+
+
+<!-- ========================================================= -->
+<!-- প্রশ্ন ২ -->
+<!-- ========================================================= -->
+
+<section class="animate from-right">
+<div class="question">প্রশ্ন–২: বাতেনী ইন্দ্রিয় ও জাহেরী ইন্দ্রিয়</div>
+
+<div class="section">(A) ইবারতের অনুবাদ</div>
+
+<div class="answer">
+<p><span class="label">উত্তর:</span></p>
+
+<p class="arabic">وأما الحواس الباطنة التي أثبتها الفلاسفة فلا تتم أدلتها على أصول الإسلام</p>
+
+<p>"আর ফালাসিফা যেসব বাতেনী ইন্দ্রিয় সাব্যস্ত করে, ইসলামী মূলনীতির ভিত্তিতে সেগুলোর দলিল পূর্ণ হয় না।"</p>
+</div>
+
+<div class="section">(B) বাতেনী ইন্দ্রিয়: সংখ্যা, পরিচয় ও অবস্থান</div>
+
+<div class="subsection">(১) সংখ্যা</div>
+<div class="answer">
+<p><span class="label">উত্তর:</span> ফালাসিফার মতে পাঁচটি।</p>
+</div>
+
+<div class="subsection">(২) পরিচয় ও অবস্থান</div>
+
+<div class="answer">
+<p class="point"><strong>(ক) হিস্সে মুশতারাক:</strong> পাঁচ জাহেরী ইন্দ্রিয়ের গ্রহণ করা সব আকৃতি একত্রে গ্রহণকারী শক্তি। অবস্থান: মগজের সামনের কুঠুরির অগ্রভাগ।</p>
+
+<p class="point"><strong>(খ) খাইয়াল:</strong> হিস্সে মুশতারাকের গ্রহণ করা আকৃতিগুলোকে মূল বস্তু অনুপস্থিত থাকলেও সংরক্ষণকারী শক্তি। অবস্থান: সামনের কুঠুরির শেষভাগ।</p>
+
+<p class="point"><strong>(গ) মুতাসাররিফা:</strong> সংরক্ষিত আকৃতি ও অর্থকে জোড়া লাগানো ও আলাদা করার শক্তি। ওয়াহম ব্যবহার করলে "মুতাখাইয়িলা", আকল ব্যবহার করলে "মুফাক্কিরা"। অবস্থান: মাঝের কুঠুরি।</p>
+
+<p class="point"><strong>(ঘ) ওয়াহম:</strong> ইন্দ্রিয়ে ধরা পড়ে না এমন জুযয়ী অর্থ (যেমন নেকড়ের শত্রুতা, মেষের কাছে বন্ধুত্ব) অনুভবকারী শক্তি। অবস্থান: মাঝের কুঠুরির শেষভাগ।</p>
+
+<p class="point"><strong>(ঙ) হাফিযা:</strong> ওয়াহমের অনুভব করা অর্থ সংরক্ষণকারী শক্তি। অবস্থান: পেছনের কুঠুরি।</p>
+</div>
+
+<div class="section">(C) ফালাসিফার দলিল ও জবাব</div>
+
+<div class="subsection">(১) দলিল</div>
+
+<div class="answer">
+<p><span class="label">উত্তর:</span></p>
+
+<p class="point"><strong>(ক) হিস্সে মুশতারাকের দলিল:</strong> বৃষ্টির ফোঁটা পড়লে সরলরেখা, জ্বলন্ত কাঠ ঘোরালে বৃত্ত দেখা যায়। অথচ বস্তু একসাথে একাধিক স্থানে থাকে না। তাই এমন একটি শক্তি আছে, যা পরপর ধরা আকৃতিগুলোকে একত্র করে।</p>
+
+<p class="point"><strong>(খ) খাইয়াল ও হাফিযার দলিল:</strong> একই শক্তি গ্রহণকারী ও সংরক্ষণকারী হতে পারে না। তাই গ্রহণ ও সংরক্ষণের জন্য আলাদা শক্তি দরকার।</p>
+
+<p class="point"><strong>(গ) ওয়াহমের দলিল:</strong> মেষ নেকড়ের শত্রুতা অনুভব করে পালায়। এটি ইন্দ্রিয় ধরতে পারে না, তাই আলাদা শক্তি আছে।</p>
+</div>
+
+<div class="subsection">(২) জবাব</div>
+
+<div class="answer">
+<p><span class="label">উত্তর:</span> ইসলামী মূলনীতি অনুযায়ী আল্লাহই সরাসরি বান্দার মধ্যে অনুভূতি সৃষ্টি করেন। মাধ্যম আবশ্যক নয়। ফালাসিফার দলিল তাদের নিজস্ব দার্শনিক মূলনীতির ওপর দাঁড়িয়ে আছে (যেমন "একজন থেকে একটিই প্রকাশ পায়", আর কারণ থেকে ফলাফল আবশ্যিকভাবে আসে)। ইসলামী মূলনীতিতে তা অগ্রহণযোগ্য। বৃষ্টির ফোঁটার রেখা ও মেষের পালানো আল্লাহর সৃষ্টিতেই হয়। তাই এসব দলিল দ্বারা আলাদা আলাদা ইন্দ্রিয় প্রমাণিত হয় না।</p>
+</div>
+
+<div class="section">(D) জাহেরী ইন্দ্রিয় ও তিনটির তা'রীফ</div>
+
+<div class="subsection">(১) জাহেরী ইন্দ্রিয় পাঁচটি</div>
+
+<div class="answer">
+<p><span class="label">উত্তর:</span> সামি' (শ্রবণ), বাসার (দৃষ্টি), শাম (ঘ্রাণ), যাওক (স্বাদ), লামস (স্পর্শ)।</p>
+</div>
+
+<div class="subsection">(২) বাসার</div>
+
+<div class="answer">
+<p><span class="label">উত্তর:</span> দুই ফাঁপা স্নায়ুতে স্থাপিত শক্তি, যা মগজে মিলে চোখের দিকে ভাগ হয়েছে। এর মাধ্যমে আলো, রং, আকৃতি, পরিমাণ ইত্যাদি অনুভূত হয়। (প্রকৃতপক্ষে আল্লাহ তখন অনুভূতি সৃষ্টি করেন।)</p>
+</div>
+
+<div class="subsection">(৩) শাম</div>
+
+<div class="answer">
+<p><span class="label">উত্তর:</span> মগজের অগ্রভাগের স্তনবৃন্তসদৃশ দুই অতিরিক্ত অংশে স্থাপিত শক্তি। গন্ধযুক্ত বস্তুর গুণে প্রভাবিত বাতাস নাকের ছিদ্রে পৌঁছলে এর মাধ্যমে গন্ধ অনুভূত হয়।</p>
+</div>
+
+<div class="subsection">(৪) সামি'</div>
+
+<div class="answer">
+<p><span class="label">উত্তর:</span> কানের ছিদ্রের গভীরে বিছানো স্নায়ুতে স্থাপিত শক্তি। শব্দের গুণে প্রভাবিত বাতাস কানের ছিদ্রে পৌঁছলে এর মাধ্যমে শব্দ অনুভূত হয়।</p>
+</div>
+</section>
+
+
+<!-- ========================================================= -->
+<!-- প্রশ্ন ৩ -->
+<!-- ========================================================= -->
+
+<section class="animate from-left">
+<div class="question">প্রশ্ন–৩: আল্লাহর সিফাত</div>
+
+<div class="section">(A) সিফাত সাব্যস্ত ও অস্বীকারের মাযহাবসমূহ</div>
+
+<div class="subsection">(১) মাযহাবসমূহ</div>
+
+<div class="answer">
+<p><span class="label">উত্তর:</span></p>
+
+<p class="point"><strong>(ক) আহলে সুন্নাহ:</strong> আল্লাহর অনাদি, প্রকৃত সিফাত আছে, যা যাতের সাথে কায়েম।</p>
+
+<p class="point"><strong>(খ) মুতাযিলা:</strong> যাত থেকে আলাদা অতিরিক্ত সিফাত নেই। আল্লাহ "যাতের কারণেই আলিম, কাদির"।</p>
+
+<p class="point"><strong>(গ) ফালাসিফা:</strong> সিফাত আলাদা কিছু নয়, যাতই সব কিছু। তাদের দৃষ্টিতে সিফাত মানলে যাতে বহুত্ব আসে।</p>
+
+<p class="point"><strong>(ঘ) কার্রামিয়া:</strong> সিফাত আছে, তবে তা হাদিস (নবসৃষ্ট) ও আল্লাহর যাতে সৃষ্টি হয়।</p>
+</div>
+
+<div class="subsection">(২) দলিল</div>
+
+<div class="answer">
+<p><strong>আহলে সুন্নাহর দলিল:</strong></p>
+
+<p class="point">"<span class="arabic">أنزله بعلمه</span>" (নিসা ১৬৬), "<span class="arabic">ذو القوة المتين</span>" (যারিয়াত ৫৮)।</p>
+
+<p>আকলি দলিল: مشتق নাম (আলিম, কাদির) প্রয়োগ হয় তখনই, যখন তার ধাতু (ইলম, কুদরত) সেই সত্তার সাথে কায়েম থাকে।</p>
+
+<p><strong>মুতাযিলার দলিল:</strong> সিফাত কাদীম হলে কাদীম একাধিক হয়ে যায় (تعدد القدماء), যা তাওহীদের পরিপন্থী।</p>
+
+<p><strong>আহলে সুন্নাহর জবাব:</strong> কাদীম অর্থ যে অন্যের ওপর নির্ভরশীল নয়। সিফাত যাতের ওপর নির্ভরশীল, আলাদা ইলাহ নয়। তাই বহুত্ব আসে না।</p>
+</div>
+
+<div class="subsection">(৩) রাজিহ মত</div>
+
+<div class="answer">
+<p><strong>① সংক্ষিপ্ত সিদ্ধান্ত:</strong> আহলে সুন্নাহর মতই রাজিহ। সিফাত অনাদি, প্রকৃত, যাতের সাথে কায়েম।</p>
+
+<p><strong>② হানাফি (মাতুরিদী) মত:</strong> আল্লাহর সিফাত অনাদি ও যাতের সাথে কায়েম। ইমাম আবু হানিফা (র.)-এর "আল-ফিকহুল আকবার"-এও তা বর্ণিত।</p>
+
+<p><strong>③ অন্যদের মত:</strong> মুতাযিলা, ফালাসিফা ও কার্রামিয়ার মত উপরে বর্ণিত।</p>
+
+<p class="conclusion"><strong>④ সমাপ্তি:</strong> কুরআন-সুন্নাহ ও আকল দ্বারা হানাফি মত প্রমাণিত, তাই এটিই গ্রহণযোগ্য।</p>
+</div>
+
+<div class="section">(B) "وهي لا هو ولا غيره" মুসান্নিফের উদ্দেশ্য</div>
+
+<div class="answer">
+<p><strong>উত্তর:</strong></p>
+
+<p class="point"><strong>(১) "লা হুয়া":</strong> সিফাত যাতের হুবহু (عين) নয়, কারণ মাফহুম আলাদা। ইলমের মাফহুম আর যাতের মাফহুম এক নয়। এতে মুতাযিলা ও ফালাসিফার রদ হয়।</p>
+
+<p class="point"><strong>(২) "ওয়া লা গাইরুহু":</strong> সিফাত যাতের থেকে আলাদা (গাইর)-ও নয়। পরিভাষায় গাইরান হলো দুই বস্তু, যাদের একটি অপরটি থেকে আলাদা হওয়া সম্ভব (সময়, স্থান বা অস্তিত্বে)। সিফাত যাত থেকে কখনো আলাদা হয় না। এতে তাআদ্দুদে কুদামা এর আপত্তির রদ হয়।</p>
+
+<p class="point"><strong>(৩)</strong> অতএব সিফাত যাতের সাথে অবিচ্ছেদ্য, আবার মাফহুমে ভিন্ন।</p>
+</div>
+
+<div class="section">(C) আপত্তি ও জবাব</div>
+
+<div class="subsection">(১) আপত্তি</div>
+
+<div class="answer">
+<p><span class="label">উত্তর:</span> "লা হুয়া" মানে "গাইরুহু", আর "লা গাইরুহু" মানে "হুয়া"। তাই "লা হুয়া ওয়া লা গাইরুহু" বলা বাহ্যত "রাফউন নাকীদাইন" (দুই বিপরীতকে একসাথে নাকচ), বাস্তবে "জাময় বাইনান নাকীদাইন" (দুই বিপরীতকে একত্র করা)। এটি অসম্ভব।</p>
+</div>
+
+<div class="subsection">(২) জবাব</div>
+
+<div class="answer">
+<p><span class="label">উত্তর:</span> এ আপত্তি তখনই হয়, যখন "গাইর"-এর অর্থ শুধু "যা হুবহু নয়" ধরা হয়। কিন্তু পরিভাষায় গাইর মানে আলাদা হওয়ার সম্ভাবনা থাকা। তাই "গাইর নয়" মানে "আলাদা হওয়া সম্ভব নয়", এটি "হুবহু" হওয়াকে আবশ্যক করে না। ফলে "লা হুয়া" (মাফহুমে ভিন্ন) ও "লা গাইরুহু" (বিচ্ছেদ অসম্ভব) পরস্পর বিরোধী নয়।</p>
+</div>
+
+<div class="section">(D) সিফাতসমূহের পারিভাষিক অর্থ</div>
+
+<div class="answer">
+<p><span class="label">উত্তর:</span></p>
+
+<p class="point"><strong>(১) ইলম:</strong> অনাদি সিফাত, যার দ্বারা মা'লূম সম্পূর্ণ প্রকাশিত হয়।</p>
+
+<p class="point"><strong>(২) কুদরত:</strong> অনাদি সিফাত, যা মাকদূরের সাথে সম্পর্কিত হয়ে তাতে প্রভাব ফেলে।</p>
+
+<p class="point"><strong>(৩) হায়াত:</strong> অনাদি সিফাত, যা ইলম ও কুদরতের সহীহ হওয়ার শর্ত।</p>
+
+<p class="point"><strong>(৪) সামা' ও বাসার:</strong> দুটি অনাদি সিফাত, যা শ্রুত ও দৃষ্ট বিষয়ের সাথে সম্পর্কিত।</p>
+
+<p class="point"><strong>(৫) ইরাদা:</strong> অনাদি সিফাত, যা সম্ভাব্য বিষয়কে নির্দিষ্ট সময় ও নির্দিষ্ট রূপে নির্ধারণ করে।</p>
+
+<p class="point"><strong>(৬) কালাম:</strong> অনাদি সিফাত, যা যাতের সাথে কায়েম এবং নীরবতা ও ত্রুটির বিপরীত।</p>
+</div>
+</section>
+
+
+<!-- ========================================================= -->
+<!-- প্রশ্ন ৪ -->
+<!-- ========================================================= -->
+
+<section class="animate from-right">
+<div class="question">প্রশ্ন–৪: মউত, আজল, রিযক ও আসলাহ</div>
+
+<div class="section">(A) মউতের সংজ্ঞা ও অবস্থা</div>
+
+<div class="subsection">(১) সংজ্ঞা</div>
+
+<div class="answer">
+<p><span class="label">উত্তর:</span> মউত হলো আল্লাহর সৃষ্ট এমন অবস্থা, যা প্রাণীর মধ্যে হায়াতের বিপরীতে কায়েম হয়।</p>
+</div>
+
+<div class="subsection">(২) অস্তিত্বমূলক নাকি অনস্তিত্বমূলক</div>
+
+<div class="answer">
+<p><strong>① সংক্ষিপ্ত সিদ্ধান্ত:</strong> আহলে সুন্নাহর মতে মউত وجودي (অস্তিত্বমূলক), যা মৃতের সাথে কায়েম।</p>
+
+<p><strong>② হানাফি মত:</strong> মউত সৃষ্ট অস্তিত্বমূলক সিফাত। দলিল: <span class="arabic">الذي خلق الموت والحياة</span> (মুলক ২)। خلق অস্তিত্বমূলক বস্তুর ক্ষেত্রে হয়।</p>
+
+<p><strong>③ মুতাযিলাদের মত:</strong> মউত হায়াতের অনস্তিত্ব (عدم الحياة عما من شأنه الحياة)। তারা বলে, আয়াতে "খালাকা" মানে "কাদ্দারা" (নির্ধারণ করেছেন)।</p>
+
+<p class="conclusion"><strong>④ সমাপ্তি:</strong> "খালক"-এর বাহ্যিক অর্থ সৃষ্টি করা, তাই হানাফি মত প্রাধান্যপ্রাপ্ত।</p>
+</div>
+
+<div class="section">(B) আজল এক নাকি একাধিক</div>
+
+<div class="answer">
+<p><strong>① সংক্ষিপ্ত সিদ্ধান্ত:</strong> আজল একটিই। নিহত ব্যক্তিও নিজের নির্ধারিত আজলেই মরে।</p>
+
+<p><strong>② আহলে সুন্নাহ ও হানাফি মত:</strong> প্রত্যেকের আজল একটিই। দলিল: <span class="arabic">فإذا جاء أجلهم لا يستأخرون ساعة ولا يستقدمون</span> (আরাফ ৩৪)।</p>
+
+<p><strong>③ মুতাযিলাদের মত:</strong> নিহত ব্যক্তির দুটি আজল। একটি, নিহত না হলে যা হতো, আরেকটি নিহত হওয়ার সময়। তারা বলে, হত্যাকারী তার আজল কেটে দিয়েছে।</p>
+
+<p class="conclusion"><strong>④ সমাপ্তি:</strong> আল্লাহর ইলমে সময় নির্ধারিত, কেউ তা আগে-পরে করতে পারে না। তাই আজল একটিই।</p>
+</div>
+
+<div class="section">(C) রিযক</div>
+
+<div class="subsection">(১) অর্থ</div>
+
+<div class="answer">
+<p><span class="label">উত্তর:</span></p>
+
+<p class="point"><strong>لغة:</strong> দান করা, প্রদান।</p>
+
+<p class="point"><strong>اصطلاحا:</strong> যা আল্লাহ প্রাণীকে দান করেন এবং সে তা ভোগ করে।</p>
+</div>
+
+<div class="subsection">(২) হারাম রিযক কি না</div>
+
+<div class="answer">
+<p><strong>① সংক্ষিপ্ত সিদ্ধান্ত:</strong> আহলে সুন্নাহর মতে হারামও রিযক।</p>
+
+<p><strong>② আহলে সুন্নাহ ও হানাফি মত:</strong> দলিল: <span class="arabic">وما من دابة في الأرض إلا على الله رزقها</span> (হুদ ৬)। যে সারা জীবন হারাম খায়, তার রিযক না থাকা আবশ্যক হয়, যা আয়াতের পরিপন্থী। আর সব কিছুর স্রষ্টা আল্লাহ।</p>
+
+<p><strong>③ মুতাযিলাদের মত:</strong> রিযক সেই বস্তু, যা ভোগকারী মালিক হয় এবং অন্য কেউ তাকে বাধা দিতে পারে না। তাই হারাম রিযক নয়, অথচ আল্লাহ হারামের কাজ নিষেধ করেছেন।</p>
+
+<p class="conclusion"><strong>④ সমাপ্তি:</strong> হারাম গ্রহণ বান্দার গুনাহ, তবে বস্তুটি আল্লাহর সৃষ্টি ও রিযকের অন্তর্ভুক্ত।</p>
+</div>
+
+<div class="section">(D) আসলাহ</div>
+
+<div class="subsection">(১) অর্থ</div>
+
+<div class="answer">
+<p><span class="label">উত্তর:</span> বান্দার দ্বীন ও দুনিয়ার জন্য যা সবচেয়ে উপকারী ও উত্তম।</p>
+</div>
+
+<div class="subsection">(২) আল্লাহর ওপর ওয়াজিব কি না</div>
+
+<div class="answer">
+<p><strong>① সংক্ষিপ্ত সিদ্ধান্ত:</strong> আসলাহ আল্লাহর ওপর ওয়াজিব নয়।</p>
+
+<p><strong>② আহলে সুন্নাহ ও হানাফি মত:</strong> আল্লাহর ওপর কিছুই ওয়াজিব নয়, তিনি যা চান করেন। দলিল: <span class="arabic">لا يسأل عما يفعل وهم يسألون</span> (আম্বিয়া ২৩), <span class="arabic">ولو شئنا لآتينا كل نفس هداها</span> (সাজদা ১৩)। আকলি দলিল: আসলাহ ওয়াজিব হলে কাফের ও রোগ-কষ্ট সৃষ্টি হতো না, অথচ আল্লাহ জানেন কে কাফের হবে।</p>
+
+<p><strong>③ মুতাযিলাদের মত:</strong> আল্লাহ হাকীম, তাই বান্দার জন্য আসলাহ করা তাঁর ওপর ওয়াজিব। না করলে তা কৃপণতা বা অজ্ঞতা হতো।</p>
+
+<p class="conclusion"><strong>④ জবাব:</strong> হাকীম মানে হিকমতসহ কাজকারী, বাধ্য নন। আর কোনটি আসলাহ তা বান্দার জানা নেই। বান্দার জন্য যা করেন, তা তাঁর ফযল, কারও হক নয়।</p>
+</div>
+</section>
+
+
+<!-- ========================================================= -->
+<!-- প্রশ্ন ৫ -->
+<!-- ========================================================= -->
+
+<section class="animate from-left">
+<div class="question">প্রশ্ন–৫: মুজতাহিদের ভুল-শুদ্ধ</div>
+
+<div class="section">(A) ইজতিহাদি মাসআলায় মুজতাহিদ মুসীব নাকি মুখতি</div>
+
+<div class="answer">
+<p><strong>উত্তর:</strong></p>
+
+<p><strong>① সংক্ষিপ্ত সিদ্ধান্ত:</strong> আহলে সুন্নাহর মতে মুজতাহিদ কখনো ভুল করেন, কখনো সঠিক হন। আল্লাহর কাছে হক একটিই।</p>
+
+<p><strong>② হানাফি মত:</strong> প্রত্যেক ইজতিহাদি মাসআলায় আল্লাহর কাছে সঠিক হুকুম একটিই। মুজতাহিদ সেখানে পৌঁছলে সঠিক, না পৌঁছলে ভুলকারী, তবে মাজুর ও সওয়াবপ্রাপ্ত।</p>
+
+<p><strong>③ অন্যদের মত:</strong> মুসাওয়িবা (কিছু মুতাযিলা, কিছু আশআরী) বলেন, প্রত্যেক মুজতাহিদই সঠিক, কারণ আল্লাহর কাছে আগে থেকে নির্দিষ্ট হুকুম নেই।</p>
+
+<p class="conclusion"><strong>④ সমাপ্তি:</strong> বিপরীতমুখী দুটি মত একসাথে সঠিক হতে পারে না। হাদিসেও ভুলের কথা আছে। তাই হানাফি মতই প্রাধান্যপ্রাপ্ত।</p>
+
+<p><strong>নোট:</strong> আকলি ও উসূলুদ্দীনের মাসআলায় জমহুরের মতে ভুলকারী গোনাহগার।</p>
+</div>
+
+<div class="section">(B) ভুল ইবতিদায় নাকি শুধু ইনতিহায়</div>
+
+<div class="answer">
+<p><strong>উত্তর:</strong></p>
+
+<p><strong>① সংক্ষিপ্ত সিদ্ধান্ত:</strong> ভুল শুধু ইনতিহায় (ফলাফলে), ইবতিদায় (ইজতিহাদের চেষ্টা ও পদ্ধতিতে) নয়।</p>
+
+<p><strong>② হানাফি ও জমহুর:</strong> মুজতাহিদ শরীয়তসম্মত পদ্ধতিতে পূর্ণ চেষ্টা করেছেন, তাই ইজতিহাদ সহীহ। শুধু আল্লাহর নির্ধারিত হুকুমে পৌঁছতে পারেননি। এজন্য তিনি ভুল করলেও মাজুর ও সওয়াবপ্রাপ্ত।</p>
+
+<p><strong>③ অন্য ইমামদের মতও মূলত একই:</strong> ভুল হলেও মুজতাহিদ গোনাহগার নন, একটি সওয়াব পাবেন। (প্রত্যেক ইমামের আলাদা বক্তব্য আমি নিশ্চিত নই বলে আলাদা করে লিখিনি।)</p>
+
+<p class="conclusion"><strong>④ সমাপ্তি:</strong> ইজতিহাদ সহীহ ও ফল ভুল হলে মুজতাহিদ মাজুর, এটিই হানাফি মত।</p>
+</div>
+
+<div class="section">(C) মুজতাহিদ ভুল করতে পারেন, তার দলিল</div>
+
+<div class="answer">
+<p><strong>উত্তর:</strong></p>
+
+<p><strong>(১) হাদিস:</strong></p>
+
+<p class="arabic">إذا حكم الحاكم فاجتهد ثم أصاب فله أجران، وإذا حكم فاجتهد ثم أخطأ فله أجر</p>
+
+<p>(বুখারি, মুসলিম)। এখানে ভুলের সম্ভাবনা স্পষ্ট।</p>
+
+<p><strong>(২) কুরআন:</strong></p>
+
+<p class="arabic">ففهمناها سليمان</p>
+
+<p>(আম্বিয়া ৭৯)। সুলাইমান (আ.) সঠিক সিদ্ধান্তে পৌঁছেছেন, অপরজনের সিদ্ধান্ত তা ছিল না।</p>
+
+<p><strong>(৩)</strong> বদরের বন্দীদের ঘটনায় ইজতিহাদি সিদ্ধান্তের ওপর কুরআনে সতর্কবাণী এসেছে (আনফাল ৬৭)।</p>
+
+<p><strong>(৪)</strong> সাহাবায়ে কেরামের পারস্পরিক ভুল স্বীকার। যেমন আবু বকর (রা.) কালালার মাসআলায় বলেছেন, সঠিক হলে আল্লাহর পক্ষ থেকে, ভুল হলে আমার পক্ষ থেকে।</p>
+
+<p><strong>(৫) আকল:</strong> পরস্পর বিরোধী দুটি মত একসাথে সঠিক হতে পারে না।</p>
+</div>
+
+</section>
+
+<div class="divider"></div>
+
+<footer>
+    শরহুল আকাইদ আন-নাসাফিয়্যা — প্রশ্নোত্তর সমাধান (১৪৩৯ হিজরী)
+</footer>
+
+</main>
+
+<script>
+/* =========================================================
+   PDF
+   Browser-এর Print → Save as PDF ব্যবহার করে
+   Selectable/Copyable PDF তৈরি হবে।
+   ========================================================= */
+
+function downloadPDF() {
+    window.print();
+}
+
+/* =========================================================
+   Scroll Animation
+   ========================================================= */
+
+const animatedElements = document.querySelectorAll(".animate");
+
+const observer = new IntersectionObserver(
+    (entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("show");
             }
         });
-    </script>
+    },
+    {
+        threshold: 0.08
+    }
+);
+
+animatedElements.forEach((element) => {
+    observer.observe(element);
+});
+
+/* প্রথম অংশটি সঙ্গে সঙ্গে দেখানো */
+window.addEventListener("load", () => {
+    document.querySelector(".cover")?.classList.add("show");
+});
+</script>
+
 </body>
 </html>

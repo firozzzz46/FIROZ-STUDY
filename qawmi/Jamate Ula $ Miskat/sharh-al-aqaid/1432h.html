@@ -3,126 +3,878 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon</title>
+    <title>শরহুল আকাইদ আন-নাসাফিয়্যা - প্রশ্নোত্তর সমাধান</title>
 
-    <!-- Google Fonts for Bengali & English -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Inter:wght@700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Noto+Sans+Bengali:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
+    <!-- ================= TOP RIGHT STYLISH PDF BUTTON ================= -->
     <style>
-        body {
-            font-family: 'Hind Siliguri', 'Inter', sans-serif;
-            background-color: #030712;
-            overflow: hidden;
+        /* Header-er sathe align korar CSS */
+        .header {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
-        /* Gradient glowing animation on text */
-        .glow-text {
-            background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 50%, #38bdf8 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shine 6s linear infinite;
+        .top-right-pdf-btn {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: #ffffff;
+            border: none;
+            padding: 8px 16px;
+            font-size: 15px;
+            font-weight: 600;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.25);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
         }
 
-        @keyframes shine {
-            0% { background-position: 0% center; }
-            50% { background-position: 100% center; }
-            100% { background-position: 0% center; }
+        .top-right-pdf-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4);
+            background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
         }
 
-        /* Keyframes for initial entry: Floating in from below with opacity */
-        @keyframes floatIn {
-            0% {
-                opacity: 0;
-                transform: translateY(40px) scale(0.95);
-                filter: blur(8px);
+        .top-right-pdf-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Print / PDF save korar somoy button ebong bakigulo hide thakbe */
+        @media print {
+            .top-right-pdf-btn, .back-btn, .nav-buttons {
+                display: none !important;
             }
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-                filter: blur(0);
+            body {
+                background-color: #ffffff !important;
+                padding: 0 !important;
+                overflow: visible !important;
             }
-        }
-
-        /* Continuous subtle float effect once arrived */
-        @keyframes subtleFloat {
-            0%, 100% {
-                transform: translateY(0px);
+            .content-card {
+                box-shadow: none !important;
+                border: none !important;
+                padding: 0 !important;
             }
-            50% {
-                transform: translateY(-8px);
+            .animate-up, .animate-left, .animate-zoom {
+                opacity: 1 !important;
+                transform: none !important;
             }
-        }
-
-        /* Animation class for Heading */
-        .animate-heading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards,
-                subtleFloat 6s ease-in-out 1.2s infinite;
-        }
-
-        /* Animation class for Subheading (staggered delay) */
-        .animate-subheading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards,
-                subtleFloat 6s ease-in-out 1.55s infinite;
-            opacity: 0; /* Hidden until animation kicks in */
-        }
-
-        /* Ambient background lighting */
-        .ambient-glow {
-            position: absolute;
-            width: 450px;
-            height: 450px;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(3, 7, 18, 0) 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            transition: left 0.4s ease-out, top 0.4s ease-out;
         }
     </style>
-</head>
-<body class="min-h-screen flex items-center justify-center relative select-none px-4">
-
-    <!-- Ambient glow center element -->
-    <div id="glow" class="ambient-glow top-1/2 left-1/2"></div>
-
-    <!-- Centered minimal content with entry animations -->
-    <main class="text-center z-10 space-y-6 max-w-3xl mx-auto py-8 px-4">
-        
-        <!-- Main English Title -->
-        <h1 class="animate-heading text-5xl sm:text-7xl md:text-8xl font-black tracking-tight glow-text font-['Inter'] drop-shadow-lg">
-            Coming Soon...
-        </h1>
-
-        <!-- Bengali Subheading -->
-        <p class="animate-subheading text-xl sm:text-3xl md:text-4xl font-semibold text-emerald-400/90 leading-relaxed tracking-wide drop-shadow">
-            ইনশাআল্লাহ, খুব শীঘ্রই ডাটা যোগ করা হবে।
-        </p>
-
-    </main>
 
     <script>
-        const glow = document.getElementById('glow');
-
-        // Mouse move interactive glow background
-        window.addEventListener('mousemove', (e) => {
-            glow.style.left = e.clientX + 'px';
-            glow.style.top = e.clientY + 'px';
-        });
-
-        // Touch move interactive glow background for mobile screens
-        window.addEventListener('touchmove', (e) => {
-            if (e.touches.length > 0) {
-                glow.style.left = e.touches[0].clientX + 'px';
-                glow.style.top = e.touches[0].clientY + 'px';
+        // Header-er bhetore daan pashe button bosiye dibe
+        window.addEventListener("DOMContentLoaded", function() {
+            const header = document.querySelector('.header');
+            if (header) {
+                const btn = document.createElement('button');
+                btn.className = 'top-right-pdf-btn';
+                btn.onclick = function() { window.print(); };
+                btn.innerHTML = '📄 Save PDF';
+                header.appendChild(btn);
             }
         });
     </script>
+    <!-- ================= END TOP RIGHT STYLISH PDF BUTTON ================= -->
+
+    <style>
+        /* Base Reset & Design Variables */
+        :root {
+            --bg-color: #fcfcfd;
+            --text-color: #1e293b;
+            --primary-color: #4f46e5;
+            --primary-light: #eeeffe;
+            --secondary-color: #0f766e;
+            --secondary-light: #f0fdfa;
+            --accent-color: #d97706;
+            --accent-light: #fffbeb;
+            --card-bg: #ffffff;
+            --border-color: #e2e8f0;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.02);
+            --shadow-md: 0 10px 25px -5px rgba(0,0,0,0.05), 0 8px 10px -6px rgba(0,0,0,0.01);
+            --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.08), 0 8px 10px -6px rgba(0,0,0,0.03);
+            --font-main: 'Noto Sans Bengali', sans-serif;
+            --font-arabic: 'Amiri', serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-main);
+            font-size: 25px; /* Mandated Body Text Size */
+            line-height: 1.8;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding-bottom: 60px;
+        }
+
+        /* Header Style */
+        .header {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 35px;
+            border: 1px solid var(--border-color);
+            border-left: 8px solid var(--primary-color);
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .header-title-box h1 {
+            font-size: 34px;
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .header-title-box p {
+            font-size: 22px;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        /* Arabic Typography */
+        .arabic-text {
+            font-family: var(--font-arabic);
+            direction: rtl;
+            font-size: 28px;
+            color: var(--secondary-color);
+            font-weight: 700;
+            display: inline-block;
+            margin: 0 4px;
+        }
+
+        /* Question Cards Layout */
+        .question-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 35px;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .question-card:hover {
+            box-shadow: var(--shadow-lg);
+        }
+
+        .question-header {
+            background: linear-gradient(135deg, #4f46e5 0%, #3730a3 100%);
+            color: #ffffff;
+            padding: 18px 25px;
+            border-radius: 14px;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(79, 70, 229, 0.2);
+        }
+
+        /* Section & Sub-section */
+        .sub-section {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .sub-title {
+            font-size: 26px;
+            color: var(--secondary-color);
+            border-bottom: 2px solid #ccfbf1;
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sub-title::before {
+            content: "❖";
+            color: var(--secondary-color);
+            font-size: 20px;
+        }
+
+        .point-title {
+            font-weight: 700;
+            color: #1e1b4b;
+            margin-top: 15px;
+            margin-bottom: 8px;
+            font-size: 25px;
+        }
+
+        ul, ol {
+            padding-left: 30px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        /* Special Boxes (Highlight, Rules, Examples) */
+        .rule-box {
+            background-color: var(--accent-light);
+            border-left: 5px solid var(--accent-color);
+            padding: 18px 22px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-size: 24px;
+            font-weight: 600;
+            color: #92400e;
+        }
+
+        .example-box {
+            background-color: var(--secondary-light);
+            border: 1px dashed var(--secondary-color);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            font-size: 24px;
+        }
+
+        .example-box-title {
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: 8px;
+            font-size: 24px;
+        }
+
+        /* Modern Responsive Tables */
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            margin: 25px 0;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #ffffff;
+            font-size: 23px; /* Mandated Box/Table Text Size 22-24px */
+            text-align: left;
+        }
+
+        th, td {
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border-color);
+            vertical-align: top;
+            font-size: 23px;
+        }
+
+        th {
+            background-color: #f1f5f9;
+            color: #334155;
+            font-weight: 700;
+            border-bottom: 2px solid #cbd5e1;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        tr:hover {
+            background-color: #f1f5f9;
+        }
+
+        /* Key Highlight Tag */
+        .tag {
+            display: inline-block;
+            background: var(--primary-light);
+            color: var(--primary-color);
+            padding: 2px 10px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 22px;
+        }
+
+        /* Animation Keyframes & Classes */
+        .reveal {
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform, opacity;
+        }
+
+        .reveal.animate-up {
+            transform: translateY(40px);
+        }
+
+        .reveal.animate-left {
+            transform: translateX(-40px);
+        }
+
+        .reveal.animate-right {
+            transform: translateX(40px);
+        }
+
+        .reveal.animate-zoom {
+            transform: scale(0.94);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0) translateX(0) scale(1);
+        }
+
+        /* Media Queries for Mobile & Tablet Responsiveness */
+        @media (max-width: 768px) {
+            body {
+                font-size: 22px; /* Smooth scale for mobile readability */
+                padding: 12px;
+            }
+
+            .header {
+                padding: 20px;
+            }
+
+            .header-title-box h1 {
+                font-size: 26px;
+            }
+
+            .header-title-box p {
+                font-size: 18px;
+            }
+
+            .question-card {
+                padding: 20px 15px;
+            }
+
+            .question-header {
+                font-size: 22px;
+                padding: 14px 18px;
+            }
+
+            .sub-section {
+                padding: 18px;
+            }
+
+            .sub-title {
+                font-size: 22px;
+            }
+
+            .arabic-text {
+                font-size: 24px;
+            }
+
+            table, th, td {
+                font-size: 20px;
+                padding: 12px 10px;
+            }
+
+            .rule-box, .example-box {
+                font-size: 21px;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Main Header -->
+    <header class="header reveal animate-up">
+        <div class="header-title-box">
+            <h1>শরহুল আকাইদ আন-নাসাফিয়্যা</h1>
+            <p>প্রশ্নোত্তর সমাধান (১৪৩২ হিজরী)</p>
+        </div>
+    </header>
+
+    <!-- QUESTION 1 -->
+    <article class="question-card reveal animate-up">
+        <div class="question-header">
+            প্রশ্ন–১: ইলমে কালাম ও প্রাথমিক আলোচনা
+        </div>
+
+        <!-- Section A -->
+        <section class="sub-section reveal animate-left">
+            <h2 class="sub-title">(A) ইলমে কালামের পরিচয়</h2>
+            
+            <div class="point-title">(১) ইলমে কালামের সংজ্ঞা</div>
+            <p><strong>আভিধানিক অর্থ:</strong> কালাম = কথা।</p>
+            <p><strong>পারিভাষিক অর্থ:</strong> <span class="arabic-text">"العلم بالعقائد الدينية عن الأدلة اليقينية"</span> অর্থাৎ অকাট্য দলিলের মাধ্যমে ইসলামি আকিদা জানা ও প্রমাণ করার ইলম।</p>
+            <p><strong>এর আরেক নাম:</strong> <span class="arabic-text">علم التوحيد والصفات</span> (ইলমুত তাওহীদ ওয়াস-সিফাত)</p>
+
+            <div class="point-title" style="margin-top: 20px;">(২) মুতাকাদ্দিমিন ও মুতাআখখিরিনের কালামের পার্থক্য</div>
+            <ul>
+                <li><strong>মুতাকাদ্দিমিনের কালাম:</strong> শুধু ইসলামি আকিদা ও তার দলিলে সীমাবদ্ধ ছিল। এতে দর্শন (ফালসাফা) মেশানো ছিল না।</li>
+                <li><strong>মুতাআখখিরিনের কালাম:</strong> গ্রিক দর্শন আরবিতে অনূদিত হলে দার্শনিকদের খণ্ডন করতে গিয়ে কালামে দর্শনের বিষয় (<span class="arabic-text">الأمور العامة، الجواهر والأعراض</span>) ঢুকে পড়ে। ফলে কালাম ও দর্শন মিশে যায়।</li>
+            </ul>
+
+            <div class="rule-box">
+                Main Rule: Pure Aqidah (মুতাকাদ্দিমিন) vs Aqidah + Philosophy (মুতাআখখিরিন)
+            </div>
+        </section>
+
+        <!-- Section B -->
+        <section class="sub-section reveal animate-right">
+            <h2 class="sub-title">(B) "هو أشرف العلوم" ও সালাফের নিষেধের বাহ্যিক বিরোধের সমাধান</h2>
+            
+            <div class="point-title">(১) কালাম সর্বশ্রেষ্ঠ ইলম কেন?</div>
+            <ol>
+                <li>এটি শরিয়তের সব বিধানের ভিত্তি</li>
+                <li>এর আলোচ্য বিষয় ইসলামি আকিদা</li>
+                <li>এর দলিল অকাট্য; আকলের সাথে নকলের সমর্থন আছে</li>
+                <li>এর লক্ষ্য দুনিয়া ও আখিরাতের সফলতা</li>
+            </ol>
+
+            <div class="point-title">(২) বাহ্যিক বিরোধ কী?</div>
+            <p>শারেহ কালামকে সর্বশ্রেষ্ঠ ইলম বলেছেন। অথচ সালাফ থেকে কালামের নিন্দা ও তা শিখতে নিষেধ বর্ণিত আছে।</p>
+
+            <div class="point-title">(৩) সমাধান</div>
+            <p>সালাফের নিষেধ সব কালামের জন্য নয়।</p>
+            <ul>
+                <li>যে কালামে ছিল অহেতুক তর্ক, গোঁড়ামি ও ভ্রান্ত দর্শনের মিশ্রণ, তা নিন্দিত।</li>
+                <li>নিষেধ ছিল তাদের জন্য, যারা বুঝে দুর্বল ও ইয়াকিন অর্জনে অক্ষম। তাদের সংশয়ে পড়ার আশঙ্কা ছিল।</li>
+                <li>যে কালাম আকিদা মজবুত করে এবং সংশয় ও বাতিল ফিরকার জবাব দেয়, তা প্রশংসিত। সালাফ নিজেরাও বিদআতিদের সাথে মুনাযারা করেছেন। যেমন খারিজিদের সাথে ইবনে আব্বাস (রা.)-এর বিতর্ক।</li>
+            </ul>
+            <p><strong>উপসংহার:</strong> সুতরাং প্রশংসিত কালাম আর নিন্দিত কালাম ভিন্ন। তাই কোনো বিরোধ নেই।</p>
+        </section>
+
+        <!-- Section C -->
+        <section class="sub-section reveal animate-left">
+            <h2 class="sub-title">(C) "فقال أهل الحق" (আহলুল হক ও সংশ্লিষ্ট আলোচনা)</h2>
+
+            <div class="point-title">(১) আহলুল হক দ্বারা কারা উদ্দেশ্য?</div>
+            <p>আহলুস সুন্নাহ ওয়াল জামাআত, অর্থাৎ আশআরি ও মাতুরিদি। তাঁরা রাসূল ﷺ ও সাহাবায়ে কেরামের আকিদার উপর আছেন।</p>
+
+            <div class="point-title">(২) হকের সংজ্ঞা</div>
+            <p><span class="arabic-text">"الحق: الحكم المطابق للواقع"</span> অর্থাৎ বাস্তবতার সাথে মিলে যাওয়া হুকুমকে হক বলে। কথা, আকিদা, দ্বীন ও মাযহাবের উপর এর প্রয়োগ হয়। এর বিপরীত: <span class="arabic-text">باطل</span> (বাতিল)।</p>
+
+            <div class="point-title">(৩) হক ও সিদকের পার্থক্য</div>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>বিষয়</th>
+                            <th>হক (<span class="arabic-text">الحق</span>)</th>
+                            <th>সিদক (<span class="arabic-text">الصدق</span>)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>দৃষ্টিকোণ</strong></td>
+                            <td>বাস্তবতার দিক থেকে মিল দেখা হয় (<span class="arabic-text">الواقع يطابق الحكم</span>)</td>
+                            <td>হুকুমের দিক থেকে মিল দেখা হয় (<span class="arabic-text">الحكم يطابق الواقع</span>)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>প্রয়োগ</strong></td>
+                            <td>কথা, আকিদা, দ্বীন, মাযহাব</td>
+                            <td>শুধু কথা</td>
+                        </tr>
+                        <tr>
+                            <td><strong>বিপরীত</strong></td>
+                            <td>বাতিল (<span class="arabic-text">باطل</span>)</td>
+                            <td>কিযব/মিথ্যা (<span class="arabic-text">كذب</span>)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="example-box">
+                <div class="example-box-title">(৪) উদাহরণ:</div>
+                <p>যায়েদ সত্যিই দাঁড়িয়ে আছে, আর কেউ বলল <em>"زيد قائم"</em> (যায়েদ দণ্ডায়মান)।</p>
+                <ul>
+                    <li>কথাটি বাস্তবের সাথে মিলেছে, তাই এটি <strong>সিদক</strong>।</li>
+                    <li>বাস্তবতা কথাটির সাথে মিলেছে, তাই এটি <strong>হক</strong>।</li>
+                </ul>
+                <p>আবার <em>"الإسلام حق"</em> বলা হয়, <em>"صادق"</em> বলা হয় না। কারণ সিদক শুধু কথার গুণ।</p>
+            </div>
+        </section>
+
+        <!-- Section D -->
+        <section class="sub-section reveal animate-right">
+            <h2 class="sub-title">(D) "حقائق الأشياء ثابتة" (বস্তুর বাস্তবতা)</h2>
+
+            <div class="point-title">(১) হাকায়েকুল আশইয়া অস্বীকার করে কারা?</div>
+            <p>সুফিস্তাইয়া (<span class="arabic-text">السوفسطائية</span>)। তারা তিন দলে বিভক্ত:</p>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>দল</th>
+                            <th>মতের বিবরণ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>العنادية (ইনাদিয়্যা)</strong></td>
+                            <td>বস্তুর বাস্তবতা অস্বীকার করে। বলে, সবই কল্পনা ও ভ্রম।</td>
+                        </tr>
+                        <tr>
+                            <td><strong>العندية (ইন্দিয়্যা)</strong></td>
+                            <td>বাস্তবতা বিশ্বাসের অধীন। যে যা বিশ্বাস করে, তা-ই বাস্তব।</td>
+                        </tr>
+                        <tr>
+                            <td><strong>اللاأدرية (লা-আদরিয্যা)</strong></td>
+                            <td>বলে, "আমরা জানি না কিছু আছে কি নেই।" তারা সংশয়ে আছে।</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="point-title">(২) কারা স্বীকার করে?</div>
+            <p>আহলুল হক এবং সকল সুস্থ বুদ্ধিসম্পন্ন মানুষ (<span class="arabic-text">جمهور العقلاء</span>)।</p>
+
+            <div class="point-title">(৩) হাকিকত, হুওয়িয়্যাত ও মাহিয়্যাতের পার্থক্য</div>
+            <p>তিনটির মূল অর্থ এক: <span class="arabic-text">"ما به الشيء هو هو"</span> (যা দ্বারা বস্তু সেই বস্তু হয়)। পার্থক্য বিবেচনায়:</p>
+            <ul>
+                <li>বাস্তবে বিদ্যমান (<span class="arabic-text">تحقق</span>) ধরলে: <strong>حقيقة (হাকিকত)</strong></li>
+                <li>ব্যক্তিগত স্বাতন্ত্র্য (<span class="arabic-text">تشخص</span>) ধরলে: <strong>هوية (হুওয়িয়্যাত)</strong></li>
+                <li>এই দুই বিবেচনা ছাড়া শুধু "বস্তু কী" (<span class="arabic-text">ما هو</span>) ধরলে: <strong>ماهية (মাহিয়্যাত)</strong></li>
+            </ul>
+
+            <div class="example-box">
+                <div class="example-box-title">(৪) উদাহরণ:</div>
+                <p>মানুষের সত্তা হলো <span class="arabic-text">"الحيوان الناطق"</span> (বুদ্ধিমান জীব)।</p>
+                <ul>
+                    <li>এটিকে বাস্তবে বিদ্যমান ধরলে: এটি মানুষের <strong>হাকিকত</strong></li>
+                    <li>নির্দিষ্ট ব্যক্তি (যেমন যায়েদ) ধরলে: এটি তার <strong>হুওয়িয়্যাত</strong></li>
+                    <li>এ দুই বিবেচনা ছাড়া: এটি <strong>মাহিয়্যাত</strong></li>
+                </ul>
+            </div>
+        </section>
+    </article>
+
+    <!-- QUESTION 2 -->
+    <article class="question-card reveal animate-up">
+        <div class="question-header">
+            প্রশ্ন–২: "لا يتمكن في مكان ولا يجري عليه زمان"
+        </div>
+
+        <!-- Section A -->
+        <section class="sub-section reveal animate-left">
+            <h2 class="sub-title">(A) ব্যাখ্যা ও দলিল</h2>
+            
+            <div class="point-title">(১) عبارة-র ব্যাখ্যা</div>
+            <ul>
+                <li><strong>لا يتمكن في مكان:</strong> আল্লাহ কোনো স্থানে বা দিকে অবস্থান করেন না। অবস্থান করা দেহবিশিষ্ট বস্তুর বৈশিষ্ট্য।</li>
+                <li><strong>لا يجري عليه زمان:</strong> তাঁর উপর সময় প্রবাহিত হয় না। অতীত, বর্তমান ও ভবিষ্যতের পরিবর্তন তাঁর জন্য নয়। তিনি স্থান ও সময়, উভয়ের স্রষ্টা।</li>
+            </ul>
+
+            <div class="point-title">(২) দাবি ১ (স্থান নেই)-এর দলিল</div>
+            <p><strong>আকলি দলিল:</strong></p>
+            <ol>
+                <li>স্থানে থাকলে হয় স্থানের সমান, বড় বা ছোট হতে হবে। এতে পরিমাণ ও সীমা আবশ্যক হয়। ফলে তিনি জিসম হবেন। জিসম মুরাক্কাব ও অংশবিশিষ্ট। মুরাক্কাব অংশের মুখাপেক্ষী। মুখাপেক্ষী সত্তা হাদিস (সৃষ্ট)। অথচ আল্লাহ কাদিম ও ওয়াজিবুল উজুদ।</li>
+                <li>স্থান কাদিম হলে একাধিক কাদিম সাব্যস্ত হয়, যা বাতিল। আর হাদিস হলে আল্লাহ স্থান সৃষ্টির আগে স্থান ছাড়াই ছিলেন। তাঁর কোনো পরিবর্তন হয় না, তাই এখনও তেমনই আছেন।</li>
+            </ol>
+            <p><strong>নকলি দলিল:</strong></p>
+            <ul>
+                <li><span class="arabic-text">"ليس كمثله شيء"</span> (সূরা শুরা: ১১)</li>
+                <li><span class="arabic-text">"كان الله ولم يكن شيء غيره"</span> (সহীহ বুখারী)</li>
+            </ul>
+
+            <div class="point-title">(৩) দাবি ২ (সময় নেই)-এর দলিল</div>
+            <p><strong>আকলি দলিল:</strong> সময় পরিবর্তনশীল বস্তুর পরিমাপ। এর অধীন হলে আল্লাহর মধ্যে পূর্বাপর ও পরিবর্তন আসত। পরিবর্তনশীল সত্তা হাদিস। অথচ আল্লাহ কাদিম ও অপরিবর্তনীয়।</p>
+            <p><strong>নকলি দলিল:</strong></p>
+            <ul>
+                <li><span class="arabic-text">"هو الأول والآخر"</span> (সূরা হাদিদ: ৩)</li>
+                <li><span class="arabic-text">"ليس كمثله شيء"</span> (সূরা শুরা: ১১)</li>
+            </ul>
+        </section>
+
+        <!-- Section B -->
+        <section class="sub-section reveal animate-right">
+            <h2 class="sub-title">(B) মুখালিফের ইস্তিদলাল</h2>
+            
+            <div class="point-title">(১) মুখালিফ কারা?</div>
+            <p>মুজাসসিমা ও মুশাব্বিহা, যেমন কাররামিয়া। তারা আল্লাহর জন্য দিক, দেহ, আকৃতি ও অঙ্গ সাব্যস্ত করে।</p>
+
+            <div class="point-title">(২) তাদের ইস্তিদলাল</div>
+            <ul>
+                <li><strong>নকলি:</strong> কুরআন-হাদিসের বাহ্যিক বক্তব্য। এতে দিক, জিসম, সুরত ও অঙ্গের কথা এসেছে।</li>
+                <li><strong>আকলি:</strong> দুটি অস্তিত্বশীল বস্তুর হয় একটি অপরটির সাথে সংযুক্ত (<span class="arabic-text">متصل</span>) হবে, নয়তো দিকের দিক থেকে ভিন্ন (<span class="arabic-text">مباين</span>) হবে। আল্লাহ জগতের মধ্যেও অনুপ্রবেশকারী নন, সংযুক্তও নন। তাই তিনি জগত থেকে কোনো একদিকে ভিন্ন, অর্থাৎ উপরে আছেন।</li>
+            </ul>
+        </section>
+
+        <!-- Section C -->
+        <section class="sub-section reveal animate-left">
+            <h2 class="sub-title">(C) সেই নুসূস ও ইস্তিদলাল পদ্ধতি</h2>
+            
+            <div class="point-title">(১) নুসূসুজ জাহিরা (বাহ্যিক নাসসমূহ)</div>
+            <ul>
+                <li><strong>দিক:</strong> 
+                    <span class="arabic-text">"يخافون ربهم من فوقهم"</span> (নাহল: ৫০), 
+                    <span class="arabic-text">"أأمنتم من في السماء"</span> (মুলক: ১৬), 
+                    <span class="arabic-text">"إليه يصعد الكلم الطيب"</span> (ফাতির: ১০)
+                </li>
+                <li><strong>উপবেশন ও আসা:</strong> 
+                    <span class="arabic-text">"الرحمن على العرش استوى"</span> (ত্বহা: ৫), 
+                    <span class="arabic-text">"وجاء ربك والملك صفا صفا"</span> (ফজর: ২২)
+                </li>
+                <li><strong>সুরত:</strong> 
+                    <span class="arabic-text">"إن الله خلق آدم على صورته"</span> (হাদিস)
+                </li>
+                <li><strong>অঙ্গ:</strong> 
+                    হাত: <span class="arabic-text">"يد الله فوق أيديهم"</span> (ফাতহ: ১০); 
+                    চোখ: <span class="arabic-text">"ولتصنع على عيني"</span> (ত্বহা: ৩৯); 
+                    মুখ: <span class="arabic-text">"ويبقى وجه ربك"</span> (রহমান: ২৭); 
+                    পায়ের গোছা: <span class="arabic-text">"يكشف عن ساق"</span> (কলম: ৪২)
+                </li>
+            </ul>
+
+            <div class="point-title">(২) মুখালিফ কীভাবে দলিল দেয়?</div>
+            <p>তারা বলে, কুরআন-হাদিসের শব্দের বাহ্যিক অর্থই আসল। প্রয়োজন ছাড়া তা ছেড়ে দেওয়া যায় না। এসব নুসূসে উপর, হাত, চোখ, মুখ ও আসার কথা আছে। তাই আল্লাহর দিক, দেহ ও অঙ্গ আছে।</p>
+        </section>
+
+        <!-- Section D -->
+        <section class="sub-section reveal animate-zoom">
+            <h2 class="sub-title">(D) মুখালিফের জবাব</h2>
+            <ol>
+                <li>এসব নুসূস মুতাশাবিহাত। <span class="arabic-text">"منه آيات محكمات هن أم الكتاب وأخر متشابهات"</span> (আলে ইমরান: ৭)। মুহকাম আয়াত <span class="arabic-text">"ليس كمثله شيء"</span> দেহ ও সাদৃশ্য নাকচ করে। তাই বাহ্যিক অর্থ নেওয়া যায় না।</li>
+                <li>বাহ্যিক অর্থ নিলে নুসূসের মধ্যেই বিরোধ হয়। যেমন <span class="arabic-text">"وهو معكم أينما كنتم"</span> (হাদিদ: ৪) এবং <span class="arabic-text">"نحن أقرب إليه من حبل الوريد"</span> (কাফ: ১৬)। এগুলো উপরে থাকার সাথে মেলে না।</li>
+                <li>এসব নুসূস দুইভাবে বোঝা হয়:
+                    <ul>
+                        <li><strong>সালাফ:</strong> তাফভিজ (تفويض)। অর্থ আল্লাহর কাছে সোপর্দ করে তানযিহ রক্ষা করা।</li>
+                        <li><strong>খালাফ:</strong> তা'বিল (تأويل)। যেমন "فوق" = ক্ষমতা ও মর্যাদায় উপরে, "يد" = কুদরত, "وجه" = সত্তা, "عين" = ইলম ও তত্ত্বাবধান।</li>
+                    </ul>
+                </li>
+                <li>তাদের আকলি দলিলের জবাব: "প্রতিটি অস্তিত্বশীল বস্তু সংযুক্ত অথবা ভিন্ন দিকে হবে"—এই নিয়ম শুধু দেহবিশিষ্ট বস্তুর জন্য। আল্লাহর উপর এর প্রয়োগ ওয়াহম (কল্পনার হুকুম), যা ইলাহিয়্যাতে গ্রহণযোগ্য নয়। সৃষ্টির উপর স্রষ্টাকে কিয়াস করা বাতিল।</li>
+            </ol>
+        </section>
+    </article>
+
+    <!-- QUESTION 3 -->
+    <article class="question-card reveal animate-up">
+        <div class="question-header">
+            প্রশ্ন–৩: "والله تعالى خالق لأفعال العباد من الكفر والإيمان والطاعة والعصيان"
+        </div>
+
+        <!-- Section A -->
+        <section class="sub-section reveal animate-left">
+            <h2 class="sub-title">(A) আহলুল হকের দলিল</h2>
+            
+            <div class="point-title">(১) আকিদাটি কী?</div>
+            <p>আল্লাহ বান্দার সব ইখতিয়ারি কাজ সৃষ্টি করেন, কুফর-ঈমান ও আনুগত্য-নাফরমানি সবই। এসব তাঁর ইরাদা, মাশিয়াত, হুকুম, কাযা ও তাকদির অনুযায়ী ঘটে।</p>
+            <ul>
+                <li>ভালো কাজ আল্লাহর রিযা (সন্তুষ্টি) সহ ঘটে। মন্দ কাজ তাঁর রিযা ছাড়া ঘটে।</li>
+                <li>বান্দার ভূমিকা হলো কাসব (<span class="arabic-text">كسب</span>), অর্থাৎ ইচ্ছা ও ক্ষমতা কাজে লাগানো।</li>
+            </ul>
+
+            <div class="rule-box">
+                Main Rule: Creation (খালক) = আল্লাহর, Acquisition (কাসব) = বান্দার
+            </div>
+
+            <div class="point-title">(২) দলিল</div>
+            <p><strong>নকলি দলিল:</strong></p>
+            <ol>
+                <li><span class="arabic-text">"والله خلقكم وما تعملون"</span> (সাফফাত: ৯৬)। "ما" মাসদারিয়া ধরলে অর্থ: "তোমাদের ও তোমাদের আমলকে"। মাওসূলা ধরলেও আমলের ফল আল্লাহর সৃষ্টি, তাই আমলও তাঁর সৃষ্টি।</li>
+                <li><span class="arabic-text">"الله خالق كل شيء"</span> (যুমার: ৬২)। বান্দার কাজও "شيء"-এর অন্তর্ভুক্ত।</li>
+                <li><span class="arabic-text">"هل من خالق غير الله"</span> (ফাতির: ৩), <span class="arabic-text">"أفمن يخلق كمن لا يخلق"</span> (নাহল: ১৭)।</li>
+                <li><span class="arabic-text">"وما تشاءون إلا أن يشاء الله"</span> (তাকবির: ২৯)।</li>
+            </ol>
+            <p><strong>আকলি দলিল:</strong></p>
+            <ol>
+                <li>বান্দা কাজের স্রষ্টা হলে সে কাজের সব বিস্তারিত অবস্থা জানত। অথচ সে জানে না। কখনো কম-বেশি হয়ে যায়, ঘুমন্ত অবস্থায়ও কাজ ঘটে।</li>
+                <li>বান্দা স্রষ্টা হলে একাধিক স্রষ্টা সাব্যস্ত হয়। এতে তাওহিদ বাতিল হয় এবং আল্লাহর ক্ষমতা সীমিত হয়।</li>
+            </ol>
+        </section>
+
+        <!-- Section B -->
+        <section class="sub-section reveal animate-right">
+            <h2 class="sub-title">(B) মুখালিফ, তাদের দাবি ও দলিল</h2>
+            
+            <div class="point-title">(১) মুখালিফ কারা?</div>
+            <p>মুতাযিলা (কাদরিয়া)।</p>
+
+            <div class="point-title">(২) তাদের দাবি</div>
+            <p>বান্দা নিজের ইখতিয়ারি কাজের স্রষ্টা। আল্লাহ বান্দার কাজ সৃষ্টি করেন না, বিশেষ করে মন্দ কাজ।</p>
+
+            <div class="point-title">(৩) তাদের দলিল</div>
+            <p><strong>নকলি:</strong></p>
+            <ul>
+                <li><span class="arabic-text">"جزاء بما كانوا يعملون"</span> (সাজদাহ: ১৭)</li>
+                <li><span class="arabic-text">"كل نفس بما كسبت رهينة"</span> (মুদ্দাসসির: ৩৮)</li>
+                <li><span class="arabic-text">"فمن شاء فليؤمن ومن شاء فليكفر"</span> (কাহফ: ২৯)</li>
+            </ul>
+            <p><strong>আকলি:</strong></p>
+            <ol>
+                <li>আল্লাহ স্রষ্টা হলে আদেশ-নিষেধ, সওয়াব-আযাব এবং প্রশংসা-নিন্দা অর্থহীন হয়।</li>
+                <li>নিজের সৃষ্ট কাজে শাস্তি দেওয়া যুলম, যা আল্লাহ থেকে অসম্ভব।</li>
+                <li>ইচ্ছাকৃত হাত নাড়া ও অনিচ্ছাকৃত কাঁপার পার্থক্য আমরা অনুভব করি। এতে বোঝা যায় কাজ বান্দার ইচ্ছাধীন।</li>
+                <li>মন্দ সৃষ্টি করা মন্দ, তাই আল্লাহ তা সৃষ্টি করেন না।</li>
+            </ol>
+        </section>
+
+        <!-- Section C -->
+        <section class="sub-section reveal animate-zoom">
+            <h2 class="sub-title">(C) জবাব</h2>
+            <ol>
+                <li><span class="arabic-text">"بما كانوا يعملون"</span>, <span class="arabic-text">"بما كسبت"</span> ইত্যাদি আয়াতে কাজের সম্পর্ক বান্দার দিকে কাসব হিসেবে, খালক হিসেবে নয়। কুরআনে খালক ও কাসব উভয়ই আছে, তাই বিরোধ নেই।</li>
+                <li>আদেশ-নিষেধ ও সওয়াব-আযাবের ভিত্তি কাসব ও ইখতিয়ার। বান্দা নিজের ইচ্ছায় কাজ করে। আল্লাহ কী নির্ধারণ করেছেন তা সে জানে না। সে পাথরের মতো বাধ্য (জবর) নয়।</li>
+                <li>যুলম মানে অন্যের মালিকানায় বিনা অনুমতিতে হস্তক্ষেপ। সবকিছু আল্লাহর মালিকানায়, তাই তাঁর পক্ষে যুলম অসম্ভব। <span class="arabic-text">"لا يسأل عما يفعل"</span> (আম্বিয়া: ২৩)।</li>
+                <li>মন্দের সৃষ্টিকর্তা মন্দ হন না। মন্দ হলো মন্দ কাজ অর্জনকারীর গুণ। আল্লাহর প্রতিটি সৃষ্টিতে হিকমত আছে। কুফর তাঁর ইরাদায় হয়, কিন্তু তিনি তাতে সন্তুষ্ট নন। <span class="arabic-text">"ولا يرضى لعباده الكفر"</span> (যুমার: ৭)।</li>
+                <li>ইচ্ছাকৃত ও অনিচ্ছাকৃত কাজের পার্থক্য আমরাও মানি। সেই পার্থক্য কাসব ও ইখতিয়ারের, খালকের নয়।</li>
+            </ol>
+        </section>
+    </article>
+
+    <!-- QUESTION 4 -->
+    <article class="question-card reveal animate-up">
+        <div class="question-header">
+            প্রশ্ন–৪: "المقتول ميت بأجله"
+        </div>
+
+        <!-- Section A -->
+        <section class="sub-section reveal animate-left">
+            <h2 class="sub-title">(A) আকিদার ব্যাখ্যা</h2>
+            <p>আজাল হলো সেই সময়, যা আল্লাহর ইলমে মৃত্যুর জন্য নির্ধারিত। নিহত ব্যক্তি তার নির্ধারিত সময়েই মারা যায়। আজাল একটিই, এর দুটি হয় না। হত্যা মৃত্যুর বাহ্যিক কারণ (সবব)। আল্লাহ সেই সময়ে মৃত্যু সৃষ্টি করেন। হত্যাকারী নিজের নিষিদ্ধ কাজের জন্য গুনাহগার ও দায়ী।</p>
+        </section>
+
+        <!-- Section B -->
+        <section class="sub-section reveal animate-right">
+            <h2 class="sub-title">(B) আহলুস সুন্নাহর দলিল</h2>
+            <p><strong>নকলি দলিল:</strong></p>
+            <ol>
+                <li><span class="arabic-text">"فإذا جاء أجلهم لا يستأخرون ساعة ولا يستقدمون"</span> (আ'রাফ: ৩৪)। সময় এলে এক মুহূর্ত আগে-পরে হয় না।</li>
+                <li><span class="arabic-text">"وما كان لنفس أن تموت إلا بإذن الله كتابا مؤجلا"</span> (আলে ইমরান: ১৪৫)</li>
+                <li><span class="arabic-text">"لبرز الذين كتب عليهم القتل إلى مضاجعهم"</span> (আলে ইমরান: ১৫৪)</li>
+                <li><span class="arabic-text">"أينما تكونوا يدرككم الموت"</span> (নিসা: ৭৮)</li>
+            </ol>
+            <p><strong>আকলি দলিল:</strong></p>
+            <ol>
+                <li>আল্লাহর ইলমে মৃত্যুর সময় নির্ধারিত। নিহত ব্যক্তি আরও বাঁচত বললে আল্লাহর ইলম ভুল সাব্যস্ত হয়, যা অসম্ভব।</li>
+                <li>মৃত্যু আল্লাহর সৃষ্টি। <span class="arabic-text">"الذي خلق الموت والحياة"</span> (মুলক: ২)। হত্যা শুধু বাহ্যিক কারণ।</li>
+                <li>নিহতের দুটি আজালের ধারণা অযৌক্তিক।</li>
+            </ol>
+        </section>
+
+        <!-- Section C -->
+        <section class="sub-section reveal animate-left">
+            <h2 class="sub-title">(C) মুখালিফ, তাদের দাবি ও দলিল</h2>
+            <p><strong>(১) মুখালিফ কারা?</strong> মুতাযিলা।</p>
+            <p><strong>(২) তাদের দাবি:</strong> হত্যাকারী নিহতের আয়ু কেটে দিয়েছে। হত্যা না করলে সে আরও বাঁচত।</p>
+            <p><strong>(৩) তাদের দলিল:</strong></p>
+            <ol>
+                <li>নিহত নির্ধারিত সময়ে মারা গেলে কিসাস, দিয়াত ও গুনাহ সাব্যস্ত হওয়ার কথা নয়।</li>
+                <li><span class="arabic-text">"أفإن مات أو قتل"</span> (আলে ইমরান: ১৪৪)। এখানে মৃত্যু ও হত্যা আলাদা করা হয়েছে।</li>
+                <li>হাদিসে আত্মীয়তা রক্ষায় আয়ু বাড়ার কথা এসেছে (বুখারি-মুসলিম)। এতে বোঝা যায় আজাল কমবেশি হয়।</li>
+                <li><span class="arabic-text">"ولا تقتلوا أنفسكم"</span> (নিসা: ২৯)। হত্যা নিষিদ্ধ, অর্থাৎ হত্যা জীবন কেটে দেয়।</li>
+            </ol>
+        </section>
+
+        <!-- Section D -->
+        <section class="sub-section reveal animate-zoom">
+            <h2 class="sub-title">(D) তাদের দলিলের জবাব</h2>
+            <ol>
+                <li>কিসাস ও গুনাহের ভিত্তি হলো হত্যাকারীর ইচ্ছাকৃত নিষিদ্ধ কাজ ও জুলুম, আজাল কেটে দেওয়া নয়। মৃত্যু আজালে হলেও অপরাধ অপরাধই।</li>
+                <li><span class="arabic-text">"مات أو قتل"</span> আয়াতে মৃত্যুর দুই ধরন বোঝানো হয়েছে, স্বাভাবিক মৃত্যু ও হত্যা। নিহত মৃত নয়, এমন নয়। মৃত্যু ব্যাপক, হত্যা তার এক কারণ।</li>
+                <li>আত্মীয়তায় আয়ু বাড়ার অর্থ বরকত, অথবা ফেরেশতাদের দফতরে কমবেশি হওয়া। আল্লাহর ইলম ও লাওহে মাহফুযে কোনো পরিবর্তন নেই। <span class="arabic-text">"يمحو الله ما يشاء ويثبت وعنده أم الكتاب"</span> (রা'দ: ৩৯)।</li>
+                <li><span class="arabic-text">"ولا تقتلوا أنفسكم"</span> নিষেধটি বান্দার কাসবের কাজের উপর। এতে আমাদের কথার সাথে বিরোধ নেই।</li>
+            </ol>
+        </section>
+    </article>
+
+    <!-- QUESTION 5 -->
+    <article class="question-card reveal animate-up">
+        <div class="question-header">
+            প্রশ্ন–৫: "وعذاب القبر للكافرين ..."
+        </div>
+
+        <!-- Section A -->
+        <section class="sub-section reveal animate-left">
+            <h2 class="sub-title">(A) عبارة-র ব্যাখ্যা</h2>
+            <p>এই আকিদায় চারটি বিষয় আছে:</p>
+            <ol>
+                <li>কাফিরদের কবরের আযাব সাব্যস্ত।</li>
+                <li>কিছু গুনাহগার মুমিনেরও আযাব হবে, সবার নয় (<span class="arabic-text">لبعض</span>)।</li>
+                <li>অনুগতদের কবরে নেয়ামত আছে। কী পরিমাণ ও কীভাবে, তা আল্লাহ জানেন ও ইচ্ছা করেন (<span class="arabic-text">بما يعلمه ويريده</span>)।</li>
+                <li>মুনকার-নাকির ফেরেশতার প্রশ্ন সত্য। প্রশ্ন: তোমার রব কে, দ্বীন কী, নবী কে? এসব <span class="arabic-text">ثابت بالدلائل السمعية</span>। অর্থাৎ কুরআন-হাদিসের দলিলে প্রমাণিত, কারণ এগুলো গায়েবের বিষয়, আকলে ধরা পড়ে না।</li>
+            </ol>
+        </section>
+
+        <!-- Section B -->
+        <section class="sub-section reveal animate-right">
+            <h2 class="sub-title">(B) দলিল</h2>
+            <p><strong>কুরআন:</strong></p>
+            <ol>
+                <li><span class="arabic-text">"النار يعرضون عليها غدوا وعشيا"</span> (গাফির: ৪৬)। ফেরাউনের অনুসারীদের সকাল-সন্ধ্যা আগুনে পেশ করা হয়। এর পরে কিয়ামতের আযাবের কথা এসেছে। তাই এটি বারযাখের আযাব।</li>
+                <li><span class="arabic-text">"يثبت الله الذين آمنوا بالقول الثابت في الحياة الدنيا وفي الآخرة"</span> (ইবরাহিম: ২৭)। বুখারির হাদিসে একে কবরের প্রশ্নের প্রসঙ্গে ব্যাখ্যা করা হয়েছে।</li>
+                <li><span class="arabic-text">"ولا تحسبن الذين قتلوا في سبيل الله أمواتا بل أحياء عند ربهم يرزقون"</span> (আলে ইমরান: ১৬৯)। বারযাখে নেয়ামতের প্রমাণ।</li>
+            </ol>
+            <p><strong>হাদিস:</strong></p>
+            <ol>
+                <li>দুই কবরের হাদিস (বুখারি-মুসলিম): নবী ﷺ বললেন, "এ দু'জনের আযাব হচ্ছে। একজন পেশাব থেকে সতর্ক হতো না, অন্যজন চোগলখুরি করত।" এতে মুমিনের আযাবও প্রমাণিত।</li>
+                <li>আনাস (রা.)-এর হাদিস (বুখারি-মুসলিম): বান্দাকে কবরে রাখলে সে সঙ্গীদের জুতার আওয়াজ শোনে। তখন দুই ফেরেশতা এসে প্রশ্ন করেন।</li>
+                <li>নবী ﷺ নামাযে কবরের আযাব থেকে পানাহ চাইতেন (বুখারি-মুসলিম)।</li>
+                <li>এ বিষয়ে এত হাদিস বর্ণিত হয়েছে যে অনেক আলেম একে অর্থগত তাওয়াতুর (<span class="arabic-text">تواتر معنوي</span>) বলেছেন।</li>
+            </ol>
+            <p><strong>ইজমা:</strong> আহলুস সুন্নাহর ঐকমত্য।</p>
+        </section>
+
+        <!-- Section C -->
+        <section class="sub-section reveal animate-left">
+            <h2 class="sub-title">(C) অস্বীকারকারী ও তাদের দলিল</h2>
+            <p><strong>(১) কারা অস্বীকার করে?</strong> মুতাযিলা, খারিজি ও কিছু রাফিযি।</p>
+            <p><strong>(২) তাদের দলিল:</strong></p>
+            <ol>
+                <li>মৃত বস্তু জড়, তার অনুভূতি নেই। জড়ের আযাব অর্থহীন।</li>
+                <li>কবর খুললে আযাব, প্রশ্ন বা ফেরেশতা কিছুই দেখা যায় না।</li>
+                <li>লাশ কখনো হিংস্র প্রাণী খেয়ে ফেলে, পুড়ে যায় বা ডুবে যায়। তাহলে আযাব কীভাবে হবে?</li>
+                <li><span class="arabic-text">"ربنا أمتنا اثنتين وأحييتنا اثنتين"</span> (গাফির: ১১) ও <span class="arabic-text">"لا يذوقون فيها الموت إلا الموتة الأولى"</span> (দুখান: ৫৬)। দুইবার মৃত্যু ও জীবনের কথা আছে। কবরে জীবন মানলে তা বেড়ে যায়।</li>
+                <li>হিসাবের আগে শাস্তি অন্যায়।</li>
+            </ol>
+        </section>
+
+        <!-- Section D -->
+        <section class="sub-section reveal animate-zoom">
+            <h2 class="sub-title">(D) তাদের জবাব</h2>
+            <ol>
+                <li>আল্লাহ শরীরে বা তার কিছু অংশে অনুভূতিসম্পন্ন জীবন সৃষ্টি করতে সক্ষম। এটি মুমকিন, আর সত্যবাদী নবী ﷺ এর খবর দিয়েছেন।</li>
+                <li>আমরা দেখি না বলে এটি নেই, তা নয়। ফেরেশতা ও জিবরাইলকে আমরা দেখি না। ঘুমন্ত ব্যক্তি স্বপ্নে কষ্ট বা সুখ পায়, অথচ পাশের লোক কিছুই দেখে না। এটি আলমে গায়েবের বিষয়।</li>
+                <li>হিংস্র প্রাণী খেলে বা পুড়ে গেলেও আল্লাহ সেই অংশগুলোতে জীবন সৃষ্টি করতে সক্ষম, যেমন তিনি কিয়ামতে সবাইকে পুনরুত্থিত করবেন।</li>
+                <li>দুই জীবনের আয়াত পূর্ণ জীবন বোঝায়। বারযাখের জীবন আংশিক ও সাময়িক, কেবল প্রশ্ন ও আযাব-নেয়ামত অনুভবের জন্য। তাই বিরোধ নেই। দুখানের আয়াত জান্নাতিদের সম্পর্কে।</li>
+                <li>বারযাখের আযাব চূড়ান্ত হিসাবের পূর্বাভাস মাত্র। চূড়ান্ত বিচার কিয়ামতে হবে। তাই কোনো অন্যায় নেই।</li>
+            </ol>
+        </section>
+    </article>
+</div>
+
+<!-- Scroll Animation Script -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const observerOptions = {
+            root: null,
+            rootMargin: "0px",
+            threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("active");
+                }
+            });
+        }, observerOptions);
+
+        const revealElements = document.querySelectorAll(".reveal");
+        revealElements.forEach(el => observer.observe(el));
+    });
+</script>
+
 </body>
 </html>

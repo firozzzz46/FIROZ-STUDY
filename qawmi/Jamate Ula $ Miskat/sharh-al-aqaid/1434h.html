@@ -1,128 +1,646 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>শরহুল আকাইদ আন-নাসাফিয়্যা — প্রশ্নোত্তর সমাধান</title>
 
-    <!-- Google Fonts for Bengali & English -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Inter:wght@700;900&display=swap" rel="stylesheet">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Kalpurush&display=swap');
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+*{box-sizing:border-box;margin:0;padding:0}
 
-    <style>
-        body {
-            font-family: 'Hind Siliguri', 'Inter', sans-serif;
-            background-color: #030712;
-            overflow: hidden;
-        }
+html{scroll-behavior:smooth}
 
-        /* Gradient glowing animation on text */
-        .glow-text {
-            background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 50%, #38bdf8 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shine 6s linear infinite;
-        }
+body{
+    font-family:'Kalpurush',Arial,sans-serif;
+    font-size:25px;
+    line-height:1.8;
+    color:#20242a;
+    background:#fafafa;
+    padding:25px;
+}
 
-        @keyframes shine {
-            0% { background-position: 0% center; }
-            50% { background-position: 100% center; }
-            100% { background-position: 0% center; }
-        }
+.container{
+    max-width:1200px;
+    margin:auto;
+    background:#fff;
+    padding:35px 45px;
+    border-radius:20px;
+    box-shadow:0 8px 35px rgba(0,0,0,.08);
+}
 
-        /* Keyframes for initial entry: Floating in from below with opacity */
-        @keyframes floatIn {
-            0% {
-                opacity: 0;
-                transform: translateY(40px) scale(0.95);
-                filter: blur(8px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-                filter: blur(0);
-            }
-        }
+.pdf-btn{
+    position:fixed;
+    top:18px;
+    right:20px;
+    z-index:1000;
+    border:0;
+    border-radius:12px;
+    padding:12px 22px;
+    font-size:20px;
+    font-family:inherit;
+    font-weight:bold;
+    cursor:pointer;
+    color:white;
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    box-shadow:0 6px 20px rgba(37,99,235,.25);
+    transition:.3s;
+}
 
-        /* Continuous subtle float effect once arrived */
-        @keyframes subtleFloat {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-8px);
-            }
-        }
+.pdf-btn:hover{
+    transform:translateY(-2px) scale(1.03);
+}
 
-        /* Animation class for Heading */
-        .animate-heading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards,
-                subtleFloat 6s ease-in-out 1.2s infinite;
-        }
+.title{
+    text-align:center;
+    margin:20px 0 40px;
+    padding-bottom:25px;
+    border-bottom:3px solid #dbeafe;
+}
 
-        /* Animation class for Subheading (staggered delay) */
-        .animate-subheading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards,
-                subtleFloat 6s ease-in-out 1.55s infinite;
-            opacity: 0; /* Hidden until animation kicks in */
-        }
+.title h1{
+    font-size:34px;
+    color:#173b72;
+    margin-bottom:8px;
+}
 
-        /* Ambient background lighting */
-        .ambient-glow {
-            position: absolute;
-            width: 450px;
-            height: 450px;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(3, 7, 18, 0) 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            transition: left 0.4s ease-out, top 0.4s ease-out;
-        }
-    </style>
+.title p{
+    font-size:25px;
+    color:#555;
+}
+
+.question{
+    margin-top:45px;
+    padding:18px 22px;
+    border-left:7px solid #2563eb;
+    background:#eff6ff;
+    border-radius:10px;
+    font-weight:bold;
+    color:#173b72;
+}
+
+.section{
+    margin-top:30px;
+}
+
+.section-title{
+    font-size:28px;
+    font-weight:bold;
+    color:#7c3aed;
+    margin-bottom:12px;
+}
+
+.sub-title{
+    font-size:27px;
+    font-weight:bold;
+    color:#b45309;
+    margin:25px 0 10px;
+}
+
+p{
+    margin:12px 0;
+}
+
+.arabic{
+    direction:rtl;
+    text-align:right;
+    font-size:28px;
+    font-weight:bold;
+    color:#111827;
+    margin:15px 0;
+}
+
+.important{
+    padding:18px 22px;
+    margin:20px 0;
+    border-radius:12px;
+    background:#f0fdf4;
+    border-left:6px solid #16a34a;
+}
+
+.rule{
+    padding:18px 22px;
+    margin:20px 0;
+    border-radius:12px;
+    background:#fff7ed;
+    border:1px solid #fed7aa;
+    font-weight:bold;
+}
+
+.quote{
+    padding:16px 22px;
+    margin:18px 0;
+    background:#f8fafc;
+    border-left:5px solid #64748b;
+    border-radius:8px;
+}
+
+ul{
+    margin:10px 0 15px 35px;
+}
+
+li{
+    margin:7px 0;
+}
+
+.fade{
+    opacity:0;
+    transform:translateY(35px);
+    transition:opacity .8s ease,transform .8s ease;
+}
+
+.fade.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+@media(max-width:768px){
+    body{
+        font-size:25px;
+        padding:10px;
+    }
+
+    .container{
+        padding:25px 18px;
+        border-radius:12px;
+    }
+
+    .title h1{
+        font-size:30px;
+    }
+
+    .section-title{
+        font-size:27px;
+    }
+
+    .sub-title{
+        font-size:26px;
+    }
+
+    .arabic{
+        font-size:27px;
+    }
+
+    .pdf-btn{
+        position:sticky;
+        top:8px;
+        display:block;
+        margin-left:auto;
+        margin-bottom:15px;
+    }
+}
+
+@media print{
+    body{
+        background:white;
+        padding:0;
+    }
+
+    .container{
+        box-shadow:none;
+        max-width:none;
+        padding:0;
+    }
+
+    .pdf-btn{
+        display:none;
+    }
+
+    .fade{
+        opacity:1;
+        transform:none;
+    }
+
+    .question,
+    .important,
+    .rule,
+    .quote{
+        break-inside:avoid;
+    }
+}
+</style>
 </head>
-<body class="min-h-screen flex items-center justify-center relative select-none px-4">
 
-    <!-- Ambient glow center element -->
-    <div id="glow" class="ambient-glow top-1/2 left-1/2"></div>
+<body>
 
-    <!-- Centered minimal content with entry animations -->
-    <main class="text-center z-10 space-y-6 max-w-3xl mx-auto py-8 px-4">
-        
-        <!-- Main English Title -->
-        <h1 class="animate-heading text-5xl sm:text-7xl md:text-8xl font-black tracking-tight glow-text font-['Inter'] drop-shadow-lg">
-            Coming Soon...
-        </h1>
+<button class="pdf-btn" onclick="downloadPDF()">⬇ Download PDF</button>
 
-        <!-- Bengali Subheading -->
-        <p class="animate-subheading text-xl sm:text-3xl md:text-4xl font-semibold text-emerald-400/90 leading-relaxed tracking-wide drop-shadow">
-            ইনশাআল্লাহ, খুব শীঘ্রই ডাটা যোগ করা হবে।
-        </p>
+<div class="container">
 
-    </main>
+<div class="title fade">
+<h1>শরহুল আকাইদ আন-নাসাফিয়্যা</h1>
+<p>প্রশ্নোত্তর সমাধান (1434 হিজরী)</p>
+</div>
 
-    <script>
-        const glow = document.getElementById('glow');
+<div class="question fade">প্রশ্ন–১: "والخبر الصادق ..."</div>
 
-        // Mouse move interactive glow background
-        window.addEventListener('mousemove', (e) => {
-            glow.style.left = e.clientX + 'px';
-            glow.style.top = e.clientY + 'px';
-        });
+<div class="section fade">
+<div class="section-title">(A) খবরে সাদিকের প্রকারভেদ</div>
 
-        // Touch move interactive glow background for mobile screens
-        window.addEventListener('touchmove', (e) => {
-            if (e.touches.length > 0) {
-                glow.style.left = e.touches[0].clientX + 'px';
-                glow.style.top = e.touches[0].clientY + 'px';
-            }
-        });
-    </script>
+<p><b>(১) খবরে সাদিক কত প্রকার?</b></p>
+<p><b>উত্তর:</b> খবরে সাদিক (বাস্তবের সাথে মিলে যাওয়া সংবাদ) দুই প্রকার:</p>
+
+<p>(ক) <span class="arabic">الخبر المتواتر</span></p>
+<p>(খ) <span class="arabic">خبر الرسول المؤيد بالمعجزة</span></p>
+
+<p><b>(২) মুতাওয়াতির: সংজ্ঞা ও উদাহরণ</b></p>
+<p><b>উত্তর:</b> সংজ্ঞা:</p>
+
+<div class="quote arabic">الخبر الثابت على ألسنة قوم لا يتصور تواطؤهم على الكذب</div>
+
+<p>অর্থাৎ এত লোকের মুখে প্রমাণিত সংবাদ, যাদের মিথ্যায় একমত হওয়া কল্পনাও করা যায় না। নির্দিষ্ট সংখ্যা শর্ত নয়।</p>
+
+<p><b>উদাহরণ:</b></p>
+<ul>
+<li>অতীতের রাজা-বাদশাহদের সংবাদ (<span class="arabic">الملوك الخالية</span>)</li>
+<li>দূরবর্তী শহর, যেমন মক্কা ও বাগদাদের অস্তিত্বের সংবাদ (<span class="arabic">البلدان النائية</span>)</li>
+</ul>
+
+<p>এসবের জ্ঞান শুধু খবরের মাধ্যমেই আসে।</p>
+
+<p><b>(৩) খবরে রাসূল: সংজ্ঞা ও উদাহরণ</b></p>
+<p><b>উত্তর:</b> সংজ্ঞা: যে রাসূলকে আল্লাহ মুজিযা দ্বারা সমর্থন করেছেন, তাঁর দেওয়া সংবাদ।</p>
+
+<p>উদাহরণ: কুরআনে বর্ণিত পরকালের সংবাদ, যেমন জান্নাত-জাহান্নাম, হাশর-নশর ও ফেরেশতাদের অস্তিত্ব।</p>
+</div>
+
+<div class="section fade">
+<div class="section-title">(B) প্রতিটি প্রকারের হুকুম</div>
+
+<p><b>(১) মুতাওয়াতিরের হুকুম</b></p>
+<p><b>উত্তর:</b> এটি <span class="arabic">علم ضروري</span> আনে। অর্থাৎ চিন্তা-গবেষণা ও দলিল ছাড়াই নিশ্চিত জ্ঞান আসে। যেমন মক্কার অস্তিত্বের জ্ঞান।</p>
+
+<p><b>(২) খবরে রাসূলের হুকুম</b></p>
+<p><b>উত্তর:</b> এটি <span class="arabic">علم استدلالي</span> আনে। প্রথমে মুজিযা দেখে রাসূলের সত্যতা প্রমাণ করতে হয়, অর্থাৎ দলিলের প্রয়োজন হয়। তারপর তাঁর সংবাদে নিশ্চিত জ্ঞান আসে।</p>
+
+<p><b>(৩) দুইয়ের মধ্যে মিল</b></p>
+
+<div class="quote arabic">العلم الثابت به يضاهي العلم الثابت بالضرورة في التيقن والثبات</div>
+
+<p>অর্থাৎ ইয়াকিন ও দৃঢ়তায় খবরে রাসূল দ্বারা অর্জিত জ্ঞান জরুরি জ্ঞানের মতোই। সংশয়ে তা নড়ে না।</p>
+
+<div class="rule">
+Main Rule: Mutawatir → Necessary Knowledge<br>
+Khabr ar-Rasul → Inferential Knowledge
+</div>
+</div>
+
+<div class="section fade">
+<div class="section-title">(C) "وأما خبر النصارى بقتل عيسى ..."</div>
+
+<p><b>(১) প্রসঙ্গ ও প্রশ্ন</b></p>
+<p><b>উত্তর:</b> আগে বলা হয়েছে, মুতাওয়াতির নিশ্চিত জ্ঞান আনে। এখানে একটি আপত্তি ওঠে:</p>
+
+<ul>
+<li>খ্রিস্টানরা বলে, ঈসা (আ.) নিহত হয়েছেন।</li>
+<li>ইহুদিরা বলে, মূসা (আ.)-এর দ্বীন চিরস্থায়ী, কখনো রহিত হবে না।</li>
+</ul>
+
+<p>এ সংবাদ তাদের মধ্যে ধারাবাহিক চলে আসছে। এগুলো মুতাওয়াতির হলে নিশ্চিত জ্ঞান আসত। তখন ইসলামের দাবির সাথে বিরোধ হতো, কারণ ইসলামে ঈসা (আ.) নিহত হননি এবং মূসা (আ.)-এর শরিয়ত রহিত হয়েছে।</p>
+
+<p><b>(২) জবাব:</b></p>
+
+<div class="quote arabic">فتواتره ممنوع</div>
+
+<p><b>উত্তর:</b> তাদের এ সংবাদ আসলে মুতাওয়াতিরই নয়। তাওয়াতুরের শর্ত হলো শুরু, মাঝ ও শেষ, সব স্তরে মিথ্যায় একমত হওয়া অসম্ভব এমন সংখ্যক বর্ণনাকারী থাকা। এখানে তা নেই:</p>
+
+<p><b>(ক) খ্রিস্টান:</b> হত্যা প্রত্যক্ষকারী ছিল অল্প কয়েকজন। আল্লাহ ঈসা (আ.)-কে উঠিয়ে নেন এবং অন্যকে তাঁর সদৃশ করে দেন:</p>
+
+<div class="quote arabic">ولكن شبه لهم</div>
+
+<p>(নিসা: ১৫৭)। তাই প্রথম স্তরেই সংখ্যা কম ও সন্দেহযুক্ত।</p>
+
+<p><b>(খ) ইহুদি:</b> বুখতে নসর বহু ইহুদিকে হত্যা করায় মাঝের স্তরে বর্ণনাকারী তাওয়াতুরের সংখ্যার নিচে নেমে যায়।</p>
+
+<p><b>(৩) সিদ্ধান্ত</b></p>
+<p><b>উত্তর:</b> এ দুই সংবাদ তাওয়াতুরের শর্ত পূরণ করে না। তাই "মুতাওয়াতির নিশ্চিত জ্ঞান আনে" নিয়মটি অক্ষুণ্ণ থাকে।</p>
+</div>
+
+
+<div class="question fade">প্রশ্ন–২: "والكلام ..."</div>
+
+<div class="section fade">
+<div class="section-title">(A) আল্লাহর সিফাতে কালামের স্বরূপ</div>
+
+<p><b>উত্তর:</b> সিফাতে কালাম সম্পর্কে মতনের বক্তব্য:</p>
+
+<div class="quote arabic">متكلم بكلام هو صفة له، أزلية، ليس من جنس الحروف والأصوات، وهو صفة منافية للسكوت والآفة</div>
+
+<p>এর বিশ্লেষণ:</p>
+
+<ol>
+<li>এটি আল্লাহর সিফাত, তাঁর সত্তার সাথে <span class="arabic">قائم</span> (প্রতিষ্ঠিত)।</li>
+<li>এটি <span class="arabic">أزلية</span> (অনাদি)।</li>
+<li>এটি অক্ষর ও আওয়াজের জাতীয় নয়। অক্ষর ও আওয়াজ ক্রমানুসারে আসে-যায় এবং হাদিস (সৃষ্ট)। এগুলো ওই সিফাতের নির্দেশক (<span class="arabic">دلالة</span>)।</li>
+<li>এটি নীরবতা (<span class="arabic">سكوت</span>) ও ত্রুটি (<span class="arabic">آفة</span>, যেমন বোবা হওয়া)-এর বিপরীত।</li>
+<li>এ সিফাত দ্বারা আল্লাহ আদেশকারী, নিষেধকারী ও সংবাদদাতা (<span class="arabic">آمر ناه مخبر</span>)।</li>
+<li>কুরআন লিখিত, মুখস্থ, পঠিত ও শ্রুত হলেও এ সিফাত সেগুলোতে হুলুলকারী (অনুপ্রবিষ্ট) নয়।</li>
+</ol>
+</div>
+
+<div class="section fade">
+<div class="section-title">(B) "إن الكلام لفي الفؤاد ..." কবিতার উদ্দেশ্য</div>
+
+<p><b>উত্তর:</b> কবিতাটি আখতালের বলে প্রসিদ্ধ। এর অর্থ: কালাম আসলে অন্তরে থাকে, জিহ্বা শুধু তার দলিল বা নির্দেশক।</p>
+
+<p>লেখকের উদ্দেশ্য হলো প্রমাণ করা যে:</p>
+
+<ol>
+<li>মূল কালাম হলো অন্তরে বিদ্যমান অর্থ, অর্থাৎ কালামে নাফসি।</li>
+<li>মুখের শব্দ ও অক্ষর তার নির্দেশক মাত্র।</li>
+<li>সুতরাং আল্লাহর কালাম অক্ষর-আওয়াজ ছাড়া তাঁর সত্তায় বিদ্যমান অনাদি সিফাত, আর কুরআনের শব্দ সেই সিফাতের নির্দেশক। এতে আরবি ভাষার ব্যবহারও এর সাক্ষ্য দেয়।</li>
+</ol>
+</div>
+
+<div class="section fade">
+<div class="section-title">(C) সিফাতে কালাম সাব্যস্ত হওয়ার দলিল</div>
+
+<p><b>উত্তর:</b></p>
+<p><b>নকলি দলিল:</b></p>
+
+<ol>
+<li><span class="arabic">وكلم الله موسى تكليما</span> (নিসা: ১৬৪)</li>
+<li><span class="arabic">منهم من كلم الله</span> (বাকারা: ২৫৩)</li>
+<li><span class="arabic">إني أنا الله</span> (কাসাস: ৩০) এবং <span class="arabic">وما كان لبشر أن يكلمه الله إلا وحيا</span> (শুরা: ৫১)</li>
+<li>উম্মাহর ইজমা: আল্লাহ মুতাকাল্লিম, অর্থাৎ কালামের অধিকারী।</li>
+</ol>
+
+<p><b>আকলি দলিল:</b> কালাম পূর্ণতার গুণ, আর এর বিপরীত বোবা হওয়া ত্রুটি। আল্লাহ সব ত্রুটি থেকে পবিত্র। তাই তিনি কালামের গুণে গুণান্বিত।</p>
+</div>
+
+<div class="section fade">
+<div class="section-title">(D) ইশকালের ব্যাখ্যা (শুধু আপত্তি)</div>
+
+<p><b>উত্তর:</b> আপত্তি: আহলুস সুন্নাহ বলে, আল্লাহর কালাম এক অনাদি সিফাত। কিন্তু কালামের বহু প্রকার আছে: আদেশ, নিষেধ, সংবাদ, প্রশ্ন ও আহ্বান। কালামের অস্তিত্ব এই প্রকারগুলো ছাড়া কল্পনা করা যায় না। অর্থাৎ কালাম সর্বদা এসবের কোনো একটি রূপেই থাকে। তাহলে কালাম নিজেই বহুত্ববিশিষ্ট (<span class="arabic">متكثر في نفسه</span>) হয়ে যায়। এতে "এক সিফাত" দাবির সাথে বিরোধ হয়।</p>
+</div>
+
+
+<div class="question fade">প্রশ্ন–৩: "والله تعالى خالق لأفعال العباد ..."</div>
+
+<div class="section fade">
+<div class="section-title">(A) আকিদার ব্যাখ্যা ও মুখালিফ</div>
+
+<p><b>(১) আকিদাটি কী?</b></p>
+<p><b>উত্তর:</b> আল্লাহ বান্দার সব ইখতিয়ারি কাজ সৃষ্টি করেন, কুফর-ঈমান ও আনুগত্য-নাফরমানি সবই। এসব তাঁর ইরাদা, মাশিয়াত, হুকুম, কাযা ও তাকদির অনুযায়ী ঘটে।</p>
+
+<ul>
+<li>ভালো কাজ আল্লাহর রিযা (সন্তুষ্টি) সহ ঘটে।</li>
+<li>মন্দ কাজ তাঁর রিযা ছাড়া ঘটে।</li>
+<li>বান্দার ভূমিকা হলো কাসব, অর্থাৎ ইচ্ছা ও ক্ষমতা কাজে লাগানো।</li>
+</ul>
+
+<div class="rule">
+Creation (খালক) = আল্লাহর<br>
+Acquisition (কাসব) = বান্দার
+</div>
+
+<p><b>(২) মুখালিফ কারা?</b></p>
+<p><b>উত্তর:</b> মুতাযিলা (কাদরিয়া)। তাদের দাবি, বান্দা নিজের ইখতিয়ারি কাজের স্রষ্টা। আল্লাহ তা সৃষ্টি করেন না, বিশেষত মন্দ কাজ। অপর প্রান্তে জাবরিয়া বান্দার কাসবও অস্বীকার করে। আহলুস সুন্নাহ মধ্যপন্থী।</p>
+</div>
+
+<div class="section fade">
+<div class="section-title">(B) মুখালিফের দলিল ও জবাব</div>
+
+<p><b>(১) মুখালিফের দলিল</b></p>
+<p><b>উত্তর:</b> নকলি:</p>
+
+<ul>
+<li><span class="arabic">جزاء بما كانوا يعملون</span> (সাজদাহ: ১৭)</li>
+<li><span class="arabic">كل نفس بما كسبت رهينة</span> (মুদ্দাসসির: ৩৮)</li>
+<li><span class="arabic">فمن شاء فليؤمن ومن شاء فليكفر</span> (কাহফ: ২৯)</li>
+</ul>
+
+<p><b>আকলি:</b></p>
+
+<ul>
+<li>আল্লাহ স্রষ্টা হলে আদেশ-নিষেধ, সওয়াব-আযাব এবং প্রশংসা-নিন্দা অর্থহীন হয়।</li>
+<li>নিজের সৃষ্ট কাজে শাস্তি দেওয়া যুলম, যা আল্লাহ থেকে অসম্ভব।</li>
+<li>ইচ্ছাকৃত হাত নাড়া ও অনিচ্ছাকৃত কাঁপার পার্থক্য আমরা অনুভব করি। তাই কাজ বান্দার ইচ্ছাধীন।</li>
+<li>মন্দ সৃষ্টি করা মন্দ, তাই আল্লাহ তা সৃষ্টি করেন না।</li>
+</ul>
+
+<p><b>(২) জবাব</b></p>
+
+<ul>
+<li><span class="arabic">بما كانوا يعملون</span>, <span class="arabic">بما كسبت</span> আয়াতে কাজের সম্পর্ক বান্দার দিকে কাসব হিসেবে, খালক হিসেবে নয়। কুরআনে খালক ও কাসব উভয়ই আছে, তাই বিরোধ নেই।</li>
+<li>আদেশ-নিষেধ ও সওয়াব-আযাবের ভিত্তি কাসব ও ইখতিয়ার। বান্দা নিজের ইচ্ছায় কাজ করে। আল্লাহ কী নির্ধারণ করেছেন তা সে জানে না। সে পাথরের মতো বাধ্য (জবর) নয়।</li>
+<li>যুলম মানে অন্যের মালিকানায় বিনা অনুমতিতে হস্তক্ষেপ। সবকিছু আল্লাহর মালিকানায়, তাই তাঁর পক্ষে যুলম অসম্ভব। <span class="arabic">لا يسأل عما يفعل</span> (আম্বিয়া: ২৩)।</li>
+<li>মন্দের সৃষ্টিকর্তা মন্দ হন না। মন্দ হলো মন্দ কাজ অর্জনকারীর গুণ। আল্লাহর প্রতিটি সৃষ্টিতে হিকমত আছে। কুফর তাঁর ইরাদায় হয়, কিন্তু তিনি তাতে সন্তুষ্ট নন। <span class="arabic">ولا يرضى لعباده الكفر</span> (যুমার: ৭)।</li>
+<li>ইচ্ছাকৃত ও অনিচ্ছাকৃত কাজের পার্থক্য আমরাও মানি। সেই পার্থক্য কাসব ও ইখতিয়ারের, খালকের নয়।</li>
+</ul>
+</div>
+
+<div class="section fade">
+<div class="section-title">(C) আহলুল হকের দলিল</div>
+
+<p><b>উত্তর:</b> নকলি:</p>
+
+<ol>
+<li><span class="arabic">والله خلقكم وما تعملون</span> (সাফফাত: ৯৬)। <span class="arabic">ما</span> মাসদারিয়া ধরলে অর্থ, তোমাদের ও তোমাদের আমলকে। মাওসূলা ধরলেও আমলের ফল আল্লাহর সৃষ্টি, তাই আমলও তাঁর সৃষ্টি।</li>
+<li><span class="arabic">الله خالق كل شيء</span> (যুমার: ৬২)। বান্দার কাজও <span class="arabic">شيء</span>-এর অন্তর্ভুক্ত।</li>
+<li><span class="arabic">هل من خالق غير الله</span> (ফাতির: ৩), <span class="arabic">أفمن يخلق كمن لا يخلق</span> (নাহল: ১৭)।</li>
+<li><span class="arabic">وما تشاءون إلا أن يشاء الله</span> (তাকবির: ২৯)।</li>
+</ol>
+
+<p><b>আকলি:</b></p>
+
+<ol>
+<li>বান্দা কাজের স্রষ্টা হলে সে কাজের সব বিস্তারিত অবস্থা জানত। অথচ সে জানে না। কখনো কম-বেশি হয়ে যায়, ঘুমন্ত অবস্থায়ও কাজ ঘটে।</li>
+<li>বান্দা স্রষ্টা হলে একাধিক স্রষ্টা সাব্যস্ত হয়। এতে তাওহিদ বাতিল হয় এবং আল্লাহর ক্ষমতা সীমিত হয়।</li>
+</ol>
+</div>
+
+
+<div class="question fade">প্রশ্ন–৪: "والمعراج لرسول الله ﷺ ..."</div>
+
+<div class="section fade">
+<div class="section-title">(A) কয়েদসমূহের ফায়দা ও রদ</div>
+
+<p><b>(১) "حق"</b></p>
+<p><b>উত্তর:</b> অর্থাৎ মিরাজ খবরে মাশহুর দ্বারা প্রমাণিত। তাই এর অস্বীকারকারী বিদআতি হয়।</p>
+
+<p><b>(২) "في اليقظة" (জাগ্রত অবস্থায়)</b></p>
+<p><b>উত্তর:</b> রদ: যারা বলে মিরাজ স্বপ্নে (<span class="arabic">رؤيا</span>) হয়েছে।</p>
+
+<p><b>(৩) "بشخصه" (দেহসহ)</b></p>
+<p><b>উত্তর:</b> রদ: যারা বলে মিরাজ শুধু রুহানি, অর্থাৎ আত্মিক ছিল। আয়েশা (রা.)-এর বর্ণনা ("তাঁর দেহ হারিয়ে যায়নি") এর জবাবে ব্যাখ্যাকাররা বলেন, মিরাজ একাধিকবার হয়েছে, একবার দেহসহ, একবার রুহে। অথবা তখন আয়েশা (রা.) রাসূল ﷺ-এর স্ত্রী ছিলেন না।</p>
+
+<p><b>(৪) "إلى السماء" (আসমান পর্যন্ত)</b></p>
+<p><b>উত্তর:</b> রদ: যারা বলে জাগ্রত অবস্থায় শুধু বায়তুল মুকাদ্দাস পর্যন্ত গিয়েছেন। তাদের দলিল: ইসরার আয়াতে শুধু মসজিদে আকসা পর্যন্ত উল্লেখ আছে।</p>
+
+<p><b>(৫) "ثم إلى ما شاء الله تعالى من العلى"</b></p>
+<p><b>উত্তর:</b> আসমানের পরে কোথায় গেছেন, জান্নাত, আরশ নাকি অন্য কোথাও, এ নিয়ে বর্ণনা ভিন্ন। তাই নির্দিষ্ট না করে আল্লাহর ইচ্ছার দিকে সোপর্দ করা হয়েছে।</p>
+</div>
+
+<div class="section fade">
+<div class="section-title">(B) মিরাজ অস্বীকারের হুকুম</div>
+
+<p><b>(১) বিস্তারিত বিবরণ অস্বীকার করার হুকুম</b></p>
+<p><b>উত্তর:</b> অর্থাৎ জাগ্রত অবস্থা, দেহসহ ও আসমান পর্যন্ত যাওয়ার বিবরণ অস্বীকার করলে সে মুবতাদি (বিদআতি/গোমরাহ)। কাফির নয়। কারণ এটি মাশহুর দ্বারা প্রমাণিত, মুতাওয়াতির নয়।</p>
+
+<p><b>(২) মূল মিরাজ অস্বীকার করার হুকুম</b></p>
+<p><b>উত্তর:</b> মূল ইসরা-মিরাজ অস্বীকার করা কুফর। কারণ ইসরা কুরআনে স্পষ্টভাবে প্রমাণিত। (কাফিররা মিরাজকে চরমভাবে অস্বীকার করেছিল, এমনকি কিছু মুসলমান মুরতাদ হয়ে গিয়েছিল।)</p>
+
+<p><b>(৩) পার্থক্য</b></p>
+<p><b>উত্তর:</b> হ্যাঁ, পার্থক্য আছে। হুকুমের ভিত্তি দলিলের শক্তি:</p>
+
+<ul>
+<li>অকাট্য দলিল (ইসরা) অস্বীকার = কুফর</li>
+<li>মাশহুর দলিল (আসমান পর্যন্ত মিরাজ) অস্বীকার = বিদআত</li>
+<li>আহাদ দলিল (আসমানের পরের অংশ) অস্বীকার = কুফর বা বিদআত নয়, কারণ প্রমাণ অকাট্য নয়</li>
+</ul>
+</div>
+
+<div class="section fade">
+<div class="section-title">(C) ইসরা ও মিরাজের মধ্যে কাতইয়্যাতের পার্থক্য</div>
+
+<p><b>উত্তর:</b> হ্যাঁ, পার্থক্য আছে:</p>
+
+<ol>
+<li>ইসরা (মসজিদে হারাম থেকে বায়তুল মুকাদ্দাস): কুরআনে প্রমাণিত, তাই কাতঈ (অকাট্য)।</li>
+</ol>
+
+<div class="quote arabic">سبحان الذي أسرى بعبده ليلا من المسجد الحرام إلى المسجد الأقصى</div>
+
+<p>(ইসরা: ১)।</p>
+
+<ol start="2">
+<li>মিরাজ (জমিন থেকে আসমান): খবরে মাশহুর দ্বারা প্রমাণিত।</li>
+<li>আসমান থেকে জান্নাত, আরশ বা অন্য কোথাও: খবরে আহাদ দ্বারা প্রমাণিত।</li>
+</ol>
+</div>
+
+<div class="section fade">
+<div class="section-title">(D) রাসূল ﷺ কি মিরাজের রাতে রবকে চোখে দেখেছেন?</div>
+
+<p><b>উত্তর:</b> সহিহ মত: তিনি রবকে অন্তর (<span class="arabic">فؤاد</span>) দ্বারা দেখেছেন, চোখে নয়।</p>
+
+<ol>
+<li><span class="arabic">ما كذب الفؤاد ما رأى</span> (নাজম: ১১)</li>
+<li>ইবনে আব্বাস (রা.) থেকে বর্ণিত, <span class="arabic">رآه بفؤاده</span> (মুসলিম)</li>
+<li>আয়েশা (রা.) চোখে দেখা অস্বীকার করেছেন (মুসলিম)</li>
+<li>আবু যার (রা.)-এর হাদিস: "নূর, আমি তাঁকে কীভাবে দেখব?" (মুসলিম)</li>
+</ol>
+
+<p>কারো কারো মতে চোখে দেখেছেন, কিন্তু কিতাবের মতে সহিহ হলো অন্তরে দেখা।</p>
+</div>
+
+
+<div class="question fade">প্রশ্ন–৫: "وفي دعاء الأحياء للأموات ..."</div>
+
+<div class="section fade">
+<div class="section-title">(A) দলিল</div>
+
+<p><b>উত্তর:</b></p>
+
+<p><b>কুরআন:</b></p>
+
+<ol>
+<li><span class="arabic">والذين جاءوا من بعدهم يقولون ربنا اغفر لنا ولإخواننا الذين سبقونا بالإيمان</span> (হাশর: ১০)</li>
+<li><span class="arabic">واستغفر لذنبك وللمؤمنين والمؤمنات</span> (মুহাম্মাদ: ১৯)</li>
+<li><span class="arabic">وقل رب ارحمهما كما ربياني صغيرا</span> (ইসরা: ২৪)</li>
+</ol>
+
+<p><b>হাদিস:</b></p>
+
+<ol>
+<li>সন্তানের দোয়া মৃত পিতার উপকারে আসে: <span class="arabic">ولد صالح يدعو له</span> (মুসলিম)</li>
+<li>এক সাহাবি জানতে চাইলেন, মা মারা গেছেন, তাঁর পক্ষ থেকে সদকা করলে কি সওয়াব হবে? নবী ﷺ বললেন, "হ্যাঁ" (বুখারি, মুসলিম)।</li>
+<li>জানাযার নামাযে মৃতের জন্য দোয়া করা হয়। এটি সর্বসম্মত আমল।</li>
+</ol>
+</div>
+
+<div class="section fade">
+<div class="section-title">(B) মুখালিফ, তাদের দলিল ও জবাব</div>
+
+<p><b>(১) মুখালিফ কারা?</b></p>
+<p><b>উত্তর:</b> মুতাযিলা।</p>
+
+<p><b>(২) তাদের দলিল</b></p>
+<p><b>উত্তর:</b></p>
+
+<ul>
+<li><span class="arabic">وأن ليس للإنسان إلا ما سعى</span> (নাজম: ৩৯)</li>
+<li><span class="arabic">لها ما كسبت وعليها ما اكتسبت</span> (বাকারা: ২৮৬)</li>
+<li>হাদিস: <span class="arabic">انقطع عمله</span> (মানুষ মারা গেলে তার আমল বন্ধ হয়ে যায়)</li>
+<li>যুক্তি: অন্যের আমলের সওয়াব দান করা ন্যায়বিচারের পরিপন্থী।</li>
+</ul>
+
+<p><b>(৩) জবাব</b></p>
+<ul>
+<li><span class="arabic">ليس للإنسان إلا ما سعى</span> আয়াতটি পূর্ববর্তী শরিয়তের (ইবরাহিম ও মূসা (আ.)-এর সহিফার) হুকুম, আমাদের শরিয়তের নয়। কারো কারো মতে এ হুকুম <span class="arabic">ألحقنا بهم ذريتهم</span> (তূর: ২১) দ্বারা রহিত।</li>
+<li>আয়াতে নিজের হক বা প্রাপ্য বোঝানো হয়েছে। অন্যের দোয়া ও সদকার সওয়াব আল্লাহর ফজল ও দান হিসেবে মৃত পায়। তাছাড়া বান্দা ঈমান, ভ্রাতৃত্ব ও সন্তান লাভের মাধ্যমে নিজেই এর কারণ হয়েছে।</li>
+<li><span class="arabic">انقطع عمله</span> হাদিসে মৃতের নিজের নতুন আমল বন্ধ হওয়ার কথা বলা হয়েছে। অন্যের দোয়া ও সদকা তার আমল নয়। এই হাদিসেই সন্তানের দোয়ার উপকারের কথা আছে, যা আমাদের পক্ষে দলিল।</li>
+<li>বাকারার আয়াত নিজের কাজের হিসাব সম্পর্কে। এতে অন্যের দোয়ার উপকার অস্বীকার করা হয়নি।</li>
+</ul>
+</div>
+
+<div class="section fade">
+<div class="section-title">(C) কাফিরের দোয়া কি কবুল হয়?</div>
+
+<p><b>উত্তর:</b> এ বিষয়ে দুই মত আছে:</p>
+
+<p><b>(১) এক মত:</b> কবুল হয় না।</p>
+
+<div class="quote arabic">وما دعاء الكافرين إلا في ضلال</div>
+
+<p>(রা'দ: ১৪, গাফির: ৫০)।</p>
+
+<p><b>(২) জুমহুরের মত:</b> দুনিয়ার বিষয়ে কবুল হতে পারে।</p>
+
+<p><b>দলিল:</b></p>
+
+<ul>
+<li>ইবলিসের দোয়া কবুল হয়েছে: <span class="arabic">أنظرني إلى يوم يبعثون</span>। আল্লাহ বললেন, <span class="arabic">إنك من المنظرين</span> (আ'রাফ: ১৪-১৫)।</li>
+<li><span class="arabic">فإذا ركبوا في الفلك دعوا الله مخلصين له الدين فلما نجاهم إلى البر إذا هم يشركون</span> (আনকাবুত: ৬৫)।</li>
+<li><span class="arabic">أمن يجيب المضطر إذا دعاه</span> (নামল: ৬২)।</li>
+</ul>
+
+<p><b>প্রথম মতের জবাব:</b></p>
+
+<ul>
+<li>গাফিরের আয়াত জাহান্নামের অবস্থা সম্পর্কে।</li>
+<li>রা'দের আয়াতে মূর্তিপূজকদের ডাক নিষ্ফল হওয়ার কথা বলা হয়েছে (ইবনে কাসির)।</li>
+</ul>
+
+<div class="important">
+<b>সীমারেখা:</b> আখিরাতে মুক্তি বা ক্ষমার জন্য কাফিরের দোয়া কবুল হয় না। <span class="arabic">ما كان للنبي والذين آمنوا أن يستغفروا للمشركين</span> (তাওবা: ১১৩)।
+</div>
+
+</div>
+
+</div>
+
+<script>
+/* Scroll Animation */
+const items = document.querySelectorAll('.fade');
+
+const observer = new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+        if(entry.isIntersecting){
+            entry.target.classList.add('show');
+        }
+    });
+},{threshold:.08});
+
+items.forEach(item=>observer.observe(item));
+
+/* PDF Download */
+function downloadPDF(){
+    const button=document.querySelector('.pdf-btn');
+
+    button.style.display='none';
+
+    setTimeout(()=>{
+        window.print();
+
+        setTimeout(()=>{
+            button.style.display='';
+        },1000);
+    },100);
+}
+</script>
+
 </body>
 </html>

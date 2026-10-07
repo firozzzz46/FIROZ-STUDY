@@ -1,128 +1,1257 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Google Fonts for Bengali & English -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Inter:wght@700;900&display=swap" rel="stylesheet">
+<title>শরহুল আকায়িদিন নাসাফিয়্যাহ — ১৪৪০ হি.</title>
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+<style>
+@font-face{
+    font-family: Kalpurush;
+    src: local("Kalpurush");
+}
 
-    <style>
-        body {
-            font-family: 'Hind Siliguri', 'Inter', sans-serif;
-            background-color: #030712;
-            overflow: hidden;
-        }
+:root{
+    --bg:#f8fafc;
+    --paper:#ffffff;
+    --text:#172033;
+    --muted:#5f6b7a;
+    --primary:#3157d5;
+    --secondary:#7048c8;
+    --green:#16845b;
+    --red:#c83d4d;
+    --gold:#b27a00;
+    --border:#dfe5ee;
+    --shadow:0 10px 35px rgba(31,45,61,.08);
+}
 
-        /* Gradient glowing animation on text */
-        .glow-text {
-            background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 50%, #38bdf8 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shine 6s linear infinite;
-        }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-        @keyframes shine {
-            0% { background-position: 0% center; }
-            50% { background-position: 100% center; }
-            100% { background-position: 0% center; }
-        }
+html{
+    scroll-behavior:smooth;
+}
 
-        /* Keyframes for initial entry: Floating in from below with opacity */
-        @keyframes floatIn {
-            0% {
-                opacity: 0;
-                transform: translateY(40px) scale(0.95);
-                filter: blur(8px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-                filter: blur(0);
-            }
-        }
+body{
+    min-height:100vh;
+    background:
+        radial-gradient(circle at 10% 10%,rgba(49,87,213,.06),transparent 25%),
+        radial-gradient(circle at 90% 80%,rgba(112,72,200,.06),transparent 25%),
+        var(--bg);
+    color:var(--text);
+    font-family:Kalpurush,"Noto Sans Bengali","SolaimanLipi",Arial,sans-serif;
+    font-size:25px;
+    line-height:1.85;
+}
 
-        /* Continuous subtle float effect once arrived */
-        @keyframes subtleFloat {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-8px);
-            }
-        }
+/* ================= HEADER ================= */
 
-        /* Animation class for Heading */
-        .animate-heading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards,
-                subtleFloat 6s ease-in-out 1.2s infinite;
-        }
+.topbar{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:rgba(255,255,255,.92);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--border);
+    padding:12px 18px;
+    display:flex;
+    justify-content:flex-end;
+}
 
-        /* Animation class for Subheading (staggered delay) */
-        .animate-subheading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards,
-                subtleFloat 6s ease-in-out 1.55s infinite;
-            opacity: 0; /* Hidden until animation kicks in */
-        }
+.pdf-btn{
+    border:0;
+    outline:0;
+    cursor:pointer;
+    padding:10px 22px;
+    border-radius:12px;
+    color:#fff;
+    font-family:inherit;
+    font-size:20px;
+    font-weight:bold;
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+    box-shadow:0 7px 20px rgba(49,87,213,.22);
+    transition:.3s ease;
+}
 
-        /* Ambient background lighting */
-        .ambient-glow {
-            position: absolute;
-            width: 450px;
-            height: 450px;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(3, 7, 18, 0) 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            transition: left 0.4s ease-out, top 0.4s ease-out;
-        }
-    </style>
+.pdf-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 25px rgba(49,87,213,.3);
+}
+
+.pdf-btn:active{
+    transform:scale(.97);
+}
+
+/* ================= BOOK ================= */
+
+.book{
+    width:min(1180px,94%);
+    margin:35px auto 70px;
+}
+
+.cover{
+    background:var(--paper);
+    border:1px solid var(--border);
+    border-radius:24px;
+    padding:45px 30px;
+    text-align:center;
+    box-shadow:var(--shadow);
+    margin-bottom:35px;
+}
+
+.cover h1{
+    color:var(--primary);
+    font-size:36px;
+    line-height:1.45;
+    margin-bottom:10px;
+}
+
+.cover h2{
+    color:var(--secondary);
+    font-size:29px;
+    font-weight:normal;
+}
+
+.cover .line{
+    width:120px;
+    height:4px;
+    border-radius:10px;
+    margin:25px auto 0;
+    background:linear-gradient(90deg,var(--primary),var(--secondary));
+}
+
+/* ================= QUESTION ================= */
+
+.question{
+    margin:45px 0 25px;
+    padding:16px 22px;
+    border-left:7px solid var(--primary);
+    border-radius:10px;
+    background:linear-gradient(90deg,rgba(49,87,213,.09),rgba(49,87,213,.02));
+    color:#172d80;
+    font-size:30px;
+    font-weight:bold;
+    box-shadow:0 5px 18px rgba(49,87,213,.05);
+}
+
+.section{
+    margin:25px 0 15px;
+    color:var(--secondary);
+    font-size:28px;
+    font-weight:bold;
+}
+
+.subsection{
+    margin:22px 0 10px;
+    color:var(--green);
+    font-size:27px;
+    font-weight:bold;
+}
+
+/* ================= CONTENT ================= */
+
+.content{
+    background:var(--paper);
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:30px;
+    box-shadow:var(--shadow);
+    margin-bottom:30px;
+}
+
+p{
+    margin:10px 0 18px;
+    text-align:justify;
+}
+
+.answer{
+    color:var(--text);
+}
+
+.label{
+    color:var(--primary);
+    font-weight:bold;
+}
+
+.arabic{
+    direction:rtl;
+    text-align:right;
+    font-family:
+        "Amiri",
+        "Noto Naskh Arabic",
+        "Traditional Arabic",
+        serif;
+    font-size:28px;
+    line-height:2.05;
+    color:#222;
+    margin:15px 0;
+}
+
+.meaning{
+    background:#f5f8ff;
+    border-left:5px solid var(--primary);
+    padding:14px 18px;
+    border-radius:8px;
+    margin:12px 0 20px;
+}
+
+ul{
+    margin:8px 0 20px 38px;
+}
+
+li{
+    margin:5px 0;
+    padding-left:5px;
+}
+
+.highlight{
+    background:#fff8df;
+    border:1px solid #ead58a;
+    border-radius:10px;
+    padding:16px 20px;
+    margin:18px 0;
+}
+
+.green-box{
+    background:#effaf5;
+    border:1px solid #b9e3d1;
+    border-radius:10px;
+    padding:16px 20px;
+    margin:18px 0;
+}
+
+.red-box{
+    background:#fff2f3;
+    border:1px solid #edc0c5;
+    border-radius:10px;
+    padding:16px 20px;
+    margin:18px 0;
+}
+
+.evidence{
+    background:#faf7ff;
+    border-right:5px solid var(--secondary);
+    border-radius:10px;
+    padding:15px 20px;
+    margin:18px 0;
+}
+
+.final{
+    background:linear-gradient(135deg,#edf5ff,#f7f0ff);
+    border:1px solid #d6dff3;
+    border-radius:12px;
+    padding:17px 20px;
+    margin-top:20px;
+    font-weight:bold;
+}
+
+/* ================= ANIMATION ================= */
+
+.reveal{
+    opacity:0;
+    transform:translateY(28px);
+    transition:opacity .9s ease,transform .9s ease;
+}
+
+.reveal.left{
+    transform:translateX(-35px);
+}
+
+.reveal.right{
+    transform:translateX(35px);
+}
+
+.reveal.show{
+    opacity:1;
+    transform:translate(0);
+}
+
+/* ================= PRINT ================= */
+
+@media print{
+    @page{
+        size:A4;
+        margin:14mm;
+    }
+
+    body{
+        background:#fff;
+        color:#000;
+        font-size:18px;
+        line-height:1.65;
+    }
+
+    .topbar{
+        display:none !important;
+    }
+
+    .book{
+        width:100%;
+        margin:0;
+    }
+
+    .cover{
+        box-shadow:none;
+        border:0;
+        padding:20px 0;
+        margin-bottom:20px;
+    }
+
+    .cover h1{
+        font-size:27px;
+    }
+
+    .cover h2{
+        font-size:22px;
+    }
+
+    .content{
+        box-shadow:none;
+        border:0;
+        padding:0;
+        margin-bottom:20px;
+    }
+
+    .question{
+        font-size:22px;
+        margin-top:25px;
+        page-break-after:avoid;
+    }
+
+    .section{
+        font-size:21px;
+        page-break-after:avoid;
+    }
+
+    .subsection{
+        font-size:20px;
+        page-break-after:avoid;
+    }
+
+    .arabic{
+        font-size:21px;
+        line-height:1.8;
+    }
+
+    .meaning,
+    .highlight,
+    .green-box,
+    .red-box,
+    .evidence,
+    .final{
+        break-inside:avoid;
+        page-break-inside:avoid;
+    }
+
+    p,
+    li{
+        orphans:3;
+        widows:3;
+    }
+
+    .reveal,
+    .reveal.left,
+    .reveal.right{
+        opacity:1 !important;
+        transform:none !important;
+    }
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:900px){
+    body{
+        font-size:23px;
+    }
+
+    .book{
+        width:95%;
+    }
+
+    .cover h1{
+        font-size:32px;
+    }
+
+    .question{
+        font-size:27px;
+    }
+
+    .section{
+        font-size:25px;
+    }
+
+    .subsection{
+        font-size:24px;
+    }
+}
+
+@media(max-width:600px){
+    body{
+        font-size:21px;
+        line-height:1.75;
+    }
+
+    .topbar{
+        padding:9px 10px;
+    }
+
+    .pdf-btn{
+        font-size:17px;
+        padding:8px 15px;
+    }
+
+    .book{
+        width:94%;
+        margin-top:20px;
+    }
+
+    .cover{
+        padding:28px 16px;
+        border-radius:17px;
+    }
+
+    .cover h1{
+        font-size:27px;
+    }
+
+    .cover h2{
+        font-size:22px;
+    }
+
+    .content{
+        padding:19px 16px;
+        border-radius:14px;
+    }
+
+    .question{
+        font-size:24px;
+        padding:12px 15px;
+        border-left-width:5px;
+    }
+
+    .section{
+        font-size:23px;
+    }
+
+    .subsection{
+        font-size:22px;
+    }
+
+    .arabic{
+        font-size:24px;
+    }
+
+    ul{
+        margin-left:25px;
+    }
+}
+</style>
 </head>
-<body class="min-h-screen flex items-center justify-center relative select-none px-4">
 
-    <!-- Ambient glow center element -->
-    <div id="glow" class="ambient-glow top-1/2 left-1/2"></div>
+<body>
 
-    <!-- Centered minimal content with entry animations -->
-    <main class="text-center z-10 space-y-6 max-w-3xl mx-auto py-8 px-4">
-        
-        <!-- Main English Title -->
-        <h1 class="animate-heading text-5xl sm:text-7xl md:text-8xl font-black tracking-tight glow-text font-['Inter'] drop-shadow-lg">
-            Coming Soon...
-        </h1>
+<div class="topbar">
+    <button class="pdf-btn" onclick="downloadPDF()">
+        ⬇ Download PDF
+    </button>
+</div>
 
-        <!-- Bengali Subheading -->
-        <p class="animate-subheading text-xl sm:text-3xl md:text-4xl font-semibold text-emerald-400/90 leading-relaxed tracking-wide drop-shadow">
-            ইনশাআল্লাহ, খুব শীঘ্রই ডাটা যোগ করা হবে।
+<main class="book">
+
+    <section class="cover reveal">
+        <h1>শরহুল আকায়িদিন নাসাফিয়্যাহ</h1>
+        <h2>১৪৪০ হি. প্রশ্নপত্রের উত্তর</h2>
+        <div class="line"></div>
+    </section>
+
+    <!-- =========================================================
+         প্রশ্ন–১
+    ========================================================== -->
+
+    <div class="question reveal">প্রশ্ন–১: ইলমুল কালাম</div>
+
+    <section class="content reveal left">
+
+        <div class="section">(A) ইলমুল কালামের সংজ্ঞা, বিষয়বস্তু, উদ্দেশ্য ও মুতাকাদ্দিমিন-মুতাআখখিরিনের পার্থক্য</div>
+
+        <div class="subsection">(১) সংজ্ঞা</div>
+
+        <p class="answer">
+            <span class="label">উত্তর:</span>
+            প্রসিদ্ধ সংজ্ঞা:
         </p>
 
-    </main>
+        <div class="arabic">«العلم بالعقائد الدينية عن الأدلة اليقينية»</div>
 
-    <script>
-        const glow = document.getElementById('glow');
+        <div class="meaning">
+            অর্থ: অকাট্য দলিলের মাধ্যমে দ্বীনি আকিদাসমূহ জানার ইলমকে ইলমুল কালাম বলে।
+        </div>
 
-        // Mouse move interactive glow background
-        window.addEventListener('mousemove', (e) => {
-            glow.style.left = e.clientX + 'px';
-            glow.style.top = e.clientY + 'px';
-        });
+        <div class="subsection">(২) বিষয়বস্তু (موضوع)</div>
 
-        // Touch move interactive glow background for mobile screens
-        window.addEventListener('touchmove', (e) => {
-            if (e.touches.length > 0) {
-                glow.style.left = e.touches[0].clientX + 'px';
-                glow.style.top = e.touches[0].clientY + 'px';
-            }
-        });
-    </script>
+        <p>
+            <span class="label">উত্তর:</span>
+            <b>মুতাআখখিরিনের মতে:</b>
+        </p>
+
+        <div class="arabic">«المعلوم من حيث يتعلق به إثبات العقائد الدينية»</div>
+
+        <p>
+            অর্থাৎ আকিদা প্রমাণের সাথে সম্পর্কিত সব জ্ঞাতব্য বিষয়।
+        </p>
+
+        <p>
+            <b>মুতাকাদ্দিমিনের মতে:</b>
+            আল্লাহর সত্তা, সিফাত ও কাজ এবং সৃষ্টিজগতের সাথে সংশ্লিষ্ট আকিদাগত বিষয়।
+        </p>
+
+        <div class="subsection">(৩) উদ্দেশ্য (غاية)</div>
+
+        <p><span class="label">উত্তর:</span></p>
+
+        <ul>
+            <li>তাকলিদের নিচু স্তর থেকে ইয়াকিনের উচ্চ স্তরে উঠা
+                <span class="arabic">الترقي من حضيض التقليد إلى ذروة الإيقان</span>।</li>
+            <li>সত্যান্বেষীদের দলিলসহ পথ দেখানো।</li>
+            <li>হঠকারীদের দলিল দিয়ে নিরুত্তর করা।</li>
+            <li>বাতিলপন্থীদের সন্দেহ থেকে দ্বীনের আকিদা হেফাজত করা।</li>
+            <li>শরয়ি ইলমসমূহের ভিত্তি মজবুত করা।</li>
+        </ul>
+
+        <div class="final">
+            চূড়ান্ত ফল: দুনিয়া ও আখিরাতের সফলতা।
+        </div>
+
+        <div class="subsection">(৪) মুতাকাদ্দিমিন ও মুতাআখখিরিনের পার্থক্য</div>
+
+        <p><span class="label">উত্তর:</span></p>
+
+        <div class="highlight">
+            <b>মুতাকাদ্দিমিন (পূর্ববর্তীগণ):</b>
+            <ul>
+                <li>আলোচনা আকিদার মধ্যেই সীমিত ছিল।</li>
+                <li>কুরআন-সুন্নাহর দলিলের উপর বেশি নির্ভর করতেন।</li>
+                <li>দর্শন ও মানতিকের মিশ্রণ কম ছিল।</li>
+            </ul>
+        </div>
+
+        <div class="green-box">
+            <b>মুতাআখখিরিন (ইমাম গাযালি ও ইমাম রাযির পরবর্তীগণ):</b>
+            <ul>
+                <li>দর্শনের ইলাহিয়াত, তাবিয়াত ও রিয়াযিয়াত কালামের সাথে মিশিয়েছেন।</li>
+                <li>মানতিক ও দর্শনের পরিভাষা ব্যাপকভাবে ব্যবহার করেছেন।</li>
+                <li>ফলে কালামের বিষয়বস্তু ব্যাপক হয়ে <span class="arabic">"المعلوم"</span> পর্যন্ত পৌঁছেছে।</li>
+            </ul>
+        </div>
+
+        <div class="section">(B) কালাম নামকরণের কারণ</div>
+
+        <p><span class="label">উত্তর:</span> এই ইলমকে «কালাম» বলার কারণ:</p>
+
+        <ul>
+            <li>এর অধ্যায়গুলোর শিরোনাম হতো <span class="arabic">«الكلام في كذا»</span> (অমুক বিষয়ে কালাম)।</li>
+            <li>কালাম (কুরআন সৃষ্ট কি না) মাসআলাটি এর সবচেয়ে প্রসিদ্ধ ও বিতর্কিত অংশ।</li>
+            <li>শরয়ি বিষয়ে কথা বলার সামর্থ্য তৈরি করে, যেমন মানতিক দর্শনে করে।</li>
+            <li>এটি মুনাযারা ও দুই পক্ষের কথা-কাটাকাটির মাধ্যমে পূর্ণতা পায়।</li>
+            <li>এ ইলমে মতভেদ বেশি, তাই বিরোধীদের সাথে বেশি কথা বলতে ও খণ্ডন করতে হয়।</li>
+            <li>দলিল শক্তিশালী হওয়ায় একেই যেন প্রকৃত «কালাম» ধরা হয়েছে।</li>
+        </ul>
+
+        <div class="section">(C) সত্য মাযহাব, আহলুস সুন্নাহ ওয়াল জামাআত</div>
+
+        <div class="subsection">(১) সত্য মাযহাব কয়টি ও কী কী</div>
+
+        <p>
+            <span class="label">উত্তর:</span>
+            উসূল ও আকিদায় সত্য মাযহাব দুটি, দুটিই আহলুস সুন্নাহ ওয়াল জামাআতের অন্তর্ভুক্ত:
+        </p>
+
+        <ul>
+            <li><b>আশআরিয়্যাহ:</b> ইমাম আবুল হাসান আশআরি (মৃ. ৩২৪ হি.)-এর অনুসারী।</li>
+            <li><b>মাতুরিদিয়্যাহ:</b> ইমাম আবু মানসুর মাতুরিদি (মৃ. ৩৩৩ হি.)-এর অনুসারী।</li>
+        </ul>
+
+        <p>
+            তুলনার জন্য: ফুরুয়ি মাসআলায় সত্য মাযহাব চারটি:
+            হানাফি, মালেকি, শাফেয়ি ও হাম্বলি।
+            মুতাযিলা, খারেজি, রাফেযি প্রভৃতি বাতিল ফিরকা।
+        </p>
+
+        <div class="subsection">(২) আহলুস সুন্নাহ ওয়াল জামাআত কারা</div>
+
+        <p>
+            <span class="label">উত্তর:</span>
+            যারা আকিদা ও আমলে রাসূলুল্লাহ ﷺ ও সাহাবায়ে কেরামের পথে আছেন।
+        </p>
+
+        <p>
+            হাদিসে ৭৩ ফিরকার মধ্যে নাজাতপ্রাপ্ত দল সম্পর্কে বলা হয়েছে:
+        </p>
+
+        <div class="arabic">«ما أنا عليه وأصحابي»</div>
+
+        <p>(তিরমিযি)। আমাদের কিতাবে এর দ্বারা আশআরিয়্যাহ ও মাতুরিদিয়্যাহকে বোঝানো হয়েছে।</p>
+
+        <div class="subsection">(৩) নামকরণের কারণ</div>
+
+        <p><span class="label">উত্তর:</span></p>
+
+        <ul>
+            <li><span class="arabic">«সুন্নাহ»</span> অর্থ রাসূল ﷺ-এর তরিকা। তারা তা আঁকড়ে ধরেছেন।</li>
+            <li><span class="arabic">«জামাআত»</span> অর্থ সাহাবা ও সালাফে সালেহিনের জামাআত। তারা তাদের অনুসরণ করেন।</li>
+        </ul>
+
+        <p>তাই এই</p>
+
+    </section>
+
+
+    <!-- =========================================================
+         প্রশ্ন–২
+    ========================================================== -->
+
+    <div class="question reveal right">প্রশ্ন–২: সুফিস্তাইয়্যাহ ও হাকায়িকুল আশইয়া</div>
+
+    <section class="content reveal">
+
+        <div class="section">(A) «خلافا للسوفسطائية»</div>
+
+        <div class="subsection">(১) শব্দের তাহকিক</div>
+
+        <p>
+            <span class="label">উত্তর:</span>
+            «সুফসতাইয়্যাহ» শব্দটি «সুফসতা»-এর দিকে সম্বন্ধযুক্ত।
+            এটি গ্রিক শব্দ, অর্থ <span class="arabic">«الحكمة المموهة»</span>
+            (ধোঁকাপূর্ণ বা ভেজাল জ্ঞান)।
+        </p>
+
+        <div class="subsection">(২) তারা কারা</div>
+
+        <p>
+            <span class="label">উত্তর:</span>
+            প্রাচীন গ্রিক একদল দার্শনিক।
+            তারা বস্তুর প্রকৃত অস্তিত্ব ও তার জ্ঞানকে অস্বীকার করত।
+        </p>
+
+        <div class="subsection">(৩) ফিরকা কয়টি ও সংজ্ঞা</div>
+
+        <p><span class="label">উত্তর:</span> তিনটি ফিরকা:</p>
+
+        <ul>
+            <li>
+                <b>ইনাদিয়্যাহ (العنادية):</b>
+                তারা বস্তুর হাকিকত অস্বীকার করে এবং বলে সবই ভ্রম ও কল্পনা।
+                হঠকারিতার কারণে এই নাম।
+            </li>
+            <li>
+                <b>ইন্দিয়্যাহ (العندية):</b>
+                তারা বলে হাকিকত বিশ্বাসের অনুগামী।
+                কেউ কোনো বস্তুকে জওহর মনে করলে তা জওহর,
+                আরায মনে করলে আরায।
+                <span class="arabic">«عند»</span> (মতে) থেকে এই নাম।
+            </li>
+            <li>
+                <b>লা-আদরিয়্যাহ (اللاأدرية):</b>
+                তারা সন্দেহে থাকে, অন্যকেও সন্দেহে ফেলে এবং বলে
+                "আমরা জানি না কিছু আছে কি না"।
+                <span class="arabic">«لا أدري»</span> থেকে এই নাম।
+            </li>
+        </ul>
+
+        <div class="section">(B) «ولنا تحقيقا وإلزاما»</div>
+
+        <div class="subsection">(১) আমাদের ও সুফিস্তাইয়্যাহর মধ্যে পার্থক্য</div>
+
+        <p>
+            <span class="label">উত্তর:</span>
+            আমরা বলি, বস্তুসমূহের হাকিকত সাব্যস্ত এবং তার জ্ঞান অর্জিত হয়।
+            তারা এর বিপরীতে হাকিকত বা তার জ্ঞানকে অস্বীকার করে।
+        </p>
+
+        <div class="subsection">(২) দলিলে তাহকিকি ও ইলযামির অর্থ</div>
+
+        <ul>
+            <li><b>দলিলে তাহকিকি:</b> যে দলিল নিজস্ব সুস্পষ্ট ভিত্তির উপর সত্যকে প্রতিষ্ঠা করে।</li>
+            <li><b>দলিলে ইলযামি:</b> যে দলিল প্রতিপক্ষের স্বীকৃত বিষয় দিয়েই তাকে নিরুত্তর করে।</li>
+        </ul>
+
+        <div class="subsection">(৩) আমাদের দলিল</div>
+
+        <p>
+            <span class="label">তাহকিকি:</span>
+            আমরা অকাট্যভাবে জানি যে আগুন পোড়ায়, পানি পিপাসা মেটায়,
+            আমরা নিজেরা আছি এবং আমাদের সুখ-দুঃখের অনুভূতি আছে।
+            এসব অস্বীকার করা বাস্তবতা অস্বীকার করা।
+        </p>
+
+        <p><span class="label">ইলযামি:</span></p>
+
+        <ul>
+            <li>
+                <b>ইনাদি:</b>
+                "কিছুই সত্য নয়" দাবিটি সত্য হলে অন্তত একটি সত্য সাব্যস্ত হলো।
+                মিথ্যা হলে দাবি নিজেই বাতিল।
+            </li>
+            <li>
+                <b>ইন্দি:</b>
+                তার মতে হাকিকত বিশ্বাসের অনুগামী।
+                তাহলে "হাকিকত সাব্যস্ত" এই বিশ্বাসও তার মতে সত্য হয়ে যায়।
+            </li>
+            <li>
+                <b>লা-আদরি:</b>
+                তাকে জিজ্ঞেস করা হয়, "তুমি কি জানো যে তুমি জানো না?"
+                হ্যাঁ বললে সে অন্তত একটি বিষয় জানল।
+                না বললে সে নিজের কথারই সন্দেহে পড়ল।
+                এই পর্যায়ে সে যদি হঠকারিতা করে,
+                তবে প্রসিদ্ধ কথা অনুযায়ী আগুনে প্রবেশ করানো ও প্রহার করে সত্য বোঝানো হবে।
+            </li>
+        </ul>
+
+        <div class="section">(C) «قالوا: الضروريات منها حسيات ... الخ»</div>
+
+        <div class="subsection">(১) কথাটি কার</div>
+
+        <p>
+            <span class="label">উত্তর:</span>
+            এটি সুফিস্তাইয়্যাহর সন্দেহ (شبهة)।
+        </p>
+
+        <div class="subsection">(২) তাদের ইস্তিদলাল</div>
+
+        <p><span class="label">উত্তর:</span> ইলম দুই প্রকার: যরুরি ও নযরি।</p>
+
+        <ul>
+            <li>যরুরি ইলম হয় হিস্সি (ইন্দ্রিয়ভিত্তিক) নয়তো বাদিহি (স্বতঃসিদ্ধ)।</li>
+            <li>ইন্দ্রিয় প্রায়ই ভুল করে। ট্যারা চোখের লোক একটিকে দুটি দেখে। পিত্তরোগী মিষ্টিকে তিক্ত পায়।</li>
+            <li>বাদিহি বিষয়েও মতভেদ হয় এবং সন্দেহ আসে, যা সমাধানে সূক্ষ্ম চিন্তা লাগে।</li>
+            <li>নযরি ইলম যরুরির শাখা। মূল বাতিল হলে শাখাও বাতিল।</li>
+            <li>প্রমাণ: জ্ঞানীদের মধ্যে ব্যাপক মতভেদ।</li>
+            <li>ফল: কোনো ইলমই নির্ভরযোগ্য নয়।</li>
+        </ul>
+
+        <div class="subsection">(৩) জবাব</div>
+
+        <ul>
+            <li>
+                <b>(ক)</b> কিছু ইন্দ্রিয় কখনো কখনো ভুল করে ইন্দ্রিয়ের যন্ত্রের ত্রুটির কারণে।
+                এতে ইন্দ্রিয় সামগ্রিকভাবে বাতিল হয় না।
+            </li>
+            <li>
+                <b>(খ)</b> কিছু বাদিহি বা নযরি বিষয়ে মতভেদ হয় বোঝার ঘাটতি বা দলিলের কাঠামোগত ভুলের কারণে।
+                এতে সব নযর বাতিল হয় না। সঠিক নযর ইলম দেয়।
+            </li>
+            <li>
+                <b>(গ)</b> ইলযামি জবাব: তাদের এই সন্দেহ উপস্থাপনই বিশ্বাসযোগ্য দলিলের সম্ভাবনা মেনে নেওয়া।
+                তা না হলে তারা দলিল দিলই বা কেন?
+            </li>
+        </ul>
+
+    </section>
+
+
+    <!-- =========================================================
+         প্রশ্ন–৩
+    ========================================================== -->
+
+    <div class="question reveal left">প্রশ্ন–৩: ইলহাম, ইলম ও মারিফাত, সৃষ্টিজগতের স্রষ্টা</div>
+
+    <section class="content reveal">
+
+        <div class="section">(A) «والإلهام ليس من أسباب المعرفة بصحة الشيء ...»</div>
+
+        <div class="subsection">(১) ইবারতের ব্যাখ্যা</div>
+
+        <p>
+            <span class="label">উত্তর:</span>
+            মতনে ইলমের উৎস তিনটি বলা হয়েছে: সুস্থ ইন্দ্রিয়, সত্য সংবাদ ও আকল।
+            এতে আপত্তি আসে যে ইলহামও তো ইলমের উৎস, তাহলে সীমাবদ্ধকরণ ঠিক হলো না।
+            গ্রন্থকার জবাব দেন, আহলে হকের নিকট ইলহাম কোনো বিষয়ের সঠিকতা জানার উৎস নয়।
+            তাই আপত্তি ওঠে না।
+        </p>
+
+        <div class="subsection">(২) ইলহামের অর্থ</div>
+
+        <ul>
+            <li><b>আভিধানিক:</b> অন্তরে কিছু ঢেলে দেওয়া।</li>
+            <li>
+                <b>পারিভাষিক:</b>
+                <span class="arabic">«إلقاء معنى في القلب بطريق الفيض»</span>,
+                অর্থাৎ কোনো দলিল-চিন্তা ছাড়াই আল্লাহর পক্ষ থেকে অন্তরে কোনো অর্থ জাগিয়ে দেওয়া।
+            </li>
+        </ul>
+
+        <div class="subsection">(৩) ইলহাম ইলমের উৎস কি না: মতভেদ</div>
+
+        <div class="highlight">
+            <b>① সংক্ষিপ্ত সিদ্ধান্ত:</b>
+            আহলে হকের নিকট ইলহাম শরয়ি হুজ্জাত নয় এবং সর্বজনীন ইলমের উৎসও নয়।
+        </div>
+
+        <p>
+            <b>② হানাফি-মাতুরিদি মত:</b>
+            ইলহাম অন্যের উপর হুজ্জাত নয়।
+            কারণ এটি শয়তানের ওয়াসওয়াসা থেকে নিশ্চিতভাবে পৃথক করা যায় না।
+            কুরআন-সুন্নাহর কষ্টিপাথরে যাচাই ছাড়া এর উপর ভরসা করা যায় না।
+        </p>
+
+        <p>
+            <b>③ অন্যান্য মত:</b>
+            কিছু সুফি ও কতিপয় আলেমের মতে ইলহাম মুলহাম
+            (যার অন্তরে এসেছে) ব্যক্তির জন্য ইলমের উৎস,
+            তবে অন্যের উপর হুজ্জাত নয়।
+        </p>
+
+        <p>
+            <b>④ হানাফি মতের প্রাধান্য:</b>
+            ইলহাম শরিয়তের স্বীকৃত হুজ্জাত নয়।
+            তাই ইলমের উৎস তিনটিতেই সীমাবদ্ধ।
+        </p>
+
+        <div class="subsection">(৪) «العلم بالشيء» বলাই উত্তম ছিল: কারণ</div>
+
+        <p>
+            <span class="label">উত্তর:</span>
+            শিরোনামে <span class="arabic">«أسباب العلم»</span> বলা হয়েছে।
+            সেই ধারাবাহিকতায় ইলহামের ক্ষেত্রেও
+            <span class="arabic">«العلم بالشيء»</span> বলাই সংগত ছিল।
+            তাছাড়া <span class="arabic">«المعرفة»</span> সাধারণত জুযয়ি বা পূর্ববর্তী অজ্ঞতার পর অর্জিত জ্ঞানের জন্য ব্যবহৃত হয়।
+        </p>
+
+        <div class="section">(B) ইলম ও মারিফাতের পার্থক্য</div>
+
+        <p><span class="label">উত্তর:</span></p>
+
+        <ol>
+            <li>মারিফাত হলো জুযয়ি ও সরল বিষয়ের ইদরাক। ইলম কুল্লি ও যৌগিক বিষয়ের ইদরাক।</li>
+            <li>মারিফাত পূর্ববর্তী অজ্ঞতার পরে আসে। ইলমে এ শর্ত নেই।</li>
+            <li>তাই আল্লাহকে «আলিম» বলা হয়, «আরিফ» বলা হয় না।</li>
+        </ol>
+
+        <div class="section">(C) «والمحدث للعالم هو الله تعالى»</div>
+
+        <p><span class="label">উত্তর:</span></p>
+
+        <ul>
+            <li>
+                <b>«আলাম» (সৃষ্টিজগৎ):</b>
+                অর্থ আল্লাহ ছাড়া সবকিছু, অর্থাৎ জওহর ও আরায সব।
+            </li>
+            <li>
+                <b>«মুহদিস»:</b>
+                অর্থ অস্তিত্বহীনতা থেকে অস্তিত্বে আনয়নকারী।
+            </li>
+            <li>
+                <b>অর্থ:</b>
+                সৃষ্টিজগৎ হাদিস (নশ্বর, পরে অস্তিত্ব পাওয়া),
+                আর একমাত্র আল্লাহ তাআলা তাকে অস্তিত্ব দিয়েছেন।
+            </li>
+        </ul>
+
+        <p><b>দলিল:</b></p>
+
+        <ol>
+            <li>আরায পরিবর্তনশীল, তাই হাদিস।</li>
+            <li>জওহর আরায থেকে মুক্ত নয়। যা হাদিস থেকে মুক্ত নয়, সেও হাদিস।</li>
+            <li>প্রত্যেক হাদিসের একজন মুহদিস লাগে।</li>
+            <li>
+                মুহদিসকে ওয়াজিবুল উজুদ হতে হবে।
+                নইলে অনন্ত ধারাবাহিকতার (তাসালসুল) সমস্যা হয়।
+            </li>
+        </ol>
+
+        <div class="final">
+            এতে ফালাসিফা, দাহরিয়া ও প্রকৃতিবাদীদের মত খণ্ডিত হলো।
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         প্রশ্ন–৪
+    ========================================================== -->
+
+    <div class="question reveal right">প্রশ্ন–৪: কুরআন কালামুল্লাহ ও গায়রে মাখলুক</div>
+
+    <section class="content reveal">
+
+        <div class="section">(A) «القرآن كلام الله تعالى غير مخلوق»</div>
+
+        <div class="subsection">(১) «কালামুল্লাহ» সংযোজনের কারণ</div>
+
+        <p><span class="label">উত্তর:</span></p>
+
+        <ul>
+            <li>কুরআন শব্দের দ্বারা কখনো নযম (শব্দমালা) বোঝায়, কখনো মূল কালাম।</li>
+            <li>«কালামুল্লাহ» বলে বোঝানো হলো, কুরআন আল্লাহর সিফাত, কোনো মাখলুকের রচনা নয়।</li>
+            <li>তারপর «غير مخلوق» দিয়ে মুতাযিলাদের মত খণ্ডন করা হলো।</li>
+        </ul>
+
+        <div class="subsection">(২) মাসআলাটির নাম «খালকুল কুরআন» হওয়ার কারণ</div>
+
+        <p>
+            <span class="label">উত্তর:</span>
+            বিতর্কের মূল বিষয় ছিল কুরআন সৃষ্ট কি না।
+            আব্বাসি খলিফা মামুনের যুগে (২১৮ হি. থেকে)
+            মুতাযিলাদের প্রভাবে রাষ্ট্রীয়ভাবে «কুরআন সৃষ্ট» মত চাপানো হয়।
+            ইমাম আহমাদ ইবনে হাম্বল (রহ.) অটল থাকেন।
+            তাই এই নাম।
+        </p>
+
+        <div class="section">(B) খালকুল কুরআন মাসআলা, মতভেদ ও দলিল</div>
+
+        <div class="highlight">
+            <b>① সংক্ষিপ্ত সিদ্ধান্ত:</b>
+            কালামে নাফসি কাদিম, সৃষ্ট নয়। শব্দ ও লেখা হাদিস।
+        </div>
+
+        <div class="subsection">② হানাফি-মাতুরিদি মত</div>
+
+        <p>
+            আল্লাহর কালাম তাঁর সত্তার সাথে প্রতিষ্ঠিত অনাদি সিফাত।
+            এটি হরফ ও আওয়াজ থেকে পবিত্র।
+            মুখে পাঠ, লেখা ও মুখস্থ কালামে নাফসিকে নির্দেশ করে।
+        </p>
+
+        <div class="evidence">
+            ইমাম আবু হানিফা (রহ.)-এর ফিকহে আকবর:
+            <div class="arabic">«القرآن كلام الله تعالى في المصاحف مكتوب وعلى الألسن مقروء ... وهو غير مخلوق»</div>
+        </div>
+
+        <p>
+            <b>(ক)</b>
+            <span class="arabic">«وكلم الله موسى تكليما»</span> (নিসা ১৬৪)।
+            কালাম পূর্ণতার সিফাত, তার অভাব ত্রুটি।
+        </p>
+
+        <p>
+            <b>(খ)</b>
+            <span class="arabic">«ألا له الخلق والأمر»</span> (আরাফ ৫৪)।
+            খালক ও আমর আলাদা। কুরআন আমর, তাই সৃষ্ট নয়।
+        </p>
+
+        <p>
+            <b>(গ)</b>
+            <span class="arabic">«إنما قولنا لشيء إذا أردناه أن نقول له كن فيكون»</span> (নাহল ৪০)।
+            «কুন» সৃষ্ট হলে আরেকটি «কুন» লাগত,
+            ফলে অনন্ত ধারাবাহিকতা (তাসালসুল) আসে।
+        </p>
+
+        <p>
+            <b>(ঘ)</b>
+            কালাম মনের মধ্যেও থাকে:
+            <span class="arabic">«ويقولون في أنفسهم»</span> (মুজাদালা ৮)।
+            প্রসিদ্ধ আরবি পংক্তিতেও আছে, কালাম অন্তরে, জিহ্বা তার নিদর্শন।
+        </p>
+
+        <div class="subsection">③ অন্যান্য মত</div>
+
+        <ul>
+            <li>
+                <b>মুতাযিলা:</b>
+                কালাম হরফ ও আওয়াজ, তাই কুরআন সৃষ্ট।
+                দলিল:
+                <span class="arabic">«ما يأتيهم من ذكر من ربهم محدث»</span>
+                (আম্বিয়া ২) ও
+                <span class="arabic">«إنا جعلناه قرآنا عربيا»</span>
+                (যুখরুফ ৩)।
+            </li>
+            <li>
+                <b>হাম্বলিদের একাংশ:</b>
+                হরফ ও আওয়াজও কাদিম।
+            </li>
+            <li>
+                <b>কাররামিয়্যাহ:</b>
+                কালাম আল্লাহর সত্তায় হাদিস।
+            </li>
+            <li>
+                <b>মুতাযিলাদের জবাব:</b>
+                «মুহদিস» দ্বারা শব্দগত তিলাওয়াত বোঝানো হয়েছে।
+                «জাআলা» অর্থ বানানো বা নামিয়ে দেওয়া, সৃষ্টি করা নয়।
+            </li>
+        </ul>
+
+        <div class="final">
+            ④ হানাফি মতের প্রাধান্য:
+            কালামে নাফসি কাদিম এবং লফযি কালাম হাদিস, এটাই সঠিক মত।
+        </div>
+
+        <div class="section">(C) লফযি কালাম হাদিস কি না</div>
+
+        <div class="highlight">
+            <b>① সংক্ষিপ্ত সিদ্ধান্ত:</b>
+            লফযি কালাম (শব্দ ও আওয়াজ) হাদিস।
+        </div>
+
+        <div class="subsection">② হানাফি-মাতুরিদি মত</div>
+
+        <p>
+            হরফ ও আওয়াজ পর্যায়ক্রমিক (আগে-পরে)।
+            যা পর্যায়ক্রমিক, তা কাদিম হতে পারে না।
+            কাদিম তো কালামে নাফসি।
+            এই কারণে ইমাম আহমাদ (রহ.) ও সালাফ "কুরআন সৃষ্ট" বলা থেকে বিরত থাকতেন,
+            যেন কালামে নাফসিকে বোঝানোর ভুল না হয়।
+        </p>
+
+        <div class="subsection">③ অন্যান্য মত</div>
+
+        <ul>
+            <li><b>মুতাযিলা:</b> পুরো কালামই হাদিস ও মাখলুক।</li>
+            <li><b>হাম্বলিদের একাংশ:</b> লফযিও কাদিম।</li>
+            <li><b>কাররামিয়্যাহ:</b> হাদিস, তবে আল্লাহর সত্তায় প্রতিষ্ঠিত।</li>
+        </ul>
+
+        <div class="final">
+            ④ হানাফি মতের প্রাধান্য:
+            কালামে নাফসি কাদিম এবং লফযি হাদিস।
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         প্রশ্ন–৫
+    ========================================================== -->
+
+    <div class="question reveal left">প্রশ্ন–৫: আযাবুল কবর</div>
+
+    <section class="content reveal">
+
+        <div class="section">(A) ইবারতের তাশকিল, অনুবাদ ও ব্যাখ্যা</div>
+
+        <div class="subsection">(১) তাশকিল</div>
+
+        <div class="arabic">
+            وَعَذَابُ الْقَبْرِ لِلْكَافِرِينَ وَلِبَعْضِ عُصَاةِ الْمُؤْمِنِينَ،
+            وَتَنْعِيمُ أَهْلِ الطَّاعَةِ فِي الْقَبْرِ بِمَا يَعْلَمُهُ اللهُ تَعَالَى وَيُرِيدُهُ،
+            وَسُؤَالُ مُنْكَرٍ وَنَكِيرٍ ثَابِتٌ بِالدَّلَائِلِ السَّمْعِيَّةِ.
+        </div>
+
+        <div class="subsection">(২) অনুবাদ</div>
+
+        <p>
+            <span class="label">উত্তর:</span>
+            কবরের আযাব কাফেরদের জন্য এবং কিছু গুনাহগার মুমিনের জন্য আছে।
+            আনুগত্যকারীদের কবরে নিয়ামত দেওয়া হবে,
+            আল্লাহ যেভাবে জানেন ও চান।
+            মুনকার-নাকিরের প্রশ্ন শ্রুতিভিত্তিক (সামঈ) দলিল দ্বারা প্রমাণিত।
+        </p>
+
+        <div class="subsection">(৩) ব্যাখ্যা</div>
+
+        <ul>
+            <li>
+                <b>«কবর» অর্থ:</b>
+                বারযাখ, অর্থাৎ মৃত্যু থেকে কিয়ামত পর্যন্ত অবস্থা।
+                দাফন না হলেও এ বিধান প্রযোজ্য, যেমন কেউ পুড়ে গেলে বা হিংস্র প্রাণী খেয়ে ফেললে।
+            </li>
+            <li>
+                আযাব ও নিয়ামতের ধরন আল্লাহ জানেন।
+                আমাদের ঈমান আনা আবশ্যক, ধরন নির্ধারণ আবশ্যক নয়।
+            </li>
+            <li>
+                আল্লাহ শরীর বা তার কোনো অংশে এমন জীবন সৃষ্টি করেন যাতে অনুভূতি হয়।
+            </li>
+            <li>
+                এসব বিষয় আকলের সম্ভাব্য (মুমকিন) এবং সত্যবাদীর সংবাদে প্রমাণিত,
+                তাই অবশ্য বিশ্বাস্য।
+            </li>
+        </ul>
+
+        <div class="section">(B) আকিদাগুলোর প্রমাণ</div>
+
+        <div class="subsection">(১) কাফের ও গুনাহগারদের আযাব</div>
+
+        <div class="evidence">
+            <div class="arabic">«النار يعرضون عليها غدوا وعشيا»</div>
+            (গাফির ৪৬)।
+        </div>
+
+        <div class="evidence">
+            <div class="arabic">«سنعذبهم مرتين»</div>
+            (তাওবা ১০১); মুফাসসিরদের এক ব্যাখ্যায় একটি আযাব কবরে।
+        </div>
+
+        <div class="evidence">
+            <div class="arabic">«فإن له معيشة ضنكا»</div>
+            (ত্বহা ১২৪); ইবনে মাসউদ (রা.) থেকে বর্ণিত ব্যাখ্যায় কবরের আযাব।
+        </div>
+
+        <p>
+            হাদিস (বুখারি-মুসলিম): রাসূল ﷺ দুই কবরের পাশ দিয়ে গিয়ে বলেন,
+            "এদের আযাব হচ্ছে। একজন প্রস্রাব থেকে সাবধান থাকত না,
+            অন্যজন চোগলখুরি করত।"
+        </p>
+
+        <div class="subsection">(২) আনুগত্যকারীদের নিয়ামত</div>
+
+        <div class="evidence">
+            <div class="arabic">«يثبت الله الذين آمنوا بالقول الثابت في الحياة الدنيا وفي الآخرة»</div>
+            (ইবরাহিম ২৭)।
+        </div>
+
+        <p>
+            হাদিসে এটি কবরের প্রশ্নোত্তর সম্পর্কে নাযিল হয়েছে (বুখারি-মুসলিম)।
+        </p>
+
+        <p>
+            হাদিসে মুমিনের কবরে জান্নাতের দরজা খোলা ও প্রশস্ততার কথা আছে।
+        </p>
+
+        <div class="subsection">(৩) মুনকার-নাকিরের প্রশ্ন</div>
+
+        <p>
+            বুখারি-মুসলিমে আছে, বান্দাকে কবরে রাখার পর দুই ফেরেশতা এসে বসান
+            এবং রাসূল ﷺ সম্পর্কে জিজ্ঞেস করেন।
+        </p>
+
+        <p>
+            তিরমিযির বর্ণনায় ফেরেশতাদ্বয়ের নাম মুনকার ও নাকির।
+        </p>
+
+        <p>
+            <b>আকলি দলিল:</b>
+            আল্লাহ মৃতকে জীবন দিতে সক্ষম।
+            যেহেতু এটি সম্ভব এবং সত্যবাদী রাসূল ﷺ জানিয়েছেন,
+            তাই বিশ্বাস করা ওয়াজিব।
+        </p>
+
+        <div class="section">(C) আযাবুল কবর কারা অস্বীকার করে, দলিল ও জবাব</div>
+
+        <div class="subsection">(১) অস্বীকারকারী</div>
+
+        <p>
+            <span class="label">উত্তর:</span>
+            মুতাযিলাদের অধিকাংশ এবং কিছু খারেজি ও রাফেযি।
+        </p>
+
+        <div class="subsection">(২) তাদের দলিল</div>
+
+        <p><b>(ক) আকলি:</b></p>
+
+        <p>
+            মৃতদেহ প্রাণহীন, তাতে অনুভূতি নেই।
+            আমরা কবর খুঁড়লে আযাবের কোনো চিহ্ন দেখি না।
+        </p>
+
+        <p><b>(খ) নকলি:</b></p>
+
+        <ul>
+            <li>
+                <span class="arabic">«لا يذوقون فيها الموت إلا الموتة الأولى»</span>
+                (দুখান ৫৬)।
+            </li>
+            <li>
+                <span class="arabic">«ربنا أمتنا اثنتين وأحييتنا اثنتين»</span>
+                (গাফির ১১)।
+                কবরে জীবন হলে তিন জীবন হয়ে যায়।
+            </li>
+            <li>
+                <span class="arabic">«وما أنت بمسمع من في القبور»</span>
+                (ফাতির ২২)।
+            </li>
+        </ul>
+
+        <div class="subsection">(৩) জবাব</div>
+
+        <p>
+            <b>(ক) আকলি জবাব:</b>
+            আল্লাহ সক্ষম।
+            আমরা দেখতে পাই না বলে নেই বলা যায় না।
+            যেমন ঘুমন্ত ব্যক্তি স্বপ্নে কষ্ট বা সুখ পায়,
+            অথচ পাশের লোক কিছু দেখে না।
+            ফেরেশতাদেরও আমরা দেখি না।
+        </p>
+
+        <p>
+            <b>(খ) দুই জীবনের আয়াত:</b>
+            কবরের জীবন দুনিয়ার পূর্ণ জীবন নয়,
+            আংশিক অনুভূতির জীবন।
+            তাই আয়াতের পরিপন্থী নয়।
+        </p>
+
+        <p>
+            <b>(গ) «মা আনতা বিমুসমিয়িন» আয়াত:</b>
+            এটি কাফেরদের উপমা।
+            উপকারী শোনা নেই, এই অর্থে।
+            মৃতের শ্রবণ নেই, এ অর্থে নয়।
+        </p>
+
+        <p>
+            <b>(ঘ)</b>
+            আযাবুল কবরের হাদিস অর্থগত মুতাওয়াতির (متواتر معنوي),
+            তাই অস্বীকার করা বৈধ নয়।
+        </p>
+
+        <div class="final">
+            শেষ কথা: আযাবুল কবর, নিয়ামত ও মুনকার-নাকিরের প্রশ্ন সত্য,
+            এবং আহলুস সুন্নাহ ওয়াল জামাআতের আকিদা।
+        </div>
+
+    </section>
+
+</main>
+
+<script>
+/* =========================================================
+   SCROLL ANIMATION
+========================================================= */
+
+const elements = document.querySelectorAll(".reveal");
+
+const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+        if(entry.isIntersecting){
+            entry.target.classList.add("show");
+            observer.unobserve(entry.target);
+        }
+    });
+},{
+    threshold:.08
+});
+
+elements.forEach(el=>observer.observe(el));
+
+
+/* =========================================================
+   PDF DOWNLOAD
+   Browser-এর Native Print Engine ব্যবহার করা হয়েছে।
+   এতে Text selectable/copyable থাকে।
+========================================================= */
+
+function downloadPDF(){
+
+    const oldTitle = document.title;
+
+    document.title = "শরহুল আকায়িদিন নাসাফিয়্যাহ — ১৪৪০ হি. প্রশ্নপত্রের উত্তর";
+
+    /*
+      Browser-এর Print dialog খুলবে।
+      সেখানে Destination থেকে "Save as PDF" নির্বাচন করলে
+      সম্পূর্ণ Text-based, selectable PDF তৈরি হবে।
+    */
+    window.print();
+
+    setTimeout(()=>{
+        document.title = oldTitle;
+    },1000);
+}
+
+
+/* =========================================================
+   KEYBOARD SHORTCUT
+========================================================= */
+
+document.addEventListener("keydown",(event)=>{
+    if((event.ctrlKey || event.metaKey) && event.key.toLowerCase()==="p"){
+        event.preventDefault();
+        downloadPDF();
+    }
+});
+</script>
+
 </body>
 </html>

@@ -1,128 +1,891 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Google Fonts for Bengali & English -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Inter:wght@700;900&display=swap" rel="stylesheet">
+<title>শরহুল আকায়েদ আন-নাসাফিয়্যাহ — ১৪৪৩ হি.</title>
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+<style>
+@font-face{
+    font-family:Kalpurush;
+    src:local("Kalpurush");
+}
 
-    <style>
-        body {
-            font-family: 'Hind Siliguri', 'Inter', sans-serif;
-            background-color: #030712;
-            overflow: hidden;
-        }
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
 
-        /* Gradient glowing animation on text */
-        .glow-text {
-            background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 50%, #38bdf8 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shine 6s linear infinite;
-        }
+html{
+    scroll-behavior:smooth;
+}
 
-        @keyframes shine {
-            0% { background-position: 0% center; }
-            50% { background-position: 100% center; }
-            100% { background-position: 0% center; }
-        }
+body{
+    font-family:Kalpurush,"Noto Sans Bengali","SolaimanLipi",Arial,sans-serif;
+    font-size:25px;
+    line-height:1.9;
+    background:#f8f9f7;
+    color:#202124;
+}
 
-        /* Keyframes for initial entry: Floating in from below with opacity */
-        @keyframes floatIn {
-            0% {
-                opacity: 0;
-                transform: translateY(40px) scale(0.95);
-                filter: blur(8px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-                filter: blur(0);
-            }
-        }
+.book{
+    width:min(1200px,94%);
+    margin:35px auto 70px;
+    background:#fff;
+    padding:45px 55px 70px;
+    border-radius:22px;
+    box-shadow:0 10px 45px rgba(0,0,0,.08);
+}
 
-        /* Continuous subtle float effect once arrived */
-        @keyframes subtleFloat {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-8px);
-            }
-        }
+.download-btn{
+    position:fixed;
+    top:18px;
+    right:22px;
+    z-index:1000;
+    border:0;
+    border-radius:12px;
+    padding:12px 20px;
+    font-family:inherit;
+    font-size:19px;
+    font-weight:bold;
+    color:#fff;
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    box-shadow:0 7px 22px rgba(37,99,235,.28);
+    cursor:pointer;
+    transition:.3s ease;
+}
 
-        /* Animation class for Heading */
-        .animate-heading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards,
-                subtleFloat 6s ease-in-out 1.2s infinite;
-        }
+.download-btn:hover{
+    transform:translateY(-2px) scale(1.02);
+}
 
-        /* Animation class for Subheading (staggered delay) */
-        .animate-subheading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards,
-                subtleFloat 6s ease-in-out 1.55s infinite;
-            opacity: 0; /* Hidden until animation kicks in */
-        }
+.cover{
+    text-align:center;
+    padding:20px 10px 45px;
+    border-bottom:3px solid #e5e7eb;
+    margin-bottom:40px;
+}
 
-        /* Ambient background lighting */
-        .ambient-glow {
-            position: absolute;
-            width: 450px;
-            height: 450px;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(3, 7, 18, 0) 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            transition: left 0.4s ease-out, top 0.4s ease-out;
-        }
-    </style>
+.cover h1{
+    font-size:38px;
+    line-height:1.5;
+    color:#172554;
+    margin-bottom:10px;
+}
+
+.cover h2{
+    font-size:28px;
+    color:#475569;
+}
+
+.question{
+    margin:55px 0 35px;
+    padding:18px 22px;
+    border-right:7px solid #4f46e5;
+    border-left:3px solid #c7d2fe;
+    background:linear-gradient(90deg,#eef2ff,#ffffff);
+    border-radius:12px;
+    font-weight:bold;
+    color:#1e1b4b;
+}
+
+.section{
+    margin:32px 0;
+    padding:25px 28px;
+    border-radius:15px;
+    background:#fff;
+    border:1px solid #e5e7eb;
+    box-shadow:0 4px 18px rgba(0,0,0,.045);
+}
+
+.section-title{
+    font-size:29px;
+    font-weight:bold;
+    color:#075985;
+    margin-bottom:17px;
+    padding-bottom:8px;
+    border-bottom:2px solid #bae6fd;
+}
+
+.sub-title{
+    font-size:26px;
+    font-weight:bold;
+    color:#7c2d12;
+    margin-top:22px;
+    margin-bottom:8px;
+}
+
+p{
+    margin:11px 0;
+}
+
+.answer{
+    color:#252525;
+}
+
+.arabic{
+    direction:rtl;
+    text-align:right;
+    font-family:"Amiri","Noto Naskh Arabic","Traditional Arabic",serif;
+    font-size:27px;
+    line-height:2.15;
+    color:#111827;
+    background:#fafafa;
+    border-right:4px solid #0f766e;
+    padding:15px 20px;
+    border-radius:10px;
+    margin:15px 0;
+}
+
+.translation{
+    padding:13px 18px;
+    background:#f0fdf4;
+    border-left:4px solid #16a34a;
+    border-radius:9px;
+}
+
+.highlight{
+    background:#fffbeb;
+    border-left:5px solid #f59e0b;
+    padding:13px 18px;
+    border-radius:9px;
+}
+
+ul,ol{
+    padding-right:35px;
+    margin:10px 0;
+}
+
+li{
+    margin:5px 0;
+}
+
+strong{
+    color:#111827;
+}
+
+.part-label{
+    display:inline-block;
+    background:#ede9fe;
+    color:#5b21b6;
+    padding:2px 12px;
+    border-radius:8px;
+    margin-left:6px;
+}
+
+.footer{
+    margin-top:60px;
+    padding-top:20px;
+    border-top:2px solid #e5e7eb;
+    text-align:center;
+    color:#64748b;
+    font-size:18px;
+}
+
+/* Scroll animation */
+.reveal{
+    opacity:0;
+    transform:translateY(28px);
+    transition:opacity .8s ease,transform .8s ease;
+}
+
+.reveal.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* Print / PDF */
+@media print{
+    @page{
+        size:A4 portrait;
+        margin:14mm;
+    }
+
+    body{
+        background:#fff;
+        font-size:18px;
+        line-height:1.65;
+    }
+
+    .book{
+        width:100%;
+        margin:0;
+        padding:0;
+        box-shadow:none;
+        border-radius:0;
+    }
+
+    .download-btn{
+        display:none;
+    }
+
+    .cover h1{
+        font-size:28px;
+    }
+
+    .cover h2{
+        font-size:21px;
+    }
+
+    .question{
+        font-size:21px;
+        margin-top:25px;
+        break-after:avoid;
+    }
+
+    .section{
+        box-shadow:none;
+        padding:12px 15px;
+        break-inside:auto;
+    }
+
+    .section-title{
+        font-size:22px;
+    }
+
+    .sub-title{
+        font-size:20px;
+    }
+
+    .arabic{
+        font-size:20px;
+    }
+
+    .footer{
+        font-size:13px;
+    }
+}
+
+@media(max-width:800px){
+    body{
+        font-size:22px;
+    }
+
+    .book{
+        width:96%;
+        padding:25px 18px 45px;
+        margin-top:70px;
+    }
+
+    .cover h1{
+        font-size:30px;
+    }
+
+    .cover h2{
+        font-size:23px;
+    }
+
+    .section{
+        padding:18px;
+    }
+
+    .section-title{
+        font-size:25px;
+    }
+
+    .sub-title{
+        font-size:23px;
+    }
+
+    .arabic{
+        font-size:24px;
+    }
+
+    .download-btn{
+        top:10px;
+        right:10px;
+        font-size:16px;
+        padding:9px 14px;
+    }
+}
+
+@media(max-width:480px){
+    body{
+        font-size:20px;
+        line-height:1.8;
+    }
+
+    .book{
+        padding:20px 12px 35px;
+    }
+
+    .cover h1{
+        font-size:26px;
+    }
+
+    .cover h2{
+        font-size:20px;
+    }
+
+    .question{
+        font-size:21px;
+        padding:14px;
+    }
+
+    .section{
+        padding:14px;
+    }
+
+    .section-title{
+        font-size:23px;
+    }
+
+    .sub-title{
+        font-size:21px;
+    }
+
+    .arabic{
+        font-size:22px;
+        padding:12px;
+    }
+}
+</style>
 </head>
-<body class="min-h-screen flex items-center justify-center relative select-none px-4">
 
-    <!-- Ambient glow center element -->
-    <div id="glow" class="ambient-glow top-1/2 left-1/2"></div>
+<body>
 
-    <!-- Centered minimal content with entry animations -->
-    <main class="text-center z-10 space-y-6 max-w-3xl mx-auto py-8 px-4">
-        
-        <!-- Main English Title -->
-        <h1 class="animate-heading text-5xl sm:text-7xl md:text-8xl font-black tracking-tight glow-text font-['Inter'] drop-shadow-lg">
-            Coming Soon...
-        </h1>
+<button class="download-btn" onclick="downloadPDF()">⬇ Download PDF</button>
 
-        <!-- Bengali Subheading -->
-        <p class="animate-subheading text-xl sm:text-3xl md:text-4xl font-semibold text-emerald-400/90 leading-relaxed tracking-wide drop-shadow">
-            ইনশাআল্লাহ, খুব শীঘ্রই ডাটা যোগ করা হবে।
-        </p>
+<main class="book">
 
-    </main>
+<header class="cover reveal">
+    <h1>শরহুল আকায়েদ আন-নাসাফিয়্যাহ</h1>
+    <h2>১৪৪৩ হি. প্রশ্নপত্র</h2>
+</header>
 
-    <script>
-        const glow = document.getElementById('glow');
 
-        // Mouse move interactive glow background
-        window.addEventListener('mousemove', (e) => {
-            glow.style.left = e.clientX + 'px';
-            glow.style.top = e.clientY + 'px';
-        });
+<!-- ================= QUESTION 1 ================= -->
 
-        // Touch move interactive glow background for mobile screens
-        window.addEventListener('touchmove', (e) => {
-            if (e.touches.length > 0) {
-                glow.style.left = e.touches[0].clientX + 'px';
-                glow.style.top = e.touches[0].clientY + 'px';
+<section class="reveal">
+
+<div class="question">
+ প্রশ্ন–১: قوله: "ولنا تحقيقا أنا نجزم بالضرورة ... فلم يصح نفيها على الإطلاق" 
+</div>
+
+<div class="section">
+<div class="section-title"><span class="part-label">(A)</span> শাকল ও তরজমা</div>
+
+<div class="sub-title">(১) শাকল:</div>
+
+<div class="arabic">
+وَلَنَا تَحْقِيقًا أَنَّا نَجْزِمُ بِالضَّرُورَةِ بِثُبُوتِ بَعْضِ الْأَشْيَاءِ بِالْعِيَانِ وَبَعْضِهَا بِالْبَيَانِ، وَإِلْزَامًا أَنَّهُ إِنْ لَمْ يَتَحَقَّقْ نَفْيُ الْأَشْيَاءِ فَقَدْ ثَبَتَتْ، وَإِنْ تَحَقَّقَ فَالنَّفْيُ حَقِيقَةٌ مِنَ الْحَقَائِقِ لِكَوْنِهِ نَوْعًا مِنَ الْحُكْمِ، فَقَدْ ثَبَتَ شَيْءٌ مِنَ الْحَقَائِقِ فَلَمْ يَصِحَّ نَفْيُهَا عَلَى الْإِطْلَاقِ
+</div>
+
+<div class="sub-title">(২) তরজমা:</div>
+
+<p class="translation">
+উত্তর: আমাদের তাহকীকী দলিল: আমরা অনিবার্যভাবে নিশ্চিত যে কিছু বস্তুর অস্তিত্ব প্রত্যক্ষ দর্শনে (عيان) এবং কিছু বস্তুর অস্তিত্ব দলিল-প্রমাণে (بيان) প্রমাণিত। ইলযামী দলিল: বস্তুসমূহের নফী (অস্বীকার) প্রমাণিত না হলে বস্তু সাব্যস্তই রইল। আর নফী প্রমাণিত হলে নফী নিজেও হুকুমের একটি প্রকার হওয়ায় একটি হাকীকত। তখনও কোনো না কোনো হাকীকত সাব্যস্ত হলো। অতএব হাকীকতসমূহকে সম্পূর্ণ অস্বীকার করা সঠিক নয়।
+</p>
+</div>
+
+
+<div class="section">
+<div class="section-title"><span class="part-label">(B)</span> সুফসতাইয়্যাহ কারা ও তাদের বাতিল আকীদা</div>
+
+<div class="sub-title">(১) সুফসতাইয়্যাহ কারা?</div>
+
+<p>
+উত্তর: গ্রিক শব্দ "সুফ" (জ্ঞান) ও "ইস্তা" (ভ্রান্ত) থেকে সুফসতা, অর্থাৎ ভ্রান্ত জ্ঞান বা "মিথ্যা প্রজ্ঞা"। এরা এমন একটি দার্শনিক সম্প্রদায়, যারা বস্তুর হাকীকত বা বাস্তবতাকে অস্বীকার করে।
+</p>
+
+<div class="sub-title">(২) তাদের বাতিল আকীদা</div>
+
+<p>উত্তর: এরা তিন দল:</p>
+
+<ol>
+<li><strong>عِنَادِيَّة (ইনাদিয়্যাহ):</strong> বস্তুর কোনো হাকীকত নেই, সবই কল্পনা। (জেনেবুঝে একগুঁয়েমি)</li>
+<li><strong>عِنْدِيَّة (ইনদিয়্যাহ):</strong> হাকীকত আছে, তবে তা মানুষের বিশ্বাস অনুযায়ী বদলায়। যে যেটা বিশ্বাস করে, তার কাছে সেটাই সত্য।</li>
+<li><strong>لَا أَدْرِيَّة (লা-আদরিয়্যাহ):</strong> হাকীকত আছে কি না আমরা জানি না, সন্দেহ করি।</li>
+</ol>
+</div>
+
+
+<div class="section">
+<div class="section-title"><span class="part-label">(C)</span> হাকীকত ও মাহিয়্যাতের অর্থ এবং পার্থক্য</div>
+
+<div class="sub-title">(১) হাকীকত</div>
+
+<p>উত্তর:</p>
+
+<div class="arabic">الحقيقة: ما به الشيء هو هو</div>
+
+<p>অর্থাৎ যার কারণে বস্তু সে-ই বস্তু হয়। যেমন মানুষের হাকীকত "হায়াওয়ানে নাতিক" (বাকশক্তিসম্পন্ন প্রাণী)।</p>
+
+<div class="sub-title">(২) মাহিয়্যাত</div>
+
+<p>উত্তর:</p>
+
+<div class="arabic">الماهية: ما يقال في جواب "ما هو"</div>
+
+<p>অর্থাৎ "এটা কী?"—এই প্রশ্নের জবাবে যা বলা হয়।</p>
+
+<div class="sub-title">(৩) পার্থক্য</div>
+
+<p>
+উত্তর: মূলত উভয়টি একই বস্তু, শুধু বিবেচনার ভিন্নতা। বাহ্যিক জগতে অস্তিত্বসহ বিবেচনা করলে "হাকীকত", আর "এটা কী?" প্রশ্নের জবাব হিসেবে বিবেচনা করলে "মাহিয়্যাত"।
+</p>
+</div>
+
+
+<div class="section">
+<div class="section-title"><span class="part-label">(D)</span> হুকামার ইখতিলাফ ও আহলুল হকের দলিল</div>
+
+<div class="sub-title">(১) হুকামার ইখতিলাফ</div>
+
+<p>
+উত্তর: সংক্ষিপ্ত সিদ্ধান্ত: আহলুল হকের মতে হাকীকতসমূহ সাব্যস্ত ও বাস্তব। সুফসতাইয়্যাহ হাকীকত অস্বীকার করে (ইনাদিয়্যাহ), বিশ্বাসনির্ভর বলে (ইনদিয়্যাহ), অথবা সন্দেহ করে (লা-আদরিয়্যাহ)।
+</p>
+
+<div class="sub-title">(২) আহলুল হকের দলিল (সুফসতাইয়্যাহর বিরুদ্ধে)</div>
+
+<ol>
+<li><strong>তাহকীকী দলিল:</strong> কিছু জিনিস আমরা সরাসরি দেখি, কিছু যুক্তি দ্বারা জানি। এই অনিবার্য ইলম অস্বীকার করা যায় না।</li>
+<li><strong>ইলযামী দলিল:</strong> নফী করলে নফীও একটি হাকীকত। না করলে বস্তু সাব্যস্ত। উভয় অবস্থায় হাকীকত প্রমাণিত।</li>
+<li><strong>ইনদিয়্যাহর জবাব:</strong> তারা নিজেদের দাবিকে সত্য মনে করে; অথচ অন্যরা তা মানে না। তাহলে "সবই বিশ্বাসনির্ভর" কথাটিও একটি স্থির হাকীকত দাবি করে।</li>
+<li><strong>লা-আদরিয়্যাহর জবাব:</strong> "আমি জানি না" বলাও একপ্রকার জানা। সন্দেহ যে আছে, তা-ই একটি সাব্যস্ত বিষয়।</li>
+<li><strong>ইনাদিয়্যাহর জবাব:</strong> যে একগুঁয়ে ইনাদ করে, তার চিকিৎসা শাস্তি বা কঠোর বাস্তবতার মুখোমুখি করা (যেমন আগুনে ফেলার দৃষ্টান্ত)।</li>
+</ol>
+
+<p>নিন।</p>
+</div>
+
+</section>
+
+
+<!-- ================= QUESTION 2 ================= -->
+
+<section class="reveal">
+
+<div class="question">
+প্রশ্ন–২: قوله: "والخبر الصادق ..." 
+</div>
+
+<div class="section">
+<div class="section-title"><span class="part-label">(A)</span> খবরে সাদিকের প্রকার, সংজ্ঞা ও উদাহরণ</div>
+
+<div class="sub-title">(১) প্রকার সংখ্যা</div>
+
+<p>উত্তর: খবরে সাদিক (সত্য সংবাদ) দুই প্রকার:</p>
+
+<ol>
+<li>আল-খবরুল মুতাওয়াতির</li>
+<li>খবরুর রাসূল</li>
+</ol>
+
+<div class="sub-title">(২) খবরে মুতাওয়াতির</div>
+
+<p>
+উত্তর: সংজ্ঞা: যে সংবাদ এত বিপুল সংখ্যক লোকের মুখে প্রমাণিত, যাদের মিথ্যা বলার ষড়যন্ত্র কল্পনাও করা যায় না। উদাহরণ: অতীত রাজা-বাদশাহদের সম্পর্কে জ্ঞান এবং দূরবর্তী শহর-দেশ সম্পর্কে জ্ঞান।
+</p>
+
+<div class="sub-title">(৩) খবরুর রাসূল</div>
+
+<p>
+উত্তর: সংজ্ঞা: মুজিযা দ্বারা সমর্থিত রাসূলের সংবাদ। উদাহরণ: হাশর-নশর, জান্নাত-জাহান্নাম, ফেরেশতা ইত্যাদি সম্পর্কে রাসূল ﷺ-এর সংবাদ।
+</p>
+</div>
+
+
+<div class="section">
+<div class="section-title"><span class="part-label">(B)</span> প্রতিটি প্রকারের হুকুম</div>
+
+<div class="sub-title">(১) মুতাওয়াতিরের হুকুম</div>
+
+<p>
+উত্তর: এটি ইলমে যরূরী (অনিবার্য নিশ্চিত জ্ঞান) সাব্যস্ত করে। এতে কোনো চিন্তা-গবেষণা লাগে না; মুসলিম-অমুসলিম সবার কাছেই এই জ্ঞান অর্জিত হয়।
+</p>
+
+<div class="sub-title">(২) খবরুর রাসূলের হুকুম</div>
+
+<p>
+উত্তর: এটি ইলমে ইস্তিদলালি সাব্যস্ত করে। কারণ রাসূলের সত্যতা মুজিযা দেখে চিন্তা-গবেষণার মাধ্যমে জানতে হয়। এ ইলমও নিশ্চিত, তবে অর্জনের পথ যুক্তিনির্ভর।
+</p>
+</div>
+
+
+<div class="section">
+<div class="section-title"><span class="part-label">(C)</span> "وأما خبر النصارى بقتل عيسى..." এর ব্যাখ্যা</div>
+
+<p><strong>উত্তর: আপত্তি:</strong> খ্রিস্টানরা ঈসা আ.-এর নিহত হওয়ার সংবাদ এবং ইহুদিরা মূসা আ.-এর দ্বীন চিরস্থায়ী হওয়ার সংবাদ দেয়। এগুলো তো মুতাওয়াতির, তাহলে মেনে নিতে হবে।</p>
+
+<p><strong>জবাব:</strong> এ দুটি সংবাদের তাওয়াতুর মেনে নেওয়া হয় না। কারণ:</p>
+
+<ol>
+<li>তাওয়াতুরের শর্ত হলো প্রতিটি স্তরে (তাবাকা) বিপুল সংখ্যক বর্ণনাকারী থাকা। এখানে প্রথম স্তরে সংখ্যা অল্প ছিল।</li>
+<li>ঈসা আ.-এর হত্যার সংবাদ মূলত অল্প কয়েকজনের (যারা সাদৃশ্যপ্রাপ্ত ব্যক্তিকে ক্রুশবিদ্ধ করেছিল) থেকে এসেছে। কুরআনও তা অস্বীকার করেছে।</li>
+<li>মূসা আ.-এর দ্বীনের চিরস্থায়িত্বের সংবাদে বুখতে নাসর-এর হাতে ইহুদিদের সংখ্যা কমে গিয়েছিল। ফলে তাওয়াতুরের ধারা অটুট থাকেনি।</li>
+</ol>
+
+<p class="highlight">
+সুতরাং এই সংবাদ মুতাওয়াতির নয়।
+</p>
+</div>
+
+</section>
+
+
+<!-- ================= QUESTION 3 ================= -->
+
+<section class="reveal">
+
+<div class="question"> প্রশ্ন–৩: قوله: "الواحد ... برهان التمانع ... وتقريره" 
+</div>
+
+<div class="section">
+<div class="section-title"><span class="part-label">(A)</span> শাকল ও তরজমা</div>
+
+<div class="sub-title">(১) শাকল:</div>
+
+<div class="arabic">
+الْوَاحِدُ - يَعْنِي أَنَّ صَانِعَ الْعَالَمِ وَاحِدٌ، وَلَا يُمْكِنُ أَنْ يَصْدُقَ مَفْهُومُ وَاجِبِ الْوُجُودِ إِلَّا عَلَى ذَاتٍ وَاحِدَةٍ، وَالْمَشْهُورُ فِي ذَلِكَ بَيْنَ الْمُتَكَلِّمِينَ بُرْهَانُ التَّمَانُعِ الْمُشَارُ إِلَيْهِ بِقَوْلِهِ تَعَالَى: "لَوْ كَانَ فِيهِمَا آلِهَةٌ إِلَّا اللَّهُ لَفَسَدَتَا"، وَتَقْرِيرُهُ ...
+</div>
+
+<div class="sub-title">(২) তরজমা:</div>
+
+<p class="translation">
+উত্তর: "আল-ওয়াহিদ" অর্থ জগতের স্রষ্টা এক। ওয়াজিবুল উজুদের ধারণা একমাত্র একটি সত্তার ওপরই প্রযোজ্য হতে পারে। এ বিষয়ে মুতাকাল্লিমীনের কাছে প্রসিদ্ধ দলিল বুরহানুত তামানু, যার ইঙ্গিত আল্লাহর বাণী "যদি আসমান-জমিনে আল্লাহ ছাড়া অন্য ইলাহ থাকত, তবে উভয়ই বিশৃঙ্খল হয়ে যেত"-এ আছে। তার তাকরীর (বিন্যাস) হলো...
+</p>
+</div>
+
+
+<div class="section">
+<div class="section-title"><span class="part-label">(B)</span> বুরহানুত তামানুর তাকরীর</div>
+
+<div class="sub-title">(১) তাফসীলি তাকরীর</div>
+
+<p>
+উত্তর: দুজন ইলাহ ধরা হলে তাদের মধ্যে تَمَانُع (পরস্পর বাধা) সম্ভব হবে। যেমন একজন যায়েদের নড়াচড়া চাইল, আরেকজন তার স্থিরতা চাইল। কারণ এটা নিজে নিজে সম্ভব এবং প্রত্যেকের ইচ্ছা ভিন্ন হতে পারে। তখন তিন অবস্থার একটি হবে:
+</p>
+
+<ol>
+<li>
+<strong>উভয়ের ইচ্ছা পূর্ণ হবে:</strong> তাহলে দুই বিপরীত বস্তুর একত্র হওয়া (اجتماع الضدين) আবশ্যক হয়, যা অসম্ভব।
+</li>
+<li>
+<strong>কারও ইচ্ছাই পূর্ণ হবে না:</strong> তাহলে উভয়েই অক্ষম (عاجز) সাব্যস্ত হয়, আর অক্ষম ইলাহ হতে পারে না।
+</li>
+<li>
+<strong>একজনের ইচ্ছা পূর্ণ হবে, অন্যজনের নয়:</strong> তাহলে দ্বিতীয়জন অক্ষম, আর অক্ষম ইলাহ নয়।
+</li>
+</ol>
+
+<p class="highlight">
+সব অবস্থাই অসম্ভব। অতএব একাধিক ইলাহ অসম্ভব।
+</p>
+
+<div class="sub-title">(২) ইজমালি তাকরীর</div>
+
+<p>
+উত্তর: একাধিক ইলাহ থাকলে তাদের মধ্যে তামানুর সম্ভাবনা আসে, আর সেই সম্ভাবনা অক্ষমতার সম্ভাবনা ডেকে আনে। ইলাহ কখনো অক্ষম হতে পারে না। তাই একাধিক ইলাহ অসম্ভব এবং স্রষ্টা এক।
+</p>
+</div>
+
+
+<div class="section">
+<div class="section-title"><span class="part-label">(C)</span> "وبما ذكرنا يندفع ما يقال..." — ইশকালসমূহ ও তার নিরসন</div>
+
+<div class="sub-title">(১) ইশকালসমূহ (সংক্ষেপে)</div>
+
+<ol>
+<li><strong>ইশকাল:</strong> তামানু তো জরুরি নয়, কারণ দুই ইলাহ পরস্পর একমত হতে পারে। তাহলে বাস্তবে ফাসাদ হবে না।</li>
+<li><strong>ইশকাল:</strong> ফাসাদ তো তখনই হতো যদি বাস্তবে তামানু ঘটত। শুধু সম্ভাবনা দিয়ে ফাসাদ কীভাবে?</li>
+<li><strong>ইশকাল:</strong> প্রত্যেক ইলাহ প্রজ্ঞার কারণে অপরের ইচ্ছার অনুসারী হতে পারে।</li>
+</ol>
+
+<div class="sub-title">(২) ইশকাল নিরসনের পদ্ধতি</div>
+
+<p>
+উত্তর: দলিলের ভিত্তি তামানুর সম্ভাবনার (إمكان التمانع) ওপর, বাস্তব তামানুর ওপর নয়। একাধিক ইলাহ হলে প্রত্যেকে সব কিছুতে সক্ষম হবে। তাই ভিন্ন ইচ্ছা করা সম্ভব। যদি এই সম্ভাবনা না থাকে, তাহলে তাকে অক্ষম মানতে হয়, যা ইলাহের শানের পরিপন্থী। আর সম্ভাবনা থাকলেই উপরের তিন অবস্থায় অসম্ভবতা আসে। ঐক্যমত বাস্তবে হলেও সম্ভাবনা দূর হয় না, তাই আপত্তি টেকে না।
+</p>
+</div>
+
+</section>
+
+
+<!-- ================= QUESTION 4 ================= -->
+
+<section class="reveal">
+
+<div class="question">
+ প্রশ্ন–৪: قوله: "رؤية الله تعالى جائزة في العقل ..." 
+</div>
+
+<div class="section">
+<div class="section-title"><span class="part-label">(A)</span> রুইয়াতের অর্থ, অস্বীকারকারী, কারণ ও জবাব</div>
+
+<div class="sub-title">(১) রুইয়াতের অর্থ</div>
+
+<p>উত্তর: চোখ দ্বারা দৃশ্যমান বস্তুর পূর্ণ প্রকাশ বা উন্মোচন (الانكشاف التام بالبصر)।</p>
+
+<div class="sub-title">(২) অস্বীকারকারী</div>
+
+<p>উত্তর: মুতাযিলা, জাহমিয়্যাহ, খারিজী ও কিছু শিয়া সম্প্রদায়।</p>
+
+<div class="sub-title">(৩) কেন অস্বীকার করে ও জবাব</div>
+
+<p><strong>শুবহা–১:</strong></p>
+
+<div class="arabic">لَا تُدْرِكُهُ الْأَبْصَارُ</div>
+
+<p>
+(আনআম ১০৩)। জবাব: "ইদরাক" মানে বেষ্টন করা (إحاطة)। আয়াত রুইয়াত নয়, বেষ্টন নাকচ করে। অথবা আয়াতটি দুনিয়ার ক্ষেত্রে।
+</p>
+
+<p><strong>শুবহা–২:</strong></p>
+
+<div class="arabic">لَن تَرَانِي</div>
+
+<p>
+(আরাফ ১৪৩)। জবাব: "লান" চিরস্থায়ী নাকচ বোঝায় না। এখানে দুনিয়ার ক্ষেত্রে নাকচ। মূসা আ. রুইয়াত চেয়েছিলেন, যা অসম্ভব হলে নবী চাইতেন না। আল্লাহ পাহাড়কে স্থির থাকার শর্তে ঝুলিয়েছেন, যা সম্ভাবনাই বোঝায়।
+</p>
+
+<p><strong>শুবহা–৩ (আকলি):</strong> দেখার জন্য দিক, মুখোমুখি হওয়া, আলোকরশ্মি ও দূরত্ব প্রয়োজন। আল্লাহর ক্ষেত্রে এগুলো অসম্ভব।</p>
+
+<p>
+<strong>জবাব:</strong> এগুলো স্বভাবজাত অভ্যাসের শর্ত, আকলি আবশ্যকতা নয়। আল্লাহ এগুলো ছাড়াই দৃষ্টিশক্তি সৃষ্টি করতে পারেন। আখিরাতে দেখা হবে কোনো দিক-স্থান-উপমা ছাড়াই।
+</p>
+</div>
+
+
+<div class="section">
+<div class="section-title"><span class="part-label">(B)</span> রুইয়াতের সম্ভাবনা: নকলি ও আকলি দলিল</div>
+
+<div class="sub-title">আকলি দলিল:</div>
+
+<ol>
+<li>বস্তু দৃশ্যমান হওয়ার কারণ তার "উজুদ" (অস্তিত্ব)। আল্লাহ বিদ্যমান, তাই তাঁকে দেখা সম্ভব।</li>
+<li>মূসা আ.-এর আবেদন। অসম্ভব হলে একজন নবী তা চাইতেন না।</li>
+</ol>
+
+<div class="sub-title">নকলি দলিল:</div>
+
+<ol start="3">
+<li>
+<div class="arabic">وُجُوهٌ يَوْمَئِذٍ نَاضِرَةٌ إِلَىٰ رَبِّهَا نَاظِرَةٌ</div>
+(কিয়ামাহ ২২-২৩)।
+</li>
+
+<li>
+<div class="arabic">لِلَّذِينَ أَحْسَنُوا الْحُسْنَىٰ وَزِيَادَةٌ</div>
+(ইউনুস ২৬)। হাদিসে "যিয়াদাহ" এর ব্যাখ্যা আল্লাহর দর্শন (মুসলিম)।
+</li>
+
+<li>
+হাদিস: "তোমরা অবশ্যই তোমাদের রবকে দেখবে, যেমন পূর্ণিমার চাঁদ দেখো; তাঁকে দেখতে তোমাদের কষ্ট হবে না" (বুখারী-মুসলিম, জারীর রা.)।
+</li>
+</ol>
+</div>
+
+
+<div class="section">
+<div class="section-title"><span class="part-label">(C)</span> আখিরাতে মুমিনরা কি রবকে দেখবে? মতভেদ ও তারজীহ</div>
+
+<p>
+<strong>উত্তর: সংক্ষিপ্ত সিদ্ধান্ত:</strong> হ্যাঁ, মুমিনরা আখিরাতে আল্লাহকে দেখবে।
+</p>
+
+<p>
+<strong>• আহলুস সুন্নাহ (হানাফী ও সকল ইমাম):</strong> আখিরাতে মুমিনরা চোখে দেখবে, কোনো উপমা বা ধরণ-নির্ধারণ ছাড়া (بلا كيف ولا تشبيه)। ইমাম আবু হানিফা রহ.-ও ফিকহুল আকবারে এই মত দিয়েছেন। এটি আকল দ্বারা সম্ভব এবং নকল দ্বারা ওয়াজিব।
+</p>
+
+<p>
+<strong>• মুতাযিলা:</strong> আখিরাতেও দেখা সম্ভব নয়।
+</p>
+
+<p class="highlight">
+<strong>তারজীহ:</strong> আহলুস সুন্নাহর মতই অগ্রগণ্য, কারণ তা কুরআন, বিপুল হাদিস ও সাহাবীদের ইজমা দ্বারা প্রমাণিত।
+</p>
+
+<p>
+<strong>অতিরিক্ত:</strong> দুনিয়ায় জাগ্রত অবস্থায় রুইয়াত নিয়ে ইখতিলাফ আছে। জমহুরের মতে দুনিয়ায় কেউ দেখেনি, তবে মিরাজে নবী ﷺ-এর বিষয়ে সাহাবীদের মতভেদ আছে।
+</p>
+</div>
+
+</section>
+
+
+<!-- ================= QUESTION 5 ================= -->
+
+<section class="reveal">
+
+<div class="question">
+ প্রশ্ন–৫: قوله: "وفي دعاء الأحياء للأموات وصدقتهم نفع لهم ..." 
+</div>
+
+<div class="section">
+<div class="section-title"><span class="part-label">(A)</span> শাকল ও তরজমা</div>
+
+<div class="sub-title">(১) শাকল:</div>
+
+<div class="arabic">
+وَفِي دُعَاءِ الْأَحْيَاءِ لِلْأَمْوَاتِ وَصَدَقَتِهِمْ - أَيْ صَدَقَةِ الْأَحْيَاءِ عَنْهُمْ أَيْ عَنِ الْأَمْوَاتِ - نَفْعٌ لَهُمْ - أَيْ لِلْأَمْوَاتِ - خِلَافًا لِلْمُعْتَزِلَةِ، تَمَسُّكًا بِأَنَّ الْقَضَاءَ لَا يَتَبَدَّلُ، فَكُلُّ نَفْسٍ مَرْهُونَةٌ بِمَا كَسَبَتْ وَالْمَرْءُ مَجْزِيٌّ بِعَمَلِهِ لَا بِعَمَلِ غَيْرِهِ، وَلَنَا مَا وَرَدَ فِي الْأَحَادِيثِ الصِّحَاحِ ...
+</div>
+
+<div class="sub-title">(২) তরজমা:</div>
+
+<p class="translation">
+উত্তর: জীবিতদের দোয়া ও মৃতদের পক্ষ থেকে সদকায় মৃতদের উপকার হয়। মুতাযিলারা এর বিরোধী। তাদের দলিল: কাযা (তাকদীর) পরিবর্তন হয় না; প্রত্যেক ব্যক্তি নিজের কামাইয়ের জিম্মাদার; মানুষ নিজের আমলেরই প্রতিদান পায়, অন্যের আমলের নয়। আর আমাদের দলিল সহীহ হাদিসসমূহ...
+</p>
+</div>
+
+
+<div class="section">
+<div class="section-title"><span class="part-label">(B)</span> আহলুস সুন্নাহর দলিল</div>
+
+<ol>
+<li>
+<strong>কুরআন:</strong>
+<div class="arabic">وَالَّذِينَ جَاءُوا مِن بَعْدِهِمْ يَقُولُونَ رَبَّنَا اغْفِرْ لَنَا وَلِإِخْوَانِنَا الَّذِينَ سَبَقُونَا بِالْإِيمَانِ</div>
+(হাশর ১০)।
+</li>
+
+<li>
+<strong>কুরআন:</strong>
+<div class="arabic">وَاسْتَغْفِرْ لِذَنبِكَ وَلِلْمُؤْمِنِينَ وَالْمُؤْمِنَاتِ</div>
+(মুহাম্মাদ ১৯)।
+</li>
+
+<li>
+<strong>হাদিস:</strong> সন্তান মারা গেলে তিন আমল ছাড়া সব বন্ধ হয়—সদকায়ে জারিয়া, উপকারী ইলম, ও নেক সন্তান যে দোয়া করে (মুসলিম)।
+</li>
+
+<li>
+<strong>হাদিস:</strong> সা'দ ইবনে উবাদা রা.-এর মা মারা গেলে তিনি জিজ্ঞেস করলেন, "আমি কি তাঁর পক্ষ থেকে সদকা করতে পারি?" নবী ﷺ বললেন, "হ্যাঁ" (বুখারী-মুসলিম)।
+</li>
+
+<li>
+<strong>জানাযার নামাযই</strong> মৃতের জন্য দোয়া, যা মুতাওয়াতির আমল।
+</li>
+
+<li>
+<strong>ইজমা:</strong> উম্মত যুগ যুগ ধরে মৃতদের জন্য দোয়া ও ঈসালে সওয়াব করে আসছে।
+</li>
+</ol>
+</div>
+
+
+<div class="section">
+<div class="section-title"><span class="part-label">(C)</span> মুতাযিলাদের দলিল ও জবাব</div>
+
+<div class="sub-title">(১) মুতাযিলাদের দলিল</div>
+
+<ol>
+<li>
+<div class="arabic">وَأَن لَّيْسَ لِلْإِنسَانِ إِلَّا مَا سَعَىٰ</div>
+(নাজম ৩৯)।
+</li>
+
+<li>
+<div class="arabic">كُلُّ نَفْسٍ بِمَا كَسَبَتْ رَهِينَةٌ</div>
+(মুদ্দাসসির ৩৮)।
+</li>
+
+<li>
+<strong>الْقَضَاءُ لَا يَتَبَدَّلُ</strong> ("مَا يُبَدَّلُ الْقَوْلُ لَدَيَّ", কাফ ২৯)। অর্থাৎ ফয়সালা নির্ধারিত, দোয়ায় বদলায় না।
+</li>
+
+<li>মানুষ নিজের আমলেরই প্রতিদান পায়।</li>
+</ol>
+
+<div class="sub-title">(২) জবাব</div>
+
+<ol>
+<li>
+"ليس للإنسان" আয়াতে ন্যায়বিচারের নীতি বলা হয়েছে, অর্থাৎ নিজের আমলের হক পাওনা। কিন্তু আল্লাহ নিজ ফযলে অন্যের আমলের সওয়াবও পৌঁছাতে পারেন। (কেউ বলেছেন আয়াতটি পূর্ববর্তী শরীয়তের বিধান।)
+</li>
+
+<li>
+কাযা পরিবর্তন হয় না—সত্য। কিন্তু আল্লাহর ফয়সালা এমনই যে, এই ব্যক্তি অমুকের দোয়ায় ক্ষমা পাবে। তাই দোয়াও কাযার অংশ।
+</li>
+
+<li>
+দোয়াকারী নিজেও একটি আমল করেছে, আর তার ফল আল্লাহর দানে মৃতের কাছে পৌঁছায়।
+</li>
+</ol>
+</div>
+
+
+<div class="section">
+<div class="section-title"><span class="part-label">(D)</span> কাফিরের দোয়া কি কবুল হয়?</div>
+
+<p>
+<strong>উত্তর: সংক্ষিপ্ত সিদ্ধান্ত:</strong> দুনিয়াবী বিষয়ে কাফিরের দোয়া কবুল হতে পারে, কিন্তু আখিরাতে নাজাত বা মাগফিরাতের জন্য তার দোয়া কবুল হয় না।
+</p>
+
+<ol>
+<li>
+<strong>দলিল:</strong> ইবলিস দোয়া করল
+<div class="arabic">أَنظِرْنِي إِلَىٰ يَوْمِ يُبْعَثُونَ</div>
+আল্লাহ বললেন,
+<div class="arabic">إِنَّكَ مِنَ الْمُنظَرِينَ</div>
+(আরাফ ১৪-১৫)।
+</li>
+
+<li>
+<div class="arabic">فَإِذَا رَكِبُوا فِي الْفُلْكِ دَعَوُا اللَّهَ مُخْلِصِينَ لَهُ الدِّينَ فَلَمَّا نَجَّاهُمْ إِلَى الْبَرِّ</div>
+(আনকাবুত ৬৫)। আল্লাহ তাদের দোয়া কবুল করে নাজাত দিলেন।
+</li>
+
+<li>
+<div class="arabic">وَمَا دُعَاءُ الْكَافِرِينَ إِلَّا فِي ضَلَالٍ</div>
+(রাদ ১৪)। অর্থাৎ আখিরাতে তাদের দোয়ায় কোনো ফায়দা নেই।
+</li>
+
+<li>
+কাফিরের জন্য মাগফিরাত কামনা নিষিদ্ধ (তাওবা ১১৩)।
+</li>
+</ol>
+
+<p class="highlight">
+কাফির মারা গেলে জীবিতদের দোয়া ও সদকাও তার কাজে আসে না।
+</p>
+</div>
+
+</section>
+
+
+<footer class="footer">
+শরহুল আকায়েদ আন-নাসাফিয়্যাহ — ১৪৪৩ হি. প্রশ্নপত্র
+</footer>
+
+</main>
+
+
+<script>
+/* =========================
+   PDF DOWNLOAD / PRINT
+   ========================= */
+function downloadPDF(){
+    window.print();
+}
+
+/* =========================
+   SCROLL ANIMATION
+   ========================= */
+const items = document.querySelectorAll(".reveal");
+
+const observer = new IntersectionObserver(
+    entries => {
+        entries.forEach(entry => {
+            if(entry.isIntersecting){
+                entry.target.classList.add("show");
             }
         });
-    </script>
+    },
+    {
+        threshold:0.08
+    }
+);
+
+items.forEach(item => observer.observe(item));
+
+/* প্রথম অংশ সঙ্গে সঙ্গে দেখানো */
+window.addEventListener("load",()=>{
+    document.querySelector(".cover")?.classList.add("show");
+});
+</script>
+
 </body>
 </html>

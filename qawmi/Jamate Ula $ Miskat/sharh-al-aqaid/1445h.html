@@ -1,128 +1,954 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>শরহুল আকায়েদ আন-নাসাফিয়্যাহ — ১৪৪৫ হি.</title>
 
-    <!-- Google Fonts for Bengali & English -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Inter:wght@700;900&display=swap" rel="stylesheet">
+<style>
+@font-face{
+    font-family:"Kalpurush";
+    src:local("Kalpurush");
+}
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-    <style>
-        body {
-            font-family: 'Hind Siliguri', 'Inter', sans-serif;
-            background-color: #030712;
-            overflow: hidden;
-        }
+html{
+    scroll-behavior:smooth;
+}
 
-        /* Gradient glowing animation on text */
-        .glow-text {
-            background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 50%, #38bdf8 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shine 6s linear infinite;
-        }
+body{
+    font-family:"Kalpurush","Noto Sans Bengali","SolaimanLipi",Arial,sans-serif;
+    font-size:25px;
+    line-height:1.85;
+    background:#f8f9fb;
+    color:#20242a;
+    overflow-x:hidden;
+}
 
-        @keyframes shine {
-            0% { background-position: 0% center; }
-            50% { background-position: 100% center; }
-            100% { background-position: 0% center; }
-        }
+/* ---------- TOP ---------- */
+.topbar{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    display:flex;
+    justify-content:flex-end;
+    padding:14px 24px;
+    background:rgba(255,255,255,.92);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid #e2e5ea;
+    box-shadow:0 3px 18px rgba(0,0,0,.06);
+}
 
-        /* Keyframes for initial entry: Floating in from below with opacity */
-        @keyframes floatIn {
-            0% {
-                opacity: 0;
-                transform: translateY(40px) scale(0.95);
-                filter: blur(8px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-                filter: blur(0);
-            }
-        }
+.pdf-btn{
+    border:0;
+    padding:10px 20px;
+    border-radius:12px;
+    font-family:inherit;
+    font-size:19px;
+    font-weight:bold;
+    color:white;
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    cursor:pointer;
+    box-shadow:0 7px 18px rgba(37,99,235,.25);
+    transition:.25s ease;
+}
 
-        /* Continuous subtle float effect once arrived */
-        @keyframes subtleFloat {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-8px);
-            }
-        }
+.pdf-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 24px rgba(37,99,235,.35);
+}
 
-        /* Animation class for Heading */
-        .animate-heading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards,
-                subtleFloat 6s ease-in-out 1.2s infinite;
-        }
+.pdf-btn:active{
+    transform:scale(.96);
+}
 
-        /* Animation class for Subheading (staggered delay) */
-        .animate-subheading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards,
-                subtleFloat 6s ease-in-out 1.55s infinite;
-            opacity: 0; /* Hidden until animation kicks in */
-        }
+/* ---------- BOOK ---------- */
+.book{
+    width:min(1180px,94%);
+    margin:35px auto 70px;
+}
 
-        /* Ambient background lighting */
-        .ambient-glow {
-            position: absolute;
-            width: 450px;
-            height: 450px;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(3, 7, 18, 0) 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            transition: left 0.4s ease-out, top 0.4s ease-out;
-        }
-    </style>
+.cover{
+    background:linear-gradient(145deg,#ffffff,#f1f5ff);
+    border:1px solid #e1e6ef;
+    border-radius:24px;
+    padding:50px 35px;
+    text-align:center;
+    margin-bottom:30px;
+    box-shadow:0 12px 35px rgba(30,41,59,.08);
+}
+
+.cover h1{
+    font-size:34px;
+    line-height:1.5;
+    color:#172554;
+    margin-bottom:8px;
+}
+
+.cover p{
+    color:#475569;
+    font-size:23px;
+}
+
+/* ---------- QUESTION ---------- */
+.question{
+    background:#fff;
+    border:1px solid #e2e8f0;
+    border-radius:20px;
+    margin:30px 0;
+    overflow:hidden;
+    box-shadow:0 8px 28px rgba(15,23,42,.06);
+}
+
+.question-title{
+    padding:18px 24px;
+    background:linear-gradient(90deg,#eef4ff,#f8f5ff);
+    border-bottom:1px solid #dbe3ef;
+    color:#172554;
+    font-size:27px;
+    font-weight:bold;
+}
+
+.arabic-question{
+    padding:20px 25px;
+    direction:rtl;
+    text-align:right;
+    font-family:"Amiri","Traditional Arabic","Noto Naskh Arabic",serif;
+    font-size:27px;
+    line-height:2;
+    color:#263238;
+    background:#fcfcfd;
+}
+
+/* ---------- SECTION ---------- */
+.section{
+    padding:25px 28px 30px;
+}
+
+.section-title{
+    font-size:27px;
+    font-weight:bold;
+    color:#075985;
+    margin:10px 0 18px;
+    padding-bottom:8px;
+    border-bottom:2px solid #bae6fd;
+}
+
+.sub-title{
+    font-size:25px;
+    font-weight:bold;
+    color:#4338ca;
+    margin:20px 0 8px;
+}
+
+.answer{
+    margin:7px 0 17px;
+    text-align:justify;
+}
+
+.answer strong{
+    color:#111827;
+}
+
+.arabic{
+    direction:rtl;
+    text-align:right;
+    font-family:"Amiri","Traditional Arabic","Noto Naskh Arabic",serif;
+    font-size:28px;
+    line-height:2.15;
+    padding:18px 20px;
+    margin:12px 0 20px;
+    border-right:5px solid #6366f1;
+    background:#f8faff;
+    border-radius:8px;
+}
+
+/* ---------- LIST ---------- */
+.answer ul,
+.answer ol{
+    padding-left:42px;
+    margin:7px 0 15px;
+}
+
+.answer li{
+    margin:5px 0;
+}
+
+.bullet{
+    margin:5px 0;
+}
+
+/* ---------- WARNING ---------- */
+.warning{
+    margin:18px 0;
+    padding:13px 18px;
+    background:#fff8e7;
+    border-left:5px solid #f59e0b;
+    border-radius:9px;
+    color:#78350f;
+    font-size:22px;
+}
+
+/* ---------- DIVIDER ---------- */
+.divider{
+    height:2px;
+    background:linear-gradient(90deg,transparent,#cbd5e1,transparent);
+    margin:28px 0;
+}
+
+/* ---------- ANIMATION ---------- */
+.reveal{
+    opacity:0;
+    transform:translateY(25px);
+    transition:
+        opacity .8s ease,
+        transform .8s ease;
+}
+
+.reveal.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* ---------- MOBILE ---------- */
+@media(max-width:800px){
+    body{
+        font-size:21px;
+        line-height:1.75;
+    }
+
+    .book{
+        width:96%;
+        margin-top:20px;
+    }
+
+    .cover{
+        padding:35px 18px;
+        border-radius:17px;
+    }
+
+    .cover h1{
+        font-size:28px;
+    }
+
+    .cover p{
+        font-size:20px;
+    }
+
+    .question{
+        border-radius:15px;
+        margin:22px 0;
+    }
+
+    .question-title{
+        font-size:23px;
+        padding:14px 17px;
+    }
+
+    .arabic-question,
+    .arabic{
+        font-size:23px;
+        line-height:2;
+    }
+
+    .section{
+        padding:18px 17px 23px;
+    }
+
+    .section-title{
+        font-size:23px;
+    }
+
+    .sub-title{
+        font-size:22px;
+    }
+
+    .warning{
+        font-size:19px;
+    }
+
+    .pdf-btn{
+        font-size:17px;
+        padding:8px 14px;
+    }
+}
+
+/* ---------- PRINT / PDF ---------- */
+@media print{
+
+    @page{
+        size:A4 portrait;
+        margin:14mm 12mm 15mm 12mm;
+    }
+
+    body{
+        background:white !important;
+        color:#000 !important;
+        font-size:18px;
+        line-height:1.65;
+    }
+
+    .topbar{
+        display:none !important;
+    }
+
+    .book{
+        width:100%;
+        margin:0;
+    }
+
+    .cover,
+    .question{
+        box-shadow:none !important;
+        border:1px solid #999;
+    }
+
+    .cover{
+        margin-bottom:20px;
+        border-radius:0;
+        background:white !important;
+    }
+
+    .question{
+        border-radius:0;
+        break-inside:auto;
+        page-break-inside:auto;
+    }
+
+    .question-title{
+        background:white !important;
+        color:#000 !important;
+        border-bottom:1px solid #777;
+    }
+
+    .arabic-question,
+    .arabic{
+        background:white !important;
+        color:#000 !important;
+    }
+
+    .section-title,
+    .sub-title{
+        color:#000 !important;
+    }
+
+    .warning{
+        background:white !important;
+        color:#000 !important;
+        border-left:3px solid #000;
+    }
+
+    .reveal{
+        opacity:1 !important;
+        transform:none !important;
+    }
+
+    .question-title,
+    .section-title,
+    .sub-title{
+        break-after:avoid;
+        page-break-after:avoid;
+    }
+
+    p, li{
+        break-inside:auto;
+    }
+}
+</style>
 </head>
-<body class="min-h-screen flex items-center justify-center relative select-none px-4">
 
-    <!-- Ambient glow center element -->
-    <div id="glow" class="ambient-glow top-1/2 left-1/2"></div>
+<body>
 
-    <!-- Centered minimal content with entry animations -->
-    <main class="text-center z-10 space-y-6 max-w-3xl mx-auto py-8 px-4">
-        
-        <!-- Main English Title -->
-        <h1 class="animate-heading text-5xl sm:text-7xl md:text-8xl font-black tracking-tight glow-text font-['Inter'] drop-shadow-lg">
-            Coming Soon...
-        </h1>
+<!-- PDF BUTTON -->
+<div class="topbar">
+    <button class="pdf-btn" onclick="downloadPDF()">
+        ⬇ Download PDF
+    </button>
+</div>
 
-        <!-- Bengali Subheading -->
-        <p class="animate-subheading text-xl sm:text-3xl md:text-4xl font-semibold text-emerald-400/90 leading-relaxed tracking-wide drop-shadow">
-            ইনশাআল্লাহ, খুব শীঘ্রই ডাটা যোগ করা হবে।
-        </p>
+<main class="book">
 
-    </main>
+    <!-- COVER -->
+    <section class="cover reveal">
+        <h1>শরহুল আকায়েদ আন-নাসাফিয়্যাহ</h1>
+        <p>১৪৪৫ হি. প্রশ্নপত্র ও উত্তর</p>
+    </section>
 
-    <script>
-        const glow = document.getElementById('glow');
 
-        // Mouse move interactive glow background
-        window.addEventListener('mousemove', (e) => {
-            glow.style.left = e.clientX + 'px';
-            glow.style.top = e.clientY + 'px';
-        });
+    <!-- ==================== QUESTION 1 ==================== -->
+    <section class="question reveal">
 
-        // Touch move interactive glow background for mobile screens
-        window.addEventListener('touchmove', (e) => {
-            if (e.touches.length > 0) {
-                glow.style.left = e.touches[0].clientX + 'px';
-                glow.style.top = e.touches[0].clientY + 'px';
+        <div class="question-title">
+            প্রশ্ন–১:
+        </div>
+
+        <div class="arabic-question">
+            قوله: "وهذا هو كلام القدماء ومعظم خلافياته مع الفرق الإسلامية خصوصا المعتزلة ... فقال الحسن: قد اعتزل عنا"
+        </div>
+
+        <div class="section">
+
+            <div class="section-title">
+                (A) শাকল ও তরজমা
+            </div>
+
+            <div class="sub-title">(১) শাকল:</div>
+
+            <div class="arabic">
+                وَهَذَا هُوَ كَلَامُ الْقُدَمَاءِ وَمُعْظَمُ خِلَافِيَّاتِهِ مَعَ الْفِرَقِ الْإِسْلَامِيَّةِ خُصُوصًا الْمُعْتَزِلَةِ، لِأَنَّهُمْ أَوَّلُ فِرْقَةٍ أَسَّسُوا قَوَاعِدَ الْخِلَافِ لِمَا وَرَدَ بِهِ ظَاهِرُ السُّنَّةِ وَجَرَى عَلَيْهِ جَمَاعَةُ الصَّحَابَةِ رِضْوَانُ اللهِ عَلَيْهِمْ أَجْمَعِينَ فِي بَابِ الْعَقَائِدِ، وَذَلِكَ لِأَنَّ رَئِيسَهُمْ وَاصِلَ بْنَ عَطَاءٍ اعْتَزَلَ عَنِ الْحَسَنِ الْبَصْرِيِّ رَحِمَهُ اللهُ وَيُقَرِّرُ أَنَّ مَنِ ارْتَكَبَ الْكَبِيرَةَ لَيْسَ بِمُؤْمِنٍ وَلَا كَافِرٍ وَيُثْبِتُ الْمَنْزِلَةَ بَيْنَ الْمَنْزِلَتَيْنِ، فَقَالَ الْحَسَنُ: قَدِ اعْتَزَلَ عَنَّا
+            </div>
+
+            <div class="sub-title">(২) তরজমা:</div>
+
+            <div class="answer">
+                <strong>উত্তর:</strong>
+                এটাই পূর্ববর্তীদের কালাম। এর অধিকাংশ মতবিরোধ ইসলামী ফিরকাগুলোর সঙ্গে, বিশেষত মুতাযিলাদের সঙ্গে। কারণ তারাই প্রথম দল, যারা আকীদার ক্ষেত্রে সুন্নাহর বাহ্যিক বক্তব্য এবং সাহাবীদের জামাআতের অনুসৃত পথের বিরুদ্ধে মতভেদের ভিত্তি স্থাপন করেছে। এর কারণ, তাদের নেতা ওয়াসিল ইবনে আতা হাসান বসরী রহ.-এর মজলিস থেকে আলাদা হয়ে গেলেন এবং দাবি করলেন, কবীরা গুনাহকারী মুমিনও নয়, কাফিরও নয়, বরং সে "দুই স্তরের মাঝখানের স্তরে"। তখন হাসান বসরী রহ. বললেন, "সে আমাদের থেকে আলাদা হয়ে গেল।"
+            </div>
+
+
+            <div class="section-title">(B) ইসলামী ফিরকা, মুতাযিলা নামকরণ ও তাদের নিজেদের নাম</div>
+
+            <div class="sub-title">(১) আল-ফিরাকুল ইসলামিয়্যাহ (ইসলামী ফিরকা) দ্বারা উদ্দেশ্য</div>
+
+            <div class="answer">
+                <strong>উত্তর:</strong>
+                যে দলগুলো নিজেদের ইসলামের দিকে সম্পৃক্ত করে এবং কালিমা পড়ে, কিন্তু আকীদার মূলনীতিতে আহলুস সুন্নাহর সঙ্গে ভিন্নমত পোষণ করে। যেমন মুতাযিলা, খারিজী, শিয়া, মুরজিয়া, জাবরিয়্যাহ, কাদরিয়্যাহ, মুশাব্বিহা ইত্যাদি।
+            </div>
+
+            <div class="answer">
+                (হাদিসে উম্মতের ৭৩ ফিরকায় বিভক্ত হওয়ার সংবাদ আছে।)
+            </div>
+
+
+            <div class="sub-title">(২) মুতাযিলা নামকরণের কারণ</div>
+
+            <div class="answer">
+                <strong>উত্তর:</strong>
+                <div class="bullet">• ওয়াসিল ইবনে আতা হাসান বসরী রহ.-এর দরসে ছিলেন। একজন প্রশ্ন করল, "কবীরা গুনাহকারী কি মুমিন, না কাফির?" হাসান রহ. ভাবছিলেন। এই ফাঁকে ওয়াসিল বললেন, "সে মুমিনও নয়, কাফিরও নয়, বরং দুই স্তরের মাঝখানে।" তারপর তিনি মসজিদের অন্য খুঁটির কাছে গিয়ে আলাদা মজলিস করলেন।</div>
+                <div class="bullet">• হাসান রহ. বললেন: "اعتزل عنا واصل" (ওয়াসিল আমাদের থেকে আলাদা হয়ে গেল)। এ থেকে তাদের নাম "মুতাযিলা"।</div>
+                <div class="bullet">• অন্য মত: তারা উম্মতের ইজমা ও সত্য পথ থেকে আলাদা হয়েছে, তাই এই নাম।</div>
+            </div>
+
+
+            <div class="sub-title">(৩) তারা নিজেদের কী নামে ডাকত ও কেন</div>
+
+            <div class="answer">
+                <strong>উত্তর:</strong>
+                তারা নিজেদের বলত "আহলুল আদল ওয়াত তাওহীদ" (আসহাবুল আদল ওয়াত তাওহীদ)।
+                <br><br>
+                <strong>কারণ:</strong>
+                <div class="bullet">• "আদল": তাদের দাবি, আল্লাহ বান্দার মন্দ কাজ সৃষ্টি করেন না এবং বান্দাকে অন্যায়ের শাস্তি দেওয়া তাঁর আদলের পরিপন্থী। তাই বান্দা নিজের কাজের স্রষ্টা।</div>
+                <div class="bullet">• "তাওহীদ": তাদের দাবি, আল্লাহর সিফাত অস্বীকার করলেই তাওহীদ রক্ষা পায়, কারণ সিফাত মানলে একাধিক কাদীম সাব্যস্ত হয়।</div>
+            </div>
+
+            <div class="answer">
+                (প্রকৃতপক্ষে এ দাবি ভুল। আহলুস সুন্নাহর কাছে তারা কাদরিয়্যাহ ও মুআত্তিলা হিসেবেও পরিচিত।)
+            </div>
+
+
+            <div class="section-title">(C) ইমাম আবুল হাসান আশআরী রহ.-এর ই'তিযাল ত্যাগের কারণ ও মুনাযারা</div>
+
+            <div class="sub-title">(১) পরিচয়</div>
+
+            <div class="answer">
+                <strong>উত্তর:</strong>
+                ইমাম আবুল হাসান আলী ইবনে ইসমাঈল আশআরী (২৬০–৩২৪ হি.) চল্লিশ বছর মুতাযিলী মতে ছিলেন। তিনি ছিলেন মুতাযিলা নেতা আবু আলী জুব্বাঈর ছাত্র ও জামাতা।
+            </div>
+
+
+            <div class="sub-title">(২) ত্যাগের কারণ</div>
+
+            <div class="answer">
+                <strong>উত্তর:</strong>
+                <div class="bullet">• উস্তাদের সঙ্গে আলোচনায় মুতাযিলী যুক্তির দুর্বলতা স্পষ্ট হওয়া।</div>
+                <div class="bullet">• বর্ণিত আছে, তিনি স্বপ্নে নবী ﷺ-কে দেখেছিলেন, যিনি তাঁকে সুন্নাহর পক্ষে দলিল দিয়ে কাজ করতে বললেন। (এ বর্ণনা প্রসিদ্ধ, তবে সনদগত যাচাই আলাদা)</div>
+            </div>
+
+
+            <div class="sub-title">(৩) জুব্বাঈর সঙ্গে মুনাযারা (প্রসিদ্ধ ঘটনা)</div>
+
+            <div class="answer">
+                <strong>উত্তর:</strong>
+                আশআরী: তিন ভাই আছে। একজন মুমিন ও পরহেযগার, একজন কাফির ও পাপী, আর একজন শৈশবে মারা গেছে। আখিরাতে তাদের অবস্থা কী হবে?
+                <br><br>
+                জুব্বাঈ: মুমিন জান্নাতের উঁচু স্তরে, কাফির জাহান্নামে, আর শিশু নাজাতপ্রাপ্ত (শাস্তি নেই)।
+                <br><br>
+                আশআরী: শিশু যদি চায় মুমিন ভাইয়ের স্তরে পৌঁছতে, তা কি সম্ভব?
+                <br><br>
+                জুব্বাঈ: না। সে স্তর ইবাদত-আনুগত্যের ফল, শিশু তা করেনি।
+                <br><br>
+                আশআরী: শিশু বলবে, "এটা আমার দোষ নয়, আপনি আমাকে দীর্ঘ জীবন দেননি, যাতে আমি আনুগত্য করতে পারি।"
+                <br><br>
+                জুব্বাঈ: আল্লাহ বলবেন, "আমি জানতাম বড় হলে তুমি পাপ করবে, তাই তোমার জন্য শৈশবে মৃত্যুই কল্যাণকর ছিল।"
+                <br><br>
+                আশআরী: তখন কাফির ভাই বলবে, "হে রব, আপনি তো আমার ভবিষ্যৎ জানতেন, আমাকেও শৈশবে মৃত্যু দিলেন না কেন?"
+                <br><br>
+                এ প্রশ্নের কোনো উত্তর জুব্বাঈর কাছে ছিল না। এভাবে মুতাযিলাদের "আল্লাহর ওপর সর্বাধিক কল্যাণকর কাজ করা ওয়াজিব" (اصلح)-নীতির দুর্বলতা প্রকাশ পেল।
+            </div>
+
+            <div class="warning">
+                ⚠️ ঘটনার শব্দবিন্যাস উৎসভেদে ভিন্ন, মূল ভাব এটাই।
+            </div>
+
+
+            <div class="section-title">(D) আহলুস সুন্নাহ ওয়াল জামাআত কারা ও নামের কারণ</div>
+
+            <div class="sub-title">(১) তারা কারা?</div>
+
+            <div class="answer">
+                <strong>উত্তর:</strong>
+                যারা আকীদা ও আমলে রাসূল ﷺ ও সাহাবায়ে কেরামের পথে চলেন। হাদিসে আছে, নাজাতপ্রাপ্ত দল তারা, "যারা আমি ও আমার সাহাবীদের আদর্শে আছে" (তিরমিযী)। আকীদার ক্ষেত্রে তাঁরা আশআরী ও মাতুরিদী।
+            </div>
+
+            <div class="sub-title">(২) নামের কারণ</div>
+
+            <div class="answer">
+                <strong>উত্তর:</strong>
+                <div class="bullet">• "সুন্নাহ": রাসূল ﷺ-এর তরীকা অনুসরণ করেন।</div>
+                <div class="bullet">• "জামাআত": সাহাবীদের জামাআত ও উম্মতের সংখ্যাগরিষ্ঠ সত্যপন্থী জামাআতের সঙ্গে থাকেন।</div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ==================== QUESTION 2 ==================== -->
+    <section class="question reveal">
+
+        <div class="question-title">প্রশ্ন–২:</div>
+
+        <div class="arabic-question">
+            قوله: "وأما العقل وهو قوة للنفس ... فهو سبب للعلم"
+        </div>
+
+        <div class="section">
+
+            <div class="section-title">(A) শাকল, তরজমা ও আকলকে সবব বলে সরীহ করার কারণ</div>
+
+            <div class="sub-title">(১) শাকল:</div>
+
+            <div class="arabic">
+                وَأَمَّا الْعَقْلُ وَهُوَ قُوَّةٌ لِلنَّفْسِ بِهَا تَسْتَعِدُّ لِلْعُلُومِ وَالْإِدْرَاكَاتِ، وَهُوَ الْمَعْنِيُّ بِقَوْلِهِمْ: غَرِيزَةٌ يَتْبَعُهَا الْعِلْمُ بِالضَّرُورِيَّاتِ عِنْدَ سَلَامَةِ الْآلَاتِ، وَقِيلَ جَوْهَرٌ تُدْرَكُ بِهِ الْغَائِبَاتُ بِالْوَسَائِطِ وَالْمَحْسُوسَاتُ بِالْمُشَاهَدَةِ، فَهُوَ سَبَبٌ لِلْعِلْمِ
+            </div>
+
+            <div class="sub-title">(২) তরজমা:</div>
+
+            <div class="answer">
+                <strong>উত্তর:</strong>
+                আকল হলো আত্মার এমন শক্তি, যার মাধ্যমে আত্মা ইলম ও উপলব্ধি অর্জনের জন্য প্রস্তুত হয়। এটাই সেই কথার উদ্দেশ্য, যাতে বলা হয়: "আকল এমন সহজাত শক্তি, যার পরে ইন্দ্রিয় সুস্থ থাকলে অনিবার্য বিষয়ের ইলম আসে।" আরেকটি মত: আকল এমন জাওহার, যা দ্বারা অদৃশ্য বিষয় মাধ্যমের সাহায্যে এবং দৃশ্যমান বিষয় প্রত্যক্ষভাবে জানা যায়। অতএব আকল ইলমের একটি সবব।
+            </div>
+
+            <div class="sub-title">(৩) আকলকে "সবব" বলে সরীহ করার কারণ</div>
+
+            <div class="answer">
+                <strong>উত্তর:</strong>
+                কারণ কিছু লোক (যেমন সুমানিয়্যাহ) নযর ও আকলের মাধ্যমে ইলম অর্জনকে অস্বীকার করে। তাদের খণ্ডনের জন্য শারেহ স্পষ্ট করেছেন যে আকল ইলমের সবব।
+            </div>
+
+            <div class="warning">
+                ⚠️ কারণের ভাষা কিতাব দেখে মিলিয়ে নিন।
+            </div>
+
+
+            <div class="section-title">(B) দুই সংজ্ঞার ব্যাখ্যা ও পার্থক্য</div>
+
+            <div class="sub-title">(১) প্রথম সংজ্ঞা</div>
+
+            <div class="answer">
+                <strong>উত্তর:</strong>
+                আকল হলো "কুওয়া" বা "গারীযাহ"—আত্মার সহজাত শক্তি। ইন্দ্রিয় সুস্থ থাকলে তার পরে প্রথম পর্যায়ের অনিবার্য জ্ঞান আসে, যেমন "সমগ্র তার অংশের চেয়ে বড়"। এই শক্তি দ্বারা আত্মা চিন্তা-গবেষণা ও ইলম অর্জনের উপযোগী হয়।
+            </div>
+
+            <div class="sub-title">(২) দ্বিতীয় সংজ্ঞা</div>
+
+            <div class="answer">
+                <strong>উত্তর:</strong>
+                আকল হলো "জাওহার" (স্বয়ংসম্পূর্ণ সত্তা), যা দ্বারা অদৃশ্য বস্তু দলিল-প্রমাণের মাধ্যমে এবং ইন্দ্রিয়গ্রাহ্য বস্তু সরাসরি প্রত্যক্ষ করে জানা যায়। এটি দার্শনিকদের পরিভাষায় বস্তুনিরপেক্ষ সত্তা।
+            </div>
+
+            <div class="sub-title">(৩) পার্থক্য</div>
+
+            <div class="answer">
+                <strong>উত্তর:</strong>
+                <div class="bullet">• প্রথম সংজ্ঞায় আকল "কুওয়া" (গুণ বা শক্তি), আর দ্বিতীয়টিতে "জাওহার" (সত্তা)।</div>
+                <div class="bullet">• প্রথমটি মুতাকাল্লিমীনের পরিভাষা, দ্বিতীয়টি দার্শনিকদের।</div>
+                <div class="bullet">• প্রথমটিতে আকলের কাজ ইলমের প্রস্তুতি, দ্বিতীয়টিতে ইদরাক বা উপলব্ধি।</div>
+            </div>
+
+
+            <div class="section-title">(C) নযরের ফায়দার ওপর দাওরের আপত্তি ও জবাব</div>
+
+            <div class="sub-title">(১) আপত্তি</div>
+
+            <div class="answer">
+                <strong>উত্তর:</strong>
+                "নযর ইলম দেয়" এ কথা যদি যরূরী হয়, তাহলে এ নিয়ে মতভেদ হতো না, যেমন "এক হলো দুইয়ের অর্ধেক" নিয়ে নেই। আর যদি নযরী হয়, তাহলে নযরের ফায়দা প্রমাণে নযরের আশ্রয় নিতে হয়। এতে "নযর দ্বারা নযর প্রমাণ" হয়, যা দাওর (চক্রাকার যুক্তি), আর দাওর বাতিল।
+            </div>
+
+            <div class="sub-title">(২) জবাব</div>
+
+            <div class="answer">
+                <strong>উত্তর:</strong>
+                আমরা বলি, বিষয়টি নযরী। কিন্তু দাওর আবশ্যক হয় না। কারণ এক নযর দ্বারা অন্য নযরের ফায়দা প্রমাণ করা হয়েছে, নিজের দ্বারা নিজেকে প্রমাণ করা হয়নি। অথবা বলা যায়, এটি যরূরী, আর কিছু লোকের মতভেদ (যেমন সুফসতাইয়্যাহ ও সুমানিয়্যাহর) যরূরী বিষয়কে অস্বীকারযোগ্য করে না।
+            </div>
+
+            <div class="warning">
+                ⚠️ জবাবের ভাষা ও ক্রম কিতাবের সংস্করণ অনুযায়ী মিলিয়ে নিন।
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ==================== QUESTION 3 ==================== -->
+    <section class="question reveal">
+
+        <div class="question-title">প্রশ্ন–৩:</div>
+
+        <div class="arabic-question">
+            قوله: "والكلام وهي صفة أزلية عبر عنها بالنظم المسمى بالقرآن ..."
+        </div>
+
+        <div class="section">
+
+            <div class="section-title">(A) শাকল, তরজমা ও সিফাতে যাতিয়্যাহ</div>
+
+            <div class="sub-title">(১) শাকল:</div>
+
+            <div class="arabic">
+                وَالْكَلَامُ وَهِيَ صِفَةٌ أَزَلِيَّةٌ عُبِّرَ عَنْهَا بِالنَّظْمِ الْمُسَمَّى بِالْقُرْآنِ الْمُرَكَّبِ مِنَ الْحُرُوفِ، وَذَلِكَ لِأَنَّ كُلَّ مَنْ يَأْمُرُ وَيَنْهَى وَيُخْبِرُ يَجِدُ فِي نَفْسِهِ مَعْنًى ثُمَّ يَدُلُّ عَلَيْهِ بِالْعِبَارَةِ أَوِ الْكِتَابَةِ أَوِ الْإِشَارَةِ
+            </div>
+
+            <div class="sub-title">(২) তরজমা:</div>
+
+            <div class="answer">
+                <strong>উত্তর:</strong>
+                কালাম একটি আজালী সিফাত। কুরআন নামে পরিচিত বর্ণ-সম্বলিত বিন্যাস (নযম) দ্বারা তা প্রকাশ করা হয়েছে। কারণ যে-ই আদেশ, নিষেধ বা সংবাদ দেয়, সে নিজের অন্তরে একটি অর্থ অনুভব করে, তারপর ভাষা, লেখা বা ইশারা দ্বারা তা প্রকাশ করে।
+            </div>
+
+            <div class="sub-title">(৩) সিফাতে যাতিয়্যাহ কয়টি ও কী কী?</div>
+
+            <div class="answer">
+                <strong>উত্তর:</strong>
+                আল্লাহর সিফাতে যাতিয়্যাহ (সত্তাগত গুণ):
+                <ol>
+                    <li>হায়াত (জীবন)</li>
+                    <li>ইলম (জ্ঞান)</li>
+                    <li>কুদরত (ক্ষমতা)</li>
+                    <li>সামআ (শ্রবণ)</li>
+                    <li>বাসার (দর্শন)</li>
+                    <li>ইরাদা (ইচ্ছা)</li>
+                    <li>কালাম (কথা)</li>
+                    <li>তাকওয়ীন (সৃষ্টি করা)—মাতুরিদীদের মতে এটিও আজালী সিফাতে যাতিয়্যাহ।</li>
+                </ol>
+
+                আশআরীদের মতে সাতটি (তাকওয়ীন ছাড়া)। তাঁদের কাছে তাকওয়ীন ইরাদা ও কুদরতের অধীন।
+            </div>
+
+            <div class="warning">
+                ⚠️ গণনার বিন্যাস (বিশেষত ইরাদা ও মাশীআ, ফেলিয়া সিফাত) কিতাব দেখে মিলিয়ে নিন।
+            </div>
+
+
+            <div class="section-title">(B) কালাম, ইলম ও ইরাদা: এক নাকি ভিন্ন?</div>
+
+            <div class="answer">
+                <strong>উত্তর:</strong>
+                <strong>সংক্ষিপ্ত সিদ্ধান্ত:</strong> তিনটিই আলাদা সিফাত; এক নয়।
+                <br><br>
+                <strong>আহলুস সুন্নাহর দলিল:</strong>
+                <ol>
+                    <li>আল্লাহ আবু লাহাব ও ফিরআউনের মতো কাফিরদের ঈমানের আদেশ করেছেন (কালাম আছে) এবং জানেন যে তারা ঈমান আনবে না (ইলম আছে), অথচ তাদের ঈমান চাননি (ইরাদা নেই)। যদি কালাম ও ইরাদা এক হতো, আদেশ করলে ইচ্ছাও থাকত।</li>
+                    <li>ইবরাহীম আ.-কে ইসমাঈল আ.-কে যবেহ করার আদেশ দেওয়া হয়েছিল, কিন্তু তা বাস্তবায়নের ইচ্ছা ছিল না। এতে বোঝা যায় আদেশ (কালাম) ও ইচ্ছা আলাদা।</li>
+                    <li>আল্লাহ কুফরের ইলম রাখেন, কিন্তু তাতে সন্তুষ্ট নন। এতে ইলম ও ইরাদা-রেযা আলাদা প্রমাণিত হয়।</li>
+                </ol>
+                সুতরাং তিনটিই ভিন্ন, যদিও সবই কাদীম ও আল্লাহর যাতের সঙ্গে কায়েম।
+            </div>
+
+            <div class="warning">
+                ⚠️ উদাহরণের ক্রম ও ব্যাখ্যা কিতাব অনুযায়ী মিলিয়ে নিন।
+            </div>
+
+
+            <div class="section-title">(C) কালামে নফসী, শারেহের উদ্দেশ্য ও কালামের দলিল</div>
+
+            <div class="sub-title">(১) কালামে নফসীর অর্থ</div>
+
+            <div class="answer">
+                <strong>উত্তর:</strong>
+                আল্লাহর যাতের সঙ্গে কায়েম আজালী অর্থ, যা বর্ণ ও ধ্বনি থেকে পবিত্র। আমরা যেমন আদেশ-নিষেধ-সংবাদের সময় অন্তরে একটি অর্থ অনুভব করি, তারপর তা শব্দে প্রকাশ করি।
+            </div>
+
+            <div class="sub-title">(২) শারেহের উদ্দেশ্য (আখতালের কবিতা ও উমর রা.-এর কথা)</div>
+
+            <div class="answer">
+                <strong>উত্তর:</strong>
+                <div class="bullet">• আখতালের কবিতার ভাবার্থ: "কালাম আসলে অন্তরে থাকে, জিহ্বাকে কেবল তার নির্দেশক করা হয়েছে।" এতে প্রমাণ হয়, আরবরা অন্তরের অর্থকে "কালাম" বলত।</div>
+                <div class="bullet">• উমর রা.-এর কথা: "আমি মনে মনে একটি বক্তব্য প্রস্তুত করেছিলাম" (সাকীফায়ে বনী সাঈদার ঘটনায়)। এতে "মাকালা" শব্দ অন্তরের অর্থের ক্ষেত্রে ব্যবহৃত হয়েছে।</div>
+            </div>
+
+            <div class="answer">
+                এ দুটি থেকে শারেহ দেখাতে চান, কালামে নফসী আরবদের ব্যবহারে প্রচলিত, নতুন পরিভাষা নয়।
+            </div>
+
+            <div class="sub-title">(৩) আল্লাহর কালাম সাব্যস্ত হওয়ার দলিল</div>
+
+            <div class="answer">
+                <strong>উত্তর:</strong>
+                <ol>
+                    <li>কুরআন: "وَكَلَّمَ اللَّهُ مُوسَىٰ تَكْلِيمًا" (নিসা ১৬৪)।</li>
+                    <li>কুরআন: "حَتَّىٰ يَسْمَعَ كَلَامَ اللَّهِ" (তাওবা ৬)।</li>
+                    <li>ইজমা: উম্মত আল্লাহকে "মুতাকাল্লিম" বলে স্বীকার করেছে।</li>
+                    <li>আকলি দলিল: কালাম পূর্ণতার গুণ, আর তার অনুপস্থিতি (বোবা হওয়া) ত্রুটি। আল্লাহ ত্রুটি থেকে পবিত্র।</li>
+                    <li>কুরআনের শব্দ-বিন্যাস (নযম) আল্লাহর কালামের প্রকাশ, তাই তাকেও রূপকভাবে "কালামুল্লাহ" বলা হয়।</li>
+                </ol>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ==================== QUESTION 4 ==================== -->
+    <section class="question reveal">
+
+        <div class="question-title">প্রশ্ন–৪:</div>
+
+        <div class="arabic-question">
+            قوله: "والمقتول ميت بأجله"
+        </div>
+
+        <div class="section">
+
+            <div class="section-title">(A) আজালের অর্থ এবং আহলুস সুন্নাহ ও মুতাযিলাদের মত</div>
+
+            <div class="sub-title">(১) আজালের অর্থ</div>
+
+            <div class="answer">
+                <strong>উত্তর:</strong>
+                আজাল অর্থ নির্ধারিত সময়। পরিভাষায়: যে সময়ে আল্লাহর ইলমে ব্যক্তির মৃত্যু নির্ধারিত।
+            </div>
+
+            <div class="sub-title">(২) আহলুস সুন্নাহর মত</div>
+
+            <div class="answer">
+                <strong>উত্তর:</strong>
+                নিহত ব্যক্তি নিজের নির্ধারিত আজালেই মারা গেছে। প্রতিটি মানুষের একটিই আজাল। হত্যাকারী মৃত্যুর "কাসিব" (হত্যার কাজ করেছে), মৃত্যুর "খালিক" আল্লাহ।
+            </div>
+
+            <div class="sub-title">(৩) মুতাযিলাদের মত</div>
+
+            <div class="answer">
+                <strong>উত্তর:</strong>
+                (বিশেষত কা'বীর মতে) নিহত ব্যক্তির দুটি আজাল ছিল: একটি নিহত না হলে যতদিন বাঁচত, অন্যটি নিহত হওয়ার সময়। হত্যাকারী তার আজাল কেটে দিয়েছে।
+            </div>
+
+
+            <div class="section-title">(B) আহলুস সুন্নাহর দলিল</div>
+
+            <div class="answer">
+                <strong>উত্তর:</strong>
+                <ol>
+                    <li>"فَإِذَا جَاءَ أَجَلُهُمْ لَا يَسْتَأْخِرُونَ سَاعَةً وَلَا يَسْتَقْدِمُونَ" (আ'রাফ ৩৪)। আজাল এলে এক মুহূর্ত আগে-পরে হয় না। আজাল একটিই।</li>
+                    <li>"وَلَن يُؤَخِّرَ اللَّهُ نَفْسًا إِذَا جَاءَ أَجَلُهَا" (মুনাফিকুন ১১)।</li>
+                    <li>"لَبَرَزَ الَّذِينَ كُتِبَ عَلَيْهِمُ الْقَتْلُ إِلَىٰ مَضَاجِعِهِمْ" (আলে ইমরান ১৫৪)। অর্থাৎ যাদের জন্য নিহত হওয়া লেখা ছিল, তারা ঘরে থাকলেও নিহত হওয়ার স্থানে যেত।</li>
+                    <li>আকলি দলিল: মৃত্যু আল্লাহর সৃষ্টি। আল্লাহ জানতেন সে এ সময়ে মরবে। এর ব্যতিক্রম মানলে আল্লাহর ইলমের পরিবর্তন সাব্যস্ত হয়, যা অসম্ভব।</li>
+                </ol>
+            </div>
+
+
+            <div class="section-title">(C) মুতাযিলাদের দলিল ও জবাব</div>
+
+            <div class="sub-title">(১) মুতাযিলাদের দলিল</div>
+
+            <div class="answer">
+                <strong>উত্তর:</strong>
+                <ol>
+                    <li>"وَمَا يُعَمَّرُ مِن مُّعَمَّرٍ وَلَا يُنقَصُ مِنْ عُمُرِهِ إِلَّا فِي كِتَابٍ" (ফাতির ১১)। আয়ু কমবেশি হয়।</li>
+                    <li>হাদিস: সদকা ও আত্মীয়ের সঙ্গে সদ্ব্যবহার আয়ু বাড়ায়।</li>
+                    <li>নিহত ব্যক্তি আজালে মরলে হত্যাকারীর ওপর কিসাস-দিয়ত এবং গুনাহ কেন?</li>
+                </ol>
+            </div>
+
+            <div class="sub-title">(২) জবাব</div>
+
+            <div class="answer">
+                <strong>উত্তর:</strong>
+                <ol>
+                    <li>ফাতিরের আয়াত: আয়ু বাড়া-কমা ফেরেশতাদের লিপিবদ্ধ খাতার হিসাবে আপেক্ষিক। আল্লাহর ইলম ও লাওহে মাহফুযে কোনো পরিবর্তন নেই।</li>
+                    <li>হাদিসে "আয়ু বৃদ্ধি" অর্থ আয়ুতে বরকত, অথবা ফেরেশতাদের সহীফায় শর্তসাপেক্ষ বৃদ্ধি।</li>
+                    <li>হত্যাকারী গুনাহগার হয় অন্যায় হত্যার কাজে লিপ্ত হওয়ার কারণে। মৃত্যু সংঘটিত হওয়া আল্লাহর সৃষ্টি, আর কিসাস-দিয়ত তার ঐচ্ছিক জুলুমের ফল। মৃত্যুর সময় নির্ধারিত থাকা তাকে নির্দোষ করে না।</li>
+                </ol>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ==================== QUESTION 5 ==================== -->
+    <section class="question reveal">
+
+        <div class="question-title">প্রশ্ন–৫:</div>
+
+        <div class="arabic-question">
+            قوله: "ويكف عن ذكر الصحابة إلا بخير ... وبعضهم أطلق اللعن عليه لما أنه كفر حين أمر بقتل الحسين"
+        </div>
+
+        <div class="section">
+
+            <div class="section-title">(A) শাকল ও তরজমা</div>
+
+            <div class="sub-title">(১) শাকল:</div>
+
+            <div class="arabic">
+                وَيَكُفُّ عَنْ ذِكْرِ الصَّحَابَةِ إِلَّا بِخَيْرٍ ... وَبِالْجُمْلَةِ لَمْ يُنْقَلْ عَنِ السَّلَفِ الْمُجْتَهِدِينَ وَالْعُلَمَاءِ الصَّالِحِينَ جَوَازُ اللَّعْنِ عَلَى مُعَاوِيَةَ وَأَحْزَابِهِ؛ لِأَنَّ غَايَةَ أَمْرِهِمُ الْبَغْيُ وَالْخُرُوجُ عَلَى الْإِمَامِ وَهُوَ لَا يُوجِبُ اللَّعْنَ، وَإِنَّمَا اخْتَلَفُوا فِي يَزِيدَ بْنِ مُعَاوِيَةَ حَتَّى ذُكِرَ فِي الْخُلَاصَةِ وَغَيْرِهَا أَنَّهُ لَا يَنْبَغِي اللَّعْنُ عَلَيْهِ وَلَا عَلَى الْحَجَّاجِ؛ لِأَنَّ النَّبِيَّ عَلَيْهِ السَّلَامُ نَهَى عَنْ لَعْنِ الْمُصَلِّينَ وَمَنْ كَانَ مِنْ أَهْلِ الْقِبْلَةِ، وَمَا نُقِلَ مِنَ النَّبِيِّ عَلَيْهِ السَّلَامُ مِنَ اللَّعْنِ لِبَعْضٍ مِنْ أَهْلِ الْقِبْلَةِ فَلِمَا أَنَّهُ يَعْلَمُ مِنْ أَحْوَالِ النَّاسِ مَا لَا يَعْلَمُهُ غَيْرُهُ، وَبَعْضُهُمْ أَطْلَقَ اللَّعْنَ عَلَيْهِ لِمَا أَنَّهُ كَفَرَ حِينَ أَمَرَ بِقَتْلِ الْحُسَيْنِ
+            </div>
+
+            <div class="sub-title">(২) তরজমা:</div>
+
+            <div class="answer">
+                <strong>উত্তর:</strong>
+                সাহাবীদের আলোচনায় কেবল ভালো কথাই বলবে, বিরত থাকবে মন্দ আলোচনা থেকে। মোটকথা, মুজতাহিদ পূর্বসূরি ও নেককার আলেমদের কাছ থেকে মুআবিয়া রা. ও তাঁর দলের ওপর লানত জায়েয হওয়ার কথা বর্ণিত হয়নি। কারণ তাঁদের বিষয়টি বড়জোর বিদ্রোহ ও ইমামের বিরুদ্ধে অবস্থান, যা লানতকে আবশ্যক করে না। তাঁরা মতভেদ করেছেন কেবল ইয়াযীদ ইবনে মুআবিয়া সম্পর্কে। এমনকি "খুলাসা" প্রভৃতি কিতাবে উল্লেখ আছে, তার ওপর এবং হাজ্জাজের ওপর লানত করা উচিত নয়। কারণ নবী ﷺ নামাযী ও আহলে কিবলার ওপর লানত করতে নিষেধ করেছেন। আর নবী ﷺ থেকে কিছু আহলে কিবলার ওপর লানত বর্ণিত হয়ে থাকলে, তার কারণ মানুষের অবস্থা সম্পর্কে তিনি এমন কিছু জানতেন যা অন্যরা জানে না। আর কেউ কেউ তার ওপর সাধারণভাবে লানত করেছেন এই কারণে যে, হুসাইন রা.-কে হত্যার আদেশ দেওয়ার সময় সে কাফির হয়ে গিয়েছিল।
+            </div>
+
+
+            <div class="section-title">(B) ইয়াযীদ সম্পর্কে আহলুস সুন্নাহর আকীদা ও শারেহের বক্তব্যের ওপর রায়</div>
+
+            <div class="sub-title">(১) আহলুস সুন্নাহর আকীদা</div>
+
+            <div class="answer">
+                <strong>উত্তর:</strong>
+                <strong>সংক্ষিপ্ত সিদ্ধান্ত:</strong> ইয়াযীদ সাহাবী নন। তাঁর বিষয়ে আহলুস সুন্নাহর মধ্যে তিনটি মত প্রসিদ্ধ।
+                <ol>
+                    <li>
+                        <strong>লানত না করা:</strong>
+                        ইমাম গাযালী রহ., "খুলাসা" ও অনেক হানাফী ফকীহের মত। কারণ সে আহলে কিবলা, আর নির্দিষ্ট ব্যক্তির কুফরের অবস্থায় মৃত্যু প্রমাণিত নয়।
+                    </li>
+                    <li>
+                        <strong>লানত জায়েয:</strong>
+                        ইবনুল জাওযী রহ. সহ কিছু আলেম এবং ইমাম আহমাদ রহ.-এর একটি বর্ণনা। তাঁদের দলিল, কারবালার ঘটনায় তার ভূমিকা, আহলে বাইতের অসম্মান ও মদীনা-মক্কায় আগ্রাসন।
+                    </li>
+                    <li>
+                        <strong>নীরবতা (তাওয়াক্কুফ):</strong>
+                        তার চূড়ান্ত পরিণতি আল্লাহর ওপর ছেড়ে দেওয়া, এবং হুসাইন রা.-এর হত্যাকে জুলুম ও মহাবিপর্যয় বলা।
+                    </li>
+                </ol>
+                সকল মতেই একমত: কারবালার ঘটনা দুঃখজনক জুলুম, হুসাইন রা. শহীদ ও জান্নাতি যুবকদের নেতা, আর আহলে বাইতের প্রতি মহব্বত ঈমানের অংশ।
+            </div>
+
+
+            <div class="sub-title">(২) শারেহের বক্তব্যের ওপর রায়</div>
+
+            <div class="answer">
+                <strong>উত্তর:</strong>
+                <div class="bullet">• শারেহ দুই মতই উল্লেখ করেছেন: নিষেধ করা (খুলাসা) এবং কুফরের কারণে লানত বৈধ বলা।</div>
+                <div class="bullet">• সতর্কতা ও শরঈ নীতির দিক থেকে "লানত না করা" অধিক নিরাপদ, কারণ নির্দিষ্ট ব্যক্তির কুফরের ওপর মৃত্যু অকাট্যভাবে প্রমাণিত নয়। তবে তার কাজকে জুলুম বলা এবং আহলে বাইতের প্রতি ভালোবাসা রাখা আবশ্যক।</div>
+                <div class="bullet">• যারা লানত বৈধ বলেছেন, তাঁদের কথাও দলিলহীন নয়, কারণ তাঁরা তার কর্মকাণ্ডের ভয়াবহতার ওপর ভিত্তি করে বলেছেন। এটি আহলুস সুন্নাহর ভেতরের গ্রহণযোগ্য ইখতিলাফ।</div>
+            </div>
+
+            <div class="warning">
+                ⚠️ শারেহের নিজস্ব সিদ্ধান্তমূলক বাক্য কিতাব দেখে মিলিয়ে নিন। পরীক্ষায় উস্তাদের শিক্ষা অনুযায়ী লিখবেন।
+            </div>
+
+
+            <div class="section-title">(C) লানতের শরঈ নীতি ও ইয়াযীদের ওপর লানত</div>
+
+            <div class="sub-title">(১) লানতের অর্থ</div>
+
+            <div class="answer">
+                <strong>উত্তর:</strong>
+                আল্লাহর রহমত থেকে বিতাড়িত হওয়ার বদদোয়া।
+            </div>
+
+
+            <div class="sub-title">(২) লানতের শরঈ নীতি (যাবিতা)</div>
+
+            <div class="answer">
+                <strong>উত্তর:</strong>
+                <ol>
+                    <li>যার কুফরের ওপর মৃত্যু কুরআন-সুন্নাহয় প্রমাণিত, যেমন ইবলিস, আবু লাহাব, তার ওপর নির্দিষ্টভাবে লানত বৈধ।</li>
+                    <li>গুণের ওপর সাধারণ লানত বৈধ, যেমন "আল্লাহর লানত যালিম, মিথ্যাবাদী ও সুদখোরের ওপর"।</li>
+                    <li>মুসলমান ও আহলে কিবলার নির্দিষ্ট ব্যক্তির ওপর লানত বৈধ নয়। দলিল: "মুমিন গালিগালাজকারী ও লানতকারী হয় না" (তিরমিযী)। আরও বর্ণিত: নবী ﷺ নামাযীদের লানত করতে নিষেধ করেছেন।</li>
+                    <li>নবী ﷺ-এর কিছু নির্দিষ্ট ব্যক্তির ওপর লানত তাঁর ওহীপ্রাপ্ত ইলমের ভিত্তিতে, তা সাধারণ মানুষের জন্য দলিল নয়।</li>
+                </ol>
+            </div>
+
+
+            <div class="sub-title">(৩) ইয়াযীদের ওপর লানত জায়েয কি না</div>
+
+            <div class="answer">
+                <strong>উত্তর:</strong>
+                <div class="bullet">• হানাফীদের প্রসিদ্ধ মত ও "খুলাসা"র ভাষ্য অনুযায়ী লানত করা উচিত নয়।</div>
+                <div class="bullet">• যারা বৈধ বলেছেন, তাঁরা তার কুফরের মত গ্রহণ করেছেন, যা অধিকাংশের মতে অকাট্যভাবে প্রমাণিত নয়।</div>
+                <div class="bullet">• মোটকথা: লানতে সওয়াব নেই, বরং ভুলের ঝুঁকি আছে। নিরাপদ পথ হলো তার কাজকে মন্দ বলা, কিন্তু চূড়ান্ত বিচার আল্লাহর ওপর ছেড়ে দেওয়া।</div>
+            </div>
+
+        </div>
+    </section>
+
+</main>
+
+
+<script>
+/* =========================================================
+   1. SCROLL REVEAL ANIMATION
+   ========================================================= */
+
+const elements = document.querySelectorAll(".reveal");
+
+const observer = new IntersectionObserver(
+    (entries) => {
+        entries.forEach((entry) => {
+            if(entry.isIntersecting){
+                entry.target.classList.add("show");
             }
         });
-    </script>
+    },
+    {
+        threshold:0.08
+    }
+);
+
+elements.forEach((element) => observer.observe(element));
+
+
+/* =========================================================
+   2. PDF
+   ---------------------------------------------------------
+   Browser-এর নিজস্ব Print → Save as PDF ব্যবহার করা হচ্ছে।
+   এতে বাংলা ও আরবি লেখা Image নয়, Text হিসেবেই থাকে।
+   তাই PDF-এর লেখা Select / Copy করা যায়।
+   ========================================================= */
+
+function downloadPDF(){
+
+    /*
+       Browser-এর PDF dialog খুলবে।
+       সেখানে:
+       Destination → Save as PDF
+       তারপর Save চাপলেই PDF তৈরি হবে।
+    */
+
+    window.print();
+}
+
+
+/* =========================================================
+   3. PRINT BEFORE / AFTER
+   ========================================================= */
+
+window.addEventListener("beforeprint", () => {
+    document.body.classList.add("printing");
+});
+
+window.addEventListener("afterprint", () => {
+    document.body.classList.remove("printing");
+});
+</script>
+
 </body>
 </html>

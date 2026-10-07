@@ -1,128 +1,1189 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Google Fonts for Bengali & English -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Inter:wght@700;900&display=swap" rel="stylesheet">
+<title>শরহুল আকায়েদ আন-নাসাফিয়্যাহ — ১৪৪২ হি.</title>
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+<style>
+@font-face {
+    font-family: "Kalpurush";
+    src: local("Kalpurush");
+}
 
-    <style>
-        body {
-            font-family: 'Hind Siliguri', 'Inter', sans-serif;
-            background-color: #030712;
-            overflow: hidden;
-        }
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-        /* Gradient glowing animation on text */
-        .glow-text {
-            background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 50%, #38bdf8 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shine 6s linear infinite;
-        }
+html {
+    scroll-behavior: smooth;
+}
 
-        @keyframes shine {
-            0% { background-position: 0% center; }
-            50% { background-position: 100% center; }
-            100% { background-position: 0% center; }
-        }
+body {
+    font-family: "Kalpurush", "Noto Sans Bengali", Arial, sans-serif;
+    font-size: 25px;
+    line-height: 1.85;
+    background: #f8fafc;
+    color: #172033;
+    padding: 25px;
+}
 
-        /* Keyframes for initial entry: Floating in from below with opacity */
-        @keyframes floatIn {
-            0% {
-                opacity: 0;
-                transform: translateY(40px) scale(0.95);
-                filter: blur(8px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-                filter: blur(0);
-            }
-        }
+/* =========================
+   MAIN CONTAINER
+========================= */
 
-        /* Continuous subtle float effect once arrived */
-        @keyframes subtleFloat {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-8px);
-            }
-        }
+.book {
+    max-width: 1250px;
+    margin: auto;
+    background: #fff;
+    border: 1px solid #dfe5ec;
+    border-radius: 24px;
+    box-shadow: 0 12px 40px rgba(0,0,0,.08);
+    overflow: hidden;
+}
 
-        /* Animation class for Heading */
-        .animate-heading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards,
-                subtleFloat 6s ease-in-out 1.2s infinite;
-        }
+/* =========================
+   HEADER
+========================= */
 
-        /* Animation class for Subheading (staggered delay) */
-        .animate-subheading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards,
-                subtleFloat 6s ease-in-out 1.55s infinite;
-            opacity: 0; /* Hidden until animation kicks in */
-        }
+.header {
+    position: relative;
+    padding: 45px 35px 40px;
+    text-align: center;
+    background:
+        linear-gradient(135deg,
+        #eef7ff 0%,
+        #ffffff 45%,
+        #f3f0ff 100%);
+    border-bottom: 1px solid #dce5ef;
+}
 
-        /* Ambient background lighting */
-        .ambient-glow {
-            position: absolute;
-            width: 450px;
-            height: 450px;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(3, 7, 18, 0) 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            transition: left 0.4s ease-out, top 0.4s ease-out;
-        }
-    </style>
+.header h1 {
+    font-size: clamp(30px, 4vw, 46px);
+    line-height: 1.4;
+    color: #172554;
+    margin-bottom: 8px;
+}
+
+.header .subtitle {
+    font-size: 25px;
+    color: #475569;
+}
+
+.pdf-btn {
+    position: absolute;
+    top: 18px;
+    right: 20px;
+    border: none;
+    border-radius: 12px;
+    padding: 11px 18px;
+    font-family: inherit;
+    font-size: 19px;
+    font-weight: bold;
+    cursor: pointer;
+    color: white;
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    box-shadow: 0 6px 18px rgba(37,99,235,.25);
+    transition: .3s ease;
+}
+
+.pdf-btn:hover {
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 10px 25px rgba(37,99,235,.3);
+}
+
+/* =========================
+   CONTENT
+========================= */
+
+.content {
+    padding: 35px;
+}
+
+.question {
+    margin: 35px 0 50px;
+}
+
+.question-title {
+    font-size: clamp(26px, 3vw, 34px);
+    line-height: 1.55;
+    color: #1e3a8a;
+    font-weight: bold;
+    padding: 18px 22px;
+    margin-bottom: 28px;
+    border-left: 7px solid #2563eb;
+    border-radius: 12px;
+    background: linear-gradient(90deg, #eff6ff, #ffffff);
+}
+
+.section {
+    margin: 28px 0;
+}
+
+.section-title {
+    font-size: 28px;
+    color: #6d28d9;
+    font-weight: bold;
+    margin-bottom: 15px;
+    padding-bottom: 7px;
+    border-bottom: 2px solid #e9d5ff;
+}
+
+.item {
+    margin: 15px 0;
+}
+
+.item strong {
+    color: #be123c;
+}
+
+.answer {
+    margin: 8px 0 20px;
+}
+
+.arabic {
+    direction: rtl;
+    text-align: right;
+    font-family: "Kalpurush", "Noto Naskh Arabic", serif;
+    font-size: 27px;
+    line-height: 2;
+    color: #111827;
+    background: #fafafa;
+    border-right: 4px solid #8b5cf6;
+    border-radius: 10px;
+    padding: 12px 18px;
+    margin: 12px 0;
+}
+
+.translation {
+    padding: 10px 0;
+}
+
+.bullet-list {
+    padding-left: 30px;
+    margin: 10px 0 20px;
+}
+
+.bullet-list li {
+    margin: 7px 0;
+}
+
+.number-list {
+    padding-left: 35px;
+    margin: 10px 0 20px;
+}
+
+.number-list li {
+    margin: 8px 0;
+}
+
+.highlight {
+    padding: 15px 20px;
+    margin: 18px 0;
+    border-radius: 12px;
+    background: #fff7ed;
+    border-left: 5px solid #f97316;
+}
+
+.note {
+    padding: 14px 18px;
+    margin: 15px 0;
+    border-radius: 12px;
+    background: #fefce8;
+    border: 1px solid #fde68a;
+    color: #713f12;
+}
+
+.conclusion {
+    padding: 17px 20px;
+    margin: 20px 0;
+    border-radius: 13px;
+    background: #ecfdf5;
+    border-left: 5px solid #10b981;
+}
+
+/* =========================
+   ANIMATION
+========================= */
+
+.question,
+.section {
+    animation: fadeUp .8s ease both;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 800px) {
+    body {
+        padding: 10px;
+        font-size: 22px;
+        line-height: 1.8;
+    }
+
+    .book {
+        border-radius: 16px;
+    }
+
+    .header {
+        padding: 70px 18px 30px;
+    }
+
+    .header h1 {
+        font-size: 31px;
+    }
+
+    .header .subtitle {
+        font-size: 22px;
+    }
+
+    .pdf-btn {
+        top: 12px;
+        right: 12px;
+        font-size: 16px;
+        padding: 8px 12px;
+    }
+
+    .content {
+        padding: 20px 17px;
+    }
+
+    .question-title {
+        font-size: 27px;
+        padding: 13px 15px;
+    }
+
+    .section-title {
+        font-size: 25px;
+    }
+
+    .arabic {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 5px;
+        font-size: 20px;
+    }
+
+    .header {
+        padding: 65px 12px 25px;
+    }
+
+    .header h1 {
+        font-size: 27px;
+    }
+
+    .header .subtitle {
+        font-size: 20px;
+    }
+
+    .content {
+        padding: 15px 12px;
+    }
+
+    .question {
+        margin-bottom: 35px;
+    }
+
+    .question-title {
+        font-size: 23px;
+    }
+
+    .section-title {
+        font-size: 22px;
+    }
+
+    .arabic {
+        font-size: 22px;
+        padding: 9px 12px;
+    }
+
+    .bullet-list,
+    .number-list {
+        padding-left: 25px;
+    }
+}
+
+/* =========================
+   PRINT / PDF
+========================= */
+
+@media print {
+    @page {
+        size: A4;
+        margin: 14mm;
+    }
+
+    body {
+        background: white;
+        padding: 0;
+        font-size: 18px;
+        color: #000;
+    }
+
+    .book {
+        max-width: none;
+        border: none;
+        box-shadow: none;
+        border-radius: 0;
+    }
+
+    .header {
+        background: white !important;
+        border-bottom: 1px solid #000;
+        padding: 15px 0 20px;
+    }
+
+    .header h1 {
+        color: #000;
+        font-size: 28px;
+    }
+
+    .header .subtitle {
+        color: #000;
+        font-size: 18px;
+    }
+
+    .pdf-btn {
+        display: none !important;
+    }
+
+    .content {
+        padding: 15px 0;
+    }
+
+    .question {
+        margin-top: 20px;
+    }
+
+    .question-title {
+        color: #000;
+        background: white !important;
+        border-left: 4px solid #000;
+        font-size: 22px;
+        padding: 8px 12px;
+        page-break-after: avoid;
+    }
+
+    .section-title {
+        color: #000;
+        border-bottom: 1px solid #000;
+        font-size: 20px;
+        page-break-after: avoid;
+    }
+
+    .arabic {
+        color: #000;
+        background: white !important;
+        border-right: 2px solid #000;
+        font-size: 20px;
+    }
+
+    .highlight,
+    .note,
+    .conclusion {
+        background: white !important;
+        border: 1px solid #777;
+        color: #000;
+    }
+
+    .section,
+    .item {
+        break-inside: auto;
+    }
+}
+</style>
 </head>
-<body class="min-h-screen flex items-center justify-center relative select-none px-4">
 
-    <!-- Ambient glow center element -->
-    <div id="glow" class="ambient-glow top-1/2 left-1/2"></div>
+<body>
 
-    <!-- Centered minimal content with entry animations -->
-    <main class="text-center z-10 space-y-6 max-w-3xl mx-auto py-8 px-4">
-        
-        <!-- Main English Title -->
-        <h1 class="animate-heading text-5xl sm:text-7xl md:text-8xl font-black tracking-tight glow-text font-['Inter'] drop-shadow-lg">
-            Coming Soon...
-        </h1>
+<div class="book">
 
-        <!-- Bengali Subheading -->
-        <p class="animate-subheading text-xl sm:text-3xl md:text-4xl font-semibold text-emerald-400/90 leading-relaxed tracking-wide drop-shadow">
-            ইনশাআল্লাহ, খুব শীঘ্রই ডাটা যোগ করা হবে।
-        </p>
+<header class="header">
+    <button class="pdf-btn" onclick="downloadPDF()">⬇ Download PDF</button>
 
-    </main>
+    <h1>শরহুল আকায়েদ আন-নাসাফিয়্যাহ</h1>
+    <div class="subtitle">১৪৪২ হি. প্রশ্নপত্র — প্রশ্নোত্তর সমাধান</div>
+</header>
 
-    <script>
-        const glow = document.getElementById('glow');
+<main class="content">
 
-        // Mouse move interactive glow background
-        window.addEventListener('mousemove', (e) => {
-            glow.style.left = e.clientX + 'px';
-            glow.style.top = e.clientY + 'px';
-        });
+<!-- =========================================================
+     প্রশ্ন–১
+========================================================= -->
 
-        // Touch move interactive glow background for mobile screens
-        window.addEventListener('touchmove', (e) => {
-            if (e.touches.length > 0) {
-                glow.style.left = e.touches[0].clientX + 'px';
-                glow.style.top = e.touches[0].clientY + 'px';
+<section class="question">
+
+<div class="question-title">
+প্রশ্ন–১: قوله: "فإن مبنى علم الشرائع والأحكام ... وظلمات الأوهام"
+</div>
+
+<div class="section">
+
+<div class="section-title">(A) শাকল ও তরজমা</div>
+
+<div class="item">
+<strong>(১) শাকল (হরকত):</strong>
+
+<div class="arabic">
+فَإِنَّ مَبْنَى عِلْمِ الشَّرَائِعِ وَالْأَحْكَامِ وَأَسَاسَ قَوَاعِدِ عَقَائِدِ الْإِسْلَامِ هُوَ عِلْمُ التَّوْحِيدِ وَالصِّفَاتِ الْمَوْسُومُ بِالْكَلَامِ الْمُنَجِّي عَنْ غَيَاهِبِ الشُّكُوكِ وَظُلُمَاتِ الْأَوْهَامِ
+</div>
+</div>
+
+<div class="item">
+<strong>(২) তরজমা:</strong>
+
+<div class="answer">
+উত্তর: নিশ্চয়ই শরীয়ত ও আহকামের ইলমের ভিত্তি এবং ইসলামী আকীদার মূলনীতিসমূহের বুনিয়াদ হলো ইলমুত তাওহীদ ওয়াস সিফাত। এর নাম "কালাম"। এটি সন্দেহের গভীর অন্ধকার ও কল্পনার আঁধার থেকে মুক্তিদানকারী।
+</div>
+</div>
+
+</div>
+
+
+<div class="section">
+
+<div class="section-title">(B) ইলমুশ শারায়ে ওয়াল আহকাম ও ইলমুত তাওহীদ ওয়াস সিফাতের উদ্দেশ্য</div>
+
+<div class="item">
+<strong>(১) علم الشرائع والأحكام</strong>
+
+<div class="answer">
+উত্তর: এর দ্বারা উদ্দেশ্য ফিকহ ও উসূলে ফিকহ, অর্থাৎ যে ইলমে আমলি ও ফরয়ি (শাখাগত) শরঈ বিধানের আলোচনা হয়। شرائع অর্থ আল্লাহ প্রদত্ত বিধান আর أحكام অর্থ তার ব্যবহারিক রূপ। এই ইলমের ভিত্তি কালামের ওপর, কারণ আল্লাহ, নবুওয়াত ও কিতাবের পরিচয় ছাড়া শরঈ বিধান প্রতিষ্ঠিত হয় না।
+</div>
+</div>
+
+<div class="item">
+<strong>(২) علم التوحيد والصفات</strong>
+
+<div class="answer">
+উত্তর: এর উদ্দেশ্য ইলমুল কালাম, অর্থাৎ যে ইলমে আল্লাহর যাত, সিফাত ও আফআল এবং সৃষ্টির সূচনা ও পরিণতি (মাবদা ও মাআদ) ইসলামী নীতি অনুযায়ী আলোচিত হয়। তাওহীদ ও সিফাত এর প্রধান আলোচ্য বিষয় বলে এই নাম।
+</div>
+</div>
+
+</div>
+
+
+<div class="section">
+
+<div class="section-title">(C) কালামের সংজ্ঞা ও মুতাকাদ্দিমীন–মুতাআখখিরীনের মতভেদ</div>
+
+<div class="item">
+<strong>(১) সংজ্ঞা</strong>
+
+<div class="arabic">
+الكلام: هو العلم بالعقائد الدينية عن الأدلة اليقينية
+</div>
+
+<div class="answer">
+অর্থাৎ অকাট্য দলিল দ্বারা দ্বীনী আকীদা সম্পর্কে অর্জিত ইলম।
+</div>
+</div>
+
+<div class="item">
+<strong>(২) মুতাকাদ্দিমীন ও মুতাআখখিরীনের মতভেদ</strong>
+
+<div class="answer">
+• মুতাকাদ্দিমীন: কালামকে শুধু দ্বীনী আকীদা ও তার দলিল–প্রমাণের মধ্যে সীমাবদ্ধ রেখেছেন এবং ভ্রান্ত ফিরকার জবাব দিয়েছেন।
+</div>
+
+<div class="answer">
+• মুতাআখখিরীন: গ্রিক দর্শন আরবীতে অনূদিত হওয়ার পর দার্শনিক আলোচনা (الأمور العامة, الجواهر والأعراض) কালামে ঢুকিয়েছেন। ফলে কালাম ও দর্শন মিশে গেছে।
+</div>
+
+</div>
+
+</div>
+
+
+<div class="section">
+
+<div class="section-title">(D) কালামকে "কালাম" নামকরণের কারণ (وجوه التسمية)</div>
+
+<div class="answer">
+উত্তর:
+</div>
+
+<ol class="number-list">
+<li>এর অধ্যায়ের শিরোনাম হতো "الكلام في كذا وكذا"।</li>
+<li>এর সবচেয়ে বিতর্কিত মাসআলা ছিল আল্লাহর কালাম (কাদীম নাকি হাদিস)। তাই সেই অংশের নামেই পুরো ইলমের নাম হয়েছে।</li>
+<li>এটি বিরোধীদের সঙ্গে শরঈ বিষয়ে কথা বলার সামর্থ্য জন্মায়, যেমন যুক্তিবিদ্যা (মানতিক) দর্শনে।</li>
+<li>এ ইলমে মতভেদ ও বিতর্ক সবচেয়ে বেশি, তাই প্রচুর কথা বলার প্রয়োজন হয়।</li>
+<li>এটি الكَلْم (আঘাত করা) থেকে নির্গত। কারণ দলিলের জোরে এটি অন্তরে গভীর প্রভাব ফেলে এবং বিরোধীকে পরাস্ত করে।</li>
+</ol>
+
+<div class="note">
+⚠️ কারণের সংখ্যা ও বিন্যাস সংস্করণভেদে সামান্য ভিন্ন হতে পারে।
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     প্রশ্ন–২
+========================================================= -->
+
+<section class="question">
+
+<div class="question-title">
+প্রশ্ন–২: قوله: "والنوع الثاني خبر الرسول المؤيد بالمعجزة وهو يوجب العلم الاستدلالي"
+</div>
+
+<div class="section">
+
+<div class="section-title">(A) শাকল, তরজমা, ইলমের উপকরণ ও খাবারুর রাসূল</div>
+
+<div class="item">
+<strong>(১) শাকল:</strong>
+
+<div class="arabic">
+وَالنَّوْعُ الثَّانِي خَبَرُ الرَّسُولِ الْمُؤَيَّدِ بِالْمُعْجِزَةِ وَهُوَ يُوجِبُ الْعِلْمَ الِاسْتِدْلَالِيَّ
+</div>
+</div>
+
+<div class="item">
+<strong>(২) তরজমা:</strong>
+
+<div class="answer">
+উত্তর: দ্বিতীয় প্রকার হলো মুজিযা দ্বারা সমর্থিত রাসূলের খবর। এটি ইলমে ইস্তিদলালি (যুক্তিনির্ভর জ্ঞান) সাব্যস্ত করে।
+</div>
+</div>
+
+<div class="item">
+<strong>(৩) ইলমের উপকরণ (আসবাবুল ইলম) কয়টি ও কী কী?</strong>
+
+<div class="answer">
+উত্তর: তিনটি:
+</div>
+
+<ol class="number-list">
+<li><strong>الحواس السليمة (সুস্থ ইন্দ্রিয়):</strong> পাঁচটি, যথা শ্রবণ, দৃষ্টি, ঘ্রাণ, স্বাদ ও স্পর্শ।</li>
+<li>
+<strong>الخبر الصادق (সত্য সংবাদ):</strong> দুই প্রকার—
+    <div class="answer">(ক) খাবারে মুতাওয়াতির, যা ইলমে যরূরী (অনিবার্য জ্ঞান) সাব্যস্ত করে।</div>
+    <div class="answer">(খ) খাবারুর রাসূল, যা ইলমে ইস্তিদলালি সাব্যস্ত করে।</div>
+</li>
+<li><strong>العقل (বুদ্ধি)।</strong></li>
+</ol>
+
+<div class="item">
+<strong>(৪) খাবারুর রাসূলের সংজ্ঞা</strong>
+
+<div class="answer">
+উত্তর: আল্লাহর পক্ষ থেকে প্রেরিত রাসূল মুজিযার সমর্থনসহ আল্লাহর যে বিধান ও সংবাদ উম্মতকে পৌঁছান, তাই খাবারুর রাসূল।
+</div>
+</div>
+
+<div class="item">
+<strong>(৫) এটি কি ইলমে ইস্তিদলালি সাব্যস্ত করে? কীভাবে?</strong>
+
+<div class="answer">
+উত্তর: হ্যাঁ, করে। কারণ রাসূলের সত্যতা জানতে যুক্তির প্রয়োজন হয়। যুক্তিটি এই: "এই ব্যক্তি নবুওয়াতের দাবিদার এবং তার হাতে মুজিযা প্রকাশ পেয়েছে। যার হাতে এমন হয়, সে সত্যবাদী। অতএব সে সত্যবাদী।" এই চিন্তার পর রাসূলের খবরের সত্যতা নিশ্চিত হয়। তাই এ জ্ঞান ইস্তিদলালি, মুতাওয়াতিরের মতো সরাসরি যরূরী নয়।
+</div>
+</div>
+
+</div>
+
+
+<div class="section">
+
+<div class="section-title">(B) রাসূলের অর্থ, রাসূল–নবীর পার্থক্য ও গ্রন্থকার–শারেহের মত</div>
+
+<div class="item">
+<strong>(১) রাসূলের অর্থ</strong>
+
+<div class="answer">
+উত্তর: রাসূল এমন মানুষ, যাকে আল্লাহ বিধান পৌঁছানোর জন্য মানুষের কাছে প্রেরণ করেছেন।
+</div>
+</div>
+
+<div class="item">
+<strong>(২) রাসূল ও নবীর পার্থক্য</strong>
+
+<div class="answer">
+উত্তর: একটি মত হলো, যাঁকে নতুন কিতাব দেওয়া হয়েছে বা যিনি পূর্ববর্তী শরীয়তের কিছু বিধান রহিত করেছেন, তিনি রাসূল। যিনি তা পাননি, তিনি নবী।
+</div>
+</div>
+
+<div class="item">
+<strong>(৩) গ্রন্থকার ও শারেহের মুখতার</strong>
+
+<div class="answer">
+উত্তর: উভয়ের পছন্দনীয় মত এই যে, নবী ব্যাপক (أعم) এবং রাসূল বিশেষ (أخص)। অর্থাৎ নবীর সঙ্গে রাসূলের সম্পর্ক عموم وخصوص مطلق। প্রত্যেক রাসূলই নবী, কিন্তু প্রত্যেক নবী রাসূল নন।
+</div>
+</div>
+
+<div class="note">
+⚠️ এই অংশ কিতাবের মূল ইবারতের সঙ্গে মিলিয়ে নিন।
+</div>
+
+</div>
+
+
+<div class="section">
+
+<div class="section-title">(C) মুজিযার অর্থ এবং মুজিযা ও কারামতের পার্থক্য</div>
+
+<div class="item">
+<strong>(১) মুজিযার অর্থ</strong>
+
+<div class="arabic">
+المعجزة: أمر خارق للعادة، يظهر على يد مدعي النبوة عند تحدي المنكرين، على وجه يعجزهم عن الإتيان بمثله
+</div>
+
+<div class="answer">
+অর্থাৎ নবুওয়াতের দাবিদারের হাতে বিরোধীদের চ্যালেঞ্জের মুখে প্রকাশিত অলৌকিক বিষয়, যার অনুরূপ আনতে বিরোধীরা অক্ষম।
+</div>
+</div>
+
+<div class="item">
+<strong>(২) মুজিযা ও কারামতের পার্থক্য</strong>
+
+<ul class="bullet-list">
+<li>মুজিযা নবীর হাতে প্রকাশ পায়; কারামত ওলীর হাতে।</li>
+<li>মুজিযা নবুওয়াতের দাবি ও চ্যালেঞ্জ (তাহাদ্দী) সহ প্রকাশ পায়; কারামতে নবুওয়াতের দাবি ও চ্যালেঞ্জ থাকে না।</li>
+<li>মুজিযা প্রকাশ করা নবীর জন্য আবশ্যক, কারণ তা তাঁর সত্যতার দলিল; কারামত গোপন রাখাই ওলীর রীতি।</li>
+</ul>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     প্রশ্ন–৩
+========================================================= -->
+
+<section class="question">
+
+<div class="question-title">
+প্রশ্ন–৩: قوله: "والله تعالى خالق لأفعال العباد من الكفر والإيمان والطاعة والعصيان"
+</div>
+
+<div class="section">
+
+<div class="section-title">(A) শাকল, তরজমা ও বান্দার কাজ সৃষ্টির মতভেদ</div>
+
+<div class="item">
+<strong>(১) শাকল:</strong>
+
+<div class="arabic">
+وَاللهُ تَعَالَى خَالِقٌ لِأَفْعَالِ الْعِبَادِ مِنَ الْكُفْرِ وَالْإِيمَانِ وَالطَّاعَةِ وَالْعِصْيَانِ
+</div>
+</div>
+
+<div class="item">
+<strong>(২) তরজমা:</strong>
+
+<div class="answer">
+উত্তর: আল্লাহ তাআলা বান্দার সমস্ত কাজের স্রষ্টা—কুফর, ঈমান, আনুগত্য ও অবাধ্যতা সবকিছুর।
+</div>
+</div>
+
+<div class="item">
+<strong>(৩) মতভেদ:</strong>
+
+<div class="conclusion">
+সংক্ষিপ্ত সিদ্ধান্ত: আল্লাহ বান্দার কাজের খালিক (স্রষ্টা) আর বান্দা কাসিব (উপার্জনকারী)।
+</div>
+
+<ul class="bullet-list">
+<li><strong>আহলুস সুন্নাহ (আশআরী ও মাতুরিদী):</strong> আল্লাহ খালিক, বান্দা কাসিব। বান্দার ইচ্ছাশক্তি আছে, কিন্তু সৃষ্টি আল্লাহর।</li>
+<li><strong>মুতাযিলা:</strong> বান্দা নিজের ঐচ্ছিক কাজের স্রষ্টা।</li>
+<li><strong>জাবরিয়্যাহ:</strong> বান্দা সম্পূর্ণ বাধ্য, তার কোনো ইচ্ছা বা ক্ষমতা নেই।</li>
+</ul>
+
+</div>
+
+</div>
+
+
+<div class="section">
+
+<div class="section-title">(B) আহলুল হকের দলিল</div>
+
+<div class="item">
+<strong>(নকলি দলিল)</strong>
+
+<ol class="number-list">
+<li>
+<div class="arabic">وَاللَّهُ خَلَقَكُمْ وَمَا تَعْمَلُونَ</div>
+(সূরা সাফফাত ৯৬)। এখানে "মা" মাসদারিয়্যাহ, অর্থ "তোমাদের আমল"। অর্থাৎ আল্লাহ তোমাদের ও তোমাদের কাজ সৃষ্টি করেছেন।
+</li>
+
+<li>
+<div class="arabic">اللَّهُ خَالِقُ كُلِّ شَيْءٍ</div>
+(সূরা রাদ ১৬)। বান্দার কাজও "শাই"-এর অন্তর্ভুক্ত।
+</li>
+
+<li>
+<div class="arabic">هَلْ مِنْ خَالِقٍ غَيْرُ اللَّهِ</div>
+(সূরা ফাতির ৩)।
+</li>
+</ol>
+
+<div class="item">
+<strong>(আকলি দলিল)</strong>
+
+<ol class="number-list" start="4">
+<li>বান্দার কাজ মুমকিন (সম্ভাব্য), আর প্রতিটি মুমকিনের প্রয়োজন একজন সৃষ্টিকারীর, যিনি শেষ পর্যন্ত আল্লাহ।</li>
+<li>বান্দা নিজে স্রষ্টা হলে সে তার কাজের প্রতিটি অংশ জানত। অথচ হাঁটা বা কথা বলার সময় কত পেশি নড়ছে, তা সে জানে না।</li>
+<li>বান্দা স্রষ্টা হলে বহু স্রষ্টা সাব্যস্ত হয়, যা আল্লাহর একত্ববাদের পরিপন্থী।</li>
+</ol>
+
+</div>
+
+
+<div class="section">
+
+<div class="section-title">(C) বিরোধীদের (মুতাযিলা) দলিল ও জবাব</div>
+
+<div class="item">
+<strong>(১) দলিল–১:</strong>
+আদেশ–নিষেধ, প্রশংসা–নিন্দা এবং সওয়াব–আযাব তখনই যথার্থ, যখন কাজ বান্দার নিজের।
+
+<div class="answer">
+<strong>জবাব:</strong> বান্দার কাসব ও ইখতিয়ার আছে, আর এই কাসবের ভিত্তিতেই তাকলীফ, প্রশংসা–নিন্দা ও পুরস্কার–শাস্তি আসে। তাই এগুলো বৈধ।
+</div>
+</div>
+
+<div class="item">
+<strong>(২) দলিল–২:</strong>
+কুরআনে কাজকে বান্দার দিকে সম্বন্ধ করা হয়েছে, যেমন "جزاء بما كانوا يعملون", "فمن شاء فليؤمن ومن شاء فليكفر"।
+
+<div class="answer">
+<strong>জবাব:</strong> এই সম্বন্ধ কাসবের দিক থেকে, সৃষ্টির দিক থেকে নয়।
+</div>
+</div>
+
+<div class="item">
+<strong>(৩) দলিল–৩:</strong>
+কম্পিত হাত ও ঐচ্ছিক নড়াচড়ার পার্থক্য আমরা অনুভব করি।
+
+<div class="answer">
+<strong>জবাব:</strong> এই পার্থক্য কাসব ও ইখতিয়ারের কারণে। তা বান্দার সৃষ্টিকর্তা হওয়া প্রমাণ করে না।
+</div>
+</div>
+
+<div class="item">
+<strong>(৪) দলিল–৪:</strong>
+আল্লাহ কুফর সৃষ্টি করলে তার জন্য শাস্তি দেওয়া জুলুম হতো।
+
+<div class="answer">
+<strong>জবাব:</strong> সৃষ্টি করা ও সন্তুষ্ট হওয়া এক নয়। আল্লাহ কুফর সৃষ্টি করেছেন, কিন্তু তাতে সন্তুষ্ট নন। শাস্তি বান্দার কাসবের কারণে, তাই জুলুম নয়।
+</div>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     প্রশ্ন–৪
+========================================================= -->
+
+<section class="question">
+
+<div class="question-title">
+প্রশ্ন–৪: قوله: "والكبيرة قد اختلفت الروايات فيها، فروى ابن عمر أنها تسعة"
+</div>
+
+<div class="section">
+
+<div class="section-title">(A) শাকল, তরজমা, কবীরার সংজ্ঞা ও মতভেদ</div>
+
+<div class="item">
+<strong>(১) শাকল:</strong>
+
+<div class="arabic">
+وَالْكَبِيرَةُ قَدِ اخْتَلَفَتِ الرِّوَايَاتُ فِيهَا، فَرَوَى ابْنُ عُمَرَ أَنَّهَا تِسْعَةٌ
+</div>
+</div>
+
+<div class="item">
+<strong>(২) তরজমা:</strong>
+
+<div class="answer">
+উত্তর: কবীরা গুনাহ সম্পর্কে বর্ণনাসমূহে মতভেদ আছে। ইবনে উমর রা. বর্ণনা করেছেন, তা নয়টি।
+</div>
+</div>
+
+<div class="item">
+<strong>(৩) কবীরার সংজ্ঞা ও মতভেদ</strong>
+
+<div class="answer">
+আভিধানিক অর্থ: বড় গুনাহ। পারিভাষিক অর্থ নিয়ে একাধিক মত আছে:
+</div>
+
+<ol class="number-list">
+<li>যে গুনাহের জন্য দুনিয়ায় শরঈ হদ নির্ধারিত বা আখিরাতে জাহান্নামের হুমকি এসেছে।</li>
+<li>ইবনে আব্বাস রা.: যে গুনাহের শেষে জাহান্নাম, গযব, লানত বা আযাবের উল্লেখ আছে।</li>
+<li>যে গুনাহ দ্বীনের প্রতি তাচ্ছিল্য প্রকাশ করে।</li>
+</ol>
+
+</div>
+
+
+<div class="section">
+
+<div class="section-title">(B) কবীরার সংখ্যা, তালিকা ও সাহাবীদের মতভেদ</div>
+
+<div class="answer">
+• ইবনে উমর রা.: নয়টি। শারেহের উল্লেখ অনুযায়ী—
+</div>
+
+<ol class="number-list">
+<li>আল্লাহর সঙ্গে শিরক</li>
+<li>অন্যায়ভাবে হত্যা</li>
+<li>সতী নারীকে অপবাদ দেওয়া</li>
+<li>যিনা</li>
+<li>জিহাদের ময়দান থেকে পলায়ন</li>
+<li>জাদু</li>
+<li>ইয়াতিমের মাল খাওয়া</li>
+<li>পিতা–মাতার অবাধ্যতা</li>
+<li>হারামে ইলহাদ (অধর্মাচরণ)</li>
+</ol>
+
+<div class="note">
+⚠️ বর্ণনাভেদে তালিকার কিছু আইটেম ভিন্ন, যেমন সুদ ও হারামের অবমাননা; কিতাবের তালিকা মিলিয়ে নিন।
+</div>
+
+<div class="answer">
+• ইবনে মাসউদ রা.: শিরক, আল্লাহর রহমত থেকে নিরাশ হওয়া, আল্লাহর কৌশল থেকে নির্ভয় হওয়া ইত্যাদি।
+</div>
+
+<div class="answer">
+• ইবনে আব্বাস রা.: কবীরা সাতের চেয়ে সাতশর কাছাকাছি।
+</div>
+
+<div class="conclusion">
+সারকথা: নির্দিষ্ট সংখ্যায় সীমাবদ্ধ নয়; প্রতিটি বর্ণনা উদাহরণ বা গুরুত্ব বোঝানোর জন্য।
+</div>
+
+</div>
+
+
+<div class="section">
+
+<div class="section-title">(C) কবীরায়ে মুতলাকা ও এখানে উদ্দেশ্য</div>
+
+<div class="item">
+<strong>(১) কবীরায়ে মুতলাকা</strong>
+
+<div class="answer">
+উত্তর: যে কবীরা কোনো শর্ত বা সীমাবদ্ধতা ছাড়া "কবীরা" নামে অভিহিত, অর্থাৎ ব্যাপক অর্থে সর্বোচ্চ স্তরের গুনাহ।
+</div>
+</div>
+
+<div class="item">
+<strong>(২) এখানে উদ্দেশ্য</strong>
+
+<div class="answer">
+উত্তর: এখানে কবীরা বলতে কুফর ও শিরক ছাড়া অন্য বড় গুনাহ বোঝানো হয়েছে, যা ঈমানের তাসদীক বহাল রেখে করা হয়।
+</div>
+</div>
+
+<div class="note">
+⚠️ কিতাবের মূল ইবারত মিলিয়ে নিন।
+</div>
+
+</div>
+
+
+<div class="section">
+
+<div class="section-title">(D) কবীরা কি মুমিনকে ঈমান থেকে বের করে? আহলুস সুন্নাহর মত ও মুতাযিলাদের মতভেদ</div>
+
+<div class="item">
+<strong>(১) আহলুস সুন্নাহর মত</strong>
+
+<div class="conclusion">
+সংক্ষিপ্ত সিদ্ধান্ত: না, কবীরা মুমিনকে ঈমান থেকে বের করে না। তাওবা ছাড়া মারা গেলেও সে চিরস্থায়ী জাহান্নামী হবে না।
+</div>
+
+<div class="answer">
+উত্তর: আহলুস সুন্নাহ (হানাফী ও সকল ইমাম): ঈমান হলো তাসদীক (অন্তরের বিশ্বাস)। কবীরা করলে তাসদীক বিদ্যমান থাকে। তাই সে মুমিন থাকে, তবে ফাসিক। তার বিষয় আল্লাহর ইচ্ছাধীন—চাইলে শাস্তি দেবেন, চাইলে ক্ষমা করবেন।
+</div>
+
+<div class="answer">
+<strong>দলিল:</strong>
+</div>
+
+<ol class="number-list">
+<li>
+<div class="arabic">إِنَّ اللَّهَ لَا يَغْفِرُ أَنْ يُشْرَكَ بِهِ وَيَغْفِرُ مَا دُونَ ذَلِكَ لِمَنْ يَشَاءُ</div>
+(নিসা ৪৮)
+</li>
+
+<li>
+<div class="arabic">وَإِنْ طَائِفَتَانِ مِنَ الْمُؤْمِنِينَ اقْتَتَلُوا</div>
+(হুজুরাত ৯)। যুদ্ধ করা সত্ত্বেও তাদের "মুমিন" বলা হয়েছে।
+</li>
+
+<li>
+হাদিস: যে "লা ইলাহা ইল্লাল্লাহ" বলল সে জান্নাতে যাবে, যদিও সে যিনা ও চুরি করে (বুখারী–মুসলিম, আবু যার রা. থেকে)।
+</li>
+
+<li>
+হাদিস: আমার শাফাআত আমার উম্মতের কবীরা গুনাহগারদের জন্য (তিরমিযী, আবু দাউদ)।
+</li>
+</ol>
+
+</div>
+
+
+<div class="item">
+<strong>(২) মুতাযিলাদের মতভেদ</strong>
+
+<div class="answer">
+• মুতাযিলাদের মত: কবীরা গুনাহগার মুমিনও নয়, কাফিরও নয়; সে "মানযিলা বাইনাল মানযিলাতাইন" (দুই স্তরের মাঝখানে)। তাওবা ছাড়া মারা গেলে সে চিরস্থায়ী জাহান্নামী।
+</div>
+
+<div class="answer">
+• খারিজীরা: সে কাফির।
+</div>
+
+<div class="answer">
+• তাদের ধারণা (যুমম): ঈমান হলো সব ইবাদতের সমষ্টি। কবীরা করলে ঈমান অসম্পূর্ণ হয়। আবার তাওহীদ স্বীকার করায় সে কাফির নয়, তাই সে ফাসিক।
+</div>
+
+<div class="answer">
+• ধারণার কারণ (ইল্লাত): তারা আমলকে ঈমানের অংশ ধরেছে এবং আল্লাহর ওপর ওয়াইদ (শাস্তির হুমকি) কার্যকর করা ওয়াজিব মনে করেছে।
+</div>
+
+<div class="answer">
+<strong>দলিল দেয়:</strong>
+</div>
+
+<div class="arabic">
+وَمَن يَقْتُلْ مُؤْمِنًا مُّتَعَمِّدًا فَجَزَاؤُهُ جَهَنَّمُ خَالِدًا فِيهَا
+</div>
+
+<div class="answer">
+(নিসা ৯৩)।
+</div>
+
+<div class="answer">
+<strong>জবাব:</strong> ঈমানের মূল তাসদীক, আমল তার পূর্ণতা। আয়াতে মুস্তাহিল্লের কথা বলা হয়েছে, অথবা "খুলুদ" অর্থ দীর্ঘ অবস্থান। শিরকের নিচে সকল গুনাহ আল্লাহর ইচ্ছার অধীন।
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     প্রশ্ন–৫
+========================================================= -->
+
+<section class="question">
+
+<div class="question-title">
+প্রশ্ন–৫: قوله: "وعذاب القبر للكافرين ولبعض عصاة المؤمنين وتنعيم أهل الطاعة في القبر بما يعلمه الله تعالى ويريده وسؤال منكر ونكير ثابت بالدلائل السمعية"
+</div>
+
+<div class="section">
+
+<div class="section-title">(A) শাকল, তরজমা ও উদ্দেশ্য</div>
+
+<div class="item">
+<strong>(১) শাকল:</strong>
+
+<div class="arabic">
+وَعَذَابُ الْقَبْرِ لِلْكَافِرِينَ وَلِبَعْضِ عُصَاةِ الْمُؤْمِنِينَ، وَتَنْعِيمُ أَهْلِ الطَّاعَةِ فِي الْقَبْرِ بِمَا يَعْلَمُهُ اللهُ تَعَالَى وَيُرِيدُهُ، وَسُؤَالُ مُنْكَرٍ وَنَكِيرٍ ثَابِتٌ بِالدَّلَائِلِ السَّمْعِيَّةِ
+</div>
+</div>
+
+<div class="item">
+<strong>(২) তরজমা:</strong>
+
+<div class="answer">
+উত্তর: কাফিরদের এবং কিছু গুনাহগার মুমিনের জন্য কবরের আযাব, আনুগত্যকারীদের জন্য কবরে নেয়ামত—আল্লাহ যেভাবে জানেন ও চান সেভাবে—এবং মুনকার–নাকিরের প্রশ্ন, এসব নকলি (শ্রুত) দলিল দ্বারা প্রমাণিত।
+</div>
+</div>
+
+<div class="item">
+<strong>(৩) উদ্দেশ্য</strong>
+
+<div class="answer">
+উত্তর: আযাব ও নেয়ামতের ধরন আমাদের জানা নেই, তা আল্লাহর ইলম ও ইচ্ছার ওপর নির্ভরশীল। আমরা শুধু এর অস্তিত্বে বিশ্বাস করি।
+</div>
+</div>
+
+</div>
+
+
+<div class="section">
+
+<div class="section-title">(B) এসব আকীদা কোন দলিলের ওপর প্রতিষ্ঠিত?</div>
+
+<div class="answer">
+উত্তর: এগুলো আকলি দলিলে নয়, দালায়েলে সামইয়্যাহর (কুরআন, হাদিস ও ইজমা) ওপর প্রতিষ্ঠিত। আকল এগুলোকে অসম্ভব বলে না, তাই সত্যবাদীর খবরে বিশ্বাস করা ওয়াজিব।
+</div>
+
+<div class="answer">
+<strong>দলিল:</strong>
+</div>
+
+<ol class="number-list">
+<li>
+<div class="arabic">النَّارُ يُعْرَضُونَ عَلَيْهَا غُدُوًّا وَعَشِيًّا</div>
+(গাফির ৪৬)
+</li>
+
+<li>
+<div class="arabic">يُثَبِّتُ اللَّهُ الَّذِينَ آمَنُوا بِالْقَوْلِ الثَّابِتِ</div>
+(ইবরাহীম ২৭)
+</li>
+
+<li>
+হাদিস: কবরে মৃতকে দুই ফেরেশতা এসে প্রশ্ন করেন (বুখারী–মুসলিম, আনাস রা.)।
+</li>
+
+<li>
+হাদিস: নবী সা. কবরের আযাব থেকে পানাহ চাইতেন (বুখারী–মুসলিম, আয়েশা রা.)। এই হাদিসগুলো অর্থের দিক থেকে মুতাওয়াতির।
+</li>
+</ol>
+
+</div>
+
+
+<div class="section">
+
+<div class="section-title">(C) এ মাসআলায় মতভেদ, দলিল ও তারজীহ</div>
+
+<div class="item">
+<strong>(১) মতভেদ</strong>
+
+<div class="conclusion">
+সংক্ষিপ্ত সিদ্ধান্ত: কবরের আযাব, নেয়ামত ও প্রশ্ন সত্য।
+</div>
+
+<div class="answer">
+• আহলুস সুন্নাহ (হানাফী ও সকল ইমাম): সত্য ও প্রমাণিত। আবু হানিফা রহ.-ও ফিকহুল আকবারে তা স্বীকার করেছেন।
+</div>
+
+<div class="answer">
+• কিছু মুতাযিলা (যেমন দিরার ইবনে আমর ও বিশর আল-মারীসি): অস্বীকার করেছে।
+</div>
+
+</div>
+
+
+<div class="item">
+<strong>(২) বিরোধীদের দলিল</strong>
+
+<ol class="number-list">
+<li>মৃত ব্যক্তি জড়, তার অনুভূতি নেই।</li>
+
+<li>আমরা কবরে দেহ অক্ষত দেখি, কোনো আযাব দেখি না।</li>
+
+<li>
+<div class="arabic">لَا يَذُوقُونَ فِيهَا الْمَوْتَ إِلَّا الْمَوْتَةَ الْأُولَى</div>
+(দুখান ৫৬) এবং
+<div class="arabic">أَمَتَّنَا اثْنَتَيْنِ وَأَحْيَيْتَنَا اثْنَتَيْنِ</div>
+(গাফির ১১) থেকে প্রমাণ হয়, কবরে পুনরায় জীবন নেই।
+</li>
+</ol>
+
+</div>
+
+
+<div class="item">
+<strong>(৩) জবাব ও তারজীহ</strong>
+
+<ol class="number-list">
+<li>আল্লাহ মৃতের কোনো অংশে জীবন ও অনুভূতি দিতে সক্ষম। এটি অসম্ভব নয়।</li>
+
+<li>সব কিছু চোখে দেখা যায় না, যেমন ঘুমন্ত ব্যক্তির স্বপ্নের কষ্ট বা আনন্দ।</li>
+
+<li>আয়াতগুলো দুনিয়ার জীবন–মৃত্যু সম্পর্কে। বারযাখী অবস্থা তার বিরোধী নয়।</li>
+</ol>
+
+<div class="conclusion">
+<strong>তারজীহ:</strong> আহলুস সুন্নাহর মতই অগ্রগণ্য, কারণ তা অসংখ্য সহীহ হাদিস ও কুরআনের ইশারা দ্বারা সমর্থিত। আকলে এটি অসম্ভব নয়, আর সত্যবাদীর খবর মেনে নেওয়া ওয়াজিব।
+</div>
+
+</div>
+
+</section>
+
+</main>
+</div>
+
+
+<script>
+/*
+    Browser-এর নিজস্ব Print System ব্যবহার করা হয়েছে।
+    এতে PDF Image/Screenshot নয়, বরং Selectable Text হিসেবে তৈরি হবে।
+*/
+
+function downloadPDF() {
+    window.print();
+}
+
+
+/* Scroll Animation */
+const animatedItems = document.querySelectorAll(
+    ".question, .section, .question-title"
+);
+
+const observer = new IntersectionObserver(
+    (entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.animationPlayState = "running";
             }
         });
-    </script>
+    },
+    {
+        threshold: 0.08
+    }
+);
+
+animatedItems.forEach(item => {
+    item.style.animationPlayState = "paused";
+    observer.observe(item);
+});
+
+
+/* Keyboard shortcut: Ctrl + P */
+document.addEventListener("keydown", function(event) {
+    if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "p") {
+        event.preventDefault();
+        window.print();
+    }
+});
+</script>
+
 </body>
 </html>

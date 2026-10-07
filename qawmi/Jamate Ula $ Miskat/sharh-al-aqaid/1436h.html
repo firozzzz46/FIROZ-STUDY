@@ -1,128 +1,924 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>শারহুল আকাইদ আন-নাসাফিয়্যাহ — ১৪৩৬ হিজরি</title>
 
-    <!-- Google Fonts for Bengali & English -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Inter:wght@700;900&display=swap" rel="stylesheet">
+<style>
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+    }
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    html{
+        scroll-behavior:smooth;
+    }
 
-    <style>
-        body {
-            font-family: 'Hind Siliguri', 'Inter', sans-serif;
-            background-color: #030712;
-            overflow: hidden;
+    body{
+        min-height:100vh;
+        font-family:"Kalpurush","SolaimanLipi","Noto Sans Bengali",Arial,sans-serif;
+        background:#f8fafc;
+        color:#20242a;
+        font-size:25px;
+        line-height:1.85;
+        overflow-x:hidden;
+    }
+
+    .container{
+        width:min(1200px,94%);
+        margin:auto;
+        padding:35px 0 70px;
+    }
+
+    /* PDF Button */
+    .top-bar{
+        display:flex;
+        justify-content:flex-end;
+        margin-bottom:20px;
+        position:sticky;
+        top:12px;
+        z-index:1000;
+    }
+
+    .pdf-btn{
+        border:0;
+        padding:12px 24px;
+        border-radius:12px;
+        font-family:inherit;
+        font-size:20px;
+        font-weight:bold;
+        color:white;
+        background:linear-gradient(135deg,#2563eb,#7c3aed);
+        box-shadow:0 7px 22px rgba(37,99,235,.25);
+        cursor:pointer;
+        transition:.3s ease;
+    }
+
+    .pdf-btn:hover{
+        transform:translateY(-2px);
+        box-shadow:0 10px 28px rgba(37,99,235,.35);
+    }
+
+    /* Header */
+    .book-header{
+        background:white;
+        border:1px solid #e5e7eb;
+        border-radius:22px;
+        padding:38px 28px;
+        text-align:center;
+        box-shadow:0 10px 35px rgba(0,0,0,.07);
+        margin-bottom:35px;
+        animation:fadeDown 1s ease both;
+    }
+
+    .book-header h1{
+        font-size:34px;
+        line-height:1.5;
+        color:#173b76;
+        margin-bottom:8px;
+    }
+
+    .book-header h2{
+        font-size:25px;
+        color:#b45309;
+        font-weight:normal;
+    }
+
+    /* Question Section */
+    .question-section{
+        margin:35px 0;
+        animation:fadeUp 1s ease both;
+    }
+
+    .question-title{
+        font-size:29px;
+        font-weight:bold;
+        color:#fff;
+        background:linear-gradient(135deg,#1d4ed8,#4338ca);
+        border-radius:16px;
+        padding:15px 20px;
+        margin-bottom:24px;
+        box-shadow:0 8px 22px rgba(37,99,235,.18);
+    }
+
+    .qa-block{
+        background:#fff;
+        border:1px solid #e5e7eb;
+        border-radius:16px;
+        padding:25px 28px;
+        margin:20px 0;
+        box-shadow:0 5px 20px rgba(0,0,0,.05);
+        opacity:0;
+        transform:translateY(25px);
+        transition:opacity .8s ease,transform .8s ease;
+    }
+
+    .qa-block.show{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+    .sub-title{
+        font-size:27px;
+        font-weight:bold;
+        color:#9f1239;
+        margin-bottom:10px;
+    }
+
+    .label{
+        font-weight:bold;
+        color:#1d4ed8;
+    }
+
+    p{
+        margin:10px 0;
+    }
+
+    .arabic{
+        direction:rtl;
+        text-align:right;
+        font-family:"Noto Naskh Arabic","Amiri","Traditional Arabic",serif;
+        color:#111827;
+        font-size:26px;
+        line-height:2;
+        margin:12px 0;
+    }
+
+    .rule{
+        background:#eff6ff;
+        border-left:6px solid #2563eb;
+        padding:13px 18px;
+        border-radius:10px;
+        margin:15px 0;
+    }
+
+    .important{
+        background:#fff7ed;
+        border-left:6px solid #f97316;
+        padding:13px 18px;
+        border-radius:10px;
+        margin:15px 0;
+    }
+
+    .evidence{
+        background:#f0fdf4;
+        border-left:6px solid #16a34a;
+        padding:13px 18px;
+        border-radius:10px;
+        margin:15px 0;
+    }
+
+    ul{
+        padding-left:38px;
+        margin:10px 0;
+    }
+
+    li{
+        margin:6px 0;
+    }
+
+    .divider{
+        height:2px;
+        margin:45px 0;
+        background:linear-gradient(90deg,transparent,#cbd5e1,transparent);
+    }
+
+    .footer{
+        text-align:center;
+        color:#64748b;
+        font-size:18px;
+        margin-top:50px;
+        padding-top:20px;
+        border-top:1px solid #e2e8f0;
+    }
+
+    @keyframes fadeDown{
+        from{opacity:0;transform:translateY(-30px);}
+        to{opacity:1;transform:translateY(0);}
+    }
+
+    @keyframes fadeUp{
+        from{opacity:0;transform:translateY(30px);}
+        to{opacity:1;transform:translateY(0);}
+    }
+
+    @media(max-width:768px){
+        body{
+            font-size:22px;
+            line-height:1.8;
         }
 
-        /* Gradient glowing animation on text */
-        .glow-text {
-            background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 50%, #38bdf8 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shine 6s linear infinite;
+        .container{
+            width:94%;
+            padding-top:20px;
         }
 
-        @keyframes shine {
-            0% { background-position: 0% center; }
-            50% { background-position: 100% center; }
-            100% { background-position: 0% center; }
+        .book-header{
+            padding:25px 16px;
         }
 
-        /* Keyframes for initial entry: Floating in from below with opacity */
-        @keyframes floatIn {
-            0% {
-                opacity: 0;
-                transform: translateY(40px) scale(0.95);
-                filter: blur(8px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-                filter: blur(0);
-            }
+        .book-header h1{
+            font-size:27px;
         }
 
-        /* Continuous subtle float effect once arrived */
-        @keyframes subtleFloat {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-8px);
-            }
+        .book-header h2{
+            font-size:21px;
         }
 
-        /* Animation class for Heading */
-        .animate-heading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards,
-                subtleFloat 6s ease-in-out 1.2s infinite;
+        .question-title{
+            font-size:25px;
+            padding:13px 15px;
         }
 
-        /* Animation class for Subheading (staggered delay) */
-        .animate-subheading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards,
-                subtleFloat 6s ease-in-out 1.55s infinite;
-            opacity: 0; /* Hidden until animation kicks in */
+        .qa-block{
+            padding:20px 17px;
         }
 
-        /* Ambient background lighting */
-        .ambient-glow {
-            position: absolute;
-            width: 450px;
-            height: 450px;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(3, 7, 18, 0) 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            transition: left 0.4s ease-out, top 0.4s ease-out;
+        .sub-title{
+            font-size:24px;
         }
-    </style>
+
+        .arabic{
+            font-size:24px;
+        }
+
+        .rule,
+        .important,
+        .evidence{
+            padding:10px 13px;
+        }
+
+        .pdf-btn{
+            font-size:18px;
+            padding:10px 17px;
+        }
+    }
+
+    @media(max-width:480px){
+        body{
+            font-size:20px;
+        }
+
+        .book-header h1{
+            font-size:24px;
+        }
+
+        .question-title{
+            font-size:22px;
+        }
+
+        .sub-title{
+            font-size:22px;
+        }
+
+        .arabic{
+            font-size:22px;
+        }
+
+        ul{
+            padding-left:28px;
+        }
+    }
+
+    /* Print / PDF */
+    @media print{
+        body{
+            background:white;
+            font-size:18px;
+            color:#000;
+        }
+
+        .top-bar{
+            display:none;
+        }
+
+        .container{
+            width:100%;
+            padding:0;
+        }
+
+        .book-header,
+        .qa-block{
+            box-shadow:none;
+            border:1px solid #bbb;
+            break-inside:avoid;
+        }
+
+        .question-title{
+            background:#ddd !important;
+            color:#000 !important;
+            box-shadow:none;
+            break-after:avoid;
+        }
+
+        .qa-block{
+            opacity:1 !important;
+            transform:none !important;
+        }
+
+        .footer{
+            color:#333;
+        }
+    }
+</style>
 </head>
-<body class="min-h-screen flex items-center justify-center relative select-none px-4">
 
-    <!-- Ambient glow center element -->
-    <div id="glow" class="ambient-glow top-1/2 left-1/2"></div>
+<body>
 
-    <!-- Centered minimal content with entry animations -->
-    <main class="text-center z-10 space-y-6 max-w-3xl mx-auto py-8 px-4">
-        
-        <!-- Main English Title -->
-        <h1 class="animate-heading text-5xl sm:text-7xl md:text-8xl font-black tracking-tight glow-text font-['Inter'] drop-shadow-lg">
-            Coming Soon...
-        </h1>
+<div class="container" id="study-content">
 
-        <!-- Bengali Subheading -->
-        <p class="animate-subheading text-xl sm:text-3xl md:text-4xl font-semibold text-emerald-400/90 leading-relaxed tracking-wide drop-shadow">
-            ইনশাআল্লাহ, খুব শীঘ্রই ডাটা যোগ করা হবে।
-        </p>
+    <div class="top-bar">
+        <button class="pdf-btn" onclick="downloadPDF()">⬇ Download PDF</button>
+    </div>
 
-    </main>
+    <header class="book-header">
+        <h1>শারহুল আকাইদ আন-নাসাফিয়্যাহ</h1>
+        <h2>১৪৩৬ হিজরি প্রশ্নপত্রের উত্তর</h2>
+    </header>
 
-    <script>
-        const glow = document.getElementById('glow');
 
-        // Mouse move interactive glow background
-        window.addEventListener('mousemove', (e) => {
-            glow.style.left = e.clientX + 'px';
-            glow.style.top = e.clientY + 'px';
-        });
+    <!-- প্রশ্ন–১ -->
+    <section class="question-section">
+        <div class="question-title">
+            প্রশ্ন–১: علم الكلام-এর পরিচয়, প্রয়োজন, বিধান ও ফিরকা
+        </div>
 
-        // Touch move interactive glow background for mobile screens
-        window.addEventListener('touchmove', (e) => {
-            if (e.touches.length > 0) {
-                glow.style.left = e.touches[0].clientX + 'px';
-                glow.style.top = e.touches[0].clientY + 'px';
-            }
-        });
-    </script>
+        <div class="qa-block">
+            <div class="sub-title">(A) علم الكلام-এর সংজ্ঞা দাও এবং এটি সর্বশ্রেষ্ঠ ইলম হওয়ার কারণসমূহ বিস্তারিত লেখো।</div>
+
+            <p><span class="label">উত্তর:</span></p>
+
+            <p><b>(১) সংজ্ঞা:</b></p>
+
+            <p class="arabic">العلم بالعقائد الدينية عن الأدلة اليقينية۔</p>
+
+            <p>অর্থাৎ অকাট্য দলিল থেকে দ্বীনি আকিদা সম্পর্কে অর্জিত ইলম।</p>
+
+            <p>কেউ বলেন:</p>
+
+            <p class="arabic">علم يقتدر معه على إثبات العقائد الدينية بإيراد الحجج ودفع الشبه۔</p>
+
+            <p>অর্থাৎ যে ইলমের সাহায্যে দলিল পেশ করে ও সংশয় খণ্ডন করে আকিদা প্রমাণের সামর্থ্য আসে।</p>
+
+            <p><b>(২) সর্বশ্রেষ্ঠ ইলম হওয়ার কারণ:</b></p>
+
+            <div class="rule">
+                <b>القاعدة:</b> شرف العلم بشرف المعلوم وبشرف الثمرة وبقوة الدليل
+                <br>
+                ইলমের মর্যাদা নির্ভর করে তার বিষয়, ফল ও দলিলের শক্তির উপর।
+            </div>
+
+            <ul>
+                <li><b>বিষয় (معلوم):</b> আল্লাহর সত্তা, সিফাত ও দ্বীনের মৌলিক বিষয়, এর চেয়ে মর্যাদাবান বিষয় নেই।</li>
+                <li><b>ফল (ثمرة):</b> ঈমানের দৃঢ়তা ও আখিরাতের চিরস্থায়ী সৌভাগ্য।</li>
+                <li><b>দলিল (حجة):</b> এর দলিল يقيني, আকল ও নকল দ্বারা সমর্থিত।</li>
+                <li><b>ভিত্তি:</b> ফিকহ, তাফসির, হাদিস সব শরঈ ইলম এর উপর নির্ভরশীল।</li>
+            </ul>
+        </div>
+
+
+        <div class="qa-block">
+            <div class="sub-title">(B) علم الكلام সংকলনের প্রয়োজন কী ছিল? কবে সংকলিত হয়?</div>
+
+            <p><span class="label">উত্তর:</span></p>
+
+            <p><b>(১) প্রয়োজন:</b></p>
+            <ul>
+                <li>সাহাবা ও তাবেয়ীদের যুগে আকিদা সরাসরি কুরআন-সুন্নাহ থেকে নেওয়া হতো, তাই আলাদা সংকলন লাগেনি।</li>
+                <li>পরে বিদআতি ফিরকা (খারিজি, কাদরিয়া, জাবরিয়া, মুতাযিলা, মুজাসসিমা) জন্ম নেয় এবং গ্রিক দর্শন মুসলিম সমাজে প্রবেশ করে।</li>
+                <li>তখন দলিলসহ আকিদা সংরক্ষণ, বাতিলের সংশয় খণ্ডন এবং সাধারণ মুসলমানকে বিভ্রান্তি থেকে রক্ষা করা জরুরি হয়ে পড়ে।</li>
+            </ul>
+
+            <p><b>(২) সময়:</b> হিজরি দ্বিতীয় শতক থেকে এর সূচনা। ইমাম আবু হানিফা (رحمه الله) বিদআতিদের সাথে মুনাযারা করেন এবং الفقه الأكبر রচনা করেন। চতুর্থ শতকে ইমাম আবুল হাসান আশআরি ও ইমাম আবু মানসুর মাতুরিদি (رحمهما الله) একে সুসংহত শাস্ত্ররূপ দেন। পরবর্তীতে এতে দর্শন মিশে যায়।</p>
+        </div>
+
+
+        <div class="qa-block">
+            <div class="sub-title">(C) السلف থেকে বর্ণিত নিন্দা ও নিষেধ বর্ণনা করো এবং শারেহের মতো জবাব দাও।</div>
+
+            <p><span class="label">উত্তর:</span></p>
+
+            <p><b>(১) الطعن ও المنع:</b></p>
+            <ul>
+                <li>সালাফ থেকে বর্ণিত, কালামে লিপ্ত হওয়া বিদআত ও গোমরাহির কারণ।</li>
+                <li>ইমাম শাফেয়ি (رحمه الله)-এর নামে প্রসিদ্ধ উক্তি আছে যে, শিরক ছাড়া সব গুনাহে লিপ্ত হওয়াও কালামে লিপ্ত হওয়ার চেয়ে ভালো। এছাড়া কালাম শিক্ষা থেকে নিষেধ করার বর্ণনাও আছে।</li>
+            </ul>
+
+            <p><b>(২) জবাব (শারেহের বক্তব্যের সারকথা):</b></p>
+            <ul>
+                <li>এই নিন্দা ও নিষেধ মুতাআসসিব (গোঁড়া) ও আকলে অক্ষম ব্যক্তিদের জন্য, যারা দলিল বুঝতে না পেরে সংশয়ে পড়ে যায়।</li>
+                <li>অথবা সেই কালামের জন্য, যা দর্শননির্ভর এবং ইসলামি আকিদার সাথে সম্পর্কহীন বিষয়ে লিপ্ত।</li>
+                <li>অথবা বিদআতিদের কালামের জন্য, যা বাতিলের উপর প্রতিষ্ঠিত।</li>
+            </ul>
+
+            <div class="evidence">
+                <b>প্রমাণ:</b> সালাফ নিজেরাই প্রয়োজনে মুনাযারা করেছেন, যেমন ইবনে আব্বাস (رضي الله عنه) খারিজিদের সাথে এবং ইমাম আবু হানিফা ও ইমাম শাফেয়ি (رحمهما الله) বিদআতিদের সাথে। সুতরাং সঠিক ও প্রয়োজনীয় কালাম নিন্দিত নয়, বরং ওয়াজিবে কিফায়া।
+            </div>
+        </div>
+
+
+        <div class="qa-block">
+            <div class="sub-title">(D) علم الكلام-এর ফায়দা লেখো।</div>
+
+            <p><span class="label">উত্তর:</span></p>
+
+            <ol>
+                <li>তাকলিদের স্তর থেকে يقين-এর স্তরে উন্নীত হওয়া।</li>
+                <li>সত্যান্বেষীদের পথ দেখানো (إرشاد المسترشدين)।</li>
+                <li>হঠকারী প্রতিপক্ষকে নিরুত্তর করা (إلزام المعاندين)।</li>
+                <li>বাতিলের সংশয় থেকে দ্বীনের মূলনীতি রক্ষা করা।</li>
+                <li>শরঈ ইলমগুলোর ভিত্তি মজবুত হওয়া।</li>
+                <li>নিয়ত ও আকিদা সহীহ হওয়া, কারণ আমল কবুল ঈমানের উপর নির্ভরশীল।</li>
+            </ol>
+        </div>
+
+
+        <div class="qa-block">
+            <div class="sub-title">(E) المعتزلة، أصحاب العدل والتوحيد، أهل السنة والجماعة، أهل الحق، السوفسطائية-এর পরিচয় ও নামকরণের কারণ।</div>
+
+            <p><span class="label">উত্তর:</span></p>
+
+            <p><b>(১) المعتزلة:</b> ওয়াসিল ইবনে আতা ও তাঁর অনুসারী।</p>
+            <p>• <b>নামকরণ:</b> কবিরা গুনাহগার সম্পর্কে হাসান বসরি (رحمه الله)-এর মজলিসে প্রশ্ন ওঠে। ওয়াসিল বলেন, সে মুমিনও নয়, কাফিরও নয়, বরং মাঝামাঝি (المنزلة بين المنزلتين)। এরপর তিনি মজলিস থেকে আলাদা হয়ে যান। হাসান বসরি বলেন:</p>
+
+            <p class="arabic">اعتزل عنا</p>
+
+            <p>তাই তাদের নাম মুতাযিলা।</p>
+
+            <p>• <b>মূল আকিদা:</b> বান্দা নিজ কাজের স্রষ্টা, আল্লাহর সিফাত অস্বীকার, কবিরা গুনাহগার ঈমান থেকে খারিজ।</p>
+
+            <p><b>(২) أصحاب العدل والتوحيد:</b> মুতাযিলাদের নিজেদের উপাধি।</p>
+            <p>• <b>নামকরণ:</b> তাদের মতে আল্লাহ عادل, তাই বান্দার মন্দ কাজের স্রষ্টা নন। আর তারা সিফাত অস্বীকারকে তাওহীদ মনে করে। তাই নিজেদের এ নামে ডাকে।</p>
+
+            <p><b>(৩) أهل السنة والجماعة:</b> যারা রাসূল (সা.)-এর সুন্নাহ ও সাহাবায়ে কেরামের জামাআতের আকিদার অনুসারী। বর্তমানে আশআরি ও মাতুরিদি।</p>
+            <p>• <b>নামকরণ:</b> সুন্নাহ ও জামাআতের অনুসরণের কারণে।</p>
+
+            <p><b>(৪) أهل الحق:</b> সত্যপন্থী, অর্থাৎ আহলুস সুন্নাহ।</p>
+            <p>• <b>নামকরণ:</b> তারা হক আকিদার উপর প্রতিষ্ঠিত।</p>
+
+            <p><b>(৫) السوفسطائية:</b> যারা বস্তুর বাস্তবতা অস্বীকার করে।</p>
+            <p>• <b>নামকরণ:</b> শব্দটি গ্রিক سوفسطا (সফিস্তা) থেকে। অর্থ মিথ্যা, বিভ্রান্তিকর হিকমত।</p>
+            <p>• <b>তিন দল:</b> عنادية (বাস্তবতা অস্বীকারকারী), عندية (বাস্তবতা ব্যক্তির ধারণা-নির্ভর বলে), لا أدرية (সন্দেহবাদী)।</p>
+        </div>
+    </section>
+
+
+    <div class="divider"></div>
+
+
+    <!-- প্রশ্ন–২ -->
+    <section class="question-section">
+        <div class="question-title">
+            প্রশ্ন–২: العالم ও তার হুদূস
+        </div>
+
+        <div class="qa-block">
+            <div class="sub-title">(A) العالم-এর আভিধানিক ও পারিভাষিক অর্থ কী? নামকরণের কারণ কী?</div>
+
+            <p><span class="label">উত্তর:</span></p>
+
+            <p><b>(১) আভিধানিক:</b></p>
+
+            <p class="arabic">ما يعلم به الشيء</p>
+
+            <p>অর্থাৎ যার মাধ্যমে কিছু জানা যায়, যেমন خاتم (যা দিয়ে মোহর করা হয়)।</p>
+
+            <p><b>(২) পারিভাষিক:</b></p>
+
+            <p class="arabic">ما سوى الله تعالى من الموجودات التي يعلم بها الصانع من الجواهر والأعراض</p>
+
+            <p>অর্থাৎ আল্লাহ ছাড়া সব সৃষ্টি, যার মাধ্যমে স্রষ্টাকে জানা যায়।</p>
+
+            <p><b>(৩) নামকরণ:</b> জগৎ স্রষ্টার অস্তিত্বের عَلَامة (নিদর্শন), তাই এর নাম عالم।</p>
+        </div>
+
+
+        <div class="qa-block">
+            <div class="sub-title">(B) محدث-এর অর্থ কী? জগৎ হাদিস হওয়ার দলিল লেখো।</div>
+
+            <p><span class="label">উত্তর:</span></p>
+
+            <p><b>(১) অর্থ:</b></p>
+            <p class="arabic">المحدث هو الموجود بعد العدم</p>
+            <p>অর্থাৎ যার অস্তিত্ব অনস্তিত্বের পর এসেছে।</p>
+
+            <p><b>(২) দলিল:</b></p>
+            <ul>
+                <li>জগৎ আ'ইয়ান (جواهر ও أجسام) ও আ'রাদের সমষ্টি।</li>
+                <li>আ'রাদ হাদিস। কারণ আমরা দেখি তা বদলায়, যেমন কালো সাদা হয়, গতি স্থিতিতে বদলায়। আ'রাদ কাদিম হলে তার অনস্তিত্ব অসম্ভব হতো, অথচ অনস্তিত্ব বাস্তবে ঘটে।</li>
+                <li>আ'ইয়ান আ'রাদ থেকে খালি হয় না। জিসম হয় গতিশীল, নয় স্থির; হয় সংযুক্ত, নয় বিচ্ছিন্ন।</li>
+            </ul>
+
+            <div class="rule">
+                <b>القاعدة:</b> ما لا يخلو عن الحوادث فهو حادث۔
+                <br>
+                যা হাদিস থেকে খালি হয় না, সে নিজেও হাদিস।
+            </div>
+
+            <p>সুতরাং জগৎ সম্পূর্ণ হাদিস। (দার্শনিকদের আকাশ কাদিম হওয়ার দাবি বাতিল।)</p>
+        </div>
+
+
+        <div class="qa-block">
+            <div class="sub-title">(C) "المحدث لا بد له من محدث"-এর দলিলে লুযুম স্পষ্ট করো।</div>
+
+            <p><span class="label">উত্তর:</span></p>
+
+            <ol>
+                <li>হাদিস বস্তু মুমকিন, অর্থাৎ তার অস্তিত্ব ও অনস্তিত্ব উভয়ই সম্ভব ছিল।</li>
+                <li>অনস্তিত্বের বদলে অস্তিত্ব অগ্রাধিকার পাওয়ার জন্য একজন مرجح (অগ্রাধিকারদাতা) দরকার।</li>
+                <li>মুরাজ্জিহ ছাড়া অগ্রাধিকার হলে ترجيح بلا مرجح হয়, যা অসম্ভব।</li>
+                <li>জগৎ নিজেকে সৃষ্টি করলে نفس-এর আগে نفس-এর অস্তিত্ব লাগে, যা অসম্ভব।</li>
+                <li>সুতরাং হাদিসের অবশ্যই একজন মুহদিস লাগবে।</li>
+            </ol>
+        </div>
+
+
+        <div class="qa-block">
+            <div class="sub-title">(D) জগতের মুহদিস কে? তিনি এক না একাধিক?</div>
+
+            <p><span class="label">উত্তর:</span></p>
+
+            <ol>
+                <li>মুহদিস আল্লাহ তাআলা, যিনি واجب الوجود। কারণ কারণ-পরম্পরা অসীম (تسلسل) হতে পারে না, তাই শেষে এমন সত্তা লাগে যিনি অস্তিত্বে কারো মুখাপেক্ষী নন।</li>
+                <li>তিনি এক। দলিল:
+                    <ul>
+                        <li><b>নকলী:</b></li>
+                    </ul>
+                    <p class="arabic">لو كان فيهما آلهة إلا الله لفسدتا</p>
+                    <p>(সূরা আম্বিয়া ২২)।</p>
+
+                    <ul>
+                        <li><b>আকলী (দলিলুত তামানু'):</b> দুই ইলাহ থাকলে তাদের ইচ্ছায় মতভেদ সম্ভব। দুজনের ইচ্ছা কার্যকর হলে বিপরীত দুটি জিনিস একত্র হয়। কেউই কার্যকর না হলে দুজনই অক্ষম। একজন কার্যকর হলে সে-ই ইলাহ, অন্যজন অক্ষম। অক্ষম ইলাহ হতে পারে না।</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+    </section>
+
+
+    <div class="divider"></div>
+
+
+    <!-- প্রশ্ন–৩ -->
+    <section class="question-section">
+        <div class="question-title">
+            প্রশ্ন–৩: القديم
+        </div>
+
+        <div class="qa-block">
+            <div class="sub-title">(A) "هذا تصريح بما علم التزاما إذ الواجب لا يكون إلا قديما"-এর ব্যাখ্যা করো।</div>
+
+            <p><span class="label">উত্তর:</span></p>
+
+            <ol>
+                <li>الواجب হলো যার অনস্তিত্ব তার সত্তার কারণেই অসম্ভব।</li>
+                <li>واجب হাদিস হলে তার অস্তিত্বের আগে অনস্তিত্ব থাকত, এটি وجوب-এর পরিপন্থী। তাই واجب অবশ্যই قديم।</li>
+                <li>অর্থাৎ আল্লাহ واجب হওয়ার কথা আগের আলোচনায় বোঝা গেছে। قديم হওয়ার কথা তার অনিবার্য ফল (التزام) হিসেবে এসেছে। এখানে মুসান্নিফ সেটাকে স্পষ্ট করে বলে দিয়েছেন।</li>
+                <li>قديم-এর অর্থ:</li>
+            </ol>
+
+            <p class="arabic">الذي لا ابتداء لوجوده</p>
+            <p>যার অস্তিত্বের কোনো শুরু নেই।</p>
+        </div>
+
+
+        <div class="qa-block">
+            <div class="sub-title">(B) القديم ও الواجب م রাদিফ, মুতাসাবী, না অন্য নিসবত? বিভিন্ন মত লেখো।</div>
+
+            <p><span class="label">উত্তর:</span></p>
+
+            <ol>
+                <li><b>মুতাকাল্লিমীনের মত:</b> মাফহুমে ভিন্ন, কিন্তু মিসদাকে মুতাসাবী (متساويان)। কারণ তাদের মতে كل ممكن حادث (প্রতিটি মুমকিন হাদিস)। তাই যা قديم তা মুমকিন নয়, অর্থাৎ واجب। আবার প্রতিটি واجب قديم।</li>
+                <li><b>কিছু আলিমের মত:</b> দুটি مترادفان (সমার্থক)।</li>
+                <li><b>দার্শনিকদের মত:</b> قديم আরও ব্যাপক (أعم)। কারণ তাদের মতে জগৎ قديم, অথচ মুমকিন। তাই প্রতিটি واجب قديم, কিন্তু প্রতিটি قديم واجب নয়। (عموم خصوص مطلق)।</li>
+                <li><b>সিদ্ধান্ত:</b> আহলুস সুন্নাহর মতে قديم শুধু আল্লাহ ও তাঁর সিফাত।</li>
+            </ol>
+        </div>
+
+
+        <div class="qa-block">
+            <div class="sub-title">(C) "ثم اعترضوا بأن الصفات لو كانت واجبة لذاتها..." ইবারতের ব্যাখ্যা করো।</div>
+
+            <p><span class="label">উত্তর:</span></p>
+
+            <ol>
+                <li><b>আপত্তি:</b> সিফাত যদি واجب لذاته হয়, তাহলে তা باقي হবে, আর বাকা (বেঁচে থাকা) একটি مَعنى। তাহলে এক معنى আরেক معنى-এর উপর প্রতিষ্ঠিত হয় (قيام المعنى بالمعنى), যা অসম্ভব।</li>
+                <li><b>আশআরিদের জবাব:</b> প্রতিটি সিফাত এমন বাকার সাথে باقي, যা ওই সিফাতেরই নিজস্ব সত্তা (هو نفس تلك الصفة), অতিরিক্ত কোনো معنى নয়।</li>
+                <li><b>শারেহের মন্তব্য:</b> এ আলোচনা অত্যন্ত কঠিন। কারণ:
+                    <ul>
+                        <li>একাধিক واجب لذاته মানলে তাওহীদের পরিপন্থী হয়।</li>
+                        <li>সিফাতকে মুমকিন বললে তাদের নিজেদের কায়েদা كل ممكن حادث ভঙ্গ হয়। কারণ তখন সিফাত হাদিস হয়ে যায়।</li>
+                    </ul>
+                </li>
+                <li><b>সারকথা:</b> সিফাত সত্তার মুখাপেক্ষী, কিন্তু সত্তা থেকে কখনো পৃথক হয় না। তাই সিফাত "لا هو ولا غيره"।</li>
+            </ol>
+        </div>
+    </section>
+
+
+    <div class="divider"></div>
+
+
+    <!-- প্রশ্ন–৪ -->
+    <section class="question-section">
+        <div class="question-title">
+            প্রশ্ন–৪: الكبيرة
+        </div>
+
+        <div class="qa-block">
+            <div class="sub-title">(A) كبيرة-এর সংজ্ঞা দাও এবং সংজ্ঞায় মতভেদ বর্ণনা করো।</div>
+
+            <p><span class="label">উত্তর:</span></p>
+
+            <ol>
+                <li><b>আভিধানিক:</b> বড় গুনাহ।</li>
+                <li><b>পারিভাষিক মতভেদ:</b>
+                    <ul>
+                        <li>কেউ বলেন: যে গুনাহে দুনিয়াতে শরঈ হদ আছে।</li>
+                        <li>কেউ বলেন: যে গুনাহে আখিরাতে জাহান্নাম বা কঠোর শাস্তির ধমকি আছে।</li>
+                        <li>ইবনে আব্বাস (رضي الله عنهما):</li>
+                    </ul>
+
+                    <p class="arabic">ما نهى الله عنه فهو كبيرة</p>
+
+                    <p>অর্থাৎ আল্লাহর প্রতিটি নিষিদ্ধ কাজই কবিরা (আল্লাহর মহত্ত্বের দিক থেকে)।</p>
+
+                    <ul>
+                        <li>কেউ বলেন: ছোট গুনাহও বারবার করলে (إصرار) কবিরা হয়ে যায়।</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+
+
+        <div class="qa-block">
+            <div class="sub-title">(B) কবিরা গুনাহ কয়টি, কী কী? সাহাবীদের মতভেদ বর্ণনা করো।</div>
+
+            <p><span class="label">উত্তর:</span></p>
+
+            <ol>
+                <li><b>ইবনে উমর (رضي الله عنهما)-এর বর্ণনায় ৯টি:</b>
+                    <ol type="ক">
+                        <li>আল্লাহর সাথে শিরক</li>
+                        <li>অন্যায় হত্যা</li>
+                        <li>সতী নারীকে অপবাদ</li>
+                        <li>যিনা</li>
+                        <li>জিহাদের ময়দান থেকে পলায়ন</li>
+                        <li>যাদু</li>
+                        <li>ইয়াতিমের মাল ভক্ষণ</li>
+                        <li>মুসলিম পিতা-মাতার অবাধ্যতা</li>
+                        <li>হারামে ইলহাদ (অন্যায় করা)</li>
+                    </ol>
+                </li>
+
+                <li><b>ইবনে মাসউদ (رضي الله عنه):</b> সূরা নিসার শুরু থেকে "إن تجتنبوا كبائر ما تنهون عنه" (আয়াত ৩১) পর্যন্ত যা নিষেধ করা হয়েছে।</li>
+
+                <li><b>ইবনে আব্বাস (رضي الله عنهما):</b> সংখ্যা সাতের চেয়ে সাতশর কাছাকাছি।</li>
+
+                <li><b>হাদিসে:</b> সাতটি ধ্বংসাত্মক বিষয় (سبع موبقات) এবং অন্য হাদিসে শিরক, পিতা-মাতার অবাধ্যতা, হত্যা ও মিথ্যা শপথের উল্লেখ আছে।</li>
+
+                <li><b>সারকথা:</b> কবিরার সংখ্যা নির্দিষ্ট নয়। সংখ্যার ভিন্নতা মূলত প্রসঙ্গ ও শ্রোতার অবস্থার কারণে।</li>
+            </ol>
+        </div>
+
+
+        <div class="qa-block">
+            <div class="sub-title">(C) الكبيرة المطلقة কী? এখানে كبيرة দ্বারা কী উদ্দেশ্য?</div>
+
+            <p><span class="label">উত্তর:</span></p>
+
+            <ol>
+                <li><b>الكبيرة المطلقة:</b> যে কবিরা গুনাহ ইস্তিহলাল (হালাল মনে করা), ইস্তিখফাফ (তুচ্ছ করা) বা নস অস্বীকারের সাথে নয়, শুধু গুনাহ হিসেবে করা হয়।</li>
+                <li><b>এখানে উদ্দেশ্য:</b> এই ধরনের কবিরা। কিন্তু কবিরাকে হালাল মনে করলে বা নস অস্বীকার করলে কুফর হয়, আর এটি সর্বসম্মত।</li>
+            </ol>
+        </div>
+
+
+        <div class="qa-block">
+            <div class="sub-title">(D) কবিরা কি ঈমান থেকে বের করে? আহলুস সুন্নাহর মত দলিলসহ লেখো। মুতাযিলাদের মতভেদ ও তাদের ধারণার কারণ বর্ণনা করো।</div>
+
+            <p><span class="label">উত্তর:</span></p>
+
+            <p><b>(১) আহলুস সুন্নাহর মত:</b> কবিরা গুনাহ করলে ঈমান থেকে বের হয় না। সে فاسق মুমিন। তওবা ছাড়া মারা গেলে আল্লাহর ইচ্ছাধীন: চাইলে মাফ করবেন, চাইলে শাস্তি দেবেন। শাস্তি পেলেও পরে জান্নাতে যাবে।</p>
+
+            <p><b>(২) যুক্তি:</b> ঈমান হলো তাসদিক (অন্তরের স্বীকৃতি)। আমল ঈমানের মূল সত্তার অংশ নয়।</p>
+
+            <div class="evidence">
+                <b>দলিল:</b>
+                <p class="arabic">وإن طائفتان من المؤمنين اقتتلوا</p>
+                <p>হুজুরাত ৯: পরস্পর যুদ্ধ করা সত্ত্বেও তাদের "মুমিন" বলা হয়েছে।</p>
+
+                <p class="arabic">إن الله لا يغفر أن يشرك به ويغفر ما دون ذلك لمن يشاء</p>
+                <p>নিসা ৪৮।</p>
+
+                <p>হাদিস: যে لا إله إلا الله বলে মারা যায় সে জান্নাতে যাবে, যদিও যিনা বা চুরি করে (বুখারি, মুসলিম)।</p>
+            </div>
+
+            <p><b>(৪) মুতাযিলাদের মত:</b></p>
+            <ul>
+                <li>কবিরাকারী ঈমান থেকে বের, কিন্তু কাফিরও নয়। সে المنزلة بين المنزلتين-এ।</li>
+                <li>তওবা ছাড়া মারা গেলে চিরকাল জাহান্নামে থাকবে।</li>
+            </ul>
+
+            <p><b>(৫) তাদের ধারণার কারণ:</b></p>
+            <ul>
+                <li>তাদের মতে আমল ঈমানের অংশ, তাই অংশ না থাকলে ঈমান থাকে না।</li>
+                <li>ঈমান প্রশংসার নাম, ফাসিক প্রশংসার যোগ্য নয়। আবার সে কালিমা স্বীকার করে, তাই কাফিরও নয়।</li>
+                <li>তাদের মতে আল্লাহর ওয়াইদ (শাস্তির ধমকি) বাস্তবায়ন ওয়াজিব।</li>
+            </ul>
+
+            <div class="evidence">
+                <b>দলিল:</b>
+                <p class="arabic">ومن يقتل مؤمنا متعمدا فجزاؤه جهنم خالدا فيها</p>
+                <p>নিসা ৯৩।</p>
+            </div>
+
+            <p><b>(৬) জবাব:</b></p>
+            <ul>
+                <li>খুলুদ-এর আয়াতগুলো কাফির বা হালাল মনে করা ব্যক্তির জন্য, অথবা দীর্ঘ অবস্থান অর্থে।</li>
+                <li>ওয়াইদ মাফের সম্ভাবনার সাথে শর্তযুক্ত, কারণ আল্লাহ বলেছেন "ويغفر ما دون ذلك"।</li>
+                <li>আমল ঈমানের অংশ হলেও আহলুস সুন্নাহর মতে তা পূর্ণতার অংশ, মূল সত্তার নয়।</li>
+            </ul>
+        </div>
+    </section>
+
+
+    <div class="divider"></div>
+
+
+    <!-- প্রশ্ন–৫ -->
+    <section class="question-section">
+        <div class="question-title">
+            প্রশ্ন–৫: كرامات الأولياء ও الإمامة
+        </div>
+
+        <div class="qa-block">
+            <div class="sub-title">(A) "كرامات الأولياء حق" প্রমাণ করো। معجزة ও سحر-এর পার্থক্য লেখো।</div>
+
+            <p><span class="label">উত্তর:</span></p>
+
+            <ol>
+                <li><b>অর্থ:</b> ওলির মাধ্যমে প্রকাশিত অলৌকিক ঘটনা (خرق العادة) সত্য। ওলি হলেন যিনি আল্লাহকে চেনেন, আনুগত্য করেন ও গুনাহ থেকে বেঁচে থাকেন।</li>
+
+                <li><b>কুরআনের দলিল:</b>
+                    <ul>
+                        <li>মারইয়াম (আ.)-এর কাছে অসময়ের রিযিক (আলে ইমরান ৩৭)।</li>
+                        <li>খেজুর গাছ নাড়ালে তাজা খেজুর পড়া (মারইয়াম ২৫)।</li>
+                        <li>আসহাবে কাহফের ঘটনা।</li>
+                        <li>সুলাইমান (আ.)-এর সাথীর পলকের মধ্যে বিলকিসের সিংহাসন আনা (নামল ৪০)। অধিকাংশ মুফাসসিরের মতে তিনি ছিলেন একজন ওলি।</li>
+                    </ul>
+                </li>
+
+                <li><b>হাদিসের দলিল:</b>
+                    <ul>
+                        <li>গুহায় আটকে পড়া তিন ব্যক্তির পাথর সরে যাওয়া (বুখারি, মুসলিম)।</li>
+                        <li>জুরাইজ-এর ঘটনায় শিশুর কথা বলা (বুখারি, মুসলিম)।</li>
+                    </ul>
+                </li>
+
+                <li><b>আকলী দলিল:</b> অলৌকিক ঘটনা সৃষ্টি আল্লাহর জন্য সম্ভব। ওলির মাধ্যমে প্রকাশ পেলে তা আল্লাহর অনুগ্রহ। নবীর মুজিযা অস্বীকারকারী ছাড়া কেউ তা অস্বীকার করে না।</li>
+            </ol>
+
+            <p><b>(৫) মুজিযা, কারামত ও সিহরের পার্থক্য:</b></p>
+
+            <div class="important">
+                <p><b>معجزة:</b> নবীর হাতে প্রকাশিত, নবুওয়তের দাবি ও চ্যালেঞ্জ (تحدي)-এর সাথে। নবী তা প্রকাশ করেন।</p>
+
+                <p><b>كرامة:</b> ওলির হাতে প্রকাশিত, নবুওয়তের দাবি ছাড়া। ওলি সাধারণত তা গোপন রাখেন। ওলি রাসূলের শরিয়ত মেনে চলেন।</p>
+
+                <p><b>سحر:</b> শিক্ষালব্ধ, শয়তানের সাহায্যে প্রকাশিত। ফাসিক ও কাফিরের হাতেও হয়। এটি তাকওয়ার ফল নয়।</p>
+            </div>
+        </div>
+
+
+        <div class="qa-block">
+            <div class="sub-title">(B) নবীদের পর সর্বশ্রেষ্ঠ মানুষ কারা? খিলাফতে রাশিদার পর "খিলাফত" শব্দের প্রয়োগ বৈধ কি না? দলিলসহ লেখো।</div>
+
+            <p><span class="label">উত্তর:</span></p>
+
+            <ol>
+                <li><b>আহলুস সুন্নাহর মত:</b> নবীদের পর শ্রেষ্ঠ মানুষ ক্রমানুসারে আবু বকর, উমর, উসমান, আলী (رضي الله عنهم)।</li>
+
+                <li><b>দলিল:</b>
+                    <ul>
+                        <li>ইবনে উমর (رضي الله عنهما): রাসূল (সা.)-এর যুগে আমরা মর্যাদার ক্রম গণ্য করতাম আবু বকর, তারপর উমর, তারপর উসমান (বুখারি)।</li>
+                        <li>আলী (رضي الله عنه) নিজে বলেছেন: এই উম্মতের শ্রেষ্ঠ ব্যক্তি নবীর পর আবু বকর, তারপর উমর (বুখারি)।</li>
+                        <li>সাহাবাদের ইজমা খিলাফতের এই ক্রমের উপর।</li>
+                    </ul>
+                </li>
+
+                <li><b>খিলাফত শব্দের প্রয়োগ:</b>
+                    <ul>
+                        <li>হাদিস:</li>
+                    </ul>
+
+                    <p class="arabic">الخلافة بعدي ثلاثون سنة ثم يكون ملكا</p>
+
+                    <p>(তিরমিযি, আবু দাউদ)। এর অর্থ পূর্ণাঙ্গ খিলাফতে রাশিদা ত্রিশ বছর, অর্থাৎ চার খলিফা ও হাসান (رضي الله عنهم)-এর ছয় মাস পর্যন্ত।</p>
+
+                    <ul>
+                        <li>তারপর রাজত্ব ও ইমারত (ملك وإمارة)।</li>
+                        <li>তবে শব্দার্থে (لغة ও مجازا) পরবর্তী মুসলিম শাসককে "খলিফা" বলা বৈধ, যে শরিয়ত অনুযায়ী শাসন করে। পূর্ণাঙ্গ খিলাফতে রাশিদা বলতে শুধু প্রথম ত্রিশ বছর বোঝায়।</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+
+
+        <div class="qa-block">
+            <div class="sub-title">(C) ইমাম নিযুক্ত করা আল্লাহর উপর ওয়াজিব না বান্দার উপর? দলিলসহ বলো।</div>
+
+            <p><span class="label">উত্তর:</span></p>
+
+            <ol>
+                <li><b>আহলুস সুন্নাহর মত:</b> ইমাম নিযুক্ত করা বান্দার উপর ওয়াজিব এবং এ ওয়াজিব সামঈ (শরঈ দলিলভিত্তিক), আকলী নয়।</li>
+
+                <li><b>দলিল:</b>
+                    <ul>
+                        <li>সাহাবায়ে কেরাম রাসূল (সা.)-এর দাফনের আগে খলিফা নির্বাচনকে অগ্রাধিকার দিয়েছেন। এটি ইজমা।</li>
+                        <li>হাদিস: যে বাইয়াত ছাড়া মারা যায় সে জাহিলিয়াতের মৃত্যু বরণ করে (মুসলিম)।</li>
+                        <li>ইমাম ছাড়া হদ কায়েম, সীমান্ত রক্ষা, জিহাদ ও মুসলিমদের ঐক্য সম্ভব নয়।</li>
+                    </ul>
+                </li>
+
+                <li><b>বিরোধী মত:</b> শিয়া ইমামিয়ারা বলে ইমাম নিযুক্ত করা আল্লাহর উপর ওয়াজিব (লুতফ হিসেবে)। মুতাযিলাদের মতে ওয়াজিব আকলী।</li>
+
+                <li><b>জবাব:</b>
+                    <ul>
+                        <li>আল্লাহর উপর কিছু ওয়াজিব নয়।</li>
+                    </ul>
+
+                    <p class="arabic">لا يسأل عما يفعل</p>
+
+                    <p>(আম্বিয়া ২৩)।</p>
+
+                    <ul>
+                        <li>লুতফ আল্লাহর উপর ওয়াজিব নয়।</li>
+                        <li>তাদের "গায়েব ইমাম" দ্বারা কোনো উপকারই হয় না, অথচ ইমামের উদ্দেশ্য হলো শাসন ও আইন বাস্তবায়ন।</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+
+
+        <div class="qa-block">
+            <div class="sub-title">(D) "وينبغي أن يكون الإمام ظاهرا ..." ইবারতের ব্যাখ্যা করো।</div>
+
+            <p><span class="label">উত্তর:</span></p>
+
+            <ol>
+                <li><b>অর্থ:</b> ইমাম হবেন প্রকাশ্য, লুকানো নয় এবং প্রতীক্ষিত নয়।</li>
+                <li><b>এখানে ينبغي অর্থ:</b> আবশ্যিক।</li>
+                <li><b>কারণ:</b>
+                    <ul>
+                        <li>ইমামের উদ্দেশ্য হুকুম বাস্তবায়ন, হদ কায়েম, সীমান্ত রক্ষা ও জিহাদ। লুকানো বা অনুপস্থিত ব্যক্তির দ্বারা এসব সম্ভব নয়।</li>
+                        <li>ইমাম জনগণের সামনে উপস্থিত থেকে ক্ষমতা প্রয়োগ করবেন।</li>
+                    </ul>
+                </li>
+                <li><b>খণ্ডন:</b> শিয়া ইমামিয়ারা মনে করে ইমাম গায়েব এবং অপেক্ষিত (মাহদী)। এ ধারণা ইমামতের উদ্দেশ্যের পরিপন্থী।</li>
+                <li><b>সংযোজন:</b> ইমামের জন্য কুরাইশি হওয়া শর্ত। হাশেমি, আলাভি, মাসুম বা যুগের সর্বশ্রেষ্ঠ হওয়া শর্ত নয়।</li>
+            </ol>
+        </div>
+    </section>
+
+
+    <div class="footer">
+        শারহুল আকাইদ আন-নাসাফিয়্যাহ — ১৪৩৬ হিজরি প্রশ্নপত্রের উত্তর
+    </div>
+
+</div>
+
+
+<script>
+/* Scroll Animation */
+const blocks = document.querySelectorAll(".qa-block");
+
+const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+        if(entry.isIntersecting){
+            entry.target.classList.add("show");
+        }
+    });
+},{
+    threshold:0.08
+});
+
+blocks.forEach(block=>observer.observe(block));
+
+
+/*
+    PDF Download
+    Browser Print ব্যবহার করা হয়েছে।
+    এতে Text selectable/copyable থাকে।
+    Print Dialog থেকে "Save as PDF" নির্বাচন করুন।
+*/
+function downloadPDF(){
+    window.print();
+}
+</script>
+
 </body>
 </html>
