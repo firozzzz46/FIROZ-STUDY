@@ -1893,5 +1893,71 @@
 
 </script>
 
+
+<!-- ================= TOP PERFECT PDF CODE ================= -->
+<style>
+    .top-pdf-container {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .top-pdf-btn {
+        background-color: #6366f1;
+        color: #ffffff;
+        border: none;
+        padding: 12px 24px;
+        font-size: 18px;
+        font-weight: 700;
+        border-radius: 12px;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+        transition: all 0.3s ease;
+    }
+    .top-pdf-btn:hover {
+        background-color: #4f46e5;
+        transform: translateY(-2px);
+    }
+
+    /* Print / PDF Save korar somoy sob lekha spaşto rakhar CSS */
+    @media print {
+        body {
+            background-color: #ffffff !important;
+            padding: 0 !important;
+            overflow: visible !important;
+        }
+        .content-card {
+            box-shadow: none !important;
+            border: none !important;
+            padding: 0 !important;
+        }
+        .top-pdf-container, .back-btn, .nav-buttons {
+            display: none !important;
+        }
+        .animate-up, .animate-left, .animate-zoom {
+            opacity: 1 !important;
+            transform: none !important;
+        }
+    }
+</style>
+
+<div id="top-pdf-wrapper" class="top-pdf-container">
+    <button onclick="window.print()" class="top-pdf-btn">
+        📥 Save / Download PDF
+    </button>
+</div>
+
+<script>
+    // Header-er thik niche button-ti boshaye dibe
+    window.addEventListener("DOMContentLoaded", function() {
+        const header = document.querySelector('.header');
+        const pdfBtn = document.getElementById('top-pdf-wrapper');
+        if (header && pdfBtn) {
+            header.parentNode.insertBefore(pdfBtn, header.nextSibling);
+        }
+    });
+</script>
+<!-- ================= END TOP PERFECT PDF CODE ================= -->
+
+
+
 </body>
 </html>
