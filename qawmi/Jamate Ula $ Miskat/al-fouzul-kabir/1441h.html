@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>বোর্ড পরীক্ষা বিজ্ঞপ্তি - ১৪৪১ হিজরী</title>
+
+    <!-- Google Fonts for Bengali & English -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@700;900&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background: linear-gradient(to bottom, #030712 0%, #0f172a 60%, #1e1b4b 100%);
+            overflow: hidden;
+        }
+
+        /* Glowing gradient text animation */
+        .glow-title {
+            background: linear-gradient(135deg, #ffffff 0%, #fcd34d 50%, #f59e0b 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 6s linear infinite;
+        }
+
+        @keyframes shine {
+            0% { background-position: 0% center; }
+            50% { background-position: 100% center; }
+            100% { background-position: 0% center; }
+        }
+
+        /* Floating entrance animation */
+        @keyframes floatIn {
+            0% {
+                opacity: 0;
+                transform: translateY(40px) scale(0.95);
+                filter: blur(8px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                filter: blur(0);
+            }
+        }
+
+        /* Subtle gentle floating */
+        @keyframes subtleFloat {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        /* Continuous moon glow pulse */
+        @keyframes moonPulse {
+            0%, 100% {
+                filter: drop-shadow(0 0 15px rgba(253, 224, 71, 0.4));
+            }
+            50% {
+                filter: drop-shadow(0 0 30px rgba(253, 224, 71, 0.7));
+            }
+        }
+
+        /* Staggered text entrance animations */
+        .animate-heading {
+            animation: 
+                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards,
+                subtleFloat 6s ease-in-out 1.2s infinite;
+        }
+
+        .animate-notice {
+            animation: 
+                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards,
+                subtleFloat 6s ease-in-out 1.55s infinite;
+            opacity: 0;
+        }
+
+        .moon-glow {
+            animation: moonPulse 4s ease-in-out infinite;
+        }
+
+        /* Interactive mouse light glow */
+        .ambient-glow {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.18) 0%, rgba(3, 7, 18, 0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            transition: left 0.4s ease-out, top 0.4s ease-out;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-between relative select-none px-4">
+
+    <!-- Interactive ambient light -->
+    <div id="glow" class="ambient-glow top-1/2 left-1/2"></div>
+
+    <!-- Star particles canvas -->
+    <canvas id="starsCanvas" class="absolute inset-0 pointer-events-none z-0"></canvas>
+
+    <!-- Top Crescent Moon & Star visual scenery -->
+    <div class="z-10 pt-10 sm:pt-14 flex flex-col items-center">
+        <svg class="w-16 h-16 sm:w-20 sm:h-20 text-amber-300 moon-glow" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-5.4-5.4c0-1.81.89-3.42 2.26-4.4C12.92 3.04 12.46 3 12 3z"/>
+            <path d="M19 3l1.25 2.75L23 7l-2.75 1.25L19 11l-1.25-2.75L15 7l2.75-1.25z" />
+        </svg>
+    </div>
+
+    <!-- Centered main Bengali content -->
+    <main class="text-center z-10 space-y-6 max-w-4xl mx-auto my-auto py-6 px-4">
+        
+        <!-- Notice Title badge -->
+        <div class="inline-block px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-sm sm:text-base font-medium tracking-wide mb-2 backdrop-blur-md">
+            বিশেষ বিজ্ঞপ্তি
+        </div>
+
+        <!-- Main Announcement Message -->
+        <h1 class="animate-heading text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight sm:leading-relaxed text-slate-100 drop-shadow-md">
+            করোনা মহামারির কারণে এ বছর <span class="glow-title font-black">(১৪৪১ হিজরী)</span>
+            <br class="hidden sm:block"> 
+            বোর্ড পরীক্ষা হয়নি।
+        </h1>
+
+        <!-- Subtitle note -->
+        <p class="animate-notice text-base sm:text-xl text-slate-400 max-w-xl mx-auto font-normal">
+            পরবর্তী শিক্ষাবর্ষের হালনাগাদ তথ্যের জন্য আমাদের সাথেই থাকুন।
+        </p>
+
+    </main>
+
+    <!-- Islamic Architecture Silhouette Footer -->
+    <div class="w-full z-10 opacity-70 pointer-events-none mt-auto">
+        <svg class="w-full h-24 sm:h-36 md:h-48 text-indigo-950/80 fill-current" viewBox="0 0 1200 200" preserveAspectRatio="none">
+            <!-- Mosque Silhouette Landscape -->
+            <path d="M0,200 L0,180 Q30,180 30,160 Q30,130 50,130 Q70,130 70,160 Q70,180 100,180 L150,180 L150,90 Q150,85 155,85 Q160,85 160,90 L160,180 L220,180 L220,130 Q220,90 250,90 Q280,90 280,130 L280,180 L350,180 L350,70 L355,50 L360,70 L360,180 L450,180 Q450,160 460,160 Q460,110 490,100 Q490,70 500,60 Q510,70 510,100 Q540,110 540,160 Q550,160 550,180 L650,180 Q650,150 670,130 Q700,100 730,130 Q750,150 750,180 L840,180 L840,80 L845,60 L850,80 L850,180 L920,180 Q920,140 950,140 Q980,140 980,180 L1050,180 L1050,100 Q1050,95 1055,95 Q1060,95 1060,100 L1060,180 L1200,180 L1200,200 Z"></path>
+        </svg>
+    </div>
+
+    <script>
+        // Interactive Glow Position
+        const glow = document.getElementById('glow');
+        window.addEventListener('mousemove', (e) => {
+            glow.style.left = e.clientX + 'px';
+            glow.style.top = e.clientY + 'px';
+        });
+        window.addEventListener('touchmove', (e) => {
+            if (e.touches.length > 0) {
+                glow.style.left = e.touches[0].clientX + 'px';
+                glow.style.top = e.touches[0].clientY + 'px';
+            }
+        });
+
+        // Dynamic Twinkling Stars Background Effect
+        const canvas = document.getElementById('starsCanvas');
+        const ctx = canvas.getContext('2d');
+
+        let stars = [];
+        const numStars = 70;
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            initStars();
+        }
+
+        function initStars() {
+            stars = [];
+            for (let i = 0; i < numStars; i++) {
+                stars.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * (canvas.height * 0.7), // keep stars mostly at top/middle
+                    radius: Math.random() * 1.5 + 0.5,
+                    alpha: Math.random(),
+                    speed: Math.random() * 0.015 + 0.005
+                });
+            }
+        }
+
+        function drawStars() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            stars.forEach(star => {
+                star.alpha += star.speed;
+                if (star.alpha > 1 || star.alpha < 0) {
+                    star.speed = -star.speed;
+                }
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(253, 224, 71, ${Math.abs(star.alpha)})`;
+                ctx.shadowBlur = 8;
+                ctx.shadowColor = '#fde047';
+                ctx.fill();
+            });
+            requestAnimationFrame(drawStars);
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+        drawStars();
+    </script>
+</body>
+</html>

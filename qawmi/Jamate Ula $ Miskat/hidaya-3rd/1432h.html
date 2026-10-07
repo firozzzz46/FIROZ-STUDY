@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coming Soon</title>
+
+    <!-- Google Fonts for Bengali & English -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Inter:wght@700;900&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        body {
+            font-family: 'Hind Siliguri', 'Inter', sans-serif;
+            background-color: #030712;
+            overflow: hidden;
+        }
+
+        /* Gradient glowing animation on text */
+        .glow-text {
+            background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 50%, #38bdf8 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 6s linear infinite;
+        }
+
+        @keyframes shine {
+            0% { background-position: 0% center; }
+            50% { background-position: 100% center; }
+            100% { background-position: 0% center; }
+        }
+
+        /* Keyframes for initial entry: Floating in from below with opacity */
+        @keyframes floatIn {
+            0% {
+                opacity: 0;
+                transform: translateY(40px) scale(0.95);
+                filter: blur(8px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                filter: blur(0);
+            }
+        }
+
+        /* Continuous subtle float effect once arrived */
+        @keyframes subtleFloat {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        /* Animation class for Heading */
+        .animate-heading {
+            animation: 
+                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards,
+                subtleFloat 6s ease-in-out 1.2s infinite;
+        }
+
+        /* Animation class for Subheading (staggered delay) */
+        .animate-subheading {
+            animation: 
+                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards,
+                subtleFloat 6s ease-in-out 1.55s infinite;
+            opacity: 0; /* Hidden until animation kicks in */
+        }
+
+        /* Ambient background lighting */
+        .ambient-glow {
+            position: absolute;
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(3, 7, 18, 0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            transition: left 0.4s ease-out, top 0.4s ease-out;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center relative select-none px-4">
+
+    <!-- Ambient glow center element -->
+    <div id="glow" class="ambient-glow top-1/2 left-1/2"></div>
+
+    <!-- Centered minimal content with entry animations -->
+    <main class="text-center z-10 space-y-6 max-w-3xl mx-auto py-8 px-4">
+        
+        <!-- Main English Title -->
+        <h1 class="animate-heading text-5xl sm:text-7xl md:text-8xl font-black tracking-tight glow-text font-['Inter'] drop-shadow-lg">
+            Coming Soon...
+        </h1>
+
+        <!-- Bengali Subheading -->
+        <p class="animate-subheading text-xl sm:text-3xl md:text-4xl font-semibold text-emerald-400/90 leading-relaxed tracking-wide drop-shadow">
+            ইনশাআল্লাহ, খুব শীঘ্রই ডাটা যোগ করা হবে।
+        </p>
+
+    </main>
+
+    <script>
+        const glow = document.getElementById('glow');
+
+        // Mouse move interactive glow background
+        window.addEventListener('mousemove', (e) => {
+            glow.style.left = e.clientX + 'px';
+            glow.style.top = e.clientY + 'px';
+        });
+
+        // Touch move interactive glow background for mobile screens
+        window.addEventListener('touchmove', (e) => {
+            if (e.touches.length > 0) {
+                glow.style.left = e.touches[0].clientX + 'px';
+                glow.style.top = e.touches[0].clientY + 'px';
+            }
+        });
+    </script>
+</body>
+</html>

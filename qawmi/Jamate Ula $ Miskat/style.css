@@ -511,3 +511,14 @@ footer {
     }
 
 }
+
+
+
+
+
+/* লিঙ্ক কালার ও টেক্সট ঠিক করার কোড */
+.topic-link {
+    text-decoration: none !important;
+    color: inherit !important;
+    display: block;
+}
