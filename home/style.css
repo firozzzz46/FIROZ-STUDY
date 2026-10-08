@@ -827,3 +827,35 @@ body {
         filter: blur(0px);
     }
 }
+/* =========================================
+   FIX FOR MOBILE OVERLAPPING CLOCK ISSUE
+   ========================================= */
+
+@media (max-width: 600px) {
+    .hero-time {
+        position: relative; /* Fixed তুলে দিয়ে স্বাভাবিক লেআউটে আনা হলো */
+        top: 0;
+        right: 0;
+        width: 100%;
+        max-width: 280px;
+        margin: 0 auto 20px auto; /* সেন্টারে থাকবে এবং নিচে গ্যাপ তৈরি করবে */
+        padding: 14px 18px;
+        border-radius: 18px;
+    }
+
+    #liveTime {
+        font-size: 26px;
+    }
+
+    #liveDate {
+        font-size: 12px;
+    }
+
+    #hijriDate {
+        font-size: 11px;
+    }
+}
+
+
+
+
