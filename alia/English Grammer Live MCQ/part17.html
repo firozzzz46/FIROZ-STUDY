@@ -1,128 +1,2000 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Google Fonts for Bengali & English -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Inter:wght@700;900&display=swap" rel="stylesheet">
+<title>PART 17 - Articles & Determiners | Infinity MCQ</title>
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+<style>
+/* =========================================================
+   PART 17 — ARTICLES & DETERMINERS
+   SINGLE FILE MCQ SYSTEM
+========================================================= */
 
-    <style>
-        body {
-            font-family: 'Hind Siliguri', 'Inter', sans-serif;
-            background-color: #030712;
-            overflow: hidden;
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        /* Gradient glowing animation on text */
-        .glow-text {
-            background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 50%, #38bdf8 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shine 6s linear infinite;
-        }
+html {
+    scroll-behavior: smooth;
+}
 
-        @keyframes shine {
-            0% { background-position: 0% center; }
-            50% { background-position: 100% center; }
-            100% { background-position: 0% center; }
-        }
+body {
+    min-height: 100vh;
+    font-family: "Times New Roman", "Kalpurush", serif;
 
-        /* Keyframes for initial entry: Floating in from below with opacity */
-        @keyframes floatIn {
-            0% {
-                opacity: 0;
-                transform: translateY(40px) scale(0.95);
-                filter: blur(8px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-                filter: blur(0);
-            }
-        }
+    background:
+        radial-gradient(circle at 10% 10%, rgba(220, 235, 255, .75), transparent 35%),
+        radial-gradient(circle at 90% 20%, rgba(240, 225, 255, .65), transparent 35%),
+        radial-gradient(circle at 50% 100%, rgba(220, 245, 235, .65), transparent 40%),
+        linear-gradient(135deg, #ffffff, #f7f9fc);
 
-        /* Continuous subtle float effect once arrived */
-        @keyframes subtleFloat {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-8px);
-            }
-        }
+    color: #202733;
+    padding: 25px 15px 45px;
+}
 
-        /* Animation class for Heading */
-        .animate-heading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards,
-                subtleFloat 6s ease-in-out 1.2s infinite;
-        }
+/* ---------- MAIN CONTAINER ---------- */
 
-        /* Animation class for Subheading (staggered delay) */
-        .animate-subheading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards,
-                subtleFloat 6s ease-in-out 1.55s infinite;
-            opacity: 0; /* Hidden until animation kicks in */
-        }
+.container {
+    width: min(100%, 1050px);
+    margin: auto;
+}
 
-        /* Ambient background lighting */
-        .ambient-glow {
-            position: absolute;
-            width: 450px;
-            height: 450px;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(3, 7, 18, 0) 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            transition: left 0.4s ease-out, top 0.4s ease-out;
-        }
-    </style>
+/* ---------- HEADER ---------- */
+
+.header {
+    text-align: center;
+    margin-bottom: 25px;
+    padding: 25px 20px;
+
+    background: rgba(255, 255, 255, .62);
+    border: 1px solid rgba(255, 255, 255, .8);
+    border-radius: 25px;
+
+    box-shadow:
+        0 20px 55px rgba(30, 50, 80, .10),
+        inset 0 1px 0 rgba(255,255,255,.8);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    animation: headerIn 1.1s cubic-bezier(.16,1,.3,1);
+}
+
+.header h1 {
+    font-size: clamp(25px, 5vw, 40px);
+    letter-spacing: .5px;
+    margin-bottom: 8px;
+}
+
+.header p {
+    font-size: 20px;
+    line-height: 1.5;
+}
+
+.badge {
+    display: inline-block;
+    margin-top: 13px;
+    padding: 7px 15px;
+    border-radius: 999px;
+
+    background: rgba(255,255,255,.75);
+    border: 1px solid rgba(0,0,0,.07);
+
+    font-size: 17px;
+}
+
+/* ---------- PROGRESS ---------- */
+
+.progress-card {
+    padding: 18px 20px;
+    margin-bottom: 20px;
+
+    background: rgba(255,255,255,.58);
+    border: 1px solid rgba(255,255,255,.8);
+    border-radius: 20px;
+
+    box-shadow: 0 15px 40px rgba(30,50,80,.08);
+
+    backdrop-filter: blur(15px);
+}
+
+.progress-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    flex-wrap: wrap;
+
+    font-size: 19px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.progress-track {
+    width: 100%;
+    height: 10px;
+    overflow: hidden;
+
+    background: rgba(0,0,0,.07);
+    border-radius: 50px;
+}
+
+.progress-bar {
+    width: 0%;
+    height: 100%;
+    border-radius: inherit;
+
+    background: linear-gradient(90deg, #607dff, #8f62ff, #4dc9ff);
+
+    transition: width .8s cubic-bezier(.16,1,.3,1);
+}
+
+/* ---------- QUESTION CARD ---------- */
+
+.quiz-card {
+    position: relative;
+    overflow: hidden;
+
+    padding: clamp(22px, 5vw, 40px);
+
+    background: rgba(255,255,255,.68);
+    border: 1px solid rgba(255,255,255,.85);
+    border-radius: 28px;
+
+    box-shadow:
+        0 25px 70px rgba(30,50,80,.12),
+        inset 0 1px 0 rgba(255,255,255,.9);
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    min-height: 430px;
+}
+
+/* ---------- QUESTION ANIMATION ---------- */
+
+.question-content {
+    animation-duration: 1.05s;
+    animation-timing-function: cubic-bezier(.16,1,.3,1);
+    animation-fill-mode: both;
+}
+
+.slide-next {
+    animation-name: slideNext;
+}
+
+.slide-prev {
+    animation-name: slidePrev;
+}
+
+@keyframes slideNext {
+    0% {
+        opacity: 0;
+        transform: translateX(55px) translateY(10px) scale(.985);
+        filter: blur(5px);
+    }
+
+    55% {
+        opacity: .7;
+        filter: blur(1.5px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0) translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+@keyframes slidePrev {
+    0% {
+        opacity: 0;
+        transform: translateX(-55px) translateY(10px) scale(.985);
+        filter: blur(5px);
+    }
+
+    55% {
+        opacity: .7;
+        filter: blur(1.5px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0) translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+/* ---------- CATEGORY ---------- */
+
+.category {
+    display: inline-block;
+
+    padding: 7px 14px;
+    margin-bottom: 18px;
+
+    border-radius: 999px;
+
+    background: rgba(95,125,255,.10);
+    border: 1px solid rgba(95,125,255,.18);
+
+    font-size: 17px;
+    font-weight: bold;
+}
+
+/* ---------- QUESTION ---------- */
+
+.question {
+    font-size: clamp(21px, 3vw, 27px);
+    line-height: 1.55;
+    font-weight: bold;
+
+    margin-bottom: 5px;
+}
+
+.question-bangla {
+    font-family: "Kalpurush", "Noto Sans Bengali", sans-serif;
+
+    font-size: 18px;
+    line-height: 1.7;
+
+    color: #596273;
+    margin-bottom: 25px;
+}
+
+/* ---------- OPTIONS ---------- */
+
+.options {
+    display: grid;
+    gap: 13px;
+}
+
+.option {
+    width: 100%;
+    text-align: left;
+
+    padding: 16px 18px;
+
+    border-radius: 17px;
+    border: 1px solid rgba(40,55,80,.12);
+
+    background: rgba(255,255,255,.72);
+
+    font-family: "Times New Roman", "Kalpurush", serif;
+    font-size: 20px;
+    line-height: 1.4;
+
+    cursor: pointer;
+
+    transition:
+        transform .35s cubic-bezier(.16,1,.3,1),
+        box-shadow .35s ease,
+        background .35s ease,
+        border-color .35s ease;
+}
+
+.option:hover:not(:disabled) {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(30,50,80,.10);
+    border-color: rgba(95,125,255,.35);
+}
+
+.option:active:not(:disabled) {
+    transform: scale(.985);
+}
+
+.option:disabled {
+    cursor: default;
+}
+
+.option.correct {
+    background: rgba(62, 190, 120, .13);
+    border-color: rgba(35, 160, 95, .55);
+    box-shadow: 0 8px 25px rgba(35,160,95,.12);
+}
+
+.option.wrong {
+    background: rgba(235, 75, 90, .11);
+    border-color: rgba(220,55,75,.5);
+    box-shadow: 0 8px 25px rgba(220,55,75,.10);
+}
+
+.option.reveal {
+    background: rgba(62,190,120,.08);
+    border-color: rgba(35,160,95,.35);
+}
+
+/* ---------- EXPLANATION ---------- */
+
+.explanation {
+    margin-top: 23px;
+    padding: 20px;
+
+    border-radius: 19px;
+
+    background: rgba(248,250,255,.9);
+    border: 1px solid rgba(90,110,150,.13);
+
+    font-family: "Kalpurush", "Noto Sans Bengali", sans-serif;
+
+    font-size: 18px;
+    line-height: 1.8;
+
+    animation: explanationIn .65s cubic-bezier(.16,1,.3,1);
+}
+
+@keyframes explanationIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.explanation strong {
+    font-family: "Times New Roman", "Kalpurush", serif;
+}
+
+/* ---------- CONTROLS ---------- */
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    gap: 14px;
+
+    margin-top: 22px;
+}
+
+.control-btn {
+    flex: 1;
+
+    padding: 15px 20px;
+
+    border: none;
+    border-radius: 17px;
+
+    background: rgba(255,255,255,.78);
+    border: 1px solid rgba(0,0,0,.08);
+
+    font-family: "Times New Roman", "Kalpurush", serif;
+    font-size: 19px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow: 0 10px 25px rgba(30,50,80,.08);
+
+    transition:
+        transform .3s cubic-bezier(.16,1,.3,1),
+        box-shadow .3s ease,
+        opacity .3s ease;
+}
+
+.control-btn:hover:not(:disabled) {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 32px rgba(30,50,80,.13);
+}
+
+.control-btn:active:not(:disabled) {
+    transform: scale(.97);
+}
+
+.control-btn:disabled {
+    opacity: .45;
+    cursor: not-allowed;
+}
+
+.next-btn {
+    background: linear-gradient(135deg, #637cff, #815eff);
+    color: white;
+    border: none;
+}
+
+/* ---------- SCORE ---------- */
+
+.score-card {
+    margin-top: 22px;
+    padding: 20px;
+
+    text-align: center;
+
+    background: rgba(255,255,255,.62);
+    border: 1px solid rgba(255,255,255,.8);
+    border-radius: 22px;
+
+    box-shadow: 0 15px 40px rgba(30,50,80,.08);
+
+    backdrop-filter: blur(15px);
+}
+
+.score-card h2 {
+    font-size: 23px;
+    margin-bottom: 8px;
+}
+
+.score-number {
+    font-size: 31px;
+    font-weight: bold;
+}
+
+/* ---------- FOOTER ---------- */
+
+.footer {
+    text-align: center;
+    margin-top: 25px;
+
+    font-size: 17px;
+    line-height: 1.7;
+
+    color: #697386;
+}
+
+/* ---------- RESPONSIVE ---------- */
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 12px 9px 30px;
+    }
+
+    .header {
+        padding: 21px 14px;
+        border-radius: 20px;
+    }
+
+    .header p {
+        font-size: 18px;
+    }
+
+    .progress-card {
+        padding: 15px;
+    }
+
+    .quiz-card {
+        padding: 20px 15px;
+        border-radius: 22px;
+        min-height: 400px;
+    }
+
+    .question {
+        font-size: 21px;
+    }
+
+    .question-bangla {
+        font-size: 18px;
+    }
+
+    .option {
+        font-size: 19px;
+        padding: 15px;
+    }
+
+    .controls {
+        gap: 9px;
+    }
+
+    .control-btn {
+        padding: 14px 10px;
+        font-size: 18px;
+    }
+}
+
+/* ---------- REDUCED MOTION ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+    }
+}
+</style>
 </head>
-<body class="min-h-screen flex items-center justify-center relative select-none px-4">
 
-    <!-- Ambient glow center element -->
-    <div id="glow" class="ambient-glow top-1/2 left-1/2"></div>
 
-    <!-- Centered minimal content with entry animations -->
-    <main class="text-center z-10 space-y-6 max-w-3xl mx-auto py-8 px-4">
-        
-        <!-- Main English Title -->
-        <h1 class="animate-heading text-5xl sm:text-7xl md:text-8xl font-black tracking-tight glow-text font-['Inter'] drop-shadow-lg">
-            Coming Soon...
-        </h1>
+<body>
 
-        <!-- Bengali Subheading -->
-        <p class="animate-subheading text-xl sm:text-3xl md:text-4xl font-semibold text-emerald-400/90 leading-relaxed tracking-wide drop-shadow">
-            ইনশাআল্লাহ, খুব শীঘ্রই ডাটা যোগ করা হবে।
+<div class="container">
+
+    <!-- HEADER -->
+    <header class="header">
+
+        <h1>PART 17 — Articles &amp; Determiners</h1>
+
+        <p>
+            Infinity MCQ Practice System
         </p>
+
+        <span class="badge">
+            A • An • The • Demonstratives • Possessives • Quantifiers • Numbers • Distributives
+        </span>
+
+    </header>
+
+
+    <!-- PROGRESS -->
+    <section class="progress-card">
+
+        <div class="progress-top">
+
+            <span id="questionCounter">
+                Question 1
+            </span>
+
+            <span id="scoreCounter">
+                Score: 0
+            </span>
+
+        </div>
+
+        <div class="progress-track">
+
+            <div
+                class="progress-bar"
+                id="progressBar">
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- QUIZ -->
+    <main class="quiz-card">
+
+        <div
+            id="questionContent"
+            class="question-content">
+
+            <div
+                class="category"
+                id="category">
+                Articles
+            </div>
+
+            <div
+                class="question"
+                id="question">
+            </div>
+
+            <div
+                class="question-bangla"
+                id="questionBangla">
+            </div>
+
+            <div
+                class="options"
+                id="options">
+            </div>
+
+            <div
+                id="explanationArea">
+            </div>
+
+        </div>
 
     </main>
 
-    <script>
-        const glow = document.getElementById('glow');
 
-        // Mouse move interactive glow background
-        window.addEventListener('mousemove', (e) => {
-            glow.style.left = e.clientX + 'px';
-            glow.style.top = e.clientY + 'px';
+    <!-- CONTROLS -->
+    <div class="controls">
+
+        <button
+            class="control-btn"
+            id="previousBtn">
+            ← Previous
+        </button>
+
+        <button
+            class="control-btn next-btn"
+            id="nextBtn">
+            Next →
+        </button>
+
+    </div>
+
+
+    <!-- SCORE -->
+    <section class="score-card">
+
+        <h2>Practice Progress</h2>
+
+        <div
+            class="score-number"
+            id="scoreDisplay">
+            0 / 0
+        </div>
+
+    </section>
+
+
+    <footer class="footer">
+
+        PART 17 — Articles &amp; Determiners<br>
+
+        Keep Practicing • Learn • Understand • Improve
+
+    </footer>
+
+</div>
+
+
+<script>
+/* =========================================================
+   PART 17 — INFINITY MCQ ENGINE
+========================================================= */
+
+
+/* =========================================================
+   1. NAME DATABASE
+========================================================= */
+
+const names = [
+    "Firoz",
+    "Fatiha",
+    "Fatema",
+    "Jui",
+    "Ema",
+    "Rupa",
+    "Moksed",
+    "Ferjousi",
+    "Jannati",
+    "Mini",
+    "Miraz",
+    "Mujahid",
+    "Milon",
+    "Hannan",
+    "Joba",
+    "Tanzila",
+    "Rina",
+    "Tania",
+    "Taslima"
+];
+
+
+/* =========================================================
+   2. QUESTION DATABASE
+   These are rule-based templates.
+========================================================= */
+
+const templates = [
+
+/* =========================================================
+   A / AN — BASIC
+========================================================= */
+
+{
+    category: "Indefinite Article — A / An",
+
+    q: "Firoz bought ___ book from the market.",
+
+    bn: "ফিরোজ বাজার থেকে একটি বই কিনেছে।",
+
+    options: ["a", "an", "the", "no article"],
+
+    answer: "a",
+
+    explanation:
+    "<strong>Correct Answer: a</strong><br><br>" +
+    "এখানে <strong>book</strong> একটি singular countable noun। " +
+    "এটি প্রথমবার উল্লেখ করা হয়েছে এবং কোনো নির্দিষ্ট বই বোঝানো হয়নি। " +
+    "তাই indefinite article <strong>a</strong> ব্যবহার হবে।"
+},
+
+{
+    category: "Indefinite Article — A / An",
+
+    q: "Fatiha saw ___ elephant near the river.",
+
+    bn: "ফাতিহা নদীর কাছে একটি হাতি দেখল।",
+
+    options: ["a", "an", "the", "some"],
+
+    answer: "an",
+
+    explanation:
+    "<strong>Correct Answer: an</strong><br><br>" +
+    "<strong>Elephant</strong> শব্দটি vowel sound /e/ দিয়ে শুরু হয়েছে। " +
+    "Vowel sound-এর আগে singular countable noun-এর ক্ষেত্রে <strong>an</strong> ব্যবহৃত হয়।"
+},
+
+{
+    category: "Indefinite Article — A / An",
+
+    q: "Milon is ___ honest student.",
+
+    bn: "মিলন একজন সৎ ছাত্র।",
+
+    options: ["a", "an", "the", "no article"],
+
+    answer: "an",
+
+    explanation:
+    "<strong>Correct Answer: an</strong><br><br>" +
+    "<strong>Honest</strong> শব্দের শুরুতে <strong>h</strong> লেখা থাকলেও h উচ্চারিত হয় না। " +
+    "শব্দটি vowel sound দিয়ে শুরু হয়। তাই <strong>an honest student</strong> হবে।"
+},
+
+{
+    category: "Indefinite Article — A / An",
+
+    q: "Jui wants to become ___ engineer.",
+
+    bn: "জুই একজন ইঞ্জিনিয়ার হতে চায়।",
+
+    options: ["a", "an", "the", "some"],
+
+    answer: "an",
+
+    explanation:
+    "<strong>Correct Answer: an</strong><br><br>" +
+    "<strong>Engineer</strong> vowel sound দিয়ে শুরু হয়। " +
+    "তাই profession বোঝাতে <strong>an engineer</strong> হবে।"
+},
+
+{
+    category: "Indefinite Article — A / An",
+
+    q: "Rupa has ___ university book.",
+
+    bn: "রুবার কাছে একটি বিশ্ববিদ্যালয়ের বই আছে।",
+
+    options: ["a", "an", "the", "any"],
+
+    answer: "a",
+
+    explanation:
+    "<strong>Correct Answer: a</strong><br><br>" +
+    "<strong>University</strong> শব্দটি দেখতে vowel দিয়ে শুরু হলেও এর উচ্চারণ /juː/—অর্থাৎ consonant sound দিয়ে শুরু। " +
+    "তাই <strong>a university</strong> হবে, <strong>an university</strong> নয়।"
+},
+
+/* =========================================================
+   THE
+========================================================= */
+
+{
+    category: "Definite Article — The",
+
+    q: "I saw a bird. ___ bird was very beautiful.",
+
+    bn: "আমি একটি পাখি দেখলাম। পাখিটি খুব সুন্দর ছিল।",
+
+    options: ["A", "An", "The", "No article"],
+
+    answer: "The",
+
+    explanation:
+    "<strong>Correct Answer: The</strong><br><br>" +
+    "প্রথম বাক্যে পাখিটির কথা প্রথমবার বলা হয়েছে—<strong>a bird</strong>। " +
+    "পরের বাক্যে একই পাখিকে আবার নির্দিষ্ট করে বলা হয়েছে। তাই দ্বিতীয়বার <strong>the bird</strong> হবে।"
+},
+
+{
+    category: "Definite Article — The",
+
+    q: "The sun rises in ___ east.",
+
+    bn: "সূর্য পূর্ব দিকে উদিত হয়।",
+
+    options: ["a", "an", "the", "no article"],
+
+    answer: "the",
+
+    explanation:
+    "<strong>Correct Answer: the</strong><br><br>" +
+    "পৃথিবীর দিকগুলোর নির্দিষ্ট অঞ্চল বোঝাতে সাধারণত <strong>the</strong> ব্যবহৃত হয়। " +
+    "তাই <strong>the east</strong> সঠিক।"
+},
+
+{
+    category: "Definite Article — The",
+
+    q: "Firoz opened the door. ___ door was made of wood.",
+
+    bn: "ফিরোজ দরজাটি খুলল। দরজাটি কাঠের তৈরি ছিল।",
+
+    options: ["A", "An", "The", "Some"],
+
+    answer: "The",
+
+    explanation:
+    "<strong>Correct Answer: The</strong><br><br>" +
+    "প্রথম বাক্যে <strong>the door</strong> বলে নির্দিষ্ট দরজা বোঝানো হয়েছে। " +
+    "পরের বাক্যেও একই দরজার কথা বলা হচ্ছে। তাই আবার <strong>the door</strong> হবে।"
+},
+
+/* =========================================================
+   ZERO ARTICLE
+========================================================= */
+
+{
+    category: "Zero Article",
+
+    q: "Fatiha likes ___ milk.",
+
+    bn: "ফাতিহা দুধ পছন্দ করে।",
+
+    options: ["a", "an", "the", "no article"],
+
+    answer: "no article",
+
+    explanation:
+    "<strong>Correct Answer: no article</strong><br><br>" +
+    "এখানে <strong>milk</strong> সাধারণ অর্থে uncountable noun হিসেবে ব্যবহৃত হয়েছে। " +
+    "সাধারণভাবে কোনো uncountable noun-এর আগে article না-ও থাকতে পারে। তাই এখানে কোনো article লাগবে না।"
+},
+
+{
+    category: "Zero Article",
+
+    q: "Children go to ___ school to study.",
+
+    bn: "শিশুরা পড়াশোনা করার জন্য স্কুলে যায়।",
+
+    options: ["a", "an", "the", "no article"],
+
+    answer: "no article",
+
+    explanation:
+    "<strong>Correct Answer: no article</strong><br><br>" +
+    "এখানে <strong>school</strong> তার মূল উদ্দেশ্য—পড়াশোনা—বোঝাতে ব্যবহৃত হয়েছে। " +
+    "এই ধরনের institutional use-এ সাধারণত article বাদ যায়।"
+},
+
+/* =========================================================
+   DEMONSTRATIVES
+========================================================= */
+
+{
+    category: "Demonstrative Determiners",
+
+    q: "___ book in my hand is very useful.",
+
+    bn: "আমার হাতে থাকা এই বইটি খুব উপকারী।",
+
+    options: ["This", "These", "Those", "Any"],
+
+    answer: "This",
+
+    explanation:
+    "<strong>Correct Answer: This</strong><br><br>" +
+    "<strong>This</strong> একবচন noun-এর সঙ্গে ব্যবহৃত হয় এবং সাধারণত কাছের কোনো ব্যক্তি বা বস্তু বোঝায়। " +
+    "এখানে <strong>book</strong> singular এবং হাতে থাকা কাছের বই বোঝানো হয়েছে।"
+},
+
+{
+    category: "Demonstrative Determiners",
+
+    q: "___ books on the table are mine.",
+
+    bn: "টেবিলের ওপর থাকা ওই বইগুলো আমার।",
+
+    options: ["This", "That", "These", "An"],
+
+    answer: "These",
+
+    explanation:
+    "<strong>Correct Answer: These</strong><br><br>" +
+    "<strong>Books</strong> plural noun। কাছের একাধিক বস্তু বোঝাতে <strong>these</strong> ব্যবহার হয়।"
+},
+
+{
+    category: "Demonstrative Determiners",
+
+    q: "___ house across the road belongs to Jannati.",
+
+    bn: "রাস্তার ওপারের ওই বাড়িটি জান্নাতির।",
+
+    options: ["This", "These", "That", "Those"],
+
+    answer: "That",
+
+    explanation:
+    "<strong>Correct Answer: That</strong><br><br>" +
+    "<strong>House</strong> singular এবং রাস্তার ওপারে দূরে অবস্থিত। " +
+    "তাই দূরের একবচন noun-এর আগে <strong>that</strong> ব্যবহৃত হবে।"
+},
+
+{
+    category: "Demonstrative Determiners",
+
+    q: "___ flowers near me are beautiful.",
+
+    bn: "আমার কাছে থাকা এই ফুলগুলো সুন্দর।",
+
+    options: ["Those", "These", "That", "An"],
+
+    answer: "These",
+
+    explanation:
+    "<strong>Correct Answer: These</strong><br><br>" +
+    "<strong>Flowers</strong> plural এবং <strong>near me</strong> বলা হয়েছে। " +
+    "কাছের plural noun-এর জন্য <strong>these</strong> ব্যবহার করা হয়।"
+},
+
+/* =========================================================
+   POSSESSIVE
+========================================================= */
+
+{
+    category: "Possessive Determiners",
+
+    q: "Firoz completed ___ homework.",
+
+    bn: "ফিরোজ তার বাড়ির কাজ শেষ করেছে।",
+
+    options: ["his", "her", "their", "our"],
+
+    answer: "his",
+
+    explanation:
+    "<strong>Correct Answer: his</strong><br><br>" +
+    "Firoz একজন পুরুষ ব্যক্তি হিসেবে ব্যবহৃত হয়েছে। তাই তার জন্য possessive determiner <strong>his</strong> হবে।"
+},
+
+{
+    category: "Possessive Determiners",
+
+    q: "Fatiha brought ___ book to class.",
+
+    bn: "ফাতিহা তার বইটি ক্লাসে এনেছে।",
+
+    options: ["his", "her", "their", "our"],
+
+    answer: "her",
+
+    explanation:
+    "<strong>Correct Answer: her</strong><br><br>" +
+    "Fatiha একজন নারী। তাই তার কোনো জিনিস বোঝাতে <strong>her</strong> ব্যবহার হবে।"
+},
+
+/* =========================================================
+   QUANTIFIERS
+========================================================= */
+
+{
+    category: "Quantifiers",
+
+    q: "There are ___ students in the classroom.",
+
+    bn: "শ্রেণিকক্ষে অনেক ছাত্র আছে।",
+
+    options: ["much", "many", "little", "any"],
+
+    answer: "many",
+
+    explanation:
+    "<strong>Correct Answer: many</strong><br><br>" +
+    "<strong>Students</strong> একটি plural countable noun। " +
+    "Plural countable noun-এর পরিমাণ বোঝাতে <strong>many</strong> ব্যবহার করা হয়।"
+},
+
+{
+    category: "Quantifiers",
+
+    q: "There isn't ___ water in the bottle.",
+
+    bn: "বোতলে বেশি পানি নেই।",
+
+    options: ["many", "much", "few", "several"],
+
+    answer: "much",
+
+    explanation:
+    "<strong>Correct Answer: much</strong><br><br>" +
+    "<strong>Water</strong> uncountable noun। Uncountable noun-এর পরিমাণ বোঝাতে <strong>much</strong> ব্যবহার করা হয়।"
+},
+
+{
+    category: "Quantifiers",
+
+    q: "Firoz has ___ books on English grammar.",
+
+    bn: "ফিরোজের ইংরেজি ব্যাকরণের কয়েকটি বই আছে।",
+
+    options: ["a little", "a few", "much", "little"],
+
+    answer: "a few",
+
+    explanation:
+    "<strong>Correct Answer: a few</strong><br><br>" +
+    "<strong>Books</strong> plural countable noun। অল্প কয়েকটি বোঝাতে <strong>a few</strong> ব্যবহার হয়।"
+},
+
+{
+    category: "Quantifiers",
+
+    q: "There is ___ sugar in the jar.",
+
+    bn: "জারে কিছু চিনি আছে।",
+
+    options: ["a few", "a little", "many", "several"],
+
+    answer: "a little",
+
+    explanation:
+    "<strong>Correct Answer: a little</strong><br><br>" +
+    "<strong>Sugar</strong> uncountable noun। অল্প পরিমাণ uncountable noun বোঝাতে <strong>a little</strong> ব্যবহৃত হয়।"
+},
+
+{
+    category: "Quantifiers",
+
+    q: "I have ___ friends in my class.",
+
+    bn: "আমার ক্লাসে কয়েকজন বন্ধু আছে।",
+
+    options: ["a few", "a little", "much", "little"],
+
+    answer: "a few",
+
+    explanation:
+    "<strong>Correct Answer: a few</strong><br><br>" +
+    "<strong>Friends</strong> plural countable noun। তাই অল্প কয়েকজন বোঝাতে <strong>a few</strong> সঠিক।"
+},
+
+/* =========================================================
+   DISTRIBUTIVES
+========================================================= */
+
+{
+    category: "Distributives",
+
+    q: "___ student received a certificate.",
+
+    bn: "প্রত্যেক ছাত্র একটি সার্টিফিকেট পেয়েছে।",
+
+    options: ["Each", "Much", "Many", "Any"],
+
+    answer: "Each",
+
+    explanation:
+    "<strong>Correct Answer: Each</strong><br><br>" +
+    "<strong>Each</strong> একাধিক ব্যক্তিকে একেকজন করে আলাদাভাবে বোঝায়। " +
+    "এর পরে সাধারণত singular countable noun ব্যবহৃত হয়। তাই <strong>each student</strong> সঠিক।"
+},
+
+{
+    category: "Distributives",
+
+    q: "___ of the two answers is correct.",
+
+    bn: "দুটি উত্তরের প্রত্যেকটিই সঠিক।",
+
+    options: ["Each", "Every", "Many", "Much"],
+
+    answer: "Each",
+
+    explanation:
+    "<strong>Correct Answer: Each</strong><br><br>" +
+    "দুটি নির্দিষ্ট ব্যক্তি বা বস্তুকে আলাদাভাবে বোঝাতে <strong>each</strong> ব্যবহার করা যায়। " +
+    "এখানে <strong>of the two answers</strong> থাকায় <strong>each</strong> সঠিক।"
+},
+
+{
+    category: "Distributives",
+
+    q: "___ student must follow the rules.",
+
+    bn: "প্রত্যেক ছাত্রকে নিয়মগুলো মানতে হবে।",
+
+    options: ["Every", "Many", "Much", "Few"],
+
+    answer: "Every",
+
+    explanation:
+    "<strong>Correct Answer: Every</strong><br><br>" +
+    "একটি দলের প্রত্যেক সদস্যকে সাধারণ অর্থে বোঝাতে <strong>every</strong> ব্যবহৃত হয়। " +
+    "এর পরে singular countable noun হয়: <strong>every student</strong>।"
+},
+
+{
+    category: "Distributives",
+
+    q: "You can take ___ book from these two.",
+
+    bn: "এই দুটি বইয়ের যেকোনো একটি নিতে পারো।",
+
+    options: ["either", "neither", "much", "little"],
+
+    answer: "either",
+
+    explanation:
+    "<strong>Correct Answer: either</strong><br><br>" +
+    "দুটি ব্যক্তি বা বস্তুর মধ্যে যেকোনো একটি বোঝাতে <strong>either</strong> ব্যবহৃত হয়।"
+},
+
+{
+    category: "Distributives",
+
+    q: "___ answer is correct; both are wrong.",
+
+    bn: "কোনো উত্তরই সঠিক নয়; দুটিই ভুল।",
+
+    options: ["Either", "Neither", "Every", "Each"],
+
+    answer: "Neither",
+
+    explanation:
+    "<strong>Correct Answer: Neither</strong><br><br>" +
+    "দুটি ব্যক্তি বা বস্তুর কোনোটিই নয়—এমন অর্থে <strong>neither</strong> ব্যবহার হয়।"
+},
+
+/* =========================================================
+   NUMBERS
+========================================================= */
+
+{
+    category: "Numerical Determiners",
+
+    q: "Firoz bought ___ pens.",
+
+    bn: "ফিরোজ পাঁচটি কলম কিনেছে।",
+
+    options: ["five", "much", "little", "any"],
+
+    answer: "five",
+
+    explanation:
+    "<strong>Correct Answer: five</strong><br><br>" +
+    "<strong>Five</strong> একটি cardinal number। এটি কতটি pen বোঝাচ্ছে তা সরাসরি প্রকাশ করছে। তাই <strong>five pens</strong> সঠিক।"
+},
+
+{
+    category: "Numerical Determiners",
+
+    q: "Mujahid finished the ___ chapter of the book.",
+
+    bn: "মুজাহিদ বইটির পঞ্চম অধ্যায় শেষ করেছে।",
+
+    options: ["five", "fifth", "fifteen", "fives"],
+
+    answer: "fifth",
+
+    explanation:
+    "<strong>Correct Answer: fifth</strong><br><br>" +
+    "কোনো কিছুর ক্রম বা অবস্থান বোঝাতে ordinal number ব্যবহার হয়। " +
+    "তাই <strong>the fifth chapter</strong> সঠিক।"
+},
+
+/* =========================================================
+   INTERROGATIVE DETERMINERS
+========================================================= */
+
+{
+    category: "Interrogative Determiners",
+
+    q: "___ book do you want?",
+
+    bn: "তুমি কোন বইটি চাও?",
+
+    options: ["Which", "Much", "Many", "Every"],
+
+    answer: "Which",
+
+    explanation:
+    "<strong>Correct Answer: Which</strong><br><br>" +
+    "কয়েকটি নির্দিষ্ট বিকল্পের মধ্যে কোনটি বোঝাতে <strong>which</strong> ব্যবহার হয়। " +
+    "এখানে <strong>which book</strong> সঠিক।"
+},
+
+{
+    category: "Interrogative Determiners",
+
+    q: "___ books have you read?",
+
+    bn: "তুমি কতগুলো বই পড়েছ?",
+
+    options: ["How many", "How much", "Which", "Every"],
+
+    answer: "How many",
+
+    explanation:
+    "<strong>Correct Answer: How many</strong><br><br>" +
+    "<strong>Books</strong> plural countable noun। সংখ্যা জানতে <strong>how many</strong> ব্যবহৃত হয়।"
+},
+
+{
+    category: "Interrogative Determiners",
+
+    q: "___ water do you need?",
+
+    bn: "তোমার কতটুকু পানি দরকার?",
+
+    options: ["How many", "How much", "Which many", "Every"],
+
+    answer: "How much",
+
+    explanation:
+    "<strong>Correct Answer: How much</strong><br><br>" +
+    "<strong>Water</strong> uncountable noun। Uncountable noun-এর পরিমাণ জানতে <strong>how much</strong> ব্যবহার হয়।"
+},
+
+/* =========================================================
+   MIXED RULES
+========================================================= */
+
+{
+    category: "Mixed Articles & Determiners",
+
+    q: "Hannan is ___ respected teacher.",
+
+    bn: "হান্নান একজন সম্মানিত শিক্ষক।",
+
+    options: ["a", "an", "the", "many"],
+
+    answer: "a",
+
+    explanation:
+    "<strong>Correct Answer: a</strong><br><br>" +
+    "<strong>Respected</strong> শব্দটি consonant sound দিয়ে শুরু হয়েছে। " +
+    "এখানে একজন শিক্ষক হিসেবে Hannan-কে প্রথমবার সাধারণভাবে উল্লেখ করা হয়েছে। তাই <strong>a respected teacher</strong> হবে।"
+},
+
+{
+    category: "Mixed Articles & Determiners",
+
+    q: "Tanzila is ___ first student to arrive.",
+
+    bn: "তানজিলা প্রথম যে ছাত্রটি এসেছে।",
+
+    options: ["a", "an", "the", "no article"],
+
+    answer: "the",
+
+    explanation:
+    "<strong>Correct Answer: the</strong><br><br>" +
+    "Ordinal number <strong>first</strong>-এর আগে সাধারণত <strong>the</strong> ব্যবহৃত হয়। " +
+    "তাই <strong>the first student</strong> সঠিক।"
+},
+
+{
+    category: "Mixed Articles & Determiners",
+
+    q: "___ Earth moves around the Sun.",
+
+    bn: "পৃথিবী সূর্যের চারদিকে ঘোরে।",
+
+    options: ["A", "An", "The", "No article"],
+
+    answer: "The",
+
+    explanation:
+    "<strong>Correct Answer: The</strong><br><br>" +
+    "পৃথিবী একটি নির্দিষ্ট ও অনন্য জ্যোতিষ্ক। Unique object-এর নামের আগে সাধারণত <strong>the</strong> ব্যবহৃত হয়। তাই <strong>the Earth</strong> সঠিক।"
+},
+
+{
+    category: "Mixed Articles & Determiners",
+
+    q: "Fatiha needs ___ information about the lesson.",
+
+    bn: "ফাতিহার পাঠটি সম্পর্কে কিছু তথ্য দরকার।",
+
+    options: ["an", "a", "some", "many"],
+
+    answer: "some",
+
+    explanation:
+    "<strong>Correct Answer: some</strong><br><br>" +
+    "<strong>Information</strong> সাধারণত uncountable noun হিসেবে ব্যবহৃত হয়। " +
+    "অনির্দিষ্ট কিছু পরিমাণ বোঝাতে <strong>some information</strong> বলা হয়। <strong>An information</strong> বা <strong>a information</strong> বলা যাবে না।"
+},
+
+{
+    category: "Mixed Articles & Determiners",
+
+    q: "There are ___ apples in the basket.",
+
+    bn: "ঝুড়িতে অনেকগুলো আপেল আছে।",
+
+    options: ["much", "many", "little", "a little"],
+
+    answer: "many",
+
+    explanation:
+    "<strong>Correct Answer: many</strong><br><br>" +
+    "<strong>Apples</strong> plural countable noun। তাই একাধিক apple-এর সংখ্যা বা পরিমাণ বোঝাতে <strong>many</strong> ব্যবহার হয়।"
+},
+
+{
+    category: "Mixed Articles & Determiners",
+
+    q: "Rina has ___ little money left.",
+
+    bn: "রিনার অল্প কিছু টাকা অবশিষ্ট আছে।",
+
+    options: ["a", "an", "a little", "many"],
+
+    answer: "a little",
+
+    explanation:
+    "<strong>Correct Answer: a little</strong><br><br>" +
+    "<strong>Money</strong> uncountable noun। অল্প পরিমাণ বোঝাতে <strong>a little</strong> ব্যবহার হয়। " +
+    "<strong>A little</strong> সাধারণত কিছুটা আছে—এমন ইতিবাচক ধারণা দেয়।"
+},
+
+{
+    category: "Mixed Articles & Determiners",
+
+    q: "___ students in this class are hardworking.",
+
+    bn: "এই ক্লাসের কিছু/অনেক ছাত্র পরিশ্রমী।",
+
+    options: ["Some", "Much", "A little", "An"],
+
+    answer: "Some",
+
+    explanation:
+    "<strong>Correct Answer: Some</strong><br><br>" +
+    "<strong>Students</strong> plural countable noun। নির্দিষ্ট সংখ্যা না বলে কিছু সংখ্যক বোঝাতে <strong>some</strong> ব্যবহার করা যায়।"
+}
+
+];
+
+
+/* =========================================================
+   3. EXTRA WORD DATABASE
+   Used to generate additional questions.
+========================================================= */
+
+const nouns = [
+    {
+        word: "book",
+        bn: "বই",
+        type: "countable",
+        sound: "consonant"
+    },
+    {
+        word: "apple",
+        bn: "আপেল",
+        type: "countable",
+        sound: "vowel"
+    },
+    {
+        word: "orange",
+        bn: "কমলা",
+        type: "countable",
+        sound: "vowel"
+    },
+    {
+        word: "teacher",
+        bn: "শিক্ষক",
+        type: "countable",
+        sound: "consonant"
+    },
+    {
+        word: "student",
+        bn: "ছাত্র",
+        type: "countable",
+        sound: "consonant"
+    },
+    {
+        word: "umbrella",
+        bn: "ছাতা",
+        type: "countable",
+        sound: "vowel"
+    },
+    {
+        word: "honest man",
+        bn: "সৎ ব্যক্তি",
+        type: "countable",
+        sound: "vowel"
+    },
+    {
+        word: "university",
+        bn: "বিশ্ববিদ্যালয়",
+        type: "countable",
+        sound: "consonant"
+    }
+];
+
+
+/* =========================================================
+   4. RANDOM NAME
+========================================================= */
+
+function randomName() {
+
+    return names[
+        Math.floor(Math.random() * names.length)
+    ];
+
+}
+
+
+/* =========================================================
+   5. RANDOM ITEM
+========================================================= */
+
+function randomItem(array) {
+
+    return array[
+        Math.floor(Math.random() * array.length)
+    ];
+
+}
+
+
+/* =========================================================
+   6. SHUFFLE
+========================================================= */
+
+function shuffle(array) {
+
+    const result = [...array];
+
+    for (
+        let i = result.length - 1;
+        i > 0;
+        i--
+    ) {
+
+        const j =
+            Math.floor(Math.random() * (i + 1));
+
+        [
+            result[i],
+            result[j]
+        ] =
+        [
+            result[j],
+            result[i]
+        ];
+    }
+
+    return result;
+}
+
+
+/* =========================================================
+   7. INFINITE GENERATOR
+========================================================= */
+
+function generateInfiniteQuestion() {
+
+    const item = randomItem(nouns);
+    const name = randomName();
+
+    /* ---------- A / AN ---------- */
+
+    if (Math.random() < .40) {
+
+        let answer;
+
+        if (item.sound === "vowel") {
+
+            answer = "an";
+
+        } else {
+
+            answer = "a";
+
+        }
+
+        const options =
+            answer === "a"
+                ? ["a", "an", "the", "some"]
+                : ["a", "an", "the", "any"];
+
+        return {
+
+            category: "Generated — A / An",
+
+            q:
+                `${name} bought ___ ${item.word}.`,
+
+            bn:
+                `${name} একটি ${item.bn} কিনেছে।`,
+
+            options: shuffle(options),
+
+            answer: answer,
+
+            explanation:
+                `<strong>Correct Answer: ${answer}</strong><br><br>` +
+
+                `${item.word} একটি singular countable noun। ` +
+
+                `এটি সাধারণভাবে ও প্রথমবার উল্লেখ করা হয়েছে। ` +
+
+                (item.sound === "vowel"
+                    ?
+                    `শব্দটির শুরু vowel sound দিয়ে হওয়ায় <strong>an</strong> হবে।`
+                    :
+                    `শব্দটির শুরু consonant sound দিয়ে হওয়ায় <strong>a</strong> হবে।`
+                )
+        };
+    }
+
+
+    /* ---------- THE ---------- */
+
+    if (Math.random() < .50) {
+
+        return {
+
+            category: "Generated — The",
+
+            q:
+                `I saw a ${item.word}. ___ ${item.word} was interesting.`,
+
+            bn:
+                `আমি একটি ${item.bn} দেখলাম। পরে একই ${item.bn}-এর কথা বলা হচ্ছে।`,
+
+            options:
+                shuffle([
+                    "A",
+                    "An",
+                    "The",
+                    "Some"
+                ]),
+
+            answer: "The",
+
+            explanation:
+                "<strong>Correct Answer: The</strong><br><br>" +
+
+                `প্রথমে <strong>a ${item.word}</strong> বলে ${item.bn}-টির কথা বলা হয়েছে। ` +
+
+                `পরের অংশে একই নির্দিষ্ট ${item.bn}-কে আবার বোঝানো হয়েছে। ` +
+
+                `তাই দ্বিতীয়বার <strong>The</strong> ব্যবহার হবে।`
+        };
+    }
+
+
+    /* ---------- MANY ---------- */
+
+    if (item.type === "countable") {
+
+        return {
+
+            category: "Generated — Quantifiers",
+
+            q:
+                `There are ___ ${item.word}s in the room.`,
+
+            bn:
+                `ঘরে অনেকগুলো ${item.bn} আছে।`,
+
+            options:
+                shuffle([
+                    "many",
+                    "much",
+                    "little",
+                    "a little"
+                ]),
+
+            answer: "many",
+
+            explanation:
+                "<strong>Correct Answer: many</strong><br><br>" +
+
+                `<strong>${item.word}s</strong> এখানে plural countable noun। ` +
+
+                `Plural countable noun-এর সংখ্যা বা পরিমাণ বোঝাতে <strong>many</strong> ব্যবহৃত হয়।`
+        };
+    }
+
+
+    /* ---------- FALLBACK ---------- */
+
+    return {
+
+        category: "Generated — Articles",
+
+        q:
+            `${name} saw ___ ${item.word}.`,
+
+        bn:
+            `${name} একটি ${item.bn} দেখেছে।`,
+
+        options:
+            shuffle([
+                item.sound === "vowel" ? "an" : "a",
+                item.sound === "vowel" ? "a" : "an",
+                "the",
+                "some"
+            ]),
+
+        answer:
+            item.sound === "vowel"
+                ? "an"
+                : "a",
+
+        explanation:
+            "<strong>Article Rule</strong><br><br>" +
+
+            `এখানে ${item.word} একটি singular countable noun। ` +
+
+            `প্রথমবার সাধারণভাবে উল্লেখ করায় indefinite article ব্যবহার হবে। ` +
+
+            (
+                item.sound === "vowel"
+                    ?
+                    "শব্দটি vowel sound দিয়ে শুরু হওয়ায় <strong>an</strong> হবে।"
+                    :
+                    "শব্দটি consonant sound দিয়ে শুরু হওয়ায় <strong>a</strong> হবে।"
+            )
+    };
+}
+
+
+/* =========================================================
+   8. QUESTION ENGINE
+========================================================= */
+
+let questions = [...templates];
+
+let currentIndex = 0;
+
+let score = 0;
+
+let answered = false;
+
+let history = [];
+
+
+/* =========================================================
+   9. DOM
+========================================================= */
+
+const questionContent =
+    document.getElementById("questionContent");
+
+const category =
+    document.getElementById("category");
+
+const question =
+    document.getElementById("question");
+
+const questionBangla =
+    document.getElementById("questionBangla");
+
+const options =
+    document.getElementById("options");
+
+const explanationArea =
+    document.getElementById("explanationArea");
+
+const previousBtn =
+    document.getElementById("previousBtn");
+
+const nextBtn =
+    document.getElementById("nextBtn");
+
+const questionCounter =
+    document.getElementById("questionCounter");
+
+const scoreCounter =
+    document.getElementById("scoreCounter");
+
+const scoreDisplay =
+    document.getElementById("scoreDisplay");
+
+const progressBar =
+    document.getElementById("progressBar");
+
+
+/* =========================================================
+   10. ENSURE INFINITE QUESTIONS
+========================================================= */
+
+function ensureQuestionExists(index) {
+
+    while (questions.length <= index) {
+
+        questions.push(
+            generateInfiniteQuestion()
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   11. LOAD QUESTION
+========================================================= */
+
+function loadQuestion(direction = "next") {
+
+    ensureQuestionExists(currentIndex);
+
+    const data =
+        questions[currentIndex];
+
+
+    /* Reset animation */
+
+    questionContent.classList.remove(
+        "slide-next",
+        "slide-prev"
+    );
+
+    void questionContent.offsetWidth;
+
+
+    questionContent.classList.add(
+        direction === "prev"
+            ? "slide-prev"
+            : "slide-next"
+    );
+
+
+    /* Question */
+
+    category.textContent =
+        data.category;
+
+    question.textContent =
+        data.q;
+
+    questionBangla.textContent =
+        `(${data.bn})`;
+
+
+    /* Options */
+
+    options.innerHTML = "";
+
+    explanationArea.innerHTML = "";
+
+
+    answered = false;
+
+
+    data.options.forEach(optionText => {
+
+        const button =
+            document.createElement("button");
+
+        button.className = "option";
+
+        button.textContent =
+            optionText;
+
+        button.addEventListener(
+            "click",
+            () => checkAnswer(
+                button,
+                optionText,
+                data
+            )
+        );
+
+        options.appendChild(button);
+
+    });
+
+
+    /* Controls */
+
+    previousBtn.disabled =
+        currentIndex === 0;
+
+    nextBtn.textContent =
+        "Next →";
+
+
+    /* Progress */
+
+    questionCounter.textContent =
+        `Question ${currentIndex + 1}`;
+
+    scoreCounter.textContent =
+        `Score: ${score}`;
+
+    scoreDisplay.textContent =
+        `${score} / ${currentIndex + (answered ? 1 : 0)}`;
+
+
+    /*
+       Because the system is infinite,
+       progress is visualized within the current
+       practice sequence rather than as a fixed total.
+    */
+
+    const progress =
+        Math.min(
+            95,
+            ((currentIndex % 20) + 1) * 5
+        );
+
+    progressBar.style.width =
+        `${progress}%`;
+
+}
+
+
+/* =========================================================
+   12. CHECK ANSWER
+========================================================= */
+
+function checkAnswer(
+    clickedButton,
+    selected,
+    data
+) {
+
+    if (answered) return;
+
+    answered = true;
+
+
+    const allButtons =
+        document.querySelectorAll(".option");
+
+
+    allButtons.forEach(button => {
+
+        button.disabled = true;
+
+        if (
+            button.textContent === data.answer
+        ) {
+
+            button.classList.add(
+                "reveal"
+            );
+
+        }
+
+    });
+
+
+    if (selected === data.answer) {
+
+        clickedButton.classList.remove(
+            "reveal"
+        );
+
+        clickedButton.classList.add(
+            "correct"
+        );
+
+        score++;
+
+    } else {
+
+        clickedButton.classList.add(
+            "wrong"
+        );
+
+    }
+
+
+    /* Save answer history */
+
+    history[currentIndex] = {
+
+        selected: selected,
+
+        correct: data.answer
+
+    };
+
+
+    /* Explanation */
+
+    explanationArea.innerHTML = `
+
+        <div class="explanation">
+
+            ${data.explanation}
+
+        </div>
+
+    `;
+
+
+    scoreCounter.textContent =
+        `Score: ${score}`;
+
+    scoreDisplay.textContent =
+        `${score} / ${currentIndex + 1}`;
+
+
+    nextBtn.textContent =
+        "Next →";
+}
+
+
+/* =========================================================
+   13. NEXT
+========================================================= */
+
+nextBtn.addEventListener(
+    "click",
+    () => {
+
+        currentIndex++;
+
+        ensureQuestionExists(
+            currentIndex
+        );
+
+        loadQuestion("next");
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
         });
 
-        // Touch move interactive glow background for mobile screens
-        window.addEventListener('touchmove', (e) => {
-            if (e.touches.length > 0) {
-                glow.style.left = e.touches[0].clientX + 'px';
-                glow.style.top = e.touches[0].clientY + 'px';
-            }
+    }
+);
+
+
+/* =========================================================
+   14. PREVIOUS
+========================================================= */
+
+previousBtn.addEventListener(
+    "click",
+    () => {
+
+        if (currentIndex <= 0)
+            return;
+
+        currentIndex--;
+
+        loadQuestion("prev");
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
         });
-    </script>
+
+    }
+);
+
+
+/* =========================================================
+   15. KEYBOARD CONTROL
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if (
+            event.key === "ArrowRight"
+        ) {
+
+            nextBtn.click();
+
+        }
+
+        if (
+            event.key === "ArrowLeft"
+        ) {
+
+            previousBtn.click();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   16. START
+========================================================= */
+
+loadQuestion("next");
+
+</script>
+
 </body>
 </html>

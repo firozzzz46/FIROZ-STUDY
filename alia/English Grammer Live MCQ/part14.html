@@ -1,128 +1,1120 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Google Fonts for Bengali & English -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Inter:wght@700;900&display=swap" rel="stylesheet">
+<title>PART 14 - Sentence Structure | Infinity MCQ</title>
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
-    <style>
+    body {
+        min-height: 100vh;
+        font-family: "Times New Roman", serif;
+        background:
+            radial-gradient(circle at 10% 10%, rgba(220, 230, 245, 0.55), transparent 35%),
+            radial-gradient(circle at 90% 90%, rgba(235, 225, 245, 0.5), transparent 35%),
+            linear-gradient(135deg, #ffffff, #f5f7fa, #ffffff);
+        color: #20242a;
+        padding: 25px 15px;
+    }
+
+    .app {
+        width: min(1050px, 100%);
+        margin: auto;
+    }
+
+    .header {
+        text-align: center;
+        margin-bottom: 25px;
+    }
+
+    .part {
+        font-size: 20px;
+        font-weight: bold;
+        letter-spacing: 1px;
+        margin-bottom: 8px;
+    }
+
+    .title {
+        font-size: clamp(30px, 5vw, 48px);
+        font-weight: bold;
+        margin-bottom: 8px;
+    }
+
+    .subtitle {
+        font-size: 20px;
+        opacity: 0.75;
+    }
+
+    .glass {
+        background: rgba(255,255,255,0.72);
+        border: 1px solid rgba(255,255,255,0.9);
+        box-shadow:
+            0 20px 50px rgba(50, 60, 80, 0.12),
+            0 5px 15px rgba(50, 60, 80, 0.06);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        border-radius: 24px;
+    }
+
+    .dashboard {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        padding: 18px;
+        margin-bottom: 22px;
+    }
+
+    .stat {
+        text-align: center;
+        padding: 10px;
+    }
+
+    .stat-label {
+        font-size: 18px;
+        opacity: 0.7;
+        margin-bottom: 5px;
+    }
+
+    .stat-value {
+        font-size: 25px;
+        font-weight: bold;
+    }
+
+    .progress-wrapper {
+        margin-top: 15px;
+        grid-column: 1 / -1;
+    }
+
+    .progress-bar {
+        height: 10px;
+        background: #e8ebef;
+        border-radius: 20px;
+        overflow: hidden;
+    }
+
+    .progress-fill {
+        height: 100%;
+        width: 0%;
+        border-radius: inherit;
+        background: linear-gradient(90deg, #667eea, #764ba2);
+        transition: width 0.7s cubic-bezier(.22,.61,.36,1);
+    }
+
+    .question-card {
+        padding: clamp(22px, 4vw, 40px);
+        overflow: hidden;
+    }
+
+    .question-area {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    .question-area.animate-out {
+        animation: slideOut 0.35s cubic-bezier(.4,0,.2,1) forwards;
+    }
+
+    .question-area.animate-in {
+        animation: slideIn 0.9s cubic-bezier(.16,1,.3,1) forwards;
+    }
+
+    @keyframes slideOut {
+        from {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        to {
+            opacity: 0;
+            transform: translateX(-35px);
+        }
+    }
+
+    @keyframes slideIn {
+        from {
+            opacity: 0;
+            transform: translateX(45px);
+        }
+        60% {
+            opacity: 0.8;
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    .question-number {
+        display: inline-block;
+        padding: 8px 15px;
+        border-radius: 50px;
+        background: rgba(102,126,234,0.1);
+        font-size: 18px;
+        margin-bottom: 20px;
+    }
+
+    .question {
+        font-size: clamp(21px, 3vw, 27px);
+        line-height: 1.55;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .bangla {
+        font-family: "Kalpurush", "Noto Sans Bengali", sans-serif;
+        font-size: 18px;
+        line-height: 1.7;
+        opacity: 0.78;
+        margin-bottom: 25px;
+    }
+
+    .options {
+        display: grid;
+        gap: 14px;
+    }
+
+    .option {
+        width: 100%;
+        padding: 17px 20px;
+        border: 1px solid rgba(80,90,110,0.14);
+        border-radius: 17px;
+        background: rgba(255,255,255,0.72);
+        cursor: pointer;
+        text-align: left;
+        font-family: "Times New Roman", serif;
+        font-size: 20px;
+        transition:
+            transform 0.35s cubic-bezier(.22,.61,.36,1),
+            box-shadow 0.35s ease,
+            background 0.35s ease,
+            border 0.35s ease;
+    }
+
+    .option:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(60,70,90,0.10);
+    }
+
+    .option:disabled {
+        cursor: default;
+    }
+
+    .option.correct {
+        background: rgba(45,180,110,0.13);
+        border-color: rgba(35,160,90,0.5);
+    }
+
+    .option.wrong {
+        background: rgba(230,70,70,0.11);
+        border-color: rgba(210,60,60,0.45);
+    }
+
+    .result {
+        margin-top: 20px;
+        padding: 20px;
+        border-radius: 18px;
+        display: none;
+        font-family: "Kalpurush", "Noto Sans Bengali", sans-serif;
+        font-size: 19px;
+        line-height: 1.8;
+        background: rgba(245,247,250,0.8);
+    }
+
+    .result.show {
+        display: block;
+        animation: resultIn 0.7s cubic-bezier(.16,1,.3,1);
+    }
+
+    @keyframes resultIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .result-title {
+        font-weight: bold;
+        font-size: 22px;
+        margin-bottom: 8px;
+    }
+
+    .navigation {
+        display: flex;
+        justify-content: space-between;
+        gap: 15px;
+        margin-top: 25px;
+    }
+
+    .nav-btn {
+        flex: 1;
+        border: none;
+        padding: 16px 22px;
+        border-radius: 16px;
+        font-family: "Times New Roman", serif;
+        font-size: 20px;
+        font-weight: bold;
+        cursor: pointer;
+        background: rgba(255,255,255,0.8);
+        box-shadow: 0 8px 25px rgba(50,60,80,0.09);
+        transition:
+            transform 0.35s cubic-bezier(.22,.61,.36,1),
+            box-shadow 0.35s ease;
+    }
+
+    .nav-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 14px 30px rgba(50,60,80,0.13);
+    }
+
+    .next {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: white;
+    }
+
+    .topic-box {
+        margin-top: 22px;
+        padding: 22px;
+    }
+
+    .topic-box h3 {
+        font-size: 23px;
+        margin-bottom: 12px;
+    }
+
+    .topic-box p,
+    .topic-box li {
+        font-family: "Kalpurush", "Noto Sans Bengali", sans-serif;
+        font-size: 18px;
+        line-height: 1.8;
+    }
+
+    .topic-box ul {
+        padding-left: 25px;
+    }
+
+    @media (max-width: 650px) {
         body {
-            font-family: 'Hind Siliguri', 'Inter', sans-serif;
-            background-color: #030712;
-            overflow: hidden;
+            padding: 15px 10px;
         }
 
-        /* Gradient glowing animation on text */
-        .glow-text {
-            background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 50%, #38bdf8 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shine 6s linear infinite;
+        .dashboard {
+            grid-template-columns: 1fr 1fr;
         }
 
-        @keyframes shine {
-            0% { background-position: 0% center; }
-            50% { background-position: 100% center; }
-            100% { background-position: 0% center; }
+        .question-card {
+            padding: 20px 16px;
         }
 
-        /* Keyframes for initial entry: Floating in from below with opacity */
-        @keyframes floatIn {
-            0% {
-                opacity: 0;
-                transform: translateY(40px) scale(0.95);
-                filter: blur(8px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-                filter: blur(0);
-            }
+        .option {
+            font-size: 18px;
+            padding: 15px;
         }
 
-        /* Continuous subtle float effect once arrived */
-        @keyframes subtleFloat {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-8px);
-            }
+        .navigation {
+            flex-direction: column;
         }
 
-        /* Animation class for Heading */
-        .animate-heading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards,
-                subtleFloat 6s ease-in-out 1.2s infinite;
+        .nav-btn {
+            width: 100%;
         }
-
-        /* Animation class for Subheading (staggered delay) */
-        .animate-subheading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards,
-                subtleFloat 6s ease-in-out 1.55s infinite;
-            opacity: 0; /* Hidden until animation kicks in */
-        }
-
-        /* Ambient background lighting */
-        .ambient-glow {
-            position: absolute;
-            width: 450px;
-            height: 450px;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(3, 7, 18, 0) 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            transition: left 0.4s ease-out, top 0.4s ease-out;
-        }
-    </style>
+    }
+</style>
 </head>
-<body class="min-h-screen flex items-center justify-center relative select-none px-4">
 
-    <!-- Ambient glow center element -->
-    <div id="glow" class="ambient-glow top-1/2 left-1/2"></div>
+<body>
 
-    <!-- Centered minimal content with entry animations -->
-    <main class="text-center z-10 space-y-6 max-w-3xl mx-auto py-8 px-4">
-        
-        <!-- Main English Title -->
-        <h1 class="animate-heading text-5xl sm:text-7xl md:text-8xl font-black tracking-tight glow-text font-['Inter'] drop-shadow-lg">
-            Coming Soon...
-        </h1>
+<div class="app">
 
-        <!-- Bengali Subheading -->
-        <p class="animate-subheading text-xl sm:text-3xl md:text-4xl font-semibold text-emerald-400/90 leading-relaxed tracking-wide drop-shadow">
-            ইনশাআল্লাহ, খুব শীঘ্রই ডাটা যোগ করা হবে।
-        </p>
+    <header class="header">
+        <div class="part">PART 14</div>
+        <div class="title">Sentence Structure</div>
+        <div class="subtitle">Simple • Complex • Compound</div>
+    </header>
+
+    <section class="dashboard glass">
+
+        <div class="stat">
+            <div class="stat-label">Question</div>
+            <div class="stat-value" id="questionCounter">1</div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-label">Score</div>
+            <div class="stat-value" id="score">0</div>
+        </div>
+
+        <div class="progress-wrapper">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+        </div>
+
+    </section>
+
+    <main class="question-card glass">
+
+        <div id="questionArea" class="question-area">
+
+            <div class="question-number" id="questionNumber">
+                Question 1
+            </div>
+
+            <div class="question" id="question"></div>
+
+            <div class="bangla" id="questionBangla"></div>
+
+            <div class="options" id="options"></div>
+
+            <div class="result" id="result">
+                <div class="result-title" id="resultTitle"></div>
+                <div id="explanation"></div>
+            </div>
+
+        </div>
+
+        <div class="navigation">
+            <button class="nav-btn" id="prevBtn">
+                Previous
+            </button>
+
+            <button class="nav-btn next" id="nextBtn">
+                Next
+            </button>
+        </div>
 
     </main>
 
-    <script>
-        const glow = document.getElementById('glow');
+    <section class="topic-box glass">
+        <h3>Quick Rule</h3>
 
-        // Mouse move interactive glow background
-        window.addEventListener('mousemove', (e) => {
-            glow.style.left = e.clientX + 'px';
-            glow.style.top = e.clientY + 'px';
+        <ul>
+            <li>
+                <b>Simple Sentence:</b>
+                একটি Main Clause থাকে।
+            </li>
+
+            <li>
+                <b>Compound Sentence:</b>
+                দুই বা ততোধিক Independent/Main Clause থাকে।
+            </li>
+
+            <li>
+                <b>Complex Sentence:</b>
+                একটি Main Clause + একটি বা একাধিক Subordinate Clause থাকে।
+            </li>
+
+            <li>
+                শুধু <b>and / but</b> দেখেই Compound বলা যাবে না।
+                Clause গুনতে হবে।
+            </li>
+
+            <li>
+                <b>because of + noun</b> এবং
+                <b>despite + V-ing</b> সাধারণত phrase তৈরি করে।
+            </li>
+
+            <li>
+                Conjunction-এর পরে আলাদা Subject + Finite Verb থাকলে
+                সেটি Clause হতে পারে।
+            </li>
+        </ul>
+    </section>
+
+</div>
+
+
+<script>
+
+"use strict";
+
+/* =========================================================
+   PART 14 — INFINITY QUESTION ENGINE
+   ========================================================= */
+
+const names = [
+    "Firoz",
+    "Fatiha",
+    "Fatema",
+    "Jui",
+    "Ema",
+    "Rupa",
+    "Moksed",
+    "Ferjousi",
+    "Jannati",
+    "Mini",
+    "Miraz",
+    "Mujahid",
+    "Milon",
+    "Hannan",
+    "Joba",
+    "Tanzila",
+    "Rina",
+    "Tania",
+    "Taslima"
+];
+
+const questionBank = [
+
+/* =========================================================
+   SIMPLE SENTENCE
+   ========================================================= */
+
+{
+    type: "Simple",
+    sentence: "Firoz went to school and studied English.",
+    bangla: "বাক্যটি Simple, Complex নাকি Compound?",
+    answer: "Simple",
+    explanation:
+    "এখানে 'and' আছে বলে Compound মনে হতে পারে। কিন্তু 'went' এবং 'studied'—দুটি কাজের Subject একই, অর্থাৎ Firoz। এখানে দুটি আলাদা Independent Clause নেই। তাই এটি Simple Sentence। শুধু conjunction দেখেই Sentence-এর ধরন নির্ধারণ করা যাবে না; Clause গুনতে হবে।"
+},
+
+{
+    type: "Simple",
+    sentence: "Fatiha went home after finishing her work.",
+    bangla: "বাক্যটি Simple, Complex নাকি Compound?",
+    answer: "Simple",
+    explanation:
+    "'after finishing her work' একটি phrase, কারণ এখানে 'finishing' হলো -ing form; আলাদা Subject + Finite Verb নেই। তাই এখানে একটি মাত্র Main Clause আছে। ফলে বাক্যটি Simple Sentence।"
+},
+
+{
+    type: "Simple",
+    sentence: "Rupa studied hard to pass the examination.",
+    bangla: "বাক্যটি Simple, Complex নাকি Compound?",
+    answer: "Simple",
+    explanation:
+    "'to pass the examination' একটি infinitive phrase। এটি আলাদা clause নয়। মূল clause হলো 'Rupa studied hard'। তাই বাক্যটি Simple Sentence।"
+},
+
+{
+    type: "Simple",
+    sentence: "Jui went to school and learned English.",
+    bangla: "বাক্যটি Simple, Complex নাকি Compound?",
+    answer: "Simple",
+    explanation:
+    "এখানে 'and' দুটি verb phrase-কে যুক্ত করেছে—'went to school' এবং 'learned English'। কিন্তু দুই অংশের Subject একই—Jui। তাই দুটি Independent Clause তৈরি হয়নি। এটি Simple Sentence।"
+},
+
+{
+    type: "Simple",
+    sentence: "Milon left the room without saying anything.",
+    bangla: "বাক্যটি Simple, Complex নাকি Compound?",
+    answer: "Simple",
+    explanation:
+    "'without saying anything' একটি prepositional phrase। 'saying' এখানে finite verb নয় এবং এর আলাদা Subject নেই। তাই শুধু একটি Main Clause আছে। এটি Simple Sentence।"
+},
+
+/* =========================================================
+   COMPOUND SENTENCE
+   ========================================================= */
+
+{
+    type: "Compound",
+    sentence: "Firoz went home, and Fatiha stayed at school.",
+    bangla: "বাক্যটি Simple, Complex নাকি Compound?",
+    answer: "Compound",
+    explanation:
+    "এখানে প্রথম clause হলো 'Firoz went home' এবং দ্বিতীয় clause হলো 'Fatiha stayed at school'। দুটি অংশের আলাদা Subject ও Finite Verb আছে এবং উভয় অংশই স্বাধীনভাবে বাক্য হতে পারে। 'and' দুটি Independent Clause যুক্ত করেছে। তাই এটি Compound Sentence।"
+},
+
+{
+    type: "Compound",
+    sentence: "Ema studied hard, but she failed.",
+    bangla: "বাক্যটি Simple, Complex নাকি Compound?",
+    answer: "Compound",
+    explanation:
+    "এখানে 'Ema studied hard' একটি Independent Clause এবং 'she failed' আরেকটি Independent Clause। 'but' দুটি Main Clause যুক্ত করেছে। তাই এটি Compound Sentence।"
+},
+
+{
+    type: "Compound",
+    sentence: "Mujahid opened the book, and Jannati started reading.",
+    bangla: "বাক্যটি Simple, Complex নাকি Compound?",
+    answer: "Compound",
+    explanation:
+    "প্রথম clause: 'Mujahid opened the book'। দ্বিতীয় clause: 'Jannati started reading'। দুই clause-এর Subject আলাদা এবং উভয়ের Finite Verb আছে। তাই এটি Compound Sentence।"
+},
+
+{
+    type: "Compound",
+    sentence: "Tanzila was tired, but she continued her study.",
+    bangla: "বাক্যটি Simple, Complex নাকি Compound?",
+    answer: "Compound",
+    explanation:
+    "এখানে 'Tanzila was tired' এবং 'she continued her study'—দুটি স্বাধীন Main Clause আছে। 'but' তাদের যুক্ত করেছে। তাই এটি Compound Sentence।"
+},
+
+{
+    type: "Compound",
+    sentence: "Miraz worked hard, and Rina helped him.",
+    bangla: "বাক্যটি Simple, Complex নাকি Compound?",
+    answer: "Compound",
+    explanation:
+    "এখানে প্রথম clause-এর Subject Miraz এবং দ্বিতীয় clause-এর Subject Rina। উভয় অংশের নিজস্ব Finite Verb আছে। তাই দুটি Independent Clause 'and' দ্বারা যুক্ত হয়েছে। ফলে এটি Compound Sentence।"
+},
+
+/* =========================================================
+   COMPLEX SENTENCE
+   ========================================================= */
+
+{
+    type: "Complex",
+    sentence: "Firoz left before Fatiha arrived.",
+    bangla: "বাক্যটি Simple, Complex নাকি Compound?",
+    answer: "Complex",
+    explanation:
+    "মূল clause হলো 'Firoz left'। 'before Fatiha arrived' হলো Subordinate Clause, কারণ 'before' এখানে একটি clause introducer এবং এর পরে Subject 'Fatiha' ও Finite Verb 'arrived' আছে। তাই Main Clause + Subordinate Clause = Complex Sentence।"
+},
+
+{
+    type: "Complex",
+    sentence: "I know where Firoz lives.",
+    bangla: "বাক্যটি Simple, Complex নাকি Compound?",
+    answer: "Complex",
+    explanation:
+    "'I know' হলো Main Clause। 'where Firoz lives' হলো Subordinate Clause। এর নিজস্ব Subject 'Firoz' এবং Finite Verb 'lives' আছে। তাই এটি Complex Sentence।"
+},
+
+{
+    type: "Complex",
+    sentence: "Although Rupa was tired, she continued studying.",
+    bangla: "বাক্যটি Simple, Complex নাকি Compound?",
+    answer: "Complex",
+    explanation:
+    "'Although Rupa was tired' হলো Subordinate Clause এবং 'she continued studying' হলো Main Clause। 'although' subordinate conjunction হিসেবে কাজ করছে। তাই Main Clause + Subordinate Clause থাকায় এটি Complex Sentence।"
+},
+
+{
+    type: "Complex",
+    sentence: "Jui stayed at home because she was sick.",
+    bangla: "বাক্যটি Simple, Complex নাকি Compound?",
+    answer: "Complex",
+    explanation:
+    "'Jui stayed at home' হলো Main Clause। 'because she was sick' হলো Subordinate Clause। 'because' একটি subordinating conjunction এবং এর পরে Subject 'she' ও Finite Verb 'was' আছে। তাই এটি Complex Sentence।"
+},
+
+{
+    type: "Complex",
+    sentence: "When Milon arrived, the class had started.",
+    bangla: "বাক্যটি Simple, Complex নাকি Compound?",
+    answer: "Complex",
+    explanation:
+    "'When Milon arrived' হলো Subordinate Clause। 'the class had started' হলো Main Clause। 'when' subordinate conjunction হিসেবে কাজ করছে। তাই বাক্যটি Complex Sentence।"
+},
+
+/* =========================================================
+   DECEPTIVE / TRICK QUESTIONS
+   ========================================================= */
+
+{
+    type: "Simple",
+    sentence: "Firoz went to school and studied English.",
+    bangla: "এখানে 'and' দেখে ভুল না করে Sentence-এর ধরন নির্ণয় করুন।",
+    answer: "Simple",
+    explanation:
+    "এটি একটি গুরুত্বপূর্ণ Trick Question। 'and' দেখেই Compound বলা যাবে না। 'Firoz went to school' এবং 'studied English'—দ্বিতীয় অংশে আলাদা Subject নেই; Subject Firoz-ই দুই কাজ করছে। তাই এখানে দুইটি Independent Clause নেই। এটি Simple Sentence।"
+},
+
+{
+    type: "Compound",
+    sentence: "Firoz went to school and Fatiha studied English.",
+    bangla: "এখানে 'and' দেখে Sentence-এর ধরন নির্ণয় করুন।",
+    answer: "Compound",
+    explanation:
+    "এবার বিষয়টি আলাদা। প্রথম অংশে Subject 'Firoz' এবং Verb 'went'। দ্বিতীয় অংশে Subject 'Fatiha' এবং Verb 'studied'। অর্থাৎ দুটি Independent Clause আছে। 'and' দুটি Main Clause যুক্ত করেছে। তাই এটি Compound Sentence।"
+},
+
+{
+    type: "Simple",
+    sentence: "Moksed went home because of illness.",
+    bangla: "because of দেখে Sentence-এর ধরন নির্ণয় করুন।",
+    answer: "Simple",
+    explanation:
+    "'because of' এর পরে 'illness'—একটি noun এসেছে। 'because of illness' একটি phrase, subordinate clause নয়। এখানে 'because of' এর পরে Subject + Finite Verb নেই। তাই মূলত একটি Main Clause আছে। এটি Simple Sentence।"
+},
+
+{
+    type: "Simple",
+    sentence: "Ferjousi left the room after finishing the work.",
+    bangla: "after + V-ing দেখে Sentence-এর ধরন নির্ণয় করুন।",
+    answer: "Simple",
+    explanation:
+    "'after finishing the work' একটি phrase। 'finishing' হলো V-ing form এবং এখানে আলাদা Subject + Finite Verb নেই। তাই এটি Subordinate Clause নয়। মূল clause একটি হওয়ায় বাক্যটি Simple Sentence।"
+},
+
+{
+    type: "Complex",
+    sentence: "Ferjousi left the room after she finished the work.",
+    bangla: "এবার আগের বাক্যের সঙ্গে তুলনা করুন।",
+    answer: "Complex",
+    explanation:
+    "এখানে 'after she finished the work' একটি পূর্ণ Subordinate Clause। কারণ এর Subject 'she' এবং Finite Verb 'finished' আছে। Main Clause হলো 'Ferjousi left the room'। তাই Main Clause + Subordinate Clause = Complex Sentence।"
+},
+
+{
+    type: "Simple",
+    sentence: "Despite being tired, Jannati continued her work.",
+    bangla: "despite + V-ing থাকায় Sentence-এর ধরন নির্ণয় করুন।",
+    answer: "Simple",
+    explanation:
+    "'despite being tired' একটি phrase। 'being' হলো V-ing form এবং এখানে আলাদা Subject + Finite Verb নেই। তাই এটি subordinate clause নয়। মূল clause একটি। ফলে বাক্যটি Simple Sentence।"
+},
+
+{
+    type: "Complex",
+    sentence: "Although Jannati was tired, she continued her work.",
+    bangla: "এখানে 'although' কীভাবে Sentence-এর ধরন পরিবর্তন করেছে?",
+    answer: "Complex",
+    explanation:
+    "'Although Jannati was tired' একটি পূর্ণ Subordinate Clause। এখানে Subject 'Jannati' এবং Finite Verb 'was' আছে। অন্যদিকে 'she continued her work' হলো Main Clause। তাই এটি Complex Sentence।"
+}
+
+];
+
+
+/* =========================================================
+   DYNAMIC GENERATOR
+   ========================================================= */
+
+const templates = [
+
+    {
+        make() {
+            const a = randomName();
+            const b = randomName(a);
+
+            return {
+                type: "Simple",
+                sentence: `${a} went to school and studied English.`,
+                bangla: "বাক্যটি Simple, Complex নাকি Compound?",
+                answer: "Simple",
+                explanation:
+                `এখানে 'and' আছে, কিন্তু দ্বিতীয় অংশে আলাদা Subject নেই। ${a} একই Subject হিসেবে দুইটি কাজ করেছে—'went' এবং 'studied'। তাই দুটি Independent Clause নেই। এটি Simple Sentence।`
+            };
+        }
+    },
+
+    {
+        make() {
+            const a = randomName();
+            const b = randomName(a);
+
+            return {
+                type: "Compound",
+                sentence: `${a} went to school and ${b} studied English.`,
+                bangla: "বাক্যটি Simple, Complex নাকি Compound?",
+                answer: "Compound",
+                explanation:
+                `প্রথম অংশের Subject ${a} এবং দ্বিতীয় অংশের Subject ${b}। দুই অংশের নিজস্ব Finite Verb আছে। তাই দুটি Independent Clause 'and' দ্বারা যুক্ত হয়েছে। এটি Compound Sentence।`
+            };
+        }
+    },
+
+    {
+        make() {
+            const a = randomName();
+
+            return {
+                type: "Simple",
+                sentence: `${a} stayed at home because of illness.`,
+                bangla: "because of-এর ব্যবহার দেখে Sentence-এর ধরন নির্ণয় করুন।",
+                answer: "Simple",
+                explanation:
+                "'because of illness' একটি phrase, কারণ 'illness' একটি noun এবং এর আগে আলাদা Subject + Finite Verb নেই। তাই শুধু একটি Main Clause আছে। এটি Simple Sentence।"
+            };
+        }
+    },
+
+    {
+        make() {
+            const a = randomName();
+
+            return {
+                type: "Simple",
+                sentence: `${a} went home after finishing the work.`,
+                bangla: "after + V-ing দেখে Sentence-এর ধরন নির্ণয় করুন।",
+                answer: "Simple",
+                explanation:
+                "'after finishing the work' একটি phrase। 'finishing' V-ing form; এর আলাদা Subject + Finite Verb নেই। তাই এটি Subordinate Clause নয়। ফলে বাক্যটি Simple Sentence।"
+            };
+        }
+    },
+
+    {
+        make() {
+            const a = randomName();
+
+            return {
+                type: "Complex",
+                sentence: `${a} went home after she finished the work.`,
+                bangla: "বাক্যটি Simple, Complex নাকি Compound?",
+                answer: "Complex",
+                explanation:
+                "'after she finished the work' একটি Subordinate Clause। এখানে Subject 'she' এবং Finite Verb 'finished' আছে। Main Clause হলো '${a} went home'। তাই এটি Complex Sentence।"
+            };
+        }
+    },
+
+    {
+        make() {
+            const a = randomName();
+
+            return {
+                type: "Complex",
+                sentence: `Although ${a} was tired, she continued studying.`,
+                bangla: "বাক্যটি Simple, Complex নাকি Compound?",
+                answer: "Complex",
+                explanation:
+                "'Although ${a} was tired' একটি Subordinate Clause। 'was' হলো Finite Verb এবং ${a} হলো Subject। 'she continued studying' হলো Main Clause। তাই এটি Complex Sentence।"
+            };
+        }
+    },
+
+    {
+        make() {
+            const a = randomName();
+            const b = randomName(a);
+
+            return {
+                type: "Compound",
+                sentence: `${a} worked hard, but ${b} helped her.`,
+                bangla: "বাক্যটি Simple, Complex নাকি Compound?",
+                answer: "Compound",
+                explanation:
+                `এখানে '${a} worked hard' এবং '${b} helped her'—দুটি Independent Clause আছে। 'but' তাদের যুক্ত করেছে। তাই এটি Compound Sentence।`
+            };
+        }
+    },
+
+    {
+        make() {
+            const a = randomName();
+
+            return {
+                type: "Simple",
+                sentence: `Despite being tired, ${a} continued her study.`,
+                bangla: "despite + V-ing থাকায় Sentence-এর ধরন নির্ণয় করুন।",
+                answer: "Simple",
+                explanation:
+                "'Despite being tired' একটি phrase। 'being' V-ing form এবং এর সঙ্গে আলাদা Subject + Finite Verb নেই। তাই এটি Subordinate Clause নয়। মূল clause একটি হওয়ায় এটি Simple Sentence।"
+            };
+        }
+    }
+];
+
+
+/* =========================================================
+   STATE
+   ========================================================= */
+
+let currentQuestion = 0;
+let score = 0;
+let answered = false;
+
+const history = [];
+
+
+/* =========================================================
+   DOM
+   ========================================================= */
+
+const questionArea = document.getElementById("questionArea");
+const questionNumber = document.getElementById("questionNumber");
+const question = document.getElementById("question");
+const questionBangla = document.getElementById("questionBangla");
+const options = document.getElementById("options");
+const result = document.getElementById("result");
+const resultTitle = document.getElementById("resultTitle");
+const explanation = document.getElementById("explanation");
+
+const scoreElement = document.getElementById("score");
+const counterElement = document.getElementById("questionCounter");
+const progressFill = document.getElementById("progressFill");
+
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+
+
+/* =========================================================
+   HELPERS
+   ========================================================= */
+
+function randomName(exclude = "") {
+
+    const filtered = names.filter(n => n !== exclude);
+
+    return filtered[
+        Math.floor(Math.random() * filtered.length)
+    ];
+}
+
+
+function randomItem(array) {
+
+    return array[
+        Math.floor(Math.random() * array.length)
+    ];
+}
+
+
+function generateQuestion() {
+
+    /*
+       প্রথমে Static Bank থেকে প্রশ্ন।
+       এরপর Dynamic Generator থেকে অসংখ্য variation।
+    */
+
+    if (currentQuestion < questionBank.length) {
+
+        return questionBank[currentQuestion];
+
+    }
+
+    return randomItem(templates).make();
+}
+
+
+/* =========================================================
+   QUESTION RENDER
+   ========================================================= */
+
+function renderQuestion(direction = "next") {
+
+    answered = false;
+
+    questionArea.classList.remove("animate-in");
+
+    void questionArea.offsetWidth;
+
+    questionArea.classList.add("animate-out");
+
+    setTimeout(() => {
+
+        const q = generateQuestion();
+
+        questionNumber.textContent =
+            `Question ${currentQuestion + 1}`;
+
+        question.textContent =
+            q.sentence;
+
+        questionBangla.textContent =
+            `(${q.bangla})`;
+
+        options.innerHTML = "";
+
+        const choices = shuffle([
+            "Simple",
+            "Complex",
+            "Compound"
+        ]);
+
+        choices.forEach(choice => {
+
+            const button = document.createElement("button");
+
+            button.className = "option";
+
+            button.textContent = choice;
+
+            button.addEventListener("click", () => {
+
+                selectAnswer(
+                    button,
+                    choice,
+                    q
+                );
+
+            });
+
+            options.appendChild(button);
+
         });
 
-        // Touch move interactive glow background for mobile screens
-        window.addEventListener('touchmove', (e) => {
-            if (e.touches.length > 0) {
-                glow.style.left = e.touches[0].clientX + 'px';
-                glow.style.top = e.touches[0].clientY + 'px';
-            }
-        });
-    </script>
+        result.classList.remove("show");
+
+        explanation.textContent = "";
+
+        updateDashboard();
+
+        questionArea.classList.remove("animate-out");
+
+        void questionArea.offsetWidth;
+
+        questionArea.classList.add("animate-in");
+
+    }, 350);
+}
+
+
+/* =========================================================
+   ANSWER
+   ========================================================= */
+
+function selectAnswer(button, selected, q) {
+
+    if (answered) return;
+
+    answered = true;
+
+    const allOptions =
+        document.querySelectorAll(".option");
+
+    allOptions.forEach(btn => {
+        btn.disabled = true;
+
+        if (btn.textContent === q.answer) {
+            btn.classList.add("correct");
+        }
+    });
+
+    if (selected === q.answer) {
+
+        score++;
+
+        button.classList.add("correct");
+
+        resultTitle.textContent =
+            "Correct ✓";
+
+    } else {
+
+        button.classList.add("wrong");
+
+        resultTitle.textContent =
+            `Wrong ✕ — Correct Answer: ${q.answer}`;
+    }
+
+    explanation.textContent =
+        q.explanation;
+
+    result.classList.add("show");
+
+    updateDashboard();
+}
+
+
+/* =========================================================
+   DASHBOARD
+   ========================================================= */
+
+function updateDashboard() {
+
+    counterElement.textContent =
+        currentQuestion + 1;
+
+    scoreElement.textContent =
+        score;
+
+    /*
+       Infinity system:
+       Progress শুধু বর্তমান practice session-এর
+       visual indicator।
+    */
+
+    const progress =
+        ((currentQuestion % 20) + 1) / 20 * 100;
+
+    progressFill.style.width =
+        `${progress}%`;
+}
+
+
+/* =========================================================
+   SHUFFLE
+   ========================================================= */
+
+function shuffle(array) {
+
+    const copy = [...array];
+
+    for (
+        let i = copy.length - 1;
+        i > 0;
+        i--
+    ) {
+
+        const j =
+            Math.floor(Math.random() * (i + 1));
+
+        [
+            copy[i],
+            copy[j]
+        ] =
+        [
+            copy[j],
+            copy[i]
+        ];
+    }
+
+    return copy;
+}
+
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+
+nextBtn.addEventListener("click", () => {
+
+    currentQuestion++;
+
+    renderQuestion("next");
+});
+
+
+prevBtn.addEventListener("click", () => {
+
+    if (currentQuestion === 0) return;
+
+    currentQuestion--;
+
+    renderQuestion("previous");
+});
+
+
+/* =========================================================
+   KEYBOARD CONTROL
+   ========================================================= */
+
+document.addEventListener("keydown", e => {
+
+    if (e.key === "ArrowRight") {
+
+        currentQuestion++;
+
+        renderQuestion("next");
+    }
+
+    if (e.key === "ArrowLeft") {
+
+        if (currentQuestion > 0) {
+
+            currentQuestion--;
+
+            renderQuestion("previous");
+        }
+    }
+});
+
+
+/* =========================================================
+   START
+   ========================================================= */
+
+renderQuestion();
+
+</script>
+
 </body>
 </html>

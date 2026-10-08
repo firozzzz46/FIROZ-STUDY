@@ -1,128 +1,1472 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Google Fonts for Bengali & English -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Inter:wght@700;900&display=swap" rel="stylesheet">
+<title>PART 19 - Pronoun Reference & Agreement | Infinity MCQ</title>
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+<style>
+/* =========================================================
+   PART 19 - PRONOUN REFERENCE & AGREEMENT
+   SINGLE FILE MCQ PRACTICE SYSTEM
+   ========================================================= */
 
-    <style>
-        body {
-            font-family: 'Hind Siliguri', 'Inter', sans-serif;
-            background-color: #030712;
-            overflow: hidden;
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        /* Gradient glowing animation on text */
-        .glow-text {
-            background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 50%, #38bdf8 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shine 6s linear infinite;
-        }
+:root {
+    --text: #202124;
+    --muted: #5f6368;
+    --card: rgba(255,255,255,0.72);
+    --border: rgba(0,0,0,0.08);
+    --shadow: 0 18px 50px rgba(0,0,0,0.09);
+    --green: #188038;
+    --red: #d93025;
+    --blue: #1967d2;
+}
 
-        @keyframes shine {
-            0% { background-position: 0% center; }
-            50% { background-position: 100% center; }
-            100% { background-position: 0% center; }
-        }
+html {
+    scroll-behavior: smooth;
+}
 
-        /* Keyframes for initial entry: Floating in from below with opacity */
-        @keyframes floatIn {
-            0% {
-                opacity: 0;
-                transform: translateY(40px) scale(0.95);
-                filter: blur(8px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-                filter: blur(0);
-            }
-        }
+body {
+    min-height: 100vh;
+    color: var(--text);
+    background:
+        radial-gradient(circle at 10% 10%, rgba(220,235,255,.65), transparent 30%),
+        radial-gradient(circle at 90% 20%, rgba(245,225,255,.55), transparent 30%),
+        radial-gradient(circle at 50% 100%, rgba(220,250,240,.55), transparent 35%),
+        linear-gradient(135deg, #ffffff, #f7f9fb, #ffffff);
 
-        /* Continuous subtle float effect once arrived */
-        @keyframes subtleFloat {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-8px);
-            }
-        }
+    font-family: "Times New Roman", "Kalpurush", serif;
+    overflow-x: hidden;
+}
 
-        /* Animation class for Heading */
-        .animate-heading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards,
-                subtleFloat 6s ease-in-out 1.2s infinite;
-        }
+/* ---------- MAIN CONTAINER ---------- */
 
-        /* Animation class for Subheading (staggered delay) */
-        .animate-subheading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards,
-                subtleFloat 6s ease-in-out 1.55s infinite;
-            opacity: 0; /* Hidden until animation kicks in */
-        }
+.container {
+    width: min(100% - 28px, 1050px);
+    margin: auto;
+    padding: 28px 0 60px;
+}
 
-        /* Ambient background lighting */
-        .ambient-glow {
-            position: absolute;
-            width: 450px;
-            height: 450px;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(3, 7, 18, 0) 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            transition: left 0.4s ease-out, top 0.4s ease-out;
-        }
-    </style>
+/* ---------- HEADER ---------- */
+
+.header {
+    text-align: center;
+    padding: 28px 18px;
+    margin-bottom: 20px;
+
+    background: rgba(255,255,255,.68);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    border: 1px solid rgba(255,255,255,.8);
+    border-radius: 26px;
+    box-shadow: var(--shadow);
+
+    animation: headerIn 1.2s cubic-bezier(.16,1,.3,1);
+}
+
+.header h1 {
+    font-size: clamp(28px, 5vw, 44px);
+    line-height: 1.15;
+    margin-bottom: 10px;
+}
+
+.header p {
+    font-size: 20px;
+    color: var(--muted);
+}
+
+/* ---------- TOP BAR ---------- */
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+
+    margin-bottom: 18px;
+}
+
+.badge,
+.score-box,
+.progress-box {
+    padding: 11px 17px;
+    border-radius: 14px;
+
+    background: rgba(255,255,255,.72);
+    backdrop-filter: blur(12px);
+
+    border: 1px solid var(--border);
+    box-shadow: 0 8px 25px rgba(0,0,0,.06);
+
+    font-size: 18px;
+}
+
+/* ---------- PROGRESS ---------- */
+
+.progress-wrapper {
+    width: 100%;
+    height: 9px;
+    overflow: hidden;
+    border-radius: 20px;
+
+    background: rgba(0,0,0,.07);
+    margin-bottom: 22px;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    border-radius: inherit;
+
+    background: linear-gradient(90deg, #5b8def, #8b5cf6);
+    transition: width 900ms cubic-bezier(.16,1,.3,1);
+}
+
+/* ---------- QUESTION CARD ---------- */
+
+.question-card {
+    background: var(--card);
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+
+    border: 1px solid rgba(255,255,255,.9);
+    border-radius: 28px;
+
+    box-shadow: var(--shadow);
+
+    padding: clamp(22px, 4vw, 38px);
+
+    min-height: 500px;
+
+    transform: translateY(0);
+}
+
+/*
+   Animation classes
+*/
+
+.question-card.enter-next {
+    animation: nextIn 900ms cubic-bezier(.16,1,.3,1);
+}
+
+.question-card.enter-prev {
+    animation: prevIn 900ms cubic-bezier(.16,1,.3,1);
+}
+
+@keyframes nextIn {
+    0% {
+        opacity: 0;
+        transform: translateX(80px) scale(.985);
+        filter: blur(5px);
+    }
+    55% {
+        opacity: .8;
+        filter: blur(1px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+@keyframes prevIn {
+    0% {
+        opacity: 0;
+        transform: translateX(-80px) scale(.985);
+        filter: blur(5px);
+    }
+    55% {
+        opacity: .8;
+        filter: blur(1px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+@keyframes headerIn {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ---------- QUESTION ---------- */
+
+.question-number {
+    display: inline-block;
+
+    padding: 7px 13px;
+    margin-bottom: 18px;
+
+    border-radius: 12px;
+
+    background: rgba(25,103,210,.09);
+    color: var(--blue);
+
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.question {
+    font-size: clamp(21px, 3vw, 27px);
+    line-height: 1.55;
+    font-weight: bold;
+
+    margin-bottom: 6px;
+}
+
+.question-bangla {
+    font-family: "Kalpurush", "Noto Sans Bengali", sans-serif;
+    font-size: 18px;
+    line-height: 1.7;
+    color: #5f6368;
+
+    margin-bottom: 28px;
+}
+
+/* ---------- OPTIONS ---------- */
+
+.options {
+    display: grid;
+    gap: 14px;
+}
+
+.option {
+    position: relative;
+
+    width: 100%;
+    padding: 17px 20px;
+
+    border: 1px solid rgba(0,0,0,.09);
+    border-radius: 17px;
+
+    background: rgba(255,255,255,.66);
+
+    font-family: "Times New Roman", serif;
+    font-size: 20px;
+    line-height: 1.45;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition:
+        transform .35s cubic-bezier(.16,1,.3,1),
+        box-shadow .35s ease,
+        background .35s ease,
+        border-color .35s ease;
+}
+
+.option:hover:not(:disabled) {
+    transform: translateX(7px);
+    box-shadow: 0 10px 28px rgba(0,0,0,.08);
+    border-color: rgba(25,103,210,.25);
+}
+
+.option:disabled {
+    cursor: default;
+}
+
+.option.correct {
+    background: rgba(24,128,56,.12);
+    border-color: rgba(24,128,56,.45);
+    color: #126b2f;
+}
+
+.option.wrong {
+    background: rgba(217,48,37,.11);
+    border-color: rgba(217,48,37,.45);
+    color: #b3261e;
+}
+
+.option .letter {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 32px;
+    height: 32px;
+
+    margin-right: 10px;
+
+    border-radius: 50%;
+
+    background: rgba(0,0,0,.06);
+
+    font-weight: bold;
+}
+
+/* ---------- EXPLANATION ---------- */
+
+.explanation {
+    display: none;
+
+    margin-top: 28px;
+    padding: 22px;
+
+    border-radius: 20px;
+
+    background: rgba(255,255,255,.72);
+    border-left: 5px solid var(--blue);
+
+    box-shadow: 0 10px 30px rgba(0,0,0,.06);
+
+    animation: explanationIn .7s cubic-bezier(.16,1,.3,1);
+}
+
+.explanation.show {
+    display: block;
+}
+
+.explanation-title {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.explanation-text {
+    font-family: "Kalpurush", "Noto Sans Bengali", sans-serif;
+    font-size: 19px;
+    line-height: 1.8;
+}
+
+@keyframes explanationIn {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ---------- CONTROLS ---------- */
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+
+    margin-top: 22px;
+}
+
+.nav-btn {
+    border: none;
+    outline: none;
+
+    padding: 14px 25px;
+
+    border-radius: 15px;
+
+    font-family: "Times New Roman", serif;
+    font-size: 19px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    background: rgba(255,255,255,.8);
+
+    box-shadow: 0 8px 25px rgba(0,0,0,.08);
+
+    transition:
+        transform .3s cubic-bezier(.16,1,.3,1),
+        box-shadow .3s ease;
+}
+
+.nav-btn:hover:not(:disabled) {
+    transform: translateY(-3px);
+    box-shadow: 0 13px 30px rgba(0,0,0,.12);
+}
+
+.nav-btn:disabled {
+    opacity: .4;
+    cursor: not-allowed;
+}
+
+.next-btn {
+    background: #202124;
+    color: white;
+}
+
+/* ---------- RESULT ---------- */
+
+.result {
+    display: none;
+    text-align: center;
+
+    margin-top: 22px;
+    padding: 30px;
+
+    border-radius: 25px;
+
+    background: rgba(255,255,255,.75);
+    backdrop-filter: blur(18px);
+
+    box-shadow: var(--shadow);
+}
+
+.result.show {
+    display: block;
+    animation: explanationIn .8s cubic-bezier(.16,1,.3,1);
+}
+
+.result h2 {
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+
+.result p {
+    font-size: 21px;
+    line-height: 1.6;
+}
+
+/* ---------- MOBILE ---------- */
+
+@media (max-width: 650px) {
+
+    .container {
+        width: min(100% - 16px, 1050px);
+        padding-top: 12px;
+    }
+
+    .header {
+        padding: 22px 14px;
+        border-radius: 20px;
+    }
+
+    .header p {
+        font-size: 18px;
+    }
+
+    .topbar {
+        justify-content: center;
+    }
+
+    .badge,
+    .score-box,
+    .progress-box {
+        font-size: 17px;
+        padding: 9px 13px;
+    }
+
+    .question-card {
+        padding: 20px 15px;
+        border-radius: 21px;
+        min-height: 480px;
+    }
+
+    .question {
+        font-size: 22px;
+    }
+
+    .question-bangla {
+        font-size: 17px;
+    }
+
+    .option {
+        padding: 15px 13px;
+        font-size: 19px;
+    }
+
+    .explanation {
+        padding: 17px;
+    }
+
+    .explanation-text {
+        font-size: 18px;
+    }
+
+    .controls {
+        position: sticky;
+        bottom: 10px;
+        z-index: 20;
+
+        padding: 8px;
+
+        border-radius: 17px;
+
+        background: rgba(255,255,255,.8);
+        backdrop-filter: blur(15px);
+    }
+
+    .nav-btn {
+        flex: 1;
+        font-size: 18px;
+        padding: 13px 10px;
+    }
+}
+
+/* ---------- ACCESSIBILITY ---------- */
+
+button:focus-visible {
+    outline: 3px solid rgba(25,103,210,.35);
+    outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+    }
+}
+</style>
 </head>
-<body class="min-h-screen flex items-center justify-center relative select-none px-4">
 
-    <!-- Ambient glow center element -->
-    <div id="glow" class="ambient-glow top-1/2 left-1/2"></div>
+<body>
 
-    <!-- Centered minimal content with entry animations -->
-    <main class="text-center z-10 space-y-6 max-w-3xl mx-auto py-8 px-4">
-        
-        <!-- Main English Title -->
-        <h1 class="animate-heading text-5xl sm:text-7xl md:text-8xl font-black tracking-tight glow-text font-['Inter'] drop-shadow-lg">
-            Coming Soon...
-        </h1>
+<div class="container">
 
-        <!-- Bengali Subheading -->
-        <p class="animate-subheading text-xl sm:text-3xl md:text-4xl font-semibold text-emerald-400/90 leading-relaxed tracking-wide drop-shadow">
-            ইনশাআল্লাহ, খুব শীঘ্রই ডাটা যোগ করা হবে।
-        </p>
+    <!-- HEADER -->
+
+    <header class="header">
+        <h1>PART 19 — Pronoun Reference &amp; Agreement</h1>
+        <p>Infinity MCQ Practice System</p>
+    </header>
+
+    <!-- TOP INFORMATION -->
+
+    <div class="topbar">
+
+        <div class="badge">
+            Topic: Pronoun Reference &amp; Agreement
+        </div>
+
+        <div class="progress-box">
+            Question: <span id="questionCount">1</span>
+        </div>
+
+        <div class="score-box">
+            Score: <span id="score">0</span>
+        </div>
+
+    </div>
+
+    <div class="progress-wrapper">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- QUESTION -->
+
+    <main class="question-card" id="questionCard">
+
+        <div class="question-number" id="questionNumber">
+            Question 1
+        </div>
+
+        <div class="question" id="question">
+        </div>
+
+        <div class="question-bangla" id="questionBangla">
+        </div>
+
+        <div class="options" id="options">
+        </div>
+
+        <div class="explanation" id="explanation">
+
+            <div class="explanation-title">
+                Explanation
+            </div>
+
+            <div class="explanation-text" id="explanationText">
+            </div>
+
+        </div>
 
     </main>
 
-    <script>
-        const glow = document.getElementById('glow');
+    <!-- CONTROLS -->
 
-        // Mouse move interactive glow background
-        window.addEventListener('mousemove', (e) => {
-            glow.style.left = e.clientX + 'px';
-            glow.style.top = e.clientY + 'px';
-        });
+    <div class="controls">
 
-        // Touch move interactive glow background for mobile screens
-        window.addEventListener('touchmove', (e) => {
-            if (e.touches.length > 0) {
-                glow.style.left = e.touches[0].clientX + 'px';
-                glow.style.top = e.touches[0].clientY + 'px';
-            }
-        });
-    </script>
+        <button
+            class="nav-btn"
+            id="previousBtn"
+            onclick="previousQuestion()"
+        >
+            Previous
+        </button>
+
+        <button
+            class="nav-btn next-btn"
+            id="nextBtn"
+            onclick="nextQuestion()"
+        >
+            Next
+        </button>
+
+    </div>
+
+    <!-- RESULT -->
+
+    <section class="result" id="result">
+
+        <h2>Practice Summary</h2>
+
+        <p>
+            Your current score is
+            <strong id="finalScore">0</strong>.
+        </p>
+
+        <p>
+            Keep practicing to improve your Pronoun Reference &amp; Agreement skills.
+        </p>
+
+    </section>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   PART 19
+   PRONOUN REFERENCE & AGREEMENT
+   INFINITY QUESTION GENERATOR
+   ========================================================= */
+
+/*
+   Allowed example names only.
+*/
+
+const names = [
+    "Firoz",
+    "Fatiha",
+    "Fatema",
+    "Jui",
+    "Ema",
+    "Rupa",
+    "Moksed",
+    "Ferjousi",
+    "Jannati",
+    "Mini",
+    "Miraz",
+    "Mujahid",
+    "Milon",
+    "Hannan",
+    "Joba",
+    "Tanzila",
+    "Rina",
+    "Tania",
+    "Taslima"
+];
+
+
+/* =========================================================
+   QUESTION BANK
+   =========================================================
+   These are grammar patterns.
+   The generator randomly combines subjects,
+   pronouns and sentence structures.
+   ========================================================= */
+
+const patterns = [
+
+    /* ---------- SUBJECT-PRONOUN AGREEMENT ---------- */
+
+    {
+        type: "subject",
+        make() {
+
+            const n = random(names);
+
+            return {
+                q: `${n} is one of the students who always do their homework on time.`,
+                bn: `সঠিক বাক্যটি বেছে নিন। এখানে "who"-এর পরের verb এবং pronoun-এর agreement লক্ষ্য করুন।`,
+                options: [
+                    `${n} is one of the students who always do their homework on time.`,
+                    `${n} is one of the students who always does their homework on time.`,
+                    `${n} is one of the students who always doing their homework on time.`,
+                    `${n} is one of the students who always has do their homework on time.`
+                ],
+                answer: 0,
+                explanation:
+                    `"one of the students who" দ্বারা একাধিক students বোঝানো হয়েছে। তাই relative pronoun "who"-এর antecedent এখানে "students"; এজন্য plural verb "do" হবে। "their"–ও plural "students"-এর সঙ্গে agreement করে।`
+            };
+
+        }
+    },
+
+    {
+        type: "subject",
+        make() {
+
+            const n = random(names);
+
+            return {
+                q: `Every student in the class must bring his or her own book. Which pronoun agrees correctly with "Every student"?`,
+                bn: `"Every student"-এর সঙ্গে কোন pronoun-এর agreement সঠিক?`,
+                options: [
+                    "his or her",
+                    "their",
+                    "our",
+                    "your"
+                ],
+                answer: 0,
+                explanation:
+                    `"Every student" grammaticalভাবে singular। তাই traditional formal grammar-এ তার সঙ্গে singular pronoun "his or her" ব্যবহার করা হয়। "their" আধুনিক English-এ singular they হিসেবে ব্যবহৃত হতে পারে, তবে এই পরীক্ষামুখী rule-এ "his or her" প্রত্যাশিত।`
+            };
+
+        }
+    },
+
+    /* ---------- CLEAR REFERENCE ---------- */
+
+    {
+        type: "reference",
+        make() {
+
+            const n = random(names);
+
+            return {
+                q: `When ${n} spoke to ${randomOther(n)}, he was very polite. Who does "he" refer to?`,
+                bn: `"he" কোন ব্যক্তিকে বোঝাচ্ছে—reference পরিষ্কার কি না তা লক্ষ্য করুন।`,
+                options: [
+                    `${n}`,
+                    "It is unclear from the sentence.",
+                    "Both people",
+                    "Nobody"
+                ],
+                answer: 1,
+                explanation:
+                    `এখানে "he" পুরুষবাচক pronoun হলেও বাক্যে দুইজন ব্যক্তির মধ্যে কে পুরুষ এবং কে pronoun-এর antecedent—তা পরিষ্কারভাবে নির্ধারিত নয়। তাই reference ambiguous বা অস্পষ্ট। ভালো বাক্যে antecedent স্পষ্ট করা উচিত।`
+            };
+
+        }
+    },
+
+    {
+        type: "reference",
+        make() {
+
+            const n1 = random(names);
+            let n2 = randomOther(n1);
+
+            return {
+                q: `${n1} told ${n2} that the teacher wanted to speak to her. Who does "her" refer to?`,
+                bn: `"her" কোন ব্যক্তিকে বোঝাচ্ছে? বাক্যে reference পরিষ্কার কি না বিবেচনা করুন।`,
+                options: [
+                    n1,
+                    n2,
+                    "The teacher",
+                    "The reference is unclear"
+                ],
+                answer: 3,
+                explanation:
+                    `বাক্যে ${n1} এবং ${n2}—দুজনের মধ্যে কে female এবং "her" কার দিকে নির্দেশ করছে তা sentence structure থেকে নিশ্চিতভাবে বোঝা যায় না। তাই pronoun reference unclear।`
+            };
+
+        }
+    },
+
+    /* ---------- EACH / EVERY ---------- */
+
+    {
+        type: "each",
+        make() {
+
+            return {
+                q: `Each of the players must bring _____ own notebook.`,
+                bn: `"Each" singular হওয়ায় কোন pronoun ব্যবহার করা উচিত?`,
+                options: [
+                    "his or her",
+                    "their",
+                    "our",
+                    "your"
+                ],
+                answer: 0,
+                explanation:
+                    `"Each" একাধিক ব্যক্তির মধ্য থেকে প্রত্যেককে আলাদাভাবে বোঝায় এবং grammaticalভাবে singular। তাই traditional formal agreement অনুযায়ী "his or her" ব্যবহার করা হয়।`
+            };
+
+        }
+    },
+
+    {
+        type: "each",
+        make() {
+
+            return {
+                q: `Every student should submit _____ assignment before the deadline.`,
+                bn: `"Every student" singular হওয়ায় সঠিক possessive pronoun কোনটি?`,
+                options: [
+                    "his or her",
+                    "their",
+                    "our",
+                    "its"
+                ],
+                answer: 0,
+                explanation:
+                    `"Every student" singular noun phrase। তাই formal পরীক্ষামূলক grammar-এ "his or her assignment" হবে। "its" মানুষ বোঝাতে ব্যবহার করা ঠিক নয়।`
+            };
+
+        }
+    },
+
+    /* ---------- NEITHER / EITHER ---------- */
+
+    {
+        type: "neither",
+        make() {
+
+            return {
+                q: `Neither Firoz nor Fatiha brought _____ book to the class.`,
+                bn: `"Neither...nor" structure-এ ব্যক্তি বোঝালে উপযুক্ত pronoun কোনটি?`,
+                options: [
+                    "his or her",
+                    "their",
+                    "its",
+                    "our"
+                ],
+                answer: 0,
+                explanation:
+                    `"Neither Firoz nor Fatiha" দুইজনকে individually বোঝালেও প্রত্যেকের ক্ষেত্রে singular possessive pronoun প্রয়োজন। পরীক্ষামুখী formal English-এ "his or her book" সবচেয়ে নিরাপদ উত্তর।`
+            };
+
+        }
+    },
+
+    /* ---------- COLLECTIVE NOUN ---------- */
+
+    {
+        type: "collective",
+        make() {
+
+            return {
+                q: `The committee has reached its decision. Which pronoun correctly refers to "committee"?`,
+                bn: `"committee" একটি collective noun। এখানে কোন pronoun সঠিক?`,
+                options: [
+                    "its",
+                    "their",
+                    "our",
+                    "his"
+                ],
+                answer: 0,
+                explanation:
+                    `"Committee" এখানে একটি একক দল বা unit হিসেবে কাজ করছে এবং "has reached its decision" বলা হয়েছে। তাই singular pronoun "its" ব্যবহার করা হয়েছে।`
+            };
+
+        }
+    },
+
+    /* ---------- INDEFINITE PRONOUN ---------- */
+
+    {
+        type: "indefinite",
+        make() {
+
+            return {
+                q: `Everyone should complete _____ work before leaving the room.`,
+                bn: `"Everyone" singular হওয়ায় formal agreement অনুযায়ী কোনটি সঠিক?`,
+                options: [
+                    "his or her",
+                    "their",
+                    "our",
+                    "its"
+                ],
+                answer: 0,
+                explanation:
+                    `"Everyone" দেখতে অনেক মানুষকে বোঝালেও grammaticalভাবে singular indefinite pronoun। তাই traditional formal agreement-এ "his or her work" ব্যবহার করা হয়।`
+            };
+
+        }
+    },
+
+    {
+        type: "indefinite",
+        make() {
+
+            return {
+                q: `Someone left _____ umbrella in the classroom.`,
+                bn: `"Someone" singular হওয়ায় formal grammar অনুযায়ী সঠিক possessive form কোনটি?`,
+                options: [
+                    "his or her",
+                    "their",
+                    "our",
+                    "its"
+                ],
+                answer: 0,
+                explanation:
+                    `"Someone" একটি singular indefinite pronoun। Formal পরীক্ষামূলক English-এ এর সঙ্গে "his or her" ব্যবহার করা হয়। "Its" জড়বস্তু বা প্রাণী বোঝাতে ব্যবহৃত হয়, মানুষ বোঝাতে নয়।`
+            };
+
+        }
+    },
+
+    /* ---------- REFLEXIVE PRONOUN ---------- */
+
+    {
+        type: "reflexive",
+        make() {
+
+            const n = random(names);
+
+            return {
+                q: `${n} completed the entire project by _____.`,
+                bn: `বাক্যে subject নিজেই কাজটি করেছে। তাই কোন reflexive pronoun প্রয়োজন?`,
+                options: [
+                    "himself",
+                    "herself",
+                    "themselves",
+                    "itself"
+                ],
+                answer: randomGenderAnswer(n),
+                explanation:
+                    `Reflexive pronoun-এর antecedent এবং reflexive pronoun একই ব্যক্তি। তাই subject-এর gender অনুযায়ী "himself" বা "herself" হবে।`
+            };
+
+        }
+    },
+
+    /* ---------- POSSESSIVE AGREEMENT ---------- */
+
+    {
+        type: "possessive",
+        make() {
+
+            const n = random(names);
+
+            return {
+                q: `${n} forgot to bring _____ notebook.`,
+                bn: `নামের gender অনুযায়ী সঠিক possessive pronoun নির্বাচন করুন।`,
+                options: [
+                    "his",
+                    "her",
+                    "their",
+                    "its"
+                ],
+                answer: randomGenderAnswerSimple(n),
+                explanation:
+                    `Possessive pronoun অবশ্যই antecedent-এর সঙ্গে number এবং gender অনুযায়ী মিলবে। এখানে ব্যক্তির gender অনুযায়ী "his" বা "her" ব্যবহার করতে হবে।`
+            };
+
+        }
+    },
+
+    /* ---------- RELATIVE PRONOUN ---------- */
+
+    {
+        type: "relative",
+        make() {
+
+            const n = random(names);
+
+            return {
+                q: `${n} is the student who always completes _____ work on time.`,
+                bn: `Relative clause-এ student-এর সঙ্গে কোন possessive pronoun সঠিক?`,
+                options: [
+                    "his or her",
+                    "their",
+                    "its",
+                    "our"
+                ],
+                answer: 0,
+                explanation:
+                    `"student" এখানে singular। তাই formal agreement অনুযায়ী "his or her work" হবে। "its" মানুষ বোঝাতে ব্যবহার করা যাবে না।`
+            };
+
+        }
+    },
+
+    /* ---------- PRONOUN AGREEMENT ---------- */
+
+    {
+        type: "agreement",
+        make() {
+
+            return {
+                q: `The boys finished _____ homework before the teacher arrived.`,
+                bn: `"boys" plural হওয়ায় কোন pronoun সঠিক?`,
+                options: [
+                    "their",
+                    "his",
+                    "her",
+                    "its"
+                ],
+                answer: 0,
+                explanation:
+                    `"Boys" plural noun। তাই এর সঙ্গে plural possessive pronoun "their" ব্যবহার করতে হবে। "his" এবং "her" singular।`
+            };
+
+        }
+    },
+
+    {
+        type: "agreement",
+        make() {
+
+            return {
+                q: `The girl finished _____ homework before dinner.`,
+                bn: `"girl" singular এবং female হওয়ায় কোন pronoun সঠিক?`,
+                options: [
+                    "her",
+                    "his",
+                    "their",
+                    "its"
+                ],
+                answer: 0,
+                explanation:
+                    `"Girl" singular female noun। তাই এর সঙ্গে possessive pronoun "her" হবে।`
+            };
+
+        }
+    },
+
+    /* ---------- AMBIGUOUS REFERENCE ---------- */
+
+    {
+        type: "ambiguous",
+        make() {
+
+            return {
+                q: `Firoz told Milon that he had won the competition. Why is this sentence potentially unclear?`,
+                bn: `বাক্যটি কেন ambiguous বা দ্ব্যর্থক হতে পারে?`,
+                options: [
+                    "The pronoun 'he' may refer to either person.",
+                    "The verb 'told' is incorrect.",
+                    "The word 'competition' is incorrect.",
+                    "There is no pronoun in the sentence."
+                ],
+                answer: 0,
+                explanation:
+                    `"Firoz told Milon that he had won..." বাক্যে "he" Firoz-কে নাকি Milon-কে বোঝাচ্ছে—তা পরিষ্কার নয়। একই sentence-এ দুইজন সম্ভাব্য male antecedent থাকায় pronoun reference ambiguous হয়েছে।`
+            };
+
+        }
+    },
+
+    /* ---------- SINGULAR / PLURAL ---------- */
+
+    {
+        type: "plural",
+        make() {
+
+            return {
+                q: `The students should bring _____ books to class.`,
+                bn: `"students" plural হওয়ায় সঠিক possessive pronoun কোনটি?`,
+                options: [
+                    "their",
+                    "his",
+                    "her",
+                    "its"
+                ],
+                answer: 0,
+                explanation:
+                    `"Students" plural noun। Plural noun-এর সঙ্গে "their" ব্যবহার করতে হয়।`
+            };
+
+        }
+    },
+
+    {
+        type: "singular",
+        make() {
+
+            return {
+                q: `The student should bring _____ book to class.`,
+                bn: `"student" singular হওয়ায় formal agreement অনুযায়ী কোনটি উপযুক্ত?`,
+                options: [
+                    "his or her",
+                    "their",
+                    "our",
+                    "its"
+                ],
+                answer: 0,
+                explanation:
+                    `"Student" singular। Gender নির্দিষ্ট না থাকলে formal পরীক্ষামুখী grammar-এ "his or her" ব্যবহার করা হয়।`
+            };
+
+        }
+    }
+
+];
+
+
+/* =========================================================
+   STATE
+   ========================================================= */
+
+let questionNumber = 1;
+let score = 0;
+
+let currentQuestion = null;
+let answered = false;
+
+
+/* =========================================================
+   RANDOM HELPERS
+   ========================================================= */
+
+function random(array) {
+    return array[Math.floor(Math.random() * array.length)];
+}
+
+
+function randomOther(name) {
+
+    const filtered = names.filter(n => n !== name);
+
+    return random(filtered);
+}
+
+
+/*
+   Since the name list does not explicitly store gender,
+   use a controlled set for grammar generation.
+*/
+
+const femaleNames = [
+    "Fatiha",
+    "Fatema",
+    "Jui",
+    "Ema",
+    "Rupa",
+    "Ferjousi",
+    "Jannati",
+    "Mini",
+    "Joba",
+    "Tanzila",
+    "Rina",
+    "Tania",
+    "Taslima"
+];
+
+const maleNames = [
+    "Firoz",
+    "Moksed",
+    "Miraz",
+    "Mujahid",
+    "Milon",
+    "Hannan"
+];
+
+
+function isFemale(name) {
+    return femaleNames.includes(name);
+}
+
+
+function randomGenderAnswer(name) {
+
+    return isFemale(name) ? 1 : 0;
+}
+
+
+function randomGenderAnswerSimple(name) {
+
+    return isFemale(name) ? 1 : 0;
+}
+
+
+/* =========================================================
+   SHUFFLE
+   ========================================================= */
+
+function shuffle(array) {
+
+    const copy = [...array];
+
+    for (let i = copy.length - 1; i > 0; i--) {
+
+        const j = Math.floor(Math.random() * (i + 1));
+
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+    }
+
+    return copy;
+}
+
+
+/* =========================================================
+   QUESTION GENERATOR
+   ========================================================= */
+
+function generateQuestion() {
+
+    const pattern = random(patterns);
+
+    const generated = pattern.make();
+
+    /*
+       Shuffle options while preserving correct answer.
+    */
+
+    const correctText = generated.options[generated.answer];
+
+    const shuffled = shuffle(generated.options);
+
+    const newAnswer = shuffled.indexOf(correctText);
+
+    return {
+        ...generated,
+        options: shuffled,
+        answer: newAnswer
+    };
+}
+
+
+/* =========================================================
+   RENDER QUESTION
+   ========================================================= */
+
+function renderQuestion(direction = "next") {
+
+    currentQuestion = generateQuestion();
+
+    answered = false;
+
+    const card = document.getElementById("questionCard");
+
+    /*
+       Restart animation cleanly.
+    */
+
+    card.classList.remove("enter-next", "enter-prev");
+
+    void card.offsetWidth;
+
+    card.classList.add(
+        direction === "prev"
+            ? "enter-prev"
+            : "enter-next"
+    );
+
+
+    document.getElementById("questionNumber").textContent =
+        `Question ${questionNumber}`;
+
+    document.getElementById("questionCount").textContent =
+        questionNumber;
+
+    document.getElementById("question").textContent =
+        currentQuestion.q;
+
+    document.getElementById("questionBangla").textContent =
+        `(${currentQuestion.bn})`;
+
+    const optionsContainer =
+        document.getElementById("options");
+
+    optionsContainer.innerHTML = "";
+
+    currentQuestion.options.forEach((option, index) => {
+
+        const button = document.createElement("button");
+
+        button.className = "option";
+
+        const letter = document.createElement("span");
+
+        letter.className = "letter";
+
+        letter.textContent =
+            String.fromCharCode(65 + index);
+
+        button.appendChild(letter);
+
+        const text = document.createTextNode(option);
+
+        button.appendChild(text);
+
+        button.addEventListener(
+            "click",
+            () => selectAnswer(index)
+        );
+
+        optionsContainer.appendChild(button);
+    });
+
+
+    document.getElementById("explanation")
+        .classList.remove("show");
+
+    document.getElementById("explanationText")
+        .textContent = "";
+
+
+    updateProgress();
+
+    document.getElementById("previousBtn").disabled =
+        questionNumber <= 1;
+
+    document.getElementById("nextBtn").textContent =
+        "Next";
+
+    /*
+       Hide result.
+    */
+
+    document.getElementById("result")
+        .classList.remove("show");
+}
+
+
+/* =========================================================
+   ANSWER
+   ========================================================= */
+
+function selectAnswer(selectedIndex) {
+
+    if (answered) return;
+
+    answered = true;
+
+    const buttons =
+        document.querySelectorAll(".option");
+
+    buttons.forEach((button, index) => {
+
+        button.disabled = true;
+
+        if (index === currentQuestion.answer) {
+
+            button.classList.add("correct");
+
+        }
+
+        if (
+            index === selectedIndex &&
+            selectedIndex !== currentQuestion.answer
+        ) {
+
+            button.classList.add("wrong");
+
+        }
+
+    });
+
+
+    if (selectedIndex === currentQuestion.answer) {
+
+        score++;
+
+        document.getElementById("score")
+            .textContent = score;
+    }
+
+
+    /*
+       Explanation always appears.
+    */
+
+    document.getElementById("explanationText")
+        .textContent =
+        currentQuestion.explanation;
+
+    document.getElementById("explanation")
+        .classList.add("show");
+
+    document.getElementById("nextBtn")
+        .textContent = "Next";
+}
+
+
+/* =========================================================
+   NEXT
+   ========================================================= */
+
+function nextQuestion() {
+
+    questionNumber++;
+
+    renderQuestion("next");
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+
+/* =========================================================
+   PREVIOUS
+   ========================================================= */
+
+function previousQuestion() {
+
+    /*
+       This system uses generated questions.
+       Previous therefore generates another valid
+       question rather than attempting to store
+       an infinite history.
+    */
+
+    if (questionNumber <= 1) return;
+
+    questionNumber--;
+
+    renderQuestion("prev");
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+
+/* =========================================================
+   PROGRESS
+   ========================================================= */
+
+function updateProgress() {
+
+    /*
+       Infinite mode uses a visual cycle instead
+       of a fixed total-question percentage.
+    */
+
+    const percentage =
+        ((questionNumber - 1) % 20 + 1) * 5;
+
+    document.getElementById("progressBar")
+        .style.width = `${percentage}%`;
+}
+
+
+/* =========================================================
+   KEYBOARD CONTROL
+   ========================================================= */
+
+document.addEventListener("keydown", function(event) {
+
+    if (event.key === "ArrowRight") {
+        nextQuestion();
+    }
+
+    if (event.key === "ArrowLeft") {
+        previousQuestion();
+    }
+
+});
+
+
+/* =========================================================
+   START
+   ========================================================= */
+
+renderQuestion("next");
+
+</script>
+
 </body>
 </html>

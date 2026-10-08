@@ -1,128 +1,1482 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Google Fonts for Bengali & English -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Inter:wght@700;900&display=swap" rel="stylesheet">
+<title>Part 13 - Phrase & Clause | Infinity MCQ</title>
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+<style>
+/* =========================================================
+   PART 13 - PHRASE & CLAUSE
+   SINGLE FILE HTML / CSS / JAVASCRIPT
+========================================================= */
 
-    <style>
-        body {
-            font-family: 'Hind Siliguri', 'Inter', sans-serif;
-            background-color: #030712;
-            overflow: hidden;
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        /* Gradient glowing animation on text */
-        .glow-text {
-            background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 50%, #38bdf8 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shine 6s linear infinite;
-        }
+html {
+    scroll-behavior: smooth;
+}
 
-        @keyframes shine {
-            0% { background-position: 0% center; }
-            50% { background-position: 100% center; }
-            100% { background-position: 0% center; }
-        }
+body {
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at 10% 10%, rgba(180, 210, 255, 0.20), transparent 35%),
+        radial-gradient(circle at 90% 90%, rgba(220, 200, 255, 0.18), transparent 35%),
+        linear-gradient(135deg, #ffffff, #f5f7fa, #ffffff);
 
-        /* Keyframes for initial entry: Floating in from below with opacity */
-        @keyframes floatIn {
-            0% {
-                opacity: 0;
-                transform: translateY(40px) scale(0.95);
-                filter: blur(8px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-                filter: blur(0);
-            }
-        }
+    color: #1d2433;
+    font-family: "Times New Roman", "Kalpurush", serif;
+    padding: 25px 15px;
+}
 
-        /* Continuous subtle float effect once arrived */
-        @keyframes subtleFloat {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-8px);
-            }
-        }
+/* Main container */
 
-        /* Animation class for Heading */
-        .animate-heading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards,
-                subtleFloat 6s ease-in-out 1.2s infinite;
-        }
+.container {
+    width: 100%;
+    max-width: 950px;
+    margin: auto;
+}
 
-        /* Animation class for Subheading (staggered delay) */
-        .animate-subheading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards,
-                subtleFloat 6s ease-in-out 1.55s infinite;
-            opacity: 0; /* Hidden until animation kicks in */
-        }
+/* Header */
 
-        /* Ambient background lighting */
-        .ambient-glow {
-            position: absolute;
-            width: 450px;
-            height: 450px;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(3, 7, 18, 0) 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            transition: left 0.4s ease-out, top 0.4s ease-out;
-        }
-    </style>
+.header {
+    text-align: center;
+    margin-bottom: 25px;
+    animation: fadeDown 1s ease;
+}
+
+.header h1 {
+    font-size: clamp(28px, 5vw, 42px);
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.header p {
+    margin-top: 8px;
+    font-size: 20px;
+    opacity: 0.72;
+}
+
+/* Glass card */
+
+.glass {
+    background: rgba(255,255,255,0.68);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    border: 1px solid rgba(255,255,255,0.85);
+
+    box-shadow:
+        0 15px 45px rgba(40, 50, 80, 0.10),
+        inset 0 1px 0 rgba(255,255,255,0.85);
+
+    border-radius: 25px;
+}
+
+/* Progress */
+
+.progress-card {
+    padding: 18px 22px;
+    margin-bottom: 20px;
+}
+
+.progress-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+
+    font-size: 19px;
+    font-weight: bold;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 9px;
+    background: rgba(0,0,0,0.07);
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 12px;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #607dff, #8b5cf6);
+    border-radius: 20px;
+    transition: width 0.7s cubic-bezier(.22,1,.36,1);
+}
+
+/* Question card */
+
+.question-card {
+    padding: clamp(22px, 4vw, 40px);
+    min-height: 430px;
+
+    overflow: hidden;
+    position: relative;
+}
+
+/* Question animation */
+
+.question-card.entering {
+    animation: questionEnter 1.05s cubic-bezier(.16,1,.3,1);
+}
+
+@keyframes questionEnter {
+    0% {
+        opacity: 0;
+        transform: translateY(45px) scale(0.97);
+        filter: blur(5px);
+    }
+
+    55% {
+        opacity: 0.8;
+        transform: translateY(-6px) scale(1.005);
+        filter: blur(0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.question-number {
+    display: inline-block;
+
+    font-size: 17px;
+    font-weight: bold;
+
+    padding: 8px 15px;
+    border-radius: 30px;
+
+    background: rgba(95, 110, 255, 0.10);
+    color: #5363d9;
+
+    margin-bottom: 18px;
+}
+
+.question {
+    font-size: clamp(21px, 3vw, 28px);
+    line-height: 1.55;
+    font-weight: bold;
+}
+
+.question-bangla {
+    font-family: "Kalpurush", Arial, sans-serif;
+    font-size: 18px;
+    line-height: 1.65;
+    font-weight: normal;
+
+    margin-top: 8px;
+    opacity: 0.78;
+}
+
+/* Options */
+
+.options {
+    display: grid;
+    gap: 13px;
+    margin-top: 28px;
+}
+
+.option {
+    width: 100%;
+
+    border: 1px solid rgba(80,90,120,0.13);
+    background: rgba(255,255,255,0.75);
+
+    border-radius: 16px;
+    padding: 17px 19px;
+
+    text-align: left;
+
+    font-family: "Times New Roman", serif;
+    font-size: 20px;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.35s cubic-bezier(.22,1,.36,1),
+        box-shadow 0.35s ease,
+        background 0.35s ease,
+        border-color 0.35s ease;
+}
+
+.option:hover {
+    transform: translateX(7px);
+    box-shadow: 0 8px 25px rgba(50,60,100,0.10);
+    border-color: rgba(90,100,240,0.30);
+}
+
+.option:disabled {
+    cursor: default;
+}
+
+.option.correct {
+    background: rgba(55, 180, 105, 0.14);
+    border-color: rgba(55, 180, 105, 0.55);
+}
+
+.option.wrong {
+    background: rgba(235, 75, 75, 0.12);
+    border-color: rgba(235, 75, 75, 0.50);
+}
+
+.option-letter {
+    display: inline-flex;
+
+    width: 32px;
+    height: 32px;
+
+    align-items: center;
+    justify-content: center;
+
+    margin-right: 10px;
+
+    border-radius: 50%;
+
+    background: rgba(80,90,120,0.08);
+
+    font-weight: bold;
+}
+
+/* Explanation */
+
+.explanation {
+    margin-top: 25px;
+
+    background: rgba(245,247,252,0.85);
+    border-left: 5px solid #6978e8;
+
+    border-radius: 15px;
+
+    padding: 18px 20px;
+
+    font-family: "Kalpurush", Arial, sans-serif;
+    font-size: 19px;
+    line-height: 1.8;
+
+    animation: explanationEnter 0.7s cubic-bezier(.16,1,.3,1);
+}
+
+@keyframes explanationEnter {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.explanation strong {
+    font-family: "Times New Roman", serif;
+    font-size: 20px;
+}
+
+/* Controls */
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+
+    margin-top: 20px;
+}
+
+.btn {
+    flex: 1;
+
+    border: none;
+    border-radius: 15px;
+
+    padding: 15px 20px;
+
+    font-family: "Times New Roman", serif;
+    font-size: 19px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    background: rgba(255,255,255,0.80);
+
+    box-shadow: 0 8px 25px rgba(40,50,80,0.08);
+
+    transition:
+        transform 0.3s cubic-bezier(.22,1,.36,1),
+        box-shadow 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(40,50,80,0.13);
+}
+
+.btn:active {
+    transform: scale(0.97);
+}
+
+.next-btn {
+    background: linear-gradient(135deg, #6374ee, #795eea);
+    color: white;
+}
+
+.previous-btn {
+    color: #4e5870;
+}
+
+.btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Score */
+
+.score-card {
+    margin-top: 20px;
+    padding: 18px 22px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    font-size: 19px;
+    font-weight: bold;
+}
+
+/* Result */
+
+.result {
+    display: none;
+    text-align: center;
+
+    padding: 35px 20px;
+}
+
+.result h2 {
+    font-size: 32px;
+    margin-bottom: 15px;
+}
+
+.result p {
+    font-family: "Kalpurush", Arial, sans-serif;
+    font-size: 20px;
+    line-height: 1.8;
+}
+
+/* Small label */
+
+.topic-label {
+    display: inline-block;
+    margin-top: 12px;
+
+    padding: 7px 15px;
+
+    border-radius: 30px;
+
+    background: rgba(100,110,240,0.08);
+
+    font-size: 17px;
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 15px 10px;
+    }
+
+    .header h1 {
+        font-size: 30px;
+    }
+
+    .header p {
+        font-size: 18px;
+    }
+
+    .question-card {
+        padding: 22px 17px;
+        border-radius: 20px;
+    }
+
+    .question {
+        font-size: 21px;
+    }
+
+    .question-bangla {
+        font-size: 17px;
+    }
+
+    .option {
+        font-size: 18px;
+        padding: 15px 13px;
+    }
+
+    .explanation {
+        font-size: 18px;
+        padding: 15px;
+    }
+
+    .controls {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+    .progress-top {
+        font-size: 17px;
+    }
+}
+</style>
 </head>
-<body class="min-h-screen flex items-center justify-center relative select-none px-4">
 
-    <!-- Ambient glow center element -->
-    <div id="glow" class="ambient-glow top-1/2 left-1/2"></div>
+<body>
 
-    <!-- Centered minimal content with entry animations -->
-    <main class="text-center z-10 space-y-6 max-w-3xl mx-auto py-8 px-4">
-        
-        <!-- Main English Title -->
-        <h1 class="animate-heading text-5xl sm:text-7xl md:text-8xl font-black tracking-tight glow-text font-['Inter'] drop-shadow-lg">
-            Coming Soon...
-        </h1>
+<div class="container">
 
-        <!-- Bengali Subheading -->
-        <p class="animate-subheading text-xl sm:text-3xl md:text-4xl font-semibold text-emerald-400/90 leading-relaxed tracking-wide drop-shadow">
-            ইনশাআল্লাহ, খুব শীঘ্রই ডাটা যোগ করা হবে।
-        </p>
+    <!-- HEADER -->
+
+    <header class="header">
+        <h1>PART 13 — Phrase & Clause</h1>
+        <p>Infinity MCQ Practice System</p>
+        <span class="topic-label">
+            Grammar • Phrase • Clause • Types • Identification
+        </span>
+    </header>
+
+
+    <!-- PROGRESS -->
+
+    <div class="glass progress-card">
+
+        <div class="progress-top">
+            <span id="progressText">Question 1</span>
+            <span id="scoreText">Score: 0</span>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+    </div>
+
+
+    <!-- QUESTION -->
+
+    <main class="glass question-card" id="questionCard">
+
+        <div class="question-number" id="questionNumber">
+            Question 1
+        </div>
+
+        <div class="question" id="question">
+            Loading...
+        </div>
+
+        <div class="question-bangla" id="questionBangla">
+        </div>
+
+        <div class="options" id="options">
+        </div>
+
+        <div class="explanation" id="explanation" style="display:none;">
+        </div>
 
     </main>
 
-    <script>
-        const glow = document.getElementById('glow');
 
-        // Mouse move interactive glow background
-        window.addEventListener('mousemove', (e) => {
-            glow.style.left = e.clientX + 'px';
-            glow.style.top = e.clientY + 'px';
-        });
+    <!-- CONTROLS -->
 
-        // Touch move interactive glow background for mobile screens
-        window.addEventListener('touchmove', (e) => {
-            if (e.touches.length > 0) {
-                glow.style.left = e.touches[0].clientX + 'px';
-                glow.style.top = e.touches[0].clientY + 'px';
-            }
-        });
-    </script>
+    <div class="controls">
+
+        <button
+            class="btn previous-btn"
+            id="previousBtn"
+            onclick="previousQuestion()"
+        >
+            Previous
+        </button>
+
+        <button
+            class="btn next-btn"
+            id="nextBtn"
+            onclick="nextQuestion()"
+        >
+            Next
+        </button>
+
+    </div>
+
+
+    <!-- SCORE -->
+
+    <div class="glass score-card">
+
+        <span id="answeredText">
+            Answered: 0
+        </span>
+
+        <span id="accuracyText">
+            Accuracy: 0%
+        </span>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   PART 13
+   PHRASE & CLAUSE
+   INFINITY QUESTION GENERATOR
+========================================================= */
+
+
+/* ---------------------------------------------------------
+   DATA
+--------------------------------------------------------- */
+
+const names = [
+    "Firoz",
+    "Fatiha",
+    "Fatema",
+    "Jui",
+    "Ema",
+    "Rupa",
+    "Moksed",
+    "Ferjousi",
+    "Jannati",
+    "Mini",
+    "Miraz",
+    "Mujahid",
+    "Milon",
+    "Hannan",
+    "Joba",
+    "Tanzila",
+    "Rina",
+    "Tania",
+    "Taslima"
+];
+
+
+/* ---------------------------------------------------------
+   QUESTION STORAGE
+--------------------------------------------------------- */
+
+let questions = [];
+
+let currentIndex = 0;
+
+let score = 0;
+
+let answered = 0;
+
+
+/* ---------------------------------------------------------
+   RANDOM FUNCTIONS
+--------------------------------------------------------- */
+
+function randomItem(array) {
+    return array[Math.floor(Math.random() * array.length)];
+}
+
+
+function shuffle(array) {
+
+    const arr = [...array];
+
+    for (let i = arr.length - 1; i > 0; i--) {
+
+        const j = Math.floor(Math.random() * (i + 1));
+
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+
+    return arr;
+}
+
+
+/* ---------------------------------------------------------
+   OPTION CREATOR
+--------------------------------------------------------- */
+
+function makeOptions(correct, wrongs) {
+
+    let all = [
+        correct,
+        ...wrongs
+    ];
+
+    all = [...new Set(all)];
+
+    while (all.length < 4) {
+
+        all.push(
+            randomItem([
+                "Noun Clause",
+                "Adjective Clause",
+                "Adverb Clause",
+                "Prepositional Phrase",
+                "Noun Phrase",
+                "Verb Phrase",
+                "Adjective Phrase",
+                "Adverb Phrase",
+                "Independent Clause",
+                "Dependent Clause",
+                "Phrase",
+                "Clause"
+            ])
+        );
+
+        all = [...new Set(all)];
+    }
+
+    return shuffle(all.slice(0, 4));
+}
+
+
+/* =========================================================
+   GENERATOR 1
+   PHRASE VS CLAUSE
+========================================================= */
+
+function generatePhraseClauseQuestion() {
+
+    const data = [
+
+        {
+            text: "in the garden",
+            answer: "Phrase",
+            explanation:
+                "“in the garden” একটি Phrase। কারণ এখানে কোনো Subject ও Finite Verb নেই। এটি একটি সম্পূর্ণ Clause হতে পারে না।"
+        },
+
+        {
+            text: "because Firoz was ill",
+            answer: "Clause",
+            explanation:
+                "“because Firoz was ill” একটি Clause। এখানে Subject “Firoz” এবং Verb “was” আছে। তাই এটি Phrase নয়, Clause।"
+        },
+
+        {
+            text: "after the examination",
+            answer: "Phrase",
+            explanation:
+                "“after the examination” একটি Phrase। এখানে কোনো Subject এবং Finite Verb নেই। তাই এটি Clause নয়।"
+        },
+
+        {
+            text: "when Fatiha arrived",
+            answer: "Clause",
+            explanation:
+                "“when Fatiha arrived” একটি Clause। এখানে Subject “Fatiha” এবং Verb “arrived” আছে।"
+        },
+
+        {
+            text: "with great care",
+            answer: "Phrase",
+            explanation:
+                "“with great care” একটি Phrase। এখানে কোনো Subject ও Finite Verb নেই। এটি একটি Prepositional Phrase।"
+        },
+
+        {
+            text: "although Jui was tired",
+            answer: "Clause",
+            explanation:
+                "“although Jui was tired” একটি Clause। এখানে “Jui” Subject এবং “was” Verb। তাই এটি Clause।"
+        }
+
+    ];
+
+    const item = randomItem(data);
+
+    const options = makeOptions(
+        item.answer,
+        item.answer === "Phrase"
+            ? ["Clause", "Noun Clause", "Independent Clause"]
+            : ["Phrase", "Noun Phrase", "Prepositional Phrase"]
+    );
+
+    return {
+        question:
+            `Identify the grammatical unit: “${item.text}”`,
+        bangla:
+            `(${item.text} অংশটি Phrase নাকি Clause তা নির্ণয় করুন।)`,
+        options,
+        answer: item.answer,
+        explanation: item.explanation
+    };
+}
+
+
+/* =========================================================
+   GENERATOR 2
+   CLAUSE TYPES
+========================================================= */
+
+function generateClauseTypeQuestion() {
+
+    const data = [
+
+        {
+            text: "Firoz studies hard because he wants to succeed.",
+            target: "because he wants to succeed",
+            answer: "Adverb Clause",
+            explanation:
+                "“because he wants to succeed” কারণ বোঝাচ্ছে। এটি মূল বাক্যের কাজ সম্পর্কে কারণ বা reason জানাচ্ছে। তাই এটি Adverb Clause।"
+        },
+
+        {
+            text: "I know that Fatiha is honest.",
+            target: "that Fatiha is honest",
+            answer: "Noun Clause",
+            explanation:
+                "“that Fatiha is honest” অংশটি “know”-এর Object হিসেবে কাজ করছে। Noun-এর মতো কাজ করার কারণে এটি Noun Clause।"
+        },
+
+        {
+            text: "The girl who won the prize is Jui.",
+            target: "who won the prize",
+            answer: "Adjective Clause",
+            explanation:
+                "“who won the prize” অংশটি “the girl”-কে বর্ণনা করছে। Noun-কে describe বা qualify করলে সেটি Adjective Clause।"
+        },
+
+        {
+            text: "Milon stayed home because he was sick.",
+            target: "because he was sick",
+            answer: "Adverb Clause",
+            explanation:
+                "“because he was sick” কেন Milon বাড়িতে ছিল—তার কারণ প্রকাশ করছে। তাই এটি Adverb Clause।"
+        },
+
+        {
+            text: "I believe that Rupa is sincere.",
+            target: "that Rupa is sincere",
+            answer: "Noun Clause",
+            explanation:
+                "“that Rupa is sincere” অংশটি “believe”-এর Object হিসেবে ব্যবহৃত হয়েছে। তাই এটি Noun Clause।"
+        },
+
+        {
+            text: "The book which Firoz bought is interesting.",
+            target: "which Firoz bought",
+            answer: "Adjective Clause",
+            explanation:
+                "“which Firoz bought” অংশটি “The book”-কে বিশেষভাবে চিহ্নিত করছে। তাই এটি Adjective Clause।"
+        }
+
+    ];
+
+    const item = randomItem(data);
+
+    const options = makeOptions(
+        item.answer,
+        [
+            "Noun Clause",
+            "Adjective Clause",
+            "Adverb Clause",
+            "Phrase"
+        ]
+    );
+
+    return {
+        question:
+            `What type of clause is “${item.target}” in the sentence: “${item.text}”`,
+        bangla:
+            `(${item.target} অংশটি কোন ধরনের Clause তা নির্ণয় করুন।)`,
+        options,
+        answer: item.answer,
+        explanation: item.explanation
+    };
+}
+
+
+/* =========================================================
+   GENERATOR 3
+   PHRASE TYPES
+========================================================= */
+
+function generatePhraseTypeQuestion() {
+
+    const data = [
+
+        {
+            text: "Firoz bought a very expensive book.",
+            target: "a very expensive book",
+            answer: "Noun Phrase",
+            explanation:
+                "“a very expensive book” অংশটির প্রধান শব্দ বা Head Word হলো “book”, যা একটি Noun। তাই এটি Noun Phrase।"
+        },
+
+        {
+            text: "Fatiha speaks with great confidence.",
+            target: "with great confidence",
+            answer: "Prepositional Phrase",
+            explanation:
+                "“with great confidence” একটি Preposition “with” দিয়ে শুরু হয়েছে এবং এরপর Object আছে। তাই এটি Prepositional Phrase।"
+        },
+
+        {
+            text: "The extremely beautiful flower attracted Jui.",
+            target: "extremely beautiful",
+            answer: "Adjective Phrase",
+            explanation:
+                "“extremely beautiful” অংশটি “flower”-এর গুণ বা অবস্থা প্রকাশ করছে। তাই এটি Adjective Phrase।"
+        },
+
+        {
+            text: "Milon runs very quickly.",
+            target: "very quickly",
+            answer: "Adverb Phrase",
+            explanation:
+                "“very quickly” অংশটি “runs” Verb-কে কীভাবে কাজটি হয়েছে তা বোঝাচ্ছে। তাই এটি Adverb Phrase।"
+        },
+
+        {
+            text: "Rupa has been studying English.",
+            target: "has been studying",
+            answer: "Verb Phrase",
+            explanation:
+                "“has been studying” অংশটিতে Main Verb “studying” এবং Helping Verbs “has been” রয়েছে। তাই এটি Verb Phrase।"
+        }
+
+    ];
+
+    const item = randomItem(data);
+
+    const options = makeOptions(
+        item.answer,
+        [
+            "Noun Phrase",
+            "Verb Phrase",
+            "Adjective Phrase",
+            "Adverb Phrase"
+        ]
+    );
+
+    return {
+        question:
+            `Identify the type of phrase: “${item.target}”`,
+        bangla:
+            `(${item.target} অংশটি কোন ধরনের Phrase তা নির্ণয় করুন।)`,
+        options,
+        answer: item.answer,
+        explanation: item.explanation
+    };
+}
+
+
+/* =========================================================
+   GENERATOR 4
+   INDEPENDENT / DEPENDENT CLAUSE
+========================================================= */
+
+function generateIndependentDependentQuestion() {
+
+    const data = [
+
+        {
+            text: "Firoz completed the work.",
+            answer: "Independent Clause",
+            explanation:
+                "“Firoz completed the work” একটি সম্পূর্ণ অর্থ প্রকাশ করে এবং এটি একা একটি সম্পূর্ণ Sentence হিসেবে ব্যবহার করা যায়। তাই এটি Independent Clause।"
+        },
+
+        {
+            text: "because Fatiha was tired",
+            answer: "Dependent Clause",
+            explanation:
+                "“because Fatiha was tired” একা সম্পূর্ণ অর্থ প্রকাশ করে না। “because” থাকার কারণে এটি মূল বাক্যের ওপর নির্ভরশীল। তাই এটি Dependent Clause।"
+        },
+
+        {
+            text: "when Jui arrived",
+            answer: "Dependent Clause",
+            explanation:
+                "“when Jui arrived” একা সম্পূর্ণ বাক্য নয়। এটি একটি সময়ের সম্পর্ক প্রকাশ করে এবং মূল Clause-এর ওপর নির্ভর করে। তাই এটি Dependent Clause।"
+        },
+
+        {
+            text: "Milon opened the door.",
+            answer: "Independent Clause",
+            explanation:
+                "“Milon opened the door” নিজে সম্পূর্ণ অর্থ প্রকাশ করে এবং Subject ও Predicate দুটিই আছে। তাই এটি Independent Clause।"
+        },
+
+        {
+            text: "although Rupa was busy",
+            answer: "Dependent Clause",
+            explanation:
+                "“although Rupa was busy” একা সম্পূর্ণ Sentence হিসেবে ব্যবহৃত হতে পারে না। “although” এটিকে নির্ভরশীল করেছে। তাই এটি Dependent Clause।"
+        }
+
+    ];
+
+    const item = randomItem(data);
+
+    const options = makeOptions(
+        item.answer,
+        [
+            "Dependent Clause",
+            "Independent Clause",
+            "Phrase",
+            "Noun Phrase"
+        ]
+    );
+
+    return {
+        question:
+            `Identify the clause: “${item.text}”`,
+        bangla:
+            `(${item.text} অংশটি Independent Clause নাকি Dependent Clause?)`,
+        options,
+        answer: item.answer,
+        explanation: item.explanation
+    };
+}
+
+
+/* =========================================================
+   GENERATOR 5
+   NOUN CLAUSE FUNCTION
+========================================================= */
+
+function generateNounClauseQuestion() {
+
+    const data = [
+
+        {
+            text: "What Firoz said was true.",
+            target: "What Firoz said",
+            answer: "Noun Clause",
+            explanation:
+                "“What Firoz said” পুরো অংশটি বাক্যের Subject হিসেবে কাজ করছে। Subject সাধারণত Noun-এর কাজ করে। তাই এটি Noun Clause।"
+        },
+
+        {
+            text: "I know what Fatiha wants.",
+            target: "what Fatiha wants",
+            answer: "Noun Clause",
+            explanation:
+                "“what Fatiha wants” অংশটি “know”-এর Object হিসেবে ব্যবহৃত হয়েছে। Object হিসেবে Noun-এর কাজ করায় এটি Noun Clause।"
+        },
+
+        {
+            text: "The teacher asked whether Jui was ready.",
+            target: "whether Jui was ready",
+            answer: "Noun Clause",
+            explanation:
+                "“whether Jui was ready” অংশটি “asked”-এর Object হিসেবে ব্যবহৃত হয়েছে। তাই এটি Noun Clause।"
+        },
+
+        {
+            text: "I believe that Rupa is honest.",
+            target: "that Rupa is honest",
+            answer: "Noun Clause",
+            explanation:
+                "“that Rupa is honest” অংশটি “believe”-এর Object। তাই এটি Noun Clause।"
+        }
+
+    ];
+
+    const item = randomItem(data);
+
+    const options = makeOptions(
+        item.answer,
+        [
+            "Adjective Clause",
+            "Adverb Clause",
+            "Adjective Phrase",
+            "Prepositional Phrase"
+        ]
+    );
+
+    return {
+        question:
+            `Identify the type of the underlined part: “${item.target}”`,
+        bangla:
+            `(${item.target} অংশটি কোন ধরনের Clause?)`,
+        options,
+        answer: item.answer,
+        explanation: item.explanation
+    };
+}
+
+
+/* =========================================================
+   GENERATOR 6
+   ADJECTIVE CLAUSE
+========================================================= */
+
+function generateAdjectiveClauseQuestion() {
+
+    const data = [
+
+        {
+            text: "The student who works hard will succeed.",
+            target: "who works hard",
+            answer: "Adjective Clause",
+            explanation:
+                "“who works hard” অংশটি “The student” Noun-কে বর্ণনা করছে। Noun সম্পর্কে অতিরিক্ত তথ্য দিলে সেটি Adjective Clause।"
+        },
+
+        {
+            text: "I read the book that Firoz recommended.",
+            target: "that Firoz recommended",
+            answer: "Adjective Clause",
+            explanation:
+                "“that Firoz recommended” অংশটি “the book” সম্পর্কে অতিরিক্ত তথ্য দিচ্ছে। তাই এটি Adjective Clause।"
+        },
+
+        {
+            text: "The girl whose bag was lost is Jui.",
+            target: "whose bag was lost",
+            answer: "Adjective Clause",
+            explanation:
+                "“whose bag was lost” অংশটি “The girl”-কে identify বা describe করছে। তাই এটি Adjective Clause।"
+        },
+
+        {
+            text: "The place where Milon lives is quiet.",
+            target: "where Milon lives",
+            answer: "Adjective Clause",
+            explanation:
+                "“where Milon lives” অংশটি “The place” Noun-কে বিশেষভাবে চিহ্নিত করছে। তাই এটি Adjective Clause।"
+        }
+
+    ];
+
+    const item = randomItem(data);
+
+    const options = makeOptions(
+        item.answer,
+        [
+            "Noun Clause",
+            "Adverb Clause",
+            "Noun Phrase",
+            "Adverb Phrase"
+        ]
+    );
+
+    return {
+        question:
+            `What type of clause is “${item.target}”?`,
+        bangla:
+            `(${item.target} অংশটি কোন ধরনের Clause?)`,
+        options,
+        answer: item.answer,
+        explanation: item.explanation
+    };
+}
+
+
+/* =========================================================
+   GENERATOR 7
+   ADVERB CLAUSE
+========================================================= */
+
+function generateAdverbClauseQuestion() {
+
+    const data = [
+
+        {
+            text: "Firoz studies when he has free time.",
+            target: "when he has free time",
+            answer: "Adverb Clause",
+            explanation:
+                "“when he has free time” কাজটি কখন হয় তা বোঝাচ্ছে। সময় বোঝানো Adverb Clause-এর একটি গুরুত্বপূর্ণ ব্যবহার।"
+        },
+
+        {
+            text: "Fatiha stayed home because she was ill.",
+            target: "because she was ill",
+            answer: "Adverb Clause",
+            explanation:
+                "“because she was ill” Fatiha কেন বাড়িতে ছিল তার কারণ প্রকাশ করছে। তাই এটি Adverb Clause।"
+        },
+
+        {
+            text: "Although Jui was tired, she continued working.",
+            target: "Although Jui was tired",
+            answer: "Adverb Clause",
+            explanation:
+                "“Although Jui was tired” বিপরীত বা concession-এর অর্থ প্রকাশ করছে এবং মূল কাজের পরিস্থিতি জানাচ্ছে। তাই এটি Adverb Clause।"
+        },
+
+        {
+            text: "Milon worked hard so that he could succeed.",
+            target: "so that he could succeed",
+            answer: "Adverb Clause",
+            explanation:
+                "“so that he could succeed” কাজটির উদ্দেশ্য বা Purpose প্রকাশ করছে। তাই এটি Adverb Clause।"
+        }
+
+    ];
+
+    const item = randomItem(data);
+
+    const options = makeOptions(
+        item.answer,
+        [
+            "Noun Clause",
+            "Adjective Clause",
+            "Noun Phrase",
+            "Verb Phrase"
+        ]
+    );
+
+    return {
+        question:
+            `Identify the type of clause: “${item.target}”`,
+        bangla:
+            `(${item.target} অংশটি কোন ধরনের Clause?)`,
+        options,
+        answer: item.answer,
+        explanation: item.explanation
+    };
+}
+
+
+/* =========================================================
+   MASTER INFINITY GENERATOR
+========================================================= */
+
+function generateQuestion() {
+
+    const generators = [
+
+        generatePhraseClauseQuestion,
+        generateClauseTypeQuestion,
+        generatePhraseTypeQuestion,
+        generateIndependentDependentQuestion,
+        generateNounClauseQuestion,
+        generateAdjectiveClauseQuestion,
+        generateAdverbClauseQuestion
+
+    ];
+
+    return randomItem(generators)();
+}
+
+
+/* =========================================================
+   QUESTION MANAGEMENT
+========================================================= */
+
+function createQuestion() {
+
+    let newQuestion = generateQuestion();
+
+    /*
+       একই প্রশ্ন পরপর আসা এড়ানো
+    */
+
+    let attempts = 0;
+
+    while (
+        questions.length > 0 &&
+        newQuestion.question ===
+        questions[questions.length - 1].question &&
+        attempts < 10
+    ) {
+
+        newQuestion = generateQuestion();
+
+        attempts++;
+    }
+
+    questions.push(newQuestion);
+
+    return newQuestion;
+}
+
+
+/* =========================================================
+   DISPLAY QUESTION
+========================================================= */
+
+function displayQuestion() {
+
+    const card = document.getElementById("questionCard");
+
+    const questionData = questions[currentIndex];
+
+    if (!questionData) {
+        questions[currentIndex] = createQuestion();
+    }
+
+    const data = questions[currentIndex];
+
+    /*
+       Smooth isolated transition
+    */
+
+    card.classList.remove("entering");
+
+    void card.offsetWidth;
+
+    card.classList.add("entering");
+
+
+    document.getElementById("questionNumber").textContent =
+        `Question ${currentIndex + 1}`;
+
+    document.getElementById("progressText").textContent =
+        `Question ${currentIndex + 1}`;
+
+    document.getElementById("question").textContent =
+        data.question;
+
+    document.getElementById("questionBangla").textContent =
+        data.bangla;
+
+
+    const optionsContainer =
+        document.getElementById("options");
+
+    optionsContainer.innerHTML = "";
+
+
+    const letters = ["A", "B", "C", "D"];
+
+
+    data.options.forEach((option, index) => {
+
+        const button =
+            document.createElement("button");
+
+        button.className = "option";
+
+        button.innerHTML = `
+            <span class="option-letter">
+                ${letters[index]}
+            </span>
+            ${option}
+        `;
+
+        button.onclick = () =>
+            selectAnswer(option, button);
+
+        optionsContainer.appendChild(button);
+    });
+
+
+    document.getElementById("explanation").style.display =
+        "none";
+
+    document.getElementById("explanation").innerHTML =
+        "";
+
+
+    updateProgress();
+
+    updateButtons();
+}
+
+
+/* =========================================================
+   ANSWER
+========================================================= */
+
+function selectAnswer(selected, selectedButton) {
+
+    const data = questions[currentIndex];
+
+    const buttons =
+        document.querySelectorAll(".option");
+
+    /*
+       Already answered
+    */
+
+    if (buttons[0].disabled) {
+        return;
+    }
+
+
+    buttons.forEach(button => {
+
+        button.disabled = true;
+
+        const text =
+            button.textContent
+                .replace(/^[A-D]\s*/, "")
+                .trim();
+
+        if (text === data.answer) {
+            button.classList.add("correct");
+        }
+
+    });
+
+
+    if (selected === data.answer) {
+
+        score++;
+
+        selectedButton.classList.add("correct");
+
+    } else {
+
+        selectedButton.classList.add("wrong");
+    }
+
+
+    answered++;
+
+
+    /*
+       Explanation
+    */
+
+    const explanation =
+        document.getElementById("explanation");
+
+    explanation.innerHTML = `
+        <strong>Explanation:</strong><br>
+        ${data.explanation}
+    `;
+
+    explanation.style.display = "block";
+
+
+    updateScore();
+}
+
+
+/* =========================================================
+   NEXT
+========================================================= */
+
+function nextQuestion() {
+
+    /*
+       If current question is unanswered,
+       still allow moving forward.
+    */
+
+    currentIndex++;
+
+
+    /*
+       Infinity behavior:
+       নতুন question প্রয়োজন হলে তৈরি হবে
+    */
+
+    if (!questions[currentIndex]) {
+
+        createQuestion();
+    }
+
+
+    displayQuestion();
+}
+
+
+/* =========================================================
+   PREVIOUS
+========================================================= */
+
+function previousQuestion() {
+
+    if (currentIndex <= 0) {
+        return;
+    }
+
+    currentIndex--;
+
+    displayQuestion();
+}
+
+
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+function updateProgress() {
+
+    /*
+       Traditional fixed quiz-এর মতো
+       শেষ নেই।
+
+       তাই visual progress শুধু
+       current question-এর position দেখায়।
+    */
+
+    const visualProgress =
+        ((currentIndex % 20) + 1) / 20 * 100;
+
+    document.getElementById("progressFill").style.width =
+        visualProgress + "%";
+}
+
+
+/* =========================================================
+   SCORE
+========================================================= */
+
+function updateScore() {
+
+    document.getElementById("scoreText").textContent =
+        `Score: ${score}`;
+
+
+    document.getElementById("answeredText").textContent =
+        `Answered: ${answered}`;
+
+
+    let accuracy = 0;
+
+    if (answered > 0) {
+
+        accuracy =
+            Math.round((score / answered) * 100);
+    }
+
+
+    document.getElementById("accuracyText").textContent =
+        `Accuracy: ${accuracy}%`;
+}
+
+
+/* =========================================================
+   BUTTON STATE
+========================================================= */
+
+function updateButtons() {
+
+    document.getElementById("previousBtn").disabled =
+        currentIndex === 0;
+}
+
+
+/* =========================================================
+   INITIAL LOAD
+========================================================= */
+
+questions.push(generateQuestion());
+
+displayQuestion();
+
+updateScore();
+
+</script>
+
 </body>
 </html>

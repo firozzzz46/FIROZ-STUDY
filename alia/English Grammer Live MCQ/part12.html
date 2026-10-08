@@ -1,128 +1,1780 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Google Fonts for Bengali & English -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Inter:wght@700;900&display=swap" rel="stylesheet">
+<title>PART 12 - Tense | Infinity MCQ Practice</title>
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
-    <style>
+    :root {
+        --primary: #4f46e5;
+        --primary-dark: #3730a3;
+        --success: #15803d;
+        --danger: #dc2626;
+        --text: #1f2937;
+        --muted: #64748b;
+        --border: rgba(148, 163, 184, 0.25);
+        --glass: rgba(255, 255, 255, 0.78);
+    }
+
+    body {
+        min-height: 100vh;
+        color: var(--text);
+        background:
+            radial-gradient(circle at 10% 10%, rgba(99,102,241,.10), transparent 30%),
+            radial-gradient(circle at 90% 20%, rgba(14,165,233,.08), transparent 30%),
+            radial-gradient(circle at 50% 100%, rgba(168,85,247,.08), transparent 35%),
+            linear-gradient(135deg, #ffffff, #f8fafc, #f1f5f9);
+        font-family: "Times New Roman", Kalpurush, sans-serif;
+        padding: 25px 15px 50px;
+    }
+
+    .app {
+        width: min(1050px, 100%);
+        margin: auto;
+    }
+
+    /* ================= HEADER ================= */
+
+    .header {
+        text-align: center;
+        margin-bottom: 25px;
+        animation: headerIn 1s cubic-bezier(.22,1,.36,1);
+    }
+
+    .part-badge {
+        display: inline-block;
+        padding: 8px 18px;
+        border-radius: 50px;
+        background: rgba(79,70,229,.09);
+        color: var(--primary-dark);
+        font-size: 18px;
+        font-weight: bold;
+        letter-spacing: .5px;
+        margin-bottom: 12px;
+    }
+
+    .header h1 {
+        font-size: clamp(28px, 5vw, 46px);
+        line-height: 1.15;
+        margin-bottom: 8px;
+    }
+
+    .header p {
+        font-size: 19px;
+        color: var(--muted);
+    }
+
+    /* ================= STATS ================= */
+
+    .stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+
+    .stat-card {
+        background: var(--glass);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        padding: 15px;
+        text-align: center;
+        box-shadow: 0 10px 35px rgba(15,23,42,.07);
+    }
+
+    .stat-label {
+        display: block;
+        color: var(--muted);
+        font-size: 17px;
+        margin-bottom: 5px;
+    }
+
+    .stat-value {
+        font-size: 25px;
+        font-weight: bold;
+    }
+
+    /* ================= PROGRESS ================= */
+
+    .progress-area {
+        margin-bottom: 22px;
+    }
+
+    .progress-top {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        font-size: 18px;
+        margin-bottom: 8px;
+    }
+
+    .progress-bar {
+        width: 100%;
+        height: 10px;
+        background: rgba(148,163,184,.18);
+        border-radius: 50px;
+        overflow: hidden;
+    }
+
+    .progress-fill {
+        width: 0%;
+        height: 100%;
+        border-radius: inherit;
+        background: linear-gradient(90deg, #4f46e5, #7c3aed, #0ea5e9);
+        transition: width .8s cubic-bezier(.22,1,.36,1);
+    }
+
+    /* ================= QUESTION CARD ================= */
+
+    .question-card {
+        background: var(--glass);
+        backdrop-filter: blur(22px);
+        -webkit-backdrop-filter: blur(22px);
+        border: 1px solid var(--border);
+        border-radius: 28px;
+        padding: clamp(20px, 4vw, 40px);
+        box-shadow:
+            0 25px 70px rgba(15,23,42,.10),
+            inset 0 1px 0 rgba(255,255,255,.8);
+        overflow: hidden;
+    }
+
+    .question-card.enter-next {
+        animation: questionNext .9s cubic-bezier(.22,1,.36,1);
+    }
+
+    .question-card.enter-prev {
+        animation: questionPrev .9s cubic-bezier(.22,1,.36,1);
+    }
+
+    .question-number {
+        color: var(--primary);
+        font-size: 19px;
+        font-weight: bold;
+        margin-bottom: 14px;
+    }
+
+    .question {
+        font-family: "Times New Roman", serif;
+        font-size: clamp(21px, 3vw, 27px);
+        line-height: 1.5;
+        font-weight: bold;
+        margin-bottom: 7px;
+    }
+
+    .question-meaning {
+        font-family: Kalpurush, sans-serif;
+        font-size: 18px;
+        color: #64748b;
+        margin-bottom: 25px;
+    }
+
+    /* ================= OPTIONS ================= */
+
+    .options {
+        display: grid;
+        gap: 13px;
+    }
+
+    .option {
+        width: 100%;
+        min-height: 62px;
+        padding: 14px 18px;
+        border-radius: 16px;
+        border: 2px solid rgba(148,163,184,.22);
+        background: rgba(255,255,255,.72);
+        cursor: pointer;
+        text-align: left;
+        font-family: "Times New Roman", serif;
+        font-size: 20px;
+        color: var(--text);
+        transition:
+            transform .35s cubic-bezier(.22,1,.36,1),
+            border-color .35s ease,
+            background .35s ease,
+            box-shadow .35s ease;
+    }
+
+    .option:hover:not(.disabled) {
+        transform: translateX(6px);
+        border-color: rgba(79,70,229,.45);
+        box-shadow: 0 8px 25px rgba(79,70,229,.10);
+    }
+
+    .option.correct {
+        border-color: var(--success);
+        background: rgba(34,197,94,.10);
+        box-shadow: 0 8px 25px rgba(34,197,94,.10);
+    }
+
+    .option.wrong {
+        border-color: var(--danger);
+        background: rgba(239,68,68,.09);
+        box-shadow: 0 8px 25px rgba(239,68,68,.10);
+    }
+
+    .option.disabled {
+        cursor: default;
+    }
+
+    .option-letter {
+        display: inline-flex;
+        width: 34px;
+        height: 34px;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: rgba(79,70,229,.08);
+        color: var(--primary);
+        font-weight: bold;
+        margin-right: 10px;
+    }
+
+    /* ================= RESULT ================= */
+
+    .result {
+        margin-top: 20px;
+        padding: 20px;
+        border-radius: 18px;
+        background: rgba(248,250,252,.85);
+        border: 1px solid var(--border);
+        display: none;
+        animation: explanationIn .7s cubic-bezier(.22,1,.36,1);
+    }
+
+    .result.show {
+        display: block;
+    }
+
+    .answer-status {
+        font-size: 22px;
+        font-weight: bold;
+        margin-bottom: 12px;
+    }
+
+    .answer-status.correct-text {
+        color: var(--success);
+    }
+
+    .answer-status.wrong-text {
+        color: var(--danger);
+    }
+
+    .explanation {
+        font-family: Kalpurush, sans-serif;
+        font-size: 19px;
+        line-height: 1.8;
+        color: #334155;
+    }
+
+    .rule-box {
+        margin-top: 14px;
+        padding: 14px 16px;
+        border-left: 5px solid var(--primary);
+        border-radius: 10px;
+        background: rgba(79,70,229,.07);
+        font-family: Kalpurush, sans-serif;
+        font-size: 18px;
+        line-height: 1.7;
+    }
+
+    /* ================= CONTROLS ================= */
+
+    .controls {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        margin-top: 25px;
+    }
+
+    .btn {
+        border: none;
+        border-radius: 14px;
+        padding: 14px 24px;
+        min-width: 125px;
+        font-family: "Times New Roman", sans-serif;
+        font-size: 19px;
+        font-weight: bold;
+        cursor: pointer;
+        transition:
+            transform .3s cubic-bezier(.22,1,.36,1),
+            box-shadow .3s ease,
+            opacity .3s ease;
+    }
+
+    .btn:hover:not(:disabled) {
+        transform: translateY(-3px);
+    }
+
+    .btn:disabled {
+        opacity: .45;
+        cursor: not-allowed;
+    }
+
+    .previous {
+        background: #e2e8f0;
+        color: #334155;
+    }
+
+    .next {
+        color: white;
+        background: linear-gradient(135deg, #4f46e5, #7c3aed);
+        box-shadow: 0 8px 25px rgba(79,70,229,.22);
+    }
+
+    .new-question {
+        background: linear-gradient(135deg, #0284c7, #2563eb);
+        color: white;
+        box-shadow: 0 8px 25px rgba(37,99,235,.18);
+    }
+
+    /* ================= FOOTER ================= */
+
+    .footer {
+        text-align: center;
+        margin-top: 25px;
+        color: #64748b;
+        font-size: 16px;
+    }
+
+    /* ================= ANIMATIONS ================= */
+
+    @keyframes headerIn {
+        from {
+            opacity: 0;
+            transform: translateY(-30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes questionNext {
+        0% {
+            opacity: 0;
+            transform: translateX(70px) scale(.98);
+        }
+        100% {
+            opacity: 1;
+            transform: translateX(0) scale(1);
+        }
+    }
+
+    @keyframes questionPrev {
+        0% {
+            opacity: 0;
+            transform: translateX(-70px) scale(.98);
+        }
+        100% {
+            opacity: 1;
+            transform: translateX(0) scale(1);
+        }
+    }
+
+    @keyframes explanationIn {
+        from {
+            opacity: 0;
+            transform: translateY(18px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* ================= MOBILE ================= */
+
+    @media (max-width: 650px) {
+
         body {
-            font-family: 'Hind Siliguri', 'Inter', sans-serif;
-            background-color: #030712;
-            overflow: hidden;
+            padding: 15px 10px 35px;
         }
 
-        /* Gradient glowing animation on text */
-        .glow-text {
-            background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 50%, #38bdf8 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shine 6s linear infinite;
+        .stats {
+            gap: 8px;
         }
 
-        @keyframes shine {
-            0% { background-position: 0% center; }
-            50% { background-position: 100% center; }
-            100% { background-position: 0% center; }
+        .stat-card {
+            padding: 11px 7px;
+            border-radius: 14px;
         }
 
-        /* Keyframes for initial entry: Floating in from below with opacity */
-        @keyframes floatIn {
-            0% {
-                opacity: 0;
-                transform: translateY(40px) scale(0.95);
-                filter: blur(8px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-                filter: blur(0);
-            }
+        .stat-label {
+            font-size: 15px;
         }
 
-        /* Continuous subtle float effect once arrived */
-        @keyframes subtleFloat {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-8px);
-            }
+        .stat-value {
+            font-size: 21px;
         }
 
-        /* Animation class for Heading */
-        .animate-heading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards,
-                subtleFloat 6s ease-in-out 1.2s infinite;
+        .question-card {
+            border-radius: 22px;
+            padding: 20px 15px;
         }
 
-        /* Animation class for Subheading (staggered delay) */
-        .animate-subheading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards,
-                subtleFloat 6s ease-in-out 1.55s infinite;
-            opacity: 0; /* Hidden until animation kicks in */
+        .question {
+            font-size: 21px;
         }
 
-        /* Ambient background lighting */
-        .ambient-glow {
-            position: absolute;
-            width: 450px;
-            height: 450px;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(3, 7, 18, 0) 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            transition: left 0.4s ease-out, top 0.4s ease-out;
+        .option {
+            font-size: 19px;
+            min-height: 58px;
+            padding: 12px;
         }
-    </style>
+
+        .controls {
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            flex: 1;
+            min-width: 100px;
+            padding: 13px 10px;
+        }
+
+        .explanation {
+            font-size: 18px;
+        }
+    }
+</style>
 </head>
-<body class="min-h-screen flex items-center justify-center relative select-none px-4">
 
-    <!-- Ambient glow center element -->
-    <div id="glow" class="ambient-glow top-1/2 left-1/2"></div>
+<body>
 
-    <!-- Centered minimal content with entry animations -->
-    <main class="text-center z-10 space-y-6 max-w-3xl mx-auto py-8 px-4">
-        
-        <!-- Main English Title -->
-        <h1 class="animate-heading text-5xl sm:text-7xl md:text-8xl font-black tracking-tight glow-text font-['Inter'] drop-shadow-lg">
-            Coming Soon...
-        </h1>
+<div class="app">
 
-        <!-- Bengali Subheading -->
-        <p class="animate-subheading text-xl sm:text-3xl md:text-4xl font-semibold text-emerald-400/90 leading-relaxed tracking-wide drop-shadow">
-            ইনশাআল্লাহ, খুব শীঘ্রই ডাটা যোগ করা হবে।
-        </p>
+    <header class="header">
+        <div class="part-badge">PART 12</div>
+
+        <h1>Tense</h1>
+
+        <p>Present • Past • Future • Revision</p>
+    </header>
+
+
+    <section class="stats">
+
+        <div class="stat-card">
+            <span class="stat-label">Score</span>
+            <span class="stat-value" id="score">0</span>
+        </div>
+
+        <div class="stat-card">
+            <span class="stat-label">Correct</span>
+            <span class="stat-value" id="correct">0</span>
+        </div>
+
+        <div class="stat-card">
+            <span class="stat-label">Accuracy</span>
+            <span class="stat-value" id="accuracy">0%</span>
+        </div>
+
+    </section>
+
+
+    <section class="progress-area">
+
+        <div class="progress-top">
+            <span id="questionCounter">Question 1</span>
+            <span id="progressText">1 / ∞</span>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+    </section>
+
+
+    <main class="question-card" id="questionCard">
+
+        <div class="question-number" id="questionNumber">
+            Question 1
+        </div>
+
+        <div class="question" id="question">
+            Loading question...
+        </div>
+
+        <div class="question-meaning" id="questionMeaning">
+            প্রশ্নটি বুঝুন
+        </div>
+
+        <div class="options" id="options"></div>
+
+        <div class="result" id="result">
+
+            <div class="answer-status" id="answerStatus"></div>
+
+            <div class="explanation" id="explanation"></div>
+
+            <div class="rule-box" id="ruleBox"></div>
+
+        </div>
+
+        <div class="controls">
+
+            <button
+                class="btn previous"
+                id="previousBtn"
+                onclick="previousQuestion()">
+                ← Previous
+            </button>
+
+            <button
+                class="btn new-question"
+                onclick="newQuestion()">
+                New Question
+            </button>
+
+            <button
+                class="btn next"
+                id="nextBtn"
+                onclick="nextQuestion()">
+                Next →
+            </button>
+
+        </div>
 
     </main>
 
-    <script>
-        const glow = document.getElementById('glow');
 
-        // Mouse move interactive glow background
-        window.addEventListener('mousemove', (e) => {
-            glow.style.left = e.clientX + 'px';
-            glow.style.top = e.clientY + 'px';
-        });
+    <footer class="footer">
+        Part 12 — Tense Infinity MCQ Practice System
+    </footer>
 
-        // Touch move interactive glow background for mobile screens
-        window.addEventListener('touchmove', (e) => {
-            if (e.touches.length > 0) {
-                glow.style.left = e.touches[0].clientX + 'px';
-                glow.style.top = e.touches[0].clientY + 'px';
+</div>
+
+
+<script>
+
+/* ============================================================
+   PART 12 — TENSE
+   INFINITY MCQ GENERATOR
+   ============================================================ */
+
+
+/* -----------------------------
+   QUESTION STATE
+----------------------------- */
+
+let questionNumber = 1;
+
+let score = 0;
+let correctAnswers = 0;
+let attempted = 0;
+
+let history = [];
+let historyIndex = -1;
+
+let currentQuestion = null;
+
+
+/* -----------------------------
+   NAME LIST
+----------------------------- */
+
+const names = [
+    "Firoz",
+    "Fatiha",
+    "Fatema",
+    "Jui",
+    "Ema",
+    "Rupa",
+    "Moksed",
+    "Ferjousi",
+    "Jannati",
+    "Mini",
+    "Miraz",
+    "Mujahid",
+    "Milon",
+    "Hannan",
+    "Joba",
+    "Tanzila",
+    "Rina",
+    "Tania",
+    "Taslima"
+];
+
+
+/* -----------------------------
+   SUBJECT DATA
+----------------------------- */
+
+const subjects = [
+    {
+        name: "Firoz",
+        pronoun: "he",
+        possessive: "his"
+    },
+    {
+        name: "Fatiha",
+        pronoun: "she",
+        possessive: "her"
+    },
+    {
+        name: "Fatema",
+        pronoun: "she",
+        possessive: "her"
+    },
+    {
+        name: "Jui",
+        pronoun: "she",
+        possessive: "her"
+    },
+    {
+        name: "Ema",
+        pronoun: "she",
+        possessive: "her"
+    },
+    {
+        name: "Rupa",
+        pronoun: "she",
+        possessive: "her"
+    },
+    {
+        name: "Moksed",
+        pronoun: "he",
+        possessive: "his"
+    },
+    {
+        name: "Miraz",
+        pronoun: "he",
+        possessive: "his"
+    },
+    {
+        name: "Mujahid",
+        pronoun: "he",
+        possessive: "his"
+    },
+    {
+        name: "Milon",
+        pronoun: "he",
+        possessive: "his"
+    },
+    {
+        name: "Hannan",
+        pronoun: "he",
+        possessive: "his"
+    },
+    {
+        name: "Jannati",
+        pronoun: "she",
+        possessive: "her"
+    },
+    {
+        name: "Tanzila",
+        pronoun: "she",
+        possessive: "her"
+    },
+    {
+        name: "Rina",
+        pronoun: "she",
+        possessive: "her"
+    },
+    {
+        name: "Tania",
+        pronoun: "she",
+        possessive: "her"
+    },
+    {
+        name: "Taslima",
+        pronoun: "she",
+        possessive: "her"
+    }
+];
+
+
+/* -----------------------------
+   VERB DATA
+----------------------------- */
+
+const verbs = [
+    {
+        base: "read",
+        third: "reads",
+        past: "read",
+        participle: "read",
+        ing: "reading"
+    },
+    {
+        base: "write",
+        third: "writes",
+        past: "wrote",
+        participle: "written",
+        ing: "writing"
+    },
+    {
+        base: "study",
+        third: "studies",
+        past: "studied",
+        participle: "studied",
+        ing: "studying"
+    },
+    {
+        base: "play",
+        third: "plays",
+        past: "played",
+        participle: "played",
+        ing: "playing"
+    },
+    {
+        base: "visit",
+        third: "visits",
+        past: "visited",
+        participle: "visited",
+        ing: "visiting"
+    },
+    {
+        base: "watch",
+        third: "watches",
+        past: "watched",
+        participle: "watched",
+        ing: "watching"
+    },
+    {
+        base: "clean",
+        third: "cleans",
+        past: "cleaned",
+        participle: "cleaned",
+        ing: "cleaning"
+    },
+    {
+        base: "help",
+        third: "helps",
+        past: "helped",
+        participle: "helped",
+        ing: "helping"
+    },
+    {
+        base: "eat",
+        third: "eats",
+        past: "ate",
+        participle: "eaten",
+        ing: "eating"
+    },
+    {
+        base: "go",
+        third: "goes",
+        past: "went",
+        participle: "gone",
+        ing: "going"
+    },
+    {
+        base: "come",
+        third: "comes",
+        past: "came",
+        participle: "come",
+        ing: "coming"
+    },
+    {
+        base: "make",
+        third: "makes",
+        past: "made",
+        participle: "made",
+        ing: "making"
+    },
+    {
+        base: "buy",
+        third: "buys",
+        past: "bought",
+        participle: "bought",
+        ing: "buying"
+    },
+    {
+        base: "see",
+        third: "sees",
+        past: "saw",
+        participle: "seen",
+        ing: "seeing"
+    },
+    {
+        base: "take",
+        third: "takes",
+        past: "took",
+        participle: "taken",
+        ing: "taking"
+    }
+];
+
+
+/* -----------------------------
+   RANDOM HELPERS
+----------------------------- */
+
+function randomItem(array) {
+    return array[Math.floor(Math.random() * array.length)];
+}
+
+
+function shuffle(array) {
+    return [...array].sort(() => Math.random() - 0.5);
+}
+
+
+function randomSubject() {
+    return randomItem(subjects);
+}
+
+
+function randomVerb() {
+    return randomItem(verbs);
+}
+
+
+/* ============================================================
+   QUESTION GENERATORS
+   ============================================================ */
+
+
+/* -----------------------------
+   PRESENT SIMPLE
+----------------------------- */
+
+function presentSimple() {
+
+    const s = randomSubject();
+    const v = randomVerb();
+
+    const correct =
+        s.pronoun === "he" || s.pronoun === "she"
+        ? `${s.name} ${v.third} English every day.`
+        : `${s.name} ${v.base} English every day.`;
+
+    let wrong1 =
+        `${s.name} ${v.base} English every day.`;
+
+    let wrong2 =
+        `${s.name} is ${v.ing} English every day.`;
+
+    let wrong3 =
+        `${s.name} ${v.past} English every day.`;
+
+    return {
+        question: `Choose the correct sentence:`,
+        meaning: "সঠিক Present Simple বাক্যটি নির্বাচন করুন।",
+        options: [correct, wrong1, wrong2, wrong3],
+        answer: correct,
+        explanation:
+            `এখানে “every day” নিয়মিত কাজ বোঝাচ্ছে। তাই Present Simple Tense হবে। ` +
+            `${s.name} একবচন third person subject হওয়ায় মূল verb-এর সঙ্গে s/es বসবে।`,
+        rule:
+            `Present Simple: He/She/It + V1 + s/es. অন্য Subject + V1.`
+    };
+}
+
+
+/* -----------------------------
+   PRESENT CONTINUOUS
+----------------------------- */
+
+function presentContinuous() {
+
+    const s = randomSubject();
+    const v = randomVerb();
+
+    const correct = `${s.name} is ${v.ing} English now.`;
+
+    const wrong1 = `${s.name} ${v.third} English now.`;
+    const wrong2 = `${s.name} was ${v.ing} English now.`;
+    const wrong3 = `${s.name} has ${v.participle} English now.`;
+
+    return {
+        question: `Choose the correct sentence:`,
+        meaning: "এখন চলমান কাজ বোঝানো হয়েছে। সঠিক বাক্যটি নির্বাচন করুন।",
+        options: [correct, wrong1, wrong2, wrong3],
+        answer: correct,
+        explanation:
+            `“now” দ্বারা বর্তমানে চলমান কাজ বোঝানো হয়েছে। তাই Present Continuous ব্যবহার হবে। ` +
+            `এখানে ${s.name} একবচন হওয়ায় “is” এবং verb-এর সঙ্গে -ing হয়েছে।`,
+        rule:
+            `Present Continuous: Subject + am/is/are + V-ing.`
+    };
+}
+
+
+/* -----------------------------
+   PRESENT PERFECT
+----------------------------- */
+
+function presentPerfect() {
+
+    const s = randomSubject();
+    const v = randomVerb();
+
+    const correct = `${s.name} has ${v.participle} the lesson.`;
+
+    const wrong1 = `${s.name} have ${v.participle} the lesson.`;
+    const wrong2 = `${s.name} has ${v.past} the lesson.`;
+    const wrong3 = `${s.name} is ${v.ing} the lesson.`;
+
+    return {
+        question: `Choose the correct sentence:`,
+        meaning: "কাজটি সম্পন্ন হয়েছে—সঠিক Present Perfect বাক্যটি নির্বাচন করুন।",
+        options: [correct, wrong1, wrong2, wrong3],
+        answer: correct,
+        explanation:
+            `${s.name} একবচন third person subject। তাই Present Perfect-এ “has” হবে। ` +
+            `এরপর verb-এর past participle বা V3 বসে।`,
+        rule:
+            `Present Perfect: He/She/It + has + V3.`
+    };
+}
+
+
+/* -----------------------------
+   PRESENT PERFECT CONTINUOUS
+----------------------------- */
+
+function presentPerfectContinuous() {
+
+    const s = randomSubject();
+    const v = randomVerb();
+
+    const correct =
+        `${s.name} has been ${v.ing} for two hours.`;
+
+    const wrong1 =
+        `${s.name} is ${v.ing} for two hours.`;
+
+    const wrong2 =
+        `${s.name} has ${v.participle} for two hours.`;
+
+    const wrong3 =
+        `${s.name} was ${v.ing} for two hours.`;
+
+    return {
+        question: `Choose the correct sentence:`,
+        meaning: "দুই ঘণ্টা ধরে কাজটি চলছে—সঠিক বাক্যটি নির্বাচন করুন।",
+        options: [correct, wrong1, wrong2, wrong3],
+        answer: correct,
+        explanation:
+            `“for two hours” দ্বারা বোঝা যাচ্ছে কাজটি অতীতে শুরু হয়ে এখনও চলছে। ` +
+            `তাই Present Perfect Continuous ব্যবহার হবে।`,
+        rule:
+            `Present Perfect Continuous: Subject + has/have + been + V-ing.`
+    };
+}
+
+
+/* -----------------------------
+   PAST SIMPLE
+----------------------------- */
+
+function pastSimple() {
+
+    const s = randomSubject();
+    const v = randomVerb();
+
+    const correct = `${s.name} ${v.past} English yesterday.`;
+
+    const wrong1 = `${s.name} ${v.base} English yesterday.`;
+    const wrong2 = `${s.name} has ${v.participle} English yesterday.`;
+    const wrong3 = `${s.name} is ${v.ing} English yesterday.`;
+
+    return {
+        question: `Choose the correct sentence:`,
+        meaning: "“yesterday” আছে। তাই অতীতের সঠিক বাক্যটি নির্বাচন করুন।",
+        options: [correct, wrong1, wrong2, wrong3],
+        answer: correct,
+        explanation:
+            `“yesterday” অতীত সময় নির্দেশ করে। তাই Past Simple ব্যবহার হবে। ` +
+            `Past Simple affirmative বাক্যে সাধারণত verb-এর V2 ব্যবহৃত হয়।`,
+        rule:
+            `Past Simple: Subject + V2 + Object.`
+    };
+}
+
+
+/* -----------------------------
+   PAST CONTINUOUS
+----------------------------- */
+
+function pastContinuous() {
+
+    const s = randomSubject();
+    const v = randomVerb();
+
+    const correct = `${s.name} was ${v.ing} at 8 pm.`;
+
+    const wrong1 = `${s.name} is ${v.ing} at 8 pm.`;
+    const wrong2 = `${s.name} has ${v.participle} at 8 pm.`;
+    const wrong3 = `${s.name} ${v.past} at 8 pm.`;
+
+    return {
+        question: `Choose the correct sentence:`,
+        meaning: "অতীতের একটি নির্দিষ্ট সময়ে কাজ চলছিল।",
+        options: [correct, wrong1, wrong2, wrong3],
+        answer: correct,
+        explanation:
+            `“at 8 pm” দ্বারা অতীতের নির্দিষ্ট সময় বোঝানো হয়েছে। ` +
+            `কাজটি সেই সময়ে চলমান ছিল, তাই Past Continuous ব্যবহার হবে।`,
+        rule:
+            `Past Continuous: Subject + was/were + V-ing.`
+    };
+}
+
+
+/* -----------------------------
+   PAST PERFECT
+----------------------------- */
+
+function pastPerfect() {
+
+    const s = randomSubject();
+    const v = randomVerb();
+
+    const correct =
+        `${s.name} had ${v.participle} the lesson before the teacher arrived.`;
+
+    const wrong1 =
+        `${s.name} has ${v.participle} the lesson before the teacher arrived.`;
+
+    const wrong2 =
+        `${s.name} was ${v.ing} the lesson before the teacher arrived.`;
+
+    const wrong3 =
+        `${s.name} ${v.past} the lesson before the teacher arrived.`;
+
+    return {
+        question: `Choose the correct sentence:`,
+        meaning: "অতীতে অন্য একটি কাজের আগে কাজটি সম্পন্ন হয়েছিল।",
+        options: [correct, wrong1, wrong2, wrong3],
+        answer: correct,
+        explanation:
+            `এখানে দুটি অতীতের কাজ আছে। শিক্ষক আসার আগেই পাঠ শেষ হয়েছিল। ` +
+            `অতীতে যে কাজটি আগে সম্পন্ন হয়েছিল, তার জন্য Past Perfect ব্যবহৃত হয়।`,
+        rule:
+            `Past Perfect: Subject + had + V3.`
+    };
+}
+
+
+/* -----------------------------
+   PAST PERFECT CONTINUOUS
+----------------------------- */
+
+function pastPerfectContinuous() {
+
+    const s = randomSubject();
+    const v = randomVerb();
+
+    const correct =
+        `${s.name} had been ${v.ing} for two hours before dinner.`;
+
+    const wrong1 =
+        `${s.name} has been ${v.ing} for two hours before dinner.`;
+
+    const wrong2 =
+        `${s.name} was ${v.ing} for two hours before dinner.`;
+
+    const wrong3 =
+        `${s.name} had ${v.participle} for two hours before dinner.`;
+
+    return {
+        question: `Choose the correct sentence:`,
+        meaning: "অতীতে অন্য একটি কাজের আগে কিছু সময় ধরে কাজ চলছিল।",
+        options: [correct, wrong1, wrong2, wrong3],
+        answer: correct,
+        explanation:
+            `“for two hours before dinner” দ্বারা বোঝা যায় অতীতে একটি নির্দিষ্ট সময় পর্যন্ত ` +
+            `কাজটি কিছু সময় ধরে চলছিল। তাই Past Perfect Continuous হবে।`,
+        rule:
+            `Past Perfect Continuous: Subject + had been + V-ing.`
+    };
+}
+
+
+/* -----------------------------
+   FUTURE SIMPLE
+----------------------------- */
+
+function futureSimple() {
+
+    const s = randomSubject();
+    const v = randomVerb();
+
+    const correct = `${s.name} will ${v.base} English tomorrow.`;
+
+    const wrong1 = `${s.name} will ${v.third} English tomorrow.`;
+    const wrong2 = `${s.name} is ${v.ing} English tomorrow.`;
+    const wrong3 = `${s.name} ${v.past} English tomorrow.`;
+
+    return {
+        question: `Choose the correct sentence:`,
+        meaning: "“tomorrow” ভবিষ্যৎ সময় বোঝাচ্ছে।",
+        options: [correct, wrong1, wrong2, wrong3],
+        answer: correct,
+        explanation:
+            `“tomorrow” ভবিষ্যৎ সময় নির্দেশ করে। Future Simple-এ সব Subject-এর পরে “will” ` +
+            `এবং তার পরে verb-এর মূল রূপ বা V1 বসে।`,
+        rule:
+            `Future Simple: Subject + will + V1.`
+    };
+}
+
+
+/* -----------------------------
+   FUTURE CONTINUOUS
+----------------------------- */
+
+function futureContinuous() {
+
+    const s = randomSubject();
+    const v = randomVerb();
+
+    const correct =
+        `${s.name} will be ${v.ing} at 8 pm tomorrow.`;
+
+    const wrong1 =
+        `${s.name} will ${v.base} at 8 pm tomorrow.`;
+
+    const wrong2 =
+        `${s.name} will have ${v.participle} at 8 pm tomorrow.`;
+
+    const wrong3 =
+        `${s.name} was ${v.ing} at 8 pm tomorrow.`;
+
+    return {
+        question: `Choose the correct sentence:`,
+        meaning: "আগামীকাল নির্দিষ্ট সময়ে কাজটি চলতে থাকবে।",
+        options: [correct, wrong1, wrong2, wrong3],
+        answer: correct,
+        explanation:
+            `আগামীকালের নির্দিষ্ট সময়ে কাজটি চলমান থাকবে। তাই Future Continuous হবে।`,
+        rule:
+            `Future Continuous: Subject + will be + V-ing.`
+    };
+}
+
+
+/* -----------------------------
+   FUTURE PERFECT
+----------------------------- */
+
+function futurePerfect() {
+
+    const s = randomSubject();
+    const v = randomVerb();
+
+    const correct =
+        `${s.name} will have ${v.participle} the lesson by tomorrow.`;
+
+    const wrong1 =
+        `${s.name} will ${v.base} the lesson by tomorrow.`;
+
+    const wrong2 =
+        `${s.name} will be ${v.ing} the lesson by tomorrow.`;
+
+    const wrong3 =
+        `${s.name} has ${v.participle} the lesson by tomorrow.`;
+
+    return {
+        question: `Choose the correct sentence:`,
+        meaning: "ভবিষ্যতের একটি নির্দিষ্ট সময়ের মধ্যে কাজটি শেষ হয়ে যাবে।",
+        options: [correct, wrong1, wrong2, wrong3],
+        answer: correct,
+        explanation:
+            `“by tomorrow” দ্বারা ভবিষ্যতের একটি সময়সীমার মধ্যে কাজ শেষ হওয়ার অর্থ প্রকাশ করছে। ` +
+            `তাই Future Perfect ব্যবহৃত হবে।`,
+        rule:
+            `Future Perfect: Subject + will have + V3.`
+    };
+}
+
+
+/* -----------------------------
+   FUTURE PERFECT CONTINUOUS
+----------------------------- */
+
+function futurePerfectContinuous() {
+
+    const s = randomSubject();
+    const v = randomVerb();
+
+    const correct =
+        `${s.name} will have been ${v.ing} for two hours by 8 pm.`;
+
+    const wrong1 =
+        `${s.name} will be ${v.ing} for two hours by 8 pm.`;
+
+    const wrong2 =
+        `${s.name} will have ${v.participle} for two hours by 8 pm.`;
+
+    const wrong3 =
+        `${s.name} has been ${v.ing} for two hours by 8 pm.`;
+
+    return {
+        question: `Choose the correct sentence:`,
+        meaning: "ভবিষ্যতের একটি সময় পর্যন্ত কাজটি নির্দিষ্ট সময় ধরে চলতে থাকবে।",
+        options: [correct, wrong1, wrong2, wrong3],
+        answer: correct,
+        explanation:
+            `এখানে ভবিষ্যতের একটি নির্দিষ্ট সময় পর্যন্ত কাজটি কত সময় ধরে চলবে তা বোঝানো হয়েছে। ` +
+            `তাই Future Perfect Continuous ব্যবহার হবে।`,
+        rule:
+            `Future Perfect Continuous: Subject + will have been + V-ing.`
+    };
+}
+
+
+/* ============================================================
+   SPECIAL GRAMMAR REVISION QUESTIONS
+   ============================================================ */
+
+
+/* -----------------------------
+   IDENTIFY TENSE
+----------------------------- */
+
+function identifyTense() {
+
+    const s = randomSubject();
+    const v = randomVerb();
+
+    const types = [
+        {
+            sentence: `${s.name} is ${v.ing} English now.`,
+            answer: "Present Continuous",
+            meaning: "বাক্যটির Tense শনাক্ত করুন।"
+        },
+        {
+            sentence: `${s.name} ${v.past} English yesterday.`,
+            answer: "Past Simple",
+            meaning: "বাক্যটির Tense শনাক্ত করুন।"
+        },
+        {
+            sentence: `${s.name} will ${v.base} English tomorrow.`,
+            answer: "Future Simple",
+            meaning: "বাক্যটির Tense শনাক্ত করুন।"
+        },
+        {
+            sentence: `${s.name} has ${v.participle} the lesson.`,
+            answer: "Present Perfect",
+            meaning: "বাক্যটির Tense শনাক্ত করুন।"
+        },
+        {
+            sentence: `${s.name} had ${v.participle} the lesson before dinner.`,
+            answer: "Past Perfect",
+            meaning: "বাক্যটির Tense শনাক্ত করুন।"
+        }
+    ];
+
+    const item = randomItem(types);
+
+    const allTenses = [
+        "Present Simple",
+        "Present Continuous",
+        "Present Perfect",
+        "Past Simple",
+        "Past Continuous",
+        "Past Perfect",
+        "Future Simple",
+        "Future Continuous",
+        "Future Perfect"
+    ];
+
+    const wrong = shuffle(
+        allTenses.filter(x => x !== item.answer)
+    ).slice(0, 3);
+
+    return {
+        question: `Identify the tense: "${item.sentence}"`,
+        meaning: item.meaning,
+        options: shuffle([item.answer, ...wrong]),
+        answer: item.answer,
+        explanation:
+            `এই বাক্যের structure এবং time expression লক্ষ্য করলে ${item.answer} বোঝা যায়।`,
+        rule:
+            `Tense শনাক্ত করার সময় Auxiliary Verb, Main Verb-এর form এবং সময়ের শব্দ লক্ষ্য করুন।`
+    };
+}
+
+
+/* -----------------------------
+   FILL IN THE BLANK
+----------------------------- */
+
+function fillBlank() {
+
+    const s = randomSubject();
+    const v = randomVerb();
+
+    const types = [
+
+        {
+            sentence: `${s.name} _____ English every day.`,
+            answer: s.pronoun === "he" || s.pronoun === "she"
+                ? v.third
+                : v.base,
+            wrong: [
+                v.past,
+                v.ing,
+                "will " + v.base
+            ],
+            meaning: "নিয়মিত কাজ বোঝানো হয়েছে। শূন্যস্থানে সঠিক verb বসান।",
+            explanation:
+                "“every day” নিয়মিত কাজ বোঝায়, তাই Present Simple হবে। " +
+                "একবচন third person subject হলে verb-এর সঙ্গে s/es বসে।",
+            rule:
+                "Present Simple → He/She/It + V1+s/es."
+        },
+
+        {
+            sentence: `${s.name} _____ English yesterday.`,
+            answer: v.past,
+            wrong: [
+                v.base,
+                v.third,
+                v.ing
+            ],
+            meaning: "“yesterday” অনুযায়ী সঠিক verb form বসান।",
+            explanation:
+                "“yesterday” অতীত সময় নির্দেশ করে। তাই Past Simple-এর V2 প্রয়োজন।",
+            rule:
+                "Past Simple → Subject + V2."
+        },
+
+        {
+            sentence: `${s.name} will _____ English tomorrow.`,
+            answer: v.base,
+            wrong: [
+                v.third,
+                v.past,
+                v.participle
+            ],
+            meaning: "Future Simple অনুযায়ী সঠিক verb form বসান।",
+            explanation:
+                "“will”-এর পরে সবসময় verb-এর মূল রূপ বা V1 বসে।",
+            rule:
+                "will + V1."
+        }
+
+    ];
+
+    const item = randomItem(types);
+
+    return {
+        question: item.sentence,
+        meaning: item.meaning,
+        options: shuffle([
+            item.answer,
+            ...item.wrong
+        ]),
+        answer: item.answer,
+        explanation: item.explanation,
+        rule: item.rule
+    };
+}
+
+
+/* ============================================================
+   MASTER QUESTION GENERATOR
+   ============================================================ */
+
+function generateQuestion() {
+
+    const generators = [
+
+        presentSimple,
+        presentSimple,
+
+        presentContinuous,
+        presentContinuous,
+
+        presentPerfect,
+        presentPerfect,
+
+        presentPerfectContinuous,
+
+        pastSimple,
+        pastSimple,
+
+        pastContinuous,
+        pastContinuous,
+
+        pastPerfect,
+
+        pastPerfectContinuous,
+
+        futureSimple,
+        futureSimple,
+
+        futureContinuous,
+
+        futurePerfect,
+
+        futurePerfectContinuous,
+
+        identifyTense,
+        identifyTense,
+
+        fillBlank,
+        fillBlank
+
+    ];
+
+    return randomItem(generators)();
+}
+
+
+/* ============================================================
+   DISPLAY QUESTION
+   ============================================================ */
+
+function displayQuestion(direction = "next") {
+
+    currentQuestion = generateQuestion();
+
+    const card = document.getElementById("questionCard");
+
+    card.classList.remove("enter-next", "enter-prev");
+
+    /*
+       Force browser to recognize animation restart
+    */
+    void card.offsetWidth;
+
+    card.classList.add(
+        direction === "prev"
+        ? "enter-prev"
+        : "enter-next"
+    );
+
+
+    document.getElementById("questionNumber").textContent =
+        `Question ${questionNumber}`;
+
+    document.getElementById("questionCounter").textContent =
+        `Question ${questionNumber}`;
+
+    document.getElementById("progressText").textContent =
+        `${questionNumber} / ∞`;
+
+    /*
+       Infinite progress animation.
+       It is a visual progress cycle, not a fixed quiz limit.
+    */
+    const progress =
+        25 + ((questionNumber - 1) % 4) * 25;
+
+    document.getElementById("progressFill").style.width =
+        `${progress}%`;
+
+
+    document.getElementById("question").textContent =
+        currentQuestion.question;
+
+    document.getElementById("questionMeaning").textContent =
+        `(${currentQuestion.meaning})`;
+
+
+    const optionsContainer =
+        document.getElementById("options");
+
+    optionsContainer.innerHTML = "";
+
+
+    const letters = ["A", "B", "C", "D"];
+
+    currentQuestion.options.forEach((option, index) => {
+
+        const button = document.createElement("button");
+
+        button.className = "option";
+
+        button.innerHTML = `
+            <span class="option-letter">
+                ${letters[index]}
+            </span>
+            ${option}
+        `;
+
+        button.onclick = () =>
+            selectAnswer(button, option);
+
+        optionsContainer.appendChild(button);
+    });
+
+
+    const result =
+        document.getElementById("result");
+
+    result.classList.remove("show");
+
+    document.getElementById("answerStatus").textContent = "";
+    document.getElementById("explanation").textContent = "";
+    document.getElementById("ruleBox").textContent = "";
+
+
+    document.getElementById("previousBtn").disabled =
+        historyIndex <= 0;
+}
+
+
+/* ============================================================
+   ANSWER CHECK
+   ============================================================ */
+
+function selectAnswer(clickedButton, selectedAnswer) {
+
+    const optionButtons =
+        document.querySelectorAll(".option");
+
+    /*
+       Prevent answering same question twice
+    */
+    if (clickedButton.classList.contains("disabled")) {
+        return;
+    }
+
+
+    optionButtons.forEach(button => {
+        button.classList.add("disabled");
+    });
+
+
+    attempted++;
+
+
+    const isCorrect =
+        selectedAnswer === currentQuestion.answer;
+
+
+    if (isCorrect) {
+
+        clickedButton.classList.add("correct");
+
+        score += 10;
+        correctAnswers++;
+
+        document.getElementById("answerStatus").textContent =
+            "✓ Correct Answer";
+
+        document.getElementById("answerStatus")
+            .className =
+            "answer-status correct-text";
+
+    } else {
+
+        clickedButton.classList.add("wrong");
+
+        optionButtons.forEach(button => {
+
+            if (
+                button.textContent
+                    .trim()
+                    .endsWith(currentQuestion.answer)
+            ) {
+                button.classList.add("correct");
             }
+
         });
-    </script>
+
+
+        document.getElementById("answerStatus").textContent =
+            "✗ Wrong Answer";
+
+        document.getElementById("answerStatus")
+            .className =
+            "answer-status wrong-text";
+    }
+
+
+    document.getElementById("explanation").textContent =
+        currentQuestion.explanation;
+
+    document.getElementById("ruleBox").textContent =
+        `Rule: ${currentQuestion.rule}`;
+
+
+    document.getElementById("result")
+        .classList.add("show");
+
+
+    updateStats();
+}
+
+
+/* ============================================================
+   STATISTICS
+   ============================================================ */
+
+function updateStats() {
+
+    document.getElementById("score").textContent =
+        score;
+
+    document.getElementById("correct").textContent =
+        correctAnswers;
+
+    const accuracy =
+        attempted === 0
+        ? 0
+        : Math.round(
+            (correctAnswers / attempted) * 100
+        );
+
+    document.getElementById("accuracy").textContent =
+        `${accuracy}%`;
+}
+
+
+/* ============================================================
+   NEXT QUESTION
+   ============================================================ */
+
+function nextQuestion() {
+
+    /*
+       Save current question state
+       before generating another one.
+    */
+
+    history =
+        history.slice(0, historyIndex + 1);
+
+    history.push(currentQuestion);
+
+    historyIndex++;
+
+
+    questionNumber++;
+
+    displayQuestion("next");
+}
+
+
+/* ============================================================
+   PREVIOUS QUESTION
+   ============================================================ */
+
+function previousQuestion() {
+
+    if (historyIndex < 0) {
+        return;
+    }
+
+    const oldQuestion =
+        history[historyIndex];
+
+    currentQuestion = oldQuestion;
+
+    questionNumber =
+        Math.max(1, questionNumber - 1);
+
+    historyIndex--;
+
+    displayExistingQuestion(oldQuestion, "prev");
+}
+
+
+/* ============================================================
+   DISPLAY OLD QUESTION
+   ============================================================ */
+
+function displayExistingQuestion(question, direction) {
+
+    const card =
+        document.getElementById("questionCard");
+
+    card.classList.remove("enter-next", "enter-prev");
+
+    void card.offsetWidth;
+
+    card.classList.add(
+        direction === "prev"
+        ? "enter-prev"
+        : "enter-next"
+    );
+
+
+    document.getElementById("questionNumber").textContent =
+        `Question ${questionNumber}`;
+
+    document.getElementById("questionCounter").textContent =
+        `Question ${questionNumber}`;
+
+    document.getElementById("progressText").textContent =
+        `${questionNumber} / ∞`;
+
+
+    document.getElementById("question").textContent =
+        question.question;
+
+    document.getElementById("questionMeaning").textContent =
+        `(${question.meaning})`;
+
+
+    const optionsContainer =
+        document.getElementById("options");
+
+    optionsContainer.innerHTML = "";
+
+
+    const letters = ["A", "B", "C", "D"];
+
+
+    question.options.forEach((option, index) => {
+
+        const button =
+            document.createElement("button");
+
+        button.className = "option";
+
+        button.innerHTML = `
+            <span class="option-letter">
+                ${letters[index]}
+            </span>
+            ${option}
+        `;
+
+        button.onclick = () =>
+            selectAnswer(button, option);
+
+        optionsContainer.appendChild(button);
+    });
+
+
+    document.getElementById("result")
+        .classList.remove("show");
+
+
+    document.getElementById("previousBtn").disabled =
+        historyIndex <= 0;
+}
+
+
+/* ============================================================
+   COMPLETELY NEW QUESTION
+   ============================================================ */
+
+function newQuestion() {
+
+    questionNumber++;
+
+    displayQuestion("next");
+}
+
+
+/* ============================================================
+   INITIAL START
+   ============================================================ */
+
+displayQuestion("next");
+
+</script>
+
 </body>
 </html>

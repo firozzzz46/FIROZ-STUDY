@@ -1,128 +1,1491 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Google Fonts for Bengali & English -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Inter:wght@700;900&display=swap" rel="stylesheet">
+<title>PART 14 - Sentence Structure | Infinity MCQ</title>
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+<style>
+/* =========================================================
+   PART 14 - SENTENCE STRUCTURE
+   Single File HTML + CSS + JavaScript
+   ========================================================= */
 
-    <style>
-        body {
-            font-family: 'Hind Siliguri', 'Inter', sans-serif;
-            background-color: #030712;
-            overflow: hidden;
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        /* Gradient glowing animation on text */
-        .glow-text {
-            background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 50%, #38bdf8 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shine 6s linear infinite;
-        }
+html {
+    scroll-behavior: smooth;
+}
 
-        @keyframes shine {
-            0% { background-position: 0% center; }
-            50% { background-position: 100% center; }
-            100% { background-position: 0% center; }
-        }
+body {
+    min-height: 100vh;
+    font-family: "Times New Roman", "Kalpurush", serif;
 
-        /* Keyframes for initial entry: Floating in from below with opacity */
-        @keyframes floatIn {
-            0% {
-                opacity: 0;
-                transform: translateY(40px) scale(0.95);
-                filter: blur(8px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-                filter: blur(0);
-            }
-        }
+    background:
+        radial-gradient(circle at 10% 10%, rgba(220, 235, 255, 0.55), transparent 35%),
+        radial-gradient(circle at 90% 20%, rgba(235, 225, 255, 0.50), transparent 35%),
+        radial-gradient(circle at 50% 100%, rgba(225, 245, 240, 0.45), transparent 40%),
+        linear-gradient(135deg, #ffffff, #f7f9fc, #ffffff);
 
-        /* Continuous subtle float effect once arrived */
-        @keyframes subtleFloat {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-8px);
-            }
-        }
+    color: #18212f;
+    padding: 24px;
+    overflow-x: hidden;
+}
 
-        /* Animation class for Heading */
-        .animate-heading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards,
-                subtleFloat 6s ease-in-out 1.2s infinite;
-        }
+/* Main container */
 
-        /* Animation class for Subheading (staggered delay) */
-        .animate-subheading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards,
-                subtleFloat 6s ease-in-out 1.55s infinite;
-            opacity: 0; /* Hidden until animation kicks in */
-        }
+.container {
+    width: min(100%, 1050px);
+    margin: auto;
+}
 
-        /* Ambient background lighting */
-        .ambient-glow {
-            position: absolute;
-            width: 450px;
-            height: 450px;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(3, 7, 18, 0) 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            transition: left 0.4s ease-out, top 0.4s ease-out;
-        }
-    </style>
+/* Header */
+
+.header {
+    text-align: center;
+    margin-bottom: 25px;
+    animation: headerIn 1.2s cubic-bezier(.16,1,.3,1);
+}
+
+.header h1 {
+    font-size: clamp(26px, 5vw, 42px);
+    line-height: 1.2;
+    font-weight: 700;
+}
+
+.header p {
+    margin-top: 10px;
+    font-size: 19px;
+    opacity: .75;
+}
+
+/* Glass */
+
+.glass {
+    background: rgba(255,255,255,.67);
+    border: 1px solid rgba(255,255,255,.85);
+    box-shadow:
+        0 20px 55px rgba(30, 50, 80, .10),
+        inset 0 1px 0 rgba(255,255,255,.85);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    border-radius: 25px;
+}
+
+/* Progress */
+
+.progress-card {
+    padding: 18px 22px;
+    margin-bottom: 20px;
+}
+
+.progress-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    flex-wrap: wrap;
+
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.progress-bar {
+    height: 10px;
+    background: rgba(20, 35, 55, .08);
+    border-radius: 100px;
+    overflow: hidden;
+    margin-top: 13px;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    border-radius: inherit;
+
+    background: linear-gradient(90deg, #667eea, #764ba2);
+
+    transition:
+        width 1s cubic-bezier(.16,1,.3,1);
+}
+
+/* Question card */
+
+.question-card {
+    padding: clamp(22px, 4vw, 38px);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Question number */
+
+.question-number {
+    display: inline-block;
+    font-size: 17px;
+    font-weight: bold;
+
+    padding: 7px 13px;
+    border-radius: 100px;
+
+    background: rgba(102,126,234,.10);
+    margin-bottom: 18px;
+}
+
+/* Question */
+
+.question {
+    font-size: clamp(22px, 3vw, 30px);
+    line-height: 1.45;
+    font-weight: 700;
+}
+
+.question-bangla {
+    margin-top: 8px;
+
+    font-family: "Kalpurush", "Noto Sans Bengali", sans-serif;
+
+    font-size: 18px;
+    line-height: 1.7;
+
+    color: #536071;
+}
+
+/* Options */
+
+.options {
+    display: grid;
+    gap: 13px;
+    margin-top: 28px;
+}
+
+.option {
+    width: 100%;
+    min-height: 60px;
+
+    border: 1px solid rgba(30,50,80,.10);
+    border-radius: 17px;
+
+    background: rgba(255,255,255,.72);
+
+    padding: 14px 18px;
+
+    font-family: "Times New Roman", serif;
+    font-size: 20px;
+    text-align: left;
+
+    cursor: pointer;
+
+    box-shadow: 0 8px 25px rgba(20,40,70,.06);
+
+    transition:
+        transform .35s cubic-bezier(.16,1,.3,1),
+        box-shadow .35s cubic-bezier(.16,1,.3,1),
+        background .35s ease,
+        border .35s ease;
+}
+
+.option:hover:not(:disabled) {
+    transform: translateX(7px);
+    box-shadow: 0 13px 30px rgba(20,40,70,.12);
+}
+
+.option:disabled {
+    cursor: default;
+}
+
+.option.correct {
+    background: rgba(34,197,94,.13);
+    border-color: rgba(34,197,94,.45);
+}
+
+.option.wrong {
+    background: rgba(239,68,68,.11);
+    border-color: rgba(239,68,68,.40);
+}
+
+.option.correct::after {
+    content: " ✓";
+    font-weight: bold;
+}
+
+.option.wrong::after {
+    content: " ✕";
+    font-weight: bold;
+}
+
+/* Explanation */
+
+.explanation {
+    display: none;
+
+    margin-top: 25px;
+    padding: 22px;
+
+    border-radius: 18px;
+
+    background: rgba(248,250,252,.90);
+    border-left: 5px solid #667eea;
+
+    font-family: "Kalpurush", "Noto Sans Bengali", sans-serif;
+
+    font-size: 19px;
+    line-height: 1.85;
+
+    animation: explanationIn .8s cubic-bezier(.16,1,.3,1);
+}
+
+.explanation.show {
+    display: block;
+}
+
+.explanation-title {
+    font-family: "Times New Roman", serif;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+/* Controls */
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+
+    margin-top: 22px;
+}
+
+.control-btn {
+    border: none;
+    border-radius: 15px;
+
+    padding: 14px 25px;
+
+    font-family: "Times New Roman", serif;
+    font-size: 19px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    background: rgba(255,255,255,.78);
+
+    box-shadow: 0 10px 28px rgba(20,40,70,.09);
+
+    transition:
+        transform .35s cubic-bezier(.16,1,.3,1),
+        box-shadow .35s ease,
+        opacity .3s ease;
+}
+
+.control-btn:hover:not(:disabled) {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(20,40,70,.15);
+}
+
+.control-btn:disabled {
+    opacity: .4;
+    cursor: not-allowed;
+}
+
+.next-btn {
+    color: white;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+/* Question transition */
+
+.question-card.enter-next {
+    animation: slideNext 1.05s cubic-bezier(.16,1,.3,1);
+}
+
+.question-card.enter-prev {
+    animation: slidePrev 1.05s cubic-bezier(.16,1,.3,1);
+}
+
+/* Score */
+
+.score-card {
+    display: none;
+    text-align: center;
+    padding: 40px 25px;
+    margin-top: 20px;
+
+    animation: scoreIn 1s cubic-bezier(.16,1,.3,1);
+}
+
+.score-card.show {
+    display: block;
+}
+
+.score-card h2 {
+    font-size: 32px;
+}
+
+.final-score {
+    font-size: 52px;
+    font-weight: bold;
+    margin: 15px 0;
+}
+
+.restart-btn {
+    border: none;
+    border-radius: 15px;
+    padding: 14px 28px;
+
+    font-size: 19px;
+    font-family: "Times New Roman", serif;
+    font-weight: bold;
+
+    color: white;
+
+    background: linear-gradient(135deg, #667eea, #764ba2);
+
+    cursor: pointer;
+
+    transition: transform .3s ease;
+}
+
+.restart-btn:hover {
+    transform: scale(1.04);
+}
+
+/* Footer */
+
+.footer {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 16px;
+    opacity: .65;
+}
+
+/* Animations */
+
+@keyframes headerIn {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideNext {
+    0% {
+        opacity: 0;
+        transform: translateX(55px) scale(.985);
+    }
+
+    55% {
+        opacity: .75;
+        transform: translateX(-8px) scale(1.002);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+
+@keyframes slidePrev {
+    0% {
+        opacity: 0;
+        transform: translateX(-55px) scale(.985);
+    }
+
+    55% {
+        opacity: .75;
+        transform: translateX(8px) scale(1.002);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+
+@keyframes explanationIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes scoreIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Mobile */
+
+@media (max-width: 650px) {
+
+    body {
+        padding: 12px;
+    }
+
+    .glass {
+        border-radius: 19px;
+    }
+
+    .progress-card {
+        padding: 15px;
+    }
+
+    .question-card {
+        padding: 20px 16px;
+    }
+
+    .question {
+        font-size: 22px;
+    }
+
+    .question-bangla {
+        font-size: 17px;
+    }
+
+    .option {
+        font-size: 18px;
+        min-height: 55px;
+        padding: 12px 14px;
+    }
+
+    .explanation {
+        font-size: 18px;
+        padding: 17px;
+    }
+
+    .control-btn {
+        padding: 12px 17px;
+        font-size: 18px;
+    }
+}
+</style>
 </head>
-<body class="min-h-screen flex items-center justify-center relative select-none px-4">
 
-    <!-- Ambient glow center element -->
-    <div id="glow" class="ambient-glow top-1/2 left-1/2"></div>
+<body>
 
-    <!-- Centered minimal content with entry animations -->
-    <main class="text-center z-10 space-y-6 max-w-3xl mx-auto py-8 px-4">
-        
-        <!-- Main English Title -->
-        <h1 class="animate-heading text-5xl sm:text-7xl md:text-8xl font-black tracking-tight glow-text font-['Inter'] drop-shadow-lg">
-            Coming Soon...
-        </h1>
+<div class="container">
 
-        <!-- Bengali Subheading -->
-        <p class="animate-subheading text-xl sm:text-3xl md:text-4xl font-semibold text-emerald-400/90 leading-relaxed tracking-wide drop-shadow">
-            ইনশাআল্লাহ, খুব শীঘ্রই ডাটা যোগ করা হবে।
-        </p>
+    <!-- HEADER -->
+    <header class="header">
+        <h1>PART 14 - Sentence Structure</h1>
+        <p>Simple • Complex • Compound</p>
+    </header>
+
+    <!-- PROGRESS -->
+    <div class="progress-card glass">
+
+        <div class="progress-top">
+            <span id="progressText">Question 1</span>
+            <span id="scoreText">Score: 0</span>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+    </div>
+
+
+    <!-- QUESTION -->
+    <main class="question-card glass" id="questionCard">
+
+        <div class="question-number" id="questionNumber">
+            Question 1
+        </div>
+
+        <div class="question" id="question">
+            Loading...
+        </div>
+
+        <div class="question-bangla" id="questionBangla">
+        </div>
+
+        <div class="options" id="options">
+        </div>
+
+        <div class="explanation" id="explanation">
+
+            <div class="explanation-title">
+                Explanation
+            </div>
+
+            <div id="explanationText"></div>
+
+        </div>
 
     </main>
 
-    <script>
-        const glow = document.getElementById('glow');
 
-        // Mouse move interactive glow background
-        window.addEventListener('mousemove', (e) => {
-            glow.style.left = e.clientX + 'px';
-            glow.style.top = e.clientY + 'px';
-        });
+    <!-- CONTROLS -->
+    <div class="controls">
 
-        // Touch move interactive glow background for mobile screens
-        window.addEventListener('touchmove', (e) => {
-            if (e.touches.length > 0) {
-                glow.style.left = e.touches[0].clientX + 'px';
-                glow.style.top = e.touches[0].clientY + 'px';
+        <button
+            class="control-btn"
+            id="previousBtn"
+            onclick="previousQuestion()"
+        >
+            ← Previous
+        </button>
+
+        <button
+            class="control-btn next-btn"
+            id="nextBtn"
+            onclick="nextQuestion()"
+        >
+            Next →
+        </button>
+
+    </div>
+
+
+    <!-- SCORE -->
+    <div class="score-card glass" id="scoreCard">
+
+        <h2>Practice Complete!</h2>
+
+        <div class="final-score" id="finalScore">
+            0%
+        </div>
+
+        <p id="finalMessage" style="font-size:20px; margin-bottom:22px;">
+        </p>
+
+        <button class="restart-btn" onclick="restartPractice()">
+            Start Again
+        </button>
+
+    </div>
+
+
+    <div class="footer">
+        PART 14 • Sentence Structure • Infinity MCQ Practice
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   PART 14
+   SENTENCE STRUCTURE
+   SIMPLE / COMPLEX / COMPOUND
+
+   The generator creates questions dynamically.
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   DATA
+   --------------------------------------------------------- */
+
+const names = [
+    "Firoz",
+    "Fatiha",
+    "Fatema",
+    "Jui",
+    "Ema",
+    "Rupa",
+    "Moksed",
+    "Ferjousi",
+    "Jannati",
+    "Mini",
+    "Miraz",
+    "Mujahid",
+    "Milon",
+    "Hannan",
+    "Joba",
+    "Tanzila",
+    "Rina",
+    "Tania",
+    "Taslima"
+];
+
+
+/* ---------------------------------------------------------
+   QUESTION GENERATORS
+   --------------------------------------------------------- */
+
+const generators = [
+
+    /* =========================
+       IDENTIFY SIMPLE
+       ========================= */
+
+    function() {
+
+        const n = random(names);
+
+        const sentence =
+            `${n} went to the market to buy some books.`;
+
+        return makeQuestion(
+            sentence,
+            "Simple",
+            `${n} went to the market to buy some books.`,
+            `এই বাক্যে একটি মাত্র finite verb বা মূল clause আছে: "${n} went". "to buy some books" হলো infinitive phrase, আলাদা clause নয়। তাই এটি Simple Sentence।`,
+            "Identify the type of sentence."
+        );
+    },
+
+
+    function() {
+
+        const n = random(names);
+
+        const sentence =
+            `${n} worked hard to pass the examination.`;
+
+        return makeQuestion(
+            sentence,
+            "Simple",
+            sentence,
+            `এখানে মূল clause হলো "${n} worked hard"। "to pass the examination" একটি infinitive phrase, এটি আলাদা subject + finite verb-সহ clause নয়। তাই বাক্যটি Simple Sentence।`,
+            "Identify the type of sentence."
+        );
+    },
+
+
+    /* =========================
+       IDENTIFY COMPLEX
+       ========================= */
+
+    function() {
+
+        const n = random(names);
+
+        const sentence =
+            `Although ${n} was tired, ${n} continued studying.`;
+
+        return makeQuestion(
+            sentence,
+            "Complex",
+            sentence,
+            `"Although ${n} was tired" একটি dependent/subordinate clause এবং "${n} continued studying" একটি independent clause। একটি independent clause-এর সঙ্গে একটি dependent clause থাকায় এটি Complex Sentence।`,
+            "Identify the type of sentence."
+        );
+    },
+
+
+    function() {
+
+        const n = random(names);
+
+        const sentence =
+            `When ${n} reached home, ${n} started reading.`;
+
+        return makeQuestion(
+            sentence,
+            "Complex",
+            sentence,
+            `"When ${n} reached home" একা সম্পূর্ণ অর্থ প্রকাশ করতে পারে না; এটি dependent clause। "${n} started reading" হলো independent clause। তাই এটি Complex Sentence।`,
+            "Identify the type of sentence."
+        );
+    },
+
+
+    /* =========================
+       IDENTIFY COMPOUND
+       ========================= */
+
+    function() {
+
+        const n = random(names);
+
+        const sentence =
+            `${n} studied hard, and ${n} passed the examination.`;
+
+        return makeQuestion(
+            sentence,
+            "Compound",
+            sentence,
+            `"${n} studied hard" এবং "${n} passed the examination"—দুটি সম্পূর্ণ independent clause। এগুলোকে coordinating conjunction "and" দিয়ে যুক্ত করা হয়েছে। তাই এটি Compound Sentence।`,
+            "Identify the type of sentence."
+        );
+    },
+
+
+    function() {
+
+        const n = random(names);
+
+        const sentence =
+            `${n} wanted to study, but ${n} was very tired.`;
+
+        return makeQuestion(
+            sentence,
+            "Compound",
+            sentence,
+            `এখানে "${n} wanted to study" এবং "${n} was very tired"—দুটি independent clause। এগুলো "but" দ্বারা যুক্ত হয়েছে। তাই বাক্যটি Compound Sentence।`,
+            "Identify the type of sentence."
+        );
+    },
+
+
+    /* =========================
+       SIMPLE → COMPLEX
+       ========================= */
+
+    function() {
+
+        const n = random(names);
+
+        return makeQuestion(
+            `Choose the Complex form of: "${n} worked hard to succeed."`,
+            `Although ${n} worked hard, ${n} succeeded.`,
+            `কোনটি Complex Sentence-এ রূপান্তরিত করলে মূল অর্থ সবচেয়ে ভালোভাবে বজায় থাকে?`,
+            `"to succeed" একটি infinitive phrase। Complex form করতে এটিকে একটি subordinate clause-এ রূপান্তর করা যায়: "Although ${n} worked hard, ${n} succeeded." এখানে একটি independent clause ও একটি dependent clause আছে।`,
+            "Choose the correct Complex form."
+        );
+    },
+
+
+    /* =========================
+       SIMPLE → COMPOUND
+       ========================= */
+
+    function() {
+
+        const n = random(names);
+
+        return makeQuestion(
+            `Choose the Compound form of: "${n} worked hard to succeed."`,
+            `${n} worked hard, and ${n} succeeded.`,
+            `কোনটি Compound Sentence-এ রূপান্তরিত করলে মূল অর্থ সবচেয়ে ভালোভাবে বজায় থাকে?`,
+            `"worked hard" এবং "succeeded"—দুটি independent clause তৈরি করে "and" দিয়ে যুক্ত করা হয়েছে। তাই এটি Compound Sentence।`,
+            "Choose the correct Compound form."
+        );
+    },
+
+
+    /* =========================
+       COMPLEX → SIMPLE
+       ========================= */
+
+    function() {
+
+        const n = random(names);
+
+        return makeQuestion(
+            `Choose the Simple form of: "When ${n} saw the teacher, ${n} stood up."`,
+            `${n} stood up on seeing the teacher.`,
+            `Complex Sentence-এ থাকা "When ${n} saw the teacher" clause-কে phrase-এ পরিবর্তন করা হয়েছে।`,
+            `"When ${n} saw the teacher" হলো dependent clause। এটিকে "on seeing the teacher" নামের phrase-এ পরিবর্তন করলে আর dependent clause থাকে না। তাই এটি Simple Sentence।`,
+            "Choose the correct Simple form."
+        );
+    },
+
+
+    /* =========================
+       COMPLEX → COMPOUND
+       ========================= */
+
+    function() {
+
+        const n = random(names);
+
+        return makeQuestion(
+            `Choose the Compound form of: "Although ${n} was poor, ${n} was honest."`,
+            `${n} was poor, but ${n} was honest.`,
+            `Complex Sentence-এর subordinate clause-কে independent clause বানিয়ে "but" দিয়ে যুক্ত করা হয়েছে।`,
+            `"Although ${n} was poor" হলো dependent clause। Compound করতে এটিকে "${n} was poor" independent clause করা হয়েছে এবং "but" দিয়ে দ্বিতীয় independent clause-এর সঙ্গে যুক্ত করা হয়েছে।`,
+            "Choose the correct Compound form."
+        );
+    },
+
+
+    /* =========================
+       COMPOUND → COMPLEX
+       ========================= */
+
+    function() {
+
+        const n = random(names);
+
+        return makeQuestion(
+            `Choose the Complex form of: "${n} was poor, but ${n} was honest."`,
+            `Although ${n} was poor, ${n} was honest.`,
+            `দুটি independent clause-কে একটি subordinate clause ও একটি independent clause-এ পরিবর্তন করতে হবে।`,
+            `"${n} was poor" এবং "${n} was honest" দুটি independent clause। "but" বাদ দিয়ে "Although" ব্যবহার করলে প্রথম clause dependent হয়ে যায়। তাই এটি Complex Sentence।`,
+            "Choose the correct Complex form."
+        );
+    },
+
+
+    /* =========================
+       CONJUNCTION
+       ========================= */
+
+    function() {
+
+        return makeQuestion(
+            `Which conjunction commonly joins two independent clauses in a Compound Sentence?`,
+            "Which conjunction commonly joins two independent clauses?",
+            "দুটি স্বাধীন clause-কে Compound Sentence-এ যুক্ত করতে কোন ধরনের conjunction ব্যবহৃত হয়?",
+            `Compound Sentence-এ সাধারণত coordinating conjunction ব্যবহার করা হয়। যেমন: and, but, or, so, yet, for, nor।`,
+            "Choose the correct conjunction."
+        );
+    },
+
+
+    function() {
+
+        return makeQuestion(
+            `Which word is a coordinating conjunction?`,
+            "Which word joins independent clauses?",
+            "নিচের কোন শব্দটি coordinating conjunction?",
+            `"and" একটি coordinating conjunction। এটি দুটি সমমানের independent clause-কে যুক্ত করতে পারে।`,
+            "Choose the coordinating conjunction."
+        );
+    },
+
+
+    /* =========================
+       CLAUSE IDENTIFICATION
+       ========================= */
+
+    function() {
+
+        return makeQuestion(
+            `Which sentence contains a dependent clause?`,
+            "কোন বাক্যে একটি dependent clause আছে?",
+            "Choose the sentence containing a dependent clause.",
+            `"Because it was raining" একা সম্পূর্ণ অর্থ প্রকাশ করতে পারে না। তাই এটি dependent clause। মূল clause-এর সঙ্গে এটি Complex Sentence তৈরি করে।`,
+            "Choose the correct sentence."
+        );
+    },
+
+
+    function() {
+
+        return makeQuestion(
+            `Which sentence contains two independent clauses?`,
+            "কোন বাক্যে দুটি স্বাধীন clause আছে?",
+            "Choose the sentence containing two independent clauses.",
+            `"Firoz studied hard" এবং "Firoz passed the examination"—দুটি অংশই আলাদাভাবে সম্পূর্ণ বাক্য হতে পারে। "and" এগুলোকে যুক্ত করেছে। তাই এটি Compound Sentence।`,
+            "Choose the correct sentence."
+        );
+    }
+
+];
+
+
+/* ---------------------------------------------------------
+   QUESTION BUILDING
+   --------------------------------------------------------- */
+
+function makeQuestion(
+    question,
+    correct,
+    bangla,
+    explanation,
+    instruction
+) {
+
+    let type = correct;
+
+    if (
+        type !== "Simple" &&
+        type !== "Complex" &&
+        type !== "Compound"
+    ) {
+
+        if (
+            correct.includes("Although") ||
+            correct.includes("When") ||
+            correct.includes("Because")
+        ) {
+            type = "Complex";
+        }
+
+        else if (
+            correct.includes(" and ") ||
+            correct.includes(" but ") ||
+            correct.includes(" or ")
+        ) {
+            type = "Compound";
+        }
+
+        else {
+            type = "Simple";
+        }
+    }
+
+    let options;
+
+    if (
+        type === "Simple" ||
+        type === "Complex" ||
+        type === "Compound"
+    ) {
+
+        options = shuffle([
+            "Simple",
+            "Complex",
+            "Compound",
+            "Interrogative"
+        ]);
+
+        return {
+            question: question,
+            bangla: bangla,
+            options: options,
+            answer: type,
+            explanation: explanation,
+            instruction: instruction
+        };
+    }
+
+    options = shuffle([
+        correct,
+        "Although the sentence was written differently.",
+        "The sentence cannot be changed.",
+        "None of these."
+    ]);
+
+    return {
+        question: question,
+        bangla: bangla,
+        options: options,
+        answer: correct,
+        explanation: explanation,
+        instruction: instruction
+    };
+}
+
+
+/* ---------------------------------------------------------
+   SPECIAL GENERATORS
+   --------------------------------------------------------- */
+
+function generateSpecialQuestion() {
+
+    const n = random(names);
+
+    const sets = [
+
+        {
+            q: `Which sentence is Simple?`,
+            b: `নিচের কোন বাক্যটি Simple Sentence?`,
+            options: [
+                `${n} worked hard to pass.`,
+                `Although ${n} worked hard, ${n} passed.`,
+                `${n} worked hard, and ${n} passed.`,
+                `When ${n} arrived, ${n} sat down.`
+            ],
+            a: `${n} worked hard to pass.`,
+            e: `প্রথম বাক্যে "${n} worked hard" হলো মূল clause এবং "to pass" হলো infinitive phrase। এখানে একটিই finite clause আছে। তাই এটি Simple Sentence। অন্য বাক্যগুলোতে subordinate বা একাধিক independent clause রয়েছে।`
+        },
+
+        {
+            q: `Which sentence is Complex?`,
+            b: `নিচের কোন বাক্যটি Complex Sentence?`,
+            options: [
+                `${n} studied and passed.`,
+                `${n} studied hard to pass.`,
+                `Although ${n} was tired, ${n} continued studying.`,
+                `${n} studied hard, and ${n} passed.`
+            ],
+            a: `Although ${n} was tired, ${n} continued studying.`,
+            e: `"Although ${n} was tired" একটি dependent clause এবং "${n} continued studying" একটি independent clause। তাই এই বাক্যটি Complex Sentence।`
+        },
+
+        {
+            q: `Which sentence is Compound?`,
+            b: `নিচের কোন বাক্যটি Compound Sentence?`,
+            options: [
+                `Because ${n} was ill, ${n} stayed home.`,
+                `${n} stayed home to rest.`,
+                `${n} stayed home, and ${n} rested.`,
+                `When ${n} was ill, ${n} stayed home.`
+            ],
+            a: `${n} stayed home, and ${n} rested.`,
+            e: `এখানে "${n} stayed home" এবং "${n} rested"—দুটি independent clause। "and" coordinating conjunction হিসেবে এগুলোকে যুক্ত করেছে। তাই এটি Compound Sentence।`
+        }
+
+    ];
+
+    const item = random(sets);
+
+    return {
+        question: item.q,
+        bangla: item.b,
+        options: shuffle(item.options),
+        answer: item.a,
+        explanation: item.e,
+        instruction: "Choose the correct answer."
+    };
+}
+
+
+/* ---------------------------------------------------------
+   RANDOM QUESTION
+   --------------------------------------------------------- */
+
+function generateQuestion() {
+
+    if (Math.random() < 0.35) {
+        return generateSpecialQuestion();
+    }
+
+    const generator =
+        random(generators);
+
+    return generator();
+}
+
+
+/* ---------------------------------------------------------
+   STATE
+   --------------------------------------------------------- */
+
+let currentQuestion = 0;
+let score = 0;
+
+const TOTAL_QUESTIONS = 20;
+
+let questions = [];
+
+let answered = [];
+
+for (let i = 0; i < TOTAL_QUESTIONS; i++) {
+
+    questions.push(
+        generateQuestion()
+    );
+
+    answered.push(false);
+}
+
+
+/* ---------------------------------------------------------
+   DOM
+   --------------------------------------------------------- */
+
+const questionCard =
+    document.getElementById("questionCard");
+
+const questionNumber =
+    document.getElementById("questionNumber");
+
+const question =
+    document.getElementById("question");
+
+const questionBangla =
+    document.getElementById("questionBangla");
+
+const options =
+    document.getElementById("options");
+
+const explanation =
+    document.getElementById("explanation");
+
+const explanationText =
+    document.getElementById("explanationText");
+
+const progressText =
+    document.getElementById("progressText");
+
+const scoreText =
+    document.getElementById("scoreText");
+
+const progressFill =
+    document.getElementById("progressFill");
+
+const previousBtn =
+    document.getElementById("previousBtn");
+
+const nextBtn =
+    document.getElementById("nextBtn");
+
+const scoreCard =
+    document.getElementById("scoreCard");
+
+
+/* ---------------------------------------------------------
+   SHOW QUESTION
+   --------------------------------------------------------- */
+
+function showQuestion(direction = "next") {
+
+    const q = questions[currentQuestion];
+
+    questionCard.classList.remove(
+        "enter-next",
+        "enter-prev"
+    );
+
+    /* Force animation restart */
+
+    void questionCard.offsetWidth;
+
+    questionCard.classList.add(
+        direction === "next"
+            ? "enter-next"
+            : "enter-prev"
+    );
+
+    questionNumber.textContent =
+        `Question ${currentQuestion + 1}`;
+
+    progressText.textContent =
+        `Question ${currentQuestion + 1} / ${TOTAL_QUESTIONS}`;
+
+    scoreText.textContent =
+        `Score: ${score}`;
+
+    progressFill.style.width =
+        `${((currentQuestion + 1) / TOTAL_QUESTIONS) * 100}%`;
+
+    question.textContent =
+        q.question;
+
+    questionBangla.textContent =
+        `(${q.bangla})`;
+
+    options.innerHTML = "";
+
+    explanation.classList.remove("show");
+
+    explanationText.textContent = "";
+
+    q.options.forEach(optionText => {
+
+        const button =
+            document.createElement("button");
+
+        button.className = "option";
+
+        button.textContent = optionText;
+
+        button.onclick = () => {
+
+            checkAnswer(
+                button,
+                optionText
+            );
+
+        };
+
+        options.appendChild(button);
+
+    });
+
+
+    /* If previously answered */
+
+    if (answered[currentQuestion]) {
+
+        const buttons =
+            document.querySelectorAll(".option");
+
+        buttons.forEach(button => {
+
+            button.disabled = true;
+
+            if (
+                button.textContent === q.answer
+            ) {
+                button.classList.add("correct");
             }
+
         });
-    </script>
+
+        explanationText.textContent =
+            q.explanation;
+
+        explanation.classList.add("show");
+    }
+
+
+    previousBtn.disabled =
+        currentQuestion === 0;
+
+    nextBtn.textContent =
+        currentQuestion === TOTAL_QUESTIONS - 1
+            ? "Finish ✓"
+            : "Next →";
+}
+
+
+/* ---------------------------------------------------------
+   CHECK ANSWER
+   --------------------------------------------------------- */
+
+function checkAnswer(
+    selectedButton,
+    selectedAnswer
+) {
+
+    if (answered[currentQuestion]) {
+        return;
+    }
+
+    const q =
+        questions[currentQuestion];
+
+    const buttons =
+        document.querySelectorAll(".option");
+
+    buttons.forEach(button => {
+        button.disabled = true;
+    });
+
+    answered[currentQuestion] = true;
+
+    if (selectedAnswer === q.answer) {
+
+        selectedButton.classList.add("correct");
+
+        score++;
+
+    } else {
+
+        selectedButton.classList.add("wrong");
+
+        buttons.forEach(button => {
+
+            if (
+                button.textContent === q.answer
+            ) {
+                button.classList.add("correct");
+            }
+
+        });
+
+    }
+
+    scoreText.textContent =
+        `Score: ${score}`;
+
+    explanationText.textContent =
+        q.explanation;
+
+    explanation.classList.add("show");
+}
+
+
+/* ---------------------------------------------------------
+   NEXT
+   --------------------------------------------------------- */
+
+function nextQuestion() {
+
+    if (
+        currentQuestion <
+        TOTAL_QUESTIONS - 1
+    ) {
+
+        currentQuestion++;
+
+        showQuestion("next");
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    } else {
+
+        showFinalScore();
+
+    }
+}
+
+
+/* ---------------------------------------------------------
+   PREVIOUS
+   --------------------------------------------------------- */
+
+function previousQuestion() {
+
+    if (currentQuestion > 0) {
+
+        currentQuestion--;
+
+        showQuestion("prev");
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    }
+}
+
+
+/* ---------------------------------------------------------
+   FINAL SCORE
+   --------------------------------------------------------- */
+
+function showFinalScore() {
+
+    questionCard.style.display = "none";
+
+    document.querySelector(".controls").style.display =
+        "none";
+
+    document.querySelector(".progress-card").style.display =
+        "none";
+
+    scoreCard.classList.add("show");
+
+    const percentage =
+        Math.round(
+            (score / TOTAL_QUESTIONS) * 100
+        );
+
+    document.getElementById("finalScore")
+        .textContent =
+        `${percentage}%`;
+
+    let message = "";
+
+    if (percentage >= 90) {
+
+        message =
+            "Excellent! Your understanding of Sentence Structure is very strong.";
+
+    } else if (percentage >= 75) {
+
+        message =
+            "Very Good! Keep practising Simple, Complex and Compound Sentences.";
+
+    } else if (percentage >= 50) {
+
+        message =
+            "Good effort! More practice will make the rules clearer.";
+
+    } else {
+
+        message =
+            "Keep learning! Review the rules and practise again.";
+
+    }
+
+    document.getElementById("finalMessage")
+        .textContent =
+        message;
+}
+
+
+/* ---------------------------------------------------------
+   RESTART
+   --------------------------------------------------------- */
+
+function restartPractice() {
+
+    currentQuestion = 0;
+    score = 0;
+
+    questions = [];
+
+    answered = [];
+
+    for (
+        let i = 0;
+        i < TOTAL_QUESTIONS;
+        i++
+    ) {
+
+        questions.push(
+            generateQuestion()
+        );
+
+        answered.push(false);
+    }
+
+    questionCard.style.display = "block";
+
+    document.querySelector(".controls").style.display =
+        "flex";
+
+    document.querySelector(".progress-card").style.display =
+        "block";
+
+    scoreCard.classList.remove("show");
+
+    showQuestion("next");
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+
+/* ---------------------------------------------------------
+   UTILITIES
+   --------------------------------------------------------- */
+
+function random(array) {
+
+    return array[
+        Math.floor(
+            Math.random() * array.length
+        )
+    ];
+}
+
+
+function shuffle(array) {
+
+    const result =
+        [...array];
+
+    for (
+        let i = result.length - 1;
+        i > 0;
+        i--
+    ) {
+
+        const j =
+            Math.floor(
+                Math.random() * (i + 1)
+            );
+
+        [
+            result[i],
+            result[j]
+        ] = [
+            result[j],
+            result[i]
+        ];
+
+    }
+
+    return result;
+}
+
+
+/* ---------------------------------------------------------
+   START
+   --------------------------------------------------------- */
+
+showQuestion("next");
+
+</script>
+
 </body>
 </html>

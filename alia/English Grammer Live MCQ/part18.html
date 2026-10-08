@@ -1,128 +1,1032 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Google Fonts for Bengali & English -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Inter:wght@700;900&display=swap" rel="stylesheet">
+<title>Part 18 - Modals & Auxiliary Verbs | Infinity MCQ</title>
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap');
 
-    <style>
-        body {
-            font-family: 'Hind Siliguri', 'Inter', sans-serif;
-            background-color: #030712;
-            overflow: hidden;
-        }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-        /* Gradient glowing animation on text */
-        .glow-text {
-            background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 50%, #38bdf8 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shine 6s linear infinite;
-        }
+:root{
+    --text:#18212f;
+    --muted:#667085;
+    --primary:#4f46e5;
+    --primary-dark:#3730a3;
+    --success:#15803d;
+    --danger:#dc2626;
+    --glass:rgba(255,255,255,.72);
+    --border:rgba(255,255,255,.85);
+    --shadow:0 20px 60px rgba(31,41,55,.12);
+}
 
-        @keyframes shine {
-            0% { background-position: 0% center; }
-            50% { background-position: 100% center; }
-            100% { background-position: 0% center; }
-        }
+body{
+    min-height:100vh;
+    color:var(--text);
+    background:
+        radial-gradient(circle at 10% 10%,rgba(99,102,241,.10),transparent 30%),
+        radial-gradient(circle at 90% 20%,rgba(14,165,233,.08),transparent 30%),
+        radial-gradient(circle at 50% 100%,rgba(168,85,247,.08),transparent 35%),
+        linear-gradient(135deg,#ffffff,#f7f9fc,#ffffff);
+    font-family:"Noto Sans Bengali","Kalpurush",Arial,sans-serif;
+    padding:25px 15px 45px;
+}
 
-        /* Keyframes for initial entry: Floating in from below with opacity */
-        @keyframes floatIn {
-            0% {
-                opacity: 0;
-                transform: translateY(40px) scale(0.95);
-                filter: blur(8px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-                filter: blur(0);
-            }
-        }
+.app{
+    width:min(1050px,100%);
+    margin:auto;
+}
 
-        /* Continuous subtle float effect once arrived */
-        @keyframes subtleFloat {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-8px);
-            }
-        }
+/* HEADER */
 
-        /* Animation class for Heading */
-        .animate-heading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards,
-                subtleFloat 6s ease-in-out 1.2s infinite;
-        }
+.header{
+    text-align:center;
+    margin-bottom:25px;
+    animation:fadeDown 1s cubic-bezier(.22,1,.36,1);
+}
 
-        /* Animation class for Subheading (staggered delay) */
-        .animate-subheading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards,
-                subtleFloat 6s ease-in-out 1.55s infinite;
-            opacity: 0; /* Hidden until animation kicks in */
-        }
+.header h1{
+    font-family:"Times New Roman",serif;
+    font-size:clamp(28px,5vw,44px);
+    margin-bottom:8px;
+}
 
-        /* Ambient background lighting */
-        .ambient-glow {
-            position: absolute;
-            width: 450px;
-            height: 450px;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(3, 7, 18, 0) 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            transition: left 0.4s ease-out, top 0.4s ease-out;
-        }
-    </style>
+.header p{
+    font-size:18px;
+    color:var(--muted);
+}
+
+/* GLASS CARD */
+
+.glass{
+    background:var(--glass);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+    border:1px solid var(--border);
+    box-shadow:var(--shadow);
+    border-radius:25px;
+}
+
+/* TOP BAR */
+
+.topbar{
+    padding:18px 22px;
+    margin-bottom:20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.stat{
+    font-family:"Times New Roman",serif;
+    font-size:20px;
+    font-weight:bold;
+}
+
+.progress-wrap{
+    flex:1;
+    min-width:200px;
+}
+
+.progress-text{
+    text-align:right;
+    font-family:"Times New Roman",serif;
+    font-size:17px;
+    margin-bottom:7px;
+}
+
+.progress{
+    width:100%;
+    height:9px;
+    background:#e7eaf0;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.progress-bar{
+    height:100%;
+    width:0%;
+    border-radius:20px;
+    background:linear-gradient(90deg,#4f46e5,#7c3aed,#0891b2);
+    transition:width .8s cubic-bezier(.22,1,.36,1);
+}
+
+/* QUESTION CARD */
+
+.question-card{
+    padding:32px;
+    min-height:520px;
+    position:relative;
+    overflow:hidden;
+}
+
+.question-card.enter{
+    animation:questionEnter .9s cubic-bezier(.22,1,.36,1);
+}
+
+.question-number{
+    display:inline-flex;
+    align-items:center;
+    padding:8px 15px;
+    border-radius:30px;
+    background:rgba(79,70,229,.10);
+    color:var(--primary-dark);
+    font-family:"Times New Roman",serif;
+    font-size:17px;
+    font-weight:bold;
+    margin-bottom:22px;
+}
+
+.question{
+    font-family:"Times New Roman",serif;
+    font-size:clamp(21px,3vw,28px);
+    line-height:1.55;
+    font-weight:bold;
+    margin-bottom:7px;
+}
+
+.question-bn{
+    font-size:18px;
+    line-height:1.7;
+    color:#667085;
+    margin-bottom:28px;
+}
+
+/* OPTIONS */
+
+.options{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+
+.option{
+    position:relative;
+    border:1px solid #dfe3eb;
+    background:rgba(255,255,255,.78);
+    border-radius:17px;
+    padding:19px 20px;
+    cursor:pointer;
+    font-family:"Times New Roman",serif;
+    font-size:21px;
+    text-align:left;
+    transition:
+        transform .35s cubic-bezier(.22,1,.36,1),
+        box-shadow .35s ease,
+        border-color .35s ease,
+        background .35s ease;
+}
+
+.option:hover{
+    transform:translateY(-4px);
+    box-shadow:0 12px 28px rgba(31,41,55,.10);
+    border-color:#a5b4fc;
+}
+
+.option:disabled{
+    cursor:default;
+}
+
+.option.correct{
+    border-color:#22c55e;
+    background:#ecfdf3;
+    color:#166534;
+}
+
+.option.wrong{
+    border-color:#ef4444;
+    background:#fef2f2;
+    color:#991b1b;
+}
+
+.option.correct::after{
+    content:"✓";
+    position:absolute;
+    right:17px;
+    top:50%;
+    transform:translateY(-50%);
+    font-family:Arial,sans-serif;
+    font-weight:bold;
+    font-size:24px;
+}
+
+.option.wrong::after{
+    content:"✕";
+    position:absolute;
+    right:17px;
+    top:50%;
+    transform:translateY(-50%);
+    font-family:Arial,sans-serif;
+    font-weight:bold;
+    font-size:22px;
+}
+
+/* EXPLANATION */
+
+.explanation{
+    margin-top:25px;
+    padding:22px;
+    border-radius:18px;
+    background:rgba(248,250,252,.9);
+    border-left:5px solid var(--primary);
+    display:none;
+    animation:explainIn .65s cubic-bezier(.22,1,.36,1);
+}
+
+.explanation.show{
+    display:block;
+}
+
+.explanation-title{
+    font-family:"Times New Roman",serif;
+    font-size:21px;
+    font-weight:bold;
+    margin-bottom:8px;
+}
+
+.explanation-text{
+    font-size:18px;
+    line-height:1.85;
+}
+
+/* CONTROLS */
+
+.controls{
+    margin-top:22px;
+    display:flex;
+    justify-content:space-between;
+    gap:12px;
+}
+
+button.control{
+    border:0;
+    padding:14px 25px;
+    border-radius:14px;
+    background:#111827;
+    color:white;
+    font-family:"Times New Roman",serif;
+    font-size:19px;
+    cursor:pointer;
+    transition:
+        transform .3s cubic-bezier(.22,1,.36,1),
+        box-shadow .3s ease,
+        opacity .3s ease;
+}
+
+button.control:hover{
+    transform:translateY(-3px);
+    box-shadow:0 10px 25px rgba(17,24,39,.18);
+}
+
+button.control:disabled{
+    opacity:.35;
+    cursor:not-allowed;
+    transform:none;
+    box-shadow:none;
+}
+
+.next{
+    background:linear-gradient(135deg,#4f46e5,#7c3aed)!important;
+}
+
+/* FOOTER */
+
+.footer{
+    text-align:center;
+    margin-top:25px;
+    color:#6b7280;
+    font-family:"Times New Roman",serif;
+    font-size:16px;
+}
+
+/* ANIMATIONS */
+
+@keyframes fadeDown{
+    from{
+        opacity:0;
+        transform:translateY(-35px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes questionEnter{
+    0%{
+        opacity:0;
+        transform:translateY(35px) scale(.985);
+        filter:blur(5px);
+    }
+    55%{
+        opacity:.7;
+        filter:blur(1px);
+    }
+    100%{
+        opacity:1;
+        transform:translateY(0) scale(1);
+        filter:blur(0);
+    }
+}
+
+@keyframes explainIn{
+    from{
+        opacity:0;
+        transform:translateY(15px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+    body{
+        padding:15px 10px 30px;
+    }
+
+    .topbar{
+        padding:16px;
+    }
+
+    .question-card{
+        padding:22px 17px;
+        min-height:500px;
+    }
+
+    .options{
+        grid-template-columns:1fr;
+    }
+
+    .option{
+        font-size:20px;
+        padding:17px;
+    }
+
+    .question{
+        font-size:22px;
+    }
+
+    .question-bn{
+        font-size:18px;
+    }
+
+    .controls{
+        flex-direction:column;
+    }
+
+    button.control{
+        width:100%;
+    }
+
+    .progress-wrap{
+        width:100%;
+        flex-basis:100%;
+    }
+}
+</style>
 </head>
-<body class="min-h-screen flex items-center justify-center relative select-none px-4">
 
-    <!-- Ambient glow center element -->
-    <div id="glow" class="ambient-glow top-1/2 left-1/2"></div>
+<body>
 
-    <!-- Centered minimal content with entry animations -->
-    <main class="text-center z-10 space-y-6 max-w-3xl mx-auto py-8 px-4">
-        
-        <!-- Main English Title -->
-        <h1 class="animate-heading text-5xl sm:text-7xl md:text-8xl font-black tracking-tight glow-text font-['Inter'] drop-shadow-lg">
-            Coming Soon...
-        </h1>
+<div class="app">
 
-        <!-- Bengali Subheading -->
-        <p class="animate-subheading text-xl sm:text-3xl md:text-4xl font-semibold text-emerald-400/90 leading-relaxed tracking-wide drop-shadow">
-            ইনশাআল্লাহ, খুব শীঘ্রই ডাটা যোগ করা হবে।
-        </p>
+    <header class="header">
+        <h1>Part 18 — Modals & Auxiliary Verbs</h1>
+        <p>Infinity MCQ Practice System</p>
+    </header>
+
+    <section class="topbar glass">
+
+        <div class="stat">
+            Score: <span id="score">0</span>
+        </div>
+
+        <div class="progress-wrap">
+            <div class="progress-text">
+                Question <span id="current">1</span>
+            </div>
+
+            <div class="progress">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+        </div>
+
+    </section>
+
+    <main class="question-card glass" id="questionCard">
+
+        <div class="question-number" id="questionNumber">
+            Question 1
+        </div>
+
+        <div class="question" id="question">
+            Loading...
+        </div>
+
+        <div class="question-bn" id="questionBn">
+            প্রশ্ন লোড হচ্ছে...
+        </div>
+
+        <div class="options" id="options"></div>
+
+        <div class="explanation" id="explanation">
+
+            <div class="explanation-title">
+                Explanation
+            </div>
+
+            <div class="explanation-text" id="explanationText"></div>
+
+        </div>
 
     </main>
 
-    <script>
-        const glow = document.getElementById('glow');
+    <div class="controls">
 
-        // Mouse move interactive glow background
-        window.addEventListener('mousemove', (e) => {
-            glow.style.left = e.clientX + 'px';
-            glow.style.top = e.clientY + 'px';
-        });
+        <button class="control" id="previousBtn" onclick="previousQuestion()">
+            Previous
+        </button>
 
-        // Touch move interactive glow background for mobile screens
-        window.addEventListener('touchmove', (e) => {
-            if (e.touches.length > 0) {
-                glow.style.left = e.touches[0].clientX + 'px';
-                glow.style.top = e.touches[0].clientY + 'px';
-            }
-        });
-    </script>
+        <button class="control next" id="nextBtn" onclick="nextQuestion()">
+            Next
+        </button>
+
+    </div>
+
+    <div class="footer">
+        Part 18 • Modals & Auxiliary Verbs • Infinity Practice
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   PART 18 — MODALS & AUXILIARY VERBS
+   INFINITY QUESTION GENERATOR
+========================================================= */
+
+const names = [
+    "Firoz","Fatiha","Fatema","Jui","Ema",
+    "Rupa","Moksed","Ferjousi","Jannati","Mini",
+    "Miraz","Mujahid","Milon","Hannan","Joba",
+    "Tanzila","Rina","Tania","Taslima"
+];
+
+const subjects = [
+    "Firoz","Fatiha","Fatema","Jui","Ema",
+    "Rupa","Moksed","Ferjousi","Jannati","Mini",
+    "Miraz","Mujahid","Milon","Joba","Tanzila",
+    "Rina","Tania","Taslima"
+];
+
+let questionNumber = 0;
+let score = 0;
+let answered = false;
+
+const questionEl = document.getElementById("question");
+const questionBnEl = document.getElementById("questionBn");
+const optionsEl = document.getElementById("options");
+const explanationEl = document.getElementById("explanation");
+const explanationTextEl = document.getElementById("explanationText");
+const questionNumberEl = document.getElementById("questionNumber");
+const scoreEl = document.getElementById("score");
+const currentEl = document.getElementById("current");
+const progressBar = document.getElementById("progressBar");
+const previousBtn = document.getElementById("previousBtn");
+const nextBtn = document.getElementById("nextBtn");
+const questionCard = document.getElementById("questionCard");
+
+
+/* ---------------------------------------------------------
+   HELPER FUNCTIONS
+--------------------------------------------------------- */
+
+function randomItem(arr){
+    return arr[Math.floor(Math.random() * arr.length)];
+}
+
+function shuffle(arr){
+    return [...arr].sort(() => Math.random() - 0.5);
+}
+
+function makeQuestion(question, bn, options, answer, explanation){
+
+    return {
+        question,
+        bn,
+        options:shuffle(options),
+        answer,
+        explanation
+    };
+
+}
+
+
+/* ---------------------------------------------------------
+   QUESTION GENERATORS
+--------------------------------------------------------- */
+
+function generateCanQuestion(){
+
+    const name = randomItem(subjects);
+
+    return makeQuestion(
+
+        `${name} ___ swim very well.`,
+
+        `(ক্ষমতা বোঝাতে সঠিক modal নির্বাচন করো।)`,
+
+        ["can","must","should","may"],
+
+        "can",
+
+        `এখানে ${name}-এর সাঁতার কাটার ক্ষমতা বোঝানো হয়েছে। ক্ষমতা বা ability প্রকাশ করতে “can” ব্যবহার হয়। তাই সঠিক উত্তর হলো “can”। “must” বাধ্যবাধকতা, “should” পরামর্শ এবং “may” অনুমতি বা সম্ভাবনা বোঝাতে ব্যবহৃত হয়।`
+
+    );
+
+}
+
+
+function generateCouldQuestion(){
+
+    const name = randomItem(subjects);
+
+    return makeQuestion(
+
+        `${name} ___ read when he was five.`,
+
+        `(অতীতে কোনো ক্ষমতা ছিল—এটি বোঝাতে সঠিক modal নির্বাচন করো।)`,
+
+        ["could","can","may","must"],
+
+        "could",
+
+        `অতীতে কোনো কাজ করার ক্ষমতা বোঝাতে “could” ব্যবহার করা হয়। তাই “could read” সঠিক। বর্তমানের ক্ষমতার জন্য “can” ব্যবহার করা হয়।`
+
+    );
+
+}
+
+
+function generateMustQuestion(){
+
+    const name = randomItem(subjects);
+
+    return makeQuestion(
+
+        `${name} ___ obey the rules.`,
+
+        `(বাধ্যতামূলক কর্তব্য বোঝাতে সঠিক modal নির্বাচন করো।)`,
+
+        ["must","may","can","could"],
+
+        "must",
+
+        `এখানে নিয়ম মানা বাধ্যতামূলক—এই অর্থ প্রকাশ করা হয়েছে। বাধ্যবাধকতা বা strong necessity বোঝাতে “must” ব্যবহার করা হয়। তাই “must” সঠিক উত্তর।`
+
+    );
+
+}
+
+
+function generateShouldQuestion(){
+
+    const name = randomItem(subjects);
+
+    return makeQuestion(
+
+        `${name} ___ respect his teachers.`,
+
+        `(উপদেশ বা নৈতিক কর্তব্য বোঝাতে সঠিক modal নির্বাচন করো।)`,
+
+        ["should","can","may","would"],
+
+        "should",
+
+        `এখানে শিক্ষকদের সম্মান করা উচিত—এমন পরামর্শ বা নৈতিক কর্তব্য বোঝানো হয়েছে। Advice বা duty-এর জন্য “should” ব্যবহার করা হয়।`
+
+    );
+
+}
+
+
+function generateMayQuestion(){
+
+    const name = randomItem(subjects);
+
+    return makeQuestion(
+
+        `___ I come in, ${name}?`,
+
+        `(ভদ্রভাবে অনুমতি চাওয়ার জন্য সঠিক modal নির্বাচন করো।)`,
+
+        ["May","Must","Should","Could"],
+
+        "May",
+
+        `ভদ্রভাবে permission বা অনুমতি চাইতে “May” ব্যবহার করা যায়। “May I come in?” একটি প্রচলিত এবং সঠিক বাক্য।`
+
+    );
+
+}
+
+
+function generateMightQuestion(){
+
+    const name = randomItem(subjects);
+
+    return makeQuestion(
+
+        `${name} ___ come today.`,
+
+        `(কম নিশ্চিত সম্ভাবনা বোঝাতে সঠিক modal নির্বাচন করো।)`,
+
+        ["might","must","can","should"],
+
+        "might",
+
+        `“Might” কম নিশ্চিত possibility বা সম্ভাবনা বোঝায়। তাই “might come” অর্থ হতে পারে—সে হয়তো আজ আসতে পারে।`
+
+    );
+
+}
+
+
+function generateWillQuestion(){
+
+    const name = randomItem(subjects);
+
+    return makeQuestion(
+
+        `${name} ___ help you tomorrow.`,
+
+        `(ভবিষ্যতের কাজ বোঝাতে সঠিক modal নির্বাচন করো।)`,
+
+        ["will","would","could","must"],
+
+        "will",
+
+        `ভবিষ্যতে কোনো কাজ হবে বা করার ইচ্ছা আছে—এমন অর্থে “will” ব্যবহার করা হয়। তাই “will help” সঠিক।`
+
+    );
+
+}
+
+
+function generateWouldQuestion(){
+
+    const name = randomItem(subjects);
+
+    return makeQuestion(
+
+        `___ you like some water, ${name}?`,
+
+        `(ভদ্রভাবে কোনো কিছু প্রস্তাব করতে সঠিক modal নির্বাচন করো।)`,
+
+        ["Would","Must","Shall","Can"],
+
+        "Would",
+
+        `ভদ্রভাবে কোনো কিছু offer বা প্রস্তাব করতে “Would you like...?” ব্যবহার করা হয়। তাই এখানে “Would” সঠিক।`
+
+    );
+
+}
+
+
+function generateShallQuestion(){
+
+    return makeQuestion(
+
+        `___ we start the lesson?`,
+
+        `(প্রস্তাব বা suggestion বোঝাতে সঠিক modal নির্বাচন করো।)`,
+
+        ["Shall","Must","Might","Could"],
+
+        "Shall",
+
+        `“Shall we...?” ব্যবহার করে সাধারণত কোনো কাজ করার প্রস্তাব বা suggestion দেওয়া হয়। তাই “Shall we start the lesson?” সঠিক।`
+
+    );
+
+}
+
+
+function generateAuxiliaryQuestion(){
+
+    const name = randomItem(subjects);
+
+    return makeQuestion(
+
+        `${name} ___ not like tea.`,
+
+        `(Simple Present-এ negative sentence তৈরি করতে সঠিক auxiliary verb নির্বাচন করো।)`,
+
+        ["does","do","did","is"],
+
+        "does",
+
+        `Subject যদি third-person singular হয়—যেমন ${name}—তাহলে Simple Present-এর negative sentence-এ “does not” ব্যবহার হয়। তাই “does” সঠিক।`
+
+    );
+
+}
+
+
+function generateDoQuestion(){
+
+    return makeQuestion(
+
+        `___ you understand the lesson?`,
+
+        `(Simple Present-এর প্রশ্নবোধক বাক্যে সঠিক auxiliary verb নির্বাচন করো।)`,
+
+        ["Do","Does","Did","Are"],
+
+        "Do",
+
+        `Subject “you” হলে Simple Present-এর প্রশ্নে “Do” ব্যবহার হয়। তাই “Do you understand...?” সঠিক।`
+
+    );
+
+}
+
+
+function generateDoesQuestion(){
+
+    const name = randomItem(subjects);
+
+    return makeQuestion(
+
+        `___ ${name} play football?`,
+
+        `(Third-person singular subject-এর Simple Present question-এ সঠিক auxiliary নির্বাচন করো।)`,
+
+        ["Does","Do","Did","Is"],
+
+        "Does",
+
+        `একবচন third-person subject-এর সঙ্গে Simple Present-এর প্রশ্নে “Does” ব্যবহার হয়। তাই “Does ${name} play...?” সঠিক।`
+
+    );
+
+}
+
+
+function generateDidQuestion(){
+
+    const name = randomItem(subjects);
+
+    return makeQuestion(
+
+        `___ ${name} visit you yesterday?`,
+
+        `(Past Simple-এর প্রশ্নবোধক বাক্যে সঠিক auxiliary verb নির্বাচন করো।)`,
+
+        ["Did","Do","Does","Has"],
+
+        "Did",
+
+        `“Yesterday” অতীত সময় নির্দেশ করছে। Past Simple-এর প্রশ্নবোধক বাক্যে subject যাই হোক, “Did” ব্যবহার করা হয়। তাই “Did ${name} visit...?” সঠিক।`
+
+    );
+
+}
+
+
+function generateBeQuestion(){
+
+    const name = randomItem(subjects);
+
+    return makeQuestion(
+
+        `${name} ___ reading a book now.`,
+
+        `(বর্তমানে চলমান কাজ বোঝাতে সঠিক auxiliary verb নির্বাচন করো।)`,
+
+        ["is","are","do","has"],
+
+        "is",
+
+        `Subject ${name} একবচন। Present Continuous-এ singular subject-এর সঙ্গে “is + verb-ing” ব্যবহার হয়। তাই “is reading” সঠিক।`
+
+    );
+
+}
+
+
+function generateHaveQuestion(){
+
+    const name = randomItem(subjects);
+
+    return makeQuestion(
+
+        `${name} ___ finished the work.`,
+
+        `(Present Perfect tense-এ সঠিক auxiliary verb নির্বাচন করো।)`,
+
+        ["has","have","is","does"],
+
+        "has",
+
+        `${name} একবচন subject হওয়ায় Present Perfect-এ “has + past participle” ব্যবহার হবে। তাই “has finished” সঠিক।`
+
+    );
+
+}
+
+
+/* ---------------------------------------------------------
+   GENERATOR LIST
+--------------------------------------------------------- */
+
+const generators = [
+
+    generateCanQuestion,
+    generateCouldQuestion,
+    generateMustQuestion,
+    generateShouldQuestion,
+    generateMayQuestion,
+    generateMightQuestion,
+    generateWillQuestion,
+    generateWouldQuestion,
+    generateShallQuestion,
+    generateAuxiliaryQuestion,
+    generateDoQuestion,
+    generateDoesQuestion,
+    generateDidQuestion,
+    generateBeQuestion,
+    generateHaveQuestion
+
+];
+
+
+/* ---------------------------------------------------------
+   INFINITE QUESTION ENGINE
+--------------------------------------------------------- */
+
+function generateQuestion(){
+
+    const generator = randomItem(generators);
+
+    return generator();
+
+}
+
+
+/* ---------------------------------------------------------
+   LOAD QUESTION
+--------------------------------------------------------- */
+
+function loadQuestion(){
+
+    answered = false;
+
+    const q = generateQuestion();
+
+    questionNumber++;
+
+    questionNumberEl.textContent = `Question ${questionNumber}`;
+
+    currentEl.textContent = questionNumber;
+
+    questionEl.textContent = q.question;
+
+    questionBnEl.textContent = q.bn;
+
+    optionsEl.innerHTML = "";
+
+    explanationEl.classList.remove("show");
+
+    explanationTextEl.innerHTML = "";
+
+    q.options.forEach(option => {
+
+        const button = document.createElement("button");
+
+        button.className = "option";
+
+        button.textContent = option;
+
+        button.onclick = () => checkAnswer(button,option,q);
+
+        optionsEl.appendChild(button);
+
+    });
+
+    previousBtn.disabled = questionNumber <= 1;
+
+    progressBar.style.width = `${Math.min((questionNumber % 10) * 10 || 100,100)}%`;
+
+    questionCard.classList.remove("enter");
+
+    void questionCard.offsetWidth;
+
+    questionCard.classList.add("enter");
+
+}
+
+
+/* ---------------------------------------------------------
+   CHECK ANSWER
+--------------------------------------------------------- */
+
+function checkAnswer(button,selected,q){
+
+    if(answered) return;
+
+    answered = true;
+
+    const buttons = document.querySelectorAll(".option");
+
+    buttons.forEach(btn => {
+
+        btn.disabled = true;
+
+        if(btn.textContent === q.answer){
+            btn.classList.add("correct");
+        }
+
+    });
+
+
+    if(selected === q.answer){
+
+        score++;
+
+        scoreEl.textContent = score;
+
+        explanationTextEl.innerHTML =
+            `<strong>Correct!</strong><br>${q.explanation}`;
+
+    }else{
+
+        button.classList.add("wrong");
+
+        explanationTextEl.innerHTML =
+            `<strong>Incorrect.</strong><br>
+            সঠিক উত্তর: <strong>${q.answer}</strong><br><br>
+            ${q.explanation}`;
+
+    }
+
+    explanationEl.classList.add("show");
+
+}
+
+
+/* ---------------------------------------------------------
+   NEXT
+--------------------------------------------------------- */
+
+function nextQuestion(){
+
+    loadQuestion();
+
+}
+
+
+/* ---------------------------------------------------------
+   PREVIOUS
+   Note: Because the system generates infinite fresh questions,
+   Previous starts a new practice question rather than restoring
+   the exact previous generated question.
+--------------------------------------------------------- */
+
+function previousQuestion(){
+
+    if(questionNumber <= 1) return;
+
+    questionNumber -= 2;
+
+    loadQuestion();
+
+}
+
+
+/* ---------------------------------------------------------
+   START
+--------------------------------------------------------- */
+
+loadQuestion();
+
+</script>
+
 </body>
 </html>

@@ -1,128 +1,1302 @@
+```html
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Google Fonts for Bengali & English -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Inter:wght@700;900&display=swap" rel="stylesheet">
+<title>Part 16 — Right Form of Verbs | Infinity MCQ</title>
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-    <style>
-        body {
-            font-family: 'Hind Siliguri', 'Inter', sans-serif;
-            background-color: #030712;
-            overflow: hidden;
-        }
+:root{
+    --text:#20242b;
+    --muted:#626b78;
+    --card:rgba(255,255,255,.72);
+    --border:rgba(255,255,255,.85);
+    --shadow:0 18px 55px rgba(40,55,75,.12);
+    --blue:#3867ff;
+    --green:#159957;
+    --red:#e94b4b;
+}
 
-        /* Gradient glowing animation on text */
-        .glow-text {
-            background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 50%, #38bdf8 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shine 6s linear infinite;
-        }
+body{
+    min-height:100vh;
+    font-family:"Times New Roman","Kalpurush",serif;
+    color:var(--text);
 
-        @keyframes shine {
-            0% { background-position: 0% center; }
-            50% { background-position: 100% center; }
-            100% { background-position: 0% center; }
-        }
+    background:
+        radial-gradient(circle at 10% 10%,rgba(210,225,255,.65),transparent 32%),
+        radial-gradient(circle at 90% 85%,rgba(225,245,235,.75),transparent 30%),
+        linear-gradient(135deg,#ffffff,#f6f8fb,#ffffff);
 
-        /* Keyframes for initial entry: Floating in from below with opacity */
-        @keyframes floatIn {
-            0% {
-                opacity: 0;
-                transform: translateY(40px) scale(0.95);
-                filter: blur(8px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-                filter: blur(0);
-            }
-        }
+    padding:25px 15px 45px;
+}
 
-        /* Continuous subtle float effect once arrived */
-        @keyframes subtleFloat {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-8px);
-            }
-        }
+.app{
+    width:min(100%,1050px);
+    margin:auto;
+}
 
-        /* Animation class for Heading */
-        .animate-heading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards,
-                subtleFloat 6s ease-in-out 1.2s infinite;
-        }
+.header{
+    text-align:center;
+    margin-bottom:25px;
+}
 
-        /* Animation class for Subheading (staggered delay) */
-        .animate-subheading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards,
-                subtleFloat 6s ease-in-out 1.55s infinite;
-            opacity: 0; /* Hidden until animation kicks in */
-        }
+.badge{
+    display:inline-block;
+    padding:8px 16px;
+    border-radius:30px;
+    background:rgba(56,103,255,.09);
+    color:var(--blue);
+    font-size:18px;
+    font-weight:bold;
+    margin-bottom:12px;
+}
 
-        /* Ambient background lighting */
-        .ambient-glow {
-            position: absolute;
-            width: 450px;
-            height: 450px;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(3, 7, 18, 0) 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            transition: left 0.4s ease-out, top 0.4s ease-out;
-        }
-    </style>
+.header h1{
+    font-size:clamp(27px,5vw,43px);
+    margin-bottom:8px;
+}
+
+.header p{
+    font-size:20px;
+    color:var(--muted);
+}
+
+.panel{
+    background:var(--card);
+    border:1px solid var(--border);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+    border-radius:28px;
+    box-shadow:var(--shadow);
+    padding:25px;
+}
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    margin-bottom:18px;
+    flex-wrap:wrap;
+}
+
+.progress-box{
+    flex:1;
+    min-width:220px;
+}
+
+.progress-text{
+    display:flex;
+    justify-content:space-between;
+    font-size:18px;
+    margin-bottom:8px;
+    color:var(--muted);
+}
+
+.progress{
+    width:100%;
+    height:9px;
+    background:#e7ebf1;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.progress-bar{
+    width:0%;
+    height:100%;
+    border-radius:20px;
+    background:linear-gradient(90deg,#3867ff,#6f8cff);
+    transition:width .8s cubic-bezier(.22,1,.36,1);
+}
+
+.score{
+    background:rgba(255,255,255,.8);
+    border:1px solid #e5e9ef;
+    border-radius:15px;
+    padding:10px 17px;
+    font-size:19px;
+    font-weight:bold;
+    white-space:nowrap;
+}
+
+.question-area{
+    min-height:430px;
+    position:relative;
+    overflow:hidden;
+}
+
+.question-card{
+    animation:questionIn 1.05s cubic-bezier(.16,1,.3,1) both;
+}
+
+@keyframes questionIn{
+    0%{
+        opacity:0;
+        transform:translateY(45px) translateX(20px) scale(.98);
+        filter:blur(5px);
+    }
+    55%{
+        opacity:.7;
+        filter:blur(1px);
+    }
+    100%{
+        opacity:1;
+        transform:translateY(0) translateX(0) scale(1);
+        filter:blur(0);
+    }
+}
+
+.question-number{
+    color:var(--blue);
+    font-size:19px;
+    font-weight:bold;
+    margin-bottom:13px;
+}
+
+.question{
+    font-size:clamp(20px,3vw,27px);
+    line-height:1.55;
+    font-weight:bold;
+    margin-bottom:5px;
+}
+
+.question-bn{
+    font-family:"Kalpurush","Noto Sans Bengali",Arial,sans-serif;
+    font-size:18px;
+    color:#626b78;
+    margin-bottom:24px;
+    line-height:1.6;
+}
+
+.options{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+}
+
+.option{
+    border:1px solid #dfe4eb;
+    background:rgba(255,255,255,.8);
+    border-radius:17px;
+    padding:17px 18px;
+    font-family:"Times New Roman",serif;
+    font-size:21px;
+    text-align:left;
+    cursor:pointer;
+    transition:
+        transform .35s cubic-bezier(.22,1,.36,1),
+        box-shadow .35s ease,
+        border-color .35s ease,
+        background .35s ease;
+}
+
+.option:hover{
+    transform:translateY(-4px);
+    box-shadow:0 10px 25px rgba(50,70,100,.11);
+    border-color:#aebcff;
+}
+
+.option.correct{
+    background:rgba(21,153,87,.12);
+    border-color:var(--green);
+    color:#08733e;
+}
+
+.option.wrong{
+    background:rgba(233,75,75,.11);
+    border-color:var(--red);
+    color:#b72e2e;
+}
+
+.option:disabled{
+    cursor:default;
+}
+
+.explanation{
+    margin-top:22px;
+    padding:20px;
+    border-radius:18px;
+    background:rgba(246,248,251,.9);
+    border-left:5px solid var(--blue);
+    animation:explainIn .7s cubic-bezier(.22,1,.36,1);
+}
+
+@keyframes explainIn{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.explanation-title{
+    font-size:21px;
+    font-weight:bold;
+    margin-bottom:8px;
+}
+
+.explanation-text{
+    font-family:"Kalpurush","Noto Sans Bengali",Arial,sans-serif;
+    font-size:19px;
+    line-height:1.8;
+}
+
+.rule{
+    margin-top:12px;
+    padding:12px 15px;
+    border-radius:12px;
+    background:white;
+    font-family:"Times New Roman",serif;
+    font-size:18px;
+    color:#343a43;
+}
+
+.controls{
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    margin-top:25px;
+}
+
+.btn{
+    border:none;
+    border-radius:15px;
+    padding:13px 23px;
+    font-family:"Times New Roman",serif;
+    font-size:19px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:all .35s cubic-bezier(.22,1,.36,1);
+}
+
+.btn:hover{
+    transform:translateY(-3px);
+}
+
+.prev{
+    background:#edf0f5;
+    color:#343942;
+}
+
+.next{
+    background:linear-gradient(135deg,#3867ff,#5878ff);
+    color:white;
+    box-shadow:0 8px 22px rgba(56,103,255,.2);
+}
+
+.next:disabled{
+    opacity:.4;
+    cursor:not-allowed;
+    transform:none;
+}
+
+.new{
+    background:#eef9f3;
+    color:#117745;
+}
+
+.footer{
+    text-align:center;
+    color:#777f8a;
+    margin-top:20px;
+    font-size:17px;
+}
+
+@media(max-width:650px){
+    body{
+        padding:14px 9px 30px;
+    }
+
+    .panel{
+        padding:17px;
+        border-radius:21px;
+    }
+
+    .options{
+        grid-template-columns:1fr;
+    }
+
+    .option{
+        font-size:20px;
+        padding:15px;
+    }
+
+    .question-area{
+        min-height:520px;
+    }
+
+    .controls{
+        flex-wrap:wrap;
+    }
+
+    .btn{
+        flex:1;
+        min-width:120px;
+    }
+
+    .score{
+        width:100%;
+        text-align:center;
+    }
+}
+</style>
 </head>
-<body class="min-h-screen flex items-center justify-center relative select-none px-4">
 
-    <!-- Ambient glow center element -->
-    <div id="glow" class="ambient-glow top-1/2 left-1/2"></div>
+<body>
 
-    <!-- Centered minimal content with entry animations -->
-    <main class="text-center z-10 space-y-6 max-w-3xl mx-auto py-8 px-4">
-        
-        <!-- Main English Title -->
-        <h1 class="animate-heading text-5xl sm:text-7xl md:text-8xl font-black tracking-tight glow-text font-['Inter'] drop-shadow-lg">
-            Coming Soon...
-        </h1>
+<div class="app">
 
-        <!-- Bengali Subheading -->
-        <p class="animate-subheading text-xl sm:text-3xl md:text-4xl font-semibold text-emerald-400/90 leading-relaxed tracking-wide drop-shadow">
-            ইনশাআল্লাহ, খুব শীঘ্রই ডাটা যোগ করা হবে।
-        </p>
+    <header class="header">
+        <div class="badge">PART 16</div>
+        <h1>Right Form of Verbs</h1>
+        <p>Infinity MCQ Practice System</p>
+    </header>
+
+    <main class="panel">
+
+        <div class="topbar">
+
+            <div class="progress-box">
+                <div class="progress-text">
+                    <span id="progressText">Question 1</span>
+                    <span id="accuracyText">Accuracy: 0%</span>
+                </div>
+
+                <div class="progress">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+            </div>
+
+            <div class="score">
+                Score: <span id="score">0</span>
+            </div>
+
+        </div>
+
+        <section class="question-area" id="questionArea"></section>
+
+        <div class="controls">
+
+            <button class="btn prev" id="prevBtn">
+                ← Previous
+            </button>
+
+            <button class="btn new" id="newBtn">
+                New Question
+            </button>
+
+            <button class="btn next" id="nextBtn">
+                Next →
+            </button>
+
+        </div>
 
     </main>
 
-    <script>
-        const glow = document.getElementById('glow');
+    <div class="footer">
+        Part 16 • Right Form of Verbs • Infinity Practice
+    </div>
 
-        // Mouse move interactive glow background
-        window.addEventListener('mousemove', (e) => {
-            glow.style.left = e.clientX + 'px';
-            glow.style.top = e.clientY + 'px';
+</div>
+
+
+<script>
+
+/* =========================================================
+   PART 16 — RIGHT FORM OF VERBS
+   INFINITY QUESTION GENERATOR
+========================================================= */
+
+
+/* ---------------------------------------------------------
+   NAME BANK
+--------------------------------------------------------- */
+
+const names = [
+    "Firoz",
+    "Fatiha",
+    "Fatema",
+    "Jui",
+    "Ema",
+    "Rupa",
+    "Moksed",
+    "Ferjousi",
+    "Jannati",
+    "Mini",
+    "Miraz",
+    "Mujahid",
+    "Milon",
+    "Hannan",
+    "Joba",
+    "Tanzila",
+    "Rina",
+    "Tania",
+    "Taslima"
+];
+
+
+/* ---------------------------------------------------------
+   VERB BANK
+--------------------------------------------------------- */
+
+const verbs = [
+    {
+        base:"go",
+        past:"went",
+        pp:"gone",
+        ing:"going",
+        s:"goes"
+    },
+    {
+        base:"eat",
+        past:"ate",
+        pp:"eaten",
+        ing:"eating",
+        s:"eats"
+    },
+    {
+        base:"write",
+        past:"wrote",
+        pp:"written",
+        ing:"writing",
+        s:"writes"
+    },
+    {
+        base:"read",
+        past:"read",
+        pp:"read",
+        ing:"reading",
+        s:"reads"
+    },
+    {
+        base:"come",
+        past:"came",
+        pp:"come",
+        ing:"coming",
+        s:"comes"
+    },
+    {
+        base:"see",
+        past:"saw",
+        pp:"seen",
+        ing:"seeing",
+        s:"sees"
+    },
+    {
+        base:"do",
+        past:"did",
+        pp:"done",
+        ing:"doing",
+        s:"does"
+    },
+    {
+        base:"make",
+        past:"made",
+        pp:"made",
+        ing:"making",
+        s:"makes"
+    },
+    {
+        base:"take",
+        past:"took",
+        pp:"taken",
+        ing:"taking",
+        s:"takes"
+    },
+    {
+        base:"learn",
+        past:"learned",
+        pp:"learned",
+        ing:"learning",
+        s:"learns"
+    },
+    {
+        base:"play",
+        past:"played",
+        pp:"played",
+        ing:"playing",
+        s:"plays"
+    },
+    {
+        base:"study",
+        past:"studied",
+        pp:"studied",
+        ing:"studying",
+        s:"studies"
+    },
+    {
+        base:"work",
+        past:"worked",
+        pp:"worked",
+        ing:"working",
+        s:"works"
+    },
+    {
+        base:"finish",
+        past:"finished",
+        pp:"finished",
+        ing:"finishing",
+        s:"finishes"
+    },
+    {
+        base:"speak",
+        past:"spoke",
+        pp:"spoken",
+        ing:"speaking",
+        s:"speaks"
+    }
+];
+
+
+/* ---------------------------------------------------------
+   RANDOM HELPERS
+--------------------------------------------------------- */
+
+function randomItem(array){
+    return array[Math.floor(Math.random() * array.length)];
+}
+
+function shuffle(array){
+    return [...array].sort(() => Math.random() - 0.5);
+}
+
+
+/* ---------------------------------------------------------
+   QUESTION GENERATORS
+--------------------------------------------------------- */
+
+
+/* 1. Present Simple */
+function presentSimple(){
+
+    const v = randomItem(verbs);
+    const name = randomItem(names);
+
+    const positive = Math.random() > .5;
+
+    let sentence;
+    let answer;
+    let explanation;
+
+    if(positive){
+
+        sentence = `${name} ___ English every day.`;
+        answer = v.s;
+
+        explanation =
+        `এখানে “every day” আছে, যা নিয়মিত কাজ বোঝায়। ` +
+        `তাই এটি Simple Present Tense-এর বাক্য। ` +
+        `Subject “${name}” একবচন হওয়ায় verb-এর সঙ্গে s/es যুক্ত হবে। ` +
+        `সুতরাং সঠিক উত্তর হলো “${v.s}”।`;
+
+    }else{
+
+        sentence = `${name} does not ___ English every day.`;
+        answer = v.base;
+
+        explanation =
+        `এখানে “does not” ব্যবহৃত হয়েছে। ` +
+        `Simple Present-এর negative বাক্যে “does not” থাকলে মূল verb-এর সঙ্গে s/es বসে না। ` +
+        `তাই এখানে base form “${v.base}” হবে।`;
+    }
+
+    return makeQuestion(
+        sentence,
+        "নামটি নিয়মিতভাবে কাজটি করে—সঠিক verb form নির্বাচন করুন।",
+        answer,
+        explanation,
+        "Simple Present: singular subject + V1+s/es; কিন্তু does/do-এর পরে V1।"
+    );
+}
+
+
+/* 2. Past Simple */
+function pastSimple(){
+
+    const v = randomItem(verbs);
+    const name = randomItem(names);
+
+    return makeQuestion(
+        `${name} ___ the book yesterday.`,
+        "গতকাল কাজটি সম্পন্ন হয়েছে—সঠিক verb form নির্বাচন করুন।",
+        v.past,
+        `“yesterday” অতীত সময় নির্দেশ করে। তাই এখানে Simple Past Tense ব্যবহার হবে। ` +
+        `Simple Past-এর affirmative বাক্যে verb-এর past form ব্যবহৃত হয়। ` +
+        `তাই “${v.past}” সঠিক।`,
+        "Simple Past: Subject + V2 + Object."
+    );
+}
+
+
+/* 3. After modal */
+function modal(){
+
+    const v = randomItem(verbs);
+    const name = randomItem(names);
+
+    return makeQuestion(
+        `${name} can ___ the lesson clearly.`,
+        "“can”-এর পরে verb-এর কোন form হবে?",
+        v.base,
+        `“can” একটি modal auxiliary verb। Modal-এর পরে সবসময় verb-এর base form (V1) বসে। ` +
+        `তাই এখানে “${v.base}” হবে, “${v.s}” বা অন্য কোনো form নয়।`,
+        "Modal + V1: can go, can read, can write."
+    );
+}
+
+
+/* 4. After to */
+function infinitive(){
+
+    const v = randomItem(verbs);
+    const name = randomItem(names);
+
+    return makeQuestion(
+        `${name} wants to ___.`,
+        "“to”-এর পরে সঠিক verb form নির্বাচন করুন।",
+        v.base,
+        `“to”-এর পরে সাধারণত infinitive-এর base form (V1) বসে। ` +
+        `তাই “to ${v.base}” সঠিক।`,
+        "to + V1 = infinitive."
+    );
+}
+
+
+/* 5. Preposition + ing */
+function prepositionIng(){
+
+    const v = randomItem(verbs);
+    const name = randomItem(names);
+
+    return makeQuestion(
+        `${name} is interested in ___ English.`,
+        "Preposition “in”-এর পরে verb-এর কোন form হবে?",
+        v.ing,
+        `“in” একটি preposition। Preposition-এর পরে verb ব্যবহৃত হলে সাধারণত gerund অর্থাৎ verb+ing form ব্যবহৃত হয়। ` +
+        `তাই “${v.ing}” সঠিক।`,
+        "Preposition + V-ing."
+    );
+}
+
+
+/* 6. While + ing */
+function whileIng(){
+
+    const v = randomItem(verbs);
+    const name = randomItem(names);
+
+    return makeQuestion(
+        `While ${name} was ___, the teacher entered the room.`,
+        "“while”-এর সময় চলমান কাজ বোঝানো হয়েছে।",
+        v.ing,
+        `“was” এবং “while” দিয়ে একই সময়ে চলমান কাজ বোঝানো হয়েছে। ` +
+        `Past Continuous structure হলো was/were + V-ing। ` +
+        `তাই এখানে “${v.ing}” সঠিক।`,
+        "Past Continuous: was/were + V-ing."
+    );
+}
+
+
+/* 7. Have/has + PP */
+function perfect(){
+
+    const v = randomItem(verbs);
+    const name = randomItem(names);
+
+    return makeQuestion(
+        `${name} has ___ the work.`,
+        "“has”-এর পরে verb-এর সঠিক form নির্বাচন করুন।",
+        v.pp,
+        `“has” থাকলে Present Perfect Tense-এর structure হয় has + past participle (V3)। ` +
+        `তাই এখানে “${v.pp}” ব্যবহার করতে হবে।`,
+        "Present Perfect: has/have + V3."
+    );
+}
+
+
+/* 8. Had + PP */
+function pastPerfect(){
+
+    const v = randomItem(verbs);
+    const name = randomItem(names);
+
+    return makeQuestion(
+        `${name} had ___ the work before the teacher arrived.`,
+        "অতীতে অন্য একটি কাজের আগে কাজটি সম্পন্ন হয়েছিল।",
+        v.pp,
+        `“had” এবং “before” দেখে Past Perfect-এর ব্যবহার বোঝা যায়। ` +
+        `Past Perfect-এর structure হলো had + past participle (V3)। ` +
+        `তাই “${v.pp}” সঠিক।`,
+        "Past Perfect: had + V3."
+    );
+}
+
+
+/* 9. After let */
+function causativeLet(){
+
+    const v = randomItem(verbs);
+    const name = randomItem(names);
+
+    return makeQuestion(
+        `The teacher let ${name} ___ early.`,
+        "“let”-এর পরে verb-এর কোন form হবে?",
+        v.base,
+        `“let” causative verb হিসেবে ব্যবহৃত হলে তার পরে object + base verb (V1) হয়। ` +
+        `তাই “let ${name} ${v.base}” সঠিক।`,
+        "let + object + V1."
+    );
+}
+
+
+/* 10. Make + object + V1 */
+function causativeMake(){
+
+    const v = randomItem(verbs);
+    const name = randomItem(names);
+
+    return makeQuestion(
+        `The teacher made ${name} ___ the lesson again.`,
+        "“made + object”-এর পরে verb-এর সঠিক form নির্বাচন করুন।",
+        v.base,
+        `“make” causative verb হিসেবে ব্যবহৃত হলে structure হয় make + object + V1। ` +
+        `তাই এখানে “${v.base}” হবে।`,
+        "make + object + V1."
+    );
+}
+
+
+/* 11. After did */
+function didRule(){
+
+    const v = randomItem(verbs);
+    const name = randomItem(names);
+
+    return makeQuestion(
+        `Did ${name} ___ the lesson yesterday?`,
+        "“did”-এর পরে verb-এর কোন form হবে?",
+        v.base,
+        `প্রশ্নবোধক Simple Past বাক্যে “did” auxiliary হিসেবে ব্যবহৃত হয়েছে। ` +
+        `“did”-এর পরে মূল verb সবসময় base form (V1) হয়। ` +
+        `তাই “${v.base}” সঠিক।`,
+        "Did + Subject + V1?"
+    );
+}
+
+
+/* 12. Used to */
+function usedTo(){
+
+    const v = randomItem(verbs);
+    const name = randomItem(names);
+
+    return makeQuestion(
+        `${name} used to ___ English every day.`,
+        "“used to”-এর পরে verb-এর কোন form হবে?",
+        v.base,
+        `“used to” একটি নির্দিষ্ট structure। এর পরে verb-এর base form (V1) বসে। ` +
+        `তাই “${v.base}” সঠিক।`,
+        "used to + V1."
+    );
+}
+
+
+/* 13. Avoid + ing */
+function avoidIng(){
+
+    const v = randomItem(verbs);
+    const name = randomItem(names);
+
+    return makeQuestion(
+        `${name} avoids ___ late at night.`,
+        "“avoid”-এর পরে verb-এর সঠিক form নির্বাচন করুন।",
+        v.ing,
+        `“avoid” একটি verb যার পরে সাধারণত gerund অর্থাৎ V-ing ব্যবহৃত হয়। ` +
+        `তাই এখানে “${v.ing}” সঠিক।`,
+        "avoid + V-ing."
+    );
+}
+
+
+/* 14. Enjoy + ing */
+function enjoyIng(){
+
+    const v = randomItem(verbs);
+    const name = randomItem(names);
+
+    return makeQuestion(
+        `${name} enjoys ___ English.`,
+        "“enjoy”-এর পরে verb-এর সঠিক form নির্বাচন করুন।",
+        v.ing,
+        `“enjoy” এর পরে gerund অর্থাৎ V-ing ব্যবহৃত হয়। ` +
+        `তাই “${v.ing}” সঠিক উত্তর।`,
+        "enjoy + V-ing."
+    );
+}
+
+
+/* 15. Look forward to + ing */
+function lookForward(){
+
+    const v = randomItem(verbs);
+    const name = randomItem(names);
+
+    return makeQuestion(
+        `${name} looks forward to ___ you.`,
+        "এখানে “to” infinitive নয়; phrase-এর অংশ।",
+        v.ing,
+        `“look forward to” একটি fixed expression। এখানে “to” preposition হিসেবে ব্যবহৃত হয়েছে। ` +
+        `তাই এর পরে verb হলে V-ing form ব্যবহার করতে হয়।`,
+        "look forward to + V-ing."
+    );
+}
+
+
+/* ---------------------------------------------------------
+   QUESTION CREATOR
+--------------------------------------------------------- */
+
+function makeQuestion(
+    sentence,
+    bangla,
+    answer,
+    explanation,
+    rule
+){
+
+    const wrongPool = [];
+
+    const v = verbs.find(x =>
+        Object.values(x).includes(answer)
+    );
+
+    if(v){
+
+        wrongPool.push(
+            v.base,
+            v.past,
+            v.pp,
+            v.ing,
+            v.s
+        );
+
+    }
+
+    wrongPool.push(
+        "going",
+        "went",
+        "gone",
+        "goes",
+        "go"
+    );
+
+    let options = [...new Set(
+        wrongPool.filter(x => x !== answer)
+    )];
+
+    options = shuffle(options).slice(0,3);
+
+    options.push(answer);
+
+    options = shuffle(options);
+
+    return {
+        sentence,
+        bangla,
+        answer,
+        options,
+        explanation,
+        rule
+    };
+}
+
+
+/* ---------------------------------------------------------
+   GENERATOR ENGINE
+--------------------------------------------------------- */
+
+const generators = [
+
+    presentSimple,
+    pastSimple,
+    modal,
+    infinitive,
+    prepositionIng,
+    whileIng,
+    perfect,
+    pastPerfect,
+    causativeLet,
+    causativeMake,
+    didRule,
+    usedTo,
+    avoidIng,
+    enjoyIng,
+    lookForward
+
+];
+
+
+function generateQuestion(){
+
+    const generator = randomItem(generators);
+
+    return generator();
+}
+
+
+/* ---------------------------------------------------------
+   APP STATE
+--------------------------------------------------------- */
+
+let currentQuestion = null;
+let questionNumber = 1;
+
+let score = 0;
+let attempted = 0;
+
+let history = [];
+let historyIndex = -1;
+
+
+/* ---------------------------------------------------------
+   DOM
+--------------------------------------------------------- */
+
+const questionArea =
+    document.getElementById("questionArea");
+
+const scoreEl =
+    document.getElementById("score");
+
+const progressText =
+    document.getElementById("progressText");
+
+const accuracyText =
+    document.getElementById("accuracyText");
+
+const progressBar =
+    document.getElementById("progressBar");
+
+const prevBtn =
+    document.getElementById("prevBtn");
+
+const nextBtn =
+    document.getElementById("nextBtn");
+
+const newBtn =
+    document.getElementById("newBtn");
+
+
+/* ---------------------------------------------------------
+   RENDER QUESTION
+--------------------------------------------------------- */
+
+function renderQuestion(question){
+
+    currentQuestion = question;
+
+    const letters = ["A","B","C","D"];
+
+    questionArea.innerHTML = "";
+
+    const card = document.createElement("div");
+
+    card.className = "question-card";
+
+    card.innerHTML = `
+
+        <div class="question-number">
+            Question ${questionNumber}
+        </div>
+
+        <div class="question">
+            ${question.sentence}
+        </div>
+
+        <div class="question-bn">
+            (${question.bangla})
+        </div>
+
+        <div class="options">
+
+            ${question.options.map((option,index)=>`
+
+                <button
+                    class="option"
+                    data-value="${option}"
+                >
+                    ${letters[index]}. ${option}
+                </button>
+
+            `).join("")}
+
+        </div>
+
+    `;
+
+    questionArea.appendChild(card);
+
+    document
+        .querySelectorAll(".option")
+        .forEach(button=>{
+
+            button.addEventListener(
+                "click",
+                ()=>selectAnswer(button)
+            );
+
         });
 
-        // Touch move interactive glow background for mobile screens
-        window.addEventListener('touchmove', (e) => {
-            if (e.touches.length > 0) {
-                glow.style.left = e.touches[0].clientX + 'px';
-                glow.style.top = e.touches[0].clientY + 'px';
-            }
-        });
-    </script>
+    updateUI();
+
+}
+
+
+/* ---------------------------------------------------------
+   ANSWER
+--------------------------------------------------------- */
+
+function selectAnswer(button){
+
+    if(
+        questionArea.querySelector(".explanation")
+    ){
+        return;
+    }
+
+    const selected =
+        button.dataset.value;
+
+    const allOptions =
+        document.querySelectorAll(".option");
+
+    allOptions.forEach(btn=>{
+        btn.disabled = true;
+
+        if(
+            btn.dataset.value ===
+            currentQuestion.answer
+        ){
+            btn.classList.add("correct");
+        }
+    });
+
+
+    if(selected === currentQuestion.answer){
+
+        score++;
+
+        button.classList.add("correct");
+
+    }else{
+
+        button.classList.add("wrong");
+
+    }
+
+
+    attempted++;
+
+
+    const explanation =
+        document.createElement("div");
+
+    explanation.className =
+        "explanation";
+
+    explanation.innerHTML = `
+
+        <div class="explanation-title">
+            Explanation
+        </div>
+
+        <div class="explanation-text">
+            ${currentQuestion.explanation}
+        </div>
+
+        <div class="rule">
+            <strong>Rule:</strong>
+            ${currentQuestion.rule}
+        </div>
+
+    `;
+
+    questionArea
+        .querySelector(".question-card")
+        .appendChild(explanation);
+
+
+    scoreEl.textContent = score;
+
+    updateAccuracy();
+
+    nextBtn.disabled = false;
+
+}
+
+
+/* ---------------------------------------------------------
+   NEXT
+--------------------------------------------------------- */
+
+function nextQuestion(){
+
+    if(
+        !questionArea.querySelector(".explanation")
+    ){
+        return;
+    }
+
+    const newQuestion =
+        generateQuestion();
+
+    history =
+        history.slice(0,historyIndex+1);
+
+    history.push({
+        question:newQuestion,
+        number:questionNumber + 1
+    });
+
+    historyIndex++;
+
+    questionNumber++;
+
+    renderQuestion(newQuestion);
+}
+
+
+/* ---------------------------------------------------------
+   NEW QUESTION
+--------------------------------------------------------- */
+
+function createNewQuestion(){
+
+    const newQuestion =
+        generateQuestion();
+
+    history =
+        history.slice(0,historyIndex+1);
+
+    history.push({
+        question:newQuestion,
+        number:questionNumber
+    });
+
+    historyIndex++;
+
+    renderQuestion(newQuestion);
+
+}
+
+
+/* ---------------------------------------------------------
+   PREVIOUS
+--------------------------------------------------------- */
+
+function previousQuestion(){
+
+    if(historyIndex <= 0){
+        return;
+    }
+
+    historyIndex--;
+
+    const item =
+        history[historyIndex];
+
+    questionNumber =
+        item.number;
+
+    renderQuestion(item.question);
+
+}
+
+
+/* ---------------------------------------------------------
+   UI
+--------------------------------------------------------- */
+
+function updateUI(){
+
+    progressText.textContent =
+        `Question ${questionNumber}`;
+
+    progressBar.style.width =
+        `${Math.min(100,questionNumber % 100)}%`;
+
+    prevBtn.disabled =
+        historyIndex <= 0;
+
+    nextBtn.disabled = true;
+
+    updateAccuracy();
+}
+
+
+function updateAccuracy(){
+
+    const accuracy =
+        attempted === 0
+        ? 0
+        : Math.round(
+            (score / attempted) * 100
+        );
+
+    accuracyText.textContent =
+        `Accuracy: ${accuracy}%`;
+}
+
+
+/* ---------------------------------------------------------
+   EVENTS
+--------------------------------------------------------- */
+
+nextBtn.addEventListener(
+    "click",
+    nextQuestion
+);
+
+prevBtn.addEventListener(
+    "click",
+    previousQuestion
+);
+
+newBtn.addEventListener(
+    "click",
+    createNewQuestion
+);
+
+
+/* ---------------------------------------------------------
+   START
+--------------------------------------------------------- */
+
+const firstQuestion =
+    generateQuestion();
+
+history.push({
+    question:firstQuestion,
+    number:1
+});
+
+historyIndex = 0;
+
+renderQuestion(firstQuestion);
+
+</script>
+
 </body>
 </html>
+```

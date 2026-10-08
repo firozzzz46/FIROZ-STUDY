@@ -1,128 +1,1215 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Google Fonts for Bengali & English -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Inter:wght@700;900&display=swap" rel="stylesheet">
+<title>Part 20 - Gerund, Infinitive & Participle</title>
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap');
 
-    <style>
-        body {
-            font-family: 'Hind Siliguri', 'Inter', sans-serif;
-            background-color: #030712;
-            overflow: hidden;
-        }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-        /* Gradient glowing animation on text */
-        .glow-text {
-            background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 50%, #38bdf8 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shine 6s linear infinite;
-        }
+:root{
+    --primary:#536dfe;
+    --secondary:#7c4dff;
+    --success:#16a085;
+    --danger:#e74c3c;
+    --text:#172033;
+    --muted:#596579;
+    --glass:rgba(255,255,255,.72);
+    --border:rgba(255,255,255,.85);
+}
 
-        @keyframes shine {
-            0% { background-position: 0% center; }
-            50% { background-position: 100% center; }
-            100% { background-position: 0% center; }
-        }
+body{
+    min-height:100vh;
+    color:var(--text);
+    background:
+        radial-gradient(circle at 10% 10%,rgba(83,109,254,.10),transparent 30%),
+        radial-gradient(circle at 90% 20%,rgba(124,77,255,.08),transparent 30%),
+        radial-gradient(circle at 50% 100%,rgba(0,188,212,.07),transparent 35%),
+        linear-gradient(135deg,#ffffff,#f5f7fb,#ffffff);
+    font-family:"Times New Roman","Noto Sans Bengali",serif;
+    overflow-x:hidden;
+}
 
-        /* Keyframes for initial entry: Floating in from below with opacity */
-        @keyframes floatIn {
-            0% {
-                opacity: 0;
-                transform: translateY(40px) scale(0.95);
-                filter: blur(8px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-                filter: blur(0);
-            }
-        }
+/* ================= HEADER ================= */
 
-        /* Continuous subtle float effect once arrived */
-        @keyframes subtleFloat {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-8px);
-            }
-        }
+.header{
+    width:min(1100px,94%);
+    margin:25px auto 18px;
+    padding:28px 25px;
+    text-align:center;
+    background:var(--glass);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+    border:1px solid var(--border);
+    border-radius:28px;
+    box-shadow:
+        0 20px 50px rgba(40,50,90,.10),
+        inset 0 1px 0 rgba(255,255,255,.9);
+    animation:headerIn 1s cubic-bezier(.16,1,.3,1);
+}
 
-        /* Animation class for Heading */
-        .animate-heading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards,
-                subtleFloat 6s ease-in-out 1.2s infinite;
-        }
+.header h1{
+    font-size:clamp(26px,4vw,40px);
+    margin-bottom:8px;
+    letter-spacing:.5px;
+}
 
-        /* Animation class for Subheading (staggered delay) */
-        .animate-subheading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards,
-                subtleFloat 6s ease-in-out 1.55s infinite;
-            opacity: 0; /* Hidden until animation kicks in */
-        }
+.header p{
+    font-size:20px;
+    color:var(--muted);
+}
 
-        /* Ambient background lighting */
-        .ambient-glow {
-            position: absolute;
-            width: 450px;
-            height: 450px;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(3, 7, 18, 0) 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            transition: left 0.4s ease-out, top 0.4s ease-out;
-        }
-    </style>
+.header .part{
+    display:inline-block;
+    margin-top:12px;
+    padding:7px 17px;
+    border-radius:50px;
+    background:rgba(83,109,254,.10);
+    color:#4658c9;
+    font-size:18px;
+    font-weight:bold;
+}
+
+/* ================= MAIN ================= */
+
+.container{
+    width:min(1100px,94%);
+    margin:auto;
+}
+
+/* ================= STATUS ================= */
+
+.status{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+    margin-bottom:18px;
+}
+
+.status-card{
+    padding:17px 20px;
+    border-radius:20px;
+    background:var(--glass);
+    backdrop-filter:blur(16px);
+    border:1px solid var(--border);
+    box-shadow:0 12px 35px rgba(40,50,90,.08);
+    font-size:19px;
+    font-weight:bold;
+}
+
+.status-card span{
+    float:right;
+    color:var(--primary);
+}
+
+.progress-wrap{
+    width:100%;
+    height:10px;
+    margin-top:10px;
+    border-radius:20px;
+    background:#e8ebf2;
+    overflow:hidden;
+}
+
+.progress{
+    height:100%;
+    width:0%;
+    border-radius:20px;
+    background:linear-gradient(90deg,var(--primary),var(--secondary));
+    transition:width .8s cubic-bezier(.16,1,.3,1);
+}
+
+/* ================= QUESTION CARD ================= */
+
+.question-card{
+    position:relative;
+    min-height:530px;
+    padding:32px;
+    margin-bottom:20px;
+    background:var(--glass);
+    backdrop-filter:blur(22px);
+    -webkit-backdrop-filter:blur(22px);
+    border:1px solid var(--border);
+    border-radius:30px;
+    box-shadow:
+        0 25px 65px rgba(35,45,80,.11),
+        inset 0 1px 0 rgba(255,255,255,.9);
+    overflow:hidden;
+}
+
+.question-card::before{
+    content:"";
+    position:absolute;
+    width:220px;
+    height:220px;
+    border-radius:50%;
+    background:rgba(83,109,254,.05);
+    top:-100px;
+    right:-70px;
+    pointer-events:none;
+}
+
+.question-card.transition-out{
+    animation:questionOut .35s cubic-bezier(.55,.06,.68,.19) forwards;
+}
+
+.question-card.transition-in{
+    animation:questionIn .9s cubic-bezier(.16,1,.3,1) forwards;
+}
+
+.question-number{
+    display:inline-block;
+    padding:7px 15px;
+    border-radius:50px;
+    background:rgba(83,109,254,.10);
+    color:#4054d6;
+    font-size:18px;
+    font-weight:bold;
+    margin-bottom:18px;
+}
+
+.question{
+    font-size:27px;
+    line-height:1.5;
+    font-weight:bold;
+    margin-bottom:8px;
+}
+
+.meaning{
+    font-family:"Noto Sans Bengali","Kalpurush",sans-serif;
+    font-size:19px;
+    line-height:1.7;
+    color:#657083;
+    margin-bottom:27px;
+}
+
+/* ================= OPTIONS ================= */
+
+.options{
+    display:grid;
+    gap:14px;
+}
+
+.option{
+    width:100%;
+    padding:17px 20px;
+    text-align:left;
+    font-family:"Times New Roman",serif;
+    font-size:21px;
+    font-weight:600;
+    color:#20283a;
+    background:rgba(255,255,255,.72);
+    border:1px solid rgba(80,95,130,.13);
+    border-radius:17px;
+    cursor:pointer;
+    transition:
+        transform .35s cubic-bezier(.16,1,.3,1),
+        box-shadow .35s ease,
+        background .35s ease,
+        border .35s ease;
+}
+
+.option:hover:not(:disabled){
+    transform:translateX(7px);
+    box-shadow:0 10px 25px rgba(50,60,100,.10);
+    border-color:rgba(83,109,254,.35);
+}
+
+.option.correct{
+    background:rgba(22,160,133,.13);
+    border-color:#16a085;
+    color:#08745e;
+}
+
+.option.wrong{
+    background:rgba(231,76,60,.12);
+    border-color:#e74c3c;
+    color:#b83227;
+}
+
+.option:disabled{
+    cursor:default;
+}
+
+/* ================= EXPLANATION ================= */
+
+.explanation{
+    display:none;
+    margin-top:25px;
+    padding:22px;
+    border-radius:20px;
+    background:rgba(83,109,254,.065);
+    border-left:5px solid var(--primary);
+    animation:explainIn .7s cubic-bezier(.16,1,.3,1);
+}
+
+.explanation.show{
+    display:block;
+}
+
+.explanation-title{
+    font-family:"Noto Sans Bengali","Kalpurush",sans-serif;
+    font-size:21px;
+    font-weight:bold;
+    margin-bottom:9px;
+}
+
+.explanation-text{
+    font-family:"Noto Sans Bengali","Kalpurush",sans-serif;
+    font-size:19px;
+    line-height:1.85;
+}
+
+/* ================= CONTROLS ================= */
+
+.controls{
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    margin-bottom:35px;
+}
+
+.btn{
+    min-width:145px;
+    padding:15px 23px;
+    border:none;
+    border-radius:16px;
+    font-family:"Times New Roman",serif;
+    font-size:20px;
+    font-weight:bold;
+    cursor:pointer;
+    color:white;
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+    box-shadow:0 10px 25px rgba(83,109,254,.22);
+    transition:
+        transform .3s cubic-bezier(.16,1,.3,1),
+        box-shadow .3s ease,
+        opacity .3s ease;
+}
+
+.btn:hover:not(:disabled){
+    transform:translateY(-3px);
+    box-shadow:0 15px 32px rgba(83,109,254,.30);
+}
+
+.btn:active:not(:disabled){
+    transform:scale(.97);
+}
+
+.btn:disabled{
+    opacity:.35;
+    cursor:not-allowed;
+    box-shadow:none;
+}
+
+/* ================= FOOTER ================= */
+
+.footer{
+    width:min(1100px,94%);
+    margin:0 auto 30px;
+    padding:20px;
+    text-align:center;
+    border-radius:20px;
+    background:rgba(255,255,255,.58);
+    color:#687386;
+    font-size:17px;
+}
+
+/* ================= ANIMATIONS ================= */
+
+@keyframes headerIn{
+    from{
+        opacity:0;
+        transform:translateY(-35px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes questionIn{
+    from{
+        opacity:0;
+        transform:translate3d(80px,20px,0) scale(.97);
+        filter:blur(5px);
+    }
+    to{
+        opacity:1;
+        transform:translate3d(0,0,0) scale(1);
+        filter:blur(0);
+    }
+}
+
+@keyframes questionOut{
+    from{
+        opacity:1;
+        transform:translate3d(0,0,0);
+    }
+    to{
+        opacity:0;
+        transform:translate3d(-60px,0,0);
+    }
+}
+
+@keyframes explainIn{
+    from{
+        opacity:0;
+        transform:translateY(15px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:700px){
+
+    .header{
+        margin-top:12px;
+        padding:22px 16px;
+        border-radius:22px;
+    }
+
+    .header p{
+        font-size:18px;
+    }
+
+    .status{
+        grid-template-columns:1fr;
+    }
+
+    .question-card{
+        padding:22px 17px;
+        border-radius:23px;
+        min-height:550px;
+    }
+
+    .question{
+        font-size:23px;
+        line-height:1.5;
+    }
+
+    .meaning{
+        font-size:18px;
+    }
+
+    .option{
+        font-size:19px;
+        padding:16px;
+    }
+
+    .explanation-text{
+        font-size:18px;
+    }
+
+    .controls{
+        gap:10px;
+    }
+
+    .btn{
+        min-width:0;
+        flex:1;
+        font-size:18px;
+        padding:14px 10px;
+    }
+}
+
+@media(max-width:400px){
+    .question{
+        font-size:21px;
+    }
+
+    .option{
+        font-size:18px;
+    }
+}
+</style>
 </head>
-<body class="min-h-screen flex items-center justify-center relative select-none px-4">
 
-    <!-- Ambient glow center element -->
-    <div id="glow" class="ambient-glow top-1/2 left-1/2"></div>
+<body>
 
-    <!-- Centered minimal content with entry animations -->
-    <main class="text-center z-10 space-y-6 max-w-3xl mx-auto py-8 px-4">
-        
-        <!-- Main English Title -->
-        <h1 class="animate-heading text-5xl sm:text-7xl md:text-8xl font-black tracking-tight glow-text font-['Inter'] drop-shadow-lg">
-            Coming Soon...
-        </h1>
+<header class="header">
+    <h1>Gerund, Infinitive &amp; Participle</h1>
+    <p>English Grammar — Infinity MCQ Practice System</p>
+    <div class="part">PART 20</div>
+</header>
 
-        <!-- Bengali Subheading -->
-        <p class="animate-subheading text-xl sm:text-3xl md:text-4xl font-semibold text-emerald-400/90 leading-relaxed tracking-wide drop-shadow">
-            ইনশাআল্লাহ, খুব শীঘ্রই ডাটা যোগ করা হবে।
-        </p>
+<main class="container">
 
-    </main>
+    <section class="status">
 
-    <script>
-        const glow = document.getElementById('glow');
+        <div class="status-card">
+            Question
+            <span id="questionCounter">1</span>
+        </div>
 
-        // Mouse move interactive glow background
-        window.addEventListener('mousemove', (e) => {
-            glow.style.left = e.clientX + 'px';
-            glow.style.top = e.clientY + 'px';
-        });
+        <div class="status-card">
+            Score
+            <span id="score">0</span>
+        </div>
 
-        // Touch move interactive glow background for mobile screens
-        window.addEventListener('touchmove', (e) => {
-            if (e.touches.length > 0) {
-                glow.style.left = e.touches[0].clientX + 'px';
-                glow.style.top = e.touches[0].clientY + 'px';
-            }
-        });
-    </script>
+        <div class="status-card" style="grid-column:1/-1;">
+            Progress
+            <span id="progressText">0%</span>
+
+            <div class="progress-wrap">
+                <div class="progress" id="progressBar"></div>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="question-card" id="questionCard">
+
+        <div class="question-number" id="typeLabel">
+            Gerund
+        </div>
+
+        <div class="question" id="question">
+            Loading...
+        </div>
+
+        <div class="meaning" id="meaning"></div>
+
+        <div class="options" id="options"></div>
+
+        <div class="explanation" id="explanation">
+            <div class="explanation-title">Explanation</div>
+            <div class="explanation-text" id="explanationText"></div>
+        </div>
+
+    </section>
+
+    <div class="controls">
+
+        <button class="btn" id="previousBtn" onclick="previousQuestion()">
+            ← Previous
+        </button>
+
+        <button class="btn" id="nextBtn" onclick="nextQuestion()">
+            Next →
+        </button>
+
+    </div>
+
+</main>
+
+<footer class="footer">
+    Part 20 — Gerund, Infinitive &amp; Participle • Infinity MCQ Practice
+</footer>
+
+
+<script>
+
+/* ============================================================
+   PART 20
+   GERUND, INFINITIVE & PARTICIPLE
+   INFINITY MCQ GENERATOR
+   ============================================================ */
+
+const names = [
+    "Firoz",
+    "Fatiha",
+    "Fatema",
+    "Jui",
+    "Ema",
+    "Rupa",
+    "Moksed",
+    "Ferjousi",
+    "Jannati",
+    "Mini",
+    "Miraz",
+    "Mujahid",
+    "Milon",
+    "Hannan",
+    "Joba",
+    "Tanzila",
+    "Rina",
+    "Tania",
+    "Taslima"
+];
+
+let questionNumber = 1;
+let score = 0;
+let answered = false;
+let currentQuestion = null;
+
+const questionEl = document.getElementById("question");
+const meaningEl = document.getElementById("meaning");
+const optionsEl = document.getElementById("options");
+const explanationEl = document.getElementById("explanation");
+const explanationTextEl = document.getElementById("explanationText");
+const typeLabelEl = document.getElementById("typeLabel");
+const questionCounterEl = document.getElementById("questionCounter");
+const scoreEl = document.getElementById("score");
+const progressTextEl = document.getElementById("progressText");
+const progressBarEl = document.getElementById("progressBar");
+const previousBtn = document.getElementById("previousBtn");
+const questionCard = document.getElementById("questionCard");
+
+
+/* ============================================================
+   HELPER FUNCTIONS
+   ============================================================ */
+
+function randomItem(array){
+    return array[Math.floor(Math.random() * array.length)];
+}
+
+function shuffle(array){
+    return [...array].sort(() => Math.random() - 0.5);
+}
+
+function pickName(){
+    return randomItem(names);
+}
+
+function pickWrong(correct, pool){
+    const choices = pool.filter(item => item !== correct);
+    return randomItem(choices);
+}
+
+
+/* ============================================================
+   GERUND QUESTION GENERATORS
+   ============================================================ */
+
+const gerundQuestions = [
+
+    function(){
+        const name = pickName();
+
+        return {
+            type:"Gerund",
+            question:`${name} enjoys ______ books in the evening.`,
+            meaning:"(শূন্যস্থানে সঠিক verb form বসাও।)",
+            options:["read","to read","reading","readed"],
+            answer:"reading",
+            explanation:
+            "এখানে <b>enjoy</b> একটি verb, যার পরে সাধারণত Gerund (verb + ing) ব্যবহৃত হয়। তাই <b>enjoys reading</b> সঠিক। " +
+            "Gerund দেখতে verb-এর মতো হলেও বাক্যে noun-এর কাজ করে।"
+        };
+    },
+
+    function(){
+        const name = pickName();
+
+        return {
+            type:"Gerund",
+            question:`${name} is fond of ______ English.`,
+            meaning:"(সে ইংরেজি শেখার প্রতি আগ্রহী।)",
+            options:["learn","to learn","learning","learned"],
+            answer:"learning",
+            explanation:
+            "<b>of</b> একটি preposition। Preposition-এর পরে verb এলে সাধারণত Gerund (V-ing) হয়। তাই <b>fond of learning</b> সঠিক।"
+        };
+    },
+
+    function(){
+        const name = pickName();
+
+        return {
+            type:"Gerund",
+            question:`______ is good for health.`,
+            meaning:"(শূন্যস্থানে এমন একটি কাজ বসাও যা noun-এর মতো কাজ করবে।)",
+            options:["Swim","To swim","Swimming","Swam"],
+            answer:"Swimming",
+            explanation:
+            "এখানে বাক্যের শুরুতে একটি কাজকে noun হিসেবে ব্যবহার করা হয়েছে। তাই <b>Swimming</b> Gerund হিসেবে subject-এর কাজ করছে। "
+            + "অর্থ: সাঁতার কাটা স্বাস্থ্যের জন্য ভালো।"
+        };
+    },
+
+    function(){
+        const name = pickName();
+
+        return {
+            type:"Gerund",
+            question:`${name} avoided ______ late.`,
+            meaning:"(সে দেরি করার কাজটি এড়িয়ে গেল।)",
+            options:["come","to come","coming","came"],
+            answer:"coming",
+            explanation:
+            "<b>Avoid</b> verb-এর পরে Gerund ব্যবহৃত হয়। তাই <b>avoided coming</b> সঠিক। <b>avoid to come</b> ভুল।"
+        };
+    },
+
+    function(){
+        const name = pickName();
+
+        return {
+            type:"Gerund",
+            question:`${name} stopped ______ when the teacher entered.`,
+            meaning:"(শিক্ষক প্রবেশ করার সময় সে পড়া/কাজটি বন্ধ করল।)",
+            options:["write","to write","writing","wrote"],
+            answer:"writing",
+            explanation:
+            "<b>stop + Gerund</b> অর্থ হলো কোনো কাজ করা বন্ধ করা। তাই <b>stopped writing</b> সঠিক।"
+        };
+    },
+
+    function(){
+        const name = pickName();
+
+        return {
+            type:"Gerund",
+            question:`${name} is interested in ______ English grammar.`,
+            meaning:"(সে ইংরেজি ব্যাকরণ শেখায় আগ্রহী।)",
+            options:["study","to study","studying","studied"],
+            answer:"studying",
+            explanation:
+            "<b>interested in</b>-এর পরে <b>in</b> একটি preposition। Preposition-এর পরে verb হলে Gerund হয়। তাই <b>studying</b> সঠিক।"
+        };
+    }
+
+];
+
+
+/* ============================================================
+   TO-INFINITIVE QUESTION GENERATORS
+   ============================================================ */
+
+const infinitiveQuestions = [
+
+    function(){
+        const name = pickName();
+
+        return {
+            type:"To-Infinitive",
+            question:`${name} wants ______ English.`,
+            meaning:"(সে ইংরেজি শিখতে চায়।)",
+            options:["learn","learning","to learn","learned"],
+            answer:"to learn",
+            explanation:
+            "<b>want</b>-এর পরে সাধারণত <b>to + verb</b> হয়। তাই <b>wants to learn</b> সঠিক।"
+        };
+    },
+
+    function(){
+        const name = pickName();
+
+        return {
+            type:"To-Infinitive",
+            question:`${name} decided ______ hard.`,
+            meaning:"(সে কঠোর পরিশ্রম করার সিদ্ধান্ত নিল।)",
+            options:["study","studying","to study","studied"],
+            answer:"to study",
+            explanation:
+            "<b>decide</b>-এর পরে To-Infinitive ব্যবহৃত হয়। তাই <b>decided to study</b> সঠিক।"
+        };
+    },
+
+    function(){
+        const name = pickName();
+
+        return {
+            type:"To-Infinitive",
+            question:`${name} came here ______ English.`,
+            meaning:"(সে ইংরেজি শেখার জন্য এখানে এসেছে।)",
+            options:["learn","learning","to learn","learned"],
+            answer:"to learn",
+            explanation:
+            "উদ্দেশ্য বোঝাতে <b>to + verb</b> ব্যবহার করা যায়। এখানে <b>to learn</b> দ্বারা উদ্দেশ্য বোঝানো হয়েছে—সে এখানে এসেছে ইংরেজি শিখতে।"
+        };
+    },
+
+    function(){
+        const name = pickName();
+
+        return {
+            type:"To-Infinitive",
+            question:`It is difficult ______ this question.`,
+            meaning:"(এই প্রশ্নটির উত্তর দেওয়া কঠিন।)",
+            options:["answer","answering","to answer","answered"],
+            answer:"to answer",
+            explanation:
+            "<b>It is + adjective + to-infinitive</b> একটি প্রচলিত গঠন। তাই <b>It is difficult to answer</b> সঠিক।"
+        };
+    },
+
+    function(){
+        const name = pickName();
+
+        return {
+            type:"To-Infinitive",
+            question:`${name} hopes ______ the examination.`,
+            meaning:"(সে পরীক্ষায় সফল হওয়ার আশা করে।)",
+            options:["pass","passing","to pass","passed"],
+            answer:"to pass",
+            explanation:
+            "<b>hope</b>-এর পরে সাধারণত <b>to-infinitive</b> ব্যবহৃত হয়। তাই <b>hopes to pass</b> সঠিক।"
+        };
+    }
+
+];
+
+
+/* ============================================================
+   BARE INFINITIVE QUESTION GENERATORS
+   ============================================================ */
+
+const bareInfinitiveQuestions = [
+
+    function(){
+        const name = pickName();
+
+        return {
+            type:"Bare Infinitive",
+            question:`${name} can ______ English.`,
+            meaning:"(সে ইংরেজি বলতে পারে।)",
+            options:["speaks","speaking","to speak","speak"],
+            answer:"speak",
+            explanation:
+            "Modal verb <b>can</b>-এর পরে verb-এর মূল রূপ (Base Form) বসে। এখানে <b>can speak</b> সঠিক। এটিকে Bare Infinitive বলা হয়।"
+        };
+    },
+
+    function(){
+        const name = pickName();
+
+        return {
+            type:"Bare Infinitive",
+            question:`${name} made Fatiha ______ the lesson.`,
+            meaning:"(সে ফাতিহাকে পাঠটি পড়তে বাধ্য করল।)",
+            options:["to read","reading","read","reads"],
+            answer:"read",
+            explanation:
+            "<b>make + object + bare infinitive</b> গঠন ব্যবহৃত হয়। তাই <b>made Fatiha read</b> সঠিক।"
+        };
+    },
+
+    function(){
+        const name = pickName();
+
+        return {
+            type:"Bare Infinitive",
+            question:`${name} let Jui ______ outside.`,
+            meaning:"(সে জুইকে বাইরে যেতে দিল।)",
+            options:["to go","going","go","went"],
+            answer:"go",
+            explanation:
+            "<b>let + object + bare infinitive</b> হয়। তাই <b>let Jui go</b> সঠিক। <b>let Jui to go</b> ভুল।"
+        };
+    },
+
+    function(){
+        const name = pickName();
+
+        return {
+            type:"Bare Infinitive",
+            question:`${name} saw Miraz ______ across the road.`,
+            meaning:"(সে মিরাজকে রাস্তা পার হতে দেখল।)",
+            options:["to cross","crossing","cross","crossed"],
+            answer:"cross",
+            explanation:
+            "কিছু perception verb যেমন <b>see</b>-এর পরে object-এর সঙ্গে Bare Infinitive ব্যবহার করা যায় যখন সম্পূর্ণ কাজটি দেখা বোঝায়। তাই <b>saw Miraz cross</b> সঠিক।"
+        };
+    },
+
+    function(){
+        const name = pickName();
+
+        return {
+            type:"Bare Infinitive",
+            question:`${name} had better ______ now.`,
+            meaning:"(তার এখনই কাজটি করা ভালো।)",
+            options:["to go","going","go","went"],
+            answer:"go",
+            explanation:
+            "<b>had better</b>-এর পরে সবসময় verb-এর Base Form বা Bare Infinitive বসে। তাই <b>had better go</b> সঠিক।"
+        };
+    }
+
+];
+
+
+/* ============================================================
+   PRESENT PARTICIPLE
+   ============================================================ */
+
+const presentParticipleQuestions = [
+
+    function(){
+        const name = pickName();
+
+        return {
+            type:"Present Participle",
+            question:`______ down the road, ${name} saw Jui.`,
+            meaning:"(রাস্তা দিয়ে হাঁটার সময় সে জুইকে দেখল।)",
+            options:["Walk","Walking","Walked","To walk"],
+            answer:"Walking",
+            explanation:
+            "<b>Walking</b> এখানে noun নয়; এটি subject-এর চলমান কাজ বোঝাচ্ছে এবং participial phrase তৈরি করেছে। তাই এটি Present Participle।"
+        };
+    },
+
+    function(){
+        const name = pickName();
+
+        return {
+            type:"Present Participle",
+            question:`The ______ child was crying.`,
+            meaning:"(কাঁদতে থাকা শিশুটি কাঁদছিল।)",
+            options:["cry","cried","crying","to cry"],
+            answer:"crying",
+            explanation:
+            "<b>Crying</b> এখানে noun-কে অর্থাৎ child-কে বর্ণনা করছে এবং চলমান কাজ বোঝাচ্ছে। তাই এটি Present Participle।"
+        };
+    },
+
+    function(){
+        const name = pickName();
+
+        return {
+            type:"Present Participle",
+            question:`______ the book, ${name} learned a new rule.`,
+            meaning:"(বইটি পড়তে গিয়ে সে একটি নতুন নিয়ম শিখল।)",
+            options:["Reading","Read","To read","Reads"],
+            answer:"Reading",
+            explanation:
+            "<b>Reading</b> দ্বারা subject-এর চলমান কাজ বোঝানো হয়েছে। এটি <b>read + ing</b> এবং এখানে Present Participle হিসেবে ব্যবহৃত হয়েছে।"
+        };
+    }
+
+];
+
+
+/* ============================================================
+   PAST PARTICIPLE
+   ============================================================ */
+
+const pastParticipleQuestions = [
+
+    function(){
+        const name = pickName();
+
+        return {
+            type:"Past Participle",
+            question:`The ______ book was very useful.`,
+            meaning:"(ব্যবহৃত/লেখা বইটি খুব উপকারী ছিল।)",
+            options:["use","using","used","to use"],
+            answer:"used",
+            explanation:
+            "<b>Used</b> এখানে book-কে বর্ণনা করছে। এটি verb-এর Past Participle form এবং adjective-এর মতো কাজ করছে। তাই এটি Past Participle।"
+        };
+    },
+
+    function(){
+        const name = pickName();
+
+        return {
+            type:"Past Participle",
+            question:`______ by the teacher, the students became silent.`,
+            meaning:"(শিক্ষকের দ্বারা সতর্ক করা হলে ছাত্ররা নীরব হয়ে গেল।)",
+            options:["Warning","Warned","Warn","To warn"],
+            answer:"Warned",
+            explanation:
+            "<b>Warned</b> এখানে passive অর্থ প্রকাশ করছে—শিক্ষকের দ্বারা সতর্ক করা হয়েছিল। তাই Past Participle <b>warned</b> সঠিক।"
+        };
+    },
+
+    function(){
+        const name = pickName();
+
+        return {
+            type:"Past Participle",
+            question:`The ______ window needs repair.`,
+            meaning:"(ভাঙা জানালাটির মেরামত দরকার।)",
+            options:["break","breaking","broken","to break"],
+            answer:"broken",
+            explanation:
+            "<b>Broken</b> হলো <b>break</b>-এর Past Participle। এখানে এটি window-কে বর্ণনা করছে এবং passive/result অর্থ দিচ্ছে।"
+        };
+    }
+
+];
+
+
+/* ============================================================
+   PERFECT PARTICIPLE
+   ============================================================ */
+
+const perfectParticipleQuestions = [
+
+    function(){
+        const name = pickName();
+
+        return {
+            type:"Perfect Participle",
+            question:`______ the work, ${name} went home.`,
+            meaning:"(কাজটি শেষ করার পর সে বাড়ি গেল।)",
+            options:[
+                "Having finished",
+                "Finishing",
+                "Finished",
+                "To finish"
+            ],
+            answer:"Having finished",
+            explanation:
+            "একটি কাজ অন্য কাজের আগে সম্পন্ন হয়েছে—এমন অর্থ বোঝাতে <b>Having + Past Participle</b> ব্যবহার করা হয়। "
+            + "এখানে আগে কাজ শেষ হয়েছে, তারপর বাড়ি গেছে। তাই <b>Having finished</b> সঠিক।"
+        };
+    },
+
+    function(){
+        const name = pickName();
+
+        return {
+            type:"Perfect Participle",
+            question:`______ the lesson, Fatiha started the exercise.`,
+            meaning:"(পাঠটি শেষ করার পর ফাতিহা অনুশীলন শুরু করল।)",
+            options:[
+                "Having completed",
+                "Completing",
+                "Completed",
+                "To complete"
+            ],
+            answer:"Having completed",
+            explanation:
+            "<b>Having + V3</b> দ্বারা বোঝায় প্রথম কাজটি সম্পন্ন হওয়ার পর দ্বিতীয় কাজটি হয়েছে। "
+            + "প্রথমে lesson completed হয়েছে, তারপর exercise শুরু হয়েছে।"
+        };
+    },
+
+    function(){
+        const name = pickName();
+
+        return {
+            type:"Perfect Participle",
+            question:`______ the letter, Jannati posted it.`,
+            meaning:"(চিঠিটি লেখার পর জান্নাতি সেটি ডাকযোগে পাঠাল।)",
+            options:[
+                "Having written",
+                "Writing",
+                "Written",
+                "To write"
+            ],
+            answer:"Having written",
+            explanation:
+            "<b>Having written</b> হলো Perfect Participle। এখানে চিঠি লেখার কাজটি আগে শেষ হয়েছে এবং পরে সেটি পোস্ট করা হয়েছে।"
+        };
+    }
+
+];
+
+
+/* ============================================================
+   MIXED QUESTION GENERATOR
+   ============================================================ */
+
+const generators = [
+    ...gerundQuestions,
+    ...infinitiveQuestions,
+    ...bareInfinitiveQuestions,
+    ...presentParticipleQuestions,
+    ...pastParticipleQuestions,
+    ...perfectParticipleQuestions
+];
+
+
+/* ============================================================
+   CREATE QUESTION
+   ============================================================ */
+
+function generateQuestion(){
+
+    const generator = randomItem(generators);
+
+    let q = generator();
+
+    /*
+       Randomly shuffle options.
+       Correct answer remains stored separately.
+    */
+
+    q.options = shuffle(q.options);
+
+    return q;
+}
+
+
+/* ============================================================
+   DISPLAY QUESTION
+   ============================================================ */
+
+function displayQuestion(){
+
+    currentQuestion = generateQuestion();
+    answered = false;
+
+    questionEl.innerHTML = currentQuestion.question;
+    meaningEl.innerHTML = currentQuestion.meaning;
+
+    typeLabelEl.textContent = currentQuestion.type;
+
+    optionsEl.innerHTML = "";
+
+    currentQuestion.options.forEach(option => {
+
+        const button = document.createElement("button");
+
+        button.className = "option";
+        button.textContent = option;
+
+        button.onclick = () => checkAnswer(button, option);
+
+        optionsEl.appendChild(button);
+    });
+
+    explanationEl.classList.remove("show");
+    explanationTextEl.innerHTML = "";
+
+    questionCounterEl.textContent = questionNumber;
+
+    /*
+       Progress is intentionally visual.
+       Since the system is infinite, the percentage cycles
+       every 20 questions instead of ever reaching a fixed end.
+    */
+
+    const progress = ((questionNumber - 1) % 20) / 20 * 100;
+
+    progressBarEl.style.width = progress + "%";
+    progressTextEl.textContent = Math.round(progress) + "%";
+
+    previousBtn.disabled = questionNumber === 1;
+}
+
+
+/* ============================================================
+   CHECK ANSWER
+   ============================================================ */
+
+function checkAnswer(button, selected){
+
+    if(answered) return;
+
+    answered = true;
+
+    const allOptions = document.querySelectorAll(".option");
+
+    allOptions.forEach(btn => {
+
+        btn.disabled = true;
+
+        if(btn.textContent === currentQuestion.answer){
+            btn.classList.add("correct");
+        }
+
+    });
+
+    if(selected === currentQuestion.answer){
+
+        score++;
+        scoreEl.textContent = score;
+
+    }else{
+
+        button.classList.add("wrong");
+
+    }
+
+    explanationTextEl.innerHTML =
+        `<strong>Correct Answer:</strong> ${currentQuestion.answer}<br><br>` +
+        currentQuestion.explanation;
+
+    explanationEl.classList.add("show");
+}
+
+
+/* ============================================================
+   NEXT QUESTION
+   ============================================================ */
+
+function nextQuestion(){
+
+    if(!answered) return;
+
+    questionCard.classList.remove("transition-in");
+    questionCard.classList.add("transition-out");
+
+    setTimeout(() => {
+
+        questionNumber++;
+
+        questionCard.classList.remove("transition-out");
+
+        displayQuestion();
+
+        /*
+           Force browser to recognize the new animation.
+        */
+        void questionCard.offsetWidth;
+
+        questionCard.classList.add("transition-in");
+
+    },350);
+}
+
+
+/* ============================================================
+   PREVIOUS
+   ============================================================ */
+
+function previousQuestion(){
+
+    /*
+       This Infinity system generates fresh questions.
+       Previous therefore moves only through the current
+       practice position rather than storing infinite history.
+    */
+
+    if(questionNumber <= 1) return;
+
+    questionNumber--;
+
+    displayQuestion();
+
+    questionCard.classList.remove("transition-in");
+
+    void questionCard.offsetWidth;
+
+    questionCard.classList.add("transition-in");
+}
+
+
+/* ============================================================
+   KEYBOARD SUPPORT
+   ============================================================ */
+
+document.addEventListener("keydown", function(event){
+
+    if(event.key === "ArrowRight"){
+        nextQuestion();
+    }
+
+    if(event.key === "ArrowLeft"){
+        previousQuestion();
+    }
+
+});
+
+
+/* ============================================================
+   INITIAL LOAD
+   ============================================================ */
+
+displayQuestion();
+
+questionCard.classList.add("transition-in");
+
+</script>
+
 </body>
 </html>
