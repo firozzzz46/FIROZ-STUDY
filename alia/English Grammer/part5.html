@@ -4,553 +4,448 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Part 4 - Noun | Infinity MCQ</title>
+<title>Part 5 - Noun | Infinity MCQ</title>
 
 <style>
 /* =========================================================
-   PART 4 - NOUN
+   PART 5 - NOUN
    INFINITY MCQ PRACTICE SYSTEM
    Single File HTML + CSS + JavaScript
 ========================================================= */
 
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700;800&display=swap');
 
-:root{
-    --bg1:#fdfdfd;
-    --bg2:#f4f7fb;
-    --text:#172033;
-    --muted:#657084;
-    --card:rgba(255,255,255,0.72);
-    --border:rgba(255,255,255,0.9);
-    --shadow:0 18px 55px rgba(30,50,80,0.10);
-    --soft-shadow:0 8px 28px rgba(30,50,80,0.08);
-    --accent:#4f67ff;
-    --accent2:#7287ff;
-    --correct:#168a58;
-    --wrong:#d64747;
-    --radius:26px;
-    --ease:cubic-bezier(.22,.61,.36,1);
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+:root {
+    --soft-bg: #f8fafc;
+    --card-bg: rgba(255,255,255,0.72);
+    --border: rgba(255,255,255,0.85);
+    --text: #172033;
+    --muted: #64748b;
+    --primary: #4f46e5;
+    --primary-dark: #3730a3;
+    --green: #15803d;
+    --green-bg: rgba(220,252,231,0.85);
+    --red: #dc2626;
+    --red-bg: rgba(254,226,226,0.85);
+    --shadow: 0 20px 60px rgba(30,41,59,0.10);
 }
 
-html{
-    scroll-behavior:smooth;
-}
+body {
+    min-height: 100vh;
+    color: var(--text);
 
-body{
-    min-height:100vh;
-    color:var(--text);
     background:
-        radial-gradient(circle at 10% 10%, rgba(100,130,255,.09), transparent 28%),
-        radial-gradient(circle at 90% 20%, rgba(120,200,255,.08), transparent 30%),
-        linear-gradient(135deg,var(--bg1),var(--bg2),#ffffff);
-    font-family:'Times New Roman','Noto Sans Bengali',serif;
-    overflow-x:hidden;
+        radial-gradient(circle at 10% 10%, rgba(99,102,241,0.08), transparent 30%),
+        radial-gradient(circle at 90% 20%, rgba(14,165,233,0.08), transparent 30%),
+        radial-gradient(circle at 50% 100%, rgba(168,85,247,0.06), transparent 35%),
+        linear-gradient(135deg, #ffffff 0%, #f8fafc 50%, #f1f5f9 100%);
+
+    font-family: "Times New Roman", "Noto Sans Bengali", serif;
+    padding: 25px 15px;
 }
 
-/* =========================================================
-   BACKGROUND
-========================================================= */
+/* Main Container */
 
-.background-orb{
-    position:fixed;
-    border-radius:50%;
-    pointer-events:none;
-    filter:blur(55px);
-    opacity:.32;
-    z-index:-1;
-    animation:slowFloat 16s var(--ease) infinite alternate;
+.app {
+    width: min(100%, 1050px);
+    margin: auto;
 }
 
-.orb1{
-    width:240px;
-    height:240px;
-    top:5%;
-    left:-70px;
-    background:#dce5ff;
+/* Header */
+
+.header {
+    text-align: center;
+    margin-bottom: 22px;
+    animation: headerIn 1s cubic-bezier(.16,1,.3,1);
 }
 
-.orb2{
-    width:300px;
-    height:300px;
-    right:-100px;
-    bottom:5%;
-    background:#e6f4ff;
-    animation-delay:2s;
+.header h1 {
+    font-size: clamp(28px, 5vw, 44px);
+    font-weight: 800;
+    letter-spacing: .5px;
 }
 
-@keyframes slowFloat{
-    from{
-        transform:translate3d(0,0,0);
-    }
-    to{
-        transform:translate3d(20px,-18px,0);
-    }
+.header h1 span {
+    color: var(--primary);
 }
 
-/* =========================================================
-   MAIN CONTAINER
-========================================================= */
-
-.container{
-    width:min(1100px,94%);
-    margin:0 auto;
-    padding:35px 0 50px;
+.header p {
+    margin-top: 8px;
+    font-family: "Noto Sans Bengali", "Kalpurush", sans-serif;
+    font-size: 18px;
+    color: var(--muted);
 }
 
-/* =========================================================
-   HEADER
-========================================================= */
+/* Glass Card */
 
-.header{
-    text-align:center;
-    margin-bottom:25px;
-    animation:fadeDown 1.1s var(--ease) both;
+.glass-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border-radius: 28px;
+    box-shadow: var(--shadow);
 }
 
-.badge{
-    display:inline-block;
-    padding:8px 16px;
-    border-radius:50px;
-    background:rgba(255,255,255,.72);
-    border:1px solid rgba(255,255,255,.95);
-    box-shadow:var(--soft-shadow);
-    color:var(--accent);
-    font-size:18px;
-    font-weight:bold;
-    margin-bottom:13px;
-    backdrop-filter:blur(15px);
+/* Top Information */
+
+.top-bar {
+    padding: 18px 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 18px;
 }
 
-.header h1{
-    font-size:clamp(30px,5vw,48px);
-    line-height:1.15;
-    margin-bottom:8px;
-    letter-spacing:.3px;
+.part-label {
+    font-size: 21px;
+    font-weight: 700;
 }
 
-.header p{
-    font-size:19px;
-    color:var(--muted);
+.part-label span {
+    color: var(--primary);
 }
 
-/* =========================================================
-   TOP STATS
-========================================================= */
-
-.stats{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:15px;
-    margin-bottom:20px;
+.stats {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
 }
 
-.stat{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:20px;
-    padding:17px;
-    text-align:center;
-    box-shadow:var(--soft-shadow);
-    backdrop-filter:blur(18px);
-    -webkit-backdrop-filter:blur(18px);
+.stat {
+    padding: 9px 14px;
+    border-radius: 14px;
+    background: rgba(255,255,255,.8);
+    border: 1px solid rgba(226,232,240,.9);
+    font-size: 17px;
+    font-weight: 700;
+}
+
+/* Progress */
+
+.progress-wrapper {
+    margin-bottom: 18px;
+}
+
+.progress-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.progress-track {
+    height: 9px;
+    background: rgba(203,213,225,.55);
+    border-radius: 50px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #4f46e5, #7c3aed, #0ea5e9);
+    border-radius: 50px;
+    transition: width .7s cubic-bezier(.16,1,.3,1);
+}
+
+/* Question Card */
+
+.question-card {
+    padding: clamp(22px, 5vw, 42px);
+    overflow: hidden;
+}
+
+/* Question Animation Container */
+
+.question-content {
+    animation: questionEnter .9s cubic-bezier(.16,1,.3,1);
+}
+
+.question-number {
+    display: inline-block;
+    padding: 7px 13px;
+    border-radius: 12px;
+    background: rgba(79,70,229,.10);
+    color: var(--primary-dark);
+    font-weight: 800;
+    font-size: 16px;
+    margin-bottom: 16px;
+}
+
+.question {
+    font-family: "Times New Roman", serif;
+    font-size: clamp(22px, 3vw, 29px);
+    line-height: 1.5;
+    font-weight: 700;
+}
+
+.question-bangla {
+    margin-top: 8px;
+    font-family: "Noto Sans Bengali", "Kalpurush", sans-serif;
+    font-size: 18px;
+    line-height: 1.7;
+    color: #64748b;
+}
+
+/* Options */
+
+.options {
+    margin-top: 28px;
+    display: grid;
+    gap: 13px;
+}
+
+.option {
+    width: 100%;
+    padding: 16px 18px;
+    border-radius: 17px;
+    border: 1px solid rgba(203,213,225,.8);
+    background: rgba(255,255,255,.72);
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    font-family: "Times New Roman", serif;
+    font-size: 20px;
+    text-align: left;
+
     transition:
-        transform .7s var(--ease),
-        box-shadow .7s var(--ease);
+        transform .35s cubic-bezier(.16,1,.3,1),
+        box-shadow .35s ease,
+        border-color .35s ease,
+        background .35s ease;
 }
 
-.stat:hover{
-    transform:translateY(-3px);
-    box-shadow:var(--shadow);
+.option:hover {
+    transform: translateX(5px);
+    border-color: rgba(79,70,229,.4);
+    box-shadow: 0 10px 28px rgba(79,70,229,.10);
 }
 
-.stat-label{
-    display:block;
-    color:var(--muted);
-    font-size:16px;
-    margin-bottom:5px;
+.option-letter {
+    min-width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: rgba(79,70,229,.10);
+    color: var(--primary);
+    display: grid;
+    place-items: center;
+    font-weight: 800;
 }
 
-.stat-value{
-    display:block;
-    font-size:25px;
-    font-weight:bold;
+.option.correct {
+    background: var(--green-bg);
+    border-color: rgba(21,128,61,.4);
+    color: #166534;
 }
 
-/* =========================================================
-   PROGRESS
-========================================================= */
-
-.progress-card{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:20px;
-    padding:15px 18px;
-    box-shadow:var(--soft-shadow);
-    backdrop-filter:blur(18px);
-    margin-bottom:20px;
+.option.correct .option-letter {
+    background: #15803d;
+    color: white;
 }
 
-.progress-top{
-    display:flex;
-    justify-content:space-between;
-    gap:15px;
-    margin-bottom:9px;
-    font-size:17px;
+.option.wrong {
+    background: var(--red-bg);
+    border-color: rgba(220,38,38,.4);
+    color: #991b1b;
 }
 
-.progress-track{
-    height:8px;
-    width:100%;
-    background:rgba(80,100,140,.10);
-    border-radius:50px;
-    overflow:hidden;
+.option.wrong .option-letter {
+    background: #dc2626;
+    color: white;
 }
 
-.progress-bar{
-    height:100%;
-    width:0%;
-    border-radius:50px;
-    background:linear-gradient(90deg,var(--accent),var(--accent2));
-    transition:width 1s var(--ease);
+.option.disabled {
+    cursor: default;
 }
 
-/* =========================================================
-   QUESTION CARD
-========================================================= */
-
-.quiz-card{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:var(--radius);
-    box-shadow:var(--shadow);
-    backdrop-filter:blur(24px);
-    -webkit-backdrop-filter:blur(24px);
-    padding:clamp(22px,4vw,40px);
-    min-height:450px;
-    animation:cardEnter 1s var(--ease) both;
+.option.disabled:hover {
+    transform: none;
 }
 
-.question-number{
-    color:var(--accent);
-    font-size:17px;
-    font-weight:bold;
-    margin-bottom:14px;
-    letter-spacing:.4px;
+/* Explanation */
+
+.explanation {
+    margin-top: 25px;
+    padding: 20px;
+    border-radius: 20px;
+    background: rgba(248,250,252,.85);
+    border-left: 5px solid var(--primary);
+
+    font-family: "Noto Sans Bengali", "Kalpurush", sans-serif;
+    font-size: 18px;
+    line-height: 1.9;
+
+    animation: explanationIn .7s cubic-bezier(.16,1,.3,1);
 }
 
-.question{
-    font-family:'Times New Roman',serif;
-    font-size:clamp(21px,3vw,29px);
-    line-height:1.45;
-    font-weight:bold;
-    margin-bottom:7px;
+.explanation strong {
+    color: var(--primary-dark);
 }
 
-.question-bangla{
-    font-family:'Noto Sans Bengali','Kalpurush',sans-serif;
-    font-size:18px;
-    color:var(--muted);
-    line-height:1.7;
-    margin-bottom:25px;
+/* Controls */
+
+.controls {
+    margin-top: 22px;
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
 }
 
-/* =========================================================
-   OPTIONS
-========================================================= */
+.btn {
+    border: none;
+    padding: 14px 24px;
+    border-radius: 15px;
+    cursor: pointer;
 
-.options{
-    display:grid;
-    gap:13px;
-}
+    font-family: "Times New Roman", serif;
+    font-size: 18px;
+    font-weight: 700;
 
-.option{
-    width:100%;
-    text-align:left;
-    border:1px solid rgba(120,140,180,.16);
-    background:rgba(255,255,255,.62);
-    border-radius:17px;
-    padding:17px 19px;
-    cursor:pointer;
-    font-family:'Times New Roman',serif;
-    font-size:20px;
-    color:var(--text);
-    box-shadow:0 5px 18px rgba(30,50,80,.05);
     transition:
-        transform .55s var(--ease),
-        background .55s var(--ease),
-        border-color .55s var(--ease),
-        box-shadow .55s var(--ease);
+        transform .3s cubic-bezier(.16,1,.3,1),
+        box-shadow .3s ease,
+        opacity .3s ease;
 }
 
-.option:hover:not(:disabled){
-    transform:translateX(5px);
-    background:rgba(255,255,255,.92);
-    box-shadow:0 9px 25px rgba(30,50,80,.09);
+.btn:hover:not(:disabled) {
+    transform: translateY(-3px);
 }
 
-.option:disabled{
-    cursor:default;
+.btn:active:not(:disabled) {
+    transform: scale(.96);
 }
 
-.option.correct{
-    background:rgba(22,138,88,.10);
-    border-color:rgba(22,138,88,.45);
-    color:var(--correct);
+.previous {
+    background: rgba(226,232,240,.85);
+    color: #334155;
 }
 
-.option.wrong{
-    background:rgba(214,71,71,.09);
-    border-color:rgba(214,71,71,.40);
-    color:var(--wrong);
+.next {
+    background: linear-gradient(135deg, #4f46e5, #7c3aed);
+    color: white;
+    box-shadow: 0 10px 25px rgba(79,70,229,.22);
 }
 
-.option-letter{
-    display:inline-flex;
-    width:32px;
-    height:32px;
-    align-items:center;
-    justify-content:center;
-    border-radius:50%;
-    margin-right:11px;
-    background:rgba(80,100,140,.08);
-    font-weight:bold;
+.btn:disabled {
+    opacity: .4;
+    cursor: not-allowed;
 }
 
-/* =========================================================
-   EXPLANATION
-========================================================= */
+/* Footer */
 
-.explanation{
-    margin-top:25px;
-    padding:21px;
-    border-radius:20px;
-    background:rgba(245,248,255,.75);
-    border:1px solid rgba(90,110,170,.12);
-    animation:explainEnter .8s var(--ease) both;
+.footer {
+    text-align: center;
+    margin-top: 18px;
+    color: #64748b;
+    font-size: 15px;
 }
 
-.explanation-title{
-    font-size:21px;
-    font-weight:bold;
-    margin-bottom:9px;
-}
+/* Animations */
 
-.explanation-text{
-    font-family:'Noto Sans Bengali','Kalpurush',sans-serif;
-    font-size:18px;
-    line-height:1.85;
-    color:#344057;
-}
-
-/* =========================================================
-   CONTROLS
-========================================================= */
-
-.controls{
-    display:flex;
-    justify-content:space-between;
-    gap:15px;
-    margin-top:22px;
-}
-
-.btn{
-    border:0;
-    border-radius:15px;
-    padding:13px 24px;
-    font-family:'Times New Roman',serif;
-    font-size:18px;
-    font-weight:bold;
-    cursor:pointer;
-    transition:
-        transform .55s var(--ease),
-        box-shadow .55s var(--ease),
-        opacity .55s var(--ease);
-}
-
-.btn:hover:not(:disabled){
-    transform:translateY(-3px);
-}
-
-.btn:active:not(:disabled){
-    transform:translateY(0);
-}
-
-.btn:disabled{
-    opacity:.4;
-    cursor:not-allowed;
-}
-
-.prev{
-    background:rgba(255,255,255,.75);
-    color:var(--text);
-    border:1px solid rgba(100,120,150,.15);
-}
-
-.next{
-    background:linear-gradient(135deg,var(--accent),var(--accent2));
-    color:white;
-    box-shadow:0 9px 25px rgba(79,103,255,.22);
-}
-
-/* =========================================================
-   TOPIC BOX
-========================================================= */
-
-.topic-box{
-    margin-top:20px;
-    background:rgba(255,255,255,.62);
-    border:1px solid rgba(255,255,255,.9);
-    border-radius:22px;
-    padding:22px;
-    box-shadow:var(--soft-shadow);
-    backdrop-filter:blur(18px);
-}
-
-.topic-box h2{
-    font-size:22px;
-    margin-bottom:9px;
-}
-
-.topic-box p{
-    font-family:'Noto Sans Bengali','Kalpurush',sans-serif;
-    font-size:18px;
-    line-height:1.8;
-    color:var(--muted);
-}
-
-/* =========================================================
-   ANIMATIONS
-========================================================= */
-
-@keyframes fadeDown{
-    from{
-        opacity:0;
-        transform:translateY(-25px);
+@keyframes questionEnter {
+    0% {
+        opacity: 0;
+        transform: translateX(35px) scale(.985);
+        filter: blur(4px);
     }
-    to{
-        opacity:1;
-        transform:translateY(0);
+
+    100% {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+        filter: blur(0);
     }
 }
 
-@keyframes cardEnter{
-    from{
-        opacity:0;
-        transform:translateY(22px) scale(.985);
+@keyframes explanationIn {
+    0% {
+        opacity: 0;
+        transform: translateY(18px);
     }
-    to{
-        opacity:1;
-        transform:translateY(0) scale(1);
-    }
-}
 
-@keyframes explainEnter{
-    from{
-        opacity:0;
-        transform:translateY(14px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
+    100% {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
-.question-transition{
-    animation:cardEnter .75s var(--ease);
-}
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media(max-width:650px){
-
-    .container{
-        width:94%;
-        padding-top:22px;
+@keyframes headerIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
     }
 
-    .stats{
-        gap:9px;
-    }
-
-    .stat{
-        padding:13px 7px;
-        border-radius:16px;
-    }
-
-    .stat-label{
-        font-size:14px;
-    }
-
-    .stat-value{
-        font-size:21px;
-    }
-
-    .quiz-card{
-        padding:22px 17px;
-        border-radius:22px;
-    }
-
-    .question{
-        font-size:22px;
-    }
-
-    .question-bangla{
-        font-size:17px;
-    }
-
-    .option{
-        font-size:18px;
-        padding:15px 13px;
-    }
-
-    .option-letter{
-        width:29px;
-        height:29px;
-        margin-right:8px;
-    }
-
-    .controls{
-        gap:9px;
-    }
-
-    .btn{
-        padding:12px 17px;
-        font-size:17px;
-    }
-
-    .topic-box{
-        padding:18px;
+    100% {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
-@media(max-width:390px){
+/* Mobile */
 
-    .header h1{
-        font-size:29px;
+@media (max-width: 650px) {
+
+    body {
+        padding: 14px 10px;
     }
 
-    .stats{
-        grid-template-columns:1fr 1fr 1fr;
+    .glass-card {
+        border-radius: 21px;
     }
 
-    .stat-value{
-        font-size:18px;
+    .top-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 16px;
     }
 
-    .question{
-        font-size:20px;
+    .stats {
+        width: 100%;
+        justify-content: flex-start;
     }
 
-    .option{
-        font-size:17px;
+    .stat {
+        font-size: 16px;
+    }
+
+    .question-card {
+        padding: 22px 17px;
+    }
+
+    .question {
+        font-size: 22px;
+    }
+
+    .question-bangla {
+        font-size: 18px;
+    }
+
+    .option {
+        font-size: 19px;
+        padding: 14px;
+    }
+
+    .controls {
+        position: sticky;
+        bottom: 8px;
+        padding-top: 10px;
+    }
+
+    .btn {
+        flex: 1;
+        padding: 13px 10px;
     }
 }
 </style>
@@ -558,39 +453,38 @@ body{
 
 <body>
 
-<div class="background-orb orb1"></div>
-<div class="background-orb orb2"></div>
-
-<main class="container">
+<div class="app">
 
     <header class="header">
-        <div class="badge">PART 4 • NOUN</div>
-        <h1>Infinity MCQ Practice</h1>
-        <p>English Grammar — Noun</p>
+        <h1>Part 5 — <span>Noun</span></h1>
+        <p>Infinity MCQ Practice System</p>
     </header>
 
-    <section class="stats">
+    <div class="glass-card top-bar">
 
-        <div class="stat">
-            <span class="stat-label">Question</span>
-            <span class="stat-value" id="questionCount">1</span>
+        <div class="part-label">
+            Grammar Part: <span>Noun</span>
         </div>
 
-        <div class="stat">
-            <span class="stat-label">Score</span>
-            <span class="stat-value" id="score">0</span>
+        <div class="stats">
+            <div class="stat">
+                Score: <span id="score">0</span>
+            </div>
+
+            <div class="stat">
+                Correct: <span id="correct">0</span>
+            </div>
+
+            <div class="stat">
+                Attempted: <span id="attempted">0</span>
+            </div>
         </div>
 
-        <div class="stat">
-            <span class="stat-label">Accuracy</span>
-            <span class="stat-value" id="accuracy">0%</span>
-        </div>
+    </div>
 
-    </section>
+    <div class="progress-wrapper">
 
-    <section class="progress-card">
-
-        <div class="progress-top">
+        <div class="progress-info">
             <span>Progress</span>
             <span id="progressText">Question 1</span>
         </div>
@@ -599,29 +493,15 @@ body{
             <div class="progress-bar" id="progressBar"></div>
         </div>
 
-    </section>
+    </div>
 
-    <section class="quiz-card" id="quizCard">
+    <main class="glass-card question-card">
 
-        <div class="question-number" id="questionNumber">
-            Question 1
-        </div>
-
-        <div class="question" id="question">
-            Loading...
-        </div>
-
-        <div class="question-bangla" id="questionBangla">
-            প্রশ্ন তৈরি হচ্ছে...
-        </div>
-
-        <div class="options" id="options"></div>
-
-        <div id="explanationContainer"></div>
+        <div id="questionArea"></div>
 
         <div class="controls">
 
-            <button class="btn prev" id="prevBtn">
+            <button class="btn previous" id="previousBtn">
                 ← Previous
             </button>
 
@@ -631,33 +511,26 @@ body{
 
         </div>
 
-    </section>
+    </main>
 
-    <section class="topic-box">
+    <div class="footer">
+        Part 5 — Noun • Infinity Practice
+    </div>
 
-        <h2>What You Will Practice</h2>
+</div>
 
-        <p>
-            Noun-এর সংজ্ঞা, Common Noun, Proper Noun, Collective Noun,
-            Abstract Noun, Material Noun, Countable Noun, Uncountable Noun,
-            Singular-Plural, Possessive Noun এবং বাক্যে Noun শনাক্ত করার
-            গুরুত্বপূর্ণ নিয়মগুলো এই Practice System-এ অনুশীলন করা যাবে।
-        </p>
-
-    </section>
-
-</main>
 
 <script>
 
 /* =========================================================
-   PART 4 - NOUN
-   INFINITY QUESTION GENERATOR
+   PART 5 — NOUN
+   INFINITE QUESTION GENERATOR
 ========================================================= */
 
-/*
-    Allowed example names only.
-*/
+
+/* ---------------------------------------------------------
+   Allowed Names
+--------------------------------------------------------- */
 
 const names = [
     "Firoz",
@@ -682,823 +555,761 @@ const names = [
 ];
 
 
-/* =========================================================
-   QUESTION HISTORY
-========================================================= */
+/* ---------------------------------------------------------
+   Question History
+--------------------------------------------------------- */
 
-let currentQuestion = null;
-let previousQuestions = [];
+let questions = [];
+let currentIndex = 0;
 
-let questionNumber = 1;
 let score = 0;
+let correctCount = 0;
 let attempted = 0;
-let correctAnswers = 0;
 
 
-/* =========================================================
-   HELPER FUNCTIONS
-========================================================= */
+/* ---------------------------------------------------------
+   Random Helper
+--------------------------------------------------------- */
 
-function randomItem(array){
+function randomItem(array) {
     return array[Math.floor(Math.random() * array.length)];
 }
 
-function shuffle(array){
+function shuffle(array) {
     return [...array].sort(() => Math.random() - 0.5);
 }
 
-function uniqueOptions(correct, options){
 
-    let result = [];
+/* ---------------------------------------------------------
+   Question Templates
+--------------------------------------------------------- */
 
-    options.forEach(item => {
-        if(item !== correct && !result.includes(item)){
-            result.push(item);
-        }
-    });
+const generators = [
 
-    result.push(correct);
+    /* 1. Identify Common Noun */
 
-    return shuffle(result).slice(0,4);
-}
+    function() {
+
+        const data = [
+            {
+                sentence: `${randomItem(names)} bought a new book.`,
+                answer: "book",
+                options: ["Firoz", "book", "new", "bought"],
+                explanation:
+                "‘Book’ হলো Common Noun। কারণ এটি কোনো নির্দিষ্ট একটি বইয়ের নাম নয়; সাধারণভাবে একটি বইকে বোঝাচ্ছে। ‘Firoz’ হলো Proper Noun, ‘new’ adjective এবং ‘bought’ verb।"
+            },
+            {
+                sentence: `${randomItem(names)} visited the school.`,
+                answer: "school",
+                options: ["visited", "school", "the", randomItem(names)],
+                explanation:
+                "‘School’ এখানে Common Noun। কারণ এটি একটি সাধারণ প্রতিষ্ঠানের নাম বোঝাচ্ছে। কোনো নির্দিষ্ট স্কুলের নিজস্ব নাম দেওয়া হয়নি।"
+            },
+            {
+                sentence: `${randomItem(names)} opened the door.`,
+                answer: "door",
+                options: ["opened", "the", "door", randomItem(names)],
+                explanation:
+                "‘Door’ হলো Common Noun। এটি একটি সাধারণ দরজাকে বোঝাচ্ছে। ‘Opened’ verb এবং ব্যক্তির নামটি Proper Noun।"
+            }
+        ];
+
+        const item = randomItem(data);
+
+        return makeQuestion(
+            item.sentence,
+            "Which word is a Common Noun?",
+            item.answer,
+            item.options,
+            item.explanation
+        );
+    },
 
 
-/* =========================================================
-   QUESTION TYPES
-========================================================= */
+    /* 2. Proper Noun */
 
-const questionTypes = [
+    function() {
 
-    "definition",
-    "proper",
-    "common",
-    "abstract",
-    "collective",
-    "material",
-    "countable",
-    "uncountable",
-    "plural",
-    "possessive",
-    "identify"
+        const person = randomItem(names);
+
+        return makeQuestion(
+            `${person} is reading an English grammar book.`,
+            "Which word is a Proper Noun?",
+            person,
+            [person, "reading", "grammar", "book"],
+            `‘${person}’ একটি নির্দিষ্ট ব্যক্তির নাম। তাই এটি Proper Noun। Proper Noun কোনো নির্দিষ্ট ব্যক্তি, স্থান, প্রতিষ্ঠান বা বস্তুর বিশেষ নাম বোঝায় এবং সাধারণত Capital Letter দিয়ে শুরু হয়।`
+        );
+    },
+
+
+    /* 3. Abstract Noun */
+
+    function() {
+
+        const items = [
+            ["Honesty", "Honesty is a great virtue."],
+            ["Kindness", "Kindness makes a person respected."],
+            ["Wisdom", "Wisdom is valuable."],
+            ["Beauty", "Beauty attracts attention."],
+            ["Freedom", "Freedom is precious."]
+        ];
+
+        const item = randomItem(items);
+
+        return makeQuestion(
+            item[1],
+            "Which word is an Abstract Noun?",
+            item[0],
+            [item[0], "person", "attention", "great"],
+            `‘${item[0]}’ হলো Abstract Noun। কারণ এটি এমন একটি গুণ, অবস্থা বা ধারণাকে বোঝায়, যাকে সরাসরি চোখে দেখা বা হাতে স্পর্শ করা যায় না।`
+        );
+    },
+
+
+    /* 4. Collective Noun */
+
+    function() {
+
+        const data = [
+            ["A team of players won the match.", "team"],
+            ["A flock of birds flew away.", "flock"],
+            ["A bunch of flowers was on the table.", "bunch"],
+            ["A group of students entered the room.", "group"],
+            ["A herd of cattle was moving.", "herd"]
+        ];
+
+        const item = randomItem(data);
+
+        return makeQuestion(
+            item[0],
+            "Which word is a Collective Noun?",
+            item[1],
+            [item[1], "match", "room", "moving"],
+            `‘${item[1]}’ হলো Collective Noun। এটি একাধিক ব্যক্তি, প্রাণী বা বস্তুকে একসঙ্গে একটি দল বা সমষ্টি হিসেবে বোঝায়।`
+        );
+    },
+
+
+    /* 5. Material Noun */
+
+    function() {
+
+        const data = [
+            ["Gold is a valuable metal.", "Gold"],
+            ["Water is essential for life.", "Water"],
+            ["Silver is used to make ornaments.", "Silver"],
+            ["Milk is good for health.", "Milk"],
+            ["Iron is a useful metal.", "Iron"]
+        ];
+
+        const item = randomItem(data);
+
+        return makeQuestion(
+            item[0],
+            "Which word is a Material Noun?",
+            item[1],
+            [item[1], "valuable", "life", "useful"],
+            `‘${item[1]}’ হলো Material Noun। Material Noun এমন পদার্থের নাম বোঝায়, যেগুলো দিয়ে বিভিন্ন বস্তু তৈরি করা যায় অথবা যেগুলো কোনো পদার্থকে নির্দেশ করে।`
+        );
+    },
+
+
+    /* 6. Countable Noun */
+
+    function() {
+
+        const data = [
+            ["I bought three books.", "books"],
+            ["Firoz has two pens.", "pens"],
+            ["Jui bought five apples.", "apples"],
+            ["Milon has four bags.", "bags"]
+        ];
+
+        const item = randomItem(data);
+
+        return makeQuestion(
+            item[0],
+            "Which word is a Countable Noun?",
+            item[1],
+            [item[1], "bought", "has", "five"],
+            `‘${item[1]}’ হলো Countable Noun। কারণ এটিকে সংখ্যা দিয়ে গণনা করা যায়—যেমন one ${item[1].replace(/s$/, "")}, two ${item[1]}, three ${item[1]} ইত্যাদি।`
+        );
+    },
+
+
+    /* 7. Uncountable Noun */
+
+    function() {
+
+        const data = [
+            ["We need some water.", "water"],
+            ["Fatiha bought some rice.", "rice"],
+            ["There is some milk in the glass.", "milk"],
+            ["We need some information.", "information"],
+            ["He gave me some advice.", "advice"]
+        ];
+
+        const item = randomItem(data);
+
+        return makeQuestion(
+            item[0],
+            "Which word is an Uncountable Noun?",
+            item[1],
+            [item[1], "some", "glass", "need"],
+            `‘${item[1]}’ সাধারণভাবে সরাসরি সংখ্যা দিয়ে গণনা করা যায় না। তাই এটি Uncountable Noun। এ ধরনের noun-এর আগে সাধারণত some, much, little ইত্যাদি ব্যবহার করা যায়।`
+        );
+    },
+
+
+    /* 8. Gender */
+
+    function() {
+
+        const data = [
+            ["The boy is playing.", "boy"],
+            ["The woman is reading.", "woman"],
+            ["The king ruled the country.", "king"],
+            ["The mother loves her child.", "mother"]
+        ];
+
+        const item = randomItem(data);
+
+        return makeQuestion(
+            item[0],
+            "Which word is a Masculine or Feminine Gender Noun?",
+            item[1],
+            [item[1], "playing", "reading", "country"],
+            `‘${item[1]}’ একটি Gender Noun। এটি ব্যক্তি বা প্রাণীর পুরুষ বা স্ত্রীলিঙ্গ বোঝাতে ব্যবহৃত হয়েছে।`
+        );
+    },
+
+
+    /* 9. Plural Noun */
+
+    function() {
+
+        const data = [
+            ["Firoz bought two books.", "books"],
+            ["There are three boxes.", "boxes"],
+            ["Jannati has two pens.", "pens"],
+            ["The children are playing.", "children"]
+        ];
+
+        const item = randomItem(data);
+
+        return makeQuestion(
+            item[0],
+            "Which word is a Plural Noun?",
+            item[1],
+            [item[1], "bought", "two", "playing"],
+            `‘${item[1]}’ একাধিক ব্যক্তি বা বস্তুকে বোঝাচ্ছে। তাই এটি Plural Noun। Plural Noun সাধারণত একের বেশি ব্যক্তি, প্রাণী বা বস্তুর নাম প্রকাশ করে।`
+        );
+    },
+
+
+    /* 10. Possessive Noun */
+
+    function() {
+
+        const person = randomItem(names);
+
+        return makeQuestion(
+            `This is ${person}'s book.`,
+            "Which word shows possession?",
+            `${person}'s`,
+            [`${person}'s`, "book", "This", "is"],
+            `‘${person}'s’ মালিকানা বা অধিকার বোঝাচ্ছে। তাই এটি Possessive form। Apostrophe + s (‘s) সাধারণত কোনো ব্যক্তি বা বস্তুর মালিকানা প্রকাশ করতে ব্যবহৃত হয়।`
+        );
+    },
+
+
+    /* 11. Noun as Subject */
+
+    function() {
+
+        const person = randomItem(names);
+
+        return makeQuestion(
+            `${person} reads English every day.`,
+            "Which word is the Subject of the sentence?",
+            person,
+            [person, "reads", "English", "day"],
+            `‘${person}’ বাক্যের Subject। কারণ কাজটি কে করছে—এই প্রশ্নের উত্তর হলো ‘${person}’। Subject সাধারণত কাজের কর্তা বা বাক্যের মূল বিষয়কে প্রকাশ করে।`
+        );
+    },
+
+
+    /* 12. Noun as Object */
+
+    function() {
+
+        const person = randomItem(names);
+
+        return makeQuestion(
+            `${person} reads a book.`,
+            "Which word is the Object of the verb?",
+            "book",
+            [person, "reads", "book", "a"],
+            "‘Book’ হলো verb ‘reads’-এর Object। কারণ ‘reads’ কাজটি কিসের ওপর করা হচ্ছে—এই প্রশ্নের উত্তর হলো ‘a book’।"
+        );
+    },
+
+
+    /* 13. Noun from Adjective */
+
+    function() {
+
+        const data = [
+            ["honest", "honesty"],
+            ["kind", "kindness"],
+            ["beautiful", "beauty"],
+            ["wise", "wisdom"],
+            ["brave", "bravery"]
+        ];
+
+        const item = randomItem(data);
+
+        return makeQuestion(
+            `The quality of being ${item[0]} is called ______.`,
+            "Choose the correct Abstract Noun.",
+            item[1],
+            [item[1], item[0], item[0] + "ly", item[0] + "ing"],
+            `‘${item[1]}’ হলো ‘${item[0]}’ থেকে গঠিত Abstract Noun। এটি একটি গুণ বা অবস্থার নাম প্রকাশ করে।`
+        );
+    },
+
+
+    /* 14. Singular Noun */
+
+    function() {
+
+        const data = [
+            ["a book", "book"],
+            ["a pen", "pen"],
+            ["a student", "student"],
+            ["a flower", "flower"]
+        ];
+
+        const item = randomItem(data);
+
+        return makeQuestion(
+            `${randomItem(names)} has ${item[0]}.`,
+            "Which word is a Singular Noun?",
+            item[1],
+            [item[1], "has", randomItem(names), "a"],
+            `‘${item[1]}’ একজন বা একটি বস্তুকে বোঝাচ্ছে। তাই এটি Singular Noun। Singular Noun সাধারণত এক ব্যক্তি, প্রাণী বা বস্তুর নাম প্রকাশ করে।`
+        );
+    },
+
+
+    /* 15. Proper vs Common */
+
+    function() {
+
+        const person = randomItem(names);
+
+        return makeQuestion(
+            `${person} lives in a village.`,
+            "Which word is a Proper Noun?",
+            person,
+            [person, "lives", "village", "a"],
+            `‘${person}’ একটি নির্দিষ্ট ব্যক্তির নাম। তাই এটি Proper Noun। অন্যদিকে ‘village’ সাধারণ একটি গ্রামের নাম বোঝায়, তাই এটি Common Noun।`
+        );
+    }
+
 ];
 
 
-/* =========================================================
-   GENERATOR 1 — DEFINITION
-========================================================= */
+/* ---------------------------------------------------------
+   Question Builder
+--------------------------------------------------------- */
 
-function generateDefinition(){
+function makeQuestion(sentence, question, answer, options, explanation) {
 
-    const correct = "Noun";
+    let uniqueOptions = [...new Set(options)];
 
-    const options = uniqueOptions(correct,[
-        "Verb",
-        "Adjective",
-        "Adverb",
-        "Noun"
-    ]);
+    while (uniqueOptions.length < 4) {
 
-    return {
-        question:"Which part of speech names a person, place, thing, or idea?",
-        bangla:"যে শব্দ ব্যক্তি, স্থান, বস্তু বা ধারণার নাম প্রকাশ করে তাকে কী বলে?",
-        options,
-        answer:correct,
-        explanation:
-        "Noun হলো এমন শব্দ যা কোনো ব্যক্তি, স্থান, বস্তু, প্রাণী বা ধারণার নাম প্রকাশ করে। যেমন: Firoz, school, book, honesty ইত্যাদি। তাই সঠিক উত্তর হলো “Noun”।"
-    };
-}
-
-
-/* =========================================================
-   GENERATOR 2 — PROPER NOUN
-========================================================= */
-
-function generateProper(){
-
-    const person = randomItem(names);
-
-    const correct = person;
-
-    const options = uniqueOptions(correct,[
-        "teacher",
-        "student",
-        "book",
-        person
-    ]);
-
-    return {
-        question:`Which word is a Proper Noun in the sentence: "${person} is a student."?`,
-        bangla:`"${person} is a student." বাক্যে কোন শব্দটি Proper Noun?`,
-        options,
-        answer:correct,
-        explanation:
-        `"${person}" একজন নির্দিষ্ট ব্যক্তির নাম। কোনো নির্দিষ্ট ব্যক্তি, স্থান বা প্রতিষ্ঠানের নাম হলে সেটি Proper Noun হয়। Proper Noun সাধারণত Capital Letter দিয়ে শুরু হয়। তাই "${person}" সঠিক উত্তর।`
-    };
-}
-
-
-/* =========================================================
-   GENERATOR 3 — COMMON NOUN
-========================================================= */
-
-function generateCommon(){
-
-    const correct = "teacher";
-
-    const options = uniqueOptions(correct,[
-        "Firoz",
-        "Dhaka",
-        "teacher",
-        "Bangladesh"
-    ]);
-
-    return {
-        question:"Which of the following is a Common Noun?",
-        bangla:"নিচের কোনটি Common Noun?",
-        options,
-        answer:correct,
-        explanation:
-        "Common Noun কোনো ব্যক্তি, স্থান বা বস্তুর সাধারণ নাম বোঝায়। “teacher” একটি সাধারণ পেশার নাম, তাই এটি Common Noun। কিন্তু Firoz, Dhaka ও Bangladesh নির্দিষ্ট নাম হওয়ায় Proper Noun।"
-    };
-}
-
-
-/* =========================================================
-   GENERATOR 4 — ABSTRACT NOUN
-========================================================= */
-
-function generateAbstract(){
-
-    const correct = randomItem([
-        "Honesty",
-        "Kindness",
-        "Wisdom",
-        "Bravery",
-        "Freedom"
-    ]);
-
-    const options = uniqueOptions(correct,[
-        "book",
-        "table",
-        "Honesty",
-        "school"
-    ]);
-
-    options[options.indexOf("Honesty")] = correct;
-
-    return {
-        question:"Which of the following is an Abstract Noun?",
-        bangla:"নিচের কোনটি Abstract Noun?",
-        options,
-        answer:correct,
-        explanation:
-        `"${correct}" এমন একটি গুণ বা ধারণা, যেটি সরাসরি হাতে ধরা বা দেখা যায় না; বরং মনের মাধ্যমে বোঝা যায়। এ ধরনের নামকে Abstract Noun বলে।`
-    };
-}
-
-
-/* =========================================================
-   GENERATOR 5 — COLLECTIVE NOUN
-========================================================= */
-
-function generateCollective(){
-
-    const data = [
-        {
-            q:"Which word is a Collective Noun?",
-            b:"নিচের কোন শব্দটি Collective Noun?",
-            correct:"team",
-            others:["Firoz","book","honesty"]
-        },
-        {
-            q:"Which word refers to a group of people?",
-            b:"কোন শব্দটি একদল মানুষকে বোঝায়?",
-            correct:"team",
-            others:["water","honesty","school"]
-        },
-        {
-            q:"Which word can name a group of students?",
-            b:"কোন শব্দটি একদল শিক্ষার্থীকে বোঝাতে পারে?",
-            correct:"class",
-            others:["book","kindness","water"]
-        }
-    ];
-
-    const item = randomItem(data);
-
-    return {
-        question:item.q,
-        bangla:item.b,
-        options:uniqueOptions(item.correct,item.others),
-        answer:item.correct,
-        explanation:
-        `"${item.correct}" একাধিক ব্যক্তি বা বস্তুকে একটি দল হিসেবে বোঝায়। এ ধরনের শব্দকে Collective Noun বলা হয়।`
-    };
-}
-
-
-/* =========================================================
-   GENERATOR 6 — MATERIAL NOUN
-========================================================= */
-
-function generateMaterial(){
-
-    const correct = randomItem([
-        "gold",
-        "iron",
-        "water",
-        "silver",
-        "wood"
-    ]);
-
-    return {
-        question:"Which of the following is a Material Noun?",
-        bangla:"নিচের কোনটি Material Noun?",
-        options:uniqueOptions(correct,[
-            "Firoz",
-            "honesty",
-            "gold",
-            "team"
-        ]),
-        answer:correct,
-        explanation:
-        `"${correct}" একটি পদার্থের নাম। যে Noun কোনো পদার্থ বা উপাদানের নাম প্রকাশ করে তাকে Material Noun বলে। তাই "${correct}" সঠিক উত্তর।`
-    };
-}
-
-
-/* =========================================================
-   GENERATOR 7 — COUNTABLE
-========================================================= */
-
-function generateCountable(){
-
-    const correct = randomItem([
-        "book",
-        "apple",
-        "pen",
-        "chair",
-        "student"
-    ]);
-
-    return {
-        question:`Which noun can be counted individually?`,
-        bangla:`নিচের কোন Noun-কে একটি, দুটি, তিনটি এভাবে গণনা করা যায়?`,
-        options:uniqueOptions(correct,[
-            "water",
-            "milk",
-            "book",
-            "rice"
-        ]),
-        answer:correct,
-        explanation:
-        `"${correct}" আলাদা আলাদা করে গণনা করা যায়—যেমন one ${correct}, two ${correct}s। তাই এটি Countable Noun।`
-    };
-}
-
-
-/* =========================================================
-   GENERATOR 8 — UNCOUNTABLE
-========================================================= */
-
-function generateUncountable(){
-
-    const correct = randomItem([
-        "water",
-        "milk",
-        "rice",
-        "sugar",
-        "information"
-    ]);
-
-    return {
-        question:"Which of the following is an Uncountable Noun?",
-        bangla:"নিচের কোনটি Uncountable Noun?",
-        options:uniqueOptions(correct,[
-            "book",
-            "chair",
+        const extra = randomItem([
+            "teacher",
             "student",
-            "water"
-        ]),
-        answer:correct,
-        explanation:
-        `"${correct}" সাধারণভাবে সরাসরি এক, দুই, তিন করে গণনা করা যায় না। তাই এটি Uncountable Noun হিসেবে ব্যবহৃত হয়।`
-    };
-}
+            "book",
+            "school",
+            "river",
+            "garden"
+        ]);
 
-
-/* =========================================================
-   GENERATOR 9 — PLURAL
-========================================================= */
-
-function generatePlural(){
-
-    const data = [
-        {
-            q:"What is the plural form of 'book'?",
-            b:"'book'-এর Plural কী?",
-            correct:"books",
-            others:["bookes","book","bookses"]
-        },
-        {
-            q:"What is the plural form of 'class'?",
-            b:"'class'-এর Plural কী?",
-            correct:"classes",
-            others:["classs","classies","class"]
-        },
-        {
-            q:"What is the plural form of 'child'?",
-            b:"'child'-এর Plural কী?",
-            correct:"children",
-            others:["childs","childes","childrens"]
-        },
-        {
-            q:"What is the plural form of 'man'?",
-            b:"'man'-এর Plural কী?",
-            correct:"men",
-            others:["mans","mens","manes"]
-        },
-        {
-            q:"What is the plural form of 'woman'?",
-            b:"'woman'-এর Plural কী?",
-            correct:"women",
-            others:["womans","womens","womanes"]
+        if (!uniqueOptions.includes(extra)) {
+            uniqueOptions.push(extra);
         }
-    ];
-
-    const item = randomItem(data);
-
-    return {
-        question:item.q,
-        bangla:item.b,
-        options:uniqueOptions(item.correct,item.others),
-        answer:item.correct,
-        explanation:
-        `এখানে "${item.correct}" হলো প্রদত্ত Noun-এর সঠিক Plural form। বিশেষ কিছু Noun সাধারণভাবে শুধু -s বা -es যোগ করে Plural হয় না; যেমন child → children এবং man → men।`
-    };
-}
-
-
-/* =========================================================
-   GENERATOR 10 — POSSESSIVE
-========================================================= */
-
-function generatePossessive(){
-
-    const person = randomItem(names);
-
-    const correct = `${person}'s`;
-
-    return {
-        question:`Which form correctly shows possession in: "This is ${person}___ book."?`,
-        bangla:`"${person}___ book" বাক্যে ${person}-এর মালিকানা বোঝাতে কোনটি সঠিক?`,
-        options:uniqueOptions(correct,[
-            `${person}`,
-            `${person}s`,
-            `${person}'s`,
-            `${person}s'`
-        ]),
-        answer:correct,
-        explanation:
-        `একজন Singular ব্যক্তির মালিকানা বোঝাতে সাধারণত Noun-এর শেষে apostrophe + s ('s) বসে। তাই "${person}'s book" সঠিক। এর অর্থ হলো "${person}-এর বই"।`
-    };
-}
-
-
-/* =========================================================
-   GENERATOR 11 — IDENTIFY NOUN
-========================================================= */
-
-function generateIdentify(){
-
-    const data = [
-
-        {
-            q:"Identify the Noun: \"Firoz reads a book.\"",
-            b:"\"Firoz reads a book.\" বাক্যে Noun শনাক্ত করুন।",
-            correct:"Firoz",
-            others:["reads","a","quickly"]
-        },
-
-        {
-            q:"Identify the Noun: \"Fatiha bought a pen.\"",
-            b:"\"Fatiha bought a pen.\" বাক্যে Noun শনাক্ত করুন।",
-            correct:"Fatiha",
-            others:["bought","a","quickly"]
-        },
-
-        {
-            q:"Identify the Noun: \"The teacher entered the class.\"",
-            b:"\"The teacher entered the class.\" বাক্যে Noun শনাক্ত করুন।",
-            correct:"teacher",
-            others:["entered","the","quickly"]
-        },
-
-        {
-            q:"Identify the Noun: \"Jui opened the door.\"",
-            b:"\"Jui opened the door.\" বাক্যে Noun শনাক্ত করুন।",
-            correct:"Jui",
-            others:["opened","the","quickly"]
-        },
-
-        {
-            q:"Identify the Noun: \"Rupa bought a book.\"",
-            b:"\"Rupa bought a book.\" বাক্যে একটি Noun শনাক্ত করুন।",
-            correct:"book",
-            others:["bought","a","quickly"]
-        }
-
-    ];
-
-    const item = randomItem(data);
-
-    return {
-        question:item.q,
-        bangla:item.b,
-        options:uniqueOptions(item.correct,item.others),
-        answer:item.correct,
-        explanation:
-        `"${item.correct}" একটি ব্যক্তি বা বস্তুর নাম প্রকাশ করছে। তাই এটি Noun।`
-    };
-}
-
-
-/* =========================================================
-   MASTER QUESTION GENERATOR
-========================================================= */
-
-function generateQuestion(){
-
-    const type = randomItem(questionTypes);
-
-    switch(type){
-
-        case "definition":
-            return generateDefinition();
-
-        case "proper":
-            return generateProper();
-
-        case "common":
-            return generateCommon();
-
-        case "abstract":
-            return generateAbstract();
-
-        case "collective":
-            return generateCollective();
-
-        case "material":
-            return generateMaterial();
-
-        case "countable":
-            return generateCountable();
-
-        case "uncountable":
-            return generateUncountable();
-
-        case "plural":
-            return generatePlural();
-
-        case "possessive":
-            return generatePossessive();
-
-        case "identify":
-            return generateIdentify();
-
-        default:
-            return generateDefinition();
     }
+
+    uniqueOptions = shuffle(uniqueOptions).slice(0, 4);
+
+    return {
+        sentence,
+        question,
+        answer,
+        options: uniqueOptions,
+        explanation,
+        selected: null,
+        answered: false
+    };
 }
 
 
-/* =========================================================
-   CREATE NEW QUESTION
-========================================================= */
+/* ---------------------------------------------------------
+   Generate New Question
+--------------------------------------------------------- */
 
-function createNewQuestion(){
+function generateQuestion() {
 
-    let newQuestion;
+    const generator = randomItem(generators);
+
+    let newQuestion = generator();
 
     /*
-        Try to avoid immediate duplicate questions.
+       Prevent immediate duplicate question
     */
 
-    let attempts = 0;
+    if (questions.length > 0) {
 
-    do{
-        newQuestion = generateQuestion();
-        attempts++;
-    }
-    while(
-        previousQuestions.some(q =>
-            q.question === newQuestion.question
-        )
-        && attempts < 20
-    );
+        const last = questions[questions.length - 1];
 
-    currentQuestion = newQuestion;
+        let attempts = 0;
 
-    previousQuestions.push(newQuestion);
-
-    /*
-        Keep memory controlled.
-        The system remains effectively infinite.
-    */
-
-    if(previousQuestions.length > 100){
-        previousQuestions.shift();
+        while (
+            newQuestion.sentence === last.sentence &&
+            attempts < 10
+        ) {
+            newQuestion = randomItem(generators)();
+            attempts++;
+        }
     }
 
-    renderQuestion(newQuestion);
+    return newQuestion;
 }
 
 
-/* =========================================================
-   RENDER QUESTION
-========================================================= */
+/* ---------------------------------------------------------
+   Add Question
+--------------------------------------------------------- */
 
-function renderQuestion(data){
+function addQuestion() {
 
-    const card = document.getElementById("quizCard");
+    questions.push(generateQuestion());
 
-    card.classList.remove("question-transition");
+}
 
-    void card.offsetWidth;
 
-    card.classList.add("question-transition");
+/* ---------------------------------------------------------
+   Render Question
+--------------------------------------------------------- */
 
-    document.getElementById("questionNumber").textContent =
-        `Question ${questionNumber}`;
+function renderQuestion(direction = "next") {
 
-    document.getElementById("questionCount").textContent =
-        questionNumber;
+    const question = questions[currentIndex];
 
-    document.getElementById("progressText").textContent =
-        `Question ${questionNumber}`;
+    const area = document.getElementById("questionArea");
 
-    document.getElementById("question").textContent =
-        data.question;
+    /*
+       Replace content so only the inner question changes.
+       No page reload.
+    */
 
-    document.getElementById("questionBangla").textContent =
-        `(${data.bangla})`;
+    area.innerHTML = "";
 
-    const optionsBox =
-        document.getElementById("options");
+    const wrapper = document.createElement("div");
 
-    optionsBox.innerHTML = "";
+    wrapper.className = "question-content";
 
-    const letters = ["A","B","C","D"];
+    wrapper.innerHTML = `
 
-    data.options.forEach((option,index)=>{
+        <div class="question-number">
+            Question ${currentIndex + 1}
+        </div>
+
+        <div class="question">
+            ${escapeHTML(question.question)}
+        </div>
+
+        <div class="question-bangla">
+            (${escapeHTML(question.sentence)})
+        </div>
+
+        <div class="options"></div>
+
+        ${
+            question.answered
+            ?
+            `
+            <div class="explanation">
+                <strong>Explanation:</strong><br>
+                ${question.explanation}
+            </div>
+            `
+            :
+            ""
+        }
+
+    `;
+
+    area.appendChild(wrapper);
+
+
+    const optionsContainer =
+        wrapper.querySelector(".options");
+
+
+    const letters = ["A", "B", "C", "D"];
+
+
+    question.options.forEach((option, index) => {
 
         const button = document.createElement("button");
 
         button.className = "option";
 
-        button.innerHTML = `
-            <span class="option-letter">${letters[index]}</span>
-            ${option}
-        `;
+        if (question.answered) {
+            button.classList.add("disabled");
 
-        button.addEventListener(
-            "click",
-            ()=>selectAnswer(button,option,data)
-        );
-
-        optionsBox.appendChild(button);
-
-    });
-
-    document.getElementById(
-        "explanationContainer"
-    ).innerHTML = "";
-
-    document.getElementById("prevBtn").disabled =
-        questionNumber <= 1;
-
-    document.getElementById("nextBtn").disabled = false;
-
-    updateProgress();
-
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
-    });
-}
-
-
-/* =========================================================
-   SELECT ANSWER
-========================================================= */
-
-function selectAnswer(button,selected,data){
-
-    const allOptions =
-        document.querySelectorAll(".option");
-
-    allOptions.forEach(option=>{
-        option.disabled = true;
-    });
-
-    attempted++;
-
-    if(selected === data.answer){
-
-        button.classList.add("correct");
-
-        score++;
-        correctAnswers++;
-
-    }else{
-
-        button.classList.add("wrong");
-
-        allOptions.forEach(option=>{
-
-            if(
-                option.textContent
-                    .trim()
-                    .endsWith(data.answer)
-            ){
-                option.classList.add("correct");
+            if (option === question.answer) {
+                button.classList.add("correct");
             }
 
-        });
+            if (
+                option === question.selected &&
+                option !== question.answer
+            ) {
+                button.classList.add("wrong");
+            }
+        }
 
-    }
+        button.innerHTML = `
+            <span class="option-letter">
+                ${letters[index]}
+            </span>
 
-    showExplanation(data,selected);
+            <span>
+                ${escapeHTML(option)}
+            </span>
+        `;
 
-    updateStats();
-}
+        if (!question.answered) {
 
-
-/* =========================================================
-   EXPLANATION
-========================================================= */
-
-function showExplanation(data,selected){
-
-    const container =
-        document.getElementById("explanationContainer");
-
-    const isCorrect =
-        selected === data.answer;
-
-    container.innerHTML = `
-
-        <div class="explanation">
-
-            <div class="explanation-title">
-                ${isCorrect ? "✓ Correct Answer" : "✗ Incorrect Answer"}
-            </div>
-
-            <div class="explanation-text">
-                <strong>Answer:</strong> ${data.answer}<br><br>
-                ${data.explanation}
-            </div>
-
-        </div>
-
-    `;
-}
-
-
-/* =========================================================
-   PROGRESS
-========================================================= */
-
-function updateProgress(){
-
-    /*
-        Since this is an infinite system,
-        visual progress represents current practice stage.
-    */
-
-    const stage =
-        ((questionNumber - 1) % 20) + 1;
-
-    const percent =
-        (stage / 20) * 100;
-
-    document.getElementById("progressBar")
-        .style.width = `${percent}%`;
-}
-
-
-/* =========================================================
-   STATISTICS
-========================================================= */
-
-function updateStats(){
-
-    document.getElementById("score")
-        .textContent = score;
-
-    const accuracy =
-        attempted === 0
-        ? 0
-        : Math.round(
-            (correctAnswers / attempted) * 100
-        );
-
-    document.getElementById("accuracy")
-        .textContent = `${accuracy}%`;
-}
-
-
-/* =========================================================
-   NEXT BUTTON
-========================================================= */
-
-document.getElementById("nextBtn")
-.addEventListener("click",()=>{
-
-    questionNumber++;
-
-    createNewQuestion();
-
-});
-
-
-/* =========================================================
-   PREVIOUS BUTTON
-========================================================= */
-
-document.getElementById("prevBtn")
-.addEventListener("click",()=>{
-
-    if(questionNumber <= 1){
-        return;
-    }
-
-    questionNumber--;
-
-    /*
-        Previous question is retrieved from history.
-        The current question remains available.
-    */
-
-    const previous =
-        previousQuestions[
-            Math.max(0,questionNumber - 1)
-        ];
-
-    if(previous){
-
-        currentQuestion = previous;
-
-        renderQuestion(previous);
-
-    }
-
-});
-
-
-/* =========================================================
-   KEYBOARD CONTROL
-========================================================= */
-
-document.addEventListener("keydown",(event)=>{
-
-    const buttons =
-        document.querySelectorAll(".option");
-
-    if(["1","2","3","4"].includes(event.key)){
-
-        const index =
-            Number(event.key) - 1;
-
-        if(buttons[index] &&
-           !buttons[index].disabled){
-
-            buttons[index].click();
+            button.addEventListener(
+                "click",
+                () => selectAnswer(option)
+            );
 
         }
 
+        optionsContainer.appendChild(button);
+
+    });
+
+
+    updateControls();
+    updateProgress();
+
+}
+
+
+/* ---------------------------------------------------------
+   Select Answer
+--------------------------------------------------------- */
+
+function selectAnswer(selected) {
+
+    const question = questions[currentIndex];
+
+    if (question.answered) {
+        return;
     }
 
-    if(event.key === "ArrowRight"){
+    question.selected = selected;
+    question.answered = true;
 
-        document.getElementById("nextBtn").click();
+    attempted++;
+
+    if (selected === question.answer) {
+
+        correctCount++;
+        score += 10;
+
+    } else {
+
+        score = Math.max(0, score - 2);
 
     }
 
-    if(event.key === "ArrowLeft"){
+    updateStats();
 
-        document.getElementById("prevBtn").click();
+    renderQuestion("same");
 
+}
+
+
+/* ---------------------------------------------------------
+   Next Question
+--------------------------------------------------------- */
+
+function nextQuestion() {
+
+    if (currentIndex < questions.length - 1) {
+
+        currentIndex++;
+
+    } else {
+
+        /*
+           Infinite system:
+           Whenever user reaches the end,
+           automatically generate a brand-new question.
+        */
+
+        addQuestion();
+        currentIndex++;
+
+    }
+
+    renderQuestion("next");
+
+}
+
+
+/* ---------------------------------------------------------
+   Previous Question
+--------------------------------------------------------- */
+
+function previousQuestion() {
+
+    if (currentIndex > 0) {
+
+        currentIndex--;
+
+        renderQuestion("previous");
+
+    }
+
+}
+
+
+/* ---------------------------------------------------------
+   Controls
+--------------------------------------------------------- */
+
+function updateControls() {
+
+    document.getElementById("previousBtn").disabled =
+        currentIndex === 0;
+
+}
+
+
+/* ---------------------------------------------------------
+   Progress
+--------------------------------------------------------- */
+
+function updateProgress() {
+
+    const number = currentIndex + 1;
+
+    document.getElementById("progressText").textContent =
+        `Question ${number}`;
+
+    /*
+       Since this is infinite, the progress bar represents
+       the current position in the generated session.
+    */
+
+    const total = Math.max(questions.length, number);
+
+    let percent = (number / total) * 100;
+
+    if (number === total) {
+        percent = 100;
+    }
+
+    document.getElementById("progressBar").style.width =
+        percent + "%";
+}
+
+
+/* ---------------------------------------------------------
+   Statistics
+--------------------------------------------------------- */
+
+function updateStats() {
+
+    document.getElementById("score").textContent =
+        score;
+
+    document.getElementById("correct").textContent =
+        correctCount;
+
+    document.getElementById("attempted").textContent =
+        attempted;
+
+}
+
+
+/* ---------------------------------------------------------
+   Escape HTML
+--------------------------------------------------------- */
+
+function escapeHTML(value) {
+
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+
+/* ---------------------------------------------------------
+   Button Events
+--------------------------------------------------------- */
+
+document
+    .getElementById("nextBtn")
+    .addEventListener("click", nextQuestion);
+
+document
+    .getElementById("previousBtn")
+    .addEventListener("click", previousQuestion);
+
+
+/* ---------------------------------------------------------
+   Initial Questions
+--------------------------------------------------------- */
+
+for (let i = 0; i < 5; i++) {
+    addQuestion();
+}
+
+renderQuestion();
+updateStats();
+
+
+/* ---------------------------------------------------------
+   Keyboard Navigation
+--------------------------------------------------------- */
+
+document.addEventListener("keydown", function(event) {
+
+    if (event.key === "ArrowRight") {
+        nextQuestion();
+    }
+
+    if (event.key === "ArrowLeft") {
+        previousQuestion();
     }
 
 });
-
-
-/* =========================================================
-   START SYSTEM
-========================================================= */
-
-createNewQuestion();
 
 </script>
 
