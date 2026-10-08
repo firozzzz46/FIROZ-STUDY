@@ -730,3 +730,57 @@ body {
         border-radius: 18px;
     }
 }
+
+
+
+
+
+/* =========================================
+   OVERRIDE ALL ANIMATIONS TO BE SLOWER
+   ========================================= */
+
+/* Page Load Animations Slow */
+.header {
+    animation-duration: 2s !important;
+}
+
+.welcome {
+    animation-duration: 2.2s !important;
+}
+
+.topic {
+    animation-duration: 1.8s !important;
+    transition: transform 0.6s ease, border-color 0.6s ease, background 0.6s ease, box-shadow 0.6s ease !important;
+}
+
+.topic::before {
+    transition: left 1.5s ease !important;
+}
+
+.hero {
+    animation-duration: 2s !important;
+}
+
+.greeting {
+    animation-duration: 2s !important;
+}
+
+.hero h2 {
+    animation-duration: 2s !important;
+}
+
+.tagline {
+    animation-duration: 2s !important;
+}
+
+.hero-time {
+    animation-duration: 2s !important;
+}
+
+.arrow {
+    transition: transform 0.6s ease !important;
+}
+
+footer {
+    animation-duration: 2.5s !important;
+}
