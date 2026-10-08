@@ -580,24 +580,23 @@ footer {
 
 
 
-
 /* =========================================
    RESPONSIVE PROFILE & WATERMARK BACKGROUND
    ========================================= */
 
-/* Background Overlay */
+/* Background Overlay with Responsive Focus */
 body::before {
     content: "";
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     background-image: url('bg.jpg');
     background-size: cover;
-    background-position: center center;
+    background-position: center top; /* মোবাইল ও পিসিতে মূল বিষয়টি যাতে কেটে না যায় */
     background-repeat: no-repeat;
-    opacity: 0.20;
+    opacity: 0.20; /* জলছাপের ঘনত্ব */
     z-index: -1;
     pointer-events: none;
 }
@@ -612,23 +611,16 @@ body::before {
     height: 60px;
     border: 2px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
-    flex-shrink: 0;
+    flex-shrink: 0; /* মোবাইলে যেন সাইজ ছোট হয়ে না যায় */
 }
 
-/* Prevent Text Selection */
-body {
-    -webkit-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-/* Mobile Responsive Optimization */
+/* Mobile Specific Alignment */
 @media (max-width: 600px) {
     body::before {
-        background-size: contain; /* ছবি না কেটে পুরোটা স্ক্রিনে ফিট করবে */
-        background-position: center top; /* উপরে ফোকাস রাখবে */
+        background-position: center center; /* মোবাইলে সেন্টারে ফোকাস রাখবে */
     }
 }
+
 
 
 
@@ -636,4 +628,202 @@ body {
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+
+
+
+
+
+/* =====================================
+   LARGE STATIC TOP-RIGHT CLOCK BOX
+===================================== */
+
+/* Outer Position Box */
+.hero-time {
+    position: fixed;
+    top: 25px;
+    right: 25px;
+    z-index: 1000;
+
+    width: 240px; /* Box size boro kora hoyeche */
+    padding: 20px 25px;
+    border-radius: 22px;
+
+    /* Glassmorphism Styling */
+    background: rgba(13, 18, 36, 0.85);
+    border: 2px solid rgba(124, 92, 255, 0.3);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+
+    overflow: hidden;
+
+    /* Heavy Premium Shadow */
+    box-shadow: 
+        0 15px 35px rgba(0, 0, 0, 0.6),
+        0 0 30px rgba(124, 92, 255, 0.2);
+
+    /* Side theke slide hoye ashbe, tarpor sthir thakbe */
+    animation: slideInRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Background Glow Effect - Non Animated */
+.hero-time::before {
+    content: "";
+    position: absolute;
+    width: 140px;
+    height: 140px;
+    top: -50px;
+    left: -40px;
+    border-radius: 50%;
+    background: rgba(124, 92, 255, 0.25);
+    filter: blur(40px);
+    pointer-events: none;
+}
+
+.hero-time::after {
+    content: "";
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    bottom: -40px;
+    right: -30px;
+    border-radius: 50%;
+    background: rgba(0, 198, 255, 0.2);
+    filter: blur(40px);
+    pointer-events: none;
+}
+
+/* Time Output (Boro o bold font) */
+#liveTime {
+    position: relative;
+    z-index: 2;
+    font-size: 32px;
+    font-weight: 900;
+    letter-spacing: 2.5px;
+    text-align: center;
+
+    background: linear-gradient(135deg, #ffffff, #c2d8ff, #7c5cff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    filter: drop-shadow(0 0 10px rgba(124, 92, 255, 0.4));
+}
+
+/* Date Output */
+#liveDate {
+    position: relative;
+    z-index: 2;
+    margin-top: 8px;
+    color: #e5e9ff;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-align: center;
+}
+
+/* Hijri Date Output */
+#hijriDate {
+    position: relative;
+    z-index: 2;
+    margin-top: 4px;
+    color: #9cb8ff;
+    font-size: 13px;
+    text-align: center;
+}
+
+/* Prothombar side theke dukhar animation (Sthir hoye jabe) */
+@keyframes slideInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(150px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Mobile Responsive Adjustments */
+@media (max-width: 600px) {
+    .hero-time {
+        top: 15px;
+        right: 15px;
+        width: 190px;
+        padding: 15px 18px;
+        border-radius: 18px;
+    }
+
+    #liveTime {
+        font-size: 24px;
+    }
+
+    #liveDate {
+        font-size: 12px;
+    }
+
+    #hijriDate {
+        font-size: 11px;
+    }
+}
+
+
+
+
+
+
+
+/* =========================================
+   SLOW SLIDE-UP & FLOAT ENTRANCE FOR TOPICS
+   ========================================= */
+
+/* Topic Card Style */
+.topic {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 17px;
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 22px;
+    background: rgba(255, 255, 255, 0.055);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    cursor: pointer;
+    overflow: hidden;
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease;
+
+    /* Extra slow o smooth entrance animation */
+    animation: slowFloatIn 1.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Protita topic card aktar por arkti dhire dhire veshe ashbe (Staggered Delay) */
+.topic:nth-child(1) { animation-delay: 0.2s; }
+.topic:nth-child(2) { animation-delay: 0.4s; }
+.topic:nth-child(3) { animation-delay: 0.6s; }
+.topic:nth-child(4) { animation-delay: 0.8s; }
+.topic:nth-child(5) { animation-delay: 1.0s; }
+.topic:nth-child(6) { animation-delay: 1.2s; }
+
+/* Slow Side-Up Floating Animation Keyframes */
+@keyframes slowFloatIn {
+    0% {
+        opacity: 0;
+        transform: translateY(50px) translateX(-15px) scale(0.96);
+        filter: blur(4px);
+    }
+    60% {
+        opacity: 0.8;
+        filter: blur(0px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) translateX(0) scale(1);
+        filter: blur(0px);
+    }
 }
