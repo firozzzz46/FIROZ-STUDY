@@ -636,18 +636,18 @@ body {
 
 
 /* =========================================
-   RESPONSIVE CLOCK BOX (HERO SECTION BELOW)
+   RESPONSIVE CLOCK BOX (TIME & DATE ONLY)
    ========================================= */
 
 .hero-time {
-    position: relative; /* Fixed tule diye normal flow te ana holo */
+    position: relative;
     top: auto;
     right: auto;
     z-index: 2;
 
-    width: 100%; /* Topic card gulor moto full width nebe */
+    width: 100%;
     max-width: 100%; 
-    margin: 25px 0 35px 0; /* Welcome hero er niche ebong topics er opore gap */
+    margin: 25px 0 35px 0;
     padding: 22px 25px;
     border-radius: 22px;
 
@@ -694,11 +694,11 @@ body {
     pointer-events: none;
 }
 
-/* Time Output (Responsive Font Size) */
+/* Live Time Output */
 #liveTime {
     position: relative;
     z-index: 2;
-    font-size: clamp(28px, 6vw, 38px); /* Mobile-e automatic choto r PC-te boro hobe */
+    font-size: clamp(28px, 6vw, 38px);
     font-weight: 900;
     letter-spacing: 2px;
     text-align: center;
@@ -710,25 +710,15 @@ body {
     filter: drop-shadow(0 0 10px rgba(124, 92, 255, 0.4));
 }
 
-/* Date Output */
+/* English Date Output */
 #liveDate {
     position: relative;
     z-index: 2;
     margin-top: 8px;
     color: #e5e9ff;
-    font-size: clamp(12px, 2.5vw, 15px);
+    font-size: clamp(13px, 2.5vw, 16px);
     font-weight: 500;
     letter-spacing: 0.5px;
-    text-align: center;
-}
-
-/* Hijri Date Output */
-#hijriDate {
-    position: relative;
-    z-index: 2;
-    margin-top: 4px;
-    color: #9cb8ff;
-    font-size: clamp(11px, 2vw, 13px);
     text-align: center;
 }
 
@@ -740,5 +730,3 @@ body {
         border-radius: 18px;
     }
 }
-
-

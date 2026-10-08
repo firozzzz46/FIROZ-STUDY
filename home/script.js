@@ -48,20 +48,21 @@ topics.forEach((topic) => {
 
 
 // ==============================
-// Live Clock & Auto Hijri Date Fix
+// Live Clock (Time & Date Only)
 // ==============================
 
 function updateClock() {
 
     const now = new Date();
 
-    // Live Time
+    // Live Time (AM/PM সহ)
     const time = now.toLocaleTimeString(
-        "en-GB",
+        "en-US",
         {
             hour: "2-digit",
             minute: "2-digit",
-            second: "2-digit"
+            second: "2-digit",
+            hour12: true
         }
     );
 
@@ -79,31 +80,6 @@ function updateClock() {
     );
 
     document.getElementById("liveDate").textContent = date;
-
-    // Hijri Date (Mobile Locale Fix)
-    try {
-        const hijri = new Intl.DateTimeFormat(
-            "bn-BD-u-ca-islamic-umalqura",
-            {
-                day: "numeric",
-                month: "long",
-                year: "numeric"
-            }
-        ).format(now);
-
-        document.getElementById("hijriDate").innerHTML = "🕌 " + hijri + " হিজরি";
-    } catch (e) {
-        const hijriFallback = new Intl.DateTimeFormat(
-            "bn-BD-u-ca-islamic",
-            {
-                day: "numeric",
-                month: "long",
-                year: "numeric"
-            }
-        ).format(now);
-
-        document.getElementById("hijriDate").innerHTML = "🕌 " + hijriFallback + " হিজরি";
-    }
 }
 
 updateClock();
