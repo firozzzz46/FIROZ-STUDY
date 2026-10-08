@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Infinite Grammar Practice - Part 11</title>
+    <style>
+        :root {
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --primary: #3b82f6;
+            --primary-hover: #2563eb;
+            --success: #10b981;
+            --error: #ef4444;
+            --border-color: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.05) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(16, 185, 129, 0.05) 0px, transparent 50%);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        /* পেজ লোড ও কার্ড অ্যানিমেশন */
+        .quiz-container {
+            background: var(--card-bg);
+            width: 100%;
+            max-width: 700px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.07), 0 0 15px rgba(0, 0, 0, 0.03);
+            border: 1px solid var(--border-color);
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+            animation: pageLoadAnimation 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes pageLoadAnimation {
+            0% {
+                opacity: 0;
+                transform: translateY(40px) scale(0.96);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 20px;
+            animation: slideDown 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+        }
+
+        @keyframes slideDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header h2 {
+            color: var(--text-main);
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .header p {
+            color: var(--text-muted);
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        /* প্রশ্ন এন্ট্রি অ্যানিমেশন */
+        .question-box {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 25px;
+            line-height: 1.6;
+            animation: slideFromLeft 1s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+        }
+
+        @keyframes slideFromLeft {
+            0% {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .options-list {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        /* অপশনগুলোর ডানদিক থেকে স্লাইড অ্যানিমেশন */
+        .option-item {
+            background: #ffffff;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-bottom: 14px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 16px;
+            color: var(--text-main);
+            font-weight: 500;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.01);
+            animation: slideFromRight 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        .option-item:nth-child(1) { animation-delay: 0.4s; }
+        .option-item:nth-child(2) { animation-delay: 0.5s; }
+        .option-item:nth-child(3) { animation-delay: 0.6s; }
+        .option-item:nth-child(4) { animation-delay: 0.7s; }
+
+        @keyframes slideFromRight {
+            0% {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .option-item:hover {
+            background: #f8fafc;
+            border-color: #cbd5e1;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.04);
+        }
+
+        .option-item.correct {
+            background: #ecfdf5 !important;
+            border-color: var(--success) !important;
+            color: #065f46;
+            font-weight: 600;
+            animation: pulseCorrect 0.6s ease;
+        }
+
+        @keyframes pulseCorrect {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+
+        .option-item.incorrect {
+            background: #fef2f2 !important;
+            border-color: var(--error) !important;
+            color: #991b1b;
+            font-weight: 600;
+            animation: shake 0.5s ease;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-6px); }
+            40%, 80% { transform: translateX(6px); }
+        }
+
+        /* ব্যাখ্যা আসার স্লো অ্যানিমেশন */
+        .explanation-box {
+            background: #f0f9ff;
+            border-left: 6px solid var(--primary);
+            padding: 18px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            font-size: 15px;
+            color: #0369a1;
+            display: none;
+            line-height: 1.7;
+            animation: fadeInScale 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes fadeInScale {
+            0% {
+                opacity: 0;
+                transform: scale(0.95) translateY(15px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .navigation-btns {
+            display: flex;
+            justify-content: space-between;
+            animation: slideUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.6s both;
+        }
+
+        @keyframes slideUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
+        }
+
+        .btn:hover:not(:disabled) {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(59, 130, 246, 0.35);
+        }
+
+        .btn:active:not(:disabled) {
+            transform: translateY(0);
+        }
+
+        .btn:disabled {
+            background: #cbd5e1;
+            box-shadow: none;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .progress-indicator {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-muted);
+            animation: fadeIn 1s ease 0.8s both;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* কার্ড পরিবর্তনের সময় স্মুথ রি-রেন্ডার ট্রিগার করতে ক্লাস */
+        .animate-transition {
+            animation: containerTransition 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes containerTransition {
+            0% { opacity: 0.3; transform: scale(0.98); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="quiz-container" id="main-container">
+        <div class="header">
+            <h2>Verb & Sentence Structure (Part 11)</h2>
+            <p>অফুরন্ত ডাইনামিক প্র্যাকটিস সিস্টেম</p>
+        </div>
+
+        <div id="question-container">
+            <div class="question-box" id="question-text">প্রশ্ন তৈরি হচ্ছে...</div>
+            <ul class="options-list" id="options-list"></ul>
+        </div>
+
+        <div class="explanation-box" id="explanation-box"></div>
+
+        <div class="navigation-btns">
+            <button class="btn" id="prev-btn" onclick="prevQuestion()" disabled>Previous</button>
+            <button class="btn" id="next-btn" onclick="nextQuestion()" disabled>Next</button>
+        </div>
+
+        <div class="progress-indicator" id="progress-indicator">প্রশ্ন নম্বর: ১</div>
+    </div>
+
+    <script>
+        const subjectsFirstPlural = ["I", "We", "You", "They", "The students", "The boys", "My friends"];
+        const subjectsThirdSingular = ["He", "She", "Rahim", "Karim", "The boy", "The baby", "An honest man", "Our teacher"];
+        
+        const verbData = [
+            { base: "play", es: "plays", meaning: "খেলা করা" },
+            { base: "read", es: "reads", meaning: "পড়া" },
+            { base: "write", es: "writes", meaning: "লেখা" },
+            { base: "go", es: "goes", meaning: "যাওয়া" },
+            { base: "study", es: "studies", meaning: "অধ্যয়ন করা" },
+            { base: "watch", es: "watches", meaning: "দেখা" },
+            { base: "eat", es: "eats", meaning: "খাওয়া" },
+            { base: "run", es: "runs", meaning: "দৌড়ানো" }
+        ];
+
+        const objectsList = ["football", "a book", "a letter", "to school", "English", "television", "rice", "in the field"];
+
+        let questionHistory = [];
+        let currentIndex = 0;
+        let answeredCurrent = false;
+
+        function getRandomItem(arr) {
+            return arr[Math.floor(Math.random() * arr.length)];
+        }
+
+        function generateDynamicQuestion() {
+            const questionTypes = [1, 2, 3, 4];
+            const type = getRandomItem(questionTypes);
+
+            let qText = "";
+            let options = [];
+            let correctAns = "";
+            let explanation = "";
+
+            if (type === 1) {
+                const isThirdSingular = Math.random() >= 0.5;
+                const subj = isThirdSingular ? getRandomItem(subjectsThirdSingular) : getRandomItem(subjectsFirstPlural);
+                const vObj = getRandomItem(verbData);
+                const extra = getRandomItem(objectsList);
+
+                qText = `Choose the correct form of the verb: "${subj} ___ ${extra}."`;
+                
+                const correct = isThirdSingular ? vObj.es : vObj.base;
+                const incorrect = isThirdSingular ? vObj.base : vObj.es;
+                
+                options = [correct, incorrect];
+                options.push(vObj.base + "ed");
+                options.push("is " + vObj.base + "ing");
+                
+                options.sort(() => Math.random() - 0.5);
+                correctAns = options.indexOf(correct);
+
+                explanation = `সঠিক উত্তর: ${correct}। কারণ এখানে Subject (${subj}) হলো ${isThirdSingular ? 'Third Person Singular Number' : 'Third Person Plural বা First/Second Person'}। লেসনের নিয়ম অনুযায়ী, Present Simple-এ Third Person Singular হলে মূল Verb-এর সাথে s/es যুক্ত হয়।`;
+
+            } else if (type === 2) {
+                const isThirdSingular = Math.random() >= 0.5;
+                const subj = isThirdSingular ? getRandomItem(subjectsThirdSingular) : getRandomItem(subjectsFirstPlural);
+                const vObj = getRandomItem(verbData);
+
+                qText = `Choose the correct negative sentence for "${subj} ___ ${vObj.base}":`;
+                
+                const correct = isThirdSingular ? `${subj} does not ${vObj.base}` : `${subj} do not ${vObj.base}`;
+                const incorrect = isThirdSingular ? `${subj} does not ${vObj.es}` : `${subj} does not ${vObj.base}`;
+                const alt1 = `${subj} is not ${vObj.base}`;
+                const alt2 = `${subj} has not ${vObj.base}`;
+
+                options = [correct, incorrect, alt1, alt2];
+                options.sort(() => Math.random() - 0.5);
+                correctAns = options.indexOf(correct);
+
+                explanation = `সঠিক উত্তর: ${correct}। লেসনের অত্যন্ত গুরুত্বপূর্ণ নিয়ম হলো— do/does/did অথবা doesn't/don't এর পরে সর্বদা Verb-এর Base Form (মূল রূপ) বসে, অতিরিক্ত s/es বসে না।`;
+
+            } else if (type === 3) {
+                const isThirdSingular = Math.random() >= 0.5;
+                const subj = isThirdSingular ? getRandomItem(subjectsThirdSingular).toLowerCase() : getRandomItem(subjectsFirstPlural).toLowerCase();
+                const vObj = getRandomItem(verbData);
+
+                qText = `Identify the grammatically correct question form:`;
+                
+                const correct = isThirdSingular ? `Does ${subj} ${vObj.base}?` : `Do ${subj} ${vObj.base}?`;
+                const incorrect = isThirdSingular ? `Does ${subj} ${vObj.es}?` : `Does ${subj} ${vObj.base}?`;
+                const alt1 = isThirdSingular ? `Do ${subj} ${vObj.es}?` : `Does ${subj} ${vObj.es}?`;
+                const alt2 = `Is ${subj} ${vObj.base}?`;
+
+                options = [correct, incorrect, alt1, alt2];
+                options = [...new Set(options)];
+                if(options.length < 4) options.push(`Did ${subj} ${vObj.base}?`);
+                options.sort(() => Math.random() - 0.5);
+                correctAns = options.indexOf(correct);
+
+                explanation = `সঠিক উত্তর: ${correct}। নিয়ম অনুযায়ী Present Simple প্রশ্নে Subject যদি Third Person Singular হয় তবে শুরুতে 'Does' বসে এবং এর পরের মূল Verb-এর সাথে কোনো s/es যুক্ত হয় না।`;
+
+            } else {
+                qText = `In the sentence "He is reading a book", what is the role of the word "is"?`;
+                
+                const correct = "Auxiliary Verb (Helping Verb)";
+                const incorrect = "Main Verb";
+                const alt1 = "Subject";
+                const alt2 = "Object";
+
+                options = [correct, incorrect, alt1, alt2];
+                options.sort(() => Math.random() - 0.5);
+                correctAns = options.indexOf(correct);
+
+                explanation = `সঠিক উত্তর: Auxiliary Verb (Helping Verb)। এখানে 'is' মূল কাজ 'reading' কে সম্পূর্ণ করতে সাহায্য করেছে, তাই এটি Auxiliary Verb।`;
+            }
+
+            return {
+                q: qText,
+                options: options,
+                answer: correctAns,
+                explanation: explanation
+            };
+        }
+
+        function triggerContainerAnimation() {
+            const container = document.getElementById("main-container");
+            container.classList.remove("animate-transition");
+            void container.offsetWidth; // Trigger reflow
+            container.classList.add("animate-transition");
+        }
+
+        function loadQuestion() {
+            if (currentIndex >= questionHistory.length) {
+                const newQ = generateDynamicQuestion();
+                questionHistory.push(newQ);
+            }
+
+            triggerContainerAnimation();
+
+            const currentQ = questionHistory[currentIndex];
+            document.getElementById("question-text").innerText = `প্রশ্ন (${currentIndex + 1}): ${currentQ.q}`;
+            
+            const optionsList = document.getElementById("options-list");
+            optionsList.innerHTML = "";
+            
+            const explanationBox = document.getElementById("explanation-box");
+            explanationBox.style.display = "none";
+            explanationBox.innerText = "";
+
+            document.getElementById("next-btn").disabled = true;
+            document.getElementById("prev-btn").disabled = currentIndex === 0;
+            answeredCurrent = false;
+
+            document.getElementById("progress-indicator").innerText = `প্রশ্ন নম্বর: ${currentIndex + 1} (Infinite Dynamic Mode)`;
+
+            currentQ.options.forEach((opt, index) => {
+                const li = document.createElement("li");
+                li.className = "option-item";
+                li.innerText = opt;
+                li.onclick = () => selectOption(index, currentQ.answer, currentQ.explanation, li);
+                optionsList.appendChild(li);
+            });
+        }
+
+        function selectOption(selectedIndex, correctIndex, explanationText, selectedElement) {
+            if (answeredCurrent) return;
+            answeredCurrent = true;
+
+            const optionsList = document.getElementById("options-list").children;
+
+            if (selectedIndex === correctIndex) {
+                selectedElement.classList.add("correct");
+            } else {
+                selectedElement.classList.add("incorrect");
+                optionsList[correctIndex].classList.add("correct");
+            }
+
+            const explanationBox = document.getElementById("explanation-box");
+            explanationBox.style.display = "block";
+            explanationBox.innerHTML = `<strong>ব্যাখ্যা:</strong> ${explanationText}`;
+
+            document.getElementById("next-btn").disabled = false;
+        }
+
+        function nextQuestion() {
+            currentIndex++;
+            loadQuestion();
+        }
+
+        function prevQuestion() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                loadQuestion();
+            }
+        }
+
+        loadQuestion();
+    </script>
+</body>
+</html>
