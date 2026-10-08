@@ -1,128 +1,2338 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Google Fonts for Bengali & English -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Inter:wght@700;900&display=swap" rel="stylesheet">
+<title>Part 1 - Sentence Foundation | Infinity MCQ</title>
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+<style>
 
-    <style>
-        body {
-            font-family: 'Hind Siliguri', 'Inter', sans-serif;
-            background-color: #030712;
-            overflow: hidden;
-        }
+/* =========================================================
+   PART 1 - SENTENCE FOUNDATION
+   INFINITY MCQ PRACTICE SYSTEM
+   Single File HTML + CSS + JavaScript
+   ========================================================= */
 
-        /* Gradient glowing animation on text */
-        .glow-text {
-            background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 50%, #38bdf8 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shine 6s linear infinite;
-        }
+/* ---------- FONT ---------- */
 
-        @keyframes shine {
-            0% { background-position: 0% center; }
-            50% { background-position: 100% center; }
-            100% { background-position: 0% center; }
-        }
+@font-face {
+    font-family: "Kalpurush";
+    src: local("Kalpurush");
+}
 
-        /* Keyframes for initial entry: Floating in from below with opacity */
-        @keyframes floatIn {
-            0% {
-                opacity: 0;
-                transform: translateY(40px) scale(0.95);
-                filter: blur(8px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-                filter: blur(0);
-            }
-        }
+:root {
+    --soft-bg: #f8fafc;
+    --white: rgba(255,255,255,0.72);
+    --border: rgba(255,255,255,0.85);
+    --text: #172033;
+    --muted: #687386;
+    --primary: #4f46e5;
+    --primary-dark: #3730a3;
+    --green: #16a34a;
+    --red: #dc2626;
+    --shadow:
+        0 20px 55px rgba(15, 23, 42, 0.10),
+        0 5px 20px rgba(15, 23, 42, 0.06);
 
-        /* Continuous subtle float effect once arrived */
-        @keyframes subtleFloat {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-8px);
-            }
-        }
+    --smooth:
+        cubic-bezier(0.22, 1, 0.36, 1);
+}
 
-        /* Animation class for Heading */
-        .animate-heading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards,
-                subtleFloat 6s ease-in-out 1.2s infinite;
-        }
+/* ---------- RESET ---------- */
 
-        /* Animation class for Subheading (staggered delay) */
-        .animate-subheading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards,
-                subtleFloat 6s ease-in-out 1.55s infinite;
-            opacity: 0; /* Hidden until animation kicks in */
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        /* Ambient background lighting */
-        .ambient-glow {
-            position: absolute;
-            width: 450px;
-            height: 450px;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(3, 7, 18, 0) 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            transition: left 0.4s ease-out, top 0.4s ease-out;
-        }
-    </style>
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+
+    font-family:
+        "Times New Roman",
+        Kalpurush,
+        serif;
+
+    color: var(--text);
+
+    background:
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(99,102,241,0.10),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 90% 20%,
+            rgba(14,165,233,0.08),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 50% 100%,
+            rgba(168,85,247,0.07),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #ffffff 0%,
+            #f8fafc 45%,
+            #f3f6fa 100%
+        );
+
+    overflow-x: hidden;
+}
+
+/* ---------- BACKGROUND LIGHT ---------- */
+
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.18;
+    pointer-events: none;
+    z-index: -1;
+}
+
+body::before {
+    top: -100px;
+    left: -100px;
+    background: #818cf8;
+}
+
+body::after {
+    bottom: -120px;
+    right: -100px;
+    background: #38bdf8;
+}
+
+/* ---------- MAIN CONTAINER ---------- */
+
+.app {
+    width: min(1100px, 94%);
+    margin: auto;
+    padding: 28px 0 45px;
+}
+
+/* ---------- HEADER ---------- */
+
+.header {
+    text-align: center;
+    margin-bottom: 25px;
+
+    animation:
+        headerDown 1.1s var(--smooth) both;
+}
+
+@keyframes headerDown {
+
+    from {
+        opacity: 0;
+        transform: translateY(-35px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.part-label {
+    display: inline-block;
+
+    font-family:
+        "Times New Roman",
+        serif;
+
+    font-size: 15px;
+    letter-spacing: 2px;
+    font-weight: bold;
+
+    color: var(--primary);
+
+    background: rgba(79,70,229,0.08);
+
+    border: 1px solid rgba(79,70,229,0.15);
+
+    padding: 8px 16px;
+
+    border-radius: 50px;
+
+    margin-bottom: 12px;
+}
+
+.header h1 {
+    font-size: clamp(27px, 5vw, 44px);
+    line-height: 1.15;
+    font-weight: 700;
+}
+
+.header p {
+    margin-top: 9px;
+
+    font-family: Kalpurush, "Times New Roman", serif;
+
+    font-size: 18px;
+    color: var(--muted);
+}
+
+/* ---------- GLASS CARD ---------- */
+
+.glass {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,0.82),
+            rgba(255,255,255,0.58)
+        );
+
+    border: 1px solid var(--border);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    box-shadow: var(--shadow);
+}
+
+/* ---------- TOP INFORMATION ---------- */
+
+.info-card {
+    border-radius: 22px;
+    padding: 17px 20px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+
+    margin-bottom: 20px;
+
+    animation:
+        fadeUp 1s var(--smooth) 0.15s both;
+}
+
+.info-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.info-icon {
+    width: 44px;
+    height: 44px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(79,70,229,0.14),
+            rgba(14,165,233,0.12)
+        );
+
+    font-size: 21px;
+}
+
+.info-title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.info-subtitle {
+    font-family: Kalpurush, "Times New Roman", serif;
+    color: var(--muted);
+    font-size: 16px;
+    margin-top: 2px;
+}
+
+.score-box {
+    text-align: right;
+}
+
+.score-label {
+    font-size: 14px;
+    color: var(--muted);
+}
+
+.score {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--primary);
+}
+
+/* ---------- PROGRESS ---------- */
+
+.progress-area {
+    margin-bottom: 20px;
+
+    animation:
+        fadeUp 1s var(--smooth) 0.25s both;
+}
+
+.progress-top {
+    display: flex;
+    justify-content: space-between;
+
+    font-size: 16px;
+
+    margin-bottom: 8px;
+}
+
+.progress-number {
+    color: var(--primary);
+    font-weight: bold;
+}
+
+.progress-track {
+    width: 100%;
+    height: 8px;
+
+    border-radius: 50px;
+
+    background: rgba(15,23,42,0.08);
+
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+
+    border-radius: inherit;
+
+    background:
+        linear-gradient(
+            90deg,
+            #4f46e5,
+            #6366f1,
+            #0ea5e9
+        );
+
+    transition:
+        width 0.9s var(--smooth);
+}
+
+/* ---------- QUESTION CARD ---------- */
+
+.question-card {
+    border-radius: 28px;
+
+    padding: clamp(22px, 4vw, 38px);
+
+    overflow: hidden;
+}
+
+/* ---------- QUESTION ANIMATION ---------- */
+
+.question-content {
+    opacity: 1;
+    transform: translateX(0) translateY(0);
+}
+
+.question-content.exit {
+    animation:
+        questionExit 0.32s var(--smooth) forwards;
+}
+
+.question-content.enter {
+    animation:
+        questionEnter 0.95s var(--smooth) forwards;
+}
+
+@keyframes questionExit {
+
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateX(-35px);
+    }
+}
+
+@keyframes questionEnter {
+
+    from {
+        opacity: 0;
+        transform:
+            translateX(45px)
+            translateY(10px);
+        filter: blur(3px);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            translateX(0)
+            translateY(0);
+        filter: blur(0);
+    }
+}
+
+/* ---------- QUESTION ---------- */
+
+.question-number {
+    font-size: 15px;
+
+    color: var(--primary);
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 12px;
+}
+
+.question-text {
+    font-size: clamp(20px, 3vw, 27px);
+
+    line-height: 1.45;
+
+    font-weight: bold;
+
+    margin-bottom: 5px;
+}
+
+.question-bangla {
+
+    font-family: Kalpurush, "Times New Roman", serif;
+
+    font-size: 18px;
+
+    color: #687386;
+
+    line-height: 1.6;
+
+    margin-bottom: 25px;
+}
+
+/* ---------- OPTIONS ---------- */
+
+.options {
+    display: grid;
+    gap: 13px;
+}
+
+.option {
+
+    width: 100%;
+
+    border: 1px solid rgba(100,116,139,0.16);
+
+    background:
+        rgba(255,255,255,0.64);
+
+    border-radius: 17px;
+
+    padding: 17px 18px;
+
+    cursor: pointer;
+
+    text-align: left;
+
+    font-family:
+        "Times New Roman",
+        serif;
+
+    font-size: 20px;
+
+    color: var(--text);
+
+    transition:
+        transform 0.35s var(--smooth),
+        box-shadow 0.35s var(--smooth),
+        border-color 0.35s var(--smooth),
+        background 0.35s var(--smooth);
+}
+
+.option:hover:not(.disabled) {
+
+    transform:
+        translateX(6px);
+
+    border-color:
+        rgba(79,70,229,0.35);
+
+    box-shadow:
+        0 9px 25px
+        rgba(79,70,229,0.10);
+
+    background:
+        rgba(255,255,255,0.92);
+}
+
+.option-label {
+
+    display: inline-grid;
+
+    place-items: center;
+
+    width: 34px;
+    height: 34px;
+
+    border-radius: 50%;
+
+    margin-right: 10px;
+
+    background:
+        rgba(79,70,229,0.09);
+
+    color: var(--primary);
+
+    font-weight: bold;
+
+    transition:
+        0.3s var(--smooth);
+}
+
+.option.correct {
+
+    border-color:
+        rgba(22,163,74,0.45);
+
+    background:
+        rgba(220,252,231,0.72);
+
+    box-shadow:
+        0 10px 28px
+        rgba(22,163,74,0.12);
+}
+
+.option.correct .option-label {
+
+    background:
+        var(--green);
+
+    color: white;
+}
+
+.option.wrong {
+
+    border-color:
+        rgba(220,38,38,0.45);
+
+    background:
+        rgba(254,226,226,0.72);
+
+    box-shadow:
+        0 10px 28px
+        rgba(220,38,38,0.10);
+}
+
+.option.wrong .option-label {
+
+    background:
+        var(--red);
+
+    color: white;
+}
+
+.option.disabled {
+    cursor: default;
+}
+
+/* ---------- EXPLANATION ---------- */
+
+.explanation {
+
+    display: none;
+
+    margin-top: 25px;
+
+    padding: 21px;
+
+    border-radius: 19px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(239,246,255,0.90),
+            rgba(248,250,252,0.80)
+        );
+
+    border:
+        1px solid rgba(59,130,246,0.14);
+
+    animation:
+        explanationShow
+        0.75s
+        var(--smooth)
+        both;
+}
+
+.explanation.show {
+    display: block;
+}
+
+@keyframes explanationShow {
+
+    from {
+        opacity: 0;
+        transform:
+            translateY(15px)
+            scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+.explanation-title {
+
+    font-size: 19px;
+
+    font-weight: bold;
+
+    color: #2563eb;
+
+    margin-bottom: 10px;
+}
+
+.explanation-text {
+
+    font-family:
+        Kalpurush,
+        "Times New Roman",
+        serif;
+
+    font-size: 19px;
+
+    line-height: 1.85;
+
+    color: #293548;
+}
+
+/* ---------- CONTROLS ---------- */
+
+.controls {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 14px;
+
+    margin-top: 24px;
+}
+
+.control-btn {
+
+    border: none;
+
+    min-width: 145px;
+
+    padding: 14px 22px;
+
+    border-radius: 15px;
+
+    cursor: pointer;
+
+    font-family:
+        "Times New Roman",
+        serif;
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    transition:
+        transform 0.35s var(--smooth),
+        box-shadow 0.35s var(--smooth),
+        opacity 0.3s ease;
+}
+
+.control-btn:hover {
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 12px 28px
+        rgba(15,23,42,0.12);
+}
+
+.previous {
+
+    color: #374151;
+
+    background:
+        rgba(255,255,255,0.78);
+
+    border:
+        1px solid rgba(100,116,139,0.16);
+}
+
+.next {
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #4f46e5,
+            #6366f1
+        );
+
+    box-shadow:
+        0 9px 25px
+        rgba(79,70,229,0.20);
+}
+
+/* ---------- RESULT ---------- */
+
+.result {
+
+    display: none;
+
+    text-align: center;
+
+    margin-top: 22px;
+
+    padding: 28px;
+
+    border-radius: 24px;
+}
+
+.result.show {
+    display: block;
+
+    animation:
+        fadeUp
+        0.8s
+        var(--smooth)
+        both;
+}
+
+.result-icon {
+
+    font-size: 48px;
+
+    margin-bottom: 10px;
+}
+
+.result h2 {
+
+    font-size: 28px;
+
+    margin-bottom: 8px;
+}
+
+.result p {
+
+    font-family:
+        Kalpurush,
+        "Times New Roman",
+        serif;
+
+    font-size: 19px;
+
+    color: var(--muted);
+
+    line-height: 1.7;
+}
+
+/* ---------- GENERAL ANIMATION ---------- */
+
+@keyframes fadeUp {
+
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ---------- MOBILE ---------- */
+
+@media (max-width: 650px) {
+
+    .app {
+        width: 94%;
+        padding-top: 18px;
+    }
+
+    .info-card {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+    .score-box {
+
+        text-align: left;
+    }
+
+    .question-card {
+
+        padding:
+            21px 16px;
+
+        border-radius: 22px;
+    }
+
+    .question-text {
+
+        font-size: 21px;
+
+        line-height: 1.5;
+    }
+
+    .question-bangla {
+
+        font-size: 17px;
+    }
+
+    .option {
+
+        font-size: 19px;
+
+        padding: 15px 13px;
+    }
+
+    .option-label {
+
+        width: 31px;
+        height: 31px;
+
+        margin-right: 7px;
+    }
+
+    .explanation-text {
+
+        font-size: 18px;
+    }
+
+    .controls {
+
+        flex-direction: column-reverse;
+    }
+
+    .control-btn {
+
+        width: 100%;
+    }
+}
+
+/* ---------- SMALL PHONE ---------- */
+
+@media (max-width: 380px) {
+
+    .header h1 {
+        font-size: 26px;
+    }
+
+    .question-text {
+        font-size: 19px;
+    }
+
+    .option {
+        font-size: 18px;
+    }
+}
+
+</style>
 </head>
-<body class="min-h-screen flex items-center justify-center relative select-none px-4">
 
-    <!-- Ambient glow center element -->
-    <div id="glow" class="ambient-glow top-1/2 left-1/2"></div>
+<body>
 
-    <!-- Centered minimal content with entry animations -->
-    <main class="text-center z-10 space-y-6 max-w-3xl mx-auto py-8 px-4">
-        
-        <!-- Main English Title -->
-        <h1 class="animate-heading text-5xl sm:text-7xl md:text-8xl font-black tracking-tight glow-text font-['Inter'] drop-shadow-lg">
-            Coming Soon...
+<div class="app">
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <div class="part-label">
+            PART 1
+        </div>
+
+        <h1>
+            SENTENCE FOUNDATION
         </h1>
 
-        <!-- Bengali Subheading -->
-        <p class="animate-subheading text-xl sm:text-3xl md:text-4xl font-semibold text-emerald-400/90 leading-relaxed tracking-wide drop-shadow">
-            ইনশাআল্লাহ, খুব শীঘ্রই ডাটা যোগ করা হবে।
+        <p>
+            Build your sentence foundation step by step
         </p>
+
+    </header>
+
+
+    <!-- INFORMATION CARD -->
+
+    <section class="info-card glass">
+
+        <div class="info-left">
+
+            <div class="info-icon">
+                ✦
+            </div>
+
+            <div>
+
+                <div class="info-title">
+                    Infinity MCQ Practice
+                </div>
+
+                <div class="info-subtitle">
+                    Practice • Learn • Understand • Improve
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="score-box">
+
+            <div class="score-label">
+                Score
+            </div>
+
+            <div
+                class="score"
+                id="score">
+                0
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PROGRESS -->
+
+    <section class="progress-area">
+
+        <div class="progress-top">
+
+            <span>
+                Progress
+            </span>
+
+            <span
+                class="progress-number"
+                id="progressNumber">
+                Question 1
+            </span>
+
+        </div>
+
+        <div class="progress-track">
+
+            <div
+                class="progress-fill"
+                id="progressFill">
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- QUESTION CARD -->
+
+    <main
+        class="question-card glass">
+
+        <div
+            class="question-content"
+            id="questionContent">
+
+            <div
+                class="question-number"
+                id="questionNumber">
+                QUESTION 1
+            </div>
+
+            <div
+                class="question-text"
+                id="questionText">
+            </div>
+
+            <div
+                class="question-bangla"
+                id="questionBangla">
+            </div>
+
+
+            <div
+                class="options"
+                id="options">
+            </div>
+
+
+            <!-- EXPLANATION -->
+
+            <div
+                class="explanation"
+                id="explanation">
+
+                <div class="explanation-title">
+                    Explanation
+                </div>
+
+                <div
+                    class="explanation-text"
+                    id="explanationText">
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- CONTROLS -->
+
+        <div class="controls">
+
+            <button
+                class="control-btn previous"
+                id="previousBtn">
+                ← Previous
+            </button>
+
+            <button
+                class="control-btn next"
+                id="nextBtn">
+                Next →
+            </button>
+
+        </div>
 
     </main>
 
-    <script>
-        const glow = document.getElementById('glow');
 
-        // Mouse move interactive glow background
-        window.addEventListener('mousemove', (e) => {
-            glow.style.left = e.clientX + 'px';
-            glow.style.top = e.clientY + 'px';
-        });
+    <!-- RESULT -->
 
-        // Touch move interactive glow background for mobile screens
-        window.addEventListener('touchmove', (e) => {
-            if (e.touches.length > 0) {
-                glow.style.left = e.touches[0].clientX + 'px';
-                glow.style.top = e.touches[0].clientY + 'px';
+    <section
+        class="result glass"
+        id="result">
+
+        <div class="result-icon">
+            🎯
+        </div>
+
+        <h2>
+            Practice Complete
+        </h2>
+
+        <p id="resultText">
+        </p>
+
+    </section>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   PART 1 - SENTENCE FOUNDATION
+   INFINITE QUESTION GENERATOR
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   QUESTION STATE
+   --------------------------------------------------------- */
+
+let currentQuestion = 0;
+
+let score = 0;
+
+let answered = false;
+
+let history = [];
+
+let questionCounter = 0;
+
+
+/* ---------------------------------------------------------
+   NAME DATABASE
+   Only approved names are used.
+   --------------------------------------------------------- */
+
+const names = [
+    "Firoz",
+    "Fatiha",
+    "Fatema",
+    "Jui",
+    "Ema",
+    "Rupa",
+    "Moksed",
+    "Ferjousi",
+    "Jannati",
+    "Mini",
+    "Miraz",
+    "Mujahid",
+    "Milon",
+    "Hannan",
+    "Joba",
+    "Tanzila",
+    "Rina",
+    "Tania",
+    "Taslima"
+];
+
+
+/* ---------------------------------------------------------
+   BASIC WORD DATABASE
+   --------------------------------------------------------- */
+
+const subjects = [
+    "studies English",
+    "reads a book",
+    "writes a sentence",
+    "plays football",
+    "helps others",
+    "learns grammar",
+    "opens the door",
+    "drinks water",
+    "goes to school",
+    "practices every day"
+];
+
+const verbs = [
+    "reads",
+    "writes",
+    "learns",
+    "studies",
+    "helps",
+    "plays",
+    "opens",
+    "likes",
+    "watches",
+    "practices"
+];
+
+const objects = [
+    "English",
+    "a book",
+    "grammar",
+    "the lesson",
+    "the sentence",
+    "a story",
+    "the answer",
+    "the question"
+];
+
+
+/* ---------------------------------------------------------
+   UTILITY FUNCTIONS
+   --------------------------------------------------------- */
+
+function randomItem(array) {
+
+    return array[
+        Math.floor(
+            Math.random() * array.length
+        )
+    ];
+
+}
+
+
+function randomName() {
+
+    return randomItem(names);
+
+}
+
+
+function shuffle(array) {
+
+    return [...array].sort(
+        () => Math.random() - 0.5
+    );
+
+}
+
+
+/* ---------------------------------------------------------
+   QUESTION TYPE 1
+   COMPLETE SENTENCE
+   --------------------------------------------------------- */
+
+function completeSentenceQuestion() {
+
+    const name = randomName();
+
+    const correct =
+        `${name} studies English every day.`;
+
+    const wrong1 =
+        `${name} studies English every day`;
+
+    const wrong2 =
+        `Studies English every day ${name}.`;
+
+    const wrong3 =
+        `${name} English every day studies.`;
+
+    return {
+
+        question:
+            "Which sentence is complete and correctly written?",
+
+        bangla:
+            "(নিচের কোন বাক্যটি সম্পূর্ণ এবং সঠিকভাবে লেখা হয়েছে?)",
+
+        options:
+            shuffle([
+                correct,
+                wrong1,
+                wrong2,
+                wrong3
+            ]),
+
+        answer:
+            correct,
+
+        explanation:
+            `সঠিক উত্তর: “${correct}”। এখানে ${name} হলো Subject এবং “studies English every day” হলো Predicate। বাক্যটির সম্পূর্ণ অর্থ প্রকাশ পাচ্ছে এবং শেষে Full Stop (.) আছে। অন্য বিকল্পগুলোর মধ্যে কোথাও punctuation নেই অথবা word order ভুল।`
+
+    };
+
+}
+
+
+/* ---------------------------------------------------------
+   QUESTION TYPE 2
+   SUBJECT
+   --------------------------------------------------------- */
+
+function subjectQuestion() {
+
+    const name = randomName();
+
+    const sentence =
+        `${name} reads a book every morning.`;
+
+    return {
+
+        question:
+            `What is the Subject in the sentence: "${sentence}"?`,
+
+        bangla:
+            "(বাক্যটির Subject বা কর্তা কোনটি?)",
+
+        options:
+            shuffle([
+                name,
+                "reads",
+                "a book",
+                "every morning"
+            ]),
+
+        answer:
+            name,
+
+        explanation:
+            `সঠিক উত্তর: “${name}”। Subject হলো যে ব্যক্তি বা বস্তু কাজটি করে। এখানে ${name} বই পড়ার কাজটি করছে। তাই ${name} হলো Subject।`
+
+    };
+
+}
+
+
+/* ---------------------------------------------------------
+   QUESTION TYPE 3
+   PREDICATE
+   --------------------------------------------------------- */
+
+function predicateQuestion() {
+
+    const name = randomName();
+
+    const sentence =
+        `${name} learns grammar carefully.`;
+
+    const correct =
+        "learns grammar carefully";
+
+    return {
+
+        question:
+            `What is the Predicate in the sentence: "${sentence}"?`,
+
+        bangla:
+            "(বাক্যটির Predicate বা কর্তা সম্পর্কে বলা অংশ কোনটি?)",
+
+        options:
+            shuffle([
+                correct,
+                name,
+                "grammar",
+                "carefully"
+            ]),
+
+        answer:
+            correct,
+
+        explanation:
+            `সঠিক উত্তর: “${correct}”। Predicate হলো Subject সম্পর্কে যে অংশে কিছু বলা হয়। এখানে Subject হলো ${name}; আর ${correct} অংশটি ${name} কী করছে তা বলছে। তাই এটি Predicate।`
+
+    };
+
+}
+
+
+/* ---------------------------------------------------------
+   QUESTION TYPE 4
+   WORD ORDER
+   --------------------------------------------------------- */
+
+function wordOrderQuestion() {
+
+    const name = randomName();
+
+    const correct =
+        `${name} reads a book.`;
+
+    return {
+
+        question:
+            "Choose the sentence with the correct word order.",
+
+        bangla:
+            "(সঠিক শব্দক্রমে লেখা বাক্যটি নির্বাচন করুন।)",
+
+        options:
+            shuffle([
+                correct,
+                `Reads ${name} a book.`,
+                `A book ${name} reads.`,
+                `${name} a book reads.`
+            ]),
+
+        answer:
+            correct,
+
+        explanation:
+            `সঠিক উত্তর: “${correct}”। সাধারণ English sentence-এ Basic Word Order হলো Subject + Verb + Object। এখানে ${name} = Subject, reads = Verb এবং a book = Object।`
+
+    };
+
+}
+
+
+/* ---------------------------------------------------------
+   QUESTION TYPE 5
+   CAPITAL LETTER
+   --------------------------------------------------------- */
+
+function capitalLetterQuestion() {
+
+    const name = randomName();
+
+    const correct =
+        `${name} is a student.`;
+
+    return {
+
+        question:
+            "Which sentence uses the capital letter correctly?",
+
+        bangla:
+            "(কোন বাক্যে Capital Letter সঠিকভাবে ব্যবহার করা হয়েছে?)",
+
+        options:
+            shuffle([
+                correct,
+                `${name.toLowerCase()} is a student.`,
+                `${name} Is a student.`,
+                `${name.toLowerCase()} Is A student.`
+            ]),
+
+        answer:
+            correct,
+
+        explanation:
+            `সঠিক উত্তর: “${correct}”। একটি বাক্যের প্রথম অক্ষর Capital Letter দিয়ে শুরু হয়। এছাড়া ব্যক্তির নামও Capital Letter দিয়ে লেখা হয়। তাই ${name}-এর প্রথম অক্ষর Capital হওয়া সঠিক।`
+
+    };
+
+}
+
+
+/* ---------------------------------------------------------
+   QUESTION TYPE 6
+   PUNCTUATION
+   --------------------------------------------------------- */
+
+function punctuationQuestion() {
+
+    const name = randomName();
+
+    const correct =
+        `${name} reads English.`;
+
+    return {
+
+        question:
+            "Which sentence has the correct punctuation?",
+
+        bangla:
+            "(কোন বাক্যে সঠিক যতিচিহ্ন ব্যবহার করা হয়েছে?)",
+
+        options:
+            shuffle([
+                correct,
+                `${name} reads English`,
+                `${name} reads English,`,
+                `${name} reads English!`
+            ]),
+
+        answer:
+            correct,
+
+        explanation:
+            `সঠিক উত্তর: “${correct}”। এটি একটি সাধারণ Statement বা বিবৃতিমূলক বাক্য। সাধারণ Statement-এর শেষে Full Stop (.) বসে। তাই এখানে “.” সঠিক punctuation।`
+
+    };
+
+}
+
+
+/* ---------------------------------------------------------
+   QUESTION TYPE 7
+   FRAGMENT
+   --------------------------------------------------------- */
+
+function fragmentQuestion() {
+
+    const name = randomName();
+
+    const correct =
+        "Because the weather was cold.";
+
+    return {
+
+        question:
+            "Which option is a sentence fragment?",
+
+        bangla:
+            "(কোনটি অসম্পূর্ণ বাক্য বা Sentence Fragment?)",
+
+        options:
+            shuffle([
+                correct,
+                `${name} stayed at home.`,
+                `${name} reads every day.`,
+                `${name} opened the window.`
+            ]),
+
+        answer:
+            correct,
+
+        explanation:
+            `সঠিক উত্তর: “${correct}”। এটি একটি Sentence Fragment, কারণ “Because” দিয়ে শুরু হওয়ার কারণে এটি একটি সম্পূর্ণ ভাব প্রকাশ করে না। “Because the weather was cold” বললে শ্রোতা জানতে চাইবে—তারপর কী ঘটেছিল? তাই এটি একা সম্পূর্ণ Sentence নয়।`
+
+    };
+
+}
+
+
+/* ---------------------------------------------------------
+   QUESTION TYPE 8
+   COMPLETE OR FRAGMENT
+   --------------------------------------------------------- */
+
+function completeOrFragmentQuestion() {
+
+    const name = randomName();
+
+    const correct =
+        `${name} opened the door.`;
+
+    return {
+
+        question:
+            "Which option is a complete sentence?",
+
+        bangla:
+            "(কোন বিকল্পটি একটি সম্পূর্ণ বাক্য?)",
+
+        options:
+            shuffle([
+                correct,
+                "After opening the door.",
+                "Because the lesson was difficult.",
+                "When the teacher arrived."
+            ]),
+
+        answer:
+            correct,
+
+        explanation:
+            `সঠিক উত্তর: “${correct}”। এতে Subject (${name}), Verb (opened), Object (the door) এবং সম্পূর্ণ ভাব রয়েছে। অন্যগুলো dependent expression; এগুলো একা সম্পূর্ণ অর্থ প্রকাশ করছে না।`
+
+    };
+
+}
+
+
+/* ---------------------------------------------------------
+   QUESTION TYPE 9
+   SENTENCE TYPE
+   --------------------------------------------------------- */
+
+function sentenceTypeQuestion() {
+
+    const name = randomName();
+
+    const correct =
+        `${name} studies English.`;
+
+    return {
+
+        question:
+            `What type of sentence is "${correct}"?`,
+
+        bangla:
+            "(এটি কোন ধরনের বাক্য?)",
+
+        options:
+            shuffle([
+                "Declarative sentence",
+                "Interrogative sentence",
+                "Imperative sentence",
+                "Exclamatory sentence"
+            ]),
+
+        answer:
+            "Declarative sentence",
+
+        explanation:
+            `সঠিক উত্তর: Declarative sentence। এই বাক্যে একটি সাধারণ তথ্য বা বক্তব্য প্রকাশ করা হয়েছে। এটি কোনো প্রশ্ন করছে না, আদেশ দিচ্ছে না এবং তীব্র আবেগও প্রকাশ করছে না।`
+
+    };
+
+}
+
+
+/* ---------------------------------------------------------
+   QUESTION TYPE 10
+   QUESTION SENTENCE
+   --------------------------------------------------------- */
+
+function questionSentenceQuestion() {
+
+    const name = randomName();
+
+    const correct =
+        `Does ${name} study English?`;
+
+    return {
+
+        question:
+            "Which sentence is correctly formed as a question?",
+
+        bangla:
+            "(কোন বাক্যটি সঠিকভাবে Question বা প্রশ্নবোধক বাক্য তৈরি করেছে?)",
+
+        options:
+            shuffle([
+                correct,
+                `${name} does study English?`,
+                `Does study ${name} English?`,
+                `${name} study does English?`
+            ]),
+
+        answer:
+            correct,
+
+        explanation:
+            `সঠিক উত্তর: “${correct}”। Present Simple-এ Subject যদি he/she/কোনো singular name হয়, তাহলে প্রশ্ন করার সময় “Does + Subject + base verb” ব্যবহার করা হয়। তাই “Does ${name} study English?” সঠিক।`
+
+    };
+
+}
+
+
+/* ---------------------------------------------------------
+   QUESTION TYPE 11
+   IMPERATIVE
+   --------------------------------------------------------- */
+
+function imperativeQuestion() {
+
+    const correct =
+        "Open the book.";
+
+    return {
+
+        question:
+            "Which sentence is an imperative sentence?",
+
+        bangla:
+            "(কোন বাক্যটি আদেশ, নির্দেশ বা অনুরোধ প্রকাশ করে?)",
+
+        options:
+            shuffle([
+                correct,
+                "The book is open.",
+                "Is the book open?",
+                "What a beautiful book!"
+            ]),
+
+        answer:
+            correct,
+
+        explanation:
+            `সঠিক উত্তর: “${correct}”। Imperative sentence সাধারণত আদেশ, নির্দেশ, অনুরোধ বা উপদেশ প্রকাশ করে। “Open the book” একটি নির্দেশ।`
+
+    };
+
+}
+
+
+/* ---------------------------------------------------------
+   QUESTION TYPE 12
+   EXCLAMATORY
+   --------------------------------------------------------- */
+
+function exclamatoryQuestion() {
+
+    const correct =
+        "What a beautiful day!";
+
+    return {
+
+        question:
+            "Which sentence is an exclamatory sentence?",
+
+        bangla:
+            "(কোন বাক্যটি বিস্ময় বা তীব্র আবেগ প্রকাশ করে?)",
+
+        options:
+            shuffle([
+                correct,
+                "It is a beautiful day.",
+                "Is it a beautiful day?",
+                "Make the day beautiful."
+            ]),
+
+        answer:
+            correct,
+
+        explanation:
+            `সঠিক উত্তর: “${correct}”। এটি বিস্ময় বা তীব্র অনুভূতি প্রকাশ করছে এবং শেষে Exclamation Mark (!) রয়েছে। তাই এটি Exclamatory sentence।`
+
+    };
+
+}
+
+
+/* ---------------------------------------------------------
+   QUESTION TYPE 13
+   SUBJECT + VERB
+   --------------------------------------------------------- */
+
+function subjectVerbQuestion() {
+
+    const name = randomName();
+
+    const correct =
+        `${name} reads.`;
+
+    return {
+
+        question:
+            "Which sentence contains a clear Subject and Verb?",
+
+        bangla:
+            "(কোন বাক্যে স্পষ্ট Subject এবং Verb রয়েছে?)",
+
+        options:
+            shuffle([
+                correct,
+                "Reads quickly.",
+                "In the classroom.",
+                "Because of the lesson."
+            ]),
+
+        answer:
+            correct,
+
+        explanation:
+            `সঠিক উত্তর: “${correct}”। এখানে ${name} হলো Subject এবং reads হলো Verb। তাই বাক্যটির একটি পরিষ্কার Subject-Verb structure আছে।`
+
+    };
+
+}
+
+
+/* ---------------------------------------------------------
+   QUESTION TYPE 14
+   CORRECT SENTENCE
+   --------------------------------------------------------- */
+
+function correctSentenceQuestion() {
+
+    const name = randomName();
+
+    const correct =
+        `${name} likes English grammar.`;
+
+    return {
+
+        question:
+            "Choose the grammatically correct sentence.",
+
+        bangla:
+            "(ব্যাকরণগতভাবে সঠিক বাক্যটি নির্বাচন করুন।)",
+
+        options:
+            shuffle([
+                correct,
+                `${name} like English grammar.`,
+                `${name} liking English grammar.`,
+                `${name} English grammar like.`
+            ]),
+
+        answer:
+            correct,
+
+        explanation:
+            `সঠিক উত্তর: “${correct}”। ${name} একটি singular subject। Present Simple-এ singular third-person subject-এর সঙ্গে সাধারণত verb-এর শেষে “s/es” হয়। তাই “likes” সঠিক।`
+
+    };
+
+}
+
+
+/* ---------------------------------------------------------
+   QUESTION TYPE 15
+   BASIC SENTENCE STRUCTURE
+   --------------------------------------------------------- */
+
+function basicStructureQuestion() {
+
+    const correct =
+        "Subject + Verb + Object";
+
+    return {
+
+        question:
+            "Which pattern represents a basic English sentence structure?",
+
+        bangla:
+            "(সাধারণ English বাক্যের একটি মৌলিক কাঠামো কোনটি?)",
+
+        options:
+            shuffle([
+                correct,
+                "Object + Object + Subject",
+                "Verb + Subject + Object",
+                "Object + Verb + Subject"
+            ]),
+
+        answer:
+            correct,
+
+        explanation:
+            `সঠিক উত্তর: “${correct}”। Basic English sentence-এর একটি খুব গুরুত্বপূর্ণ কাঠামো হলো Subject + Verb + Object। যেমন: “Firoz reads a book.” এখানে Firoz = Subject, reads = Verb এবং a book = Object।`
+
+    };
+
+}
+
+
+/* ---------------------------------------------------------
+   QUESTION TYPE 16
+   STATEMENT
+   --------------------------------------------------------- */
+
+function statementQuestion() {
+
+    const name = randomName();
+
+    const correct =
+        `${name} is happy.`;
+
+    return {
+
+        question:
+            "Which sentence is a statement?",
+
+        bangla:
+            "(কোন বাক্যটি একটি সাধারণ বক্তব্য বা Statement?)",
+
+        options:
+            shuffle([
+                correct,
+                `Is ${name} happy?`,
+                `Be happy, ${name}.`,
+                `How happy ${name} is!`
+            ]),
+
+        answer:
+            correct,
+
+        explanation:
+            `সঠিক উত্তর: “${correct}”। এটি একটি সাধারণ তথ্য বা বক্তব্য দিচ্ছে। তাই এটি Statement বা Declarative sentence।`
+
+    };
+
+}
+
+
+/* ---------------------------------------------------------
+   QUESTION TYPE 17
+   QUESTION MARK
+   --------------------------------------------------------- */
+
+function questionMarkQuestion() {
+
+    const name = randomName();
+
+    const correct =
+        `Where does ${name} live?`;
+
+    return {
+
+        question:
+            "Which sentence uses the question mark correctly?",
+
+        bangla:
+            "(কোন বাক্যে Question Mark (?) সঠিকভাবে ব্যবহার করা হয়েছে?)",
+
+        options:
+            shuffle([
+                correct,
+                `Where does ${name} live.`,
+                `Where does ${name} live!`,
+                `Where ${name} does live.`
+            ]),
+
+        answer:
+            correct,
+
+        explanation:
+            `সঠিক উত্তর: “${correct}”। এটি একটি প্রশ্ন। তাই বাক্যের শেষে Question Mark (?) বসবে। এছাড়া “Where + does + Subject + base verb” গঠনটিও সঠিক।`
+
+    };
+
+}
+
+
+/* ---------------------------------------------------------
+   QUESTION TYPE 18
+   RANDOM SENTENCE
+   --------------------------------------------------------- */
+
+function randomFoundationQuestion() {
+
+    const name = randomName();
+
+    const verb = randomItem(verbs);
+
+    const object = randomItem(objects);
+
+    const correct =
+        `${name} ${verb} ${object}.`;
+
+    const wrong1 =
+        `${name} ${object} ${verb}.`;
+
+    const wrong2 =
+        `${verb} ${name} ${object}.`;
+
+    const wrong3 =
+        `${object} ${name} ${verb}.`;
+
+    return {
+
+        question:
+            "Choose the sentence with the correct basic word order.",
+
+        bangla:
+            "(সঠিক মৌলিক শব্দক্রমের বাক্যটি নির্বাচন করুন।)",
+
+        options:
+            shuffle([
+                correct,
+                wrong1,
+                wrong2,
+                wrong3
+            ]),
+
+        answer:
+            correct,
+
+        explanation:
+            `সঠিক উত্তর: “${correct}”। এখানে Subject = ${name}, Verb = ${verb}, এবং Object = ${object}। তাই Basic English Word Order অনুযায়ী Subject + Verb + Object হওয়ায় বাক্যটি সঠিক।`
+
+    };
+
+}
+
+
+/* ---------------------------------------------------------
+   QUESTION GENERATOR
+   --------------------------------------------------------- */
+
+const generators = [
+
+    completeSentenceQuestion,
+    subjectQuestion,
+    predicateQuestion,
+    wordOrderQuestion,
+    capitalLetterQuestion,
+    punctuationQuestion,
+    fragmentQuestion,
+    completeOrFragmentQuestion,
+    sentenceTypeQuestion,
+    questionSentenceQuestion,
+    imperativeQuestion,
+    exclamatoryQuestion,
+    subjectVerbQuestion,
+    correctSentenceQuestion,
+    basicStructureQuestion,
+    statementQuestion,
+    questionMarkQuestion,
+    randomFoundationQuestion
+
+];
+
+
+/* ---------------------------------------------------------
+   GENERATE QUESTION
+   --------------------------------------------------------- */
+
+function generateQuestion() {
+
+    const generator =
+        randomItem(generators);
+
+    return generator();
+
+}
+
+
+/* ---------------------------------------------------------
+   CREATE QUESTION
+   --------------------------------------------------------- */
+
+function createNewQuestion() {
+
+    const question =
+        generateQuestion();
+
+    history[currentQuestion] =
+        question;
+
+    questionCounter =
+        currentQuestion + 1;
+
+    renderQuestion(question);
+
+}
+
+
+/* ---------------------------------------------------------
+   RENDER QUESTION
+   --------------------------------------------------------- */
+
+function renderQuestion(question) {
+
+    answered = false;
+
+    const content =
+        document.getElementById(
+            "questionContent"
+        );
+
+    const explanation =
+        document.getElementById(
+            "explanation"
+        );
+
+    explanation.classList.remove("show");
+
+    content.classList.remove("enter");
+
+    void content.offsetWidth;
+
+    content.classList.add("enter");
+
+
+    document.getElementById(
+        "questionNumber"
+    ).textContent =
+        `QUESTION ${questionCounter}`;
+
+
+    document.getElementById(
+        "progressNumber"
+    ).textContent =
+        `Question ${questionCounter}`;
+
+
+    document.getElementById(
+        "questionText"
+    ).textContent =
+        question.question;
+
+
+    document.getElementById(
+        "questionBangla"
+    ).textContent =
+        question.bangla;
+
+
+    const optionsContainer =
+        document.getElementById(
+            "options"
+        );
+
+    optionsContainer.innerHTML = "";
+
+
+    question.options.forEach(
+        (option, index) => {
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+            button.className =
+                "option";
+
+            button.dataset.answer =
+                option;
+
+            const label =
+                String.fromCharCode(
+                    65 + index
+                );
+
+            button.innerHTML =
+                `
+                <span class="option-label">
+                    ${label}
+                </span>
+                ${escapeHTML(option)}
+                `;
+
+            button.addEventListener(
+                "click",
+                () => checkAnswer(
+                    button,
+                    option,
+                    question
+                )
+            );
+
+            optionsContainer.appendChild(
+                button
+            );
+
+        }
+    );
+
+
+    updateProgress();
+
+}
+
+
+/* ---------------------------------------------------------
+   ESCAPE HTML
+   --------------------------------------------------------- */
+
+function escapeHTML(text) {
+
+    const div =
+        document.createElement("div");
+
+    div.textContent = text;
+
+    return div.innerHTML;
+
+}
+
+
+/* ---------------------------------------------------------
+   CHECK ANSWER
+   --------------------------------------------------------- */
+
+function checkAnswer(
+    selectedButton,
+    selectedAnswer,
+    question
+) {
+
+    if (answered) return;
+
+    answered = true;
+
+
+    const optionButtons =
+        document.querySelectorAll(
+            ".option"
+        );
+
+
+    optionButtons.forEach(
+        button => {
+
+            button.classList.add(
+                "disabled"
+            );
+
+            if (
+                button.dataset.answer ===
+                question.answer
+            ) {
+
+                button.classList.add(
+                    "correct"
+                );
+
             }
-        });
-    </script>
+
+        }
+    );
+
+
+    if (
+        selectedAnswer ===
+        question.answer
+    ) {
+
+        selectedButton.classList.add(
+            "correct"
+        );
+
+        score++;
+
+        document.getElementById(
+            "score"
+        ).textContent =
+            score;
+
+    } else {
+
+        selectedButton.classList.add(
+            "wrong"
+        );
+
+    }
+
+
+    document.getElementById(
+        "explanationText"
+    ).textContent =
+        question.explanation;
+
+
+    document.getElementById(
+        "explanation"
+    ).classList.add(
+        "show"
+    );
+
+}
+
+
+/* ---------------------------------------------------------
+   NEXT
+   --------------------------------------------------------- */
+
+function nextQuestion() {
+
+    const content =
+        document.getElementById(
+            "questionContent"
+        );
+
+    content.classList.remove(
+        "enter"
+    );
+
+    content.classList.add(
+        "exit"
+    );
+
+
+    setTimeout(
+        () => {
+
+            currentQuestion++;
+
+            createNewQuestion();
+
+            content.classList.remove(
+                "exit"
+            );
+
+        },
+        320
+    );
+
+}
+
+
+/* ---------------------------------------------------------
+   PREVIOUS
+   --------------------------------------------------------- */
+
+function previousQuestion() {
+
+    if (currentQuestion <= 0) {
+
+        return;
+
+    }
+
+
+    const content =
+        document.getElementById(
+            "questionContent"
+        );
+
+    content.classList.remove(
+        "enter"
+    );
+
+    content.classList.add(
+        "exit"
+    );
+
+
+    setTimeout(
+        () => {
+
+            currentQuestion--;
+
+            const previous =
+                history[currentQuestion];
+
+            questionCounter =
+                currentQuestion + 1;
+
+            renderQuestion(
+                previous
+            );
+
+            content.classList.remove(
+                "exit"
+            );
+
+        },
+        320
+    );
+
+}
+
+
+/* ---------------------------------------------------------
+   PROGRESS
+   --------------------------------------------------------- */
+
+function updateProgress() {
+
+    /*
+       Since this is an infinite system,
+       the bar represents the current
+       practice position in a 20-question
+       visual cycle.
+    */
+
+    const cycle =
+        ((currentQuestion) % 20) + 1;
+
+    const percentage =
+        (cycle / 20) * 100;
+
+    document.getElementById(
+        "progressFill"
+    ).style.width =
+        `${percentage}%`;
+
+}
+
+
+/* ---------------------------------------------------------
+   BUTTON EVENTS
+   --------------------------------------------------------- */
+
+document.getElementById(
+    "nextBtn"
+).addEventListener(
+    "click",
+    nextQuestion
+);
+
+
+document.getElementById(
+    "previousBtn"
+).addEventListener(
+    "click",
+    previousQuestion
+);
+
+
+/* ---------------------------------------------------------
+   KEYBOARD CONTROL
+   --------------------------------------------------------- */
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if (
+            event.key ===
+            "ArrowRight"
+        ) {
+
+            nextQuestion();
+
+        }
+
+        if (
+            event.key ===
+            "ArrowLeft"
+        ) {
+
+            previousQuestion();
+
+        }
+
+    }
+);
+
+
+/* ---------------------------------------------------------
+   INITIAL QUESTION
+   --------------------------------------------------------- */
+
+createNewQuestion();
+
+</script>
+
 </body>
 </html>
