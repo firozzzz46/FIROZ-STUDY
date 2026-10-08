@@ -1,794 +1,879 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>শরহুল আকাইদ আন-নাসাফিয়্যা - প্রশ্নোত্তর সমাধান</title>
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Anek+Bangla:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
-    <style>
-        /* Modern CSS Variables & Reset */
-        :root {
-            --bg-color: #f8f9fa;
-            --card-bg: #ffffff;
-            --primary: #1b4332;
-            --primary-light: #2d6a4f;
-            --accent: #d4af37;
-            --text-color: #212529;
-            --text-muted: #495057;
-            --border-color: #e9ecef;
-            --shadow-sm: 0 2px 8px rgba(0,0,0,0.05);
-            --shadow-md: 0 8px 24px rgba(0,0,0,0.08);
-            --shadow-lg: 0 12px 32px rgba(0,0,0,0.12);
-            --font-main: 'Anek Bangla', system-ui, -apple-system, sans-serif;
-            --font-arabic: 'Amiri', serif;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+<title>শরহুল আকাইদ আন-নাসাফিয়্যাহ — ১৪৩১ হি. প্রশ্নপত্র</title>
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: var(--font-main);
-            font-size: 25px;
-            line-height: 1.7;
-            padding: 20px 10px;
-            overflow-x: hidden;
-        }
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Kalpurush&display=swap');
 
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 10px;
-        }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-        /* Arabic Typography */
-        .ar {
-            font-family: var(--font-arabic);
-            direction: rtl;
-            font-weight: 700;
-            color: var(--primary);
-            display: inline-block;
-            padding: 0 4px;
-        }
+html{
+    scroll-behavior:smooth;
+}
 
-        /* Header Styles */
-        header.header {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 15px;
-            padding: 40px 30px;
-            background: linear-gradient(135deg, #1b4332 0%, #081c15 100%);
-            color: #ffffff;
-            border-radius: 16px;
-            box-shadow: var(--shadow-lg);
-            margin-bottom: 40px;
-            overflow: hidden;
-        }
+body{
+    font-family:"Kalpurush", "Noto Sans Bengali", sans-serif;
+    font-size:25px;
+    line-height:1.9;
+    color:#222;
+    background:#f7f8fa;
+    padding:25px;
+}
 
-        header.header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(212,175,55,0.1) 0%, transparent 70%);
-            pointer-events: none;
-        }
+.container{
+    max-width:1200px;
+    margin:auto;
+    background:#fff;
+    padding:45px;
+    border-radius:22px;
+    box-shadow:0 8px 35px rgba(0,0,0,.08);
+}
 
-        .header-content {
-            flex: 1;
-        }
+.top-bar{
+    display:flex;
+    justify-content:flex-end;
+    margin-bottom:20px;
+}
 
-        header h1 {
-            font-size: 1.6em;
-            font-weight: 700;
-            margin-bottom: 5px;
-            color: var(--accent);
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-        }
+.pdf-btn{
+    border:none;
+    background:linear-gradient(135deg,#1769aa,#1976d2);
+    color:white;
+    padding:12px 24px;
+    border-radius:12px;
+    font-family:inherit;
+    font-size:20px;
+    cursor:pointer;
+    box-shadow:0 5px 15px rgba(25,118,210,.25);
+    transition:.3s;
+}
 
-        header p {
-            font-size: 1.1em;
-            opacity: 0.9;
-            font-weight: 300;
-        }
+.pdf-btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 8px 22px rgba(25,118,210,.35);
+}
 
-        /* Main Section & Cards */
-        .question-card {
-            background: var(--card-bg);
-            border-radius: 16px;
-            border: 1px solid var(--border-color);
-            box-shadow: var(--shadow-md);
-            margin-bottom: 40px;
-            padding: 35px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
+.book-title{
+    text-align:center;
+    color:#123b63;
+    font-size:34px;
+    font-weight:bold;
+    margin-bottom:8px;
+}
 
-        .question-card:hover {
-            box-shadow: var(--shadow-lg);
-        }
+.subtitle{
+    text-align:center;
+    color:#666;
+    margin-bottom:35px;
+    font-size:23px;
+}
 
-        .q-header {
-            border-bottom: 3px solid var(--accent);
-            padding-bottom: 15px;
-            margin-bottom: 30px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
+.question{
+    margin-top:50px;
+    padding:20px 25px;
+    border-left:7px solid #1769aa;
+    background:linear-gradient(90deg,#eef6ff,#ffffff);
+    border-radius:12px;
+    color:#123b63;
+    font-size:29px;
+    font-weight:bold;
+}
 
-        .q-badge {
-            background: var(--primary);
-            color: var(--accent);
-            padding: 5px 18px;
-            border-radius: 30px;
-            font-weight: 700;
-            font-size: 0.9em;
-            white-space: nowrap;
-        }
+.section{
+    margin-top:32px;
+}
 
-        .q-title {
-            font-size: 1.3em;
-            font-weight: 700;
-            color: var(--primary);
-            line-height: 1.3;
-        }
+.section-title{
+    color:#8a4b08;
+    font-size:27px;
+    font-weight:bold;
+    margin-bottom:15px;
+}
 
-        /* Content Blocks & Sub-sections */
-        .sub-block {
-            margin-bottom: 30px;
-            padding: 20px;
-            border-radius: 12px;
-            background: #fafbfc;
-            border-left: 5px solid var(--primary-light);
-        }
+.sub-title{
+    color:#1769aa;
+    font-size:26px;
+    font-weight:bold;
+    margin-top:22px;
+    margin-bottom:8px;
+}
 
-        .sub-block h3 {
-            font-size: 1.15em;
-            color: var(--primary-light);
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+.answer{
+    margin-bottom:20px;
+}
 
-        .sub-block h3::before {
-            content: '◆';
-            color: var(--accent);
-            font-size: 0.8em;
-        }
+.answer-label{
+    color:#167044;
+    font-weight:bold;
+}
 
-        p {
-            margin-bottom: 15px;
-        }
+.arabic{
+    direction:rtl;
+    unicode-bidi:embed;
+    font-family:"Traditional Arabic","Amiri","Noto Naskh Arabic",serif;
+    font-size:28px;
+}
 
-        ul, ol {
-            margin-left: 25px;
-            margin-bottom: 15px;
-        }
+.highlight{
+    background:#fff5c7;
+    border-left:5px solid #e3aa00;
+    padding:12px 18px;
+    border-radius:8px;
+    margin:15px 0;
+}
 
-        li {
-            margin-bottom: 8px;
-        }
+.evidence{
+    background:#f1f8f4;
+    border-left:5px solid #218838;
+    padding:15px 20px;
+    border-radius:9px;
+    margin:15px 0;
+}
 
-        /* Special Highlight & Example Boxes */
-        .highlight-box {
-            background-color: #fefae0;
-            border: 1px solid #dda15e;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
-            font-size: 0.95em;
-        }
+.note{
+    background:#f4f1ff;
+    border-left:5px solid #7652c7;
+    padding:15px 20px;
+    border-radius:9px;
+    margin:15px 0;
+}
 
-        .evidence-box {
-            background-color: #e8f5e9;
-            border-left: 4px solid #2e7d32;
-            padding: 15px 20px;
-            border-radius: 0 8px 8px 0;
-            margin: 15px 0;
-            font-size: 0.95em;
-        }
+ul{
+    margin:8px 0 15px 35px;
+}
 
-        /* Tables Formatting */
-        .table-responsive {
-            width: 100%;
-            overflow-x: auto;
-            margin: 25px 0;
-            border-radius: 12px;
-            box-shadow: var(--shadow-sm);
-        }
+li{
+    margin-bottom:7px;
+}
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background: var(--card-bg);
-            font-size: 23px;
-            text-align: left;
-        }
+.divider{
+    height:2px;
+    background:linear-gradient(90deg,transparent,#b9c4d0,transparent);
+    margin:45px 0;
+}
 
-        th, td {
-            padding: 16px 20px;
-            border: 1px solid var(--border-color);
-            vertical-align: top;
-        }
+.reveal{
+    opacity:0;
+    transform:translateY(35px);
+    transition:opacity .8s ease, transform .8s ease;
+}
 
-        th {
-            background-color: var(--primary);
-            color: #ffffff;
-            font-weight: 600;
-        }
+.reveal.show{
+    opacity:1;
+    transform:translateY(0);
+}
 
-        tr:nth-child(even) {
-            background-color: #f8f9fa;
-        }
+@media(max-width:800px){
+    body{
+        padding:10px;
+        font-size:22px;
+        line-height:1.8;
+    }
 
-        /* Smooth Scroll Animations Setup */
-        .animate-element {
-            opacity: 0;
-            will-change: transform, opacity;
-            transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-        }
+    .container{
+        padding:25px 18px;
+        border-radius:14px;
+    }
 
-        .fade-up { transform: translateY(40px); }
-        .fade-down { transform: translateY(-40px); }
-        .fade-left { transform: translateX(-40px); }
-        .fade-right { transform: translateX(40px); }
+    .book-title{
+        font-size:28px;
+    }
 
-        .animate-element.is-visible {
-            opacity: 1;
-            transform: translate(0, 0);
-        }
+    .subtitle{
+        font-size:20px;
+    }
 
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 30px;
-            font-size: 0.8em;
-            color: var(--text-muted);
-            border-top: 1px solid var(--border-color);
-            margin-top: 50px;
-        }
+    .question{
+        font-size:25px;
+        padding:15px 18px;
+    }
 
-        /* ================= TOP RIGHT STYLISH PDF BUTTON CSS ================= */
-        .top-right-pdf-btn {
-            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
-            color: #ffffff;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            font-weight: 600;
-            border-radius: 10px;
-            cursor: pointer;
-            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.25);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            white-space: nowrap;
-            z-index: 10;
-        }
+    .section-title,
+    .sub-title{
+        font-size:24px;
+    }
 
-        .top-right-pdf-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4);
-            background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
-        }
+    .arabic{
+        font-size:25px;
+    }
 
-        .top-right-pdf-btn:active {
-            transform: translateY(0);
-        }
+    .pdf-btn{
+        font-size:18px;
+        padding:10px 18px;
+    }
+}
 
-        /* Print / PDF save korar somoy rules */
-        @media print {
-            .top-right-pdf-btn, .back-btn, .nav-buttons {
-                display: none !important;
-            }
-            body {
-                background-color: #ffffff !important;
-                padding: 0 !important;
-                overflow: visible !important;
-            }
-            .question-card, .content-card {
-                box-shadow: none !important;
-                border: 1px solid #ddd !important;
-                padding: 15px !important;
-                page-break-inside: avoid;
-            }
-            .animate-element, .animate-up, .animate-left, .animate-zoom {
-                opacity: 1 !important;
-                transform: none !important;
-                transition: none !important;
-            }
-        }
+@media(max-width:480px){
+    body{
+        font-size:20px;
+    }
 
-        /* Responsive Breakpoints */
-        @media (max-width: 992px) {
-            body { font-size: 23px; }
-            .container { padding: 5px; }
-            .question-card { padding: 25px; }
-            table { font-size: 22px; }
-        }
+    .container{
+        padding:20px 14px;
+    }
 
-        @media (max-width: 768px) {
-            body { font-size: 21px; }
-            header h1 { font-size: 1.4em; }
-            .q-header { flex-direction: column; align-items: flex-start; gap: 8px; }
-            .question-card { padding: 20px 15px; }
-            .sub-block { padding: 15px; }
-            th, td { padding: 12px 14px; }
-            header.header { flex-direction: column; text-align: center; }
-        }
+    .book-title{
+        font-size:25px;
+    }
 
-        @media (max-width: 480px) {
-            body { font-size: 19px; }
-            header { padding: 25px 15px; }
-            header h1 { font-size: 1.2em; }
-            .q-badge { font-size: 0.8em; padding: 4px 12px; }
-            table { font-size: 20px; }
-        }
-    </style>
+    .question{
+        font-size:23px;
+    }
+
+    .section-title,
+    .sub-title{
+        font-size:22px;
+    }
+
+    .arabic{
+        font-size:23px;
+    }
+
+    ul{
+        margin-left:25px;
+    }
+}
+
+@media print{
+    @page{
+        size:A4;
+        margin:15mm;
+    }
+
+    body{
+        background:white;
+        padding:0;
+        font-size:18px;
+        line-height:1.7;
+    }
+
+    .container{
+        box-shadow:none;
+        padding:0;
+        max-width:none;
+    }
+
+    .top-bar{
+        display:none;
+    }
+
+    .question{
+        font-size:22px;
+        break-before:auto;
+    }
+
+    .section-title,
+    .sub-title{
+        break-after:avoid;
+    }
+
+    .answer,
+    .highlight,
+    .evidence,
+    .note{
+        break-inside:avoid;
+    }
+
+    .reveal{
+        opacity:1 !important;
+        transform:none !important;
+    }
+}
+</style>
 </head>
+
 <body>
 
-    <div class="container">
-        
-        <!-- Main Header -->
-        <header class="header animate-element fade-down">
-            <div class="header-content">
-                <h1>শরহুল আকাইদ আন-নাসাফিয়্যা</h1>
-                <p>প্রশ্নোত্তর সমাধান (১৪৩১ হিজরী)</p>
-            </div>
-            <!-- PDF Button JS dynamic add korbe -->
-        </header>
+<div class="container">
 
-        <!-- Question 1 -->
-        <article class="question-card animate-element fade-up">
-            <div class="q-header">
-                <span class="q-badge">প্রশ্ন–১</span>
-                <h2 class="q-title">قوله: "حقائق الأشياء ثابتة"</h2>
-            </div>
-
-            <!-- Q1 (A) -->
-            <div class="sub-block animate-element fade-left">
-                <h3>(A) সোফিস্তাইয়া কারা এবং তারা বিশ্বে আছে কি না?</h3>
-                <p><strong>(১) সোফিস্তাইয়া কারা?</strong><br>
-                "সুফাস্তা" গ্রিক শব্দ। অর্থ: <span class="ar">الحكمة المموهة</span> (ভ্রান্ত ও প্রতারণাপূর্ণ হিকমত)। যারা বস্তুর হাকিকত ও তার জ্ঞান অস্বীকার করে বা তাতে সন্দেহ করে, তাদের <span class="ar">سوفسطائية</span> বলে।</p>
-                <p><strong>(২) তারা বিশ্বে আছে কি না? (দলিলসহ)</strong><br>
-                হ্যাঁ, তারা ছিল এবং তাদের মতবাদ ছিল।</p>
-                <div class="evidence-box">
-                    <strong>দলিল:</strong>
-                    <ul>
-                        <li>ইমাম নাসাফি (রহ.) <span class="ar">"خلافا للسوفسطائية"</span> বলে তাদেরকে বাস্তব প্রতিপক্ষ ধরে খণ্ডন করেছেন।</li>
-                        <li>ইতিহাসে গ্রিক সোফিস্ট দার্শনিকরা পরিচিত।</li>
-                    </ul>
-                    <p><em>অন্য মত:</em> কারও কারও মতে সত্যিকারভাবে এ বিশ্বাস কেউ রাখে না। যারা অস্বীকার করে, তারা জিদবশত করে।</p>
-                </div>
-            </div>
-
-            <!-- Q1 (B) -->
-            <div class="sub-block animate-element fade-right">
-                <h3>(B) তাদের বাতিল আকিদা কী কী?</h3>
-                <div class="table-responsive">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>দল</th>
-                                <th>নাম (আরবি)</th>
-                                <th>আকিদা ও বৈশিষ্ট্য</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>প্রথম দল</strong></td>
-                                <td><span class="ar">عنادية</span> (ইনাদিয়া)</td>
-                                <td>عناد অর্থ জিদ। তারা বলে, বস্তুর কোনো বাস্তব সত্তা নেই। সবই কল্পনা ও وهم।</td>
-                            </tr>
-                            <tr>
-                                <td><strong>দ্বিতীয় দল</strong></td>
-                                <td><span class="ar">عندية</span> (ইনদিয়া)</td>
-                                <td>তারা বলে, হাকিকত বিশ্বাসের অনুগামী। যে যা বিশ্বাস করে, তার কাছে তা-ই সত্য। কেউ কোনো বস্তুকে জাওহার ভাবলে তা জাওহার, আরায ভাবলে আরায, কাদীম ভাবলে কাদীম, হাদিস ভাবলে হাদিস।</td>
-                            </tr>
-                            <tr>
-                                <td><strong>তৃতীয় দল</strong></td>
-                                <td><span class="ar">لاأدرية</span> (লা-আদরিয়া)</td>
-                                <td>তারা সন্দেহবাদী। বলে, "আমরা জানি না যে আমরা জানি কি না।" নিজেরা সন্দেহে থাকে এবং অন্যদেরও সন্দেহে ফেলে।</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- Q1 (C) -->
-            <div class="sub-block animate-element fade-left">
-                <h3>(C) হাকিকত ও মাহিয়্যাতের অর্থ এবং পার্থক্য</h3>
-                <p><strong>(১) অর্থ:</strong> <span class="ar">ما به الشيء هو هو</span> — যার দ্বারা বস্তু সে-ই বস্তু হয়। যেমন মানুষের জন্য <span class="ar">حيوان ناطق</span>।</p>
-                <ul>
-                    <li><strong>মাহিয়্যাত:</strong> যা <span class="ar">"ما هو؟"</span> প্রশ্নের জবাবে বলা হয়। শব্দটি <span class="ar">ما هو</span> থেকে।</li>
-                    <li><strong>হাকিকত:</strong> <span class="ar">حق</span> (সাব্যস্ত) থেকে। বাস্তবে সাব্যস্ত হওয়ার দিক বিবেচনায়।</li>
-                </ul>
-                <div class="highlight-box">
-                    <strong>(২) পার্থক্য:</strong> দুটির মূল সত্তা এক। পার্থক্য কেবল বিবেচনার (<span class="ar">اعتباري</span>)। <span class="ar">"ما هو"</span> এর জবাব হওয়ার বিবেচনায় মাহিয়্যাত, আর বাহিরে সাব্যস্ত হওয়ার বিবেচনায় হাকিকত।
-                </div>
-            </div>
-
-            <!-- Q1 (D) -->
-            <div class="sub-block animate-element fade-right">
-                <h3>(D) হুকামার ইখতিলাফ, গৃহীত মত ও সোফিস্তাইয়ার খণ্ডন</h3>
-                <p><strong>(১) ইখতিলাফ (সংক্ষিপ্ত):</strong> বস্তুর হাকিকত সাব্যস্ত এবং তার জ্ঞান সম্ভব — এটাই আহলে হক ও আহলুস সুন্নাহর মত।</p>
-                <ul>
-                    <li><strong>আহলে হক:</strong> হাকিকত সাব্যস্ত, জ্ঞান অর্জনযোগ্য।</li>
-                    <li><strong>সোফিস্তাইয়া:</strong> ইনাদিয়া অস্বীকার করে, ইনদিয়া বিশ্বাসের অধীন বলে, লা-আদরিয়া সন্দেহ করে।</li>
-                </ul>
-                <p><strong>(২) গৃহীত মত:</strong> আহলে হকের মতই গ্রহণযোগ্য।</p>
-                <div class="evidence-box">
-                    <strong>দলিল (জ্ঞানের তিনটি সূত্র):</strong>
-                    <ol>
-                        <li>হাওয়াছ (ইন্দ্রিয়)</li>
-                        <li>খবরে সাদিক</li>
-                        <li>আকল</li>
-                    </ol>
-                    এগুলো দ্বারা হাকিকতের জ্ঞান নিশ্চিত হয়।
-                </div>
-                <p><strong>(৩) সোফিস্তাইয়ার খণ্ডন:</strong></p>
-                <ul>
-                    <li><strong>ইনাদিয়া:</strong> "কোনো হাকিকত নেই" দাবিটিও একটি বিষয়। এটা সত্য হলে অন্তত একটি হাকিকত সাব্যস্ত হয়ে গেল, আর মিথ্যা হলে দাবি বাতিল। তাছাড়া আগুনের পোড়ানো, ক্ষুধা-তৃষ্ণা স্বতঃসিদ্ধ।</li>
-                    <li><strong>ইনদিয়া:</strong> বিশ্বাসও একটি হাকিকত। আর মানুষের বিশ্বাস পরস্পরবিরোধী হয়। সবই সত্য হলে বিপরীত দুটি বিষয় একসাথে সত্য হয়, যা অসম্ভব।</li>
-                    <li><strong>লা-আদরিয়া:</strong> "জানি না" বলাতেই সন্দেহের জ্ঞান সাব্যস্ত হলো। সন্দেহ আছে কি না, তাতেও নিশ্চিত হলে জ্ঞান মানা হলো, না হলে দাবিই অর্থহীন।</li>
-                </ul>
-            </div>
-        </article>
-
-        <!-- Question 2 -->
-        <article class="question-card animate-element fade-up">
-            <div class="q-header">
-                <span class="q-badge">প্রশ্ন–২</span>
-                <h2 class="q-title">قوله: "الواحد"</h2>
-            </div>
-
-            <!-- Q2 (A) -->
-            <div class="sub-block animate-element fade-left">
-                <h3>(A) ওয়াহিদের অর্থ, মত ও তামানু'র দলিল</h3>
-                <p><strong>(১) <span class="ar">الواحد</span> এর অর্থ ও মত-সংখ্যা:</strong> তিনটি অর্থ বলা হয়—</p>
-                <ol type="a">
-                    <li>যা বিভাজ্য নয় (<span class="ar">لا ينقسم</span>)</li>
-                    <li>যার কোনো শরিক নেই (<span class="ar">لا شريك له</span>)</li>
-                    <li>যার কোনো সদৃশ নেই (<span class="ar">لا نظير له</span>)</li>
-                </ol>
-                <p><strong>(২) "ওয়াহিদ" দ্বারা উদ্দেশ্য কী?</strong><br>
-                আল্লাহ তাআলা <span class="ar">الوهية</span>-তে একক, তাঁর কোনো শরিক নেই। অর্থাৎ ওয়াজিবুল উজুদ হওয়া এবং ইবাদতের একমাত্র যোগ্য হওয়ার ক্ষেত্রে তিনি এক।</p>
-                
-                <div class="highlight-box">
-                    <strong>(৩) আয়াতসহ বুরহানে তামানু' (বিস্তারিত):</strong><br>
-                    <strong>আয়াত:</strong> <span class="ar">"لو كان فيهما آلهة إلا الله لفسدتا"</span> (সূরা আম্বিয়া, ২২)।<br>
-                    <em>অর্থ:</em> আসমান-জমিনে আল্লাহ ছাড়া একাধিক ইলাহ থাকলে উভয়ই ধ্বংস হয়ে যেত। এখানে <span class="ar">إلا</span> শব্দটি <span class="ar">غير</span> (ব্যতীত) অর্থে সিফাত।<br><br>
-                    <strong>বুরহান:</strong> দুই ইলাহ ধরলে দুজনই কadir ও মুখতার। তাই তাদের মধ্যে ইচ্ছার বিরোধ সম্ভব। ধরা যাক, একজন চায় যায়েদ নড়ুক, অন্যজন চায় স্থির থাকুক। তখন তিন সম্ভাবনা:
-                    <ol type="a">
-                        <li>দুজনের ইচ্ছাই পূর্ণ হলে নড়া ও স্থির একসাথে হবে। এটা <span class="ar">اجتماع الضدين</span>, অসম্ভব।</li>
-                        <li>কারও ইচ্ছাই পূর্ণ না হলে দুজনই অক্ষম। অক্ষম ইলাহ হতে পারে না।</li>
-                        <li>একজনের ইচ্ছা পূর্ণ হলে অপরজন অক্ষম, সে ইলাহ নয়।</li>
-                    </ol>
-                    সুতরাং একাধিক ইলাহ অসম্ভব, ইলাহ একজনই।
-                </div>
-                <p><strong>(৪) কিতাবের সংক্ষিপ্ত (<span class="ar">إجمالي</span>) রূপ:</strong><br>
-                দুই ইলাহ হলে <span class="ar">تمانع</span> (বিরোধ) সম্ভব। বিরোধ হলে হয় দুই বিপরীত বিষয় একসাথে হবে, নয়তো অন্তত একজন অক্ষম প্রমাণিত হবে। দুটোই বাতিল। তাই একাধিক ইলাহ বাতিল।</p>
-            </div>
-
-            <!-- Q2 (B) -->
-            <div class="sub-block animate-element fade-right">
-                <h3>(B) তামানু'র তাকরিরে কয়টি ইশকাল দূর হলো?</h3>
-                <div class="table-responsive">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>ইশকাল</th>
-                                <th>ইশকালের বিবরণ</th>
-                                <th>দূর হওয়ার কারণ / সমাধান</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>প্রথম ইশকাল</strong></td>
-                                <td>দুই ইলাহ মতভেদ না করে একমতও হতে পারে। তাই ফাসাদ আবশ্যক নয়।</td>
-                                <td>প্রমাণ মতভেদ ঘটার ওপর নয়, মতভেদের সম্ভাবনার (<span class="ar">إمكان التمانع</span>) ওপর। প্রত্যেকে কadir ও মুখতার, তাই বিপরীত ইচ্ছা সম্ভব।</td>
-                            </tr>
-                            <tr>
-                                <td><strong>দ্বিতীয় ইশকাল</strong></td>
-                                <td>ফাসাদ বাস্তবে ঘটেনি, তাহলে দলিল কীভাবে?</td>
-                                <td>আয়াতে শর্তবাক্য (<span class="ar">لو</span>)। শর্ত (একাধিক ইলাহ) বাতিল হওয়ায় ফাসাদ ঘটেনি। এটাই একাধিক ইলাহ না থাকার প্রমাণ।</td>
-                            </tr>
-                            <tr>
-                                <td><strong>তৃতীয় ইশকাল</strong></td>
-                                <td>একজন ইলাহ আর অপরজন তার অধীন হতে পারে।</td>
-                                <td>অধীন বা অক্ষম সত্তা ইলাহ নয়। ইলাহের জন্য পূর্ণ কুদরত শর্ত।</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- Q2 (C) -->
-            <div class="sub-block animate-element fade-left">
-                <h3>(C) হুজ্জاتے ইকনাইয়্যাহ</h3>
-                <p><strong>(১) অর্থ:</strong> যে দলিল দ্বারা প্রতিপক্ষকে সন্তুষ্ট ও নিরুত্তর করা যায়, কিন্তু যার মুকাদ্দিমা পুরোপুরি ক্বাত'ঈ নয়। এটা ক্বাত'ঈর বিপরীত।</p>
-                <p><strong>(২) আয়াতটি ক্বাত'ঈ না ইকনাঈ?</strong><br>
-                শরহে আকাইদের বক্তব্য অনুযায়ী আয়াতটি হুজ্জাতে ইকনাইয়্যাহ। কারণ আয়াতে ফাসাদের আবশ্যকতা সাধারণ বোধ ও অভ্যাসভিত্তিক।</p>
-            </div>
-        </article>
-
-        <!-- Question 3 -->
-        <article class="question-card animate-element fade-up">
-            <div class="q-header">
-                <span class="q-badge">প্রশ্ন–৩</span>
-                <h2 class="q-title">قوله: "القرآن كلام الله تعالى غير مخلوق"</h2>
-            </div>
-
-            <!-- Q3 (A) -->
-            <div class="sub-block animate-element fade-left">
-                <h3>(A) কুরআনকে কালামুল্লাহ দ্বারা সীমাবদ্ধ করার কারণ</h3>
-                <p><strong>(১) সীমাবদ্ধ করার কারণ:</strong><br>
-                "কুরআন" শব্দ দুই অর্থে ব্যবহৃত হয়: ক) কালামে নাফসি (আল্লাহর কাদীম সিফাত) খ) কালামে লফযি (শব্দ ও অক্ষর, যা হাদিস)। "কালামুল্লাহ" বলে বোঝানো হয়েছে যে "গায়রে মাখলুক" এর হুকুম প্রথম অর্থের জন্য।</p>
-                <p><strong>(২) তাওজিহ কয়টি?</strong></p>
-                <ul>
-                    <li>ক) ইশতিরাক দূর করা। "কুরআন" শব্দে নাফসি ও লফযি দুটোই আসে, তাই কালামুল্লাহ বলে নাফসিকে নির্দিষ্ট করা হয়েছে।</li>
-                    <li>খ) কুরআন যে আল্লাহর সিফাত, তাঁর সত্তার সাথে প্রতিষ্ঠিত, তাই মাখলুক নয় — এটা বোঝানো।</li>
-                </ul>
-            </div>
-
-            <!-- Q3 (B) -->
-            <div class="sub-block animate-element fade-right">
-                <h3>(B) এ মাসআলা "খালকুল কুরআন" নামকরণের কারণ</h3>
-                <div class="highlight-box">
-                    মাসআলার মূল প্রশ্ন ছিল কুরআন মাখলুক না গায়রে মাখলুক। মুতাযিলারা "কুরআন মাখলুক" বলত। আব্বাসি খলিফা মামুনের আমলে (২১৮ হি.) এটা রাষ্ট্রীয় আকিদা করা হয়। ইমাম আহমদ ইবনে হাম্বল (রহ.) এটা না মানায় নির্যাতিত হন। তাই "ফিতনায়ে খালকিল কুরআন" নামে এটি প্রসিদ্ধ।
-                </div>
-            </div>
-
-            <!-- Q3 (C) & (D) -->
-            <div class="sub-block animate-element fade-left">
-                <h3>(C) & (D) মাসআলা, ইখতিলাফ, দলিল ও কালামে লফযির বিশ্লেষণ</h3>
-                <p><strong>সংক্ষিপ্ত উত্তর:</strong> আহলুস সুন্নাহর মতে কুরআন আল্লাহর কালাম, কাদীম ও গায়রে মাখলুক। তবে পঠিত ও লিখিত শব্দাবলি (কালামে লফযি) হাদিস। কালামে নাফসি কাদীম।</p>
-                
-                <div class="table-responsive">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>ফেরকা / দল</th>
-                                <th>আকিদা ও মতবাদ</th>
-                                <th>দলিল / যুক্তি</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>আহলুস সুন্নাহ</strong><br>(আশআরি-মাতুরিদি)</td>
-                                <td>কালাম আল্লাহর সিফাতে কাদীমা, যা তাঁর সত্তার সাথে প্রতিষ্ঠিত। কালামে নাফসি কাদীম, কিন্তু কালামে লফযি (পঠিত অক্ষর ও শব্দ) হাদিস।</td>
-                                <td>
-                                    ১. <span class="ar">"ألا له الخلق والأمر"</span> — সৃষ্টি ও আদেশ আলাদা। কালাম "امر", তাই খালক নয়।<br>
-                                    ২. <span class="ar">"وكلم الله موسى تكليما"</span> — কালাম আল্লাহর সিফাত।<br>
-                                    ৩. <span class="ar">"إنما قولنا لشيء... كن فيكون"</span> — "কুন" মাখলুক হলে আরেকটি "কুন" লাগত, এতে <span class="ar">تسلسل</span> আবশ্যক হতো।
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><strong>মুতাযিলা</strong></td>
-                                <td>কালাম মানেই অক্ষর ও আওয়াজ, যা হাদিস। তাই পুরো কুরআন মাখলুক। তারা কালামে নাফসি মানে না।</td>
-                                <td>
-                                    ১. <span class="ar">"إنا جعلناه قرآنا عربيا"</span> — "জাআল" মানে সৃষ্টি করা।<br>
-                                    ২. <span class="ar">"ما يأتيهم من ذكر من ربهم محدث"</span>।<br>
-                                    <em>[জবাব: "জাআল" এখানে নামকরণ/পরিণত করা অর্থে, এবং "মুহদাস" নাযিল হওয়ার দিক বিবেচনায়।]</em>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><strong>কিছু হাম্বলী</strong></td>
-                                <td>অক্ষর ও আওয়াজকেও কাদীম মনে করে।</td>
-                                <td>
-                                    তাদের মতে শব্দাবলিও কাদীম।<br>
-                                    <em>[খণ্ডন: অক্ষর ও আওয়াজ ক্রমানুসারে আসে ও চলে যায়, যা হাদিসের স্পষ্ট আলামত।]</em>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <p><strong>গৃহীত মত:</strong> আহলুস সুন্নাহর মতই গ্রহণযোগ্য।</p>
-            </div>
-        </article>
-
-        <!-- Question 4 -->
-        <article class="question-card animate-element fade-up">
-            <div class="q-header">
-                <span class="q-badge">প্রশ্ন–৪</span>
-                <h2 class="q-title">قوله: "رؤية الله تعالى جائزة في العقل"</h2>
-            </div>
-
-            <!-- Q4 (A) -->
-            <div class="sub-block animate-element fade-left">
-                <h3>(A) রুইয়াতের অর্থ</h3>
-                <p><strong>ভাষায়:</strong> চোখে দেখা।<br>
-                <strong>পরিভাষায়:</strong> দৃষ্টিশক্তির দ্বারা পূর্ণ প্রকাশ (<span class="ar">انكشاف</span>)। আল্লাহকে দেখা হবে কোনো বেষ্টনী, দিক, সামনে হওয়া বা ধরনের (<span class="ar">كيف</span>) ধারণা ছাড়া।</p>
-            </div>
-
-            <!-- Q4 (B) -->
-            <div class="sub-block animate-element fade-right">
-                <h3>(B) রুইয়াত অস্বীকারকারী, কারণ ও জবাব</h3>
-                <p><strong>অস্বীকারকারী দল:</strong> মুতাযিলা, জাহমিয়া, খারিজি ও শিয়াদের একটি অংশ।</p>
-                <div class="table-responsive">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>অস্বীকারকারীদের শুবহা (সন্দেহ)</th>
-                                <th>আহলুস সুন্নাহর পক্ষ থেকে উত্তর / জবাব</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>শুবহা-১:</strong> দেখার জন্য দিক ও সামনে হওয়া শর্ত। আল্লাহ দিক থেকে পবিত্র, তাই দেখা অসম্ভব।</td>
-                                <td>এটা পার্থিব অভ্যাস (<span class="ar">عادة</span>) মাত্র, আকলী শর্ত নয়। আল্লাহ দিক ছাড়াও দেখার শক্তি সৃষ্টি করতে পারেন।</td>
-                            </tr>
-                            <tr>
-                                <td><strong>শুবহা-২:</strong> দেখতে হলে আলো চোখে পৌঁছাতে হবে ও বস্তু শরীরী হতে হবে।</td>
-                                <td>এটাও আদত-ভিত্তিক। আখিরাতে আদত ভিন্ন হবে।</td>
-                            </tr>
-                            <tr>
-                                <td><strong>শুবহা-৩:</strong> দেখা মানে পরিবেষ্টন (<span class="ar">إحاطة</span>), অথচ আল্লাহ অসীম।</td>
-                                <td>পরিবেষ্টন ছাড়াও দেখা সম্ভব, যেমন সূর্য দেখলেও তার পূর্ণ সত্তা বেষ্টন করা যায় না।</td>
-                            </tr>
-                            <tr>
-                                <td><strong>শুবহা-৪ (নকলি):</strong> <span class="ar">"لن تراني"</span> এবং <span class="ar">"لا تدركه الأبصار"</span> আয়াতসমূহ।</td>
-                                <td>১. "লান" সর্বদা চিরস্থায়ী নেতিবাচক নয়। এটি দুনিয়ার জন্য।<br>২. মুসা (আ.)-কে বলা হয়েছিল, পাহাড় স্থির থাকলে দেখা যাবে (সম্ভব বিষয়ের ওপর ঝুলন্ত)।<br>৩. "ইদরাক" মানে পরিবেষ্টন, যা এখানে প্রযোজ্য নয়।</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- Q4 (C) & (D) -->
-            <div class="sub-block animate-element fade-left">
-                <h3>(C) & (D) নকলি ও আকলী দলিল এবং মুমিনদের রুইয়াত</h3>
-                <p><strong>আখিরাতে মুমিনদের অবস্থা:</strong> মুমিনরা আখিরাতে আল্লাহকে চোখে দেখবে, তবে দিক, ধরন ও বেষ্টনী ছাড়া। এটি কুরআন ও মুতাওয়াতির হাদিস দ্বারা সাব্যস্ত।</p>
-                <div class="evidence-box">
-                    <strong>দলিলসমূহ:</strong>
-                    <ul>
-                        <li><strong>আকলী দলিল:</strong> আমরা জাওহার ও আরায দেখি। দেখার যোগ্যতার কারণ "উজুদ" (অস্তিত্ব), "হুদুস" নয়। উজুদ আল্লাহ ও সৃষ্টির মধ্যে সমান। তাই আল্লাহ দৃশ্যমান হতে পারেন। তাছাড়া দেখা অসম্ভব হলে মুসা (আ.) তা চাইতেন না।</li>
-                        <li><strong>নকলি দলিল (কুরআন):</strong> <span class="ar">"وجوه يومئذ ناضرة إلى ربها ناظرة"</span> (কিয়ামাহ, ২২-২৩)।</li>
-                        <li><strong>নকলি দলিল (কুরআন):</strong> <span class="ar">"للذين أحسنوا الحسنى وزيادة"</span> (ইউনুস, ২৬) — "যিয়াদাহ" এর তাফসির আল্লাহর চেহারা দেখা (সহিহ মুসলিম)।</li>
-                        <li><strong>নকলি দলিল (হাদিস):</strong> <span class="ar">"إنكم سترون ربكم كما ترون القمر ليلة البدر"</span> (বুখারি ও মুসলিম)।</li>
-                    </ul>
-                </div>
-                <p><em>বিরোধী খণ্ডন:</em> মুতাযিলারা "নাযিরাহ" এর অর্থ "অপেক্ষমাণ" বলে। কিন্তু "নযর" যখন "ইলা" দ্বারা সংযুক্ত এবং চেহারার সাথে আসে, তখন চোখে দেখাই বোঝায়।</p>
-                <p><strong>গৃহীত মত:</strong> আহলুস সুন্নাহর মতই গ্রহণযোগ্য।</p>
-            </div>
-        </article>
-
-        <!-- Question 5 -->
-        <article class="question-card animate-element fade-up">
-            <div class="q-header">
-                <span class="q-badge">প্রশ্ন–৫</span>
-                <h2 class="q-title">قوله: "والكبيرة"</h2>
-            </div>
-
-            <!-- Q5 (A) -->
-            <div class="sub-block animate-element fade-left">
-                <h3>(A) কবীরা গুনাহ: সংজ্ঞা, মত ও সংখ্যা</h3>
-                <p><strong>(১) সংজ্ঞা:</strong><br>
-                <em>ভাষায়:</em> বড় গুনাহ।<br>
-                <em>পরিভাষায়:</em> যে গুনাহের জন্য কুরআন-হাদিসে জাহান্নামের শাস্তি, হদ বা লানতের হুমকি এসেছে।</p>
-                
-                <p><strong>(২) সংজ্ঞায় মত-সংখ্যা:</strong></p>
-                <ul>
-                    <li>ক) যার জন্য শরিয়তে হদ নির্ধারিত।</li>
-                    <li>খ) যার জন্য জাহান্নামের হুমকি বা লানত এসেছে।</li>
-                    <li>গ) কারও মতে আল্লাহর নিষিদ্ধ প্রতিটি কাজই বড়, কারণ আদেশ লঙ্ঘন।</li>
-                </ul>
-
-                <p><strong>(৩) কবীরা কয়টি?</strong><br>
-                নির্দিষ্ট সংখ্যা নেই। হাদিসে সাতটি (<span class="ar">السبع الموبقات</span>) উল্লেখ আছে: শিরক, জাদু, অন্যায় হত্যা, সুদ, ইয়াতিমের মাল খাওয়া, যুদ্ধ থেকে পলায়ন, ও সতী নারীকে অপবাদ। হযরত ইবনে আব্বাস (রা.) বলেন: সাতের চেয়ে সত্তর/সাতশ'র নিকটবর্তী।</p>
-
-                <p><strong>(৪) এখানে কবীরা দ্বারা উদ্দেশ্য:</strong> কুফর ছাড়া অন্য বড় গুনাহ, যা হালাল মনে করা ছাড়া করা হয়েছে। (হালাল মনে করলে কুফর)।</p>
-            </div>
-
-            <!-- Q5 (B) -->
-            <div class="sub-block animate-element fade-right">
-                <h3>(B) কবীরা কি ঈমান থেকে বের করে? ইখতিলাফ ও দলিল</h3>
-                <p><strong>সংক্ষিপ্ত উত্তর:</strong> না। কবীরা গুনাহকারী মুমিনই থাকে, কাফির হয় না।</p>
-
-                <div class="table-responsive">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>দল / ফেরকা</th>
-                                <th>আকিদা ও অবস্থান</th>
-                                <th>দলিল ও জবাব</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>আহলুস সুন্নাহ</strong><br>(হানাফি-মাতুরিদি)</td>
-                                <td>কবীরা গুনাহকারী মুমিন থাকে, কাফির হয় না। ঈমান হলো তাসদিক ও ইকরার। আমল ঈমানের মূল অংশ নয়, পূর্ণতার অংশ।</td>
-                                <td>
-                                    ১. <span class="ar">"إن الله لا يغفر أن يشرك به ويغفر ما دون ذلك لمن يشاء"</span><br>
-                                    ২. <span class="ar">"وإن طائفتان من المؤمنين اقتتلوا"</span> (যুদ্ধরতদেরও মুমিন বলা হয়েছে)।<br>
-                                    ৩. <span class="ar">"يا أيها الذين آمنوا كتب عليكم القصاص"</span> (হত্যাকারীদেরও মুমিন সম্বোধন)।<br>
-                                    ৪. হাদিস: <span class="ar">"من قال لا إله إلا الله دخل الجنة وإن زنى وإن سرق"</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><strong>খারিজি</strong></td>
-                                <td>কবীরাকারী কাফির এবং চিরস্থায়ী জাহান্নামী।</td>
-                                <td>দলিল: <span class="ar">"ومن لم يحكم بما أنزل الله فأولئك هم الكافرون"</span></td>
-                            </tr>
-                            <tr>
-                                <td><strong>মুতাযিলা</strong></td>
-                                <td>কবীরাকারী মুমিনও না, কাফিরও না; বরং <span class="ar">المنزلة بين المنزلتين</span> (দুই অবস্থানের মাঝে)। পরকালে চিরস্থায়ী জাহান্নামী।</td>
-                                <td>
-                                    ১. <span class="ar">"ومن يقتل مؤمنا متعمدا فجزاؤه جهنم خالدا فيها"</span><br>
-                                    ২. <span class="ar">"ومن يعص الله ورسوله... خالدا فيها"</span>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="highlight-box">
-                    <strong>বিরোধী দলিলের জবাব:</strong>
-                    <ul>
-                        <li>"খালিদান" (<span class="ar">خالدا</span>) এর অর্থ দীর্ঘ সময় থাকা, অথবা হালাল মনে করে গুনাহ করার ক্ষেত্রে চিরস্থায়ী।</li>
-                        <li>হাদিস <span class="ar">"لا يزني الزاني حين يزني وهو مؤمن"</span> দ্বারা ঈমানের পূর্ণতা না থাকা বোঝানো হয়েছে, মূল ঈমান নেই — তা নয়।</li>
-                        <li>সূরা মায়িদার ৪৪ নম্বর আয়াতের অর্থ: হালাল মনে করে আল্লাহর হুকুম বর্জন করলে কুফর।</li>
-                    </ul>
-                </div>
-                <p><strong>গৃহীত মত:</strong> আহলুস সুন্নাহর মতই গ্রহণযোগ্য। কবীরাকারী মুমিন। আল্লাহ চাইলে মাফ করবেন, চাইলে শাস্তি দেবেন। শাস্তি পেলেও চিরস্থায়ী জাহান্নামী হবে না।</p>
-            </div>
-        </article>
-
-        <!-- Footer -->
-        <footer>
-            <p>শরহুল আকাইদ আন-নাসাফিয়্যা — প্রস্তুতকৃত Study Guide Page</p>
-        </footer>
-
+    <div class="top-bar">
+        <button class="pdf-btn" onclick="downloadPDF()">⬇ Download PDF</button>
     </div>
 
-    <!-- JavaScript Execution -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            /* 1. Header-er bhetore daan pashe PDF button বসানোর কোড */
-            const header = document.querySelector('.header');
-            if (header) {
-                const btn = document.createElement('button');
-                btn.className = 'top-right-pdf-btn';
-                btn.onclick = function() { window.print(); };
-                btn.innerHTML = '📄 Save PDF';
-                header.appendChild(btn);
+    <h1 class="book-title reveal">
+        শরহুল আকাইদ আন-নাসাফিয়্যাহ — ১৪৩১ হি. প্রশ্নপত্র
+    </h1>
+
+    <p class="subtitle reveal">
+        প্রশ্নোত্তর সমাধান
+    </p>
+
+    <!-- প্রশ্ন ১ -->
+    <div class="question reveal">
+        প্রশ্ন–১: <span class="arabic">قوله: "حقائق الأشياء ثابتة"</span>
+    </div>
+
+    <div class="section reveal">
+        <div class="section-title">(A) সোফিস্তাইয়া কারা এবং তারা বিশ্বে আছে কি না?</div>
+
+        <div class="sub-title">(১) সোফিস্তাইয়া কারা?</div>
+        <div class="answer">
+            <span class="answer-label">উত্তর:</span>
+            "সুফাস্তা" গ্রিক শব্দ। অর্থ:
+            <span class="arabic">الحكمة المموهة</span>
+            (ভ্রান্ত ও প্রতারণাপূর্ণ হিকমত)। যারা বস্তুর হাকিকত ও তার জ্ঞান অস্বীকার করে বা তাতে সন্দেহ করে, তাদের
+            <span class="arabic">سوفسطائية</span> বলে।
+        </div>
+
+        <div class="sub-title">(২) তারা বিশ্বে আছে কি না? (দলিলসহ)</div>
+        <div class="answer">
+            <span class="answer-label">উত্তর:</span>
+            হ্যাঁ, তারা ছিল এবং তাদের মতবাদ ছিল।
+        </div>
+
+        <div class="evidence">
+            <b>দলিল:</b>
+            <ul>
+                <li>ইমাম নাসাফি (রহ.) <span class="arabic">"خلافا للسوفسطائية"</span> বলে তাদেরকে বাস্তব প্রতিপক্ষ ধরে খণ্ডন করেছেন।</li>
+                <li>ইতিহাসে গ্রিক সোফিস্ট দার্শনিকরা পরিচিত।</li>
+            </ul>
+            <b>অন্য মত:</b> কারও কারও মতে সত্যিকারভাবে এ বিশ্বাস কেউ রাখে না। যারা অস্বীকার করে, তারা জিদবশত করে।
+        </div>
+    </div>
+
+    <div class="section reveal">
+        <div class="section-title">(B) তাদের বাতিল আকিদা কী কী?</div>
+
+        <div class="sub-title">(১) প্রথম দল: <span class="arabic">عنادية</span> (ইনাদিয়া)</div>
+        <div class="answer">
+            <span class="answer-label">উত্তর:</span>
+            <span class="arabic">عناد</span> অর্থ জিদ। তারা বলে, বস্তুর কোনো বাস্তব সত্তা নেই। সবই কল্পনা ও وهم।
+        </div>
+
+        <div class="sub-title">(২) দ্বিতীয় দল: <span class="arabic">عندية</span> (ইনদিয়া)</div>
+        <div class="answer">
+            <span class="answer-label">উত্তর:</span>
+            তারা বলে, হাকিকত বিশ্বাসের অনুগামী। যে যা বিশ্বাস করে, তার কাছে তা-ই সত্য। কেউ কোনো বস্তুকে জাওহার ভাবলে তা জাওহার, আরায ভাবলে আরায, কাদীম ভাবলে কাদীম, হাদিস ভাবলে হাদিস।
+        </div>
+
+        <div class="sub-title">(৩) তৃতীয় দল: <span class="arabic">لاأدرية</span> (লা-আদরিয়া)</div>
+        <div class="answer">
+            <span class="answer-label">উত্তর:</span>
+            তারা সন্দেহবাদী। বলে, "আমরা জানি না যে আমরা জানি কি না।" নিজেরা সন্দেহে থাকে এবং অন্যদেরও সন্দেহে ফেলে।
+        </div>
+    </div>
+
+    <div class="section reveal">
+        <div class="section-title">(C) হাকিকত ও মাহিয়্যাতের অর্থ এবং পার্থক্য</div>
+
+        <div class="sub-title">(১) অর্থ</div>
+        <div class="answer">
+            <span class="answer-label">উত্তর:</span>
+            <span class="arabic">ما به الشيء هو هو</span> — যার দ্বারা বস্তু সে-ই বস্তু হয়। যেমন মানুষের জন্য
+            <span class="arabic">حيوان ناطق</span>।
+            <ul>
+                <li>মাহিয়্যাত: যা <span class="arabic">"ما هو؟"</span> প্রশ্নের জবাবে বলা হয়। শব্দটি <span class="arabic">ما هو</span> থেকে।</li>
+                <li>হাকিকত: <span class="arabic">حق</span> (সাব্যস্ত) থেকে। বাস্তবে সাব্যস্ত হওয়ার দিক বিবেচনায়।</li>
+            </ul>
+        </div>
+
+        <div class="sub-title">(২) পার্থক্য</div>
+        <div class="answer">
+            <span class="answer-label">উত্তর:</span>
+            দুটির মূল সত্তা এক। পার্থক্য কেবল বিবেচনার
+            <span class="arabic">(اعتباري)</span>।
+            <span class="arabic">"ما هو"</span> এর জবাব হওয়ার বিবেচনায় মাহিয়্যাত, আর বাহিরে সাব্যস্ত হওয়ার বিবেচনায় হাকিকত।
+        </div>
+    </div>
+
+    <div class="section reveal">
+        <div class="section-title">(D) হুকামার ইখতিলাফ, গৃহীত মত ও সোফিস্তাইয়ার খণ্ডন</div>
+
+        <div class="sub-title">(১) ইখতিলাফ</div>
+        <div class="answer">
+            <span class="answer-label">উত্তর:</span>
+            সংক্ষিপ্ত উত্তর: বস্তুর হাকিকত সাব্যস্ত এবং তার জ্ঞান সম্ভব — এটাই আহলে হক ও আহলুস সুন্নাহর মত।
+            <ul>
+                <li>আহলে হক: হাকিকত সাব্যস্ত, জ্ঞান অর্জনযোগ্য।</li>
+                <li>সোফিস্তাইয়া: ইনাদিয়া অস্বীকার করে, ইনদিয়া বিশ্বাসের অধীন বলে, লা-আদরিয়া সন্দেহ করে।</li>
+            </ul>
+        </div>
+
+        <div class="sub-title">(২) গৃহীত মত</div>
+        <div class="answer">
+            <span class="answer-label">উত্তর:</span>
+            আহলে হকের মতই গ্রহণযোগ্য। দলিল: জ্ঞানের তিনটি সূত্র:
+            ক) হাওয়াস (ইন্দ্রিয়), খ) খবরে সাদিক, গ) আকল। এগুলো দ্বারা হাকিকতের জ্ঞান নিশ্চিত হয়।
+        </div>
+
+        <div class="sub-title">(৩) সোফিস্তাইয়ার খণ্ডন</div>
+        <div class="answer">
+            <span class="answer-label">উত্তর:</span>
+            <ul>
+                <li><b>ইনাদিয়া:</b> "কোনো হাকিকত নেই" দাবিটিও একটি বিষয়। এটা সত্য হলে অন্তত একটি হাকিকত সাব্যস্ত হয়ে গেল, আর মিথ্যা হলে দাবি বাতিল। তাছাড়া আগুনের পোড়ানো, ক্ষুধা-তৃষ্ণা স্বতঃসিদ্ধ।</li>
+                <li><b>ইনদিয়া:</b> বিশ্বাসও একটি হাকিকত। আর মানুষের বিশ্বাস পরস্পরবিরোধী হয়। সবই সত্য হলে বিপরীত দুটি বিষয় একসাথে সত্য হয়, যা অসম্ভব।</li>
+                <li><b>লা-আদরিয়া:</b> "জানি না" বলাতেই সন্দেহের জ্ঞান সাব্যস্ত হলো। সন্দেহ আছে কি না, তাতেও নিশ্চিত হলে জ্ঞান মানা হলো, না হলে দাবিই অর্থহীন।</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- প্রশ্ন ২ -->
+    <div class="question reveal">
+        প্রশ্ন–২: <span class="arabic">قوله: "الواحد"</span>
+    </div>
+
+    <div class="section reveal">
+        <div class="section-title">(A) ওয়াহিদের অর্থ, মত ও তামানু'র দলিল</div>
+
+        <div class="sub-title">(১) الواحد এর অর্থ ও মত-সংখ্যা</div>
+        <div class="answer">
+            <span class="answer-label">উত্তর:</span>
+            তিনটি অর্থ বলা হয়:
+            <ul>
+                <li>ক) যা বিভাজ্য নয় (<span class="arabic">لا ينقسم</span>)</li>
+                <li>খ) যার কোনো শরিক নেই (<span class="arabic">لا شريك له</span>)</li>
+                <li>গ) যার কোনো সদৃশ নেই (<span class="arabic">لا نظير له</span>)</li>
+            </ul>
+        </div>
+
+        <div class="sub-title">(২) "ওয়াহিদ" দ্বারা উদ্দেশ্য কী?</div>
+        <div class="answer">
+            <span class="answer-label">উত্তর:</span>
+            আল্লাহ তাআলা <span class="arabic">الوهية</span>-তে একক, তাঁর কোনো শরিক নেই। অর্থাৎ ওয়াজিবুল উজুদ হওয়া এবং ইবাদতের একমাত্র যোগ্য হওয়ার ক্ষেত্রে তিনি এক।
+        </div>
+
+        <div class="sub-title">(৩) আয়াতসহ বুরহানে তামানু' (বিস্তারিত)</div>
+        <div class="answer">
+            <span class="answer-label">উত্তর:</span>
+            আয়াত:
+            <div class="highlight arabic">
+                "لو كان فيهما آلهة إلا الله لفسدتا"
+            </div>
+            (সূরা আম্বিয়া, ২২)। অর্থ: আসমান-জমিনে আল্লাহ ছাড়া একাধিক ইলাহ থাকলে উভয়ই ধ্বংস হয়ে যেত।
+            এখানে إلا শব্দটি غير (ব্যতীত) অর্থে সিফাত।
+        </div>
+
+        <div class="evidence">
+            <b>বুরহান:</b>
+            দুই ইলাহ ধরলে দুজনই কাদির ও মুখতার। তাই তাদের মধ্যে ইচ্ছার বিরোধ সম্ভব। ধরা যাক, একজন চায় যায়েদ নড়ুক, অন্যজন চায় স্থির থাকুক। তখন তিন সম্ভাবনা:
+            <ul>
+                <li>ক) দুজনের ইচ্ছাই পূর্ণ হলে নড়া ও স্থির একসাথে হবে। এটা <span class="arabic">اجتماع الضدين</span>, অসম্ভব।</li>
+                <li>খ) কারও ইচ্ছাই পূর্ণ না হলে দুজনই অক্ষম। অক্ষম ইলাহ হতে পারে না।</li>
+                <li>গ) একজনের ইচ্ছা পূর্ণ হলে অপরজন অক্ষম, সে ইলাহ নয়।</li>
+            </ul>
+            সুতরাং একাধিক ইলাহ অসম্ভব, ইলাহ একজনই।
+        </div>
+
+        <div class="sub-title">(৪) কিতাবের সংক্ষিপ্ত (إجمالي) রূপ</div>
+        <div class="answer">
+            <span class="answer-label">উত্তর:</span>
+            দুই ইলাহ হলে <span class="arabic">تمانَع</span> (বিরোধ) সম্ভব। বিরোধ হলে হয় দুই বিপরীত বিষয় একসাথে হবে, নয়তো অন্তত একজন অক্ষম প্রমাণিত হবে। দুটোই বাতিল। তাই একাধিক ইলাহ বাতিল।
+        </div>
+    </div>
+
+    <div class="section reveal">
+        <div class="section-title">(B) তামানু'র তাকরিরে কয়টি ইশকাল দূর হলো?</div>
+
+        <div class="sub-title">(১) প্রথম ইশকাল</div>
+        <div class="answer">
+            <span class="answer-label">উত্তর:</span>
+            <b>ইশকাল:</b> দুই ইলাহ মতভেদ না করে একমতও হতে পারে। তাই ফাসাদ আবশ্যক নয়।
+            <br>
+            <b>দূর হওয়ার কারণ:</b> প্রমাণ মতভেদ ঘটার ওপর নয়, মতভেদের সম্ভাবনার (<span class="arabic">إمكان التمانع</span>) ওপর। প্রত্যেকে কাদির ও মুখতার, তাই বিপরীত ইচ্ছা সম্ভব।
+        </div>
+
+        <div class="sub-title">(২) দ্বিতীয় ইশকাল</div>
+        <div class="answer">
+            <span class="answer-label">উত্তর:</span>
+            <b>ইশকাল:</b> ফাসাদ বাস্তবে ঘটেনি, তাহলে দলিল কীভাবে?
+            <br>
+            <b>দূর হওয়ার কারণ:</b> আয়াতে শর্তবাক্য (<span class="arabic">لو</span>)। শর্ত (একাধিক ইলাহ) বাতিল হওয়ায় ফাসাদ ঘটেনি। এটাই একাধিক ইলাহ না থাকার প্রমাণ।
+        </div>
+
+        <div class="sub-title">(৩) তৃতীয় ইশকাল</div>
+        <div class="answer">
+            <span class="answer-label">উত্তর:</span>
+            <b>ইশকাল:</b> একজন ইলাহ আর অপরজন তার অধীন হতে পারে।
+            <br>
+            <b>দূর হওয়ার কারণ:</b> অধীন বা অক্ষম সত্তা ইলাহ নয়। ইলাহের জন্য পূর্ণ কুদরত শর্ত।
+        </div>
+    </div>
+
+    <div class="section reveal">
+        <div class="section-title">(C) হুজ্জাতে ইকনাইয়্যাহ</div>
+
+        <div class="sub-title">(১) অর্থ</div>
+        <div class="answer">
+            <span class="answer-label">উত্তর:</span>
+            যে দলিল দ্বারা প্রতিপক্ষকে সন্তুষ্ট ও নিরুত্তর করা যায়, কিন্তু যার মুকাদ্দিমা পুরোপুরি ক্বাত'ঈ নয়। এটা ক্বাত'ঈর বিপরীত।
+        </div>
+
+        <div class="sub-title">(২) আয়াতটি ক্বাত'ঈ না ইকনাঈ?</div>
+        <div class="answer">
+            <span class="answer-label">উত্তর:</span>
+            শরহে আকাইদের বক্তব্য অনুযায়ী আয়াতটি হুজ্জাতে ইকনাইয়্যাহ। কারণ আয়াতে ফাসাদের আবশ্যকতা সাধারণ বোধ ও অভ্যাসভিত্তিক।
+        </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- প্রশ্ন ৩ -->
+    <div class="question reveal">
+        প্রশ্ন–৩: <span class="arabic">قوله: "القرآن كلام الله تعالى غير مخلوق"</span>
+    </div>
+
+    <div class="section reveal">
+        <div class="section-title">(A) কুরআনকে কালামুল্লাহ দ্বারা সীমাবদ্ধ করার কারণ</div>
+
+        <div class="sub-title">(১) সীমাবদ্ধ করার কারণ</div>
+        <div class="answer">
+            <span class="answer-label">উত্তর:</span>
+            "কুরআন" শব্দ দুই অর্থে ব্যবহৃত হয়:
+            <ul>
+                <li>ক) কালামে নাফসি (আল্লাহর কাদীম সিফাত)</li>
+                <li>খ) কালামে লফযি (শব্দ ও অক্ষর, যা হাদিস)</li>
+            </ul>
+            "কালামুল্লাহ" বলে বোঝানো হয়েছে যে "গায়রে মাখলুক" এর হুকুম প্রথম অর্থের জন্য।
+        </div>
+
+        <div class="sub-title">(২) তাওজিহ কয়টি?</div>
+        <div class="answer">
+            <span class="answer-label">উত্তর:</span>
+            <ul>
+                <li>ক) ইশতিরাক দূর করা। "কুরআন" শব্দে নাফসি ও লফযি দুটোই আসে, তাই কালামুল্লাহ বলে নাফসিকে নির্দিষ্ট করা হয়েছে।</li>
+                <li>খ) কুরআন যে আল্লাহর সিফাত, তাঁর সত্তার সাথে প্রতিষ্ঠিত, তাই মাখলুক নয় — এটা বোঝানো।</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section reveal">
+        <div class="section-title">(B) এ মাসআলা "খালকুল কুরআন" নামকরণের কারণ</div>
+
+        <div class="answer">
+            <span class="answer-label">উত্তর:</span>
+            মাসআলার মূল প্রশ্ন ছিল কুরআন মাখলুক না গায়রে মাখলুক। মুতাযিলারা "কুরআন মাখলুক" বলত। আব্বাসি খলিফা মামুনের আমলে (২১৮ হি.) এটা রাষ্ট্রীয় আকিদা করা হয়। ইমাম আহমদ ইবনে হাম্বল (রহ.) এটা না মানায় নির্যাতিত হন। তাই "ফিতনায়ে খালকিল কুরআন" নামে এটি প্রসিদ্ধ।
+        </div>
+    </div>
+
+    <div class="section reveal">
+        <div class="section-title">(C) মাসআলা, ইখতিলাফ ও দলিল</div>
+
+        <div class="sub-title">(১) সংক্ষিপ্ত উত্তর</div>
+        <div class="answer">
+            <span class="answer-label">উত্তর:</span>
+            আহলুস সুন্নাহর মতে কুরআন আল্লাহর কালাম, কাদীম ও গায়রে মাখলুক। তবে পঠিত ও লিখিত শব্দাবলি হাদিস।
+        </div>
+
+        <div class="sub-title">(২) আহলুস সুন্নাহ (আশআরি-মাতুরিদি)</div>
+        <div class="answer">
+            <span class="answer-label">উত্তর:</span>
+            কালাম আল্লাহর সিফাতে কাদীমা, যা তাঁর সত্তার সাথে প্রতিষ্ঠিত। দলিল:
+        </div>
+
+        <div class="evidence">
+            <ul>
+                <li>
+                    <span class="arabic">"ألا له الخلق والأمر"</span> (আরাফ, ৫৪) — সৃষ্টি ও আদেশ আলাদা। কালাম "আমর", তাই খালক নয়।
+                </li>
+                <li>
+                    <span class="arabic">"وكلم الله موسى تكليما"</span> (নিসা, ১৬৪) — কালাম আল্লাহর সিফাত।
+                </li>
+                <li>
+                    <span class="arabic">"إنما قولنا لشيء... كن فيكون"</span> (নাহল, ৪০) — "কুন" যদি মাখলুক হতো, তার জন্য আরেক "কুন" লাগত, এতে <span class="arabic">تسلسل</span> আবশ্যক হতো।
+                </li>
+            </ul>
+        </div>
+
+        <div class="sub-title">(৩) মুতাযিলা</div>
+        <div class="answer">
+            <span class="answer-label">উত্তর:</span>
+            তাদের মতে কালাম মানে অক্ষর ও আওয়াজ, যা হাদিস। কুরআন মাখলুক। তারা কালামে নাফসি মানে না।
+        </div>
+
+        <div class="evidence">
+            <b>তাদের দলিল:</b>
+            <ul>
+                <li><span class="arabic">"إنا جعلناه قرآنا عربيا"</span> (যুখরুফ, ৩) — "জাআল" মানে সৃষ্টি করা।</li>
+                <li><span class="arabic">"ما يأتيهم من ذكر من ربهم محدث"</span> (আম্বিয়া, ২)।</li>
+            </ul>
+
+            <b>জবাব:</b>
+            <ul>
+                <li>"জাআল" এখানে "নামকরণ করা"/"পরিণত করা" অর্থে।</li>
+                <li>"মুহদাস" এর অর্থ পঠিত শব্দ বা নাযিল হওয়ার দিক, মূল সিফাত নয়।</li>
+            </ul>
+        </div>
+
+        <div class="sub-title">(৪) কিছু হাম্বলী</div>
+        <div class="answer">
+            <span class="answer-label">উত্তর:</span>
+            তারা অক্ষর ও আওয়াজকেও কাদীম বলে। এটা ঠিক নয়। কারণ অক্ষর ও আওয়াজ ক্রমানুসারে আসে ও চলে যায়, যা হাদিসের আলামত।
+        </div>
+
+        <div class="sub-title">(৫) গৃহীত মত</div>
+        <div class="answer">
+            <span class="answer-label">উত্তর:</span>
+            আহলুস সুন্নাহর মতই গ্রহণযোগ্য।
+        </div>
+    </div>
+
+    <div class="section reveal">
+        <div class="section-title">(D) কালামে লফযি হাদিস কি না এবং ইখতিলাফ</div>
+
+        <div class="sub-title">(১) সংক্ষিপ্ত উত্তর</div>
+        <div class="answer">
+            <span class="answer-label">উত্তর:</span>
+            আহলুস সুন্নাহর মতে কালামে লফযি (পঠিত অক্ষর ও শব্দ) হাদিস। কালামে নাফসি কাদীম।
+        </div>
+
+        <div class="sub-title">(২) ইখতিলাফ</div>
+        <div class="answer">
+            <span class="answer-label">উত্তর:</span>
+            <ul>
+                <li>আশআরি ও মাতুরিদি: লফযি হাদিস, নাফসি কাদীম।</li>
+                <li>মুতাযিলা: কালাম মানেই অক্ষর ও আওয়াজ, তাই পুরো কুরআন হাদিস ও মাখলুক।</li>
+                <li>কিছু হাম্বলী: অক্ষর ও আওয়াজও কাদীম। দলিল: অক্ষর ক্রমিক ও পরিবর্তনশীল, তাই হাদিস।</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- প্রশ্ন ৪ -->
+    <div class="question reveal">
+        প্রশ্ন–৪: <span class="arabic">قوله: "رؤية الله تعالى جائزة في العقل"</span>
+    </div>
+
+    <div class="section reveal">
+        <div class="section-title">(A) রুইয়াতের অর্থ</div>
+
+        <div class="answer">
+            <span class="answer-label">উত্তর:</span>
+            ভাষায়: চোখে দেখা। পরিভাষায়: দৃষ্টিশক্তির দ্বারা পূর্ণ প্রকাশ (<span class="arabic">انكشاف</span>)। আল্লাহকে দেখা হবে কোনো বেষ্টনী, দিক, সামনে হওয়া বা ধরনের (<span class="arabic">كيف</span>) ধারণা ছাড়া।
+        </div>
+    </div>
+
+    <div class="section reveal">
+        <div class="section-title">(B) রুইয়াত অস্বীকারকারী, কারণ ও জবাব</div>
+
+        <div class="sub-title">(১) কারা অস্বীকার করে?</div>
+        <div class="answer">
+            <span class="answer-label">উত্তর:</span>
+            মুতাযিলা, জাহমিয়া, খারিজি ও শিয়াদের একটি অংশ।
+        </div>
+
+        <div class="sub-title">(২) কেন অস্বীকার করে? শুবহা ও জবাব</div>
+
+        <div class="answer">
+            <span class="answer-label">উত্তর:</span>
+
+            <div class="highlight">
+                <b>শুবহা-১:</b> দেখার জন্য দিক ও সামনে হওয়া শর্ত। আল্লাহ দিক থেকে পবিত্র, তাই দেখা অসম্ভব।
+                <br>
+                <b>জবাব:</b> এটা পার্থিব অভ্যাস (عادة) মাত্র, আকলী শর্ত নয়। আল্লাহ দিক ছাড়াও দেখার শক্তি সৃষ্টি করতে পারেন।
+            </div>
+
+            <div class="highlight">
+                <b>শুবহা-২:</b> দেখতে হলে আলো চোখে পৌঁছাতে হবে ও বস্তু শরীরী হতে হবে।
+                <br>
+                <b>জবাব:</b> এটাও আদত-ভিত্তিক। আখিরাতে আদত ভিন্ন।
+            </div>
+
+            <div class="highlight">
+                <b>শুবহা-৩:</b> দেখা মানে পরিবেষ্টন (<span class="arabic">إحاطة</span>), আল্লাহ অসীম।
+                <br>
+                <b>জবাব:</b> পরিবেষ্টন ছাড়াও দেখা সম্ভব, যেমন সূর্য দেখলেও তার পূর্ণ সত্তা বেষ্টন করা যায় না।
+            </div>
+
+            <div class="highlight">
+                <b>শুবহা-৪ (নকলি):</b>
+                <span class="arabic">"لن تراني"</span> (আরাফ, ১৪৩) এবং
+                <span class="arabic">"لا تدركه الأبصار"</span> (আনআম, ১০৩)।
+                <br>
+                <b>জবাব:</b>
+                <ul>
+                    <li>"লান" সর্বদা চিরস্থায়ী নেতিবাচক নয়। এটা দুনিয়ার জন্য।</li>
+                    <li>মুসা (আ.) কে বলা হয়েছিল, পাহাড় স্থির থাকলে দেখা যাবে। অর্থাৎ রুইয়াত একটি সম্ভব বিষয়ের ওপর ঝোলানো, তাই সম্ভব।</li>
+                    <li>"ইদরাক" মানে পরিবেষ্টন, আর তা নেই।</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="section reveal">
+        <div class="section-title">(C) নকলি ও আকলী দলিল</div>
+
+        <div class="sub-title">(১) আকলী দলিল</div>
+        <div class="answer">
+            <span class="answer-label">উত্তর:</span>
+            আমরা জাওহার ও আরায দেখি। দেখার যোগ্যতার কারণ "উজুদ" (অস্তিত্ব), "হুদুস" নয়। উজুদ আল্লাহ ও সৃষ্টির মধ্যে সমান। তাই আল্লাহ দৃশ্যমান হতে পারেন। আরও: দেখা অসম্ভব হলে মুসা (আ.) চাইতেন না।
+        </div>
+
+        <div class="sub-title">(২) নকলি দলিল</div>
+        <div class="answer">
+            <span class="answer-label">উত্তর:</span>
+            <ul>
+                <li><span class="arabic">"وجوه يومئذ ناضرة إلى ربها ناظرة"</span> (কিয়ামাহ, ২২-২৩)।</li>
+                <li><span class="arabic">"للذين أحسنوا الحسنى وزيادة"</span> (ইউনুস, ২৬) — "যিয়াদাহ" এর তাফসির আল্লাহর চেহারা দেখা (সহিহ মুসলিম, সুহাইব (রা.))।</li>
+                <li>হাদিস: <span class="arabic">"إنكم سترون ربكم كما ترون القمر ليلة البدر"</span> (বুখারি ও মুসলিম)।</li>
+                <li>মুসা (আ.) এর প্রার্থনা (আরাফ, ১৪৩)।</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section reveal">
+        <div class="section-title">(D) মুমিনরা আখিরাতে আল্লাহকে দেখবে কি না</div>
+
+        <div class="sub-title">(১) সংক্ষিপ্ত উত্তর</div>
+        <div class="answer">
+            <span class="answer-label">উত্তর:</span>
+            হ্যাঁ, আখিরাতে মুমিনরা আল্লাহকে চোখে দেখবে, তবে দিক, ধরন ও বেষ্টনী ছাড়া।
+        </div>
+
+        <div class="sub-title">(২) আহলুস সুন্নাহ</div>
+        <div class="answer">
+            <span class="answer-label">উত্তর:</span>
+            রুইয়াত কুরআন ও মুতাওয়াতির হাদিস দ্বারা সাব্যস্ত। দলিল উপরে উল্লিখিত।
+        </div>
+
+        <div class="sub-title">(৩) বিরোধী মত</div>
+        <div class="answer">
+            <span class="answer-label">উত্তর:</span>
+            মুতাযিলা, জাহমিয়া ও খারিজিরা রুইয়াত অস্বীকার করে। তারা "নাযিরাহ" এর অর্থ "অপেক্ষমাণ" বলে।
+            <br>
+            জবাব: "নযর" যখন "ইলা" দ্বারা সংযুক্ত এবং চেহারার সাথে আসে, তখন চোখে দেখা বোঝায়।
+        </div>
+
+        <div class="sub-title">(৪) গৃহীত মত</div>
+        <div class="answer">
+            <span class="answer-label">উত্তর:</span>
+            আহলুস সুন্নাহর মতই গ্রহণযোগ্য।
+        </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- প্রশ্ন ৫ -->
+    <div class="question reveal">
+        প্রশ্ন–৫: <span class="arabic">قوله: "والكبيرة"</span>
+    </div>
+
+    <div class="section reveal">
+        <div class="section-title">(A) কবীরা গুনাহ</div>
+
+        <div class="sub-title">(১) সংজ্ঞা</div>
+        <div class="answer">
+            <span class="answer-label">উত্তর:</span>
+            ভাষায়: বড় গুনাহ। পরিভাষায়: যে গুনাহের জন্য কুরআন-হাদিসে জাহান্নামের শাস্তি, হদ বা লানতের হুমকি এসেছে।
+        </div>
+
+        <div class="sub-title">(২) সংজ্ঞায় মত-সংখ্যা</div>
+        <div class="answer">
+            <span class="answer-label">উত্তর:</span>
+            <ul>
+                <li>ক) যার জন্য শরিয়তে হদ নির্ধারিত।</li>
+                <li>খ) যার জন্য জাহান্নামের হুমকি বা লানত এসেছে।</li>
+                <li>গ) কারও মতে আল্লাহর নিষিদ্ধ প্রতিটি কাজই বড়, কারণ আদেশ লঙ্ঘন।</li>
+            </ul>
+        </div>
+
+        <div class="sub-title">(৩) কবীরা কয়টি?</div>
+        <div class="answer">
+            <span class="answer-label">উত্তর:</span>
+            নির্দিষ্ট সংখ্যা নেই। হাদিসে সাতটি (<span class="arabic">السبع الموبقات</span>) উল্লেখ আছে: শিরক, জাদু, অন্যায় হত্যা, সুদ, ইয়াতিমের মাল খাওয়া, যুদ্ধ থেকে পলায়ন, সতী নারীকে অপবাদ। ইবনে আব্বাস (রা.): সাতের চেয়ে সত্তর/সাতশ'র নিকটবর্তী।
+        </div>
+
+        <div class="sub-title">(৪) এখানে কবীরা দ্বারা উদ্দেশ্য কী?</div>
+        <div class="answer">
+            <span class="answer-label">উত্তর:</span>
+            কুফর ছাড়া অন্য বড় গুনাহ, যা হালাল মনে করা ছাড়া করা হয়েছে। হালাল মনে করলে কুফর।
+        </div>
+    </div>
+
+    <div class="section reveal">
+        <div class="section-title">(B) কবীরা কি ঈমান থেকে বের করে? ইখতিলাফ ও দলিল</div>
+
+        <div class="sub-title">(১) সংক্ষিপ্ত উত্তর</div>
+        <div class="answer">
+            <span class="answer-label">উত্তর:</span>
+            না। কবীরা গুনাহকারী মুমিনই থাকে, কাফির হয় না।
+        </div>
+
+        <div class="sub-title">(২) আহলুস সুন্নাহ (হানাফি-মাতুরিদি)</div>
+        <div class="answer">
+            <span class="answer-label">উত্তর:</span>
+            ঈমান হলো তাসদিক (অন্তরে বিশ্বাস) ও ইকরার। আমল ঈমানের মূল অংশ নয়, পূর্ণতার অংশ। ফাসিক মুমিন থাকে। দলিল:
+        </div>
+
+        <div class="evidence">
+            <ul>
+                <li><span class="arabic">"إن الله لا يغفر أن يشرك به ويغفر ما دون ذلك لمن يشاء"</span> (নিসা, ৪৮)।</li>
+                <li><span class="arabic">"وإن طائفتان من المؤمنين اقتتلوا"</span> (হুজুরাত, ৯) — যুদ্ধরতদেরও "মুমিন" বলা হয়েছে।</li>
+                <li><span class="arabic">"يا أيها الذين آمنوا كتب عليكم القصاص"</span> (বাকারা, ১৭৮) — হত্যাকারীদেরও "মুমিন"।</li>
+                <li>হাদিস: <span class="arabic">"من قال لا إله إلا الله دخل الجنة وإن زنى وإن سرق"</span> (বুখারি ও মুসলিম)।</li>
+            </ul>
+        </div>
+
+        <div class="sub-title">(৩) খারিজি</div>
+        <div class="answer">
+            <span class="answer-label">উত্তর:</span>
+            কবীরাকারী কাফির এবং চিরস্থায়ী জাহান্নামী। দলিল:
+            <span class="arabic">"ومن لم يحكم بما أنزل الله فأولئك هم الكافرون"</span> (মায়িদা, ৪৪)।
+        </div>
+
+        <div class="sub-title">(৪) মুতাযিলা</div>
+        <div class="answer">
+            <span class="answer-label">উত্তর:</span>
+            কবীরাকারী মুমিনও না, কাফিরও না, বরং <span class="arabic">"المنزلة بين المنزلتين"</span>। পরকালে চিরস্থায়ী জাহান্নামী। দলিল:
+            <span class="arabic">"ومن يقتل مؤمنا متعمدا فجزاؤه جهنم خالدا فيها"</span> (নিসা, ৯৩) ও
+            <span class="arabic">"ومن يعص الله ورسوله... خالدا فيها"</span> (নিসা, ১৪)।
+        </div>
+
+        <div class="sub-title">(৫) তাদের দলিলের জবাব</div>
+        <div class="answer">
+            <span class="answer-label">উত্তর:</span>
+            <ul>
+                <li>"খালিদান" এর অর্থ দীর্ঘ সময় থাকা, অথবা হালাল মনে করে করার ক্ষেত্রে চিরস্থায়ী।</li>
+                <li>হাদিস <span class="arabic">"لا يزني الزاني حين يزني وهو مؤمن"</span> দ্বারা ঈমানের পূর্ণতা নেই বোঝানো হয়েছে, ঈমান মূলত নেই — এটা নয়।</li>
+                <li>মায়িদা ৪৪ আয়াতের অর্থ: হালাল মনে করে হুকুম বর্জন করলে কুফর।</li>
+            </ul>
+        </div>
+
+        <div class="sub-title">(৬) গৃহীত মত</div>
+        <div class="answer">
+            <span class="answer-label">উত্তর:</span>
+            আহলুস সুন্নাহর মতই গ্রহণযোগ্য। কবীরাকারী মুমিন। আল্লাহ চাইলে মাফ করবেন, চাইলে শাস্তি দেবেন। শাস্তি পেলেও চিরস্থায়ী জাহান্নামী হবে না।
+        </div>
+    </div>
+
+</div>
+
+<script>
+function downloadPDF(){
+    /*
+      Browser-এর Print → Save as PDF ব্যবহার করা হচ্ছে।
+      এতে বাংলা ও আরবি Text selectable/copyable থাকে।
+    */
+    window.print();
+}
+
+const observer = new IntersectionObserver(
+    entries => {
+        entries.forEach(entry => {
+            if(entry.isIntersecting){
+                entry.target.classList.add("show");
             }
-
-            /* 2. Scroll Animation Setup */
-            const animatedElements = document.querySelectorAll('.animate-element');
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px 0px -50px 0px',
-                threshold: 0.15
-            };
-
-            const observer = new IntersectionObserver((entries, observerInstance) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
-                        observerInstance.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
-
-            animatedElements.forEach(el => observer.observe(el));
         });
-    </script>
+    },
+    {
+        threshold:0.08
+    }
+);
+
+document.querySelectorAll(".reveal").forEach(element => {
+    observer.observe(element);
+});
+</script>
+
 </body>
 </html>

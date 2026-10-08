@@ -1,1045 +1,1346 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>শরহুল আকাইদ আন-নাসাফিয়্যা - প্রশ্নোত্তর সমাধান (১৪৩০ হিজরী)</title>
-    <style>
-        /* ==========================================
-           1. CSS VARIABLES & RESET
-           ========================================== */
-        :root {
-            --bg-primary: #0f172a;
-            --bg-secondary: #1e293b;
-            --bg-card: #151f32;
-            --accent-gold: #f59e0b;
-            --accent-gold-light: #fef3c7;
-            --accent-teal: #0d9488;
-            --accent-teal-light: #ccfbf1;
-            --accent-blue: #3b82f6;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --text-dark: #0f172a;
-            --border-color: #334155;
-            --border-highlight: #f59e0b;
-            --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
-            --shadow-glow: 0 0 20px rgba(245, 158, 11, 0.2);
-            /* অ্যানিমেশন আরও ধীর এবং স্মুথ করা হয়েছে (0.4s থেকে 1.2s) */
-            --transition-smooth: all 1.2s cubic-bezier(0.25, 1, 0.5, 1);
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+<title>شرح العقائد النسفية — 1430 H Question Paper</title>
 
-        body {
-            background-color: var(--bg-primary);
-            color: var(--text-main);
-            font-family: 'Kalpurush', 'SolaimanLipi', 'Siyam Rupali', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            font-size: 25px; /* Body Text requirement */
-            line-height: 1.8;
-            overflow-x: hidden;
-            padding-bottom: 60px;
-        }
+<style>
+/* =========================
+   BASIC RESET
+========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        /* ==========================================
-           2. TYPOGRAPHY & HEADER
-           ========================================== */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+html {
+    scroll-behavior: smooth;
+}
 
-        /* Header Layout Alignment */
-        header, .header {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 15px;
-            padding: 50px 30px;
-            background: linear-gradient(180deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 1) 100%);
-            border-bottom: 2px solid var(--accent-gold);
-            margin-bottom: 40px;
-            border-radius: 0 0 16px 16px;
-            box-shadow: var(--shadow-lg);
-        }
+body {
+    font-family: "Kalpurush", "Noto Sans Bengali", "SolaimanLipi", sans-serif;
+    font-size: 25px;
+    line-height: 1.9;
+    background: #f7f8fa;
+    color: #20242a;
+}
 
-        .header-content {
-            text-align: left;
-            flex: 1;
-        }
+/* =========================
+   TOP BAR
+========================= */
+.topbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    padding: 14px 5%;
+    background: rgba(255, 255, 255, 0.94);
+    border-bottom: 1px solid #e2e5e9;
+    box-shadow: 0 4px 20px rgba(0,0,0,.06);
+    backdrop-filter: blur(12px);
+}
 
-        header h1 {
-            font-size: 2.2rem;
-            color: var(--accent-gold);
-            margin-bottom: 10px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-            letter-spacing: 0.5px;
-        }
+.top-title {
+    font-size: 22px;
+    font-weight: bold;
+    color: #263238;
+}
 
-        header p {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            font-weight: 500;
-        }
+.pdf-btn {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(135deg, #1565c0, #512da8);
+    box-shadow: 0 5px 16px rgba(63,81,181,.25);
+    transition: .3s ease;
+}
 
-        /* ==========================================
-           TOP RIGHT STYLISH PDF BUTTON STYLES
-           ========================================== */
-        .top-right-pdf-btn {
-            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
-            color: #ffffff;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            font-weight: 600;
-            border-radius: 10px;
-            cursor: pointer;
-            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.25);
-            transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            white-space: nowrap;
-        }
+.pdf-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(63,81,181,.35);
+}
 
-        .top-right-pdf-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
-            background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
-        }
+/* =========================
+   MAIN BOOK
+========================= */
+.book {
+    width: min(1200px, 94%);
+    margin: 35px auto 60px;
+}
 
-        .top-right-pdf-btn:active {
-            transform: translateY(0);
-        }
+/* =========================
+   COVER
+========================= */
+.cover {
+    background: white;
+    border-radius: 22px;
+    padding: 65px 30px;
+    text-align: center;
+    border: 1px solid #e4e7eb;
+    box-shadow: 0 12px 40px rgba(0,0,0,.07);
+    margin-bottom: 35px;
+}
 
-        /* Print / PDF Media Rules */
-        @media print {
-            .top-right-pdf-btn, .back-btn, .nav-buttons, .toggle-icon {
-                display: none !important;
-            }
-            body {
-                background-color: #ffffff !important;
-                color: #000000 !important;
-                padding: 0 !important;
-                overflow: visible !important;
-                font-size: 18px !important;
-            }
-            .question-section {
-                background: #ffffff !important;
-                border: 1px solid #ccc !important;
-                box-shadow: none !important;
-                opacity: 1 !important;
-                transform: none !important;
-                page-break-inside: avoid;
-            }
-            .question-header {
-                background: #f1f5f9 !important;
-                color: #000000 !important;
-            }
-            .question-title, .arabic-text {
-                color: #000000 !important;
-            }
-            .quote-box, .highlight-box, .mini-card, table, th, td {
-                background: #ffffff !important;
-                color: #000000 !important;
-                border-color: #cbd5e1 !important;
-            }
-        }
+.cover-arabic {
+    direction: rtl;
+    font-family: "Amiri", "Noto Naskh Arabic", serif;
+    font-size: clamp(34px, 6vw, 58px);
+    font-weight: bold;
+    color: #263238;
+    margin-bottom: 15px;
+}
 
-        /* ==========================================
-           3. QUESTION CARDS & SLOW ANIMATIONS
-           ========================================== */
-        .question-section {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            margin-bottom: 35px;
-            box-shadow: var(--shadow-lg);
-            overflow: hidden;
-            /* অত্যন্ত স্লো ও মার্জিত স্ক্রোল অ্যানিমেশন */
-            transition: opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1), transform 1.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.8s ease;
-            opacity: 0;
-            transform: translateY(60px);
-        }
+.cover h1 {
+    font-size: clamp(28px, 5vw, 48px);
+    color: #1565c0;
+    margin-bottom: 8px;
+}
 
-        .question-section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+.cover h2 {
+    font-size: clamp(21px, 3vw, 30px);
+    color: #546e7a;
+    font-weight: normal;
+}
 
-        .question-header {
-            background: linear-gradient(90deg, #1e293b 0%, #2d3748 100%);
-            padding: 22px 30px;
-            border-left: 6px solid var(--accent-gold);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            user-select: none;
-            transition: background 0.8s ease;
-        }
+.badge {
+    display: inline-block;
+    margin-top: 22px;
+    padding: 7px 20px;
+    border-radius: 30px;
+    font-size: 19px;
+    background: #e8eaf6;
+    color: #3949ab;
+}
 
-        .question-header:hover {
-            background: linear-gradient(90deg, #253346 0%, #344155 100%);
-        }
+/* =========================
+   QUESTION
+========================= */
+.question {
+    background: white;
+    margin-bottom: 35px;
+    padding: 35px;
+    border-radius: 20px;
+    border: 1px solid #e1e5e9;
+    box-shadow: 0 8px 28px rgba(0,0,0,.055);
+    overflow: hidden;
+}
 
-        .question-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: var(--accent-gold-light);
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
+.question-header {
+    position: relative;
+    margin: -35px -35px 30px;
+    padding: 17px 28px;
+    background: linear-gradient(135deg, #263238, #455a64);
+    color: white;
+    font-size: 28px;
+    font-weight: bold;
+}
 
-        .toggle-icon {
-            font-size: 1.5rem;
-            color: var(--accent-gold);
-            transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-        }
+.question-header::before {
+    content: "📖 ";
+}
 
-        .question-section.open .toggle-icon {
-            transform: rotate(180deg);
-        }
+/* =========================
+   ARABIC TEXT
+========================= */
+.arabic {
+    direction: rtl;
+    text-align: right;
+    font-family: "Amiri", "Noto Naskh Arabic", "Traditional Arabic", serif;
+    line-height: 2.1;
+}
 
-        .question-body {
-            padding: 30px;
-            display: block;
-            transition: var(--transition-smooth);
-        }
+.quoted-arabic {
+    direction: rtl;
+    text-align: center;
+    font-family: "Amiri", "Noto Naskh Arabic", serif;
+    font-size: 27px;
+    background: #fafafa;
+    border: 1px solid #e0e0e0;
+    border-right: 5px solid #5c6bc0;
+    padding: 20px;
+    margin: 15px 0 28px;
+    border-radius: 12px;
+}
 
-        /* Sub-question blocks */
-        .sub-q {
-            background: rgba(30, 41, 59, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-            padding: 25px;
-            margin-bottom: 25px;
-            transition: var(--transition-smooth);
-        }
+/* =========================
+   SUB QUESTION
+========================= */
+.sub-question {
+    margin-top: 30px;
+}
 
-        .sub-q:last-child {
-            margin-bottom: 0;
-        }
+.sub-question-title {
+    color: #3949ab;
+    font-size: 26px;
+    font-weight: bold;
+    padding-bottom: 7px;
+    margin-bottom: 13px;
+    border-bottom: 2px solid #e8eaf6;
+}
 
-        .sub-q:hover {
-            border-color: rgba(245, 158, 11, 0.4);
-            box-shadow: var(--shadow-glow);
-            transform: translateY(-3px);
-        }
+.answer {
+    margin-bottom: 22px;
+}
 
-        .q-label {
-            display: inline-block;
-            background: var(--accent-gold);
-            color: var(--text-dark);
-            font-size: 0.9rem;
-            font-weight: bold;
-            padding: 2px 14px;
-            border-radius: 20px;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-        }
+.answer::before {
+    content: "উত্তর:";
+    display: block;
+    font-weight: bold;
+    color: #00897b;
+    margin-bottom: 4px;
+}
 
-        .arabic-text {
-            font-family: 'Traditional Arabic', 'Amiri', 'Scheherazade New', serif;
-            font-size: 1.2em;
-            color: #6ee7b7;
-            direction: rtl;
-            display: inline-block;
-            margin: 0 4px;
-            line-height: 1.5;
-        }
+.answer p {
+    margin-bottom: 14px;
+}
 
-        /* ==========================================
-           4. SPECIAL CONTAINERS (Box, Highlight, Cards)
-           ========================================== */
-        .quote-box {
-            background: rgba(13, 148, 136, 0.1);
-            border-right: 4px solid var(--accent-teal);
-            padding: 20px 25px;
-            border-radius: 8px 0 0 8px;
-            margin: 15px 0;
-            font-size: 24px;
-            transition: var(--transition-smooth);
-        }
+/* =========================
+   IMPORTANT HIGHLIGHT
+========================= */
+.highlight {
+    background: #fff8e1;
+    border-left: 5px solid #ffb300;
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin: 15px 0;
+}
 
-        .highlight-box {
-            background: rgba(245, 158, 11, 0.1);
-            border-left: 4px solid var(--accent-gold);
-            padding: 15px 20px;
-            border-radius: 0 8px 8px 0;
-            margin: 15px 0;
-            transition: var(--transition-smooth);
-        }
+.evidence {
+    background: #eef7ff;
+    border-left: 5px solid #1976d2;
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin: 15px 0;
+}
 
-        /* Grid Cards for Categories */
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin: 20px 0;
-        }
+.conclusion {
+    background: #edf8f3;
+    border-left: 5px solid #00897b;
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin: 15px 0;
+}
 
-        .mini-card {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            padding: 20px;
-            border-radius: 10px;
-            transition: var(--transition-smooth);
-        }
+/* =========================
+   LIST
+========================= */
+ol,
+ul {
+    margin: 10px 0 18px 35px;
+}
 
-        .mini-card:hover {
-            transform: translateY(-6px);
-            border-color: var(--accent-blue);
-        }
+li {
+    margin-bottom: 7px;
+}
 
-        .mini-card-title {
-            color: var(--accent-blue);
-            font-weight: bold;
-            font-size: 1.05rem;
-            margin-bottom: 8px;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 5px;
-        }
+/* =========================
+   FOOTER
+========================= */
+.footer {
+    text-align: center;
+    padding: 35px 15px;
+    color: #607d8b;
+    font-size: 18px;
+}
 
-        /* ==========================================
-           5. TABLES (Box/Table Text: 22-24px)
-           ========================================== */
-        .table-responsive {
-            width: 100%;
-            overflow-x: auto;
-            margin: 20px 0;
-            border-radius: 10px;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
-        }
+/* =========================
+   ANIMATION
+========================= */
+.reveal {
+    opacity: 0;
+    transform: translateY(45px);
+    transition:
+        opacity .9s ease,
+        transform .9s ease;
+}
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 23px; /* Table text: 22-24px */
-            text-align: left;
-            background: var(--bg-secondary);
-        }
+.reveal.left {
+    transform: translateX(-50px);
+}
 
-        th {
-            background: #0f172a;
-            color: var(--accent-gold);
-            padding: 14px 18px;
-            font-weight: 700;
-            border-bottom: 2px solid var(--border-color);
-            white-space: nowrap;
-        }
+.reveal.right {
+    transform: translateX(50px);
+}
 
-        td {
-            padding: 14px 18px;
-            border-bottom: 1px solid var(--border-color);
-            color: #e2e8f0;
-            vertical-align: top;
-            transition: background 0.5s ease;
-        }
+.reveal.zoom {
+    transform: scale(.94);
+}
 
-        tr:last-child td {
-            border-bottom: none;
-        }
+.reveal.show {
+    opacity: 1;
+    transform: translate(0) scale(1);
+}
 
-        tr:nth-child(even) {
-            background: rgba(255, 255, 255, 0.02);
-        }
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 768px) {
 
-        tr:hover td {
-            background: rgba(245, 158, 11, 0.08);
-        }
+    body {
+        font-size: 22px;
+        line-height: 1.8;
+    }
 
-        /* Key-Value Lists */
-        .styled-list {
-            list-style: none;
-            padding-left: 0;
-            margin: 15px 0;
-        }
+    .topbar {
+        padding: 10px 3%;
+    }
 
-        .styled-list li {
-            position: relative;
-            padding-left: 30px;
-            margin-bottom: 12px;
-        }
+    .top-title {
+        font-size: 17px;
+    }
 
-        .styled-list li::before {
-            content: "❖";
-            position: absolute;
-            left: 0;
-            color: var(--accent-gold);
-            font-size: 0.9rem;
-            top: 2px;
-        }
+    .pdf-btn {
+        font-size: 16px;
+        padding: 8px 13px;
+    }
 
-        /* Number Badges */
-        .badge-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin: 15px 0;
-        }
+    .book {
+        width: 96%;
+        margin-top: 20px;
+    }
 
-        .badge-item {
-            background: var(--bg-secondary);
-            border: 1px solid var(--accent-teal);
-            color: var(--accent-teal-light);
-            padding: 8px 16px;
-            border-radius: 8px;
-            font-size: 22px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: var(--transition-smooth);
-        }
+    .cover {
+        padding: 45px 18px;
+        border-radius: 16px;
+    }
 
-        .badge-item:hover {
-            transform: translateY(-3px);
-            border-color: var(--accent-gold);
-        }
+    .question {
+        padding: 22px 18px;
+        border-radius: 15px;
+    }
 
-        .badge-num {
-            background: var(--accent-teal);
-            color: var(--text-dark);
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            font-weight: bold;
-        }
+    .question-header {
+        margin: -22px -18px 22px;
+        padding: 14px 18px;
+        font-size: 24px;
+    }
 
-        /* ==========================================
-           6. RESPONSIVE DESIGN (MEDIA QUERIES)
-           ========================================== */
-        @media (max-width: 1024px) {
-            body { font-size: 23px; }
-            header, .header { padding: 40px 20px; }
-            header h1 { font-size: 1.9rem; }
-            .question-header { padding: 18px 24px; }
-            .question-body { padding: 22px; }
-        }
+    .sub-question-title {
+        font-size: 23px;
+    }
 
-        @media (max-width: 768px) {
-            body { font-size: 21px; }
-            table { font-size: 21px; }
-            .badge-item { font-size: 20px; }
-            header, .header { 
-                flex-direction: column; 
-                align-items: flex-start;
-                padding: 30px 20px; 
-                margin-bottom: 25px; 
-            }
-            header h1 { font-size: 1.6rem; }
-            .top-right-pdf-btn {
-                align-self: flex-start;
-                margin-top: 10px;
-            }
-            .question-title { font-size: 1.2rem; }
-            .sub-q { padding: 18px; }
-            .card-grid { grid-template-columns: 1fr; }
-        }
+    .quoted-arabic {
+        font-size: 24px;
+        padding: 15px;
+    }
 
-        @media (max-width: 480px) {
-            body { font-size: 20px; }
-            table { font-size: 19px; }
-            .quote-box { font-size: 20px; }
-            header h1 { font-size: 1.3rem; }
-            .question-header { padding: 15px; }
-            .question-body { padding: 15px; }
-            .sub-q { padding: 14px; }
-            th, td { padding: 10px 12px; }
-        }
-    </style>
+    .arabic {
+        font-size: 23px;
+    }
+
+    ol,
+    ul {
+        margin-left: 25px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    body {
+        font-size: 21px;
+    }
+
+    .top-title {
+        display: none;
+    }
+
+    .topbar {
+        justify-content: flex-end;
+    }
+
+    .question {
+        padding: 18px 14px;
+    }
+
+    .question-header {
+        margin: -18px -14px 18px;
+        font-size: 22px;
+    }
+
+    .quoted-arabic {
+        font-size: 22px;
+    }
+
+    .arabic {
+        font-size: 21px;
+    }
+
+    .answer::before {
+        font-size: 21px;
+    }
+}
+
+/* =========================
+   PRINT / PDF
+========================= */
+@media print {
+
+    @page {
+        size: A4;
+        margin: 15mm;
+    }
+
+    body {
+        background: white !important;
+        font-size: 16pt;
+        line-height: 1.75;
+        color: #000;
+    }
+
+    .topbar {
+        display: none !important;
+    }
+
+    .book {
+        width: 100%;
+        margin: 0;
+    }
+
+    .cover,
+    .question {
+        box-shadow: none;
+        border: none;
+        border-radius: 0;
+    }
+
+    .cover {
+        min-height: 240mm;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        page-break-after: always;
+    }
+
+    .question {
+        padding: 0;
+        margin-bottom: 20px;
+    }
+
+    .question-header {
+        margin: 0 0 20px;
+        color: #000;
+        background: #eee !important;
+        border-bottom: 2px solid #000;
+    }
+
+    .reveal,
+    .reveal.left,
+    .reveal.right,
+    .reveal.zoom {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    .highlight,
+    .evidence,
+    .conclusion {
+        break-inside: avoid;
+    }
+
+    .sub-question {
+        break-inside: auto;
+    }
+
+    .footer {
+        font-size: 11pt;
+    }
+}
+</style>
 </head>
+
 <body>
 
-    <header class="header">
-        <div class="header-content">
-            <h1>شرح العقائد النسفية</h1>
-            <p>1430 H Question Paper — প্রশ্নের পূর্ণাঙ্গ উত্তর ও ব্যাখ্যা</p>
-        </div>
-    </header>
+<!-- =========================
+     TOP BAR
+========================= -->
+<header class="topbar">
+    <div class="top-title">شرح العقائد النسفية — 1430 H</div>
 
-    <div class="container">
+    <button class="pdf-btn" onclick="downloadPDF()">
+        ⬇ Download PDF
+    </button>
+</header>
 
-        <!-- ==========================================
-             QUESTION 1
-             ========================================== -->
-        <div class="question-section">
-            <div class="question-header">
-                <div class="question-title">
-                    <span>প্রশ্ন–১</span>
-                </div>
-                <div class="toggle-icon">▼</div>
-            </div>
-            <div class="question-body">
-                
-                <!-- 1(A) -->
-                <div class="sub-q">
-                    <span class="q-label">(A) অনুবাদ</span>
-                    <div class="quote-box">
-                        শরিয়তের বিধি-বিধান এবং ইসলামের আকীদার মূলনীতি যে বিদ্যার ওপর প্রতিষ্ঠিত, তা হলো তাওহীদ ও সিফাতের জ্ঞান। এই বিদ্যাকে <span class="arabic-text">علم الكلام</span> (ইলমুল কালাম) বলা হয়। এটি সন্দেহের গভীর অন্ধকার এবং ভ্রান্ত ধারণার অন্ধকার থেকে মানুষকে মুক্তি দেয়।<br>
-                        ইমাম নাজমুল মিল্লাত ওয়াদ্দীন উমর আন-নাসাফী (رحمه الله)-এর রচিত সংক্ষিপ্ত গ্রন্থ <strong>"العقائد"</strong>-এর মধ্যে এই বিদ্যার মূল্যবান ও দুর্লভ বিষয়সমূহ এবং গুরুত্বপূর্ণ উপকারিতা অন্তর্ভুক্ত রয়েছে।
-                    </div>
-                </div>
 
-                <!-- 1(B) -->
-                <div class="sub-q">
-                    <span class="q-label">(B) পরিভাষা ও পার্থক্য</span>
-                    
-                    <div class="table-responsive">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>বিষয়</th>
-                                    <th>সংজ্ঞা ও পরিধি</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><strong>علم الشرائع والأحكام</strong></td>
-                                    <td>শরিয়তের এমন জ্ঞান, যা মানুষের আমল ও কাজের পদ্ধতির সঙ্গে সম্পর্কিত (যেমন: নামাজ, রোজা, হজ, লেনদেন ইত্যাদি)।</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>علم التوحيد والصفات</strong></td>
-                                    <td>আল্লাহ তাআলার একত্ব, সত্তা, গুণাবলি এবং আকীদার মৌলিক বিষয়সমূহের জ্ঞান।</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+<main class="book">
 
-                    <div class="highlight-box">
-                        <strong>পার্থক্য বিশ্লেষণ:</strong> <span class="arabic-text">علم الشرائع</span> দ্বারা মূলত শরিয়ত কর্তৃক নির্ধারিত মূল বিধানসমূহ বোঝায়, আর <span class="arabic-text">علم الأحكام</span> দ্বারা সেই বিধানগুলোর প্রয়োগ ও জ্ঞান বোঝায়। এই দুটির মধ্যে মৌলিক বৈপরীত্য নেই; বরং শরিয়তের নির্ধারিত বিধান এবং তা জানা—এই দুই দৃষ্টিকোণ থেকে নামের পার্থক্য।
-                    </div>
-                </div>
+<!-- =========================
+     COVER
+========================= -->
+<section class="cover reveal zoom">
 
-                <!-- 1(C) -->
-                <div class="sub-q">
-                    <span class="q-label">(C) শব্দার্থ ও কার্যকারিতা</span>
-                    
-                    <div class="card-grid">
-                        <div class="mini-card">
-                            <div class="mini-card-title">غياهب الشكوك</div>
-                            <p>অর্থ: সন্দেহের গভীর অন্ধকার।</p>
-                        </div>
-                        <div class="mini-card">
-                            <div class="mini-card-title">ظلمات الأوهام</div>
-                            <p>অর্থ: ভ্রান্ত ধারণা ও কুকল্পনার অন্ধকার।</p>
-                        </div>
-                    </div>
+    <div class="cover-arabic">
+        شرح العقائد النسفية
+    </div>
 
-                    <p><strong>ইলমুল কালাম কীভাবে মুক্তি দেয়:</strong> <span class="arabic-text">علم الكلام</span> যুক্তি ও ক্বাতেঈ (চূড়ান্ত) দলিল-প্রমাণের মাধ্যমে সঠিক আকীদা স্পষ্ট করে এবং বাতিল شبهة (সন্দেহ) ও ভ্রান্ত ধারণার অবসান ঘটায়। ফলে মানুষ সন্দেহ ও ভ্রান্ত বিশ্বাস থেকে মুক্ত হয়ে সঠিক আকীদার ওপর দৃঢ় থাকে।</p>
-                </div>
+    <h1>শরহুল আকাইদ আন-নাসাফিয়্যাহ</h1>
 
-                <!-- 1(D) -->
-                <div class="sub-q">
-                    <span class="q-label">(D) সংকলনের পটভূমি ও যুগের পার্থক্য</span>
-                    
-                    <p>সাহাবায়ে কেরাম ও তাবেঈনের যুগে আকীদা ছিল অত্যন্ত পরিষ্কার। রাসূলুল্লাহ ﷺ-এর যুগের নিকটবর্তী হওয়া এবং বিদআতের উপদ্রব কম থাকায় তখন <span class="arabic-text">علم الكلام</span> আলাদাভাবে সংকলনের প্রয়োজন ছিল না। পরবর্তীতে বিভিন্ন ফিতনা, বিদআত ও বাতিল মতবাদের (যেমন: মুতাযিলা, কাদরিয়্যা ইত্যাদি) আবির্ভাব ঘটলে আকীদা সংরক্ষণ ও বাতিলের জবাব দেওয়ার জন্য <span class="arabic-text">علم الكلام</span> সংকলনের প্রয়োজন দেখা দেয়। এটি মূলত আব্বাসী যুগে নিয়মতান্ত্রিকভাবে সংকলিত হতে শুরু করে।</p>
+    <h2>1430 H Question Paper</h2>
 
-                    <div class="table-responsive" style="margin-top: 15px;">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>ক্যাটাগরি</th>
-                                    <th>বৈশিষ্ট্যসমূহ</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><strong>كلام المتقدمين</strong><br>(প্রথম যুগের কালাম শাস্ত্র)</td>
-                                    <td>এটি ছিল সরল, সংক্ষিপ্ত, কুরআন-হাদিসভিত্তিক এবং প্রতিপক্ষের সরাসরি প্রশ্নের জবাবে সীমাবদ্ধ।</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>كلام المتأخرين</strong><br>(পরবর্তী যুগের কালাম শাস্ত্র)</td>
-                                    <td>এটি গ্রীক দর্শন ও যুক্তিবিদ্যার اصطلاح (পরিভাষা) সমৃদ্ধ, অধিক তাত্ত্বিক এবং বিস্তৃত যুক্তিনির্ভর।</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+    <span class="badge">প্রশ্নোত্তর সমাধান</span>
 
-            </div>
-        </div>
+</section>
 
-        <!-- ==========================================
-             QUESTION 2
-             ========================================== -->
-        <div class="question-section">
-            <div class="question-header">
-                <div class="question-title">
-                    <span>প্রশ্ন–২</span>
-                </div>
-                <div class="toggle-icon">▼</div>
-            </div>
-            <div class="question-body">
-                
-                <!-- 2(A) -->
-                <div class="sub-q">
-                    <span class="q-label">(A) الإلهام-এর সংজ্ঞা ও ইলমের কারণ হওয়া না-হওয়া</span>
-                    
-                    <p><strong>الإلهام (ইলহাম)-এর অর্থ:</strong> আল্লাহ তাআলার পক্ষ থেকে কোনো ধারণা বা অর্থ সরাসরি কোনো মানুষের অন্তরে প্রক্ষিপ্ত হওয়া।</p>
 
-                    <div class="highlight-box">
-                        <strong>শরয়ী মর্যাদা:</strong> আহলে হকের নিকট সাধারণ মানুষের ক্ষেত্রে শরয়ী বিধান বা কোনো সত্য প্রমাণের বাধ্যতামূলক ও সর্বজনীন মাধ্যম (<span class="arabic-text">سبب عام</span>) হিসেবে <span class="arabic-text">الإلهام</span> গ্রহণযোগ্য নয়। অর্থাৎ কারও অন্তরে কোনো ইলহাম হলেই তা অন্যের ওপর حجت বা দলিল হতে পারে না।
-                    </div>
+<!-- =========================================================
+     প্রশ্ন–১
+========================================================= -->
+<section class="question reveal">
 
-                    <p><strong>ইলহামপ্রাপ্ত ব্যক্তির নিজের জন্য ইলমের কারণ কি না (আলেমদের মতভেদ):</strong></p>
-                    <ul class="styled-list">
-                        <li><strong>অধিকাংশ মুতাকাল্লিমীনের মতে:</strong> এটি সর্বসাধারণের জন্য ইলমের সর্বজনীন কারণ নয়।</li>
-                        <li><strong>সুফিয়া ও কিছু আলেমের মতে:</strong> ইলহামপ্রাপ্ত ব্যক্তি নিজে ব্যক্তিগতভাবে এর দ্বারা নিশ্চিত ইলম ও আত্মতুষ্টি লাভ করতে পারেন।</li>
-                    </ul>
-                </div>
+    <div class="question-header">
+        প্রশ্ন–১
+    </div>
 
-                <!-- 2(B) -->
-                <div class="sub-q">
-                    <span class="q-label">(B) العلم ও المعرفة-এর পার্থক্য</span>
-                    
-                    <p>সাধারণ আলোচনার ভিত্তিতে <span class="arabic-text">العلم</span> ও <span class="arabic-text">المعرفة</span> একই অর্থে ব্যবহৃত হয়। তবে পরিভাষাগতভাবে কিছু পার্থক্য রয়েছে:</p>
+    <div class="quoted-arabic">
+        قوله:
+        <br>
+        "فإن مبنى علم الشرائع والأحكام وأساس قواعد عقائد الإسلام هو علم التوحيد والصفات الموسوم بالكلام المنجي عن غياهب الشكوك وظلمات الأوهام، وإن المختصر المسمى بالعقائد للإمام الهمام قدوة علماء الإسلام نجم الملة والدين عمر النسفي أعلى الله درجته في دار السلام يشمل من هذا الفن على غرر الفرائد ودرر الفوائد"
+    </div>
 
-                    <div class="table-responsive">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>শব্দ</th>
-                                    <th>প্রযোজ্য ক্ষেত্র</th>
-                                    <th>সংজ্ঞা ও পরিধি</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><strong>العلم</strong></td>
-                                    <td>المركبات (যৌগিক) ও الكليات (সামগ্রিক)</td>
-                                    <td>কোনো বিষয়কে তার প্রকৃত অবস্থা অনুযায়ী ব্যাপকভাবে জানা।</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>المعرفة</strong></td>
-                                    <td>البسائط (সরল) ও الجزئيات (নির্দিষ্ট)</td>
-                                    <td>কোনো নির্দিষ্ট বিষয় বা বস্তুর পরিচয় চিনে নেওয়া।</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
 
-                    <div class="quote-box" style="font-size: 22px;">
-                        <strong>বিশেষ দ্রষ্টব্য:</strong> <span class="arabic-text">شرح العقائد النسفية</span>-এর এই আলোচনায় <span class="arabic-text">العلم</span> ও <span class="arabic-text">المعرفة</span>-এর মধ্যে মৌলিক পার্থক্য উদ্দেশ্য নয়; বরং দুটোকেই সমার্থক হিসেবে ধরা হয়েছে।
-                    </div>
-                </div>
+    <div class="sub-question reveal left">
 
-                <!-- 2(C) -->
-                <div class="sub-q">
-                    <span class="q-label">(C) العالم (সৃষ্টজগত)-এর প্রকারভেদ</span>
-                    
-                    <p>'শরহুল আকাইদ'-এর ইবারত অনুযায়ী, <span class="arabic-text">العالم</span> (সৃষ্টজগত) প্রধানত দুই ভাগে বিভক্ত:</p>
+        <div class="sub-question-title">(A) ترجم العبارة المذكورة.</div>
 
-                    <div class="card-grid">
-                        <div class="mini-card">
-                            <div class="mini-card-title">১. الأعيان (অস্তিত্বশীল বস্তু/সত্তা)</div>
-                            <p>যা নিজে স্বাধীনভাবে স্থান দখল করে অবস্থান করতে পারে।</p>
-                        </div>
-                        <div class="mini-card">
-                            <div class="mini-card-title">২. الأعراض (অনুষঙ্গ বা গুণাবলি)</div>
-                            <p>যা নিজে স্বাধীনভাবে বিদ্যমান থাকতে পারে না; বরং জিসম বা জাওহারের ওপর আশ্রয় করে বিদ্যমান থাকে। <em>উদাহরণ: রঙ (সাদা/কালো), স্থিতি, গতি ইত্যাদি।</em></p>
-                        </div>
-                    </div>
+        <div class="answer">
 
-                    <p><strong>অতঃপর الأعيان আবার দুই প্রকার:</strong></p>
-                    <div class="table-responsive">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>প্রকার</th>
-                                    <th>পরিভাষা</th>
-                                    <th>সংজ্ঞা ও উদাহরণ</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>ক. المركب (যৌগিক)</td>
-                                    <td><strong>الجسم (জিসম)</strong></td>
-                                    <td>যা দুই বা ততোধিক অংশ দ্বারা গঠিত এবং স্থান দখল করে। <br><em>উদাহরণ: মানুষ, গাছপালা, পাথর ইত্যাদি।</em></td>
-                                </tr>
-                                <tr>
-                                    <td>খ. غير المركب (একক/অযৌগিক)</td>
-                                    <td><strong>الجوهر الفرد (জাওহারে ফারদ)</strong></td>
-                                    <td>এমন মৌলিক ক্ষুদ্রতম একক (পরমাণু) যা নিজে অবস্থান করে কিন্তু তাকে আর কোনো অংশে বিভক্ত করা যায় না।</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+            <p>
+                শরিয়তের বিধি-বিধান এবং ইসলামের আকীদার মূলনীতি যে বিদ্যার ওপর প্রতিষ্ঠিত,
+                তা হলো তাওহীদ ও সিফাতের জ্ঞান। এই বিদ্যাকে علم الكلام (ইলমুল কালাম)
+                বলা হয়। এটি সন্দেহের গভীর অন্ধকার এবং ভ্রান্ত ধারণার অন্ধকার থেকে মানুষকে মুক্তি দেয়।
+            </p>
 
-                <!-- 2(D) -->
-                <div class="sub-q">
-                    <span class="q-label">(D) ইবারত ব্যাখ্যা: "والمحدث للعالم هو الله تعالى"</span>
-                    
-                    <p><span class="arabic-text">العالم</span> অর্থ আল্লাহ তাআলা ছাড়া সমগ্র সৃষ্টজগত। এটি <span class="arabic-text">حادث</span> অর্থাৎ পূর্বে ছিল না, পরবর্তীতে অস্তিত্ব লাভ করেছে। কারণ <span class="arabic-text">العالم</span> মূলত <span class="arabic-text">جسم</span> ও <span class="arabic-text">عرض</span>-এর সমষ্টি, আর এগুলো পরিবর্তনশীল ও <span class="arabic-text">حادث</span>।</p>
+            <p>
+                ইমাম নাজমুল মিল্লাত ওয়াদ্দীন উমর আন-নাসাফী (رحمه الله)-এর রচিত
+                সংক্ষিপ্ত গ্রন্থ "العقائد"-এর মধ্যে এই বিদ্যার মূল্যবান ও দুর্লভ বিষয়সমূহ
+                এবং গুরুত্বপূর্ণ উপকারিতা অন্তর্ভুক্ত রয়েছে।
+            </p>
 
-                    <div class="highlight-box">
-                        যৌক্তিক নিয়ম হলো—প্রত্যেক <span class="arabic-text">حادث</span>-এর জন্য একজন <span class="arabic-text">محدث</span> (সৃষ্টিকর্তা) আবশ্যক। যেহেতু জগত নিজে নিজেকে সৃষ্টি করতে পারে না এবং تسلسل (অনন্ত ধারা) ও دور (চক্রাকার নির্ভরতা) অসম্ভব, তাই অবশ্যই একজন অনাদি ও স্বয়ংসম্পূর্ণ সৃষ্টিকর্তা প্রয়োজন।
-                    </div>
-
-                    <p>সেই <span class="arabic-text">المحدث</span> হলেন <strong>الله تعالى</strong>। তিনি <span class="arabic-text">واجب الوجود</span> (যার অস্তিত্ব অপরিহার্য)। সুতরাং উক্ত ইবারতের উদ্দেশ্য হলো—সমগ্র জগতের সৃষ্টিকর্তা ও অস্তিত্বদানকারী কেবল আল্লাহ তাআলা।</p>
-                </div>
-
-            </div>
-        </div>
-
-        <!-- ==========================================
-             QUESTION 3
-             ========================================== -->
-        <div class="question-section">
-            <div class="question-header">
-                <div class="question-title">
-                    <span>প্রশ্ন–৩</span>
-                </div>
-                <div class="toggle-icon">▼</div>
-            </div>
-            <div class="question-body">
-                
-                <div class="quote-box" style="text-align: center; margin-bottom: 25px;">
-                    قوله: <strong>"والقرآن كلام الله غير مخلوق"</strong>
-                </div>
-
-                <!-- 3(A) -->
-                <div class="sub-q">
-                    <span class="q-label">(A) 'কلام الله' সংযোজন ও 'غير المخلوق' ব্যবহারের কারণ</span>
-                    
-                    <ul class="styled-list">
-                        <li><strong>'القرآن'-এর সাথে 'كلام الله تعالى' যুক্ত করার কারণ:</strong> 'কুরআন' শব্দটি কখনো মানুষের উচ্চারিত পঠিত শব্দ ও আওয়াজকেও বোঝায়, যা <span class="arabic-text">حادث</span>। তাই ভুল বোঝাবুঝি দূর করে আল্লাহর অনাদি গুণ উদ্দেশ্য বোঝাতে 'كلام الله' বলা হয়েছে।</li>
-                        <li><strong>'غير الحادث'-এর স্থানে 'غير المخلوق' ব্যবহার করার কারণ:</strong>
-                            <ol style="margin-left: 20px; margin-top: 8px;">
-                                <li><span class="arabic-text">لأن الخلاف إنما وقع في هذا اللفظ</span> (ঐতিহাসিক বিতর্কটি মূলত 'مخلوق' শব্দটি ব্যবহার করা না-করা নিয়েই সৃষ্টি হয়েছিল)। মুতাযিলারা কুরআনকে مخلوق বলত, তাই সেই বিতর্কিত শব্দটিকে সরাসরি খণ্ডন করতেই 'غير مخلوق' বলা হয়েছে।</li>
-                                <li>'غير مخلوق' বলা দ্বারা কালামুল্লাহ যে আল্লাহর অনাদি গুণ (<span class="arabic-text">صفة أزلية</span>), তা আরও স্পষ্টভাবে প্রমানিত হয়।</li>
-                            </ol>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- 3(B) -->
-                <div class="sub-q">
-                    <span class="q-label">(B) 'খলকে কুরআন' মাসআলায় মতভেদ ও দলিল</span>
-                    
-                    <div class="table-responsive">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>দল/সম্প্রদায়</th>
-                                    <th>আকীদা ও মতবাদ</th>
-                                    <th>দলিল ও খণ্ডন</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><strong>আহলে সুন্নাত ওয়াল জামাআত</strong></td>
-                                    <td><span class="arabic-text">القرآن كلام الله غير مخلوق</span><br>(কুরআন আল্লাহর কালাম, তা মাখলুক বা সৃষ্টি নয়)।</td>
-                                    <td>
-                                        <strong>দলিল:</strong> আল্লাহ তাআলা বলেন: ﴿أَلَا لَهُ الْخَلْقُ وَالْأَمْرُ﴾। এখানে সৃষ্টি (الخلق) এবং নির্দেশ বা কালামকে (الأمر) আলাদা করা হয়েছে। কালাম যদি সৃষ্টি হতো তবে তাকে আলাদা উল্লেখ করা হতো না।
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><strong>মুতাযিলা ও জাহমিয়া</strong></td>
-                                    <td>কুরআন মাখলুক ও حادث (সৃষ্ট ও নতুন)।</td>
-                                    <td>
-                                        <strong>আহলে সুন্নাতের জবাব:</strong> কালাম যদি মাখলুক হয়, তবে আল্লাহর সত্তা মাখলুক ধারণকারী হয়ে যাবে, যা অসম্ভব। আল্লাহর সত্তা যেমন أزلي (অনাদি), তাঁর صفات-ও অনাদি।
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- 3(C) -->
-                <div class="sub-q">
-                    <span class="q-label">(C) الكلام এবং الحادث-এর শাব্দিক ও পারিভাষিক অর্থ</span>
-                    
-                    <div class="card-grid">
-                        <div class="mini-card">
-                            <div class="mini-card-title">الكلام</div>
-                            <p><strong>لغة (লোগোভি):</strong> কথা, বাক্য বা অর্থবোধক আওয়াজ।</p>
-                            <p><strong>اصطلاحا (পরিভাষাগত):</strong> এমন একটি গুণ যার মাধ্যমে নির্দেশ, নিষেধ ও সংবাদ ব্যক্ত করা হয়।</p>
-                        </div>
-                        <div class="mini-card">
-                            <div class="mini-card-title">حادث</div>
-                            <p><strong>لغة (লোগোভি):</strong> নতুন উদ্ভূত বিষয়।</p>
-                            <p><strong>اصطلاحا (পরিভাষাগত):</strong> যার অস্তিত্বের পূর্বে অনস্তিত্ব (عدم) ছিল এবং পরবর্তীতে তা অস্তিত্ব লাভ করেছে।</p>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-        <!-- ==========================================
-             QUESTION 4
-             ========================================== -->
-        <div class="question-section">
-            <div class="question-header">
-                <div class="question-title">
-                    <span>প্রশ্ন–৪</span>
-                </div>
-                <div class="toggle-icon">▼</div>
-            </div>
-            <div class="question-body">
-                
-                <div class="quote-box" style="text-align: center; margin-bottom: 25px;">
-                    قوله: <strong>"وله صفات أزلية"</strong>
-                </div>
-
-                <!-- 4(A) -->
-                <div class="sub-q">
-                    <span class="q-label">(A) الأزلية-এর অর্থ ও আল্লাহর অনাদি সিফাতসমূহ</span>
-                    
-                    <p><strong>الأزلية (আজালিয়্যাহ) অর্থ:</strong> অনাদি; যার শুরুর কোনো সূচনা বা প্রথম সময় নেই।</p>
-                    
-                    <p style="margin-top: 15px;"><strong>আল্লাহ তাআলার মৌলিক অনাদি সিফাত (<span class="arabic-text">صفات أزلية</span>) ৮টি:</strong></p>
-                    
-                    <div class="badge-list">
-                        <div class="badge-item"><span class="badge-num">১</span> (১) العلم (জ্ঞান)</div>
-                        <div class="badge-item"><span class="badge-num">২</span> (২) القدرة (ক্ষমতা)</div>
-                        <div class="badge-item"><span class="badge-num">৩</span> (৩) الحياة (জীবন)</div>
-                        <div class="badge-item"><span class="badge-num">৪</span> (৪) السمع (শ্রবণ)</div>
-                        <div class="badge-item"><span class="badge-num">৫</span> (৫) البصر (দর্শন)</div>
-                        <div class="badge-item"><span class="badge-num">৬</span> (৬) الإرادة (ইচ্ছা)</div>
-                        <div class="badge-item"><span class="badge-num">৭</span> (৭) التكوين (সৃষ্টি ও রূপদান)</div>
-                        <div class="badge-item"><span class="badge-num">৮</span> (৮) الكلام (কথা)</div>
-                    </div>
-                </div>
-
-                <!-- 4(B) -->
-                <div class="sub-q">
-                    <span class="q-label">(B) সিফাত অনাদি হওয়ার দলিল ও বিরোধীদের জবাব</span>
-                    
-                    <p><strong>দলিল:</strong> আল্লাহ তাআলা বলেন: ﴿وَاللَّهُ بِكُلِّ شَيْءٍ عَلِيمٌ﴾ এবং ﴿إِنَّ اللَّهَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ﴾।</p>
-
-                    <div class="highlight-box">
-                        <strong>বিরোধীদের মত (মুতাযিলা):</strong> মুতাযিলারা দাবি করে যে, আল্লাহর আলাদা কোনো অনাদি সিফাত নেই; বরং তাঁর ذات (সত্তা)-ই এই সিফাতগুলোর কাজ সম্পাদন করে।
-                    </div>
-
-                    <p><strong>আহলে সুন্নাতের জবাব:</strong> সিফাতকে অস্বীকার করলে আল্লাহকে عالم বা قادر বলার প্রকৃত অর্থ বাতিল হয়ে যায়। সিফাত আল্লাহর সত্তার অতিরিক্ত (<span class="arabic-text">زائد على الذات</span>) কিন্তু তা সত্তা থেকে সম্পূর্ণ বিচ্ছিন্ন কোনো কিছু নয়। তাই এগুলো অনাদি বা <span class="arabic-text">أزلي</span>।</p>
-                </div>
-
-                <!-- 4(C) -->
-                <div class="sub-q">
-                    <span class="q-label">(C) صفة الكلام এবং তা العلم ও الإرادة থেকে ভিন্নতার প্রমাণ</span>
-                    
-                    <p><strong>صفة الكلام-এর পরিচয়:</strong> এটি আল্লাহ তাআলার একটি অনাদি সিফাত, যার মাধ্যমে আদেশ, নিষেধ ও সংবাদ প্রকাশ পায়।</p>
-
-                    <div class="table-responsive" style="margin: 15px 0;">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>পার্থক্য</th>
-                                    <th>ব্যাখ্যা ও কারণ</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><strong>العلم থেকে ভিন্ন</strong></td>
-                                    <td>কারণ মানুষ এমন কথা বলতে পারে যা মিথ্যা বা যার বাস্তবতা সে জানে না।</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>الإرادة থেকে ভিন্ন</strong></td>
-                                    <td>কারণ মনিব কখনো ভৃত্যকে পরীক্ষা করার জন্য এমন কাজের আদেশ দেয়, যা বাস্তবায়িত হোক তা সে মন থেকে ইচ্ছা করে না।</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <p><strong>কালামুল্লাহ অনাদি (<span class="arabic-text">صفة أزلية</span>) হওয়ার দলিল:</strong></p>
-                    <ul class="styled-list">
-                        <li><strong>১. নক্‌লী (কুরআনী) দলিল:</strong> আল্লাহ তাআলা বলেন: ﴿وَكَلَّمَ اللَّهُ مُوسَى تَكْلِيمًا﴾।</li>
-                        <li><strong>২. আক্‌লী (যৌক্তিক) দলিল:</strong> আল্লাহর কালাম যদি <span class="arabic-text">حادث</span> (নতুন) হতো, তবে আল্লাহর সত্তা <span class="arabic-text">حادث</span>-এর স্থান (<span class="arabic-text">محل للحوادث</span>) হয়ে যেত। আর <span class="arabic-text">"قيام الحوادث بذات الباري تعالى محال"</span> (আল্লাহর অনাদি সত্তায় নতুন বিষয়ের অবস্থান বা পরিবর্তন হওয়া অসম্ভব)। সুতরাং আল্লাহর কালাম অনাদি বা <span class="arabic-text">أزلي</span>।</li>
-                    </ul>
-                </div>
-
-            </div>
-        </div>
-
-        <!-- ==========================================
-             QUESTION 5
-             ========================================== -->
-        <div class="question-section">
-            <div class="question-header">
-                <div class="question-title">
-                    <span>প্রশ্ন–৫</span>
-                </div>
-                <div class="toggle-icon">▼</div>
-            </div>
-            <div class="question-body">
-                
-                <div class="quote-box" style="text-align: center; margin-bottom: 25px;">
-                    قوله: <strong>"المقتول ميت بأجله، والموت قائم بالميت مخلوق الله تعالى، والأجل واحد"</strong>
-                </div>
-
-                <!-- 5(A) -->
-                <div class="sub-q">
-                    <span class="q-label">(A) الموت অস্তিত্বশীল (وجودي) নাকি অনস্তিত্বশীল (عدمي)</span>
-                    
-                    <div class="table-responsive">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>আলেমগণের দল</th>
-                                    <th>মৃত্যুর হাকীকত</th>
-                                    <th>দলিল</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>একদল আলেম</td>
-                                    <td>الموت أمر عدمي (মৃত্যু হলো জীবনের অনুপস্থিতি মাত্র)।</td>
-                                    <td>—</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>জমহুর মুতাকাল্লিমীন ও শরহুল আকাইদ</strong></td>
-                                    <td><strong>الموت أمر وجودي</strong> (মৃত্যু একটি অস্তিত্বশীল সৃষ্টি, যা মৃতের সাথে কায়েম হয়)।</td>
-                                    <td>الله তাআলা বলেন: ﴿الَّذِي خَلَقَ الْمَوْتَ وَالْحَيَاةَ﴾। যেহেতু মৃত্যুকে 'সৃষ্টি' (خلق) বলা হয়েছে, আর যা অস্তিত্বহীন (عدمي) তা সৃষ্টির অন্তর্ভুক্ত হতে পারে না; তাই মৃত্যু একটি أمر وجودي।</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- 5(B) -->
-                <div class="sub-q">
-                    <span class="q-label">(B) নিহত ব্যক্তি কি স্বীয় নির্ধারিত অজলেই মারা গেছে?</span>
-                    
-                    <p>নিহত ব্যক্তি স্বীয় নির্ধারিত অজলেই মারা গেছে কি না—এ নিয়ে মতভেদ:</p>
-
-                    <div class="card-grid">
-                        <div class="mini-card">
-                            <div class="mini-card-title">১. আহলে সুন্নাত ওয়াল জামাআত (রাজেহ/অধিক গ্রহণযোগ্য)</div>
-                            <p><strong>المقتول ميت بأجله</strong> (নিহত ব্যক্তি তার নির্ধারিত সময়েই মারা গেছে)। মানুষের সংনির্দিষ্ট অজল একটাই।</p>
-                            <p style="margin-top: 8px;"><em>দলিল: ﴿فَإِذَا جَاءَ أَجَلُهُمْ لَا يَسْتَأْخِرُونَ سَاعَةً وَلَا يَسْتَقْدِمُونَ﴾</em></p>
-                        </div>
-                        <div class="mini-card">
-                            <div class="mini-card-title">২. মুতাযিলা সম্প্রদায়</div>
-                            <p>হত্যাকারী নিহতের অজলকে কেটে দিয়েছে। যদি সে হত্যা না করত, তবে নিহত ব্যক্তি তার স্বাভাবিক অজল পর্যন্ত বেঁচে থাকত।</p>
-                        </div>
-                    </div>
-
-                    <div class="highlight-box">
-                        <strong>আহলে সুন্নাতের জবাব:</strong> হত্যাকাণ্ড আল্লাহর ইলম ও নির্ধারিত অজলের বাইরে নয়। হত্যাকারী তার অবৈধ কাজের জন্য অপরাধী ও শাস্তিযোগ্য; কিন্তু মৃত্যুর নির্ধারিত সময় বা অজল একটাই।
-                    </div>
-                </div>
-
-                <!-- 5(C) -->
-                <div class="sub-q">
-                    <span class="q-label">(C) الرزق-এর সংজ্ঞা এবং হারাম বস্তু রিযিক কি না</span>
-                    
-                    <p><strong>الرزق-এর সংজ্ঞা:</strong> আল্লাহ তাআলা জীবকূলকে যা দান করেন এবং জীব তা ভোগ বা ব্যবহার করে, তাকেই 'রিযিক' বলা হয়।</p>
-
-                    <p style="margin-top: 15px;"><strong>হারাম বস্তু রিযিক কি না (মতভেদ):</strong></p>
-
-                    <div class="table-responsive">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>মাজহাব / দল</th>
-                                    <th>সিদ্ধান্ত</th>
-                                    <th>যুক্তি ও বিবরণ</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><strong>আহলে সুন্নাত ওয়াল জামাআত</strong></td>
-                                    <td><strong>الحرام رزق</strong><br>(হারাম বস্তুও রিযিকের অন্তর্ভুক্ত)</td>
-                                    <td>কারণ রিযিক হওয়ার জন্য তা হালাল বা মালিকানাধীন হওয়া শর্ত নয়; বরং উপকৃত হওয়া ও ভক্ষণ করাই শর্ত। তবে হারাম ভক্ষণ করার কারণে বান্দা গুনাহগার হবে।</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>মুতাযিলা</strong></td>
-                                    <td><strong>الحرام ليس برزق</strong><br>(হারাম বস্তু রিযিক নয়)</td>
-                                    <td>কারণ তাদের মতে রিযিক কেবল সেটাই যা বৈধভাবে ভোগ করা যায়।</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div class="quote-box" style="font-size: 22px;">
-                        <strong>প্রাবল্যপ্রাপ্ত (রাজেহ) মত:</strong> আহলে সুন্নাতের মতটিই রাজেহ—আল্লাহই সকল প্রাণীর একমাত্র রিযিকদাতা, তাই হারামও রিযিকের অন্তর্ভুক্ত।
-                    </div>
-                </div>
-
-            </div>
         </div>
 
     </div>
 
-    <!-- ==========================================
-         7. JAVASCRIPT (PDF Button Injection & Slow Animations)
-         ========================================== -->
-    <script>
-        // 1. Dynamic Top Right PDF Button Injector
-        window.addEventListener("DOMContentLoaded", function() {
-            const header = document.querySelector('.header');
-            if (header) {
-                const btn = document.createElement('button');
-                btn.className = 'top-right-pdf-btn';
-                btn.onclick = function() { window.print(); };
-                btn.innerHTML = '📄 Save PDF';
-                header.appendChild(btn);
+
+    <div class="sub-question reveal right">
+
+        <div class="sub-question-title">
+            (B) ما المراد بعلم الشرائع والأحكام؟ وما الفرق بينهما ؟ وما المراد بعلم التوحيد والصفات؟
+        </div>
+
+        <div class="answer">
+
+            <p>
+                علم الشرائع والأحكام দ্বারা শরিয়তের এমন জ্ঞান বোঝানো হয়েছে,
+                যা মানুষের আমল ও কাজের পদ্ধতির সঙ্গে সম্পর্কিত। এর মধ্যে নামাজ,
+                রোজা, হজ, লেনদেন ইত্যাদির বিধান অন্তর্ভুক্ত।
+            </p>
+
+            <p>
+                علم الشرائع দ্বারা মূলত শরিয়ত কর্তৃক নির্ধারিত মূল বিধানসমূহ বোঝায়,
+                আর علم الأحكام দ্বারা সেই বিধানগুলোর প্রয়োগ ও জ্ঞান বোঝায়।
+                এই দুটির মধ্যে মৌলিক বৈপরীত্য নেই; বরং শরিয়তের নির্ধারিত বিধান
+                এবং তা জানা—এই দুই দৃষ্টিকোণ থেকে নামের পার্থক্য।
+            </p>
+
+            <p>
+                আর علم التوحيد والصفات দ্বারা আল্লাহ তাআলার একত্ব, সত্তা,
+                গুণাবলি এবং আকীদার মৌলিক বিষয়সমূহের জ্ঞান বোঝায়।
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="sub-question reveal left">
+
+        <div class="sub-question-title">
+            (C) أوضح معنى غياهب الشكوك وظلمات الأوهام، ثم اذكر كيف ينجي الكلام منها.
+        </div>
+
+        <div class="answer">
+
+            <p>
+                غياهب الشكوك অর্থ হলো সন্দেহের গভীর অন্ধকার।
+            </p>
+
+            <p>
+                ظلمات الأوهام অর্থ হলো ভ্রান্ত ধারণা ও কুপ্লনার অন্ধকার।
+            </p>
+
+            <div class="evidence">
+                علم الكلام যুক্তি ও কাতে দলিল-প্রমাণের মাধ্যমে সঠিক আকীদা স্পষ্ট করে
+                এবং বাতিল شبهة (সন্দেহ) ও ভ্রান্ত ধারণার অবসান ঘটায়।
+                ফলে মানুষ সন্দেহ ও ভ্রান্ত বিশ্বাস থেকে মুক্ত হয়ে সঠিক আকীদার ওপর দৃঢ় থাকে।
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="sub-question reveal right">
+
+        <div class="sub-question-title">
+            (D) لمَ مست الحاجة إلى تدوين علم الكلام؟ ومتى دوّن؟ وما الفرق بين كلام المتقدمين والمتأخرين؟
+        </div>
+
+        <div class="answer">
+
+            <p>
+                সাহাবায়ে কেরাম ও তাবেঈনের যুগে আকীদা ছিল অত্যন্ত পরিষ্কার।
+                রাসূলুল্লাহ ﷺ-এর যুগের নিকটবর্তী হওয়া এবং বিদআতের উপদ্রব কম থাকায়
+                তখন علم الكلام আলাদাভাবে সংকলনের প্রয়োজন ছিল না।
+                পরবর্তীতে বিভিন্ন ফিতনা, বিদআত ও বাতিল মতবাদের
+                (যেমন: মুতাযিলা, কাদরিয়্যা ইত্যাদি) আবির্ভাব ঘটলে আকীদা সংরক্ষণ
+                ও বাতিলের জবাব দেওয়ার জন্য علم الكلام সংকলনের প্রয়োজন দেখা দেয়।
+                এটি মূলত আব্বাসী যুগে নিয়মতান্ত্রিকভাবে সংকলিত হতে শুরু করে।
+            </p>
+
+            <p><strong>পার্থক্য:</strong></p>
+
+            <ol>
+                <li>
+                    كلام المتقدمين (প্রথম যুগের কালাম শাস্ত্র):
+                    এটি ছিল সরল, সংক্ষিপ্ত, কুরআন-হাদিসভিত্তিক এবং প্রতিপক্ষের
+                    সরাসরি প্রশ্নের জবাবে সীমাবদ্ধ।
+                </li>
+
+                <li>
+                    كلام المتأخرين (পরবর্তী যুগের কালাম শাস্ত্র):
+                    এটি গ্রীক দর্শন ও যুক্তিবিদ্যার اصطلاح (পরিভাষা) সমৃদ্ধ,
+                    অধিক তাত্ত্বিক এবং বিস্তৃত যুক্তিনির্ভর।
+                </li>
+            </ol>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     প্রশ্ন–২
+========================================================= -->
+<section class="question reveal">
+
+    <div class="question-header">
+        প্রশ্ন–২
+    </div>
+
+
+    <div class="sub-question reveal left">
+
+        <div class="sub-question-title">
+            (A) ما معنى الإلهام؟ وهل هو من أسباب العلم أم لا؟ اكتب مع اختلاف العلماء مفصلا.
+        </div>
+
+        <div class="answer">
+
+            <p>
+                الإلهام অর্থ হলো আল্লাহ তাআলার পক্ষ থেকে কোনো ধারণা বা অর্থ সরাসরি
+                কোনো মানুষের অন্তরে প্রক্ষিপ্ত হওয়া।
+            </p>
+
+            <p>
+                আহলে হকের নিকট সাধারণ মানুষের ক্ষেত্রে শরয়ী বিধান বা কোনো সত্য প্রমাণের
+                বাধ্যতামূলক ও সর্বজনীন মাধ্যম (سبب عام) হিসেবে الإلهام গ্রহণযোগ্য নয়।
+                অর্থাৎ কারও অন্তরে কোনো ইলহাম হলেই তা অন্যের ওপর حجت বা দলিল হতে পারে না।
+            </p>
+
+            <p>
+                তবে ইলহামপ্রাপ্ত ব্যক্তির নিজের জন্য তা ইলমের কারণ হতে পারে কি না—
+                এ বিষয়ে মতভেদ রয়েছে:
+            </p>
+
+            <ol>
+                <li>
+                    অধিকাংশ মুতাকাল্লিমীনের মতে:
+                    এটি সর্বসাধারণের জন্য ইলমের সর্বজনীন কারণ নয়।
+                </li>
+
+                <li>
+                    সুফিয়া ও কিছু আলেমের মতে:
+                    ইলহামপ্রাপ্ত ব্যক্তি নিজে ব্যক্তিগতভাবে এর দ্বারা নিশ্চিত ইলম
+                    ও আত্মতুষ্টি লাভ করতে পারেন।
+                </li>
+            </ol>
+
+        </div>
+
+    </div>
+
+
+    <div class="sub-question reveal right">
+
+        <div class="sub-question-title">
+            (B) ما الفرق بين العلم والمعرفة؟ اذكر موضحا.
+        </div>
+
+        <div class="answer">
+
+            <p>
+                সাধারণ আলোচনার ভিত্তিতে العلم ও المعرفة একই অর্থে ব্যবহৃত হয়।
+                তবে পরিভাষাগতভাবে কিছু পার্থক্য রয়েছে:
+            </p>
+
+            <ol>
+                <li>
+                    العلم: কোনো বিষয়কে তার প্রকৃত অবস্থা অনুযায়ী ব্যাপকভাবে জানা।
+                    এটি সাধারণত المركبات (যৌগিক বিষয়) এবং الكليات
+                    (সামগ্রিক বিষয়)-এর ক্ষেত্রে ব্যবহৃত হয়।
+                </li>
+
+                <li>
+                    المعرفة: কোনো নির্দিষ্ট বিষয় বা বস্তুর পরিচয় চিনে নেওয়া।
+                    এটি সাধারণত البسائط (সরল বিষয়) এবং الجزئيات
+                    (নির্দিষ্ট বিষয়)-এর জ্ঞানের ক্ষেত্রে ব্যবহৃত হয়।
+                </li>
+            </ol>
+
+            <p>
+                তবে شرح العقائد النسفية-এর এই আলোচনায় العلم ও المعرفة-এর মধ্যে
+                মৌলিক পার্থক্য উদ্দেশ্য নয়; বরং দুটোকেই সমার্থক হিসেবে ধরা হয়েছে।
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="sub-question reveal left">
+
+        <div class="sub-question-title">
+            (C) كم قسما للعالم؟ وما هي؟ عرف كل قسم ممثلا.
+        </div>
+
+        <div class="answer">
+
+            <p>
+                'শরহুল আকাইদ'-এর ইবারত অনুযায়ী, العالم (সৃষ্টজগত) প্রধানত দুই ভাগে বিভক্ত:
+            </p>
+
+            <ol>
+                <li>الأعيان (অস্তিত্বশীল বস্তু/সত্তা)</li>
+                <li>الأعراض (অনুষঙ্গ বা গুণাবলি)</li>
+            </ol>
+
+            <p>
+                অতঃপর الأعيان আবার দুই প্রকার:
+            </p>
+
+            <p>
+                <strong>ক. المركب (যৌগিক):</strong>
+                যাকে 'الجسم' (জিসম) বলা হয়। অর্থাৎ যা দুই বা ততোধিক অংশ দ্বারা গঠিত
+                এবং স্থান দখল করে।
+            </p>
+
+            <p>
+                উদাহরণ: মানুষ, গাছপালা, পাথর ইত্যাদি।
+            </p>
+
+            <p>
+                <strong>খ. غير المركب (একক/অযৌগিক):</strong>
+                যাকে 'الجوهر الفرد' (জাওহারে ফারদ বা পরমাণু) বলা হয়।
+                অর্থাৎ এমন মৌলিক ক্ষুদ্রতম একক যা নিজে অবস্থান করে কিন্তু তাকে
+                আর কোনো অংশে বিভক্ত করা যায় না।
+            </p>
+
+            <p>
+                আর الأعراض হলো:
+                যা নিজে স্বাধীনভাবে বিদ্যমান থাকতে পারে না; বরং জিসম বা জাওহারের ওপর
+                আশ্রয় করে বিদ্যমান থাকে।
+            </p>
+
+            <p>
+                উদাহরণ: রঙ (সাদা/কালো), স্থিতি, গতি ইত্যাদি।
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="sub-question reveal right">
+
+        <div class="sub-question-title">
+            (D) "والمحدث للعالم هو الله تعالى"؛ اشرح العبارة بحيث ينكشف المرام.
+        </div>
+
+        <div class="answer">
+
+            <p>
+                العالم অর্থ আল্লাহ তাআলা ছাড়া সমগ্র সৃষ্টজগত। এটি حادث অর্থাৎ পূর্বে
+                ছিল না, পরবর্তীতে অস্তিত্ব লাভ করেছে। কারণ العالم মূলত جسم ও عرض-এর
+                সমষ্টি, আর এগুলো পরিবর্তনশীল ও حادث।
+            </p>
+
+            <p>
+                যৌক্তিক নিয়ম হলো—প্রত্যেক حادث-এর জন্য একজন محدث (সৃষ্টিকর্তা) আবশ্যক।
+                যেহেতু জগত নিজে নিজেকে সৃষ্টি করতে পারে না এবং تسلسل (অনন্ত ধারা)
+                ও دور (চক্রাকার নির্ভরতা) অসম্ভব, তাই অবশ্যই একজন অনাদি ও
+                স্বয়ংসম্পূর্ণ সৃষ্টিকর্তা প্রয়োজন।
+            </p>
+
+            <div class="conclusion">
+                সেই المحدث হলেন الله تعالى। তিনি واجب الوجود (যার অস্তিত্ব অপরিহার্য)।
+                সুতরাং উক্ত ইবারতের উদ্দেশ্য হলো—সমগ্র জগতের সৃষ্টিকর্তা ও
+                অস্তিত্বদানকারী কেবল আল্লাহ তাআলা।
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     প্রশ্ন–৩
+========================================================= -->
+<section class="question reveal">
+
+    <div class="question-header">
+        প্রশ্ন–৩
+    </div>
+
+    <div class="quoted-arabic">
+        قوله:
+        <br>
+        "والقرآن كلام الله غير مخلوق"
+    </div>
+
+
+    <div class="sub-question reveal left">
+
+        <div class="sub-question-title">
+            (A) لم عقب القرآن بكلام الله تعالى؟ ولما أقام غير المخلوق مقام غير الحادث؟
+        </div>
+
+        <div class="answer">
+
+            <p>
+                'القرآن' শব্দের সঙ্গে 'كلام الله تعالى' যুক্ত করার কারণ হলো:
+                'কুরআন' শব্দটি কখনো মানুষের উচ্চারিত পঠিত শব্দ ও আওয়াজকেও বোঝায়,
+                যা حادث। তাই ভুল বোঝাবুঝি দূর করে আল্লাহর অনাদি গুণ উদ্দেশ্য বোঝাতে
+                'كلام الله' বলা হয়েছে।
+            </p>
+
+            <p>
+                আর 'غير الحادث'-এর স্থানে 'غير المخلوق' ব্যবহার করার কারণ:
+            </p>
+
+            <ol>
+                <li>
+                    لأن الخلاف إنما وقع في هذا اللفظ
+                    (ঐতিহাসিক বিতর্কটি মূলত 'مخلوق' শব্দটি ব্যবহার করা না-করা নিয়েই সৃষ্টি হয়েছিল)।
+                    মুতাযিলারা কুরআনকে مخلوق বলত, তাই সেই বিতর্কিত শব্দটিকে সরাসরি
+                    খণ্ডন করতেই 'غير مخلوق' বলা হয়েছে।
+                </li>
+
+                <li>
+                    'غير مخلوق' বলা দ্বারা কালামুল্লাহ যে আল্লাহর অনাদি গুণ
+                    (صفة أزلية), তা আরও স্পষ্টভাবে প্রমানিত হয়।
+                </li>
+            </ol>
+
+        </div>
+
+    </div>
+
+
+    <div class="sub-question reveal right">
+
+        <div class="sub-question-title">
+            (B) اذكر الاختلاف في مسألة خلق القرآن مدللا.
+        </div>
+
+        <div class="answer">
+
+            <p>
+                মাসআলায়ে 'খলকে কুরআন'-এ মূল মতভেদ দুটি:
+            </p>
+
+            <div class="highlight">
+
+                <p>
+                    <strong>১. আহলে সুন্নাত ওয়াল জামাআতের আকীদা:</strong>
+                </p>
+
+                <p class="arabic">
+                    القرآن كلام الله غير مخلوق
+                </p>
+
+                <p>
+                    (কুরআন আল্লাহর কালাম, তা মাখলুক বা সৃষ্টি নয়)।
+                </p>
+
+                <p>
+                    দলিল: আল্লাহ তাআলা বলেন:
+                    ﴿أَلَا لَهُ الْخَلْقُ وَالْأَمْرُ﴾।
+                    এখানে সৃষ্টি (الخلق) এবং নির্দেশ বা কালামকে (الأمر) আলাদা করা হয়েছে।
+                    কালাম যদি সৃষ্টি হতো তবে তাকে আলাদা উল্লেখ করা হতো না।
+                </p>
+
+            </div>
+
+            <div class="evidence">
+
+                <p>
+                    <strong>২. মুতাযিলা ও জাহমিয়া সম্প্রদায়ের মত:</strong>
+                </p>
+
+                <p>
+                    তাদের মতে কুরআন মাখলুক ও حادث।
+                </p>
+
+                <p>
+                    আহলে সুন্নাতের জবাব:
+                    কালাম যদি মাখলুক হয়, তবে আল্লাহর সত্তা মাখলুক ধারণকারী হয়ে যাবে,
+                    যা অসম্ভব। আল্লাহর সত্তা যেমন أزلي (অনাদি), তাঁর صفات-ও অনাদি।
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="sub-question reveal left">
+
+        <div class="sub-question-title">
+            (C) بين معنى الكلام والحادث لغة واصطلاحا.
+        </div>
+
+        <div class="answer">
+
+            <p>
+                <strong>الكلام-এর লোগোভি ও পরিভাষাগত অর্থ:</strong>
+            </p>
+
+            <ul>
+                <li>
+                    لغة: কথা, বাক্য বা অর্থবোধক আওয়াজ।
+                </li>
+
+                <li>
+                    اصطلاحا: এমন একটি গুণ যার মাধ্যমে নির্দেশ, নিষেধ ও সংবাদ ব্যক্ত করা হয়।
+                </li>
+            </ul>
+
+            <p>
+                <strong>حادث-এর লোগোভি ও পরিভাষাগত অর্থ:</strong>
+            </p>
+
+            <ul>
+                <li>
+                    لغة: নতুন উদ্ভূত বিষয়।
+                </li>
+
+                <li>
+                    اصطلاحا: যার অস্তিত্বের পূর্বে অনস্তিত্ব (عدم) ছিল এবং
+                    পরবর্তীতে তা অস্তিত্ব লাভ করেছে।
+                </li>
+            </ul>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     প্রশ্ন–৪
+========================================================= -->
+<section class="question reveal">
+
+    <div class="question-header">
+        প্রশ্ন–৪
+    </div>
+
+    <div class="quoted-arabic">
+        قوله:
+        <br>
+        "وله صفات أزلية"
+    </div>
+
+
+    <div class="sub-question reveal left">
+
+        <div class="sub-question-title">
+            (A) ما معنى الأزلية؟ وصفات الله تعالى الأزلية كم هي وما هي؟
+        </div>
+
+        <div class="answer">
+
+            <p>
+                الأزلية অর্থ হলো অনাদি; যার শুরুর কোনো সূচনা বা প্রথম সময় নেই।
+            </p>
+
+            <p>
+                আল্লাহ তাআলার মৌলিক অনাদি সিফাত (صفات أزلية) ৮টি:
+            </p>
+
+            <ol>
+                <li>العلم (জ্ঞান)</li>
+                <li>القدرة (ক্ষমতা)</li>
+                <li>الحياة (জীবন)</li>
+                <li>السمع (শ্রবণ)</li>
+                <li>البصر (দর্শন)</li>
+                <li>الإرادة (ইচ্ছা)</li>
+                <li>التكوين (সৃষ্টি ও রূপদান)</li>
+                <li>الكلام (কথা)</li>
+            </ol>
+
+        </div>
+
+    </div>
+
+
+    <div class="sub-question reveal right">
+
+        <div class="sub-question-title">
+            (B) أثبت الدعوى بالدلائل، ثم اذكر خلاف من يخالف هذا الحق مع ردهم.
+        </div>
+
+        <div class="answer">
+
+            <p>
+                আল্লাহ তাআলার সিফাতসমূহ অনাদি হওয়ার দলিল:
+            </p>
+
+            <div class="evidence arabic">
+                ﴿وَاللَّهُ بِكُلِّ شَيْءٍ عَلِيمٌ﴾
+                <br>
+                ﴿إِنَّ اللَّهَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ﴾
+            </div>
+
+            <p>
+                বিরোধীদের মত:
+                মুতাযিলারা দাবি করে যে, আল্লাহর আলাদা কোনো অনাদি সিফাত নেই;
+                বরং তাঁর ذات (সত্তা)-ই এই সিফাতগুলোর কাজ সম্পাদন করে।
+            </p>
+
+            <div class="conclusion">
+                আহলে সুন্নাতের জবাব:
+                সিফাতকে অস্বীকার করলে আল্লাহকে عالم বা قادر বলার প্রকৃত অর্থ
+                বাতিল হয়ে যায়। সিফাত আল্লাহর সত্তার অতিরিক্ত (زائد على الذات)
+                কিন্তু তা সত্তা থেকে সম্পূর্ণ বিচ্ছিন্ন কোনো কিছু নয়।
+                তাই এগুলো অনাদি বা أزلي।
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="sub-question reveal left">
+
+        <div class="sub-question-title">
+            (C) صفة الكلام ما هي؟ هل هي غير العلم والإرادة أم لا؟ بين موضحا، ثم هات بالدلائل على أن الكلام من صفات الله تعالى الأزلية.
+        </div>
+
+        <div class="answer">
+
+            <p>
+                صفة الكلام হলো আল্লাহ তাআলার একটি অনাদি সিফাত,
+                যার মাধ্যমে আদেশ, নিষেধ ও সংবাদ প্রকাশ পায়।
+            </p>
+
+            <p>
+                এটি العلم ও الإرادة থেকে সম্পূর্ণ ভিন্ন:
+            </p>
+
+            <ul>
+                <li>
+                    <strong>العلم থেকে ভিন্ন:</strong>
+                    কারণ মানুষ এমন কথা বলতে পারে যা মিথ্যা বা যার বাস্তবতা সে জানে না।
+                </li>
+
+                <li>
+                    <strong>الإرادة থেকে ভিন্ন:</strong>
+                    কারণ মনিব কখনো ভৃত্যকে পরীক্ষা করার জন্য এমন কাজের আদেশ দেয়,
+                    যা বাস্তবায়িত হোক তা সে মন থেকে ইচ্ছা করে না।
+                </li>
+            </ul>
+
+            <p>
+                কালামুল্লাহ অনাদি (صفة أزلية) হওয়ার দলিল:
+            </p>
+
+            <ol>
+                <li>
+                    নক্‌লী (কুরআনী) দলিল:
+                    <span class="arabic">﴿وَكَلَّمَ اللَّهُ مُوسَى تَكْلِيمًا﴾</span>।
+                </li>
+
+                <li>
+                    আক্‌লী (যৌক্তিক) দলিল:
+                    আল্লাহর কালাম যদি حادث (নতুন) হতো, তবে আল্লাহর সত্তা
+                    حادث-এর স্থান (محل للحوادث) হয়ে যেত।
+                    আর "قيام الحوادث بذات الباري تعالى محال"
+                    (আল্লাহর অনাদি সত্তায় নতুন বিষয়ের অবস্থান বা পরিবর্তন হওয়া অসম্ভব)।
+                    সুতরাং আল্লাহর কালাম অনাদি বা أزلي।
+                </li>
+            </ol>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     প্রশ্ন–৫
+========================================================= -->
+<section class="question reveal">
+
+    <div class="question-header">
+        প্রশ্ন–৫
+    </div>
+
+    <div class="quoted-arabic">
+        قوله:
+        <br>
+        "المقتول ميت بأجله، والموت قائم بالميت مخلوق الله تعالى، والأجل واحد"
+    </div>
+
+
+    <div class="sub-question reveal left">
+
+        <div class="sub-question-title">
+            (A) الموت أمر وجودي أم عدمي؟ وما الاختلاف فيه بين العلماء؟ بين مدللا.
+        </div>
+
+        <div class="answer">
+
+            <p>
+                মৃত্যুর হাকীকত নিয়ে মতভেদ রয়েছে:
+            </p>
+
+            <ol>
+                <li>
+                    একদল আলেমের মতে:
+                    الموت أمر عدمي (মৃত্যু হলো জীবনের অনুপস্থিতি মাত্র)।
+                </li>
+
+                <li>
+                    জমহুর মুতাকাল্লিমীন ও শরহুল আকাইদের দৃষ্টিভঙ্গি:
+                    الموت أمر وجودي (মৃত্যু একটি অস্তিত্বশীল সৃষ্টি,
+                    যা মৃতের সাথে কায়েম হয়)।
+                </li>
+            </ol>
+
+            <div class="evidence">
+                দলিল: আল্লাহ তাআলা বলেন:
+                <span class="arabic">﴿الَّذِي خَلَقَ الْمَوْتَ وَالْحَيَاةَ﴾</span>।
+                যেহেতু মৃত্যুকে 'সৃষ্টি' (خلق) বলা হয়েছে, আর যা অস্তিত্বহীন (عدمي)
+                তা সৃষ্টির অন্তর্ভুক্ত হতে পারে না; তাই মৃত্যু একটি أمر وجودي।
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="sub-question reveal right">
+
+        <div class="sub-question-title">
+            (B) ما الاختلاف في كون المقتول ميتا بأجله؟ بينه مدللا ومرجحا.
+        </div>
+
+        <div class="answer">
+
+            <p>
+                নিহত ব্যক্তি স্বীয় নির্ধারিত অজলেই মারা গেছে কি না—এ নিয়ে মতভেদ:
+            </p>
+
+            <div class="highlight">
+
+                <p>
+                    <strong>
+                        ১. আহলে সুন্নাত ওয়াল জামাআতের মত (অধিক গ্রহণযোগ্য):
+                    </strong>
+                </p>
+
+                <p class="arabic">
+                    المقتول ميت بأجله
+                </p>
+
+                <p>
+                    (নিহত ব্যক্তি তার নির্ধারিত সময়েই মারা গেছে)।
+                    মানুষের সংনির্দিষ্ট অজল একটাই।
+                </p>
+
+                <p>
+                    দলিল:
+                    <span class="arabic">
+                        ﴿فَإِذَا جَاءَ أَجَلُهُمْ لَا يَسْتَأْخِرُونَ سَاعَةً وَلَا يَسْتَقْدِمُونَ﴾
+                    </span>।
+                </p>
+
+            </div>
+
+            <div class="evidence">
+
+                <p>
+                    <strong>২. মুতাযিলাদের মত:</strong>
+                </p>
+
+                <p>
+                    হত্যাকারী নিহতের অজলকে কেটে দিয়েছে।
+                    যদি সে হত্যা না করত, তবে নিহত ব্যক্তি তার স্বাভাবিক অজল পর্যন্ত বেঁচে থাকত।
+                </p>
+
+                <p>
+                    <strong>আহলে সুন্নাতের জবাব:</strong>
+                    হত্যাকাণ্ড আল্লাহর ইলম ও নির্ধারিত অজলের বাইরে নয়।
+                    হত্যাকারী তার অবৈধ কাজের জন্য অপরাধী ও শাস্তিযোগ্য;
+                    কিন্তু মৃত্যুর নির্ধারিত সময় বা অজল একটাই।
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="sub-question reveal left">
+
+        <div class="sub-question-title">
+            (C) الرزق ما هو؟ وهل الحرام رزق أم لا؟ اكتب موضحا.
+        </div>
+
+        <div class="answer">
+
+            <p>
+                <strong>الرزق-এর সংজ্ঞা:</strong>
+            </p>
+
+            <p>
+                আল্লাহ তাআলা জীবকূলকে যা দান করেন এবং জীব তা ভোগ বা ব্যবহার করে,
+                তাকেই 'রিযিক' বলা হয়।
+            </p>
+
+            <p>
+                <strong>হারাম বস্তু রিযিক কি না:</strong>
+            </p>
+
+            <ol>
+                <li>
+                    <strong>আহলে সুন্নাত ওয়াল জামাআতের মতে:</strong>
+                    الحرام رزق (হারাম বস্তুও রিযিকের অন্তর্ভুক্ত)।
+                    কারণ রিযিক হওয়ার জন্য তা হালাল বা মালিকানাধীন হওয়া শর্ত নয়;
+                    বরং উপকৃত হওয়া ও ভক্ষণ করাই শর্ত।
+                    তবে হারাম ভক্ষণ করার কারণে বান্দা গুনাহগার হবে।
+                </li>
+
+                <li>
+                    <strong>মুতাযিলাদের মতে:</strong>
+                    الحرام ليس برزق (হারাম বস্তু রিযিক নয়)।
+                    কারণ তাদের মতে রিযিক কেবল সেটাই যা বৈধভাবে ভোগ করা যায়।
+                </li>
+            </ol>
+
+            <div class="conclusion">
+                আহলে সুন্নাতের রাজেহ বা প্রাবল্যপ্রাপ্ত মত হলো—
+                আল্লাহই সকল প্রাণীর একমাত্র রিযিকদাতা,
+                তাই হারামও রিযিকের অন্তর্ভুক্ত।
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+<footer class="footer">
+    شرح العقائد النسفية — 1430 H Question Paper
+    <br>
+    Prepared as a Digital Study Book
+</footer>
+
+</main>
+
+
+<script>
+/* ==========================================
+   SCROLL REVEAL ANIMATION
+========================================== */
+
+const observer = new IntersectionObserver(
+    (entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("show");
+                observer.unobserve(entry.target);
             }
         });
+    },
+    {
+        threshold: 0.08
+    }
+);
 
-        // 2. Slow & Smooth Intersection Observer for Scroll Animations
-        document.addEventListener('DOMContentLoaded', () => {
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px 0px -50px 0px',
-                threshold: 0.15
-            };
+document.querySelectorAll(".reveal").forEach((element) => {
+    observer.observe(element);
+});
 
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, observerOptions);
 
-            const sections = document.querySelectorAll('.question-section');
-            sections.forEach(section => {
-                observer.observe(section);
-            });
+/* ==========================================
+   PDF DOWNLOAD
+   Browser-এর Print → Save as PDF ব্যবহার করে
+   selectable text-সহ PDF তৈরি করা হবে।
+========================================== */
 
-            // 3. Smooth Accordion Toggle Functionality
-            const headers = document.querySelectorAll('.question-header');
-            headers.forEach(header => {
-                header.addEventListener('click', () => {
-                    const parent = header.parentElement;
-                    const body = parent.querySelector('.question-body');
-                    
-                    if (body.style.display === 'none') {
-                        body.style.display = 'block';
-                        setTimeout(() => {
-                            body.style.opacity = '1';
-                        }, 50);
-                        parent.classList.add('open');
-                    } else {
-                        body.style.opacity = '0';
-                        setTimeout(() => {
-                            body.style.display = 'none';
-                        }, 600); // Gradual fade-out matching slower animations
-                        parent.classList.remove('open');
-                    }
-                });
-            });
+function downloadPDF() {
 
-            // Default open state for seamless reading
-            sections.forEach(sec => sec.classList.add('open'));
-        });
-    </script>
+    const oldTitle = document.title;
+
+    document.title =
+        "شرح العقائد النسفية - 1430 H Question Paper";
+
+    window.print();
+
+    setTimeout(() => {
+        document.title = oldTitle;
+    }, 1000);
+}
+
+
+/* ==========================================
+   PRINT BUTTON FRIENDLY
+========================================== */
+
+window.addEventListener("beforeprint", () => {
+    document.body.classList.add("printing");
+});
+
+window.addEventListener("afterprint", () => {
+    document.body.classList.remove("printing");
+});
+</script>
+
 </body>
 </html>
