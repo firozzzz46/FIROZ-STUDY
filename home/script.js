@@ -19,7 +19,7 @@ topics.forEach((topic) => {
 
 
         // ==============================
-        // Qawmi Studie → Qawmi Page
+        // Navigation Logical Links
         // ==============================
 
         if (title === "Qawmi Study") {
@@ -47,9 +47,9 @@ topics.forEach((topic) => {
 });
 
 
-
-
-
+// ==============================
+// Live Clock & Auto Hijri Date Fix
+// ==============================
 
 function updateClock() {
 
@@ -80,39 +80,30 @@ function updateClock() {
 
     document.getElementById("liveDate").textContent = date;
 
-    // Hijri Date
-    const hijri = new Intl.DateTimeFormat(
-        "en-TN-u-ca-islamic",
-        {
-            day: "numeric",
-            month: "long",
-            year: "numeric"
-        }
-    ).format(now);
+    // Hijri Date (Mobile Locale Fix)
+    try {
+        const hijri = new Intl.DateTimeFormat(
+            "bn-BD-u-ca-islamic-umalqura",
+            {
+                day: "numeric",
+                month: "long",
+                year: "numeric"
+            }
+        ).format(now);
 
-    const months = {
-        "Muharram":"মুহাররম",
-        "Safar":"সফর",
-        "Rabiʻ I":"রবিউল আউয়াল",
-        "Rabiʻ II":"রবিউস সানি",
-        "Jumada I":"জুমাদাল উলা",
-        "Jumada II":"জুমাদাস সানিয়া",
-        "Rajab":"রজব",
-        "Shaʻban":"শাবান",
-        "Ramadan":"রমজান",
-        "Shawwal":"শাওয়াল",
-        "Dhuʻl-Qiʻdah":"জিলকদ",
-        "Dhuʻl-Hijjah":"জিলহজ্জ"
-    };
+        document.getElementById("hijriDate").innerHTML = "🕌 " + hijri + " হিজরি";
+    } catch (e) {
+        const hijriFallback = new Intl.DateTimeFormat(
+            "bn-BD-u-ca-islamic",
+            {
+                day: "numeric",
+                month: "long",
+                year: "numeric"
+            }
+        ).format(now);
 
-    let hijriBn = hijri;
-
-    for (let key in months) {
-        hijriBn = hijriBn.replace(key, months[key]);
+        document.getElementById("hijriDate").innerHTML = "🕌 " + hijriFallback + " হিজরি";
     }
-
-    document.getElementById("hijriDate").innerHTML =
-        "🕌 " + hijriBn + " হিজরি";
 }
 
 updateClock();
