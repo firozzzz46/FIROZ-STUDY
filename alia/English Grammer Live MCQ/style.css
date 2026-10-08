@@ -1,0 +1,374 @@
+/* ==============================
+   RESET & GLOBAL
+============================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: radial-gradient(circle at 15% 15%, rgba(124, 92, 255, 0.18), transparent 35%),
+                radial-gradient(circle at 85% 85%, rgba(0, 212, 255, 0.15), transparent 35%),
+                #070a13;
+    color: #ffffff;
+    overflow-x: hidden;
+}
+
+/* ==============================
+   MAIN CONTAINER
+============================== */
+
+.container {
+    width: 100%;
+    max-width: 850px;
+    margin: auto;
+    padding: 40px 20px 30px;
+}
+
+/* ==============================
+   HEADER
+============================== */
+
+.header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    animation: slideDown 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.header p {
+    margin-top: 2px;
+    color: #94a3b8;
+    font-size: 14px;
+}
+
+/* ==============================
+   BACK BUTTON
+============================== */
+
+.back-btn {
+    width: 46px;
+    height: 46px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+    font-size: 22px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(10px);
+}
+
+.back-btn:hover {
+    transform: translateX(-4px);
+    background: rgba(124, 92, 255, 0.25);
+    border-color: rgba(124, 92, 255, 0.6);
+    box-shadow: 0 0 20px rgba(124, 92, 255, 0.3);
+}
+
+/* ==============================
+   WELCOME SECTION
+============================== */
+
+.welcome {
+    margin-top: 45px;
+    animation: fadeUp 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.small-text {
+    color: #a855f7;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.welcome h2 {
+    margin-top: 8px;
+    font-size: clamp(28px, 5vw, 40px);
+    font-weight: 800;
+    line-height: 1.2;
+    background: linear-gradient(135deg, #ffffff 30%, #c084fc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.description {
+    margin-top: 10px;
+    color: #94a3b8;
+    font-size: 15px;
+}
+
+/* ==============================
+   TOPICS GRID
+============================== */
+
+.topics {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-top: 32px;
+}
+
+/* ==============================
+   SLOW FLOATING TOPIC CARD
+============================== */
+
+.topic {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    width: 100%;
+    min-height: 90px;
+    padding: 18px 24px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.035);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    text-decoration: none;
+    color: inherit;
+    overflow: hidden;
+    cursor: pointer;
+
+    /* Slow Smooth Entry Animation (1.5 seconds) */
+    opacity: 0;
+    animation: waveFloat 1.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+                border-color 0.5s ease,
+                background 0.5s ease,
+                box-shadow 0.5s ease;
+}
+
+/* Extended Slow Stagger Delays for Part 1 to 35 */
+.topic:nth-child(1)  { animation-delay: 0.10s; }
+.topic:nth-child(2)  { animation-delay: 0.18s; }
+.topic:nth-child(3)  { animation-delay: 0.26s; }
+.topic:nth-child(4)  { animation-delay: 0.34s; }
+.topic:nth-child(5)  { animation-delay: 0.42s; }
+.topic:nth-child(6)  { animation-delay: 0.50s; }
+.topic:nth-child(7)  { animation-delay: 0.58s; }
+.topic:nth-child(8)  { animation-delay: 0.66s; }
+.topic:nth-child(9)  { animation-delay: 0.74s; }
+.topic:nth-child(10) { animation-delay: 0.82s; }
+.topic:nth-child(11) { animation-delay: 0.90s; }
+.topic:nth-child(12) { animation-delay: 0.98s; }
+.topic:nth-child(13) { animation-delay: 1.06s; }
+.topic:nth-child(14) { animation-delay: 1.14s; }
+.topic:nth-child(15) { animation-delay: 1.22s; }
+.topic:nth-child(16) { animation-delay: 1.30s; }
+.topic:nth-child(17) { animation-delay: 1.38s; }
+.topic:nth-child(18) { animation-delay: 1.46s; }
+.topic:nth-child(19) { animation-delay: 1.54s; }
+.topic:nth-child(20) { animation-delay: 1.62s; }
+.topic:nth-child(21) { animation-delay: 1.70s; }
+.topic:nth-child(22) { animation-delay: 1.78s; }
+.topic:nth-child(23) { animation-delay: 1.86s; }
+.topic:nth-child(24) { animation-delay: 1.94s; }
+.topic:nth-child(25) { animation-delay: 2.02s; }
+.topic:nth-child(26) { animation-delay: 2.10s; }
+.topic:nth-child(27) { animation-delay: 2.18s; }
+.topic:nth-child(28) { animation-delay: 2.26s; }
+.topic:nth-child(29) { animation-delay: 2.34s; }
+.topic:nth-child(30) { animation-delay: 2.42s; }
+.topic:nth-child(31) { animation-delay: 2.50s; }
+.topic:nth-child(32) { animation-delay: 2.58s; }
+.topic:nth-child(33) { animation-delay: 2.66s; }
+.topic:nth-child(34) { animation-delay: 2.74s; }
+.topic:nth-child(35) { animation-delay: 2.82s; }
+
+/* Metallic Light Sweep */
+.topic::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -130%;
+    width: 80%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.12),
+        transparent
+    );
+    transform: skewX(-25deg);
+    transition: left 1.2s ease;
+}
+
+.topic:hover::before {
+    left: 150%;
+}
+
+/* Topic Card Hover */
+.topic:hover {
+    transform: translateY(-6px) scale(1.015);
+    border-color: rgba(168, 85, 247, 0.45);
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.5),
+                0 0 30px rgba(168, 85, 247, 0.18);
+}
+
+/* ==============================
+   ICON & DETAILS
+============================== */
+
+.topic-icon {
+    flex-shrink: 0;
+    width: 52px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+    font-size: 24px;
+    background: linear-gradient(135deg, rgba(168, 85, 247, 0.22), rgba(59, 130, 246, 0.18));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: transform 0.5s ease, background 0.5s ease;
+}
+
+.topic:hover .topic-icon {
+    transform: scale(1.1) rotate(-4deg);
+    background: linear-gradient(135deg, rgba(168, 85, 247, 0.35), rgba(59, 130, 246, 0.3));
+}
+
+.topic-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.topic-info h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #ffffff;
+    letter-spacing: -0.2px;
+}
+
+.topic-info p {
+    color: #94a3b8;
+    font-size: 13.5px;
+    line-height: 1.4;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.arrow {
+    flex-shrink: 0;
+    font-size: 22px;
+    color: #a855f7;
+    transition: transform 0.4s ease, color 0.4s ease;
+}
+
+.topic:hover .arrow {
+    transform: translateX(6px);
+    color: #c084fc;
+}
+
+/* ==============================
+   FOOTER
+============================== */
+
+footer {
+    margin-top: 60px;
+    padding-bottom: 20px;
+    text-align: center;
+    color: #64748b;
+    font-size: 13px;
+    animation: fadeUp 1.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ==============================
+   SLOW ANIMATIONS
+============================== */
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-35px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Slow Wave Floating Animation */
+@keyframes waveFloat {
+    0% {
+        opacity: 0;
+        transform: translateY(60px) scale(0.94);
+    }
+    65% {
+        opacity: 0.9;
+        transform: translateY(-6px) scale(1.01);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* ==============================
+   RESPONSIVE
+============================== */
+
+@media (max-width: 600px) {
+    .container {
+        padding: 24px 16px;
+    }
+
+    .header h1 {
+        font-size: 24px;
+    }
+
+    .topic {
+        min-height: 82px;
+        padding: 14px 16px;
+        gap: 14px;
+        border-radius: 16px;
+    }
+
+    .topic-icon {
+        width: 44px;
+        height: 44px;
+        font-size: 20px;
+        border-radius: 12px;
+    }
+
+    .topic-info h3 {
+        font-size: 16px;
+    }
+
+    .topic-info p {
+        font-size: 12px;
+    }
+}
