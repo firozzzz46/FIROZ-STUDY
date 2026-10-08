@@ -1,128 +1,1399 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Google Fonts for Bengali & English -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Inter:wght@700;900&display=swap" rel="stylesheet">
+<title>Part 3 - Noun | Infinity MCQ Practice</title>
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+<style>
+/* =========================================================
+   PART 3 — NOUN
+   INFINITY MCQ PRACTICE SYSTEM
+   Single File: HTML + CSS + JavaScript
+   ========================================================= */
 
-    <style>
-        body {
-            font-family: 'Hind Siliguri', 'Inter', sans-serif;
-            background-color: #030712;
-            overflow: hidden;
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        /* Gradient glowing animation on text */
-        .glow-text {
-            background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 50%, #38bdf8 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shine 6s linear infinite;
-        }
+:root {
+    --primary: #2563eb;
+    --primary-dark: #1d4ed8;
+    --success: #15803d;
+    --danger: #dc2626;
+    --text: #172033;
+    --muted: #64748b;
+    --glass: rgba(255,255,255,0.72);
+    --border: rgba(255,255,255,0.85);
+}
 
-        @keyframes shine {
-            0% { background-position: 0% center; }
-            50% { background-position: 100% center; }
-            100% { background-position: 0% center; }
-        }
+html {
+    scroll-behavior: smooth;
+}
 
-        /* Keyframes for initial entry: Floating in from below with opacity */
-        @keyframes floatIn {
-            0% {
-                opacity: 0;
-                transform: translateY(40px) scale(0.95);
-                filter: blur(8px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-                filter: blur(0);
-            }
-        }
+body {
+    min-height: 100vh;
+    color: var(--text);
 
-        /* Continuous subtle float effect once arrived */
-        @keyframes subtleFloat {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-8px);
-            }
-        }
+    background:
+        radial-gradient(circle at 10% 10%,
+        rgba(219,234,254,0.75), transparent 32%),
 
-        /* Animation class for Heading */
-        .animate-heading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards,
-                subtleFloat 6s ease-in-out 1.2s infinite;
-        }
+        radial-gradient(circle at 90% 20%,
+        rgba(224,231,255,0.7), transparent 32%),
 
-        /* Animation class for Subheading (staggered delay) */
-        .animate-subheading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards,
-                subtleFloat 6s ease-in-out 1.55s infinite;
-            opacity: 0; /* Hidden until animation kicks in */
-        }
+        radial-gradient(circle at 50% 100%,
+        rgba(241,245,249,0.9), transparent 38%),
 
-        /* Ambient background lighting */
-        .ambient-glow {
-            position: absolute;
-            width: 450px;
-            height: 450px;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(3, 7, 18, 0) 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            transition: left 0.4s ease-out, top 0.4s ease-out;
-        }
-    </style>
+        linear-gradient(135deg,#ffffff,#f7f9fc,#ffffff);
+
+    font-family: "Times New Roman", Kalpurush, serif;
+
+    padding: 25px 15px 50px;
+}
+
+/* ===============================
+   MAIN CONTAINER
+   =============================== */
+
+.container {
+    width: min(100%, 1000px);
+    margin: auto;
+}
+
+/* ===============================
+   HEADER
+   =============================== */
+
+.header {
+    text-align: center;
+    padding: 28px 20px;
+    margin-bottom: 20px;
+
+    background: var(--glass);
+    border: 1px solid var(--border);
+    border-radius: 28px;
+
+    box-shadow:
+        0 20px 55px rgba(15,23,42,0.10),
+        inset 0 1px 0 rgba(255,255,255,0.9);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    animation: headerReveal 1.2s cubic-bezier(.22,1,.36,1);
+}
+
+.header h1 {
+    font-size: clamp(28px, 5vw, 44px);
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+.header p {
+    font-size: 20px;
+    color: var(--muted);
+}
+
+/* ===============================
+   STATS
+   =============================== */
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.stat {
+    background: rgba(255,255,255,0.70);
+    border: 1px solid rgba(255,255,255,0.9);
+
+    border-radius: 18px;
+    padding: 15px;
+    text-align: center;
+
+    box-shadow: 0 10px 30px rgba(15,23,42,0.07);
+
+    backdrop-filter: blur(12px);
+}
+
+.stat-label {
+    display: block;
+    color: var(--muted);
+    font-size: 17px;
+    margin-bottom: 4px;
+}
+
+.stat-value {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* ===============================
+   PROGRESS
+   =============================== */
+
+.progress-area {
+    margin-bottom: 20px;
+}
+
+.progress-text {
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 10px;
+
+    background: rgba(203,213,225,0.55);
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+
+    background: linear-gradient(
+        90deg,
+        #2563eb,
+        #4f46e5,
+        #7c3aed
+    );
+
+    border-radius: inherit;
+    transition: width 0.7s cubic-bezier(.22,1,.36,1);
+}
+
+/* ===============================
+   QUESTION CARD
+   =============================== */
+
+.quiz-card {
+    background: var(--glass);
+
+    border: 1px solid var(--border);
+    border-radius: 30px;
+
+    padding: clamp(22px,5vw,42px);
+
+    box-shadow:
+        0 25px 70px rgba(15,23,42,0.11),
+        inset 0 1px 0 rgba(255,255,255,0.95);
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    min-height: 470px;
+
+    overflow: hidden;
+}
+
+/* ===============================
+   QUESTION ANIMATION
+   =============================== */
+
+.question-content {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.question-content.animate-out {
+    animation: questionOut 0.45s cubic-bezier(.55,.06,.68,.19) forwards;
+}
+
+.question-content.animate-in {
+    animation: questionIn 0.85s cubic-bezier(.22,1,.36,1) forwards;
+}
+
+@keyframes questionOut {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateX(-45px);
+    }
+}
+
+@keyframes questionIn {
+    from {
+        opacity: 0;
+        transform: translateX(45px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes headerReveal {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===============================
+   QUESTION NUMBER
+   =============================== */
+
+.question-number {
+    display: inline-block;
+
+    padding: 7px 15px;
+    border-radius: 50px;
+
+    background: rgba(37,99,235,0.10);
+    color: var(--primary);
+
+    font-size: 17px;
+    font-weight: bold;
+
+    margin-bottom: 18px;
+}
+
+/* ===============================
+   QUESTION
+   =============================== */
+
+.question {
+    font-size: clamp(22px,4vw,30px);
+    line-height: 1.45;
+    font-weight: 700;
+
+    margin-bottom: 6px;
+}
+
+.question-bangla {
+    font-family: Kalpurush, sans-serif;
+
+    font-size: 18px;
+    color: #64748b;
+
+    margin-bottom: 26px;
+    line-height: 1.6;
+}
+
+/* ===============================
+   OPTIONS
+   =============================== */
+
+.options {
+    display: grid;
+    gap: 14px;
+}
+
+.option {
+    width: 100%;
+
+    border: 1px solid rgba(148,163,184,0.28);
+    background: rgba(255,255,255,0.78);
+
+    border-radius: 17px;
+
+    padding: 17px 19px;
+
+    text-align: left;
+
+    font-family: "Times New Roman", Kalpurush, serif;
+    font-size: 20px;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.35s cubic-bezier(.22,1,.36,1),
+        box-shadow 0.35s ease,
+        border-color 0.35s ease,
+        background 0.35s ease;
+}
+
+.option:hover:not(:disabled) {
+    transform: translateX(7px);
+    border-color: rgba(37,99,235,0.45);
+
+    box-shadow:
+        0 10px 28px rgba(37,99,235,0.10);
+}
+
+.option:disabled {
+    cursor: default;
+}
+
+.option.correct {
+    background: rgba(220,252,231,0.95);
+    border-color: rgba(22,163,74,0.55);
+    color: #166534;
+}
+
+.option.wrong {
+    background: rgba(254,226,226,0.95);
+    border-color: rgba(220,38,38,0.55);
+    color: #991b1b;
+}
+
+/* ===============================
+   EXPLANATION
+   =============================== */
+
+.explanation {
+    display: none;
+
+    margin-top: 25px;
+
+    padding: 20px;
+
+    border-radius: 20px;
+
+    background: rgba(239,246,255,0.82);
+    border-left: 5px solid var(--primary);
+
+    font-family: Kalpurush, sans-serif;
+    font-size: 19px;
+
+    line-height: 1.8;
+
+    animation: explanationIn 0.65s cubic-bezier(.22,1,.36,1);
+}
+
+.explanation.show {
+    display: block;
+}
+
+.explanation strong {
+    color: var(--primary-dark);
+}
+
+@keyframes explanationIn {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===============================
+   CONTROLS
+   =============================== */
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+
+    margin-top: 28px;
+}
+
+.control-btn {
+    border: none;
+
+    padding: 14px 24px;
+
+    border-radius: 15px;
+
+    font-family: "Times New Roman", sans-serif;
+    font-size: 19px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.3s cubic-bezier(.22,1,.36,1),
+        box-shadow 0.3s ease,
+        opacity 0.3s ease;
+}
+
+.control-btn:hover:not(:disabled) {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 12px 25px rgba(15,23,42,0.13);
+}
+
+.control-btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.previous {
+    background: #e2e8f0;
+    color: #334155;
+}
+
+.next {
+    background: linear-gradient(
+        135deg,
+        #2563eb,
+        #4f46e5
+    );
+
+    color: white;
+}
+
+/* ===============================
+   FOOTER
+   =============================== */
+
+.footer {
+    text-align: center;
+    margin-top: 25px;
+
+    color: #64748b;
+    font-size: 16px;
+}
+
+/* ===============================
+   MOBILE
+   =============================== */
+
+@media (max-width: 650px) {
+
+    body {
+        padding: 12px 9px 35px;
+    }
+
+    .header {
+        padding: 22px 15px;
+        border-radius: 22px;
+    }
+
+    .header p {
+        font-size: 18px;
+    }
+
+    .stats {
+        gap: 7px;
+    }
+
+    .stat {
+        padding: 11px 5px;
+    }
+
+    .stat-label {
+        font-size: 15px;
+    }
+
+    .stat-value {
+        font-size: 20px;
+    }
+
+    .quiz-card {
+        padding: 21px 16px;
+        border-radius: 23px;
+    }
+
+    .question {
+        font-size: 23px;
+    }
+
+    .question-bangla {
+        font-size: 18px;
+    }
+
+    .option {
+        font-size: 19px;
+        padding: 15px;
+    }
+
+    .explanation {
+        font-size: 18px;
+        padding: 17px;
+    }
+
+    .controls {
+        flex-direction: column-reverse;
+    }
+
+    .control-btn {
+        width: 100%;
+    }
+}
+
+/* ===============================
+   ACCESSIBILITY
+   =============================== */
+
+button:focus-visible {
+    outline: 3px solid rgba(37,99,235,0.35);
+    outline-offset: 3px;
+}
+</style>
 </head>
-<body class="min-h-screen flex items-center justify-center relative select-none px-4">
 
-    <!-- Ambient glow center element -->
-    <div id="glow" class="ambient-glow top-1/2 left-1/2"></div>
+<body>
 
-    <!-- Centered minimal content with entry animations -->
-    <main class="text-center z-10 space-y-6 max-w-3xl mx-auto py-8 px-4">
-        
-        <!-- Main English Title -->
-        <h1 class="animate-heading text-5xl sm:text-7xl md:text-8xl font-black tracking-tight glow-text font-['Inter'] drop-shadow-lg">
-            Coming Soon...
-        </h1>
+<div class="container">
 
-        <!-- Bengali Subheading -->
-        <p class="animate-subheading text-xl sm:text-3xl md:text-4xl font-semibold text-emerald-400/90 leading-relaxed tracking-wide drop-shadow">
-            ইনশাআল্লাহ, খুব শীঘ্রই ডাটা যোগ করা হবে।
-        </p>
+    <!-- HEADER -->
+    <header class="header">
+        <h1>PART 3 — NOUN</h1>
+        <p>Infinity MCQ Practice System</p>
+    </header>
+
+    <!-- STATISTICS -->
+    <section class="stats">
+
+        <div class="stat">
+            <span class="stat-label">Score</span>
+            <span class="stat-value" id="score">0</span>
+        </div>
+
+        <div class="stat">
+            <span class="stat-label">Question</span>
+            <span class="stat-value" id="questionCount">1</span>
+        </div>
+
+        <div class="stat">
+            <span class="stat-label">Correct</span>
+            <span class="stat-value" id="correctCount">0</span>
+        </div>
+
+    </section>
+
+    <!-- PROGRESS -->
+    <section class="progress-area">
+
+        <div class="progress-text">
+            <span>Progress</span>
+            <span id="progressPercent">0%</span>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+    </section>
+
+    <!-- QUIZ -->
+    <main class="quiz-card">
+
+        <div class="question-content" id="questionContent">
+
+            <div class="question-number" id="questionNumber">
+                Question 1
+            </div>
+
+            <div class="question" id="question">
+                Loading...
+            </div>
+
+            <div class="question-bangla" id="questionBangla">
+                Loading...
+            </div>
+
+            <div class="options" id="options"></div>
+
+            <div class="explanation" id="explanation"></div>
+
+        </div>
+
+        <!-- CONTROLS -->
+        <div class="controls">
+
+            <button
+                class="control-btn previous"
+                id="previousBtn"
+                onclick="previousQuestion()"
+            >
+                ← Previous
+            </button>
+
+            <button
+                class="control-btn next"
+                id="nextBtn"
+                onclick="nextQuestion()"
+            >
+                Next →
+            </button>
+
+        </div>
 
     </main>
 
-    <script>
-        const glow = document.getElementById('glow');
+    <footer class="footer">
+        Part 3 — Noun • Infinity MCQ Practice
+    </footer>
 
-        // Mouse move interactive glow background
-        window.addEventListener('mousemove', (e) => {
-            glow.style.left = e.clientX + 'px';
-            glow.style.top = e.clientY + 'px';
-        });
+</div>
 
-        // Touch move interactive glow background for mobile screens
-        window.addEventListener('touchmove', (e) => {
-            if (e.touches.length > 0) {
-                glow.style.left = e.touches[0].clientX + 'px';
-                glow.style.top = e.touches[0].clientY + 'px';
-            }
-        });
-    </script>
+
+<script>
+/* =========================================================
+   PART 3 — NOUN
+   INFINITY QUESTION GENERATOR
+   ========================================================= */
+
+/*
+   IMPORTANT:
+   JavaScript generates new questions from multiple
+   grammar patterns.
+
+   Therefore the system does not depend on a fixed
+   list of only a few questions.
+*/
+
+
+/* =========================================================
+   NAME DATABASE
+   ========================================================= */
+
+const names = [
+    "Firoz",
+    "Fatiha",
+    "Fatema",
+    "Jui",
+    "Ema",
+    "Rupa",
+    "Moksed",
+    "Ferjousi",
+    "Jannati",
+    "Mini",
+    "Miraz",
+    "Mujahid",
+    "Milon",
+    "Hannan",
+    "Joba",
+    "Tanzila",
+    "Rina",
+    "Tania",
+    "Taslima"
+];
+
+
+/* =========================================================
+   QUESTION HISTORY
+   ========================================================= */
+
+let questionNumber = 1;
+let score = 0;
+let correctAnswers = 0;
+
+let history = [];
+
+let currentQuestion = null;
+let answered = false;
+
+
+/* =========================================================
+   RANDOM HELPERS
+   ========================================================= */
+
+function randomItem(array) {
+    return array[Math.floor(Math.random() * array.length)];
+}
+
+function shuffle(array) {
+    return [...array].sort(() => Math.random() - 0.5);
+}
+
+function randomName() {
+    return randomItem(names);
+}
+
+
+/* =========================================================
+   NOUN QUESTION GENERATORS
+   ========================================================= */
+
+/*
+   Each generator returns:
+
+   question
+   bangla
+   options
+   answer
+   explanation
+*/
+
+
+/* ---------- 1. Identify Noun ---------- */
+
+function identifyNoun() {
+
+    const data = [
+        {
+            sentence: `${randomName()} bought a beautiful book.`,
+            answer: "book",
+            explanation:
+                "এখানে “book” একটি Noun, কারণ এটি একটি জিনিসের নাম প্রকাশ করছে। কোনো ব্যক্তি, স্থান, প্রাণী বা জিনিসের নামকে Noun বলা হয়।"
+        },
+
+        {
+            sentence: `${randomName()} showed great kindness.`,
+            answer: "kindness",
+            explanation:
+                "“Kindness” একটি Abstract Noun। এটি কোনো দৃশ্যমান বস্তু নয়; বরং একটি গুণ বা মানসিক ধারণার নাম।"
+        },
+
+        {
+            sentence: `The teacher praised ${randomName()}.`,
+            answer: "teacher",
+            explanation:
+                "“Teacher” একজন ব্যক্তির নাম বা পরিচয় বোঝায়। তাই এটি একটি Common Noun।"
+        },
+
+        {
+            sentence: `The children are playing in the garden.`,
+            answer: "children",
+            explanation:
+                "“Children” মানুষদের বোঝাচ্ছে। তাই এটি একটি Noun। এটি “child”-এর plural form।"
+        }
+    ];
+
+    const item = randomItem(data);
+
+    return makeQuestion(
+        `Which word is a noun in the following sentence?\n"${item.sentence}"`,
+        "(নিচের বাক্যে কোন শব্দটি Noun?)",
+        item.answer,
+        [
+            item.answer,
+            randomItem(["quickly","beautiful","play","honestly"]),
+            randomItem(["is","very","under","because"]),
+            randomItem(["run","happy","slowly","and"])
+        ],
+        item.explanation
+    );
+}
+
+
+/* ---------- 2. Proper Noun ---------- */
+
+function properNoun() {
+
+    const name = randomName();
+
+    return makeQuestion(
+        `Which word is a Proper Noun?\n"${name} lives in Dhaka."`,
+        "(কোন শব্দটি Proper Noun?)",
+        name,
+        [
+            name,
+            "city",
+            "student",
+            "teacher"
+        ],
+        `“${name}” একটি নির্দিষ্ট ব্যক্তির নাম। নির্দিষ্ট ব্যক্তি, স্থান, দেশ ইত্যাদির বিশেষ নামকে Proper Noun বলা হয়। Proper Noun-এর প্রথম অক্ষর সাধারণত Capital Letter হয়।`
+    );
+}
+
+
+/* ---------- 3. Common Noun ---------- */
+
+function commonNoun() {
+
+    const data = [
+        ["teacher", "নির্দিষ্ট কোনো ব্যক্তির নাম নয়; পেশা বা শ্রেণি বোঝায়।"],
+        ["school", "এটি একটি সাধারণ স্থানের নাম।"],
+        ["student", "এটি একটি শ্রেণির মানুষকে বোঝায়।"],
+        ["river", "এটি সাধারণভাবে নদীর শ্রেণি বোঝায়।"]
+    ];
+
+    const item = randomItem(data);
+
+    return makeQuestion(
+        `Which one is a Common Noun?`,
+        "(নিচের কোনটি Common Noun?)",
+        item[0],
+        [
+            item[0],
+            randomName(),
+            "Dhaka",
+            "Bangladesh"
+        ],
+        `“${item[0]}” কোনো নির্দিষ্ট ব্যক্তি বা স্থানের বিশেষ নাম নয়। এটি সাধারণভাবে একটি ব্যক্তি, স্থান বা শ্রেণিকে বোঝায়। তাই এটি Common Noun।`
+    );
+}
+
+
+/* ---------- 4. Abstract Noun ---------- */
+
+function abstractNoun() {
+
+    const data = [
+        ["honesty", "সততা"],
+        ["kindness", "দয়া"],
+        ["bravery", "সাহসিকতা"],
+        ["beauty", "সৌন্দর্য"],
+        ["wisdom", "প্রজ্ঞা"],
+        ["childhood", "শৈশব"],
+        ["freedom", "স্বাধীনতা"],
+        ["happiness", "সুখ"]
+    ];
+
+    const item = randomItem(data);
+
+    return makeQuestion(
+        `Which of the following is an Abstract Noun?`,
+        "(নিচের কোনটি Abstract Noun?)",
+        item[0],
+        [
+            item[0],
+            "table",
+            "teacher",
+            "school"
+        ],
+        `“${item[0]}” একটি Abstract Noun। কারণ এটি এমন একটি গুণ, অবস্থা বা ধারণার নাম, যাকে সরাসরি দেখা বা স্পর্শ করা যায় না।`
+    );
+}
+
+
+/* ---------- 5. Collective Noun ---------- */
+
+function collectiveNoun() {
+
+    const data = [
+        ["team", "players"],
+        ["class", "students"],
+        ["flock", "birds"],
+        ["herd", "cattle"],
+        ["bunch", "grapes"]
+    ];
+
+    const item = randomItem(data);
+
+    return makeQuestion(
+        `Which word is a Collective Noun?\n"${item[0]} of ${item[1]}"`,
+        "(দল বা সমষ্টিকে বোঝানো শব্দটি কোনটি?)",
+        item[0],
+        [
+            item[0],
+            item[1],
+            "beautiful",
+            "quickly"
+        ],
+        `“${item[0]}” একাধিক ব্যক্তি বা বস্তুকে একটি সমষ্টি বা দল হিসেবে বোঝায়। তাই এটি Collective Noun।`
+    );
+}
+
+
+/* ---------- 6. Material Noun ---------- */
+
+function materialNoun() {
+
+    const materials = [
+        "gold",
+        "silver",
+        "iron",
+        "water",
+        "wood",
+        "cotton"
+    ];
+
+    const answer = randomItem(materials);
+
+    return makeQuestion(
+        `Which of the following is a Material Noun?`,
+        "(নিচের কোনটি Material Noun?)",
+        answer,
+        [
+            answer,
+            "honesty",
+            "teacher",
+            "team"
+        ],
+        `“${answer}” একটি পদার্থের নাম। যে Noun কোনো পদার্থ বা উপাদানের নাম প্রকাশ করে তাকে Material Noun বলা হয়।`
+    );
+}
+
+
+/* ---------- 7. Countable / Uncountable ---------- */
+
+function countableQuestion() {
+
+    const answer = randomItem([
+        "book",
+        "pen",
+        "apple",
+        "chair",
+        "student"
+    ]);
+
+    return makeQuestion(
+        `Which noun is Countable?`,
+        "(কোন Noun-কে সংখ্যা দিয়ে গণনা করা যায়?)",
+        answer,
+        [
+            answer,
+            "water",
+            "milk",
+            "honesty"
+        ],
+        `“${answer}” Countable Noun। কারণ এটিকে one, two, three ইত্যাদি দিয়ে গণনা করা যায়। যেমন: one ${answer}, two ${answer}s।`
+    );
+}
+
+
+/* ---------- 8. Uncountable ---------- */
+
+function uncountableQuestion() {
+
+    const answer = randomItem([
+        "water",
+        "milk",
+        "rice",
+        "sugar",
+        "information",
+        "advice"
+    ]);
+
+    return makeQuestion(
+        `Which of the following is an Uncountable Noun?`,
+        "(নিচের কোনটি Uncountable Noun?)",
+        answer,
+        [
+            answer,
+            "book",
+            "student",
+            "chair"
+        ],
+        `“${answer}” সাধারণভাবে Uncountable Noun। এটিকে সরাসরি one, two, three দিয়ে গণনা করা হয় না। তাই এর আগে সাধারণত a/an ব্যবহার করা যায় না।`
+    );
+}
+
+
+/* ---------- 9. Plural Form ---------- */
+
+function pluralQuestion() {
+
+    const data = [
+        ["book", "books"],
+        ["class", "classes"],
+        ["box", "boxes"],
+        ["baby", "babies"],
+        ["leaf", "leaves"],
+        ["child", "children"],
+        ["man", "men"],
+        ["woman", "women"]
+    ];
+
+    const item = randomItem(data);
+
+    return makeQuestion(
+        `What is the correct plural form of "${item[0]}"?`,
+        `(“${item[0]}”-এর সঠিক plural form কোনটি?)`,
+        item[1],
+        [
+            item[1],
+            item[0] + "s",
+            item[0] + "es",
+            item[0] + "ies"
+        ],
+        `“${item[0]}”-এর সঠিক plural form হলো “${item[1]}”। কিছু Noun-এর plural সাধারণভাবে -s বা -es যোগ করে হয়, আবার কিছু শব্দের plural irregular বা পরিবর্তিত নিয়মে হয়।`
+    );
+}
+
+
+/* ---------- 10. Possessive Noun ---------- */
+
+function possessiveQuestion() {
+
+    const name = randomName();
+
+    return makeQuestion(
+        `Choose the correct possessive form.`,
+        `(মালিকানা বোঝাতে সঠিক রূপটি বেছে নিন।)`,
+        `${name}'s book`,
+        [
+            `${name}'s book`,
+            `${name}s book`,
+            `${name} book's`,
+            `${name} book`
+        ],
+        `এখানে বইটি ${name}-এর। একবচন ব্যক্তি বা নামের মালিকানা বোঝাতে সাধারণত Apostrophe + s ('s) ব্যবহার করা হয়। তাই “${name}'s book” সঠিক।`
+    );
+}
+
+
+/* ---------- 11. Noun from Adjective ---------- */
+
+function nounFromAdjective() {
+
+    const data = [
+        ["honest", "honesty"],
+        ["kind", "kindness"],
+        ["happy", "happiness"],
+        ["brave", "bravery"],
+        ["beautiful", "beauty"]
+    ];
+
+    const item = randomItem(data);
+
+    return makeQuestion(
+        `What is the noun form of "${item[0]}"?`,
+        `(“${item[0]}”-এর Noun form কোনটি?)`,
+        item[1],
+        [
+            item[1],
+            item[0],
+            item[0] + "ly",
+            item[0] + "ing"
+        ],
+        `“${item[0]}” একটি Adjective। এর Noun form হলো “${item[1]}”। Adjective থেকে বিভিন্ন suffix ব্যবহার করে Noun তৈরি হতে পারে।`
+    );
+}
+
+
+/* ---------- 12. Noun from Verb ---------- */
+
+function nounFromVerb() {
+
+    const data = [
+        ["develop", "development"],
+        ["educate", "education"],
+        ["inform", "information"],
+        ["move", "movement"],
+        ["decide", "decision"]
+    ];
+
+    const item = randomItem(data);
+
+    return makeQuestion(
+        `What is the noun form of "${item[0]}"?`,
+        `(“${item[0]}”-এর Noun form কোনটি?)`,
+        item[1],
+        [
+            item[1],
+            item[0],
+            item[0] + "ing",
+            item[0] + "ed"
+        ],
+        `“${item[0]}” একটি Verb। এর Noun form হলো “${item[1]}”। অনেক Verb থেকে suffix পরিবর্তনের মাধ্যমে Noun তৈরি হয়।`
+    );
+}
+
+
+/* ---------- 13. Gender ---------- */
+
+function genderQuestion() {
+
+    const data = [
+        ["man", "masculine"],
+        ["woman", "feminine"],
+        ["child", "common"],
+        ["teacher", "common"],
+        ["table", "neuter"]
+    ];
+
+    const item = randomItem(data);
+
+    return makeQuestion(
+        `What is the gender of the noun "${item[0]}"?`,
+        `(“${item[0]}” Noun-টির Gender কী?)`,
+        item[1],
+        [
+            item[1],
+            "feminine",
+            "masculine",
+            "neuter"
+        ],
+        `“${item[0]}” সাধারণত ${item[1]} gender-এর অন্তর্ভুক্ত। Noun-এর Gender দ্বারা ব্যক্তি বা প্রাণীর পুরুষ, নারী, উভয় বা জড়বস্তু বোঝানো হতে পারে।`
+    );
+}
+
+
+/* =========================================================
+   QUESTION BUILDER
+   ========================================================= */
+
+function makeQuestion(
+    question,
+    bangla,
+    answer,
+    options,
+    explanation
+) {
+
+    let uniqueOptions = [...new Set(options)];
+
+    while (uniqueOptions.length < 4) {
+
+        const extra = randomItem([
+            "student",
+            "teacher",
+            "book",
+            "school",
+            "honesty",
+            "water"
+        ]);
+
+        if (!uniqueOptions.includes(extra)) {
+            uniqueOptions.push(extra);
+        }
+    }
+
+    uniqueOptions = shuffle(uniqueOptions).slice(0,4);
+
+    return {
+        question,
+        bangla,
+        answer,
+        options: uniqueOptions,
+        explanation
+    };
+}
+
+
+/* =========================================================
+   MASTER QUESTION ENGINE
+   ========================================================= */
+
+function generateQuestion() {
+
+    const generators = [
+
+        identifyNoun,
+        properNoun,
+        commonNoun,
+        abstractNoun,
+        collectiveNoun,
+        materialNoun,
+        countableQuestion,
+        uncountableQuestion,
+        pluralQuestion,
+        possessiveQuestion,
+        nounFromAdjective,
+        nounFromVerb,
+        genderQuestion
+
+    ];
+
+    return randomItem(generators)();
+}
+
+
+/* =========================================================
+   DISPLAY QUESTION
+   ========================================================= */
+
+function loadQuestion(question, direction = "in") {
+
+    currentQuestion = question;
+    answered = false;
+
+    const content = document.getElementById("questionContent");
+
+    if (direction === "in") {
+
+        content.classList.remove("animate-in");
+        void content.offsetWidth;
+        content.classList.add("animate-in");
+    }
+
+    document.getElementById("questionNumber").textContent =
+        `Question ${questionNumber}`;
+
+    document.getElementById("question").innerHTML =
+        question.question.replace(/\n/g, "<br>");
+
+    document.getElementById("questionBangla").textContent =
+        question.bangla;
+
+    const optionsContainer =
+        document.getElementById("options");
+
+    optionsContainer.innerHTML = "";
+
+    question.options.forEach(option => {
+
+        const button = document.createElement("button");
+
+        button.className = "option";
+        button.textContent = option;
+
+        button.onclick = () => checkAnswer(option, button);
+
+        optionsContainer.appendChild(button);
+    });
+
+    document.getElementById("explanation").className =
+        "explanation";
+
+    document.getElementById("explanation").innerHTML = "";
+
+    updateUI();
+
+    document.getElementById("previousBtn").disabled =
+        history.length === 0;
+}
+
+
+/* =========================================================
+   CHECK ANSWER
+   ========================================================= */
+
+function checkAnswer(selected, clickedButton) {
+
+    if (answered) return;
+
+    answered = true;
+
+    const buttons =
+        document.querySelectorAll(".option");
+
+    buttons.forEach(button => {
+
+        button.disabled = true;
+
+        if (button.textContent === currentQuestion.answer) {
+            button.classList.add("correct");
+        }
+    });
+
+    const explanation =
+        document.getElementById("explanation");
+
+    if (selected === currentQuestion.answer) {
+
+        clickedButton.classList.add("correct");
+
+        score += 1;
+        correctAnswers += 1;
+
+        explanation.innerHTML =
+            `<strong>✓ Correct!</strong><br>
+            ${currentQuestion.explanation}`;
+
+    } else {
+
+        clickedButton.classList.add("wrong");
+
+        explanation.innerHTML =
+            `<strong>✗ Incorrect!</strong><br>
+            <strong>Correct Answer:</strong>
+            ${currentQuestion.answer}<br><br>
+            ${currentQuestion.explanation}`;
+    }
+
+    explanation.classList.add("show");
+
+    updateUI();
+}
+
+
+/* =========================================================
+   NEXT QUESTION
+   ========================================================= */
+
+function nextQuestion() {
+
+    if (!answered) {
+
+        /*
+           User can still move forward.
+           No answer = no score.
+        */
+    }
+
+    history.push(currentQuestion);
+
+    questionNumber++;
+
+    const content =
+        document.getElementById("questionContent");
+
+    content.classList.remove("animate-in");
+    content.classList.add("animate-out");
+
+    setTimeout(() => {
+
+        const newQuestion = generateQuestion();
+
+        loadQuestion(newQuestion, "in");
+
+    }, 420);
+}
+
+
+/* =========================================================
+   PREVIOUS QUESTION
+   ========================================================= */
+
+function previousQuestion() {
+
+    if (history.length === 0) return;
+
+    const previous = history.pop();
+
+    questionNumber--;
+
+    const content =
+        document.getElementById("questionContent");
+
+    content.classList.remove("animate-in");
+    content.classList.add("animate-out");
+
+    setTimeout(() => {
+
+        loadQuestion(previous, "in");
+
+    }, 420);
+}
+
+
+/* =========================================================
+   UPDATE UI
+   ========================================================= */
+
+function updateUI() {
+
+    document.getElementById("score").textContent =
+        score;
+
+    document.getElementById("correctCount").textContent =
+        correctAnswers;
+
+    document.getElementById("questionCount").textContent =
+        questionNumber;
+
+    /*
+       Since questions are infinite,
+       progress is a repeating visual indicator.
+    */
+
+    const progress =
+        ((questionNumber - 1) % 20 + 1) * 5;
+
+    document.getElementById("progressPercent").textContent =
+        `${progress}%`;
+
+    document.getElementById("progressFill").style.width =
+        `${progress}%`;
+}
+
+
+/* =========================================================
+   INITIAL QUESTION
+   ========================================================= */
+
+window.addEventListener("DOMContentLoaded", () => {
+
+    const firstQuestion = generateQuestion();
+
+    loadQuestion(firstQuestion);
+
+});
+</script>
+
 </body>
 </html>

@@ -1,128 +1,1174 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Google Fonts for Bengali & English -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Inter:wght@700;900&display=swap" rel="stylesheet">
+<title>Part 2 - Word & Parts of Speech | Infinity MCQ</title>
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
-    <style>
+    :root {
+        --text: #202124;
+        --muted: #5f6368;
+        --primary: #405de6;
+        --primary-dark: #3047b8;
+        --success: #16803c;
+        --danger: #c62828;
+        --card: rgba(255, 255, 255, 0.78);
+        --border: rgba(0, 0, 0, 0.08);
+        --shadow: 0 20px 55px rgba(50, 60, 90, 0.12);
+    }
+
+    body {
+        min-height: 100vh;
+        color: var(--text);
+        background:
+            radial-gradient(circle at 10% 10%, rgba(100, 130, 255, 0.12), transparent 32%),
+            radial-gradient(circle at 90% 90%, rgba(80, 190, 180, 0.10), transparent 32%),
+            linear-gradient(135deg, #ffffff, #f7f9fc, #ffffff);
+        font-family: "Times New Roman", "Kalpurush", sans-serif;
+        padding: 25px 15px 45px;
+    }
+
+    .app {
+        width: min(100%, 1000px);
+        margin: auto;
+    }
+
+    /* HEADER */
+    .header {
+        text-align: center;
+        margin-bottom: 25px;
+        animation: headerIn 1s cubic-bezier(.22,1,.36,1);
+    }
+
+    .header h1 {
+        font-size: clamp(27px, 5vw, 42px);
+        margin-bottom: 8px;
+        letter-spacing: 0.5px;
+    }
+
+    .header p {
+        font-size: 19px;
+        color: var(--muted);
+    }
+
+    /* GLASS CARD */
+    .glass {
+        background: var(--card);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        border: 1px solid rgba(255,255,255,0.85);
+        box-shadow: var(--shadow);
+        border-radius: 25px;
+    }
+
+    /* TOP INFO */
+    .top-info {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 14px;
+        padding: 18px;
+        margin-bottom: 20px;
+    }
+
+    .info-box {
+        background: rgba(255,255,255,0.7);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 13px;
+        text-align: center;
+    }
+
+    .info-label {
+        display: block;
+        color: var(--muted);
+        font-size: 17px;
+        margin-bottom: 4px;
+    }
+
+    .info-value {
+        font-size: 22px;
+        font-weight: bold;
+    }
+
+    /* MAIN QUESTION CARD */
+    .question-card {
+        padding: clamp(20px, 5vw, 40px);
+        overflow: hidden;
+    }
+
+    #questionArea {
+        transition:
+            opacity 0.75s cubic-bezier(.22,1,.36,1),
+            transform 0.75s cubic-bezier(.22,1,.36,1),
+            filter 0.75s cubic-bezier(.22,1,.36,1);
+    }
+
+    #questionArea.leaving {
+        opacity: 0;
+        transform: translateY(25px) scale(.985);
+        filter: blur(3px);
+    }
+
+    #questionArea.entering {
+        animation: questionIn 0.85s cubic-bezier(.22,1,.36,1);
+    }
+
+    .question-number {
+        color: var(--primary);
+        font-size: 19px;
+        font-weight: bold;
+        margin-bottom: 14px;
+    }
+
+    .question {
+        font-family: "Times New Roman", serif;
+        font-size: clamp(22px, 4vw, 29px);
+        line-height: 1.45;
+        font-weight: bold;
+        margin-bottom: 8px;
+    }
+
+    .bangla-meaning {
+        font-family: "Kalpurush", "Noto Sans Bengali", sans-serif;
+        font-size: 19px;
+        line-height: 1.7;
+        color: var(--muted);
+        margin-bottom: 25px;
+    }
+
+    /* OPTIONS */
+    .options {
+        display: grid;
+        gap: 13px;
+    }
+
+    .option {
+        width: 100%;
+        text-align: left;
+        padding: 17px 20px;
+        border-radius: 16px;
+        border: 1px solid rgba(0,0,0,.09);
+        background: rgba(255,255,255,.72);
+        cursor: pointer;
+        font-family: "Times New Roman", "Kalpurush", sans-serif;
+        font-size: 21px;
+        transition:
+            transform .3s cubic-bezier(.22,1,.36,1),
+            box-shadow .3s ease,
+            background .3s ease,
+            border-color .3s ease;
+    }
+
+    .option:hover {
+        transform: translateX(7px);
+        box-shadow: 0 10px 25px rgba(40,50,80,.10);
+        border-color: rgba(64,93,230,.3);
+    }
+
+    .option:disabled {
+        cursor: default;
+    }
+
+    .option.correct {
+        background: rgba(46, 160, 83, .13);
+        border: 2px solid var(--success);
+        color: #12662f;
+    }
+
+    .option.wrong {
+        background: rgba(220, 53, 69, .11);
+        border: 2px solid var(--danger);
+        color: #a51d1d;
+    }
+
+    .option .mark {
+        float: right;
+        font-weight: bold;
+        font-size: 23px;
+    }
+
+    /* EXPLANATION */
+    .explanation {
+        margin-top: 25px;
+        padding: 20px;
+        border-radius: 18px;
+        background: rgba(245,247,252,.9);
+        border-left: 5px solid var(--primary);
+        animation: explanationIn .7s cubic-bezier(.22,1,.36,1);
+    }
+
+    .explanation-title {
+        font-family: "Times New Roman", sans-serif;
+        font-size: 22px;
+        font-weight: bold;
+        margin-bottom: 9px;
+    }
+
+    .explanation p {
+        font-family: "Kalpurush", "Noto Sans Bengali", sans-serif;
+        font-size: 19px;
+        line-height: 1.8;
+    }
+
+    .rule-box {
+        margin-top: 13px;
+        padding: 14px 16px;
+        border-radius: 13px;
+        background: white;
+        font-family: "Kalpurush", sans-serif;
+        font-size: 18px;
+        line-height: 1.7;
+    }
+
+    /* CONTROLS */
+    .controls {
+        display: flex;
+        justify-content: space-between;
+        gap: 14px;
+        margin-top: 22px;
+    }
+
+    .btn {
+        flex: 1;
+        min-height: 53px;
+        border: none;
+        border-radius: 15px;
+        font-family: "Times New Roman", sans-serif;
+        font-size: 20px;
+        font-weight: bold;
+        cursor: pointer;
+        transition:
+            transform .3s cubic-bezier(.22,1,.36,1),
+            box-shadow .3s ease,
+            opacity .3s ease;
+    }
+
+    .btn:hover:not(:disabled) {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 25px rgba(40,50,80,.15);
+    }
+
+    .btn:disabled {
+        opacity: .45;
+        cursor: not-allowed;
+    }
+
+    .previous {
+        background: #eceff4;
+        color: #30343b;
+    }
+
+    .next {
+        background: var(--primary);
+        color: white;
+    }
+
+    .next:hover {
+        background: var(--primary-dark);
+    }
+
+    /* PROGRESS */
+    .progress-area {
+        margin-top: 22px;
+    }
+
+    .progress-track {
+        height: 9px;
+        background: #e7e9ee;
+        border-radius: 20px;
+        overflow: hidden;
+    }
+
+    .progress-bar {
+        height: 100%;
+        width: 0%;
+        border-radius: 20px;
+        background: linear-gradient(90deg, #405de6, #6c7ff2);
+        transition: width .7s cubic-bezier(.22,1,.36,1);
+    }
+
+    .progress-text {
+        text-align: center;
+        font-family: "Times New Roman", sans-serif;
+        font-size: 17px;
+        margin-top: 8px;
+        color: var(--muted);
+    }
+
+    /* FOOTER */
+    .footer {
+        text-align: center;
+        margin-top: 25px;
+        color: var(--muted);
+        font-size: 17px;
+    }
+
+    /* ANIMATIONS */
+    @keyframes headerIn {
+        from {
+            opacity: 0;
+            transform: translateY(-30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes questionIn {
+        0% {
+            opacity: 0;
+            transform: translateY(30px) scale(.985);
+            filter: blur(4px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            filter: blur(0);
+        }
+    }
+
+    @keyframes explanationIn {
+        from {
+            opacity: 0;
+            transform: translateY(18px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* MOBILE */
+    @media (max-width: 650px) {
+
         body {
-            font-family: 'Hind Siliguri', 'Inter', sans-serif;
-            background-color: #030712;
-            overflow: hidden;
+            padding: 15px 10px 30px;
         }
 
-        /* Gradient glowing animation on text */
-        .glow-text {
-            background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 50%, #38bdf8 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shine 6s linear infinite;
+        .top-info {
+            grid-template-columns: 1fr;
+            padding: 12px;
         }
 
-        @keyframes shine {
-            0% { background-position: 0% center; }
-            50% { background-position: 100% center; }
-            100% { background-position: 0% center; }
+        .question-card {
+            padding: 22px 16px;
+            border-radius: 20px;
         }
 
-        /* Keyframes for initial entry: Floating in from below with opacity */
-        @keyframes floatIn {
-            0% {
-                opacity: 0;
-                transform: translateY(40px) scale(0.95);
-                filter: blur(8px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-                filter: blur(0);
-            }
+        .question {
+            font-size: 22px;
         }
 
-        /* Continuous subtle float effect once arrived */
-        @keyframes subtleFloat {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-8px);
-            }
+        .bangla-meaning {
+            font-size: 18px;
         }
 
-        /* Animation class for Heading */
-        .animate-heading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards,
-                subtleFloat 6s ease-in-out 1.2s infinite;
+        .option {
+            font-size: 19px;
+            padding: 15px 15px;
         }
 
-        /* Animation class for Subheading (staggered delay) */
-        .animate-subheading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards,
-                subtleFloat 6s ease-in-out 1.55s infinite;
-            opacity: 0; /* Hidden until animation kicks in */
+        .controls {
+            flex-direction: column;
         }
 
-        /* Ambient background lighting */
-        .ambient-glow {
-            position: absolute;
-            width: 450px;
-            height: 450px;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(3, 7, 18, 0) 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            transition: left 0.4s ease-out, top 0.4s ease-out;
+        .btn {
+            width: 100%;
         }
-    </style>
+
+        .explanation p,
+        .rule-box {
+            font-size: 18px;
+        }
+    }
+</style>
 </head>
-<body class="min-h-screen flex items-center justify-center relative select-none px-4">
 
-    <!-- Ambient glow center element -->
-    <div id="glow" class="ambient-glow top-1/2 left-1/2"></div>
+<body>
 
-    <!-- Centered minimal content with entry animations -->
-    <main class="text-center z-10 space-y-6 max-w-3xl mx-auto py-8 px-4">
-        
-        <!-- Main English Title -->
-        <h1 class="animate-heading text-5xl sm:text-7xl md:text-8xl font-black tracking-tight glow-text font-['Inter'] drop-shadow-lg">
-            Coming Soon...
-        </h1>
+<div class="app">
 
-        <!-- Bengali Subheading -->
-        <p class="animate-subheading text-xl sm:text-3xl md:text-4xl font-semibold text-emerald-400/90 leading-relaxed tracking-wide drop-shadow">
-            ইনশাআল্লাহ, খুব শীঘ্রই ডাটা যোগ করা হবে।
-        </p>
+    <header class="header">
+        <h1>PART 2 - WORD & PARTS OF SPEECH</h1>
+        <p>Infinity MCQ Practice System</p>
+    </header>
+
+    <section class="top-info glass">
+
+        <div class="info-box">
+            <span class="info-label">Question</span>
+            <span class="info-value" id="questionCounter">1</span>
+        </div>
+
+        <div class="info-box">
+            <span class="info-label">Score</span>
+            <span class="info-value" id="score">0</span>
+        </div>
+
+        <div class="info-box">
+            <span class="info-label">Topic</span>
+            <span class="info-value">Parts of Speech</span>
+        </div>
+
+    </section>
+
+    <main class="question-card glass">
+
+        <div id="questionArea"></div>
+
+        <div class="controls">
+
+            <button
+                class="btn previous"
+                id="previousBtn"
+                onclick="previousQuestion()">
+                Previous
+            </button>
+
+            <button
+                class="btn next"
+                id="nextBtn"
+                onclick="nextQuestion()">
+                Next
+            </button>
+
+        </div>
+
+        <div class="progress-area">
+
+            <div class="progress-track">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+
+            <div class="progress-text" id="progressText">
+                Question 1
+            </div>
+
+        </div>
 
     </main>
 
-    <script>
-        const glow = document.getElementById('glow');
+    <footer class="footer">
+        Part 2 • Word & Parts of Speech • Infinity Practice
+    </footer>
 
-        // Mouse move interactive glow background
-        window.addEventListener('mousemove', (e) => {
-            glow.style.left = e.clientX + 'px';
-            glow.style.top = e.clientY + 'px';
-        });
+</div>
 
-        // Touch move interactive glow background for mobile screens
-        window.addEventListener('touchmove', (e) => {
-            if (e.touches.length > 0) {
-                glow.style.left = e.touches[0].clientX + 'px';
-                glow.style.top = e.touches[0].clientY + 'px';
+<script>
+
+/* =========================================================
+   PART 2 - WORD & PARTS OF SPEECH
+   INFINITY QUESTION GENERATOR
+========================================================= */
+
+const names = [
+    "Firoz",
+    "Fatiha",
+    "Fatema",
+    "Jui",
+    "Ema",
+    "Rupa",
+    "Moksed",
+    "Ferjousi",
+    "Jannati",
+    "Mini",
+    "Miraz",
+    "Mujahid",
+    "Milon",
+    "Hannan",
+    "Joba",
+    "Tanzila",
+    "Rina",
+    "Tania",
+    "Taslima"
+];
+
+
+/* ---------------------------------------------------------
+   QUESTION BANK
+   Multiple templates + random selection = endless variation
+--------------------------------------------------------- */
+
+const questionTemplates = [
+
+    /* NOUN */
+    {
+        type: "Noun",
+        make: () => {
+            const n = random(names);
+
+            return {
+                question: `Identify the part of speech of "${n}".`,
+                meaning: `"${n}" শব্দটি কোন Parts of Speech?`,
+                options: ["Noun", "Verb", "Adjective", "Adverb"],
+                answer: 0,
+                explanation:
+                    `"${n}" একটি ব্যক্তির নাম। কোনো ব্যক্তি, স্থান, বস্তু বা কিছুর নাম বোঝালে তাকে Noun (বিশেষ্য) বলা হয়। তাই "${n}" এখানে Noun।`,
+                rule:
+                    `Rule: A Noun is the name of a person, place, thing, animal, or idea.`
+            };
+        }
+    },
+
+    {
+        type: "Noun",
+        make: () => {
+
+            const data = [
+                ["Honesty", "Honesty is a great virtue.", 0],
+                ["School", "The school is near Firoz's house.", 0],
+                ["Teacher", "Hannan is a teacher.", 0],
+                ["Book", "Fatiha has a book.", 0],
+                ["Friendship", "Friendship is valuable.", 0]
+            ];
+
+            const item = random(data);
+
+            return {
+                question: `Which word is a Noun in the sentence: "${item[1]}"?`,
+                meaning: `বাক্যটিতে কোন শব্দটি Noun (বিশেষ্য)?`,
+                options: shuffle(["Honesty", "School", "Teacher", "Book", "Friendship"].filter(x => item[1].includes(x))),
+                answerText: item[0],
+                explanation:
+                    `"${item[0]}" একটি ব্যক্তি, স্থান, বস্তু বা ধারণার নাম প্রকাশ করছে। তাই এটি Noun।`,
+                rule:
+                    `Rule: A word that names a person, place, thing, or idea is a Noun.`
+            };
+        }
+    },
+
+
+    /* PRONOUN */
+    {
+        type: "Pronoun",
+        make: () => {
+
+            const n = random(names);
+
+            return {
+                question: `Which word can replace "${n}" in a sentence?`,
+                meaning: `"${n}"-এর পরিবর্তে কোন Pronoun ব্যবহার করা যায়?`,
+                options: ["He", "Run", "Beautiful", "Quickly"],
+                answer: 0,
+                explanation:
+                    `"${n}" একজন ব্যক্তির নাম। একজন পুরুষ ব্যক্তির নামের পরিবর্তে He ব্যবহার করা যায়। তাই সঠিক উত্তর He।`,
+                rule:
+                    `Rule: A Pronoun is used instead of a Noun.`
+            };
+        }
+    },
+
+    {
+        type: "Pronoun",
+        make: () => {
+
+            return {
+                question: `Identify the Pronoun in the sentence: "Firoz reads his book."`,
+                meaning: `“Firoz reads his book.” বাক্যে Pronoun কোনটি?`,
+                options: ["Firoz", "reads", "his", "book"],
+                answer: 2,
+                explanation:
+                    `"his" শব্দটি Firoz-এর পরিবর্তে ব্যবহৃত হয়েছে এবং মালিকানা বোঝাচ্ছে। তাই "his" হলো Pronoun।`,
+                rule:
+                    `Rule: Pronouns are used in place of nouns or to refer back to nouns.`
+            };
+        }
+    },
+
+
+    /* VERB */
+    {
+        type: "Verb",
+        make: () => {
+
+            const data = [
+                ["Firoz reads a book.", "reads"],
+                ["Fatiha sings a song.", "sings"],
+                ["Jui writes a letter.", "writes"],
+                ["Milon plays football.", "plays"],
+                ["Rina cooks food.", "cooks"]
+            ];
+
+            const item = random(data);
+
+            return {
+                question: `Which word is the Verb in "${item[0]}"?`,
+                meaning: `বাক্যটিতে Verb (ক্রিয়া) কোনটি?`,
+                options: [item[1], "book", "Firoz", "beautiful"],
+                answer: 0,
+                explanation:
+                    `"${item[1]}" শব্দটি কাজ বোঝাচ্ছে। যে শব্দ দ্বারা কোনো কাজ করা বা হওয়া বোঝায় তাকে Verb বলা হয়।`,
+                rule:
+                    `Rule: A Verb expresses an action, state, or occurrence.`
+            };
+        }
+    },
+
+
+    /* ADJECTIVE */
+    {
+        type: "Adjective",
+        make: () => {
+
+            const data = [
+                ["Firoz is a good student.", "good"],
+                ["Fatiha has a beautiful dress.", "beautiful"],
+                ["Milon is an honest person.", "honest"],
+                ["Jui bought a red bag.", "red"],
+                ["Rina is a clever girl.", "clever"]
+            ];
+
+            const item = random(data);
+
+            return {
+                question: `Which word is the Adjective in "${item[0]}"?`,
+                meaning: `বাক্যটিতে Adjective (বিশেষণ) কোনটি?`,
+                options: [item[1], "student", "is", "a"],
+                answer: 0,
+                explanation:
+                    `"${item[1]}" শব্দটি একটি Noun-এর গুণ বা বৈশিষ্ট্য প্রকাশ করছে। Noun বা Pronoun-এর গুণ, দোষ, অবস্থা, সংখ্যা ইত্যাদি বোঝালে সেটি Adjective।`,
+                rule:
+                    `Rule: An Adjective describes or modifies a Noun or Pronoun.`
+            };
+        }
+    },
+
+
+    /* ADVERB */
+    {
+        type: "Adverb",
+        make: () => {
+
+            const data = [
+                ["Firoz speaks slowly.", "slowly"],
+                ["Fatiha sings beautifully.", "beautifully"],
+                ["Mujahid runs quickly.", "quickly"],
+                ["Jui writes carefully.", "carefully"],
+                ["Rina works honestly.", "honestly"]
+            ];
+
+            const item = random(data);
+
+            return {
+                question: `Which word is the Adverb in "${item[0]}"?`,
+                meaning: `বাক্যটিতে Adverb (ক্রিয়া বিশেষণ) কোনটি?`,
+                options: [item[1], "speaks", "Firoz", "book"],
+                answer: 0,
+                explanation:
+                    `"${item[1]}" শব্দটি কাজটি কীভাবে হচ্ছে তা বোঝাচ্ছে। Verb-এর কাজের ধরন, সময়, স্থান বা মাত্রা ইত্যাদি প্রকাশ করলে সেটি Adverb।`,
+                rule:
+                    `Rule: An Adverb modifies a Verb, an Adjective, or another Adverb.`
+            };
+        }
+    },
+
+
+    /* PREPOSITION */
+    {
+        type: "Preposition",
+        make: () => {
+
+            const data = [
+                ["The book is on the table.", "on"],
+                ["Firoz is in the room.", "in"],
+                ["The pen is under the book.", "under"],
+                ["Milon sat beside Firoz.", "beside"],
+                ["The school is near the house.", "near"]
+            ];
+
+            const item = random(data);
+
+            return {
+                question: `Which word is the Preposition in "${item[0]}"?`,
+                meaning: `বাক্যটিতে Preposition (পদান্বয়ী অব্যয়) কোনটি?`,
+                options: [item[1], "book", "is", "table"],
+                answer: 0,
+                explanation:
+                    `"${item[1]}" শব্দটি বাক্যে একটি Noun বা Pronoun-এর সঙ্গে অন্য শব্দের সম্পর্ক প্রকাশ করছে। তাই এটি Preposition।`,
+                rule:
+                    `Rule: A Preposition shows the relationship of a Noun or Pronoun to another word.`
+            };
+        }
+    },
+
+
+    /* CONJUNCTION */
+    {
+        type: "Conjunction",
+        make: () => {
+
+            const data = [
+                ["Firoz and Fatiha study together.", "and"],
+                ["Firoz is poor but honest.", "but"],
+                ["Study hard or you may fail.", "or"],
+                ["Fatiha stayed home because she was ill.", "because"],
+                ["I waited until Jui came.", "until"]
+            ];
+
+            const item = random(data);
+
+            return {
+                question: `Which word is the Conjunction in "${item[0]}"?`,
+                meaning: `বাক্যটিতে Conjunction (সংযোজক অব্যয়) কোনটি?`,
+                options: [item[1], "study", "Firoz", "home"],
+                answer: 0,
+                explanation:
+                    `"${item[1]}" দুটি শব্দ, পদ বা বাক্যের অংশকে যুক্ত করছে। যে শব্দ দুটি বা ততোধিক শব্দ/বাক্যাংশ/বাক্যকে যুক্ত করে তাকে Conjunction বলা হয়।`,
+                rule:
+                    `Rule: A Conjunction joins words, phrases, or clauses.`
+            };
+        }
+    },
+
+
+    /* INTERJECTION */
+    {
+        type: "Interjection",
+        make: () => {
+
+            const data = [
+                ["Hurrah! Firoz has won the match.", "Hurrah"],
+                ["Alas! Firoz has lost his book.", "Alas"],
+                ["Wow! Fatiha sings beautifully.", "Wow"],
+                ["Oh! I forgot the answer.", "Oh"],
+                ["Bravo! Jui has done well.", "Bravo"]
+            ];
+
+            const item = random(data);
+
+            return {
+                question: `Which word is the Interjection in "${item[0]}"?`,
+                meaning: `বাক্যটিতে Interjection (আবেগসূচক অব্যয়) কোনটি?`,
+                options: [item[1], "sings", "book", "answer"],
+                answer: 0,
+                explanation:
+                    `"${item[1]}" হঠাৎ আবেগ, আনন্দ, দুঃখ, বিস্ময়, প্রশংসা ইত্যাদি প্রকাশ করছে। তাই এটি Interjection।`,
+                rule:
+                    `Rule: An Interjection expresses sudden emotion or feeling.`
+            };
+        }
+    },
+
+
+    /* IDENTIFICATION */
+    {
+        type: "Mixed",
+        make: () => {
+
+            const data = [
+                ["Firoz", "Noun"],
+                ["he", "Pronoun"],
+                ["runs", "Verb"],
+                ["beautiful", "Adjective"],
+                ["quickly", "Adverb"],
+                ["under", "Preposition"],
+                ["and", "Conjunction"],
+                ["Alas", "Interjection"]
+            ];
+
+            const item = random(data);
+
+            const allParts = [
+                "Noun",
+                "Pronoun",
+                "Verb",
+                "Adjective",
+                "Adverb",
+                "Preposition",
+                "Conjunction",
+                "Interjection"
+            ];
+
+            const options = shuffle(
+                [item[1], ...shuffle(allParts.filter(x => x !== item[1])).slice(0,3)]
+            );
+
+            return {
+                question: `What is the part of speech of "${item[0]}"?`,
+                meaning: `"${item[0]}" শব্দটি কোন Parts of Speech?`,
+                options: options,
+                answerText: item[1],
+                explanation:
+                    `"${item[0]}" শব্দটির বাক্যে ব্যবহারের ধরন অনুযায়ী এটি ${item[1]}। Parts of Speech নির্ধারণ করার সময় শুধু শব্দটি নয়, বাক্যে তার কাজও দেখতে হয়।`,
+                rule:
+                    `Rule: The same word can sometimes have different parts of speech depending on its use in a sentence.`
+            };
+        }
+    },
+
+
+    /* SAME WORD DIFFERENT PART OF SPEECH */
+    {
+        type: "Context",
+        make: () => {
+
+            return {
+                question: `In the sentence "Firoz works hard.", what is the part of speech of "hard"?`,
+                meaning: `“Firoz works hard.” বাক্যে “hard” কোন Parts of Speech?`,
+                options: ["Adverb", "Adjective", "Noun", "Verb"],
+                answer: 0,
+                explanation:
+                    `"hard" এখানে "works" Verb-কে বর্ণনা করছে—Firoz কীভাবে কাজ করে? উত্তর: hard। তাই এখানে "hard" হলো Adverb।`,
+                rule:
+                    `Rule: Always determine the part of speech from the word's function in the sentence.`
+            };
+        }
+    },
+
+    {
+        type: "Context",
+        make: () => {
+
+            return {
+                question: `In the sentence "Firoz is a fast runner.", what is the part of speech of "fast"?`,
+                meaning: `“Firoz is a fast runner.” বাক্যে “fast” কোন Parts of Speech?`,
+                options: ["Adjective", "Adverb", "Verb", "Noun"],
+                answer: 0,
+                explanation:
+                    `"fast" এখানে "runner" Noun-কে বর্ণনা করছে। কেমন runner? fast runner। তাই এখানে "fast" হলো Adjective।`,
+                rule:
+                    `Rule: An Adjective describes a Noun or Pronoun.`
+            };
+        }
+    }
+
+];
+
+
+/* ---------------------------------------------------------
+   STATE
+--------------------------------------------------------- */
+
+let currentIndex = 0;
+let score = 0;
+let answered = false;
+
+let history = [];
+let questionNumber = 0;
+
+
+/* ---------------------------------------------------------
+   HELPERS
+--------------------------------------------------------- */
+
+function random(array) {
+    return array[Math.floor(Math.random() * array.length)];
+}
+
+
+function shuffle(array) {
+    return [...array].sort(() => Math.random() - 0.5);
+}
+
+
+/* ---------------------------------------------------------
+   CREATE QUESTION
+--------------------------------------------------------- */
+
+function generateQuestion() {
+
+    const template = random(questionTemplates);
+
+    let q = template.make();
+
+    /*
+       Some questions provide answerText instead of
+       a fixed numerical answer.
+    */
+
+    if (q.answerText) {
+        q.answer = q.options.indexOf(q.answerText);
+
+        if (q.answer === -1) {
+            q.answer = 0;
+        }
+    }
+
+    return q;
+}
+
+
+/* ---------------------------------------------------------
+   LOAD QUESTION
+--------------------------------------------------------- */
+
+function loadQuestion(direction = "next") {
+
+    const area = document.getElementById("questionArea");
+
+    area.classList.remove("entering");
+    area.classList.add("leaving");
+
+    setTimeout(() => {
+
+        let question;
+
+        if (direction === "previous" && currentIndex > 0) {
+
+            currentIndex--;
+
+            question = history[currentIndex];
+
+        } else {
+
+            question = generateQuestion();
+
+            if (direction === "next") {
+                history.push(question);
+                currentIndex = history.length - 1;
             }
-        });
-    </script>
+        }
+
+        if (!question) {
+            question = generateQuestion();
+        }
+
+        renderQuestion(question);
+
+        area.classList.remove("leaving");
+
+        void area.offsetWidth;
+
+        area.classList.add("entering");
+
+        updateInterface();
+
+    }, 420);
+}
+
+
+/* ---------------------------------------------------------
+   RENDER QUESTION
+--------------------------------------------------------- */
+
+function renderQuestion(q) {
+
+    answered = false;
+
+    const area = document.getElementById("questionArea");
+
+    let html = `
+
+        <div class="question-number">
+            Question ${currentIndex + 1}
+        </div>
+
+        <div class="question">
+            ${escapeHTML(q.question)}
+        </div>
+
+        <div class="bangla-meaning">
+            (${escapeHTML(q.meaning)})
+        </div>
+
+        <div class="options">
+    `;
+
+    q.options.forEach((option, index) => {
+
+        html += `
+            <button
+                class="option"
+                onclick="selectAnswer(${index})">
+                ${String.fromCharCode(65 + index)}. ${escapeHTML(option)}
+            </button>
+        `;
+
+    });
+
+    html += `</div>`;
+
+    area.innerHTML = html;
+}
+
+
+/* ---------------------------------------------------------
+   ANSWER
+--------------------------------------------------------- */
+
+function selectAnswer(selected) {
+
+    if (answered) return;
+
+    answered = true;
+
+    const q = history[currentIndex];
+
+    const buttons = document.querySelectorAll(".option");
+
+    buttons.forEach((button, index) => {
+
+        button.disabled = true;
+
+        if (index === q.answer) {
+
+            button.classList.add("correct");
+
+            button.innerHTML +=
+                `<span class="mark">✓</span>`;
+        }
+
+        if (index === selected && selected !== q.answer) {
+
+            button.classList.add("wrong");
+
+            button.innerHTML +=
+                `<span class="mark">✕</span>`;
+        }
+
+    });
+
+    if (selected === q.answer) {
+        score++;
+    }
+
+    showExplanation(q, selected);
+
+    updateInterface();
+}
+
+
+/* ---------------------------------------------------------
+   EXPLANATION
+--------------------------------------------------------- */
+
+function showExplanation(q, selected) {
+
+    const area = document.getElementById("questionArea");
+
+    const correct = selected === q.answer;
+
+    const resultText = correct
+        ? "Correct! Well done."
+        : `Incorrect. The correct answer is "${q.options[q.answer]}".`;
+
+    area.innerHTML += `
+
+        <div class="explanation">
+
+            <div class="explanation-title">
+                ${resultText}
+            </div>
+
+            <p>
+                ${escapeHTML(q.explanation)}
+            </p>
+
+            <div class="rule-box">
+                <strong>Rule:</strong>
+                ${escapeHTML(q.rule.replace("Rule:", "").trim())}
+            </div>
+
+        </div>
+    `;
+}
+
+
+/* ---------------------------------------------------------
+   NEXT
+--------------------------------------------------------- */
+
+function nextQuestion() {
+
+    /*
+       If current question has not been answered,
+       allow moving forward but do not add score.
+    */
+
+    loadQuestion("next");
+}
+
+
+/* ---------------------------------------------------------
+   PREVIOUS
+--------------------------------------------------------- */
+
+function previousQuestion() {
+
+    if (currentIndex <= 0) return;
+
+    loadQuestion("previous");
+}
+
+
+/* ---------------------------------------------------------
+   INTERFACE
+--------------------------------------------------------- */
+
+function updateInterface() {
+
+    document.getElementById("questionCounter").textContent =
+        currentIndex + 1;
+
+    document.getElementById("score").textContent =
+        score;
+
+    document.getElementById("progressText").textContent =
+        `Question ${currentIndex + 1}`;
+
+    /*
+       Because this is an Infinity system, the progress
+       indicator represents the current practice position.
+    */
+
+    const progress =
+        ((currentIndex % 20) + 1) / 20 * 100;
+
+    document.getElementById("progressBar").style.width =
+        progress + "%";
+
+    document.getElementById("previousBtn").disabled =
+        currentIndex === 0;
+}
+
+
+/* ---------------------------------------------------------
+   BASIC SECURITY / HTML ESCAPE
+--------------------------------------------------------- */
+
+function escapeHTML(value) {
+
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
+
+/* ---------------------------------------------------------
+   START
+--------------------------------------------------------- */
+
+history.push(generateQuestion());
+
+loadInitial();
+
+
+function loadInitial() {
+
+    const q = history[0];
+
+    renderQuestion(q);
+
+    updateInterface();
+
+    document
+        .getElementById("questionArea")
+        .classList.add("entering");
+}
+
+</script>
+
 </body>
 </html>

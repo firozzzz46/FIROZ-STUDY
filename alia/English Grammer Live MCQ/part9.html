@@ -1,128 +1,1499 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon</title>
 
-    <!-- Google Fonts for Bengali & English -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Inter:wght@700;900&display=swap" rel="stylesheet">
-
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>PART 9 - Conjunction | Infinity MCQ Practice</title>
 
     <style>
+        /* =========================================================
+           RESET
+        ========================================================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* =========================================================
+           BODY
+        ========================================================= */
         body {
-            font-family: 'Hind Siliguri', 'Inter', sans-serif;
-            background-color: #030712;
+            min-height: 100vh;
+            padding: 25px 15px;
+            font-family: "Times New Roman", Kalpurush, "Noto Sans Bengali", serif;
+
+            background:
+                radial-gradient(
+                    circle at 10% 10%,
+                    rgba(210, 225, 255, 0.65),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 90% 90%,
+                    rgba(230, 220, 255, 0.65),
+                    transparent 30%
+                ),
+                linear-gradient(
+                    135deg,
+                    #ffffff,
+                    #f7f9fc,
+                    #ffffff
+                );
+
+            color: #20242a;
+        }
+
+        /* =========================================================
+           MAIN CONTAINER
+        ========================================================= */
+        .container {
+            width: 100%;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        /* =========================================================
+           HEADER
+        ========================================================= */
+        .header {
+            text-align: center;
+            margin-bottom: 22px;
+            padding: 25px 20px;
+
+            background: rgba(255, 255, 255, 0.62);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+
+            border: 1px solid rgba(255, 255, 255, 0.85);
+            border-radius: 24px;
+
+            box-shadow:
+                0 15px 45px rgba(50, 60, 90, 0.10),
+                inset 0 1px 0 rgba(255,255,255,0.9);
+        }
+
+        .header h1 {
+            font-size: clamp(26px, 5vw, 38px);
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 19px;
+            color: #606873;
+        }
+
+        /* =========================================================
+           INFO BAR
+        ========================================================= */
+        .info-bar {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .info-box {
+            padding: 14px 10px;
+            text-align: center;
+
+            background: rgba(255,255,255,0.65);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+
+            border: 1px solid rgba(255,255,255,0.85);
+            border-radius: 16px;
+
+            box-shadow: 0 8px 25px rgba(40,50,70,0.08);
+        }
+
+        .info-label {
+            display: block;
+            font-size: 15px;
+            color: #747b84;
+            margin-bottom: 4px;
+        }
+
+        .info-value {
+            font-size: 21px;
+            font-weight: bold;
+        }
+
+        /* =========================================================
+           PROGRESS
+        ========================================================= */
+        .progress-wrapper {
+            margin-bottom: 20px;
+        }
+
+        .progress-track {
+            width: 100%;
+            height: 9px;
             overflow: hidden;
+
+            background: rgba(210,215,225,0.65);
+            border-radius: 20px;
         }
 
-        /* Gradient glowing animation on text */
-        .glow-text {
-            background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 50%, #38bdf8 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shine 6s linear infinite;
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+
+            background: linear-gradient(
+                90deg,
+                #5f72ff,
+                #8d6cff
+            );
+
+            border-radius: 20px;
+
+            transition: width 0.8s cubic-bezier(.22,1,.36,1);
         }
 
-        @keyframes shine {
-            0% { background-position: 0% center; }
-            50% { background-position: 100% center; }
-            100% { background-position: 0% center; }
+        /* =========================================================
+           QUESTION CARD
+        ========================================================= */
+        .quiz-card {
+            position: relative;
+            overflow: hidden;
+
+            padding: 28px;
+
+            background: rgba(255,255,255,0.70);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+
+            border: 1px solid rgba(255,255,255,0.90);
+            border-radius: 25px;
+
+            box-shadow:
+                0 20px 55px rgba(40,50,80,0.12),
+                inset 0 1px 0 rgba(255,255,255,0.9);
+
+            transition:
+                opacity 0.8s cubic-bezier(.22,1,.36,1),
+                transform 0.8s cubic-bezier(.22,1,.36,1);
         }
 
-        /* Keyframes for initial entry: Floating in from below with opacity */
-        @keyframes floatIn {
+        /* Question transition states */
+        .quiz-card.exit {
+            opacity: 0;
+            transform: translateX(-70px) scale(0.98);
+        }
+
+        .quiz-card.enter {
+            animation: questionEnter 1s cubic-bezier(.22,1,.36,1);
+        }
+
+        @keyframes questionEnter {
             0% {
                 opacity: 0;
-                transform: translateY(40px) scale(0.95);
-                filter: blur(8px);
+                transform: translateX(70px) scale(0.98);
             }
+
+            60% {
+                opacity: 0.75;
+            }
+
             100% {
                 opacity: 1;
-                transform: translateY(0) scale(1);
-                filter: blur(0);
+                transform: translateX(0) scale(1);
             }
         }
 
-        /* Continuous subtle float effect once arrived */
-        @keyframes subtleFloat {
-            0%, 100% {
-                transform: translateY(0px);
+        /* =========================================================
+           QUESTION NUMBER
+        ========================================================= */
+        .question-number {
+            display: inline-block;
+            margin-bottom: 15px;
+            padding: 7px 13px;
+
+            font-size: 16px;
+
+            background: rgba(100,115,255,0.10);
+            color: #5363d8;
+
+            border-radius: 30px;
+        }
+
+        /* =========================================================
+           QUESTION
+        ========================================================= */
+        .question-text {
+            font-family: "Times New Roman", serif;
+            font-size: clamp(21px, 4vw, 28px);
+            line-height: 1.55;
+            font-weight: 700;
+
+            margin-bottom: 7px;
+        }
+
+        .question-meaning {
+            font-family: Kalpurush, "Noto Sans Bengali", sans-serif;
+            font-size: 18px;
+            line-height: 1.65;
+
+            color: #68717d;
+            margin-bottom: 25px;
+        }
+
+        /* =========================================================
+           OPTIONS
+        ========================================================= */
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 13px;
+        }
+
+        .option {
+            width: 100%;
+            padding: 16px 18px;
+
+            border: 1px solid rgba(190,198,210,0.55);
+            border-radius: 16px;
+
+            background: rgba(255,255,255,0.72);
+
+            font-family: "Times New Roman", serif;
+            font-size: 20px;
+            text-align: left;
+
+            cursor: pointer;
+
+            transition:
+                transform 0.35s cubic-bezier(.22,1,.36,1),
+                box-shadow 0.35s ease,
+                background 0.35s ease,
+                border-color 0.35s ease;
+        }
+
+        .option:hover:not(.disabled) {
+            transform: translateX(7px);
+            box-shadow: 0 8px 22px rgba(50,60,90,0.10);
+        }
+
+        .option.correct {
+            background: rgba(70, 190, 120, 0.13);
+            border-color: rgba(50,170,100,0.65);
+        }
+
+        .option.wrong {
+            background: rgba(230, 75, 75, 0.12);
+            border-color: rgba(220,70,70,0.65);
+        }
+
+        .option.disabled {
+            cursor: default;
+        }
+
+        /* =========================================================
+           EXPLANATION
+        ========================================================= */
+        .explanation {
+            margin-top: 24px;
+            padding: 20px;
+
+            background: rgba(245,247,255,0.85);
+            border-left: 5px solid #6675ee;
+
+            border-radius: 15px;
+
+            font-family: Kalpurush, "Noto Sans Bengali", sans-serif;
+            font-size: 19px;
+            line-height: 1.8;
+
+            opacity: 0;
+            transform: translateY(20px);
+
+            animation: explanationShow 0.7s cubic-bezier(.22,1,.36,1) forwards;
+        }
+
+        @keyframes explanationShow {
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
-            50% {
-                transform: translateY(-8px);
+        }
+
+        .explanation strong {
+            font-family: "Times New Roman", serif;
+            font-size: 20px;
+        }
+
+        /* =========================================================
+           NAVIGATION
+        ========================================================= */
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .nav-btn {
+            flex: 1;
+
+            padding: 15px 20px;
+
+            border: none;
+            border-radius: 15px;
+
+            font-family: "Times New Roman", serif;
+            font-size: 19px;
+            font-weight: bold;
+
+            cursor: pointer;
+
+            background: rgba(255,255,255,0.78);
+
+            box-shadow:
+                0 8px 25px rgba(40,50,70,0.10);
+
+            transition:
+                transform 0.3s cubic-bezier(.22,1,.36,1),
+                box-shadow 0.3s ease;
+        }
+
+        .nav-btn:hover:not(:disabled) {
+            transform: translateY(-3px);
+            box-shadow: 0 13px 30px rgba(40,50,70,0.14);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.45;
+            cursor: not-allowed;
+        }
+
+        .next-btn {
+            background: linear-gradient(
+                135deg,
+                #6475f2,
+                #8068df
+            );
+
+            color: white;
+        }
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
+        .footer {
+            text-align: center;
+            margin-top: 25px;
+            padding: 15px;
+
+            color: #7b828b;
+            font-size: 16px;
+        }
+
+        /* =========================================================
+           RESPONSIVE
+        ========================================================= */
+        @media (max-width: 650px) {
+
+            body {
+                padding: 12px 9px;
+            }
+
+            .header {
+                padding: 20px 14px;
+                border-radius: 20px;
+            }
+
+            .header p {
+                font-size: 17px;
+            }
+
+            .info-bar {
+                gap: 7px;
+            }
+
+            .info-box {
+                padding: 11px 5px;
+            }
+
+            .info-label {
+                font-size: 13px;
+            }
+
+            .info-value {
+                font-size: 18px;
+            }
+
+            .quiz-card {
+                padding: 20px 15px;
+                border-radius: 20px;
+            }
+
+            .question-text {
+                font-size: 22px;
+            }
+
+            .question-meaning {
+                font-size: 17px;
+            }
+
+            .option {
+                font-size: 19px;
+                padding: 14px 15px;
+            }
+
+            .explanation {
+                font-size: 18px;
+                padding: 16px;
+            }
+
+            .navigation {
+                gap: 9px;
+            }
+
+            .nav-btn {
+                font-size: 17px;
+                padding: 13px 10px;
             }
         }
 
-        /* Animation class for Heading */
-        .animate-heading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards,
-                subtleFloat 6s ease-in-out 1.2s infinite;
-        }
-
-        /* Animation class for Subheading (staggered delay) */
-        .animate-subheading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards,
-                subtleFloat 6s ease-in-out 1.55s infinite;
-            opacity: 0; /* Hidden until animation kicks in */
-        }
-
-        /* Ambient background lighting */
-        .ambient-glow {
-            position: absolute;
-            width: 450px;
-            height: 450px;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(3, 7, 18, 0) 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            transition: left 0.4s ease-out, top 0.4s ease-out;
+        /* =========================================================
+           REDUCED MOTION
+        ========================================================= */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
         }
     </style>
 </head>
-<body class="min-h-screen flex items-center justify-center relative select-none px-4">
 
-    <!-- Ambient glow center element -->
-    <div id="glow" class="ambient-glow top-1/2 left-1/2"></div>
+<body>
 
-    <!-- Centered minimal content with entry animations -->
-    <main class="text-center z-10 space-y-6 max-w-3xl mx-auto py-8 px-4">
-        
-        <!-- Main English Title -->
-        <h1 class="animate-heading text-5xl sm:text-7xl md:text-8xl font-black tracking-tight glow-text font-['Inter'] drop-shadow-lg">
-            Coming Soon...
-        </h1>
+<div class="container">
 
-        <!-- Bengali Subheading -->
-        <p class="animate-subheading text-xl sm:text-3xl md:text-4xl font-semibold text-emerald-400/90 leading-relaxed tracking-wide drop-shadow">
-            ইনশাআল্লাহ, খুব শীঘ্রই ডাটা যোগ করা হবে।
-        </p>
+    <!-- =========================================================
+         HEADER
+    ========================================================== -->
+    <header class="header">
+        <h1>PART 9 — CONJUNCTION</h1>
+        <p>Infinity MCQ Practice System</p>
+    </header>
+
+
+    <!-- =========================================================
+         INFORMATION
+    ========================================================== -->
+    <div class="info-bar">
+
+        <div class="info-box">
+            <span class="info-label">Question</span>
+            <span class="info-value" id="questionCounter">1</span>
+        </div>
+
+        <div class="info-box">
+            <span class="info-label">Score</span>
+            <span class="info-value" id="scoreCounter">0</span>
+        </div>
+
+        <div class="info-box">
+            <span class="info-label">Accuracy</span>
+            <span class="info-value" id="accuracyCounter">0%</span>
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         PROGRESS
+    ========================================================== -->
+    <div class="progress-wrapper">
+        <div class="progress-track">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+    </div>
+
+
+    <!-- =========================================================
+         QUIZ CARD
+    ========================================================== -->
+    <main class="quiz-card" id="quizCard">
+
+        <div class="question-number" id="questionNumber">
+            Question 1
+        </div>
+
+        <div class="question-text" id="questionText">
+            Loading...
+        </div>
+
+        <div class="question-meaning" id="questionMeaning">
+            প্রশ্ন লোড হচ্ছে...
+        </div>
+
+        <div class="options" id="options"></div>
+
+        <div id="explanationContainer"></div>
+
+        <div class="navigation">
+
+            <button
+                class="nav-btn"
+                id="previousBtn"
+                onclick="previousQuestion()"
+            >
+                ← Previous
+            </button>
+
+            <button
+                class="nav-btn next-btn"
+                id="nextBtn"
+                onclick="nextQuestion()"
+            >
+                Next →
+            </button>
+
+        </div>
 
     </main>
 
-    <script>
-        const glow = document.getElementById('glow');
 
-        // Mouse move interactive glow background
-        window.addEventListener('mousemove', (e) => {
-            glow.style.left = e.clientX + 'px';
-            glow.style.top = e.clientY + 'px';
+    <footer class="footer">
+        PART 9 — Conjunction • Infinity Practice
+    </footer>
+
+</div>
+
+
+<script>
+/* ================================================================
+   PART 9 — CONJUNCTION
+   INFINITY QUESTION GENERATOR
+================================================================ */
+
+
+/* ================================================================
+   NAME LIST
+================================================================ */
+
+const names = [
+    "Firoz",
+    "Fatiha",
+    "Fatema",
+    "Jui",
+    "Ema",
+    "Rupa",
+    "Moksed",
+    "Ferjousi",
+    "Jannati",
+    "Mini",
+    "Miraz",
+    "Mujahid",
+    "Milon",
+    "Hannan",
+    "Joba",
+    "Tanzila",
+    "Rina",
+    "Tania",
+    "Taslima"
+];
+
+
+/* ================================================================
+   CONJUNCTION DATA
+================================================================ */
+
+const conjunctions = [
+    "and",
+    "but",
+    "or",
+    "nor",
+    "so",
+    "yet",
+    "for",
+    "because",
+    "although",
+    "though",
+    "if",
+    "unless",
+    "until",
+    "when",
+    "while",
+    "before",
+    "after",
+    "since",
+    "as",
+    "whereas",
+    "whether"
+];
+
+
+/* ================================================================
+   QUESTION TEMPLATES
+================================================================ */
+
+const generators = [
+
+    /* ------------------------------------------------------------
+       AND
+    ------------------------------------------------------------ */
+    function() {
+        const name = randomName();
+
+        return makeQuestion(
+            `${name} bought a pen ___ a notebook.`,
+            `ফাঁকা স্থানে এমন একটি conjunction বসাও যা দুটি জিনিসকে যুক্ত করে।`,
+            ["and", "but", "or", "because"],
+            "and",
+            "এখানে দুটি জিনিস—“a pen” এবং “a notebook”—একসঙ্গে যুক্ত করা হয়েছে। দুটি সমজাতীয় শব্দ বা ধারণাকে যোগ করতে **and** ব্যবহার করা হয়। তাই সঠিক উত্তর **and**।"
+        );
+    },
+
+    /* ------------------------------------------------------------
+       BUT
+    ------------------------------------------------------------ */
+    function() {
+        const name = randomName();
+
+        return makeQuestion(
+            `${name} is poor, ___ he is honest.`,
+            `ফাঁকা স্থানে এমন conjunction বসাও যা বিপরীত ধারণা প্রকাশ করে।`,
+            ["and", "but", "so", "because"],
+            "but",
+            "প্রথম অংশে বলা হয়েছে সে দরিদ্র, কিন্তু দ্বিতীয় অংশে বলা হয়েছে সে সৎ। অর্থাৎ দুটি বিপরীত ধারণা আছে। বিপরীত বা contrast বোঝাতে **but** ব্যবহৃত হয়। তাই উত্তর **but**।"
+        );
+    },
+
+    /* ------------------------------------------------------------
+       OR
+    ------------------------------------------------------------ */
+    function() {
+        const name = randomName();
+
+        return makeQuestion(
+            `${name} will study English ___ Mathematics.`,
+            `এখানে দুটি বিষয়ের মধ্যে একটি বেছে নেওয়ার অর্থ প্রকাশ করছে।`,
+            ["and", "but", "or", "so"],
+            "or",
+            "এখানে English এবং Mathematics—দুটি বিকল্পের মধ্যে একটি বোঝানো হয়েছে। বিকল্প বা choice প্রকাশ করতে **or** ব্যবহার করা হয়। তাই সঠিক উত্তর **or**।"
+        );
+    },
+
+    /* ------------------------------------------------------------
+       SO
+    ------------------------------------------------------------ */
+    function() {
+        const name = randomName();
+
+        return makeQuestion(
+            `${name} was tired, ___ he went to bed early.`,
+            `প্রথম কাজের ফলাফল হিসেবে দ্বিতীয় কাজটি হয়েছে।`,
+            ["but", "or", "so", "although"],
+            "so",
+            "প্রথমে বলা হয়েছে সে ক্লান্ত ছিল। এর ফল হিসেবে সে তাড়াতাড়ি ঘুমাতে গেল। ফলাফল বা result প্রকাশ করতে **so** ব্যবহৃত হয়। তাই উত্তর **so**।"
+        );
+    },
+
+    /* ------------------------------------------------------------
+       BECAUSE
+    ------------------------------------------------------------ */
+    function() {
+        const name = randomName();
+
+        return makeQuestion(
+            `${name} stayed at home ___ it was raining.`,
+            `দ্বিতীয় অংশটি প্রথম কাজের কারণ প্রকাশ করছে।`,
+            ["because", "but", "or", "yet"],
+            "because",
+            "সে বাড়িতে থাকার কারণ হলো বৃষ্টি হচ্ছিল। কারণ বা reason প্রকাশ করতে **because** ব্যবহার করা হয়। তাই সঠিক উত্তর **because**।"
+        );
+    },
+
+    /* ------------------------------------------------------------
+       ALTHOUGH
+    ------------------------------------------------------------ */
+    function() {
+        const name = randomName();
+
+        return makeQuestion(
+            `___ ${name} was tired, ${name} continued studying.`,
+            `প্রথম অংশের বিপরীত হলেও দ্বিতীয় কাজটি ঘটেছে।`,
+            ["Although", "Because", "If", "Or"],
+            "Although",
+            "সে ক্লান্ত ছিল—এটি সত্য; তবুও সে পড়াশোনা চালিয়ে গেছে। একটি বাধা বা বিপরীত অবস্থা থাকা সত্ত্বেও অন্য কাজ ঘটলে **although** ব্যবহার করা হয়। তাই উত্তর **Although**।"
+        );
+    },
+
+    /* ------------------------------------------------------------
+       IF
+    ------------------------------------------------------------ */
+    function() {
+        const name = randomName();
+
+        return makeQuestion(
+            `___ ${name} studies regularly, ${name} will improve.`,
+            `প্রথম অংশটি দ্বিতীয় অংশের শর্ত প্রকাশ করছে।`,
+            ["If", "But", "And", "Because"],
+            "If",
+            "নিয়মিত পড়াশোনা করা হলো একটি শর্ত এবং সেই শর্ত পূরণ হলে উন্নতি হবে। শর্ত বা condition প্রকাশ করতে **if** ব্যবহার করা হয়। তাই সঠিক উত্তর **If**।"
+        );
+    },
+
+    /* ------------------------------------------------------------
+       UNLESS
+    ------------------------------------------------------------ */
+    function() {
+        const name = randomName();
+
+        return makeQuestion(
+            `${name} will not pass ___ ${name} studies seriously.`,
+            `এখানে নেতিবাচক শর্তের অর্থ প্রকাশ করতে হবে।`,
+            ["unless", "and", "but", "so"],
+            "unless",
+            "এখানে অর্থ হচ্ছে: সে গুরুত্ব দিয়ে পড়াশোনা না করলে পাস করবে না। **Unless** সাধারণত “if...not” অর্থে ব্যবহৃত হয়। তাই সঠিক উত্তর **unless**।"
+        );
+    },
+
+    /* ------------------------------------------------------------
+       UNTIL
+    ------------------------------------------------------------ */
+    function() {
+        const name = randomName();
+
+        return makeQuestion(
+            `${name} waited ___ the teacher arrived.`,
+            `একটি কাজ অন্য একটি কাজ সংঘটিত হওয়া পর্যন্ত চলেছে।`,
+            ["until", "because", "but", "or"],
+            "until",
+            "সে অপেক্ষা করার কাজটি শিক্ষক আসা পর্যন্ত চলেছে। কোনো কাজ একটি নির্দিষ্ট সময় বা ঘটনা পর্যন্ত চললে **until** ব্যবহার করা হয়। তাই উত্তর **until**।"
+        );
+    },
+
+    /* ------------------------------------------------------------
+       BEFORE
+    ------------------------------------------------------------ */
+    function() {
+        const name = randomName();
+
+        return makeQuestion(
+            `${name} washed his hands ___ he ate.`,
+            `প্রথম কাজটি দ্বিতীয় কাজের আগে হয়েছে।`,
+            ["before", "after", "because", "but"],
+            "before",
+            "এখানে হাত ধোয়ার কাজটি খাওয়ার আগে হয়েছে। একটি কাজ অন্য কাজের পূর্বে হলে **before** ব্যবহার করা হয়। তাই সঠিক উত্তর **before**।"
+        );
+    },
+
+    /* ------------------------------------------------------------
+       AFTER
+    ------------------------------------------------------------ */
+    function() {
+        const name = randomName();
+
+        return makeQuestion(
+            `${name} went home ___ the class ended.`,
+            `প্রথম কাজটি দ্বিতীয় কাজের পরে হয়েছে।`,
+            ["after", "before", "or", "and"],
+            "after",
+            "প্রথমে class শেষ হয়েছে এবং তার পরে সে বাড়ি গেছে। কোনো কাজ অন্য একটি কাজের পরে হলে **after** ব্যবহার করা হয়। তাই উত্তর **after**।"
+        );
+    },
+
+    /* ------------------------------------------------------------
+       WHEN
+    ------------------------------------------------------------ */
+    function() {
+        const name = randomName();
+
+        return makeQuestion(
+            `Call ${name} ___ you arrive.`,
+            `একটি নির্দিষ্ট সময় বা ঘটনা ঘটলে অন্য কাজটি করতে বলা হয়েছে।`,
+            ["when", "but", "or", "because"],
+            "when",
+            "তুমি যখন পৌঁছাবে, তখন তাকে ফোন করতে বলা হয়েছে। নির্দিষ্ট সময় বা ঘটনা বোঝাতে **when** ব্যবহার করা হয়। তাই সঠিক উত্তর **when**।"
+        );
+    },
+
+    /* ------------------------------------------------------------
+       WHILE
+    ------------------------------------------------------------ */
+    function() {
+        const name = randomName();
+
+        return makeQuestion(
+            `${name} was reading ___ Fatiha was writing.`,
+            `দুটি কাজ একই সময়ে চলছিল।`,
+            ["while", "because", "unless", "or"],
+            "while",
+            "এখানে দুজনের দুটি কাজ একই সময়ে চলছিল—একজন পড়ছিল এবং অন্যজন লিখছিল। একই সময়ে চলমান দুটি কাজ বোঝাতে **while** ব্যবহার করা যায়। তাই উত্তর **while**।"
+        );
+    },
+
+    /* ------------------------------------------------------------
+       SINCE
+    ------------------------------------------------------------ */
+    function() {
+        const name = randomName();
+
+        return makeQuestion(
+            `${name} has lived here ___ 2020.`,
+            `একটি কাজ অতীতের নির্দিষ্ট সময় থেকে শুরু হয়ে এখন পর্যন্ত চলছে।`,
+            ["since", "for", "but", "or"],
+            "since",
+            "এখানে 2020 একটি নির্দিষ্ট starting point। অতীতের নির্দিষ্ট সময় থেকে কোনো কাজ শুরু হয়ে এখন পর্যন্ত চললে **since** ব্যবহার করা হয়। তাই উত্তর **since**।"
+        );
+    },
+
+    /* ------------------------------------------------------------
+       YET
+    ------------------------------------------------------------ */
+    function() {
+        const name = randomName();
+
+        return makeQuestion(
+            `${name} is young, ___ he is very wise.`,
+            `দুটি বিপরীত ধারণার মধ্যে contrast প্রকাশ করতে হবে।`,
+            ["yet", "and", "or", "because"],
+            "yet",
+            "সে বয়সে তরুণ, কিন্তু তার জ্ঞান অনেক বেশি। এখানে বিপরীত বা unexpected contrast প্রকাশ করা হয়েছে। **Yet** অনেক ক্ষেত্রে **but**-এর মতো contrast বোঝায়। তাই উত্তর **yet**।"
+        );
+    },
+
+    /* ------------------------------------------------------------
+       NOR
+    ------------------------------------------------------------ */
+    function() {
+        const name = randomName();
+
+        return makeQuestion(
+            `${name} does not smoke, ___ does he drink.`,
+            `দুটি নেতিবাচক বিষয়কে যুক্ত করা হয়েছে।`,
+            ["nor", "and", "but", "so"],
+            "nor",
+            "প্রথম অংশটি negative: “does not smoke”। দ্বিতীয় negative clause-ও যুক্ত করা হয়েছে। Negative statement-এর সঙ্গে আরেকটি negative statement যুক্ত করতে **nor** ব্যবহার করা হয়। তাই উত্তর **nor**।"
+        );
+    },
+
+    /* ------------------------------------------------------------
+       FOR
+    ------------------------------------------------------------ */
+    function() {
+        const name = randomName();
+
+        return makeQuestion(
+            `${name} went to bed early, ___ he was very tired.`,
+            `দ্বিতীয় অংশটি প্রথম অংশের কারণ ব্যাখ্যা করছে।`,
+            ["for", "or", "but", "and"],
+            "for",
+            "এখানে দ্বিতীয় clause প্রথম clause-এর কারণ ব্যাখ্যা করছে। Conjunction হিসেবে **for** কারণ বা reason বোঝাতে পারে। তাই সঠিক উত্তর **for**।"
+        );
+    },
+
+    /* ------------------------------------------------------------
+       WHEREAS
+    ------------------------------------------------------------ */
+    function() {
+        return makeQuestion(
+            `Firoz likes English, ___ Fatiha prefers Mathematics.`,
+            `দুই ব্যক্তির পছন্দের মধ্যে পার্থক্য দেখানো হয়েছে।`,
+            ["whereas", "because", "so", "until"],
+            "whereas",
+            "এখানে Firoz-এর পছন্দ এবং Fatiha-এর পছন্দের মধ্যে পার্থক্য দেখানো হয়েছে। দুই ব্যক্তি বা বিষয়ের মধ্যে contrast বা comparison দেখাতে **whereas** ব্যবহার করা হয়। তাই উত্তর **whereas**।"
+        );
+    },
+
+    /* ------------------------------------------------------------
+       WHETHER
+    ------------------------------------------------------------ */
+    function() {
+        const name = randomName();
+
+        return makeQuestion(
+            `I do not know ___ ${name} will come.`,
+            `কেউ আসবে কি না—এই অনিশ্চয়তা প্রকাশ করা হয়েছে।`,
+            ["whether", "because", "although", "until"],
+            "whether",
+            "এখানে সে আসবে কি না—এটি নিশ্চিত নয়। “whether” সাধারণত দুই সম্ভাবনার মধ্যে অনিশ্চয়তা বা “কি না” অর্থ প্রকাশ করে। তাই সঠিক উত্তর **whether**।"
+        );
+    },
+
+    /* ------------------------------------------------------------
+       AND — VERB CONNECTION
+    ------------------------------------------------------------ */
+    function() {
+        const name = randomName();
+
+        return makeQuestion(
+            `${name} opened the book ___ started reading.`,
+            `দুটি কাজকে একসঙ্গে যুক্ত করা হয়েছে।`,
+            ["and", "but", "or", "unless"],
+            "and",
+            "এখানে দুটি কাজ—opened এবং started—একসঙ্গে যুক্ত হয়েছে। একই ধরনের দুটি কাজ বা idea যোগ করতে **and** ব্যবহার করা হয়। তাই উত্তর **and**।"
+        );
+    },
+
+    /* ------------------------------------------------------------
+       BUT — CONTRAST
+    ------------------------------------------------------------ */
+    function() {
+        const name = randomName();
+
+        return makeQuestion(
+            `${name} worked hard, ___ he failed.`,
+            `প্রথম কাজের বিপরীত ফল প্রকাশ করা হয়েছে।`,
+            ["but", "and", "so", "because"],
+            "but",
+            "সে কঠোর পরিশ্রম করেছিল, কিন্তু ফলাফল হিসেবে ব্যর্থ হয়েছে। এখানে প্রত্যাশার বিপরীত ফল এসেছে। Contrast প্রকাশ করতে **but** ব্যবহৃত হয়। তাই উত্তর **but**।"
+        );
+    },
+
+    /* ------------------------------------------------------------
+       SO — RESULT
+    ------------------------------------------------------------ */
+    function() {
+        const name = randomName();
+
+        return makeQuestion(
+            `${name} studied hard, ___ he passed the examination.`,
+            `দ্বিতীয় clause প্রথম clause-এর ফলাফল।`,
+            ["so", "but", "or", "although"],
+            "so",
+            "কঠোর পরিশ্রম করে পড়ার ফল হলো সে পরীক্ষায় পাস করেছে। ফলাফল বোঝাতে **so** ব্যবহার করা হয়। তাই উত্তর **so**।"
+        );
+    },
+
+    /* ------------------------------------------------------------
+       OR — ALTERNATIVE
+    ------------------------------------------------------------ */
+    function() {
+        const name = randomName();
+
+        return makeQuestion(
+            `Would ${name} like tea ___ coffee?`,
+            `দুটি বিকল্পের মধ্যে একটি বেছে নেওয়ার প্রশ্ন।`,
+            ["or", "and", "but", "so"],
+            "or",
+            "এখানে tea অথবা coffee—দুটি বিকল্প দেওয়া হয়েছে। Alternative বা choice বোঝাতে **or** ব্যবহার করা হয়। তাই উত্তর **or**।"
+        );
+    },
+
+    /* ------------------------------------------------------------
+       BECAUSE — REASON
+    ------------------------------------------------------------ */
+    function() {
+        const name = randomName();
+
+        return makeQuestion(
+            `${name} could not attend the class ___ ${name} was ill.`,
+            `দ্বিতীয় clause-এ প্রথম clause-এর কারণ দেওয়া হয়েছে।`,
+            ["because", "but", "or", "yet"],
+            "because",
+            "সে class-এ আসতে পারেনি—এর কারণ হলো সে অসুস্থ ছিল। কারণ বা reason প্রকাশ করার জন্য **because** ব্যবহৃত হয়। তাই উত্তর **because**।"
+        );
+    },
+
+    /* ------------------------------------------------------------
+       ALTHOUGH — CONTRAST
+    ------------------------------------------------------------ */
+    function() {
+        const name = randomName();
+
+        return makeQuestion(
+            `___ ${name} was poor, ${name} was happy.`,
+            `দারিদ্র্য থাকা সত্ত্বেও সুখী থাকার বিপরীত ধারণা প্রকাশ করা হয়েছে।`,
+            ["Although", "Because", "If", "So"],
+            "Although",
+            "সে দরিদ্র ছিল—এটি একটি বাধা বা বিপরীত অবস্থা। তবুও সে সুখী ছিল। বাধা থাকা সত্ত্বেও কোনো ঘটনা ঘটলে **although** ব্যবহার করা হয়। তাই উত্তর **Although**।"
+        );
+    },
+
+    /* ------------------------------------------------------------
+       IF — CONDITION
+    ------------------------------------------------------------ */
+    function() {
+        const name = randomName();
+
+        return makeQuestion(
+            `You will succeed ___ you work hard.`,
+            `কঠোর পরিশ্রমকে সাফল্যের শর্ত হিসেবে দেখানো হয়েছে।`,
+            ["if", "but", "because", "or"],
+            "if",
+            "এখানে work hard করা হলো success-এর শর্ত। শর্ত বা condition প্রকাশ করতে **if** ব্যবহৃত হয়। তাই উত্তর **if**।"
+        );
+    },
+
+    /* ------------------------------------------------------------
+       UNLESS — IF NOT
+    ------------------------------------------------------------ */
+    function() {
+        const name = randomName();
+
+        return makeQuestion(
+            `You will fail ___ you work hard.`,
+            `এখানে “if you do not work hard” অর্থ প্রকাশ করতে হবে।`,
+            ["unless", "and", "but", "so"],
+            "unless",
+            "এখানে অর্থ হলো: তুমি কঠোর পরিশ্রম না করলে ব্যর্থ হবে। **Unless = if...not** অর্থে ব্যবহৃত হয়। তাই সঠিক উত্তর **unless**।"
+        );
+    },
+
+    /* ------------------------------------------------------------
+       BEFORE — TIME
+    ------------------------------------------------------------ */
+    function() {
+        const name = randomName();
+
+        return makeQuestion(
+            `${name} prayed ___ he ate.`,
+            `একটি কাজ অন্য কাজের আগে হয়েছে।`,
+            ["before", "after", "while", "because"],
+            "before",
+            "এখানে নামাজ পড়ার কাজটি খাওয়ার আগে হয়েছে। পূর্ববর্তী সময় বা আগে বোঝাতে **before** ব্যবহৃত হয়। তাই উত্তর **before**।"
+        );
+    },
+
+    /* ------------------------------------------------------------
+       AFTER — TIME
+    ------------------------------------------------------------ */
+    function() {
+        const name = randomName();
+
+        return makeQuestion(
+            `${name} went outside ___ the rain stopped.`,
+            `বৃষ্টি থামার পরে বাইরে যাওয়া হয়েছে।`,
+            ["after", "before", "although", "unless"],
+            "after",
+            "বৃষ্টি প্রথমে থেমেছে এবং পরে সে বাইরে গেছে। কোনো কাজের পরে অন্য কাজ হলে **after** ব্যবহার করা হয়। তাই উত্তর **after**।"
+        );
+    },
+
+    /* ------------------------------------------------------------
+       WHILE — SIMULTANEOUS ACTION
+    ------------------------------------------------------------ */
+    function() {
+        const name = randomName();
+
+        return makeQuestion(
+            `${name} was writing ___ Jui was reading.`,
+            `দুটি কাজ একই সময়ে চলছিল।`,
+            ["while", "because", "until", "or"],
+            "while",
+            "দুটি কাজ একই সময়ে চলছিল—একজন লিখছিল এবং অন্যজন পড়ছিল। একই সময়ে চলমান কাজ বোঝাতে **while** ব্যবহার করা হয়। তাই উত্তর **while**।"
+        );
+    },
+
+    /* ------------------------------------------------------------
+       WHEN — TIME
+    ------------------------------------------------------------ */
+    function() {
+        const name = randomName();
+
+        return makeQuestion(
+            `___ ${name} came home, the family had dinner.`,
+            `একটি ঘটনা ঘটার সময় আরেকটি ঘটনা ঘটেছে।`,
+            ["When", "Unless", "Because", "But"],
+            "When",
+            "এখানে সে বাড়িতে আসার সময় dinner-এর ঘটনা ঘটেছে। নির্দিষ্ট সময় বা ঘটনার সঙ্গে অন্য ঘটনা যুক্ত করতে **when** ব্যবহৃত হয়। তাই উত্তর **When**।"
+        );
+    }
+
+];
+
+
+/* ================================================================
+   QUESTION CREATOR
+================================================================ */
+
+function makeQuestion(question, meaning, options, answer, explanation) {
+
+    let shuffled = [...options];
+
+    shuffle(shuffled);
+
+    return {
+        question: question,
+        meaning: meaning,
+        options: shuffled,
+        answer: answer,
+        explanation: explanation
+    };
+}
+
+
+/* ================================================================
+   RANDOM NAME
+================================================================ */
+
+function randomName() {
+    return names[Math.floor(Math.random() * names.length)];
+}
+
+
+/* ================================================================
+   SHUFFLE
+================================================================ */
+
+function shuffle(array) {
+
+    for (let i = array.length - 1; i > 0; i--) {
+
+        const j = Math.floor(Math.random() * (i + 1));
+
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+
+    return array;
+}
+
+
+/* ================================================================
+   QUESTION STATE
+================================================================ */
+
+let currentQuestion = 0;
+let score = 0;
+let answered = 0;
+
+let questionHistory = [];
+
+
+/* ================================================================
+   GENERATE UNIQUE QUESTION
+================================================================ */
+
+function generateQuestion() {
+
+    const generator =
+        generators[
+            Math.floor(Math.random() * generators.length)
+        ];
+
+    return generator();
+}
+
+
+/* ================================================================
+   LOAD QUESTION
+================================================================ */
+
+function loadQuestion(direction = "next") {
+
+    const card = document.getElementById("quizCard");
+
+    card.classList.remove("enter");
+
+    if (direction === "next") {
+        card.classList.add("exit");
+    }
+
+    setTimeout(() => {
+
+        let question;
+
+        /*
+         * If going back, use history.
+         * If going forward, generate a completely new question.
+         */
+        if (
+            direction === "previous" &&
+            currentQuestion > 0
+        ) {
+
+            currentQuestion--;
+
+            question = questionHistory[currentQuestion];
+
+        } else {
+
+            question = generateQuestion();
+
+            questionHistory[currentQuestion] = question;
+        }
+
+
+        /* --------------------------------------------------------
+           QUESTION TEXT
+        -------------------------------------------------------- */
+
+        document.getElementById("questionNumber").textContent =
+            `Question ${currentQuestion + 1}`;
+
+        document.getElementById("questionCounter").textContent =
+            currentQuestion + 1;
+
+        document.getElementById("questionText").textContent =
+            question.question;
+
+        document.getElementById("questionMeaning").textContent =
+            `(${question.meaning})`;
+
+
+        /* --------------------------------------------------------
+           OPTIONS
+        -------------------------------------------------------- */
+
+        const optionsContainer =
+            document.getElementById("options");
+
+        optionsContainer.innerHTML = "";
+
+        question.options.forEach((option, index) => {
+
+            const button =
+                document.createElement("button");
+
+            button.className = "option";
+
+            button.textContent =
+                `${String.fromCharCode(65 + index)}. ${option}`;
+
+            button.onclick = () => {
+
+                selectAnswer(
+                    button,
+                    option,
+                    question
+                );
+
+            };
+
+            optionsContainer.appendChild(button);
         });
 
-        // Touch move interactive glow background for mobile screens
-        window.addEventListener('touchmove', (e) => {
-            if (e.touches.length > 0) {
-                glow.style.left = e.touches[0].clientX + 'px';
-                glow.style.top = e.touches[0].clientY + 'px';
+
+        /* --------------------------------------------------------
+           EXPLANATION RESET
+        -------------------------------------------------------- */
+
+        document.getElementById(
+            "explanationContainer"
+        ).innerHTML = "";
+
+
+        /* --------------------------------------------------------
+           BUTTON STATES
+        -------------------------------------------------------- */
+
+        document.getElementById("previousBtn").disabled =
+            currentQuestion === 0;
+
+        document.getElementById("nextBtn").disabled = false;
+
+
+        /* --------------------------------------------------------
+           PROGRESS
+        -------------------------------------------------------- */
+
+        updateProgress();
+
+
+        /* --------------------------------------------------------
+           ANIMATION
+        -------------------------------------------------------- */
+
+        card.classList.remove("exit");
+
+        void card.offsetWidth;
+
+        card.classList.add("enter");
+
+    }, direction === "next" ? 500 : 300);
+}
+
+
+/* ================================================================
+   SELECT ANSWER
+================================================================ */
+
+function selectAnswer(button, selected, question) {
+
+    const allOptions =
+        document.querySelectorAll(".option");
+
+    /*
+     * Prevent multiple clicks.
+     */
+    allOptions.forEach(option => {
+
+        option.classList.add("disabled");
+        option.disabled = true;
+
+    });
+
+
+    answered++;
+
+
+    /* ------------------------------------------------------------
+       CORRECT
+    ------------------------------------------------------------ */
+
+    if (selected === question.answer) {
+
+        button.classList.add("correct");
+
+        score++;
+
+    }
+
+    /* ------------------------------------------------------------
+       WRONG
+    ------------------------------------------------------------ */
+
+    else {
+
+        button.classList.add("wrong");
+
+        /*
+         * Highlight correct answer.
+         */
+        allOptions.forEach(option => {
+
+            const text =
+                option.textContent
+                    .replace(/^[A-D]\.\s/, "");
+
+            if (text === question.answer) {
+
+                option.classList.add("correct");
+
             }
+
         });
-    </script>
+
+    }
+
+
+    /* ------------------------------------------------------------
+       EXPLANATION
+    ------------------------------------------------------------ */
+
+    const explanation =
+        document.createElement("div");
+
+    explanation.className = "explanation";
+
+    explanation.innerHTML = `
+        <strong>Explanation:</strong><br>
+        ${question.explanation}
+    `;
+
+    document.getElementById(
+        "explanationContainer"
+    ).appendChild(explanation);
+
+
+    updateScore();
+
+}
+
+
+/* ================================================================
+   NEXT QUESTION
+================================================================ */
+
+function nextQuestion() {
+
+    currentQuestion++;
+
+    loadQuestion("next");
+}
+
+
+/* ================================================================
+   PREVIOUS QUESTION
+================================================================ */
+
+function previousQuestion() {
+
+    if (currentQuestion > 0) {
+
+        loadQuestion("previous");
+
+    }
+
+}
+
+
+/* ================================================================
+   UPDATE PROGRESS
+================================================================ */
+
+function updateProgress() {
+
+    /*
+     * This is a moving progress indicator.
+     * Because the generator is infinite, it represents
+     * the current practice position rather than a final total.
+     */
+
+    const cyclePosition =
+        currentQuestion % 20;
+
+    const percentage =
+        ((cyclePosition + 1) / 20) * 100;
+
+    document.getElementById(
+        "progressBar"
+    ).style.width = `${percentage}%`;
+}
+
+
+/* ================================================================
+   UPDATE SCORE
+================================================================ */
+
+function updateScore() {
+
+    document.getElementById(
+        "scoreCounter"
+    ).textContent = score;
+
+
+    const accuracy =
+        answered === 0
+            ? 0
+            : Math.round(
+                (score / answered) * 100
+            );
+
+    document.getElementById(
+        "accuracyCounter"
+    ).textContent = `${accuracy}%`;
+}
+
+
+/* ================================================================
+   KEYBOARD CONTROL
+================================================================ */
+
+document.addEventListener("keydown", function(event) {
+
+    if (event.key === "ArrowRight") {
+
+        nextQuestion();
+
+    }
+
+    if (event.key === "ArrowLeft") {
+
+        previousQuestion();
+
+    }
+
+});
+
+
+/* ================================================================
+   INITIAL LOAD
+================================================================ */
+
+loadQuestion("next");
+
+</script>
+
 </body>
 </html>

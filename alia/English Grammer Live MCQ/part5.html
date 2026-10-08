@@ -1,128 +1,1747 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Google Fonts for Bengali & English -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Inter:wght@700;900&display=swap" rel="stylesheet">
+<title>Part 5 - Adjective | Infinity MCQ</title>
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+<style>
+/* =========================================================
+   PART 5 - ADJECTIVE
+   INFINITY MCQ PRACTICE SYSTEM
+   ========================================================= */
 
-    <style>
-        body {
-            font-family: 'Hind Siliguri', 'Inter', sans-serif;
-            background-color: #030712;
-            overflow: hidden;
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        /* Gradient glowing animation on text */
-        .glow-text {
-            background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 50%, #38bdf8 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shine 6s linear infinite;
-        }
+:root {
+    --text: #202124;
+    --muted: #5f6368;
+    --card: rgba(255, 255, 255, 0.78);
+    --border: rgba(255, 255, 255, 0.85);
+    --shadow: 0 20px 55px rgba(80, 90, 110, 0.15);
+    --radius: 24px;
+}
 
-        @keyframes shine {
-            0% { background-position: 0% center; }
-            50% { background-position: 100% center; }
-            100% { background-position: 0% center; }
-        }
+html {
+    scroll-behavior: smooth;
+}
 
-        /* Keyframes for initial entry: Floating in from below with opacity */
-        @keyframes floatIn {
-            0% {
-                opacity: 0;
-                transform: translateY(40px) scale(0.95);
-                filter: blur(8px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-                filter: blur(0);
-            }
-        }
+body {
+    min-height: 100vh;
+    color: var(--text);
 
-        /* Continuous subtle float effect once arrived */
-        @keyframes subtleFloat {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-8px);
-            }
-        }
+    background:
+        radial-gradient(circle at 10% 10%,
+        rgba(210, 225, 255, 0.45), transparent 30%),
 
-        /* Animation class for Heading */
-        .animate-heading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards,
-                subtleFloat 6s ease-in-out 1.2s infinite;
-        }
+        radial-gradient(circle at 90% 20%,
+        rgba(240, 220, 255, 0.42), transparent 30%),
 
-        /* Animation class for Subheading (staggered delay) */
-        .animate-subheading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards,
-                subtleFloat 6s ease-in-out 1.55s infinite;
-            opacity: 0; /* Hidden until animation kicks in */
-        }
+        radial-gradient(circle at 50% 100%,
+        rgba(220, 245, 240, 0.42), transparent 35%),
 
-        /* Ambient background lighting */
-        .ambient-glow {
-            position: absolute;
-            width: 450px;
-            height: 450px;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(3, 7, 18, 0) 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            transition: left 0.4s ease-out, top 0.4s ease-out;
-        }
-    </style>
+        linear-gradient(135deg, #ffffff, #f7f9fc, #ffffff);
+
+    font-family: "Times New Roman", "Kalpurush", serif;
+    padding: 25px 14px 45px;
+}
+
+/* =========================================================
+   MAIN CONTAINER
+   ========================================================= */
+
+.container {
+    width: min(100%, 1000px);
+    margin: auto;
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.header {
+    text-align: center;
+    margin-bottom: 24px;
+    animation: headerShow 1s cubic-bezier(.16,1,.3,1);
+}
+
+.header h1 {
+    font-size: clamp(28px, 5vw, 44px);
+    letter-spacing: 1px;
+    margin-bottom: 7px;
+}
+
+.header p {
+    font-size: 20px;
+    color: var(--muted);
+}
+
+.badge {
+    display: inline-block;
+    margin-top: 13px;
+    padding: 8px 18px;
+    border-radius: 50px;
+    background: rgba(255,255,255,.7);
+    border: 1px solid rgba(0,0,0,.06);
+    box-shadow: 0 8px 25px rgba(0,0,0,.06);
+    font-size: 17px;
+}
+
+/* =========================================================
+   GLASS CARD
+   ========================================================= */
+
+.glass {
+    background: var(--card);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    box-shadow: var(--shadow);
+}
+
+/* =========================================================
+   TOP INFO
+   ========================================================= */
+
+.info-bar {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.info-box {
+    padding: 15px;
+    text-align: center;
+    border-radius: 18px;
+}
+
+.info-label {
+    display: block;
+    font-size: 15px;
+    color: var(--muted);
+    margin-bottom: 4px;
+}
+
+.info-value {
+    font-size: 21px;
+    font-weight: bold;
+}
+
+/* =========================================================
+   PROGRESS
+   ========================================================= */
+
+.progress-wrapper {
+    margin-bottom: 20px;
+}
+
+.progress-track {
+    width: 100%;
+    height: 9px;
+    background: rgba(0,0,0,.07);
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    border-radius: 20px;
+
+    background:
+        linear-gradient(90deg,
+        #777,
+        #333,
+        #777);
+
+    transition: width .8s cubic-bezier(.16,1,.3,1);
+}
+
+/* =========================================================
+   QUESTION CARD
+   ========================================================= */
+
+.question-card {
+    border-radius: var(--radius);
+    padding: clamp(20px, 4vw, 38px);
+    min-height: 500px;
+
+    overflow: hidden;
+    position: relative;
+}
+
+.question-card::before {
+    content: "";
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.6);
+    top: -100px;
+    right: -70px;
+    pointer-events: none;
+}
+
+/* =========================================================
+   QUESTION TRANSITION
+   ========================================================= */
+
+.question-card.transitioning {
+    animation: questionOut .35s cubic-bezier(.65,0,.35,1) forwards;
+}
+
+.question-card.entering {
+    animation: questionIn 1.15s cubic-bezier(.16,1,.3,1) forwards;
+}
+
+@keyframes questionOut {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateX(-35px);
+    }
+}
+
+@keyframes questionIn {
+    from {
+        opacity: 0;
+        transform: translateX(55px) translateY(8px);
+        filter: blur(5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0) translateY(0);
+        filter: blur(0);
+    }
+}
+
+@keyframes headerShow {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================================================
+   QUESTION NUMBER
+   ========================================================= */
+
+.question-number {
+    display: inline-block;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 8px 15px;
+    border-radius: 30px;
+    background: rgba(0,0,0,.06);
+    margin-bottom: 22px;
+}
+
+/* =========================================================
+   QUESTION
+   ========================================================= */
+
+.question {
+    font-size: clamp(20px, 3vw, 26px);
+    line-height: 1.55;
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+.question-bangla {
+    font-family: "Kalpurush", "Noto Sans Bengali", sans-serif;
+    font-size: 18px;
+    color: #555;
+    line-height: 1.65;
+    margin-bottom: 28px;
+}
+
+/* =========================================================
+   OPTIONS
+   ========================================================= */
+
+.options {
+    display: grid;
+    gap: 13px;
+}
+
+.option {
+    width: 100%;
+    min-height: 58px;
+
+    border: 1px solid rgba(0,0,0,.08);
+    border-radius: 16px;
+
+    background: rgba(255,255,255,.72);
+
+    font-family: "Times New Roman", serif;
+    font-size: 20px;
+    text-align: left;
+
+    padding: 13px 18px;
+
+    cursor: pointer;
+
+    transition:
+        transform .35s cubic-bezier(.16,1,.3,1),
+        box-shadow .35s ease,
+        background .35s ease,
+        border-color .35s ease;
+}
+
+.option:hover {
+    transform: translateX(7px);
+    box-shadow: 0 10px 25px rgba(0,0,0,.08);
+}
+
+.option:active {
+    transform: scale(.985);
+}
+
+.option.correct {
+    background: rgba(220, 250, 225, .95);
+    border-color: rgba(40,150,65,.35);
+}
+
+.option.wrong {
+    background: rgba(255, 225, 225, .95);
+    border-color: rgba(190,50,50,.35);
+}
+
+.option.disabled {
+    cursor: default;
+}
+
+/* =========================================================
+   EXPLANATION
+   ========================================================= */
+
+.explanation {
+    margin-top: 24px;
+    padding: 21px;
+    border-radius: 18px;
+
+    background: rgba(245,245,245,.72);
+    border: 1px solid rgba(0,0,0,.06);
+
+    font-family: "Kalpurush", "Noto Sans Bengali", sans-serif;
+    font-size: 19px;
+    line-height: 1.8;
+
+    opacity: 0;
+    transform: translateY(18px);
+    animation: explanationShow .7s cubic-bezier(.16,1,.3,1) forwards;
+}
+
+@keyframes explanationShow {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.explanation-title {
+    font-family: "Times New Roman", serif;
+    font-weight: bold;
+    font-size: 21px;
+    margin-bottom: 8px;
+}
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.btn {
+    border: none;
+    min-height: 54px;
+    padding: 12px 25px;
+
+    border-radius: 15px;
+
+    background: rgba(255,255,255,.82);
+    border: 1px solid rgba(0,0,0,.07);
+
+    font-family: "Times New Roman", serif;
+    font-size: 19px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow: 0 8px 20px rgba(0,0,0,.06);
+
+    transition:
+        transform .35s cubic-bezier(.16,1,.3,1),
+        box-shadow .35s ease;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 13px 28px rgba(0,0,0,.1);
+}
+
+.btn:active {
+    transform: scale(.97);
+}
+
+.btn.next {
+    background: #202124;
+    color: white;
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.footer {
+    text-align: center;
+    margin-top: 25px;
+    color: #777;
+    font-size: 16px;
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 650px) {
+
+    body {
+        padding: 16px 9px 30px;
+    }
+
+    .info-bar {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .info-box {
+        padding: 11px;
+    }
+
+    .question-card {
+        padding: 20px 15px;
+        min-height: 520px;
+    }
+
+    .question {
+        font-size: 21px;
+    }
+
+    .question-bangla {
+        font-size: 18px;
+    }
+
+    .option {
+        font-size: 19px;
+        min-height: 56px;
+    }
+
+    .controls {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+    }
+}
+</style>
 </head>
-<body class="min-h-screen flex items-center justify-center relative select-none px-4">
 
-    <!-- Ambient glow center element -->
-    <div id="glow" class="ambient-glow top-1/2 left-1/2"></div>
+<body>
 
-    <!-- Centered minimal content with entry animations -->
-    <main class="text-center z-10 space-y-6 max-w-3xl mx-auto py-8 px-4">
-        
-        <!-- Main English Title -->
-        <h1 class="animate-heading text-5xl sm:text-7xl md:text-8xl font-black tracking-tight glow-text font-['Inter'] drop-shadow-lg">
-            Coming Soon...
-        </h1>
+<div class="container">
 
-        <!-- Bengali Subheading -->
-        <p class="animate-subheading text-xl sm:text-3xl md:text-4xl font-semibold text-emerald-400/90 leading-relaxed tracking-wide drop-shadow">
-            ইনশাআল্লাহ, খুব শীঘ্রই ডাটা যোগ করা হবে।
-        </p>
+    <!-- HEADER -->
+    <header class="header">
+
+        <h1>PART 5 - ADJECTIVE</h1>
+
+        <p>Infinity MCQ Practice System</p>
+
+        <div class="badge">
+            Grammar • Adjective • Practice
+        </div>
+
+    </header>
+
+
+    <!-- INFO -->
+    <div class="info-bar">
+
+        <div class="info-box glass">
+            <span class="info-label">Question</span>
+            <span class="info-value" id="questionCounter">1</span>
+        </div>
+
+        <div class="info-box glass">
+            <span class="info-label">Score</span>
+            <span class="info-value" id="score">0</span>
+        </div>
+
+        <div class="info-box glass">
+            <span class="info-label">Accuracy</span>
+            <span class="info-value" id="accuracy">0%</span>
+        </div>
+
+    </div>
+
+
+    <!-- PROGRESS -->
+    <div class="progress-wrapper">
+
+        <div class="progress-track">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+    </div>
+
+
+    <!-- QUESTION -->
+    <main
+        id="questionCard"
+        class="question-card glass"
+    >
+
+        <div id="questionContent">
+
+            <div class="question-number">
+                Question 1
+            </div>
+
+            <div
+                class="question"
+                id="question"
+            ></div>
+
+            <div
+                class="question-bangla"
+                id="questionBangla"
+            ></div>
+
+            <div
+                class="options"
+                id="options"
+            ></div>
+
+        </div>
 
     </main>
 
-    <script>
-        const glow = document.getElementById('glow');
 
-        // Mouse move interactive glow background
-        window.addEventListener('mousemove', (e) => {
-            glow.style.left = e.clientX + 'px';
-            glow.style.top = e.clientY + 'px';
-        });
+    <!-- CONTROLS -->
+    <div class="controls">
 
-        // Touch move interactive glow background for mobile screens
-        window.addEventListener('touchmove', (e) => {
-            if (e.touches.length > 0) {
-                glow.style.left = e.touches[0].clientX + 'px';
-                glow.style.top = e.touches[0].clientY + 'px';
+        <button
+            class="btn"
+            id="previousBtn"
+        >
+            Previous
+        </button>
+
+        <button
+            class="btn next"
+            id="nextBtn"
+        >
+            Next
+        </button>
+
+    </div>
+
+
+    <footer class="footer">
+        Part 5 - Adjective • Infinity Practice
+    </footer>
+
+</div>
+
+
+<script>
+/* =========================================================
+   PART 5 - ADJECTIVE
+   INFINITY QUESTION GENERATOR
+   ========================================================= */
+
+"use strict";
+
+
+/* =========================================================
+   BASIC DATA
+   ========================================================= */
+
+const names = [
+    "Firoz",
+    "Fatiha",
+    "Fatema",
+    "Jui",
+    "Ema",
+    "Rupa",
+    "Moksed",
+    "Ferjousi",
+    "Jannati",
+    "Mini",
+    "Miraz",
+    "Mujahid",
+    "Milon",
+    "Hannan",
+    "Joba",
+    "Tanzila",
+    "Rina",
+    "Tania",
+    "Taslima"
+];
+
+
+const nouns = [
+    "book",
+    "pen",
+    "flower",
+    "house",
+    "river",
+    "student",
+    "teacher",
+    "garden",
+    "road",
+    "school",
+    "story",
+    "lesson",
+    "question",
+    "answer",
+    "idea",
+    "picture",
+    "bag",
+    "room",
+    "tree",
+    "computer"
+];
+
+
+const adjectives = [
+    "beautiful",
+    "honest",
+    "brave",
+    "clever",
+    "kind",
+    "large",
+    "small",
+    "bright",
+    "dark",
+    "happy",
+    "sad",
+    "strong",
+    "weak",
+    "clean",
+    "dirty",
+    "young",
+    "old",
+    "rich",
+    "poor",
+    "wise"
+];
+
+
+const adjectiveDegrees = [
+    {
+        base: "tall",
+        comparative: "taller",
+        superlative: "tallest"
+    },
+    {
+        base: "small",
+        comparative: "smaller",
+        superlative: "smallest"
+    },
+    {
+        base: "large",
+        comparative: "larger",
+        superlative: "largest"
+    },
+    {
+        base: "bright",
+        comparative: "brighter",
+        superlative: "brightest"
+    },
+    {
+        base: "strong",
+        comparative: "stronger",
+        superlative: "strongest"
+    },
+    {
+        base: "young",
+        comparative: "younger",
+        superlative: "youngest"
+    },
+    {
+        base: "happy",
+        comparative: "happier",
+        superlative: "happiest"
+    },
+    {
+        base: "easy",
+        comparative: "easier",
+        superlative: "easiest"
+    },
+    {
+        base: "beautiful",
+        comparative: "more beautiful",
+        superlative: "most beautiful"
+    },
+    {
+        base: "difficult",
+        comparative: "more difficult",
+        superlative: "most difficult"
+    },
+    {
+        base: "good",
+        comparative: "better",
+        superlative: "best"
+    },
+    {
+        base: "bad",
+        comparative: "worse",
+        superlative: "worst"
+    },
+    {
+        base: "little",
+        comparative: "less",
+        superlative: "least"
+    },
+    {
+        base: "many",
+        comparative: "more",
+        superlative: "most"
+    }
+];
+
+
+/* =========================================================
+   UTILITY FUNCTIONS
+   ========================================================= */
+
+function randomItem(array) {
+    return array[Math.floor(Math.random() * array.length)];
+}
+
+
+function shuffle(array) {
+
+    const copy = [...array];
+
+    for (
+        let i = copy.length - 1;
+        i > 0;
+        i--
+    ) {
+
+        const j = Math.floor(Math.random() * (i + 1));
+
+        [
+            copy[i],
+            copy[j]
+        ] = [
+            copy[j],
+            copy[i]
+        ];
+    }
+
+    return copy;
+}
+
+
+function makeOptions(correct, wrongs) {
+
+    const unique = [
+        correct,
+        ...wrongs
+    ].filter(
+        (value, index, array) =>
+            array.indexOf(value) === index
+    );
+
+    return shuffle(unique.slice(0, 4));
+}
+
+
+/* =========================================================
+   QUESTION GENERATORS
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   TYPE 1: IDENTIFY ADJECTIVE
+   --------------------------------------------------------- */
+
+function generateIdentifyAdjective() {
+
+    const name = randomItem(names);
+    const adjective = randomItem(adjectives);
+    const noun = randomItem(nouns);
+
+    const sentence =
+        `${name} has a ${adjective} ${noun}.`;
+
+    const wrongs = [
+        name,
+        noun,
+        "has"
+    ];
+
+    return {
+        question:
+            `Which word is the adjective in the sentence: "${sentence}"?`,
+
+        bangla:
+            `("বাক্যটিতে কোন শব্দটি adjective বা বিশেষণ?")`,
+
+        options:
+            makeOptions(adjective, wrongs),
+
+        answer:
+            adjective,
+
+        explanation:
+            `"${adjective}" শব্দটি "${noun}"-কে বর্ণনা করছে। এটি noun-এর গুণ বা অবস্থা প্রকাশ করছে। তাই "${adjective}" এখানে Adjective বা বিশেষণ।`
+    };
+}
+
+
+/* ---------------------------------------------------------
+   TYPE 2: POSITION OF ADJECTIVE
+   --------------------------------------------------------- */
+
+function generatePositionQuestion() {
+
+    const adjective = randomItem(adjectives);
+    const noun = randomItem(nouns);
+
+    const correct = `${adjective} ${noun}`;
+
+    const wrong1 = `${noun} ${adjective}`;
+    const wrong2 = `adjective ${noun}`;
+    const wrong3 = `${adjective} the ${noun}`;
+
+    return {
+        question:
+            `Choose the correct phrase.`,
+
+        bangla:
+            `("নিচের কোন phrase-টি সঠিক?")`,
+
+        options:
+            makeOptions(
+                correct,
+                [wrong1, wrong2, wrong3]
+            ),
+
+        answer:
+            correct,
+
+        explanation:
+            `সঠিক উত্তর "${correct}"। সাধারণভাবে attributive adjective noun-এর আগে বসে। এখানে "${adjective}" noun "${noun}"-কে বর্ণনা করছে। তাই "${adjective} ${noun}" সঠিক।`
+    };
+}
+
+
+/* ---------------------------------------------------------
+   TYPE 3: PREDICATIVE ADJECTIVE
+   --------------------------------------------------------- */
+
+function generatePredicative() {
+
+    const name = randomItem(names);
+    const adjective = randomItem(adjectives);
+
+    const correct = adjective;
+
+    return {
+        question:
+            `Choose the adjective in this sentence: "${name} is ${adjective}."`,
+
+        bangla:
+            `("বাক্যটির adjective শনাক্ত করুন।")`,
+
+        options:
+            makeOptions(
+                correct,
+                [name, "is", "the"]
+            ),
+
+        answer:
+            correct,
+
+        explanation:
+            `"${adjective}" শব্দটি subject "${name}"-এর অবস্থা বা গুণ প্রকাশ করছে। Linking verb "is"-এর পরে adjective ব্যবহৃত হয়েছে। তাই এটি Predicative Adjective হিসেবে কাজ করছে।`
+    };
+}
+
+
+/* ---------------------------------------------------------
+   TYPE 4: POSSESSIVE ADJECTIVE
+   --------------------------------------------------------- */
+
+function generatePossessive() {
+
+    const name = randomItem(names);
+    const noun = randomItem(nouns);
+
+    const possessives = [
+        "my",
+        "your",
+        "his",
+        "her",
+        "our",
+        "their"
+    ];
+
+    const correct = randomItem(possessives);
+
+    return {
+        question:
+            `Choose the correct word: "${name} brought ___ ${noun}."`,
+
+        bangla:
+            `("শূন্যস্থানে সঠিক possessive adjective বসান।")`,
+
+        options:
+            makeOptions(
+                correct,
+                ["quickly", "beautifully", "very"]
+            ),
+
+        answer:
+            correct,
+
+        explanation:
+            `"${correct}" একটি Possessive Adjective। এটি ownership বা অধিকার বোঝায় এবং এর পরে noun থাকে। যেমন: "${correct} ${noun}"।`
+    };
+}
+
+
+/* ---------------------------------------------------------
+   TYPE 5: DEMONSTRATIVE ADJECTIVE
+   --------------------------------------------------------- */
+
+function generateDemonstrative() {
+
+    const noun = randomItem(nouns);
+
+    const data = [
+        {
+            correct: "this",
+            explanation:
+                `"this" কাছের একটি singular noun-এর আগে বসে তাকে নির্দেশ করে। তাই "this ${noun}" সঠিক।`
+        },
+        {
+            correct: "these",
+            explanation:
+                `"these" কাছের plural noun-এর আগে বসে। তাই এটি plural noun-এর সঙ্গে ব্যবহৃত হয়।`
+        },
+        {
+            correct: "that",
+            explanation:
+                `"that" দূরের একটি singular noun-এর আগে বসে তাকে নির্দেশ করে।`
+        },
+        {
+            correct: "those",
+            explanation:
+                `"those" দূরের plural noun-এর আগে বসে।`
+        }
+    ];
+
+    const item = randomItem(data);
+
+    const plural =
+        item.correct === "these" ||
+        item.correct === "those";
+
+    const target =
+        plural
+            ? `${noun}s`
+            : noun;
+
+    return {
+        question:
+            `Choose the correct word: "${item.correct === "this" || item.correct === "that" ? "___" : "___"} ${target} is/are useful."`,
+
+        bangla:
+            `("নির্দেশক adjective-এর সঠিক শব্দটি বেছে নিন।")`,
+
+        options:
+            makeOptions(
+                item.correct,
+                ["who", "very", "quickly"]
+            ),
+
+        answer:
+            item.correct,
+
+        explanation:
+            item.explanation
+    };
+}
+
+
+/* ---------------------------------------------------------
+   TYPE 6: QUANTITATIVE ADJECTIVE
+   --------------------------------------------------------- */
+
+function generateQuantity() {
+
+    const noun = randomItem([
+        "water",
+        "rice",
+        "milk",
+        "time",
+        "money",
+        "patience"
+    ]);
+
+    const correct = randomItem([
+        "much",
+        "little",
+        "some",
+        "enough"
+    ]);
+
+    return {
+        question:
+            `Choose the suitable adjective: "There is ___ ${noun} in the container."`,
+
+        bangla:
+            `("শূন্যস্থানে উপযুক্ত পরিমাণবাচক adjective বসান।")`,
+
+        options:
+            makeOptions(
+                correct,
+                ["many", "these", "who"]
+            ),
+
+        answer:
+            correct,
+
+        explanation:
+            `"${correct}" এখানে quantity বা পরিমাণ বোঝাচ্ছে। Quantity বোঝানো adjective-কে Quantitative Adjective বলা হয়।`
+    };
+}
+
+
+/* ---------------------------------------------------------
+   TYPE 7: NUMBER ADJECTIVE
+   --------------------------------------------------------- */
+
+function generateNumberAdjective() {
+
+    const noun = randomItem([
+        "books",
+        "students",
+        "flowers",
+        "questions",
+        "pens"
+    ]);
+
+    const number = randomItem([
+        "two",
+        "three",
+        "five",
+        "ten",
+        "many",
+        "several"
+    ]);
+
+    return {
+        question:
+            `Which word is the adjective in: "${number} ${noun} are on the table."?`,
+
+        bangla:
+            `("বাক্যটিতে কোন শব্দটি number adjective?")`,
+
+        options:
+            makeOptions(
+                number,
+                [noun, "table", "are"]
+            ),
+
+        answer:
+            number,
+
+        explanation:
+            `"${number}" noun "${noun}"-এর সংখ্যা নির্দেশ করছে। তাই এটি Number Adjective বা সংখ্যাবাচক বিশেষণ।`
+    };
+}
+
+
+/* ---------------------------------------------------------
+   TYPE 8: DEGREE OF COMPARISON
+   --------------------------------------------------------- */
+
+function generateDegree() {
+
+    const item = randomItem(adjectiveDegrees);
+
+    const types = [
+        {
+            label: "positive",
+            answer: item.base,
+            bangla:
+                "Positive Degree-এর adjective নির্বাচন করুন।"
+        },
+        {
+            label: "comparative",
+            answer: item.comparative,
+            bangla:
+                "Comparative Degree-এর adjective নির্বাচন করুন।"
+        },
+        {
+            label: "superlative",
+            answer: item.superlative,
+            bangla:
+                "Superlative Degree-এর adjective নির্বাচন করুন।"
+        }
+    ];
+
+    const type = randomItem(types);
+
+    return {
+        question:
+            `Which is the ${type.label} degree of "${item.base}"?`,
+
+        bangla:
+            `("${type.bangla}")`,
+
+        options:
+            makeOptions(
+                type.answer,
+                [
+                    item.base,
+                    item.comparative,
+                    item.superlative
+                ]
+            ),
+
+        answer:
+            type.answer,
+
+        explanation:
+            `"${item.base}"-এর Positive Degree হলো "${item.base}", Comparative Degree হলো "${item.comparative}", এবং Superlative Degree হলো "${item.superlative}"। প্রশ্নে ${type.label} degree চাওয়া হয়েছে, তাই "${type.answer}" সঠিক।`
+    };
+}
+
+
+/* ---------------------------------------------------------
+   TYPE 9: CORRECT COMPARATIVE
+   --------------------------------------------------------- */
+
+function generateComparativeSentence() {
+
+    const item = randomItem([
+        {
+            base: "tall",
+            correct: "taller",
+            wrong: ["tallest", "more tall", "most tall"]
+        },
+        {
+            base: "beautiful",
+            correct: "more beautiful",
+            wrong: ["beautifuller", "beautifulest", "most beautiful"]
+        },
+        {
+            base: "good",
+            correct: "better",
+            wrong: ["gooder", "best", "more good"]
+        },
+        {
+            base: "bad",
+            correct: "worse",
+            wrong: ["badder", "worst", "more bad"]
+        },
+        {
+            base: "happy",
+            correct: "happier",
+            wrong: ["happyer", "happiest", "more happy"]
+        }
+    ]);
+
+    return {
+        question:
+            `Choose the correct form: "Firoz is ___ than Milon."`,
+
+        bangla:
+            `("তুলনা বোঝাতে adjective-এর সঠিক form নির্বাচন করুন।")`,
+
+        options:
+            makeOptions(
+                item.correct,
+                item.wrong
+            ),
+
+        answer:
+            item.correct,
+
+        explanation:
+            `"than" ব্যবহৃত হয়েছে, তাই এখানে Comparative Degree প্রয়োজন। "${item.base}"-এর সঠিক Comparative form হলো "${item.correct}"।`
+    };
+}
+
+
+/* ---------------------------------------------------------
+   TYPE 10: SUPERLATIVE
+   --------------------------------------------------------- */
+
+function generateSuperlativeSentence() {
+
+    const item = randomItem([
+        {
+            base: "good",
+            correct: "best",
+            wrong: ["better", "goodest", "more good"]
+        },
+        {
+            base: "bad",
+            correct: "worst",
+            wrong: ["worse", "badder", "more bad"]
+        },
+        {
+            base: "tall",
+            correct: "tallest",
+            wrong: ["taller", "most tall", "more tall"]
+        },
+        {
+            base: "beautiful",
+            correct: "most beautiful",
+            wrong: ["more beautiful", "beautifullest", "beautifulest"]
+        }
+    ]);
+
+    return {
+        question:
+            `Choose the correct form: "Fatiha is the ___ student in the class."`,
+
+        bangla:
+            `("সবার মধ্যে সর্বোচ্চ মাত্রা বোঝাতে সঠিক adjective নির্বাচন করুন।")`,
+
+        options:
+            makeOptions(
+                item.correct,
+                item.wrong
+            ),
+
+        answer:
+            item.correct,
+
+        explanation:
+            `"the" এবং "in the class" দ্বারা বোঝা যাচ্ছে যে অনেকের মধ্যে একজন সবচেয়ে বেশি। তাই Superlative Degree প্রয়োজন। "${item.base}"-এর সঠিক form হলো "${item.correct}"।`
+    };
+}
+
+
+/* ---------------------------------------------------------
+   TYPE 11: ADJECTIVE OR ADVERB
+   --------------------------------------------------------- */
+
+function generateAdjectiveAdverb() {
+
+    const adjective = randomItem([
+        "quick",
+        "slow",
+        "careful",
+        "beautiful",
+        "happy",
+        "quiet"
+    ]);
+
+    const adverbMap = {
+        quick: "quickly",
+        slow: "slowly",
+        careful: "carefully",
+        beautiful: "beautifully",
+        happy: "happily",
+        quiet: "quietly"
+    };
+
+    const adverb = adverbMap[adjective];
+
+    return {
+        question:
+            `Choose the correct word: "Jui is a ___ student."`,
+
+        bangla:
+            `("student-কে বর্ণনা করার জন্য adjective-এর সঠিক form বেছে নিন।")`,
+
+        options:
+            makeOptions(
+                adjective,
+                [adverb, "quickness", "care"]
+            ),
+
+        answer:
+            adjective,
+
+        explanation:
+            `"student" একটি noun। Noun-কে বর্ণনা করার জন্য Adjective ব্যবহার করা হয়। তাই "${adjective}" সঠিক। "${adverb}" adverb হওয়ায় এখানে উপযুক্ত নয়।`
+    };
+}
+
+
+/* ---------------------------------------------------------
+   TYPE 12: FIND ADJECTIVE TYPE
+   --------------------------------------------------------- */
+
+function generateAdjectiveType() {
+
+    const types = [
+        {
+            sentence: "Firoz has three books.",
+            word: "three",
+            type: "Numeral Adjective",
+            bangla:
+                "এটি সংখ্যা প্রকাশ করছে।"
+        },
+        {
+            sentence: "Fatiha has some water.",
+            word: "some",
+            type: "Quantitative Adjective",
+            bangla:
+                "এটি পরিমাণ প্রকাশ করছে।"
+        },
+        {
+            sentence: "This book is useful.",
+            word: "This",
+            type: "Demonstrative Adjective",
+            bangla:
+                "এটি একটি নির্দিষ্ট noun-কে নির্দেশ করছে।"
+        },
+        {
+            sentence: "My book is new.",
+            word: "My",
+            type: "Possessive Adjective",
+            bangla:
+                "এটি মালিকানা বা অধিকার প্রকাশ করছে।"
+        }
+    ];
+
+    const item = randomItem(types);
+
+    return {
+        question:
+            `What type of adjective is "${item.word}" in: "${item.sentence}"?`,
+
+        bangla:
+            `("উদ্ধৃত শব্দটি কোন ধরনের adjective?")`,
+
+        options:
+            makeOptions(
+                item.type,
+                [
+                    "Proper Adjective",
+                    "Interrogative Adjective",
+                    "Qualitative Adjective"
+                ]
+            ),
+
+        answer:
+            item.type,
+
+        explanation:
+            `"${item.word}" এখানে ${item.type}। ${item.bangla} তাই এই adjective-এর ধরন "${item.type}"।`
+    };
+}
+
+
+/* =========================================================
+   MASTER GENERATOR
+   ========================================================= */
+
+const generators = [
+    generateIdentifyAdjective,
+    generatePositionQuestion,
+    generatePredicative,
+    generatePossessive,
+    generateDemonstrative,
+    generateQuantity,
+    generateNumberAdjective,
+    generateDegree,
+    generateComparativeSentence,
+    generateSuperlativeSentence,
+    generateAdjectiveAdverb,
+    generateAdjectiveType
+];
+
+
+function generateQuestion() {
+
+    const generator =
+        randomItem(generators);
+
+    return generator();
+}
+
+
+/* =========================================================
+   STATE
+   ========================================================= */
+
+let currentQuestion = 0;
+let score = 0;
+let answered = 0;
+
+let history = [];
+let currentData = null;
+
+
+/* =========================================================
+   DOM
+   ========================================================= */
+
+const questionCard =
+    document.getElementById("questionCard");
+
+const question =
+    document.getElementById("question");
+
+const questionBangla =
+    document.getElementById("questionBangla");
+
+const options =
+    document.getElementById("options");
+
+const questionCounter =
+    document.getElementById("questionCounter");
+
+const scoreElement =
+    document.getElementById("score");
+
+const accuracyElement =
+    document.getElementById("accuracy");
+
+const progressFill =
+    document.getElementById("progressFill");
+
+const previousBtn =
+    document.getElementById("previousBtn");
+
+const nextBtn =
+    document.getElementById("nextBtn");
+
+
+/* =========================================================
+   RENDER QUESTION
+   ========================================================= */
+
+function renderQuestion(data, animate = true) {
+
+    if (animate) {
+
+        questionCard.classList.remove("entering");
+
+        void questionCard.offsetWidth;
+
+        questionCard.classList.add("entering");
+    }
+
+    currentData = data;
+
+    questionCounter.textContent =
+        currentQuestion;
+
+    question.textContent =
+        data.question;
+
+    questionBangla.textContent =
+        data.bangla;
+
+    options.innerHTML = "";
+
+    data.options.forEach((optionText) => {
+
+        const button =
+            document.createElement("button");
+
+        button.className = "option";
+
+        button.textContent =
+            optionText;
+
+        button.addEventListener(
+            "click",
+            () => selectAnswer(button, optionText)
+        );
+
+        options.appendChild(button);
+    });
+
+    updateUI();
+}
+
+
+/* =========================================================
+   SELECT ANSWER
+   ========================================================= */
+
+function selectAnswer(button, selected) {
+
+    const allOptions =
+        document.querySelectorAll(".option");
+
+    allOptions.forEach(
+        option => option.classList.add("disabled")
+    );
+
+    const correct =
+        selected === currentData.answer;
+
+    if (correct) {
+
+        button.classList.add("correct");
+
+        score++;
+
+    } else {
+
+        button.classList.add("wrong");
+
+        allOptions.forEach(option => {
+
+            if (
+                option.textContent ===
+                currentData.answer
+            ) {
+                option.classList.add("correct");
             }
+
         });
-    </script>
+    }
+
+    answered++;
+
+    showExplanation();
+
+    updateUI();
+}
+
+
+/* =========================================================
+   EXPLANATION
+   ========================================================= */
+
+function showExplanation() {
+
+    const old =
+        document.querySelector(".explanation");
+
+    if (old) {
+        old.remove();
+    }
+
+    const box =
+        document.createElement("div");
+
+    box.className = "explanation";
+
+    box.innerHTML = `
+        <div class="explanation-title">
+            Explanation
+        </div>
+
+        <div>
+            ${currentData.explanation}
+        </div>
+    `;
+
+    questionCard.appendChild(box);
+}
+
+
+/* =========================================================
+   NEXT
+   ========================================================= */
+
+function nextQuestion() {
+
+    if (currentData) {
+
+        history.push(currentData);
+    }
+
+    questionCard.classList.remove("entering");
+
+    questionCard.classList.add("transitioning");
+
+    setTimeout(() => {
+
+        currentQuestion++;
+
+        const newQuestion =
+            generateQuestion();
+
+        renderQuestion(
+            newQuestion,
+            false
+        );
+
+        questionCard.classList.remove(
+            "transitioning"
+        );
+
+        questionCard.classList.add(
+            "entering"
+        );
+
+    }, 330);
+}
+
+
+/* =========================================================
+   PREVIOUS
+   ========================================================= */
+
+function previousQuestion() {
+
+    if (history.length === 0) {
+        return;
+    }
+
+    questionCard.classList.remove("entering");
+
+    questionCard.classList.add("transitioning");
+
+    setTimeout(() => {
+
+        const previous =
+            history.pop();
+
+        currentQuestion =
+            Math.max(1, currentQuestion - 1);
+
+        renderQuestion(
+            previous,
+            false
+        );
+
+        questionCard.classList.remove(
+            "transitioning"
+        );
+
+        questionCard.classList.add(
+            "entering"
+        );
+
+    }, 330);
+}
+
+
+/* =========================================================
+   UI UPDATE
+   ========================================================= */
+
+function updateUI() {
+
+    questionCounter.textContent =
+        currentQuestion;
+
+    scoreElement.textContent =
+        score;
+
+    const accuracy =
+        answered === 0
+            ? 0
+            : Math.round(
+                (score / answered) * 100
+            );
+
+    accuracyElement.textContent =
+        `${accuracy}%`;
+
+    /*
+       The bar is only a visual indicator.
+       It intentionally loops because the system
+       is designed for infinite practice.
+    */
+
+    const progress =
+        ((currentQuestion - 1) % 20) + 1;
+
+    progressFill.style.width =
+        `${(progress / 20) * 100}%`;
+}
+
+
+/* =========================================================
+   BUTTON EVENTS
+   ========================================================= */
+
+nextBtn.addEventListener(
+    "click",
+    nextQuestion
+);
+
+previousBtn.addEventListener(
+    "click",
+    previousQuestion
+);
+
+
+/* =========================================================
+   KEYBOARD CONTROL
+   ========================================================= */
+
+document.addEventListener(
+    "keydown",
+    (event) => {
+
+        if (event.key === "ArrowRight") {
+            nextQuestion();
+        }
+
+        if (event.key === "ArrowLeft") {
+            previousQuestion();
+        }
+    }
+);
+
+
+/* =========================================================
+   INITIAL QUESTION
+   ========================================================= */
+
+currentQuestion = 1;
+
+renderQuestion(
+    generateQuestion(),
+    true
+);
+
+</script>
+
 </body>
 </html>

@@ -1,128 +1,1722 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon</title>
 
-    <!-- Google Fonts for Bengali & English -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Inter:wght@700;900&display=swap" rel="stylesheet">
-
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Part 10 - Interjection | Infinity MCQ</title>
 
     <style>
+        /* =========================================================
+           RESET
+        ========================================================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* =========================================================
+           BODY
+        ========================================================= */
         body {
-            font-family: 'Hind Siliguri', 'Inter', sans-serif;
-            background-color: #030712;
+            min-height: 100vh;
+            font-family: "Times New Roman", "Kalpurush", serif;
+
+            background:
+                radial-gradient(circle at 10% 10%,
+                    rgba(220, 230, 255, 0.45),
+                    transparent 30%),
+                radial-gradient(circle at 90% 90%,
+                    rgba(235, 225, 255, 0.45),
+                    transparent 30%),
+                linear-gradient(
+                    135deg,
+                    #ffffff 0%,
+                    #f8fafc 50%,
+                    #f1f5f9 100%
+                );
+
+            color: #172033;
+            padding: 20px;
+        }
+
+        /* =========================================================
+           MAIN CONTAINER
+        ========================================================= */
+        .app {
+            width: min(100%, 1050px);
+            margin: auto;
+        }
+
+        /* =========================================================
+           HEADER
+        ========================================================= */
+        .header {
+            text-align: center;
+            padding: 25px 20px;
+            margin-bottom: 20px;
+
+            background: rgba(255,255,255,0.62);
+            border: 1px solid rgba(255,255,255,0.8);
+            border-radius: 25px;
+
+            box-shadow:
+                0 15px 45px rgba(30, 41, 59, 0.10),
+                inset 0 1px 0 rgba(255,255,255,0.8);
+
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
+        .part-title {
+            font-size: clamp(27px, 5vw, 42px);
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            font-size: clamp(18px, 3vw, 22px);
+            color: #64748b;
+        }
+
+        /* =========================================================
+           TOP STATUS
+        ========================================================= */
+        .status-bar {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .status-card {
+            background: rgba(255,255,255,0.68);
+            border: 1px solid rgba(255,255,255,0.85);
+            border-radius: 18px;
+            padding: 15px;
+            text-align: center;
+
+            box-shadow: 0 10px 30px rgba(30,41,59,0.08);
+
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .status-label {
+            display: block;
+            font-size: 17px;
+            color: #64748b;
+            margin-bottom: 5px;
+        }
+
+        .status-value {
+            display: block;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        /* =========================================================
+           PROGRESS
+        ========================================================= */
+        .progress-box {
+            margin-bottom: 20px;
+        }
+
+        .progress-track {
+            width: 100%;
+            height: 10px;
+            background: rgba(203,213,225,0.55);
+            border-radius: 20px;
             overflow: hidden;
         }
 
-        /* Gradient glowing animation on text */
-        .glow-text {
-            background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 50%, #38bdf8 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shine 6s linear infinite;
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            border-radius: 20px;
+
+            background: linear-gradient(
+                90deg,
+                #6366f1,
+                #8b5cf6,
+                #a855f7
+            );
+
+            transition: width 0.8s cubic-bezier(
+                0.22, 1, 0.36, 1
+            );
         }
 
-        @keyframes shine {
-            0% { background-position: 0% center; }
-            50% { background-position: 100% center; }
-            100% { background-position: 0% center; }
+        /* =========================================================
+           QUESTION CARD
+        ========================================================= */
+        .question-card {
+            background: rgba(255,255,255,0.72);
+            border: 1px solid rgba(255,255,255,0.9);
+            border-radius: 28px;
+
+            padding: clamp(22px, 5vw, 40px);
+
+            box-shadow:
+                0 20px 60px rgba(30,41,59,0.12),
+                inset 0 1px 0 rgba(255,255,255,0.9);
+
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+
+            overflow: hidden;
         }
 
-        /* Keyframes for initial entry: Floating in from below with opacity */
-        @keyframes floatIn {
+        /* =========================================================
+           QUESTION TRANSITION
+        ========================================================= */
+        .question-content {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .question-content.exit {
+            opacity: 0;
+            transform: translateY(-35px);
+            transition:
+                opacity 0.45s cubic-bezier(0.65, 0, 0.35, 1),
+                transform 0.45s cubic-bezier(0.65, 0, 0.35, 1);
+        }
+
+        .question-content.enter {
+            animation: premiumEnter 1.15s cubic-bezier(
+                0.16, 1, 0.3, 1
+            ) forwards;
+        }
+
+        @keyframes premiumEnter {
             0% {
                 opacity: 0;
-                transform: translateY(40px) scale(0.95);
-                filter: blur(8px);
+                transform:
+                    translateY(45px)
+                    scale(0.985);
+                filter: blur(5px);
             }
+
+            60% {
+                opacity: 0.8;
+                filter: blur(1px);
+            }
+
             100% {
                 opacity: 1;
-                transform: translateY(0) scale(1);
+                transform:
+                    translateY(0)
+                    scale(1);
                 filter: blur(0);
             }
         }
 
-        /* Continuous subtle float effect once arrived */
-        @keyframes subtleFloat {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-8px);
-            }
+        /* =========================================================
+           QUESTION NUMBER
+        ========================================================= */
+        .question-number {
+            display: inline-block;
+            padding: 7px 14px;
+            margin-bottom: 18px;
+
+            border-radius: 50px;
+
+            background: rgba(99,102,241,0.10);
+            color: #4f46e5;
+
+            font-size: 18px;
+            font-weight: bold;
         }
 
-        /* Animation class for Heading */
-        .animate-heading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards,
-                subtleFloat 6s ease-in-out 1.2s infinite;
+        /* =========================================================
+           QUESTION
+        ========================================================= */
+        .question {
+            font-size: clamp(21px, 4vw, 28px);
+            line-height: 1.45;
+            font-weight: bold;
+            margin-bottom: 8px;
         }
 
-        /* Animation class for Subheading (staggered delay) */
-        .animate-subheading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards,
-                subtleFloat 6s ease-in-out 1.55s infinite;
-            opacity: 0; /* Hidden until animation kicks in */
+        .question-bangla {
+            font-family: "Kalpurush", "Noto Sans Bengali", sans-serif;
+            font-size: clamp(18px, 3.5vw, 21px);
+            line-height: 1.7;
+            color: #64748b;
+            margin-bottom: 28px;
         }
 
-        /* Ambient background lighting */
-        .ambient-glow {
-            position: absolute;
-            width: 450px;
-            height: 450px;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(3, 7, 18, 0) 70%);
+        /* =========================================================
+           OPTIONS
+        ========================================================= */
+        .options {
+            display: grid;
+            gap: 14px;
+        }
+
+        .option {
+            width: 100%;
+            min-height: 65px;
+
+            display: flex;
+            align-items: center;
+            gap: 15px;
+
+            padding: 14px 18px;
+
+            border: 1px solid rgba(148,163,184,0.25);
+            border-radius: 17px;
+
+            background: rgba(248,250,252,0.72);
+
+            font-family: "Times New Roman", serif;
+            font-size: clamp(18px, 3vw, 22px);
+
+            cursor: pointer;
+            text-align: left;
+
+            transition:
+                transform 0.35s cubic-bezier(0.22,1,0.36,1),
+                box-shadow 0.35s ease,
+                background 0.35s ease,
+                border-color 0.35s ease;
+        }
+
+        .option:hover {
+            transform: translateX(7px);
+            box-shadow: 0 10px 25px rgba(30,41,59,0.09);
+            border-color: rgba(99,102,241,0.30);
+        }
+
+        .option-letter {
+            flex: 0 0 38px;
+            height: 38px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
             border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            transition: left 0.4s ease-out, top 0.4s ease-out;
+
+            background: rgba(99,102,241,0.10);
+            color: #4f46e5;
+
+            font-weight: bold;
+        }
+
+        .option.correct {
+            background: rgba(34,197,94,0.12);
+            border-color: rgba(34,197,94,0.45);
+            transform: translateX(7px);
+        }
+
+        .option.correct .option-letter {
+            background: #22c55e;
+            color: white;
+        }
+
+        .option.wrong {
+            background: rgba(239,68,68,0.10);
+            border-color: rgba(239,68,68,0.45);
+            transform: translateX(7px);
+        }
+
+        .option.wrong .option-letter {
+            background: #ef4444;
+            color: white;
+        }
+
+        .option.disabled {
+            cursor: default;
+        }
+
+        /* =========================================================
+           EXPLANATION
+        ========================================================= */
+        .explanation {
+            display: none;
+            margin-top: 25px;
+            padding: 20px;
+
+            border-radius: 18px;
+
+            background: rgba(248,250,252,0.80);
+            border-left: 5px solid #6366f1;
+
+            font-family: "Kalpurush",
+                         "Noto Sans Bengali",
+                         sans-serif;
+
+            font-size: 19px;
+            line-height: 1.85;
+
+            animation: explanationShow 0.75s cubic-bezier(
+                0.16, 1, 0.3, 1
+            );
+        }
+
+        .explanation.show {
+            display: block;
+        }
+
+        @keyframes explanationShow {
+            from {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .explanation strong {
+            color: #4338ca;
+        }
+
+        /* =========================================================
+           NAVIGATION
+        ========================================================= */
+        .navigation {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .nav-button {
+            min-height: 58px;
+
+            border: none;
+            border-radius: 17px;
+
+            font-family: "Times New Roman", serif;
+            font-size: 20px;
+            font-weight: bold;
+
+            cursor: pointer;
+
+            background: rgba(255,255,255,0.8);
+
+            box-shadow:
+                0 8px 25px rgba(30,41,59,0.09);
+
+            transition:
+                transform 0.3s cubic-bezier(
+                    0.22,1,0.36,1
+                ),
+                box-shadow 0.3s ease;
+        }
+
+        .nav-button:hover {
+            transform: translateY(-4px);
+            box-shadow:
+                0 14px 30px rgba(30,41,59,0.14);
+        }
+
+        .nav-button:active {
+            transform: scale(0.97);
+        }
+
+        .next-button {
+            background: linear-gradient(
+                135deg,
+                #6366f1,
+                #8b5cf6
+            );
+            color: white;
+        }
+
+        /* =========================================================
+           RESTART
+        ========================================================= */
+        .restart-box {
+            text-align: center;
+            margin-top: 18px;
+        }
+
+        .restart-button {
+            border: none;
+            background: transparent;
+            color: #6366f1;
+
+            font-family: "Times New Roman", serif;
+            font-size: 18px;
+
+            cursor: pointer;
+            padding: 8px 15px;
+        }
+
+        .restart-button:hover {
+            text-decoration: underline;
+        }
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
+        footer {
+            text-align: center;
+            margin-top: 25px;
+            color: #94a3b8;
+            font-size: 16px;
+        }
+
+        /* =========================================================
+           RESPONSIVE
+        ========================================================= */
+        @media (max-width: 650px) {
+
+            body {
+                padding: 10px;
+            }
+
+            .header {
+                padding: 20px 15px;
+                border-radius: 20px;
+            }
+
+            .status-bar {
+                gap: 8px;
+            }
+
+            .status-card {
+                padding: 12px 5px;
+                border-radius: 15px;
+            }
+
+            .status-label {
+                font-size: 14px;
+            }
+
+            .status-value {
+                font-size: 18px;
+            }
+
+            .question-card {
+                border-radius: 21px;
+                padding: 20px 15px;
+            }
+
+            .option {
+                min-height: 58px;
+                padding: 11px 12px;
+            }
+
+            .option:hover {
+                transform: none;
+            }
+
+            .navigation {
+                gap: 10px;
+            }
+
+            .nav-button {
+                min-height: 54px;
+                font-size: 18px;
+            }
         }
     </style>
 </head>
-<body class="min-h-screen flex items-center justify-center relative select-none px-4">
 
-    <!-- Ambient glow center element -->
-    <div id="glow" class="ambient-glow top-1/2 left-1/2"></div>
+<body>
 
-    <!-- Centered minimal content with entry animations -->
-    <main class="text-center z-10 space-y-6 max-w-3xl mx-auto py-8 px-4">
-        
-        <!-- Main English Title -->
-        <h1 class="animate-heading text-5xl sm:text-7xl md:text-8xl font-black tracking-tight glow-text font-['Inter'] drop-shadow-lg">
-            Coming Soon...
-        </h1>
+<div class="app">
 
-        <!-- Bengali Subheading -->
-        <p class="animate-subheading text-xl sm:text-3xl md:text-4xl font-semibold text-emerald-400/90 leading-relaxed tracking-wide drop-shadow">
-            ইনশাআল্লাহ, খুব শীঘ্রই ডাটা যোগ করা হবে।
-        </p>
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+    <header class="header">
+        <div class="part-title">
+            PART 10 — INTERJECTION
+        </div>
+
+        <div class="subtitle">
+            Infinity MCQ Practice System
+        </div>
+    </header>
+
+
+    <!-- =====================================================
+         STATUS
+    ====================================================== -->
+    <section class="status-bar">
+
+        <div class="status-card">
+            <span class="status-label">Question</span>
+            <span class="status-value" id="questionNumber">
+                1
+            </span>
+        </div>
+
+        <div class="status-card">
+            <span class="status-label">Score</span>
+            <span class="status-value" id="score">
+                0
+            </span>
+        </div>
+
+        <div class="status-card">
+            <span class="status-label">Accuracy</span>
+            <span class="status-value" id="accuracy">
+                0%
+            </span>
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         PROGRESS
+    ====================================================== -->
+    <div class="progress-box">
+        <div class="progress-track">
+            <div
+                class="progress-fill"
+                id="progressFill">
+            </div>
+        </div>
+    </div>
+
+
+    <!-- =====================================================
+         QUESTION CARD
+    ====================================================== -->
+    <main class="question-card">
+
+        <div
+            class="question-content"
+            id="questionContent">
+
+            <div
+                class="question-number"
+                id="questionBadge">
+                Question 1
+            </div>
+
+            <div
+                class="question"
+                id="question">
+            </div>
+
+            <div
+                class="question-bangla"
+                id="questionBangla">
+            </div>
+
+            <div
+                class="options"
+                id="options">
+            </div>
+
+            <div
+                class="explanation"
+                id="explanation">
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             NAVIGATION
+        ================================================== -->
+        <div class="navigation">
+
+            <button
+                class="nav-button"
+                id="previousButton">
+                ← Previous
+            </button>
+
+            <button
+                class="nav-button next-button"
+                id="nextButton">
+                Next →
+            </button>
+
+        </div>
 
     </main>
 
-    <script>
-        const glow = document.getElementById('glow');
 
-        // Mouse move interactive glow background
-        window.addEventListener('mousemove', (e) => {
-            glow.style.left = e.clientX + 'px';
-            glow.style.top = e.clientY + 'px';
-        });
+    <!-- =====================================================
+         RESTART
+    ====================================================== -->
+    <div class="restart-box">
 
-        // Touch move interactive glow background for mobile screens
-        window.addEventListener('touchmove', (e) => {
-            if (e.touches.length > 0) {
-                glow.style.left = e.touches[0].clientX + 'px';
-                glow.style.top = e.touches[0].clientY + 'px';
+        <button
+            class="restart-button"
+            id="restartButton">
+            ↻ Restart Practice
+        </button>
+
+    </div>
+
+
+    <footer>
+        Part 10 — Interjection • Infinity Practice
+    </footer>
+
+</div>
+
+
+<script>
+/* ============================================================
+   PART 10 — INTERJECTION
+   INFINITY MCQ GENERATOR
+============================================================ */
+
+
+/* ============================================================
+   NAME LIST
+============================================================ */
+
+const names = [
+    "Firoz",
+    "Fatiha",
+    "Fatema",
+    "Jui",
+    "Ema",
+    "Rupa",
+    "Moksed",
+    "Ferjousi",
+    "Jannati",
+    "Mini",
+    "Miraz",
+    "Mujahid",
+    "Milon",
+    "Hannan",
+    "Joba",
+    "Tanzila",
+    "Rina",
+    "Tania",
+    "Taslima"
+];
+
+
+/* ============================================================
+   INTERJECTION DATA
+============================================================ */
+
+const interjections = [
+
+    {
+        word: "Hurrah!",
+        type: "Joy",
+        meaning: "আনন্দ বা বিজয় প্রকাশ করে।"
+    },
+
+    {
+        word: "Alas!",
+        type: "Sorrow",
+        meaning: "দুঃখ বা শোক প্রকাশ করে।"
+    },
+
+    {
+        word: "Wow!",
+        type: "Wonder",
+        meaning: "বিস্ময় বা মুগ্ধতা প্রকাশ করে।"
+    },
+
+    {
+        word: "Oh!",
+        type: "Surprise / Pain",
+        meaning: "বিস্ময়, কষ্ট বা আকস্মিক অনুভূতি প্রকাশ করতে পারে।"
+    },
+
+    {
+        word: "Ah!",
+        type: "Relief / Pleasure",
+        meaning: "স্বস্তি, আনন্দ বা উপলব্ধি প্রকাশ করতে পারে।"
+    },
+
+    {
+        word: "Bravo!",
+        type: "Praise",
+        meaning: "প্রশংসা বা উৎসাহ প্রকাশ করে।"
+    },
+
+    {
+        word: "Hush!",
+        type: "Silence",
+        meaning: "চুপ থাকতে বা নীরব হতে বলা বোঝায়।"
+    },
+
+    {
+        word: "Fie!",
+        type: "Disapproval",
+        meaning: "নিন্দা বা তীব্র অসন্তোষ প্রকাশ করে।"
+    },
+
+    {
+        word: "Pooh!",
+        type: "Contempt",
+        meaning: "তাচ্ছিল্য বা অবজ্ঞা প্রকাশ করে।"
+    },
+
+    {
+        word: "Hurrah!",
+        type: "Joy",
+        meaning: "আনন্দ বা বিজয়ের উচ্ছ্বাস প্রকাশ করে।"
+    },
+
+    {
+        word: "Ouch!",
+        type: "Pain",
+        meaning: "ব্যথা প্রকাশ করে।"
+    },
+
+    {
+        word: "Hey!",
+        type: "Calling",
+        meaning: "কাউকে ডাকতে বা দৃষ্টি আকর্ষণ করতে ব্যবহৃত হয়।"
+    },
+
+    {
+        word: "Well!",
+        type: "Surprise",
+        meaning: "বিস্ময় বা কথার শুরুতে অনুভূতি প্রকাশ করতে পারে।"
+    },
+
+    {
+        word: "Dear!",
+        type: "Surprise",
+        meaning: "বিস্ময় বা উদ্বেগ প্রকাশ করতে ব্যবহৃত হতে পারে।"
+    },
+
+    {
+        word: "Congratulations!",
+        type: "Joy",
+        meaning: "অভিনন্দন বা আনন্দ প্রকাশ করে।"
+    }
+
+];
+
+
+/* ============================================================
+   QUESTION STATE
+============================================================ */
+
+let currentQuestion = 1;
+let score = 0;
+let answered = 0;
+
+let history = [];
+let currentQuestionData = null;
+
+
+/* ============================================================
+   DOM
+============================================================ */
+
+const questionContent =
+    document.getElementById("questionContent");
+
+const questionElement =
+    document.getElementById("question");
+
+const questionBangla =
+    document.getElementById("questionBangla");
+
+const optionsElement =
+    document.getElementById("options");
+
+const explanationElement =
+    document.getElementById("explanation");
+
+const questionNumberElement =
+    document.getElementById("questionNumber");
+
+const questionBadge =
+    document.getElementById("questionBadge");
+
+const scoreElement =
+    document.getElementById("score");
+
+const accuracyElement =
+    document.getElementById("accuracy");
+
+const progressFill =
+    document.getElementById("progressFill");
+
+const previousButton =
+    document.getElementById("previousButton");
+
+const nextButton =
+    document.getElementById("nextButton");
+
+const restartButton =
+    document.getElementById("restartButton");
+
+
+/* ============================================================
+   RANDOM HELPERS
+============================================================ */
+
+function randomItem(array) {
+    return array[
+        Math.floor(Math.random() * array.length)
+    ];
+}
+
+
+function shuffle(array) {
+
+    const copy = [...array];
+
+    for (
+        let i = copy.length - 1;
+        i > 0;
+        i--
+    ) {
+
+        const j =
+            Math.floor(Math.random() * (i + 1));
+
+        [copy[i], copy[j]] =
+            [copy[j], copy[i]];
+    }
+
+    return copy;
+}
+
+
+/* ============================================================
+   GET RANDOM NAME
+============================================================ */
+
+function randomName() {
+    return randomItem(names);
+}
+
+
+/* ============================================================
+   GET WRONG INTERJECTIONS
+============================================================ */
+
+function getWrongWords(correctWord, count = 3) {
+
+    return shuffle(
+        interjections
+            .filter(item =>
+                item.word !== correctWord
+            )
+            .map(item => item.word)
+    ).slice(0, count);
+}
+
+
+/* ============================================================
+   QUESTION GENERATOR
+============================================================ */
+
+function generateQuestion() {
+
+    const types = [
+        generateMeaningQuestion,
+        generateFillBlankQuestion,
+        generateIdentificationQuestion,
+        generateSituationQuestion,
+        generateTypeQuestion,
+        generateUsageQuestion,
+        generatePunctuationQuestion
+    ];
+
+    return randomItem(types)();
+}
+
+
+/* ============================================================
+   TYPE 1 — MEANING
+============================================================ */
+
+function generateMeaningQuestion() {
+
+    const item = randomItem(interjections);
+
+    const options = shuffle([
+        item.type,
+        ...shuffle(
+            interjections
+                .filter(x =>
+                    x.type !== item.type
+                )
+                .map(x => x.type)
+        ).slice(0, 3)
+    ]);
+
+    return {
+
+        question:
+            `What does "${item.word}" express?`,
+
+        bangla:
+            `("${item.word}" সাধারণত কী ধরনের অনুভূতি প্রকাশ করে?)`,
+
+        options,
+
+        answer:
+            item.type,
+
+        explanation:
+            `<strong>${item.word}</strong> একটি Interjection। এটি <strong>${item.type}</strong> প্রকাশ করে।<br><br>
+             তাই সঠিক উত্তর হলো <strong>${item.type}</strong>।`
+    };
+}
+
+
+/* ============================================================
+   TYPE 2 — FILL IN THE BLANK
+============================================================ */
+
+function generateFillBlankQuestion() {
+
+    const item = randomItem(interjections);
+
+    let sentence = "";
+
+    if (item.type === "Joy") {
+
+        sentence =
+            `${randomName()} won the competition. ______!`;
+
+    } else if (item.type === "Sorrow") {
+
+        sentence =
+            `${randomName()} heard the sad news. ______!`;
+
+    } else if (item.type === "Pain") {
+
+        sentence =
+            `${randomName()} hurt a finger. ______!`;
+
+    } else if (item.type === "Praise") {
+
+        sentence =
+            `${randomName()} performed very well. ______!`;
+
+    } else if (item.type === "Silence") {
+
+        sentence =
+            `______! The baby is sleeping.`;
+
+    } else if (item.type === "Wonder") {
+
+        sentence =
+            `${randomName()} saw a beautiful rainbow. ______!`;
+
+    } else if (item.type === "Calling") {
+
+        sentence =
+            `______! ${randomName()}, please come here.`;
+
+    } else {
+
+        sentence =
+            `${randomName()} suddenly felt something unusual. ______!`;
+    }
+
+    const options = shuffle([
+        item.word,
+        ...getWrongWords(item.word)
+    ]);
+
+    return {
+
+        question:
+            `Choose the correct interjection: ${sentence}`,
+
+        bangla:
+            `(বাক্যের শূন্যস্থানে সঠিক Interjection বসাও।)`,
+
+        options,
+
+        answer:
+            item.word,
+
+        explanation:
+            `<strong>${item.word}</strong> এখানে ব্যবহার করা হয়েছে কারণ এটি <strong>${item.type}</strong> প্রকাশ করে।<br><br>
+             বাক্যের পরিস্থিতির সঙ্গে এই অনুভূতিটিই সবচেয়ে উপযুক্ত।`
+    };
+}
+
+
+/* ============================================================
+   TYPE 3 — IDENTIFICATION
+============================================================ */
+
+function generateIdentificationQuestion() {
+
+    const item = randomItem(interjections);
+    const name = randomName();
+
+    let sentence;
+
+    if (item.type === "Joy") {
+
+        sentence =
+            `${item.word} ${name} has won the prize!`;
+
+    } else if (item.type === "Sorrow") {
+
+        sentence =
+            `${item.word} ${name} lost the match.`;
+
+    } else if (item.type === "Praise") {
+
+        sentence =
+            `${item.word} ${name}! You performed excellently.`;
+
+    } else if (item.type === "Pain") {
+
+        sentence =
+            `${item.word} That was painful!`;
+
+    } else if (item.type === "Silence") {
+
+        sentence =
+            `${item.word} Everyone, please be quiet.`;
+
+    } else {
+
+        sentence =
+            `${item.word} ${name} saw something unexpected.`;
+    }
+
+    const options = shuffle([
+        "Noun",
+        "Verb",
+        "Adjective",
+        "Interjection"
+    ]);
+
+    return {
+
+        question:
+            `What part of speech is "${item.word}" in this sentence: "${sentence}"?`,
+
+        bangla:
+            `("${item.word}" এখানে কোন Parts of Speech?)`,
+
+        options,
+
+        answer:
+            "Interjection",
+
+        explanation:
+            `<strong>${item.word}</strong> এখানে কোনো ব্যক্তি, বস্তু বা কাজের নাম প্রকাশ করছে না। এটি সরাসরি একটি অনুভূতি বা আবেগ প্রকাশ করছে।<br><br>
+             তাই এটি একটি <strong>Interjection</strong>।`
+    };
+}
+
+
+/* ============================================================
+   TYPE 4 — SITUATION
+============================================================ */
+
+function generateSituationQuestion() {
+
+    const situations = [
+
+        {
+            situation:
+                `${randomName()} has just won a difficult competition.`,
+
+            correct: "Hurrah!"
+        },
+
+        {
+            situation:
+                `${randomName()} received very sad news.`,
+
+            correct: "Alas!"
+        },
+
+        {
+            situation:
+                `${randomName()} saw an amazing scene.`,
+
+            correct: "Wow!"
+        },
+
+        {
+            situation:
+                `${randomName()} suddenly felt severe pain.`,
+
+            correct: "Ouch!"
+        },
+
+        {
+            situation:
+                `${randomName()} did an excellent job.`,
+
+            correct: "Bravo!"
+        },
+
+        {
+            situation:
+                `People are making too much noise and should remain silent.`,
+
+            correct: "Hush!"
+        },
+
+        {
+            situation:
+                `${randomName()} wants to call someone.`,
+
+            correct: "Hey!"
+        }
+
+    ];
+
+    const situation =
+        randomItem(situations);
+
+    const options = shuffle([
+        situation.correct,
+        ...getWrongWords(
+            situation.correct
+        )
+    ]);
+
+    return {
+
+        question:
+            `Which interjection is most appropriate? ${situation.situation}`,
+
+        bangla:
+            `(উল্লিখিত পরিস্থিতির জন্য কোন Interjection সবচেয়ে উপযুক্ত?)`,
+
+        options,
+
+        answer:
+            situation.correct,
+
+        explanation:
+            `এই পরিস্থিতিতে <strong>${situation.correct}</strong> ব্যবহার করা সবচেয়ে উপযুক্ত।<br><br>
+             কারণ <strong>${situation.correct}</strong> এই ধরনের অনুভূতি বা পরিস্থিতি প্রকাশ করার জন্য ব্যবহৃত হয়।`
+    };
+}
+
+
+/* ============================================================
+   TYPE 5 — TYPE OF INTERJECTION
+============================================================ */
+
+function generateTypeQuestion() {
+
+    const item = randomItem(interjections);
+
+    const types = [
+        "Joy",
+        "Sorrow",
+        "Wonder",
+        "Pain",
+        "Praise",
+        "Silence",
+        "Calling",
+        "Disapproval",
+        "Contempt",
+        "Surprise"
+    ];
+
+    const options = shuffle([
+        item.type,
+        ...shuffle(
+            types.filter(
+                type => type !== item.type
+            )
+        ).slice(0, 3)
+    ]);
+
+    return {
+
+        question:
+            `What type of interjection is "${item.word}"?`,
+
+        bangla:
+            `("${item.word}" কোন ধরনের Interjection?)`,
+
+        options,
+
+        answer:
+            item.type,
+
+        explanation:
+            `<strong>${item.word}</strong> হলো <strong>${item.type}</strong>-এর Interjection।<br><br>
+             এই শব্দটি মূলত ${item.meaning}`
+    };
+}
+
+
+/* ============================================================
+   TYPE 6 — USAGE
+============================================================ */
+
+function generateUsageQuestion() {
+
+    const item = randomItem(interjections);
+
+    const correctSentence =
+        createCorrectSentence(item);
+
+    const wrongSentences = [
+        `${randomName()} is a teacher ${item.word}.`,
+        `${randomName()} reads ${item.word} a book.`,
+        `${randomName()} ${item.word} went to school.`
+    ];
+
+    const options = shuffle([
+        correctSentence,
+        ...wrongSentences
+    ]);
+
+    return {
+
+        question:
+            `Which sentence uses "${item.word}" correctly?`,
+
+        bangla:
+            `("${item.word}" কোন বাক্যে সঠিকভাবে ব্যবহৃত হয়েছে?)`,
+
+        options,
+
+        answer:
+            correctSentence,
+
+        explanation:
+            `<strong>${item.word}</strong> একটি Interjection। এটি বাক্যের শুরুতে বা প্রয়োজনীয় স্থানে অনুভূতি প্রকাশ করতে ব্যবহৃত হয়েছে।<br><br>
+             তাই সঠিক বাক্যটি হলো: <strong>${correctSentence}</strong>`
+    };
+}
+
+
+/* ============================================================
+   CREATE CORRECT SENTENCE
+============================================================ */
+
+function createCorrectSentence(item) {
+
+    const name = randomName();
+
+    switch (item.word) {
+
+        case "Hurrah!":
+            return `Hurrah! ${name} has won the prize.`;
+
+        case "Alas!":
+            return `Alas! ${name} missed the opportunity.`;
+
+        case "Wow!":
+            return `Wow! ${name} has done something amazing.`;
+
+        case "Oh!":
+            return `Oh! I did not expect that.`;
+
+        case "Ah!":
+            return `Ah! Now I understand the lesson.`;
+
+        case "Bravo!":
+            return `Bravo! ${name} performed excellently.`;
+
+        case "Hush!":
+            return `Hush! The baby is sleeping.`;
+
+        case "Fie!":
+            return `Fie! Such behavior is shameful.`;
+
+        case "Pooh!":
+            return `Pooh! I do not care about that.`;
+
+        case "Ouch!":
+            return `Ouch! That really hurts.`;
+
+        case "Hey!":
+            return `Hey! ${name}, wait for me.`;
+
+        case "Well!":
+            return `Well! That is an interesting idea.`;
+
+        case "Dear!":
+            return `Dear! What has happened here?`;
+
+        case "Congratulations!":
+            return `Congratulations! ${name} has succeeded.`;
+
+        default:
+            return `${item.word} What a surprise!`;
+    }
+}
+
+
+/* ============================================================
+   TYPE 7 — PUNCTUATION
+============================================================ */
+
+function generatePunctuationQuestion() {
+
+    const item = randomItem(interjections);
+
+    const name = randomName();
+
+    const correct =
+        `${item.word} ${name}, that was wonderful!`;
+
+    const options = shuffle([
+        correct,
+        `${item.word} ${name} that was wonderful.`,
+        `${item.word}, ${name} that was wonderful`,
+        `${item.word} ${name}; that was wonderful`
+    ]);
+
+    return {
+
+        question:
+            `Which sentence has the correct punctuation?`,
+
+        bangla:
+            `(কোন বাক্যে Interjection-এর সঠিক punctuation ব্যবহৃত হয়েছে?)`,
+
+        options,
+
+        answer:
+            correct,
+
+        explanation:
+            `<strong>${item.word}</strong> একটি Interjection। Interjection-এর পরে সাধারণত আবেগকে স্পষ্টভাবে প্রকাশ করতে <strong>exclamation mark (!)</strong> ব্যবহার করা হয়।<br><br>
+             তাই সঠিক বাক্যটি হলো: <strong>${correct}</strong>`
+    };
+}
+
+
+/* ============================================================
+   RENDER QUESTION
+============================================================ */
+
+function renderQuestion(data, animate = true) {
+
+    currentQuestionData = data;
+
+    if (animate) {
+
+        questionContent.classList.remove("enter");
+
+        questionContent.classList.add("exit");
+
+        setTimeout(() => {
+
+            updateQuestionHTML(data);
+
+            questionContent.classList.remove("exit");
+
+            void questionContent.offsetWidth;
+
+            questionContent.classList.add("enter");
+
+        }, 450);
+
+    } else {
+
+        updateQuestionHTML(data);
+    }
+}
+
+
+/* ============================================================
+   UPDATE HTML
+============================================================ */
+
+function updateQuestionHTML(data) {
+
+    questionNumberElement.textContent =
+        currentQuestion;
+
+    questionBadge.textContent =
+        `Question ${currentQuestion}`;
+
+    questionElement.textContent =
+        data.question;
+
+    questionBangla.textContent =
+        data.bangla;
+
+    optionsElement.innerHTML = "";
+
+    explanationElement.innerHTML = "";
+    explanationElement.classList.remove("show");
+
+    const letters = [
+        "A",
+        "B",
+        "C",
+        "D"
+    ];
+
+    data.options.forEach(
+        (optionText, index) => {
+
+            const button =
+                document.createElement("button");
+
+            button.className = "option";
+
+            button.innerHTML = `
+                <span class="option-letter">
+                    ${letters[index]}
+                </span>
+
+                <span>
+                    ${optionText}
+                </span>
+            `;
+
+            button.addEventListener(
+                "click",
+                () => selectAnswer(
+                    optionText,
+                    button
+                )
+            );
+
+            optionsElement.appendChild(button);
+        }
+    );
+
+    updateProgress();
+}
+
+
+/* ============================================================
+   SELECT ANSWER
+============================================================ */
+
+function selectAnswer(
+    selected,
+    clickedButton
+) {
+
+    const allOptions =
+        document.querySelectorAll(".option");
+
+    if (
+        allOptions[0]?.classList.contains("disabled")
+    ) {
+        return;
+    }
+
+    allOptions.forEach(
+        button =>
+            button.classList.add("disabled")
+    );
+
+    answered++;
+
+    const correct =
+        currentQuestionData.answer;
+
+    const isCorrect =
+        selected === correct;
+
+    if (isCorrect) {
+
+        score++;
+
+        clickedButton.classList.add(
+            "correct"
+        );
+
+    } else {
+
+        clickedButton.classList.add(
+            "wrong"
+        );
+
+        allOptions.forEach(
+            button => {
+
+                const text =
+                    button
+                        .querySelector(
+                            "span:last-child"
+                        )
+                        .textContent
+                        .trim();
+
+                if (text === correct) {
+
+                    button.classList.add(
+                        "correct"
+                    );
+                }
             }
+        );
+    }
+
+    explanationElement.innerHTML =
+        `
+        <strong>
+            ${isCorrect
+                ? "✓ Correct Answer"
+                : "✗ Incorrect Answer"
+            }
+        </strong>
+        <br><br>
+
+        ${currentQuestionData.explanation}
+        `;
+
+    explanationElement.classList.add(
+        "show"
+    );
+
+    updateScore();
+}
+
+
+/* ============================================================
+   NEXT
+============================================================ */
+
+nextButton.addEventListener(
+    "click",
+    () => {
+
+        history.push({
+            question: currentQuestionData,
+            number: currentQuestion
         });
-    </script>
+
+        currentQuestion++;
+
+        const newQuestion =
+            generateQuestion();
+
+        renderQuestion(
+            newQuestion,
+            true
+        );
+
+        updateScore();
+    }
+);
+
+
+/* ============================================================
+   PREVIOUS
+============================================================ */
+
+previousButton.addEventListener(
+    "click",
+    () => {
+
+        if (history.length === 0) {
+            return;
+        }
+
+        const previous =
+            history.pop();
+
+        currentQuestion =
+            previous.number;
+
+        renderQuestion(
+            previous.question,
+            true
+        );
+    }
+);
+
+
+/* ============================================================
+   UPDATE SCORE
+============================================================ */
+
+function updateScore() {
+
+    scoreElement.textContent =
+        score;
+
+    questionNumberElement.textContent =
+        currentQuestion;
+
+    const accuracy =
+        answered === 0
+            ? 0
+            : Math.round(
+                (score / answered) * 100
+            );
+
+    accuracyElement.textContent =
+        `${accuracy}%`;
+}
+
+
+/* ============================================================
+   PROGRESS
+============================================================ */
+
+function updateProgress() {
+
+    /*
+       Infinite system:
+       Progress represents the current practice position
+       within a visual 20-question cycle.
+    */
+
+    const cycle =
+        ((currentQuestion - 1) % 20) + 1;
+
+    const percentage =
+        (cycle / 20) * 100;
+
+    progressFill.style.width =
+        `${percentage}%`;
+}
+
+
+/* ============================================================
+   RESTART
+============================================================ */
+
+restartButton.addEventListener(
+    "click",
+    () => {
+
+        currentQuestion = 1;
+        score = 0;
+        answered = 0;
+        history = [];
+
+        const firstQuestion =
+            generateQuestion();
+
+        renderQuestion(
+            firstQuestion,
+            true
+        );
+
+        updateScore();
+    }
+);
+
+
+/* ============================================================
+   INITIAL LOAD
+============================================================ */
+
+const firstQuestion =
+    generateQuestion();
+
+renderQuestion(
+    firstQuestion,
+    false
+);
+
+updateScore();
+
+</script>
+
 </body>
 </html>

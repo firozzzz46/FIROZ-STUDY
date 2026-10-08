@@ -1,128 +1,1570 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Google Fonts for Bengali & English -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Inter:wght@700;900&display=swap" rel="stylesheet">
+<title>PART 7 - ADVERB | Infinity MCQ Practice</title>
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+<style>
+/* =========================================================
+   PART 7 - ADVERB
+   INFINITY MCQ PRACTICE SYSTEM
+   Single File HTML + CSS + JavaScript
+========================================================= */
 
-    <style>
-        body {
-            font-family: 'Hind Siliguri', 'Inter', sans-serif;
-            background-color: #030712;
-            overflow: hidden;
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        /* Gradient glowing animation on text */
-        .glow-text {
-            background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 50%, #38bdf8 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shine 6s linear infinite;
-        }
+html {
+    scroll-behavior: smooth;
+}
 
-        @keyframes shine {
-            0% { background-position: 0% center; }
-            50% { background-position: 100% center; }
-            100% { background-position: 0% center; }
-        }
+body {
+    min-height: 100vh;
+    padding: 25px 15px 45px;
 
-        /* Keyframes for initial entry: Floating in from below with opacity */
-        @keyframes floatIn {
-            0% {
-                opacity: 0;
-                transform: translateY(40px) scale(0.95);
-                filter: blur(8px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-                filter: blur(0);
-            }
-        }
+    font-family: "Times New Roman", serif;
 
-        /* Continuous subtle float effect once arrived */
-        @keyframes subtleFloat {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-8px);
-            }
-        }
+    background:
+        radial-gradient(circle at 10% 10%, rgba(210, 225, 255, 0.35), transparent 30%),
+        radial-gradient(circle at 90% 90%, rgba(220, 240, 230, 0.35), transparent 30%),
+        linear-gradient(135deg, #ffffff, #f8fafc, #f4f7fb);
 
-        /* Animation class for Heading */
-        .animate-heading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards,
-                subtleFloat 6s ease-in-out 1.2s infinite;
-        }
+    color: #20242a;
+}
 
-        /* Animation class for Subheading (staggered delay) */
-        .animate-subheading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards,
-                subtleFloat 6s ease-in-out 1.55s infinite;
-            opacity: 0; /* Hidden until animation kicks in */
-        }
+/* Main Container */
+.container {
+    width: min(100%, 1050px);
+    margin: auto;
+}
 
-        /* Ambient background lighting */
-        .ambient-glow {
-            position: absolute;
-            width: 450px;
-            height: 450px;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(3, 7, 18, 0) 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            transition: left 0.4s ease-out, top 0.4s ease-out;
-        }
-    </style>
+/* =========================================================
+   HEADER
+========================================================= */
+
+.header {
+    text-align: center;
+    margin-bottom: 25px;
+
+    padding: 28px 20px;
+
+    border: 1px solid rgba(255,255,255,0.75);
+    border-radius: 25px;
+
+    background: rgba(255,255,255,0.62);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    box-shadow:
+        0 15px 45px rgba(30, 45, 70, 0.10),
+        inset 0 1px 0 rgba(255,255,255,0.8);
+
+    animation: headerIn 1.2s cubic-bezier(.16,1,.3,1);
+}
+
+@keyframes headerIn {
+    from {
+        opacity: 0;
+        transform: translateY(-35px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.header h1 {
+    font-size: clamp(30px, 6vw, 48px);
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+.header p {
+    font-size: 20px;
+    color: #626b76;
+}
+
+/* =========================================================
+   PROGRESS AREA
+========================================================= */
+
+.progress-area {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+
+    margin-bottom: 18px;
+
+    padding: 15px 20px;
+
+    border-radius: 18px;
+
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(15px);
+
+    box-shadow: 0 10px 30px rgba(30,40,60,0.08);
+}
+
+.progress-text,
+.score {
+    font-size: 19px;
+    font-weight: bold;
+}
+
+.progress-bar {
+    flex: 1;
+    height: 9px;
+
+    background: #e8edf3;
+
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    width: 0%;
+    height: 100%;
+
+    background: linear-gradient(90deg, #6478ff, #7b61ff);
+
+    border-radius: inherit;
+
+    transition: width 0.8s cubic-bezier(.16,1,.3,1);
+}
+
+/* =========================================================
+   QUESTION CARD
+========================================================= */
+
+.question-card {
+    padding: clamp(22px, 5vw, 42px);
+
+    border-radius: 28px;
+
+    background: rgba(255,255,255,0.68);
+
+    border: 1px solid rgba(255,255,255,0.9);
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    box-shadow:
+        0 25px 60px rgba(25,40,65,0.10),
+        0 5px 18px rgba(25,40,65,0.05);
+
+    overflow: hidden;
+}
+
+/* =========================================================
+   QUESTION ANIMATION
+========================================================= */
+
+.question-content {
+    animation: questionIn 1.05s cubic-bezier(.16,1,.3,1);
+}
+
+@keyframes questionIn {
+    0% {
+        opacity: 0;
+        transform: translateX(45px) translateY(10px);
+        filter: blur(5px);
+    }
+
+    45% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0) translateY(0);
+        filter: blur(0);
+    }
+}
+
+.question-number {
+    display: inline-block;
+
+    margin-bottom: 17px;
+
+    padding: 7px 14px;
+
+    border-radius: 50px;
+
+    background: #eef1ff;
+    color: #5264d9;
+
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.question {
+    font-size: clamp(21px, 3vw, 27px);
+    line-height: 1.55;
+
+    margin-bottom: 8px;
+
+    font-weight: bold;
+}
+
+.question-bangla {
+    font-family: "Kalpurush", "Noto Sans Bengali", sans-serif;
+
+    font-size: 18px;
+    line-height: 1.7;
+
+    color: #68717c;
+
+    margin-bottom: 28px;
+}
+
+/* =========================================================
+   OPTIONS
+========================================================= */
+
+.options {
+    display: grid;
+    gap: 14px;
+}
+
+.option {
+    width: 100%;
+
+    padding: 17px 20px;
+
+    border: 1px solid rgba(160,170,185,0.28);
+
+    border-radius: 17px;
+
+    background: rgba(255,255,255,0.72);
+
+    color: #20242a;
+
+    font-family: "Times New Roman", serif;
+    font-size: 21px;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.35s cubic-bezier(.16,1,.3,1),
+        box-shadow 0.35s ease,
+        background 0.35s ease,
+        border 0.35s ease;
+}
+
+.option:hover {
+    transform: translateX(7px);
+
+    box-shadow:
+        0 10px 25px rgba(35,50,80,0.10);
+
+    background: #ffffff;
+}
+
+.option:active {
+    transform: scale(0.985);
+}
+
+.option.correct {
+    background: #e9f9ee;
+    border-color: #55b873;
+
+    color: #16713a;
+
+    box-shadow: 0 8px 25px rgba(55,170,95,0.13);
+}
+
+.option.wrong {
+    background: #fff0f0;
+    border-color: #e56b6b;
+
+    color: #a52b2b;
+
+    box-shadow: 0 8px 25px rgba(220,70,70,0.12);
+}
+
+.option.disabled {
+    cursor: default;
+}
+
+.option.disabled:hover {
+    transform: none;
+}
+
+/* =========================================================
+   EXPLANATION
+========================================================= */
+
+.explanation {
+    display: none;
+
+    margin-top: 25px;
+    padding: 23px;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(245,247,255,0.95),
+            rgba(250,252,255,0.9)
+        );
+
+    border-left: 5px solid #6878e8;
+
+    animation: explanationIn 0.75s cubic-bezier(.16,1,.3,1);
+}
+
+.explanation.show {
+    display: block;
+}
+
+@keyframes explanationIn {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.explanation-title {
+    font-family: Arial, sans-serif;
+
+    font-size: 20px;
+    font-weight: bold;
+
+    margin-bottom: 10px;
+}
+
+.explanation-text {
+    font-family: "Kalpurush", "Noto Sans Bengali", sans-serif;
+
+    font-size: 19px;
+    line-height: 1.9;
+}
+
+/* =========================================================
+   RESULT / CONTROL
+========================================================= */
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+
+    margin-top: 24px;
+}
+
+.control-btn {
+    flex: 1;
+
+    border: none;
+    border-radius: 16px;
+
+    padding: 16px 22px;
+
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    background: #ffffff;
+
+    box-shadow: 0 10px 25px rgba(30,40,60,0.09);
+
+    transition:
+        transform 0.35s cubic-bezier(.16,1,.3,1),
+        box-shadow 0.35s ease;
+}
+
+.control-btn:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 16px 32px rgba(30,40,60,0.13);
+}
+
+.next-btn {
+    color: white;
+
+    background:
+        linear-gradient(135deg, #6478ff, #765cf5);
+}
+
+.previous-btn {
+    color: #46505d;
+}
+
+.control-btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer {
+    text-align: center;
+
+    margin-top: 25px;
+
+    color: #7a838e;
+
+    font-size: 16px;
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 650px) {
+
+    body {
+        padding: 12px 10px 30px;
+    }
+
+    .header {
+        padding: 23px 15px;
+        border-radius: 20px;
+    }
+
+    .header p {
+        font-size: 17px;
+    }
+
+    .progress-area {
+        padding: 13px 14px;
+        gap: 10px;
+    }
+
+    .progress-text,
+    .score {
+        font-size: 15px;
+    }
+
+    .question-card {
+        padding: 21px 15px;
+        border-radius: 21px;
+    }
+
+    .question {
+        font-size: 21px;
+    }
+
+    .question-bangla {
+        font-size: 17px;
+    }
+
+    .option {
+        font-size: 19px;
+        padding: 15px;
+    }
+
+    .explanation {
+        padding: 18px;
+    }
+
+    .explanation-text {
+        font-size: 18px;
+    }
+
+    .controls {
+        flex-direction: column;
+    }
+
+    .control-btn {
+        width: 100%;
+    }
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+</style>
 </head>
-<body class="min-h-screen flex items-center justify-center relative select-none px-4">
 
-    <!-- Ambient glow center element -->
-    <div id="glow" class="ambient-glow top-1/2 left-1/2"></div>
+<body>
 
-    <!-- Centered minimal content with entry animations -->
-    <main class="text-center z-10 space-y-6 max-w-3xl mx-auto py-8 px-4">
-        
-        <!-- Main English Title -->
-        <h1 class="animate-heading text-5xl sm:text-7xl md:text-8xl font-black tracking-tight glow-text font-['Inter'] drop-shadow-lg">
-            Coming Soon...
-        </h1>
+<div class="container">
 
-        <!-- Bengali Subheading -->
-        <p class="animate-subheading text-xl sm:text-3xl md:text-4xl font-semibold text-emerald-400/90 leading-relaxed tracking-wide drop-shadow">
-            ইনশাআল্লাহ, খুব শীঘ্রই ডাটা যোগ করা হবে।
-        </p>
+    <!-- HEADER -->
+    <header class="header">
+        <h1>PART 7 — ADVERB</h1>
+        <p>Infinity MCQ Practice System</p>
+    </header>
+
+    <!-- PROGRESS -->
+    <div class="progress-area">
+
+        <div class="progress-text">
+            Question <span id="questionNo">1</span>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+        <div class="score">
+            Score: <span id="score">0</span>
+        </div>
+
+    </div>
+
+    <!-- QUESTION -->
+    <main class="question-card">
+
+        <div class="question-content" id="questionContent">
+
+            <div class="question-number" id="questionType">
+                Adverb
+            </div>
+
+            <div class="question" id="questionText"></div>
+
+            <div class="question-bangla" id="questionBangla"></div>
+
+            <div class="options" id="options"></div>
+
+            <div class="explanation" id="explanation">
+
+                <div class="explanation-title">
+                    Explanation
+                </div>
+
+                <div class="explanation-text" id="explanationText"></div>
+
+            </div>
+
+        </div>
 
     </main>
 
-    <script>
-        const glow = document.getElementById('glow');
+    <!-- CONTROLS -->
+    <div class="controls">
 
-        // Mouse move interactive glow background
-        window.addEventListener('mousemove', (e) => {
-            glow.style.left = e.clientX + 'px';
-            glow.style.top = e.clientY + 'px';
-        });
+        <button
+            class="control-btn previous-btn"
+            id="previousBtn"
+            onclick="previousQuestion()"
+        >
+            Previous
+        </button>
 
-        // Touch move interactive glow background for mobile screens
-        window.addEventListener('touchmove', (e) => {
-            if (e.touches.length > 0) {
-                glow.style.left = e.touches[0].clientX + 'px';
-                glow.style.top = e.touches[0].clientY + 'px';
+        <button
+            class="control-btn next-btn"
+            id="nextBtn"
+            onclick="nextQuestion()"
+        >
+            Next
+        </button>
+
+    </div>
+
+    <div class="footer">
+        PART 7 — ADVERB • Infinity Practice
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   PART 7 — ADVERB
+   INFINITY QUESTION GENERATOR
+========================================================= */
+
+
+/* ---------------------------------------------------------
+   Example Names
+--------------------------------------------------------- */
+
+const names = [
+    "Firoz",
+    "Fatiha",
+    "Fatema",
+    "Jui",
+    "Ema",
+    "Rupa",
+    "Moksed",
+    "Ferjousi",
+    "Jannati",
+    "Mini",
+    "Miraz",
+    "Mujahid",
+    "Milon",
+    "Hannan",
+    "Joba",
+    "Tanzila",
+    "Rina",
+    "Tania",
+    "Taslima"
+];
+
+
+/* ---------------------------------------------------------
+   Adverb Data
+--------------------------------------------------------- */
+
+const adverbs = {
+
+    manner: [
+        {
+            word: "carefully",
+            meaning: "সাবধানে"
+        },
+        {
+            word: "quickly",
+            meaning: "দ্রুত"
+        },
+        {
+            word: "slowly",
+            meaning: "ধীরে"
+        },
+        {
+            word: "beautifully",
+            meaning: "সুন্দরভাবে"
+        },
+        {
+            word: "quietly",
+            meaning: "নীরবে"
+        },
+        {
+            word: "carelessly",
+            meaning: "অসাবধানভাবে"
+        },
+        {
+            word: "politely",
+            meaning: "ভদ্রভাবে"
+        },
+        {
+            word: "honestly",
+            meaning: "সততার সাথে"
+        }
+    ],
+
+    frequency: [
+        {
+            word: "always",
+            meaning: "সবসময়"
+        },
+        {
+            word: "often",
+            meaning: "প্রায়ই"
+        },
+        {
+            word: "usually",
+            meaning: "সাধারণত"
+        },
+        {
+            word: "sometimes",
+            meaning: "মাঝে মাঝে"
+        },
+        {
+            word: "rarely",
+            meaning: "কদাচিৎ"
+        },
+        {
+            word: "never",
+            meaning: "কখনোই না"
+        }
+    ],
+
+    time: [
+        {
+            word: "today",
+            meaning: "আজ"
+        },
+        {
+            word: "yesterday",
+            meaning: "গতকাল"
+        },
+        {
+            word: "tomorrow",
+            meaning: "আগামীকাল"
+        },
+        {
+            word: "now",
+            meaning: "এখন"
+        },
+        {
+            word: "soon",
+            meaning: "শীঘ্রই"
+        },
+        {
+            word: "already",
+            meaning: "ইতোমধ্যে"
+        }
+    ],
+
+    place: [
+        {
+            word: "here",
+            meaning: "এখানে"
+        },
+        {
+            word: "there",
+            meaning: "সেখানে"
+        },
+        {
+            word: "everywhere",
+            meaning: "সর্বত্র"
+        },
+        {
+            word: "outside",
+            meaning: "বাইরে"
+        },
+        {
+            word: "inside",
+            meaning: "ভেতরে"
+        }
+    ],
+
+    degree: [
+        {
+            word: "very",
+            meaning: "খুব"
+        },
+        {
+            word: "too",
+            meaning: "অত্যধিক"
+        },
+        {
+            word: "quite",
+            meaning: "বেশ / যথেষ্ট"
+        },
+        {
+            word: "almost",
+            meaning: "প্রায়"
+        },
+        {
+            word: "enough",
+            meaning: "যথেষ্ট"
+        },
+        {
+            word: "extremely",
+            meaning: "অত্যন্ত"
+        }
+    ]
+};
+
+
+/* ---------------------------------------------------------
+   Utility Functions
+--------------------------------------------------------- */
+
+function randomItem(array) {
+    return array[Math.floor(Math.random() * array.length)];
+}
+
+
+function shuffle(array) {
+    return [...array].sort(() => Math.random() - 0.5);
+}
+
+
+function randomName() {
+    return randomItem(names);
+}
+
+
+/* ---------------------------------------------------------
+   Question Generator
+--------------------------------------------------------- */
+
+function generateQuestion() {
+
+    const generators = [
+        generateMannerQuestion,
+        generateFrequencyQuestion,
+        generateTimeQuestion,
+        generatePlaceQuestion,
+        generateDegreeQuestion,
+        generateIdentifyQuestion,
+        generatePositionQuestion
+    ];
+
+    return randomItem(generators)();
+}
+
+
+/* =========================================================
+   MANNER QUESTIONS
+========================================================= */
+
+function generateMannerQuestion() {
+
+    const name = randomName();
+
+    const data = randomItem(adverbs.manner);
+
+    const sentences = {
+
+        carefully:
+            `${name} completed the work ______.`,
+
+        quickly:
+            `${name} finished the task ______.`,
+
+        slowly:
+            `${name} walked ______.`,
+
+        beautifully:
+            `${name} sings ______.`,
+
+        quietly:
+            `${name} entered the room ______.`,
+
+        carelessly:
+            `${name} did the work ______.`,
+
+        politely:
+            `${name} answered the teacher ______.`,
+
+        honestly:
+            `${name} spoke ______.`
+    };
+
+    const question = sentences[data.word];
+
+    const wrongs = shuffle(
+        adverbs.manner
+            .filter(x => x.word !== data.word)
+            .map(x => x.word)
+    ).slice(0, 3);
+
+    const options = shuffle([
+        data.word,
+        ...wrongs
+    ]);
+
+    return {
+
+        type: "Adverb of Manner",
+
+        question: question,
+
+        bangla:
+            "(সঠিকভাবে বাক্যটি সম্পূর্ণ করার জন্য উপযুক্ত Adverb নির্বাচন করুন।)",
+
+        options: options,
+
+        answer: data.word,
+
+        explanation:
+            `<b>${data.word}</b> হলো Adverb of Manner। এটি কাজটি <b>কীভাবে</b> হয়েছে তা প্রকাশ করে। এখানে "${data.word}" দ্বারা কাজটির ধরন বা পদ্ধতি বোঝানো হয়েছে। তাই এটিই সঠিক উত্তর।`
+    };
+}
+
+
+/* =========================================================
+   FREQUENCY QUESTIONS
+========================================================= */
+
+function generateFrequencyQuestion() {
+
+    const name = randomName();
+
+    const data = randomItem(adverbs.frequency);
+
+    const templates = {
+
+        always:
+            `${name} ______ follows the rules.`,
+
+        often:
+            `${name} ______ reads English books.`,
+
+        usually:
+            `${name} ______ comes to class on time.`,
+
+        sometimes:
+            `${name} ______ visits the library.`,
+
+        rarely:
+            `${name} ______ misses the class.`,
+
+        never:
+            `${name} ______ tells a lie.`
+    };
+
+    const question = templates[data.word];
+
+    const wrongs = shuffle(
+        adverbs.frequency
+            .filter(x => x.word !== data.word)
+            .map(x => x.word)
+    ).slice(0, 3);
+
+    return {
+
+        type: "Adverb of Frequency",
+
+        question: question,
+
+        bangla:
+            "(বাক্যে কাজটি কত ঘনঘন ঘটে—তা বোঝানোর জন্য সঠিক Adverb নির্বাচন করুন।)",
+
+        options: shuffle([
+            data.word,
+            ...wrongs
+        ]),
+
+        answer: data.word,
+
+        explanation:
+            `<b>${data.word}</b> হলো Adverb of Frequency। এটি কোনো কাজ <b>কতবার বা কত ঘনঘন</b> ঘটে তা প্রকাশ করে। তাই বাক্যের অর্থ অনুযায়ী "${data.word}" সঠিক।`
+    };
+}
+
+
+/* =========================================================
+   TIME QUESTIONS
+========================================================= */
+
+function generateTimeQuestion() {
+
+    const name = randomName();
+
+    const data = randomItem(adverbs.time);
+
+    const templates = {
+
+        today:
+            `${name} will attend the class ______.`,
+
+        yesterday:
+            `${name} completed the homework ______.`,
+
+        tomorrow:
+            `${name} will visit the library ______.`,
+
+        now:
+            `${name} is studying ______.`,
+
+        soon:
+            `${name} will return ______.`,
+
+        already:
+            `${name} has ______ finished the work.`
+    };
+
+    const question = templates[data.word];
+
+    const wrongs = shuffle(
+        adverbs.time
+            .filter(x => x.word !== data.word)
+            .map(x => x.word)
+    ).slice(0, 3);
+
+    return {
+
+        type: "Adverb of Time",
+
+        question: question,
+
+        bangla:
+            "(বাক্যে কাজটি কখন ঘটছে বা ঘটেছে—তা বোঝানোর জন্য সঠিক Adverb নির্বাচন করুন।)",
+
+        options: shuffle([
+            data.word,
+            ...wrongs
+        ]),
+
+        answer: data.word,
+
+        explanation:
+            `<b>${data.word}</b> হলো Adverb of Time। এটি কোনো কাজ <b>কখন</b> ঘটে বা ঘটেছে তা প্রকাশ করে। তাই বাক্যের সময়ের অর্থ অনুযায়ী এটি সঠিক।`
+    };
+}
+
+
+/* =========================================================
+   PLACE QUESTIONS
+========================================================= */
+
+function generatePlaceQuestion() {
+
+    const name = randomName();
+
+    const data = randomItem(adverbs.place);
+
+    const templates = {
+
+        here:
+            `${name} is waiting ______.`,
+
+        there:
+            `${name} lives ______.`,
+
+        everywhere:
+            `Beautiful flowers grow ______.`,
+
+        outside:
+            `${name} is standing ______.`,
+
+        inside:
+            `${name} is waiting ______ the room.`
+    };
+
+    const question = templates[data.word];
+
+    const wrongs = shuffle(
+        adverbs.place
+            .filter(x => x.word !== data.word)
+            .map(x => x.word)
+    ).slice(0, 3);
+
+    return {
+
+        type: "Adverb of Place",
+
+        question: question,
+
+        bangla:
+            "(বাক্যে কাজটি বা অবস্থানটি কোথায়—তা বোঝানোর জন্য সঠিক Adverb নির্বাচন করুন।)",
+
+        options: shuffle([
+            data.word,
+            ...wrongs
+        ]),
+
+        answer: data.word,
+
+        explanation:
+            `<b>${data.word}</b> হলো Adverb of Place। এটি কোনো কাজ বা অবস্থান <b>কোথায়</b> হচ্ছে তা প্রকাশ করে। তাই স্থান বোঝানোর জন্য এটি সঠিক।`
+    };
+}
+
+
+/* =========================================================
+   DEGREE QUESTIONS
+========================================================= */
+
+function generateDegreeQuestion() {
+
+    const name = randomName();
+
+    const data = randomItem(adverbs.degree);
+
+    const templates = {
+
+        very:
+            `${name} is ______ happy.`,
+
+        too:
+            `${name} is ______ tired to walk.`,
+
+        quite:
+            `${name} is ______ confident.`,
+
+        almost:
+            `${name} has ______ finished the work.`,
+
+        enough:
+            `${name} is old ______ to understand it.`,
+
+        extremely:
+            `${name} is ______ careful.`
+    };
+
+    const question = templates[data.word];
+
+    const wrongs = shuffle(
+        adverbs.degree
+            .filter(x => x.word !== data.word)
+            .map(x => x.word)
+    ).slice(0, 3);
+
+    return {
+
+        type: "Adverb of Degree",
+
+        question: question,
+
+        bangla:
+            "(কাজ বা গুণের মাত্রা বোঝানোর জন্য সঠিক Adverb নির্বাচন করুন।)",
+
+        options: shuffle([
+            data.word,
+            ...wrongs
+        ]),
+
+        answer: data.word,
+
+        explanation:
+            `<b>${data.word}</b> এখানে Degree বোঝাচ্ছে। Adverb of Degree কোনো গুণ, অবস্থা বা কাজের <b>মাত্রা বা পরিমাণ</b> প্রকাশ করে। তাই বাক্যের অর্থ অনুযায়ী এটি সঠিক।`
+    };
+}
+
+
+/* =========================================================
+   IDENTIFY ADVERB
+========================================================= */
+
+function generateIdentifyQuestion() {
+
+    const questions = [
+
+        {
+            sentence:
+                "Firoz speaks politely.",
+
+            answer:
+                "politely",
+
+            bangla:
+                "(বাক্যে কোন শব্দটি Adverb?)",
+
+            explanation:
+                "<b>politely</b> হলো Adverb। এটি 'speaks' কাজটি কীভাবে করা হচ্ছে তা প্রকাশ করছে। তাই এটি Adverb of Manner।"
+        },
+
+        {
+            sentence:
+                "Fatiha always studies carefully.",
+
+            answer:
+                "always",
+
+            bangla:
+                "(বাক্যে Frequency বোঝানো Adverb কোনটি?)",
+
+            explanation:
+                "<b>always</b> হলো Adverb of Frequency। এটি Fatiha কত ঘনঘন পড়াশোনা করে তা প্রকাশ করছে।"
+        },
+
+        {
+            sentence:
+                "Jui is waiting outside.",
+
+            answer:
+                "outside",
+
+            bangla:
+                "(বাক্যে Place বোঝানো Adverb কোনটি?)",
+
+            explanation:
+                "<b>outside</b> হলো Adverb of Place। এটি Jui কোথায় অপেক্ষা করছে তা প্রকাশ করছে।"
+        },
+
+        {
+            sentence:
+                "Ema is very happy.",
+
+            answer:
+                "very",
+
+            bangla:
+                "(বাক্যে Degree বোঝানো Adverb কোনটি?)",
+
+            explanation:
+                "<b>very</b> হলো Adverb of Degree। এটি Ema কতটা happy তা প্রকাশ করছে।"
+        },
+
+        {
+            sentence:
+                "Rupa arrived yesterday.",
+
+            answer:
+                "yesterday",
+
+            bangla:
+                "(বাক্যে Time বোঝানো Adverb কোনটি?)",
+
+            explanation:
+                "<b>yesterday</b> হলো Adverb of Time। এটি Rupa কখন arrived করেছে তা প্রকাশ করছে।"
+        }
+    ];
+
+    const q = randomItem(questions);
+
+    const allWords = q.sentence
+        .replace(/[.]/g, "")
+        .split(" ")
+        .filter(word => word.length > 2);
+
+    const wrongs = shuffle(
+        allWords.filter(word =>
+            word.toLowerCase() !== q.answer.toLowerCase()
+        )
+    ).slice(0, 3);
+
+    return {
+
+        type: "Identify the Adverb",
+
+        question: q.sentence,
+
+        bangla: q.bangla,
+
+        options: shuffle([
+            q.answer,
+            ...wrongs
+        ]),
+
+        answer: q.answer,
+
+        explanation: q.explanation
+    };
+}
+
+
+/* =========================================================
+   POSITION QUESTIONS
+========================================================= */
+
+function generatePositionQuestion() {
+
+    const questions = [
+
+        {
+            question:
+                "Choose the correct sentence.",
+
+            bangla:
+                "(সঠিক Word Order নির্বাচন করুন।)",
+
+            options: [
+                "Firoz always studies English.",
+                "Firoz studies always English.",
+                "Always Firoz studies English.",
+                "Firoz studies English always."
+            ],
+
+            answer:
+                "Firoz always studies English.",
+
+            explanation:
+                "<b>Firoz always studies English.</b> সঠিক। সাধারণত frequency adverb যেমন <b>always</b> মূল verb-এর আগে বসে।"
+        },
+
+        {
+            question:
+                "Choose the correct sentence.",
+
+            bangla:
+                "(সঠিকভাবে Adverb বসানো বাক্যটি নির্বাচন করুন।)",
+
+            options: [
+                "Fatiha speaks politely.",
+                "Fatiha politely speaks.",
+                "Politely Fatiha speaks.",
+                "Fatiha speaks polite."
+            ],
+
+            answer:
+                "Fatiha speaks politely.",
+
+            explanation:
+                "<b>Fatiha speaks politely.</b> সঠিক। এখানে <b>politely</b> কাজটি কীভাবে হচ্ছে তা প্রকাশ করছে এবং এটি verb 'speaks'-কে modify করছে।"
+        },
+
+        {
+            question:
+                "Choose the correct sentence.",
+
+            bangla:
+                "(Frequency Adverb-এর সঠিক অবস্থান নির্বাচন করুন।)",
+
+            options: [
+                "Milon often reads books.",
+                "Milon reads often books.",
+                "Milon reads books oftenly.",
+                "Oftenly Milon reads books."
+            ],
+
+            answer:
+                "Milon often reads books.",
+
+            explanation:
+                "<b>Milon often reads books.</b> সঠিক। <b>often</b> একটি Adverb of Frequency এবং সাধারণত main verb-এর আগে বসে।"
+        }
+    ];
+
+    const q = randomItem(questions);
+
+    return {
+
+        type: "Adverb Position",
+
+        question: q.question,
+
+        bangla: q.bangla,
+
+        options: shuffle(q.options),
+
+        answer: q.answer,
+
+        explanation: q.explanation
+    };
+}
+
+
+/* =========================================================
+   STATE
+========================================================= */
+
+let currentQuestion = null;
+
+let questionNumber = 0;
+
+let score = 0;
+
+let answered = false;
+
+let history = [];
+
+let currentHistoryIndex = -1;
+
+
+/* =========================================================
+   LOAD NEW QUESTION
+========================================================= */
+
+function loadQuestion(question = null) {
+
+    answered = false;
+
+    currentQuestion = question || generateQuestion();
+
+    questionNumber++;
+
+    document.getElementById("questionNo").textContent =
+        questionNumber;
+
+    document.getElementById("score").textContent =
+        score;
+
+    document.getElementById("questionType").textContent =
+        currentQuestion.type;
+
+    document.getElementById("questionText").textContent =
+        currentQuestion.question;
+
+    document.getElementById("questionBangla").textContent =
+        currentQuestion.bangla;
+
+    const optionsContainer =
+        document.getElementById("options");
+
+    optionsContainer.innerHTML = "";
+
+    const explanation =
+        document.getElementById("explanation");
+
+    explanation.classList.remove("show");
+
+    document.getElementById("explanationText").innerHTML =
+        "";
+
+    currentQuestion.options.forEach(option => {
+
+        const button =
+            document.createElement("button");
+
+        button.className = "option";
+
+        button.textContent = option;
+
+        button.onclick = () => checkAnswer(button, option);
+
+        optionsContainer.appendChild(button);
+    });
+
+    updateProgress();
+
+    animateQuestion();
+
+    document.getElementById("previousBtn").disabled =
+        history.length <= 1;
+}
+
+
+/* =========================================================
+   ANSWER CHECK
+========================================================= */
+
+function checkAnswer(button, selected) {
+
+    if (answered) return;
+
+    answered = true;
+
+    const allOptions =
+        document.querySelectorAll(".option");
+
+    allOptions.forEach(option => {
+        option.classList.add("disabled");
+    });
+
+    if (
+        selected.toLowerCase() ===
+        currentQuestion.answer.toLowerCase()
+    ) {
+
+        button.classList.add("correct");
+
+        score++;
+
+        document.getElementById("score").textContent =
+            score;
+
+    } else {
+
+        button.classList.add("wrong");
+
+        allOptions.forEach(option => {
+
+            if (
+                option.textContent.toLowerCase() ===
+                currentQuestion.answer.toLowerCase()
+            ) {
+                option.classList.add("correct");
             }
+
         });
-    </script>
+    }
+
+    document.getElementById("explanationText").innerHTML =
+        currentQuestion.explanation;
+
+    document.getElementById("explanation")
+        .classList.add("show");
+}
+
+
+/* =========================================================
+   NEXT QUESTION
+========================================================= */
+
+function nextQuestion() {
+
+    const newQuestion = generateQuestion();
+
+    history.push(newQuestion);
+
+    currentHistoryIndex = history.length - 1;
+
+    loadQuestion(newQuestion);
+}
+
+
+/* =========================================================
+   PREVIOUS QUESTION
+========================================================= */
+
+function previousQuestion() {
+
+    if (history.length < 2) return;
+
+    if (currentHistoryIndex <= 0) return;
+
+    currentHistoryIndex--;
+
+    questionNumber--;
+
+    loadQuestion(history[currentHistoryIndex]);
+
+    document.getElementById("questionNo").textContent =
+        questionNumber;
+}
+
+
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+function updateProgress() {
+
+    /*
+       Infinity system:
+       Progress is visual only.
+       It loops smoothly after every 20 questions.
+    */
+
+    let progress =
+        ((questionNumber - 1) % 20 + 1) / 20 * 100;
+
+    document.getElementById("progressFill").style.width =
+        progress + "%";
+}
+
+
+/* =========================================================
+   QUESTION ANIMATION RESTART
+========================================================= */
+
+function animateQuestion() {
+
+    const content =
+        document.getElementById("questionContent");
+
+    content.classList.remove("question-content");
+
+    void content.offsetWidth;
+
+    content.classList.add("question-content");
+}
+
+
+/* =========================================================
+   INITIAL QUESTION
+========================================================= */
+
+const firstQuestion = generateQuestion();
+
+history.push(firstQuestion);
+
+currentHistoryIndex = 0;
+
+loadQuestion(firstQuestion);
+
+
+/* =========================================================
+   KEYBOARD CONTROL
+========================================================= */
+
+document.addEventListener("keydown", function(event) {
+
+    if (event.key === "ArrowRight") {
+
+        nextQuestion();
+
+    }
+
+    if (event.key === "ArrowLeft") {
+
+        previousQuestion();
+
+    }
+
+});
+
+
+</script>
+
 </body>
 </html>
