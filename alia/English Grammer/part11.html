@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PART 11 — Verb & Sentence Structure</title>
+
+<style>
+@font-face {
+    font-family: "Kalpurush";
+    src: local("Kalpurush");
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Kalpurush", "Noto Sans Bengali", Arial, sans-serif;
+    background: #f8fafb;
+    color: #20242a;
+    font-size: 25px;
+    line-height: 1.85;
+    padding: 30px 18px 70px;
+}
+
+.container {
+    width: min(1200px, 100%);
+    margin: auto;
+}
+
+/* PDF BUTTON */
+.pdf-btn {
+    position: fixed;
+    top: 18px;
+    right: 20px;
+    z-index: 9999;
+    border: none;
+    border-radius: 12px;
+    padding: 10px 20px;
+    font-family: inherit;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    box-shadow: 0 8px 25px rgba(37, 99, 235, .25);
+    cursor: pointer;
+    transition: .3s ease;
+}
+
+.pdf-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(37, 99, 235, .35);
+}
+
+.book-header {
+    text-align: center;
+    background: linear-gradient(135deg, #eef4ff, #faf5ff);
+    border: 1px solid #dce5f5;
+    border-radius: 22px;
+    padding: 35px 25px;
+    margin-bottom: 35px;
+    box-shadow: 0 10px 35px rgba(30, 41, 59, .08);
+}
+
+.book-header .part {
+    font-size: 34px;
+    font-weight: bold;
+    color: #1d4ed8;
+    margin-bottom: 5px;
+}
+
+.book-header h1 {
+    font-size: 34px;
+    color: #111827;
+    margin-bottom: 8px;
+}
+
+.book-header .subtitle {
+    color: #64748b;
+    font-size: 22px;
+}
+
+.goal {
+    margin-top: 22px;
+    padding: 18px 22px;
+    background: #fff;
+    border-left: 6px solid #2563eb;
+    border-radius: 10px;
+    text-align: left;
+}
+
+/* LESSON */
+.lesson {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 18px;
+    padding: 28px 30px;
+    margin: 28px 0;
+    box-shadow: 0 7px 25px rgba(15, 23, 42, .06);
+    opacity: 0;
+    transform: translateY(35px);
+    transition: opacity .8s ease, transform .8s ease;
+}
+
+.lesson.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.lesson-title {
+    font-size: 29px;
+    color: #1e40af;
+    border-bottom: 2px solid #dbeafe;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.section-title {
+    font-size: 27px;
+    color: #7c3aed;
+    margin: 22px 0 8px;
+    font-weight: bold;
+}
+
+p {
+    margin: 10px 0;
+}
+
+.definition {
+    background: #f0f7ff;
+    border-left: 5px solid #3b82f6;
+    padding: 14px 20px;
+    margin: 15px 0;
+    border-radius: 8px;
+}
+
+.memory {
+    background: #fff8e7;
+    border-left: 5px solid #f59e0b;
+    padding: 14px 20px;
+    margin: 15px 0;
+    border-radius: 8px;
+}
+
+.formula {
+    text-align: center;
+    background: #f5f3ff;
+    border: 1px dashed #8b5cf6;
+    padding: 12px;
+    margin: 18px 0;
+    border-radius: 10px;
+    font-weight: bold;
+    color: #5b21b6;
+}
+
+.example {
+    margin: 8px 0;
+    padding-left: 15px;
+}
+
+.english {
+    font-family: Arial, sans-serif;
+    font-weight: 500;
+}
+
+.correct {
+    color: #15803d;
+    font-weight: bold;
+}
+
+.incorrect {
+    color: #dc2626;
+    font-weight: bold;
+}
+
+ul {
+    margin: 8px 0 8px 35px;
+}
+
+li {
+    margin: 5px 0;
+}
+
+/* TABLE */
+.table-wrap {
+    overflow-x: auto;
+    margin-top: 20px;
+    border-radius: 12px;
+}
+
+table {
+    width: 100%;
+    min-width: 850px;
+    border-collapse: collapse;
+    background: white;
+    font-size: 23px;
+}
+
+th {
+    background: #1e40af;
+    color: white;
+    padding: 13px;
+    border: 1px solid #bfdbfe;
+}
+
+td {
+    padding: 13px;
+    border: 1px solid #cbd5e1;
+    vertical-align: top;
+}
+
+tr:nth-child(even) td {
+    background: #f8fafc;
+}
+
+.final-box {
+    background: linear-gradient(135deg, #eef2ff, #f5f3ff);
+    border: 2px solid #818cf8;
+    border-radius: 18px;
+    padding: 25px;
+    margin-top: 30px;
+}
+
+.final-box h2 {
+    color: #3730a3;
+    font-size: 29px;
+    margin-bottom: 15px;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 45px;
+    padding-top: 20px;
+    border-top: 1px solid #cbd5e1;
+    color: #64748b;
+    font-size: 19px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 800px) {
+    body {
+        font-size: 25px;
+        padding: 75px 12px 45px;
+    }
+
+    .book-header {
+        padding: 25px 16px;
+    }
+
+    .book-header .part,
+    .book-header h1 {
+        font-size: 28px;
+    }
+
+    .book-header .subtitle {
+        font-size: 20px;
+    }
+
+    .lesson {
+        padding: 22px 18px;
+        border-radius: 14px;
+    }
+
+    .lesson-title {
+        font-size: 27px;
+    }
+
+    .section-title {
+        font-size: 25px;
+    }
+
+    .pdf-btn {
+        top: 10px;
+        right: 10px;
+        font-size: 18px;
+        padding: 8px 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding-left: 9px;
+        padding-right: 9px;
+    }
+
+    .lesson {
+        padding: 18px 14px;
+    }
+
+    ul {
+        margin-left: 25px;
+    }
+
+    .goal,
+    .definition,
+    .memory {
+        padding: 12px 14px;
+    }
+}
+
+/* PRINT / PDF */
+@media print {
+    @page {
+        size: A4 portrait;
+        margin: 15mm 13mm 17mm;
+    }
+
+    body {
+        background: white;
+        color: black;
+        font-size: 14pt;
+        line-height: 1.65;
+        padding: 0;
+    }
+
+    .pdf-btn {
+        display: none !important;
+    }
+
+    .book-header,
+    .lesson,
+    .final-box {
+        box-shadow: none;
+    }
+
+    .book-header {
+        border: 1px solid #aaa;
+        break-inside: avoid;
+    }
+
+    .lesson {
+        opacity: 1 !important;
+        transform: none !important;
+        border: 1px solid #bbb;
+        break-inside: auto;
+        page-break-inside: auto;
+    }
+
+    .lesson-title,
+    .section-title {
+        break-after: avoid;
+    }
+
+    table {
+        font-size: 12pt;
+    }
+
+    th {
+        background: #ddd !important;
+        color: black !important;
+    }
+
+    .definition,
+    .memory,
+    .formula {
+        background: white !important;
+        border: 1px solid #999;
+    }
+
+    .footer {
+        font-size: 10pt;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<button class="pdf-btn" onclick="downloadPDF()">⬇ Download PDF</button>
+
+<div class="container">
+
+<header class="book-header">
+    <div class="part">PART 11</div>
+    <h1>VERB &amp; SENTENCE STRUCTURE</h1>
+    <div class="subtitle">
+        English Grammar &amp; Bangla Grammar Equivalent Guide
+        (Verb, Person, Number &amp; Agreement)
+    </div>
+
+    <div class="goal">
+        <strong>লক্ষ্য:</strong>
+        Verb কী, Verb-এর কাজ কী, Sentence-এ Verb কীভাবে শনাক্ত করতে হয়,
+        Subject-এর সঙ্গে Verb-এর মিল, Main Verb ও Auxiliary Verb এবং
+        Person &amp; Number অনুযায়ী Verb-এর রূপ পরিবর্তন সম্পর্কে পরিষ্কার ধারণা তৈরি করা
+        [cite: 47].
+    </div>
+</header>
+
+
+<!-- LESSON 1 -->
+<section class="lesson">
+    <h2 class="lesson-title">LESSON 1 - WHAT IS A VERB? (Verb / ক্রিয়া কী?)</h2>
+
+    <div class="definition">
+        <strong>Definition:</strong>
+        A Verb is a word that shows an action, an event, or a state[cite: 47].
+    </div>
+
+    <p>
+        <strong>বাংলায়:</strong>
+        Verb (ক্রিয়া) হলো এমন Word, যা কাজ, ঘটনা বা অবস্থা প্রকাশ করে[cite: 47].
+    </p>
+
+    <div class="section-title">Examples:</div>
+
+    <ul>
+        <li>
+            <span class="english">go</span> (যাওয়া),
+            <span class="english">eat</span> (খাওয়া),
+            <span class="english">read</span> (পড়া),
+            <span class="english">write</span> (লেখা),
+            <span class="english">sleep</span> (ঘুমানো),
+            <span class="english">run</span> (দৌড়ানো)[cite: 47]
+        </li>
+        <li>
+            <span class="english">is/am/are</span> (হওয়া/থাকা)[cite: 47]
+        </li>
+    </ul>
+
+    <div class="memory">
+        <strong>সহজে মনে রাখো:</strong>
+        <span class="english">ACTION + EVENT + STATE = VERB</span>
+        (Action = কাজ, Event = ঘটনা, State = অবস্থা)[cite: 47]
+    </div>
+</section>
+
+
+<!-- LESSON 2 -->
+<section class="lesson">
+    <h2 class="lesson-title">LESSON 2 - HOW TO IDENTIFY A VERB &amp; BASIC SENTENCE STRUCTURE</h2>
+
+    <div class="section-title">Verb কীভাবে চিনবে?</div>
+
+    <p>
+        বাক্যে Verb খুঁজে বের করার জন্য প্রথমে দেখো:
+        ১. কে কী করছে? ২. কী ঘটছে? ৩. কার কী অবস্থা?[cite: 47]
+    </p>
+
+    <div class="section-title">Examples:</div>
+
+    <p class="example">
+        <span class="english">Rahim reads a book.</span>
+        (Rahim কী করছে? <strong>reads = Verb</strong>)[cite: 47]
+    </p>
+
+    <p class="example">
+        <span class="english">The baby sleeps.</span>
+        (Baby কী করছে? <strong>sleeps = Verb</strong>)[cite: 47]
+    </p>
+
+    <p class="example">
+        <span class="english">He is happy.</span>
+        (এখানে <strong>is</strong> Subject-এর অবস্থা বোঝাচ্ছে।
+        <strong>is = Verb</strong>)[cite: 47]
+    </p>
+
+    <div class="section-title">SUBJECT + VERB &amp; SUBJECT + VERB + OBJECT</div>
+
+    <p>
+        English Sentence-এর সবচেয়ে গুরুত্বপূর্ণ ভিত্তি হলো Subject + Verb
+        এবং এর সাথে Object থাকতেও পারে[cite: 47].
+    </p>
+
+    <div class="section-title">Examples:</div>
+
+    <p class="example">
+        <span class="english">Birds</span> (Subject)
+        <span class="english">fly</span> (Verb)[cite: 47].
+    </p>
+
+    <p class="example">
+        <span class="english">Rahim</span> (Subject)
+        <span class="english">reads</span> (Verb)
+        <span class="english">a book</span> (Object)[cite: 47].
+    </p>
+
+    <p class="example">
+        <span class="english">I</span> (Subject)
+        <span class="english">eat</span> (Verb)
+        <span class="english">rice</span> (Object)[cite: 47].
+    </p>
+
+    <div class="formula">Formula: S + V অথবা S + V + O[cite: 47]</div>
+</section>
+
+
+<!-- LESSON 3 -->
+<section class="lesson">
+    <h2 class="lesson-title">LESSON 3 - SUBJECT + VERB + EXTENSION &amp; MAIN VERB</h2>
+
+    <div class="section-title">SUBJECT + VERB + EXTENSION</div>
+
+    <p>
+        Verb-এর সবসময় Object থাকবে না। সময়, স্থান, পদ্ধতি ইত্যাদির অতিরিক্ত
+        তথ্য (Extension) থাকতে পারে[cite: 47].
+    </p>
+
+    <p class="example">
+        <span class="english">Rahim works in Dhaka</span> (Extension) |
+        <span class="english">He runs quickly</span> (Extension)[cite: 47].
+    </p>
+
+    <div class="section-title">MAIN VERB (মূল ক্রিয়া)</div>
+
+    <p>
+        Main Verb হলো Sentence-এর প্রধান কাজ বা অবস্থা প্রকাশকারী Verb[cite: 47, 48].
+    </p>
+
+    <p class="example">
+        <span class="english">I read books | She writes a letter |
+        They play football | He sleeps</span>[cite: 48].
+    </p>
+
+    <div class="memory">
+        <strong>সহজে:</strong>
+        Main Verb = বাক্যের প্রধান কাজ/অবস্থা প্রকাশকারী Verb[cite: 48].
+    </div>
+</section>
+
+
+<!-- LESSON 4 -->
+<section class="lesson">
+    <h2 class="lesson-title">LESSON 4 - AUXILIARY VERB &amp; AUXILIARY + MAIN VERB</h2>
+
+    <p>
+        Auxiliary Verb-কে Helping Verb-ও বলা হয়। এটি Main Verb-কে সাহায্য করে[cite: 48].
+    </p>
+
+    <div class="section-title">প্রধান Auxiliary Verbs[cite: 48]:</div>
+
+    <ul>
+        <li><strong>BE:</strong> <span class="english">am, is, are, was, were</span>[cite: 48]</li>
+        <li><strong>HAVE:</strong> <span class="english">have, has, had</span>[cite: 48]</li>
+        <li><strong>DO:</strong> <span class="english">do, does, did</span>[cite: 48]</li>
+    </ul>
+
+    <div class="formula">
+        Formula: Auxiliary Verb + Main Verb[cite: 48]
+    </div>
+
+    <p class="example">
+        <span class="english">He is</span> (Auxiliary)
+        <span class="english">reading</span> (Main)[cite: 48].
+    </p>
+
+    <p class="example">
+        <span class="english">They are</span> (Auxiliary)
+        <span class="english">playing</span> (Main)[cite: 48].
+    </p>
+
+    <p class="example">
+        <span class="english">She has</span> (Auxiliary)
+        <span class="english">finished</span> (Main)
+        <span class="english">the work</span>[cite: 48].
+    </p>
+
+    <p class="example">
+        <span class="english">They do</span> (Auxiliary)
+        <span class="english">not play</span> (Main)
+        <span class="english">football</span>[cite: 48].
+    </p>
+</section>
+
+
+<!-- LESSON 5 -->
+<section class="lesson">
+    <h2 class="lesson-title">LESSON 5 - BE, HAVE &amp; DO VERBS</h2>
+
+    <div class="section-title">1. BE VERBS (am, is, are, was, were)</div>
+
+    <p>
+        এগুলো কখনো Main Verb হিসেবেও কাজ করতে পারে। যেমন:
+        <span class="english">He is happy</span>
+        (He = Subject, is = Main Verb, happy = Adjective)[cite: 48]
+    </p>
+
+    <div class="section-title">2. HAVE VERBS (have, has, had)[cite: 48]</div>
+
+    <ul>
+        <li><span class="english">I have a book</span> (have = Main Verb)[cite: 48]</li>
+        <li><span class="english">I have finished my work</span> (have = Auxiliary Verb)[cite: 48]</li>
+    </ul>
+
+    <div class="section-title">3. DO VERBS (do, does, did)[cite: 48]</div>
+
+    <p>
+        এগুলো প্রশ্ন, Negative এবং জোর দেওয়ার কাজে Auxiliary Verb হিসেবে
+        ব্যবহৃত হয় (যেমন: <span class="english">Do you play football?</span>)[cite: 48].
+    </p>
+
+    <div class="memory">
+        <strong>গুরুত্বপূর্ণ:</strong>
+        Do/Does/Did Auxiliary হিসেবে ব্যবহৃত হলে Main Verb সাধারণত Base Form-এ থাকে[cite: 48].
+    </div>
+</section>
+
+
+<!-- LESSON 6 -->
+<section class="lesson">
+    <h2 class="lesson-title">LESSON 6 - PERSON &amp; NUMBER</h2>
+
+    <div class="section-title">PERSON[cite: 48]</div>
+
+    <ol>
+        <li>First Person (বক্তা নিজে): <span class="english">I, we</span>[cite: 48]</li>
+        <li>Second Person (যাকে বলা হচ্ছে): <span class="english">you</span>[cite: 48]</li>
+        <li>
+            Third Person (যার সম্পর্কে বলা হচ্ছে):
+            <span class="english">he, she, it, they, Rahim, Karim</span>[cite: 48]
+        </li>
+    </ol>
+
+    <div class="section-title">NUMBER[cite: 48]</div>
+
+    <p>
+        Singular (একবচন যেমন: <span class="english">boy</span>) ও
+        Plural (বহুবচন যেমন: <span class="english">boys</span>)[cite: 48]
+    </p>
+
+    <div class="memory">
+        <strong>বিশেষভাবে মনে রাখো:</strong>
+        Third Person Singular হলো:
+        <span class="english">He / She / It /</span>
+        কোনো নির্দিষ্ট একবচন নাম (যেমন: <span class="english">Rahim, Karim</span>)[cite: 48]
+    </div>
+</section>
+
+
+<!-- LESSON 7 -->
+<section class="lesson">
+    <h2 class="lesson-title">LESSON 7 - SUBJECT-VERB AGREEMENT &amp; S/ES RULES</h2>
+
+    <p>
+        Subject-এর সঙ্গে Verb-এর সঠিক মিল থাকতে হবে[cite: 49].
+    </p>
+
+    <div class="section-title">Present Simple Rule[cite: 49]:</div>
+
+    <ul>
+        <li>
+            <span class="english">I/You/We/They + Base Verb</span>
+            (সাধারণ Verb-এর সঙ্গে s/es যোগ হয় না। যেমন:
+            <span class="english">I play. You play.</span>)[cite: 49]
+        </li>
+        <li>
+            <span class="english">He/She/It + Verb-s/es</span>
+            (Third Person Singular Subject-এর সঙ্গে Verb-এ s/es যোগ হয়।
+            যেমন: <span class="english">He plays.</span>)[cite: 49]
+        </li>
+    </ul>
+
+    <div class="section-title">S/ES RULES[cite: 49]</div>
+
+    <ol>
+        <li>
+            সাধারণ নিয়মে S যোগ হয়:
+            <span class="english">play → plays, read → reads</span>[cite: 49]
+        </li>
+        <li>
+            <span class="english">s, sh, ch, x, o</span> থাকলে ES হয়:
+            <span class="english">go → goes, watch → watches</span>[cite: 49]
+        </li>
+        <li>
+            Consonant + y হলে ies হয়:
+            <span class="english">study → studies, try → tries</span>[cite: 49]
+        </li>
+        <li>
+            Vowel + y হলে শুধু s হয়:
+            <span class="english">play → plays, enjoy → enjoys</span>[cite: 49]
+        </li>
+    </ol>
+</section>
+
+
+<!-- LESSON 8 -->
+<section class="lesson">
+    <h2 class="lesson-title">LESSON 8 - NEGATIVE SENTENCES &amp; COMMON VERB MISTAKES</h2>
+
+    <div class="section-title">Present Simple Negative[cite: 49]</div>
+
+    <p>
+        <span class="english">I do not play. | They do not play. |
+        He does not play. | She does not play.</span>[cite: 49]
+    </p>
+
+    <div class="memory">
+        <strong>খুব গুরুত্বপূর্ণ:</strong>
+        does-এর পরে Main Verb-এর মূল রূপ (Base Form) হয়[cite: 49].
+    </div>
+
+    <p>
+        (যেমন:
+        <span class="incorrect">Incorrect ✗: He does not plays.</span> |
+        <span class="correct">Correct ✓: He does not play.</span>)[cite: 49]
+    </p>
+
+    <div class="section-title">Common Mistakes[cite: 49]</div>
+
+    <p>
+        <span class="incorrect">Incorrect ✗: He go to school.</span>
+        →
+        <span class="correct">Correct ✓: He goes to school.</span>[cite: 49]
+    </p>
+
+    <p>
+        <span class="incorrect">Incorrect ✗: They plays football.</span>
+        →
+        <span class="correct">Correct ✓: They play football.</span>[cite: 49]
+    </p>
+
+    <p>
+        <span class="incorrect">Incorrect ✗: She play football.</span>
+        →
+        <span class="correct">Correct ✓: She plays football.</span>[cite: 49]
+    </p>
+</section>
+
+
+<!-- LESSON 9 -->
+<section class="lesson">
+    <h2 class="lesson-title">LESSON 9 - QUESTIONS &amp; FULL SENTENCE ANALYSIS</h2>
+
+    <div class="section-title">QUESTIONS[cite: 49]</div>
+
+    <p>
+        Present Simple Question-এ Do/Does ব্যবহৃত হয়। যেমন:
+        <span class="english">Do you play football?</span> বা
+        <span class="english">Does he play football?</span>[cite: 49]
+    </p>
+
+    <div class="memory">
+        <strong>খুব গুরুত্বপূর্ণ:</strong>
+        Does-এর পরে Verb-এ s/es বসে না[cite: 49].
+    </div>
+
+    <p>
+        (যেমন:
+        <span class="incorrect">Incorrect ✗: Does he plays?</span> |
+        <span class="correct">Correct ✓: Does he play?</span>)[cite: 49]
+    </p>
+
+    <div class="section-title">FULL SENTENCE ANALYSIS[cite: 49]</div>
+
+    <p>
+        <strong>Example:</strong>
+        <span class="english">Rahim is reading a book.</span>[cite: 49]
+    </p>
+
+    <ul>
+        <li><span class="english">Rahim</span> = Subject</li>
+        <li><span class="english">is</span> = Auxiliary Verb</li>
+        <li><span class="english">reading</span> = Main Verb</li>
+        <li><span class="english">a book</span> = Object[cite: 49]</li>
+    </ul>
+
+    <p>
+        Object সবসময় থাকবে কি? না। যেমন:
+        <span class="english">Birds fly</span> বা
+        <span class="english">The baby sleeps</span> বাক্যে কোনো Object নেই[cite: 49].
+    </p>
+</section>
+
+
+<!-- LESSON 10 -->
+<section class="lesson">
+    <h2 class="lesson-title">LESSON 10 - FINAL PRACTICE &amp; MASTER SUMMARY</h2>
+
+    <div class="section-title">FINAL PRACTICE &amp; EXERCISES[cite: 50]</div>
+
+    <p>
+        <strong>A. Identify the Verb:</strong>
+        <span class="english">
+            Rahim reads a book. / The baby sleeps. / They play football. /
+            She writes a letter. / He is happy. / We are studying English.
+        </span>[cite: 50]
+    </p>
+
+    <p>
+        <strong>B. Identify Main Verb and Auxiliary Verb:</strong>
+        <span class="english">
+            He is reading. / They are playing. / She has finished her work. /
+            I have eaten rice. / He does not play football. / Did you go there?
+        </span>[cite: 50]
+    </p>
+
+    <p>
+        <strong>C. Choose the Correct Verb:</strong>
+        <span class="english">
+            He ___ to school. (go/goes) / They ___ football. (play/plays) /
+            She ___ English. (study/studies) / I ___ books. (read/reads) /
+            Rahim ___ TV. (watch/watches)
+        </span>[cite: 50]
+    </p>
+
+    <p>
+        <strong>D. Correct the Mistakes:</strong>
+        <span class="english">
+            He go to school. / She play football. / They plays cricket. /
+            I goes home. / He does not plays. / Does she likes tea?
+        </span>[cite: 50]
+    </p>
+
+    <p>
+        <strong>E. Identify Person &amp; Number:</strong>
+        <span class="english">
+            I, we, you, he, she, it, they, Rahim
+        </span>[cite: 50]
+    </p>
+</section>
+
+
+<!-- SUMMARY -->
+<section class="lesson">
+    <h2 class="lesson-title">PART 11 KEY TAKEAWAY SUMMARY TABLE</h2>
+
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Key Concept</th>
+                    <th>Rule / Example</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Verb Class</td>
+                    <td>Main Verb vs Auxiliary Verb</td>
+                    <td>
+                        Main: মূল কাজ (read, go) |
+                        Auxiliary: সাহায্য করে (am, is, do, have)[cite: 51]
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Primary Verbs</td>
+                    <td>Be, Have, Do Verbs</td>
+                    <td>
+                        Be = am/is/are/was/were |
+                        Have = have/has/had |
+                        Do = do/does/did[cite: 51]
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Person</td>
+                    <td>First, Second, Third Person</td>
+                    <td>
+                        First: I/we |
+                        Second: you |
+                        Third: he/she/it/they/names[cite: 51]
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Number</td>
+                    <td>Singular &amp; Plural</td>
+                    <td>
+                        Singular: একবচন (boy) |
+                        Plural: বহুবচন (boys)[cite: 51]
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Present Simple</td>
+                    <td>Subject &amp; Verb Agreement</td>
+                    <td>
+                        I/You/We/They + Base Verb |
+                        He/She/It + Verb-s/es[cite: 51]
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Negative &amp; Q</td>
+                    <td>Use of Do/Does</td>
+                    <td>
+                        Does/Doesn't-এর পরে সর্বদা Verb-এর Base Form বসে[cite: 51]
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+
+<!-- FINAL MEMORY -->
+<section class="final-box lesson">
+    <h2>FINAL MEMORY FORMULA</h2>
+
+    <p>
+        <strong>
+            <span class="english">VERB = ACTION + EVENT + STATE | S + V + O</span>
+        </strong>
+    </p>
+
+    <p>
+        <span class="incorrect">
+            Incorrect ✗: He does not goes.
+        </span>
+        →
+        <span class="correct">
+            Correct ✓: He does not go.
+        </span>[cite: 51]
+    </p>
+
+    <p>
+        <span class="incorrect">
+            Incorrect ✗: Does he goes?
+        </span>
+        →
+        <span class="correct">
+            Correct ✓: Does he go?
+        </span>[cite: 51]
+    </p>
+</section>
+
+
+<footer class="footer">
+    PART 11 — VERB &amp; SENTENCE STRUCTURE
+</footer>
+
+</div>
+
+
+<script>
+/* PDF: Browser-এর Print → Save as PDF ব্যবহার করলে
+   বাংলা ও আরবি Text selectable/copyable থাকবে। */
+function downloadPDF() {
+    window.print();
+}
+
+/* Smooth scroll animation */
+const lessons = document.querySelectorAll(".lesson");
+
+const observer = new IntersectionObserver(
+    (entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("show");
+                observer.unobserve(entry.target);
+            }
+        });
+    },
+    {
+        threshold: 0.08
+    }
+);
+
+lessons.forEach((lesson) => observer.observe(lesson));
+
+/* Page load animation */
+window.addEventListener("load", () => {
+    document.querySelector(".book-header").style.opacity = "1";
+});
+</script>
+
+</body>
+</html>

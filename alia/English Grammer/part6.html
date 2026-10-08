@@ -1,0 +1,1550 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>English Grammar Series — Part 6 | Verb</title>
+
+<style>
+/* =========================================================
+   ENGLISH GRAMMAR SERIES — PART 6
+   VERB | Digital Study Book
+   ========================================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    min-height:100vh;
+    background:#f8f9f7;
+    color:#20242a;
+    font-family:
+        "Kalpurush",
+        "Noto Sans Bengali",
+        "Nirmala UI",
+        Arial,
+        sans-serif;
+    font-size:25px;
+    line-height:1.8;
+}
+
+/* ---------- TOP BAR ---------- */
+
+.top-bar{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    width:100%;
+    background:rgba(255,255,255,.94);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid #dfe4e8;
+    box-shadow:0 3px 18px rgba(0,0,0,.07);
+}
+
+.top-inner{
+    max-width:1200px;
+    margin:auto;
+    padding:12px 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+}
+
+.book-label{
+    font-size:18px;
+    font-weight:bold;
+    color:#315b9b;
+    letter-spacing:.3px;
+}
+
+.pdf-btn{
+    border:0;
+    border-radius:12px;
+    padding:10px 18px;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+    color:white;
+    background:linear-gradient(135deg,#3269c8,#744cc9);
+    box-shadow:0 5px 15px rgba(71,92,190,.25);
+    transition:.25s ease;
+    font-family:inherit;
+}
+
+.pdf-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 20px rgba(71,92,190,.35);
+}
+
+.pdf-btn:active{
+    transform:scale(.97);
+}
+
+/* ---------- MAIN BOOK ---------- */
+
+.book{
+    width:min(1200px,94%);
+    margin:35px auto 70px;
+}
+
+/* ---------- COVER ---------- */
+
+.cover{
+    background:
+        radial-gradient(circle at 10% 10%,rgba(82,130,220,.14),transparent 30%),
+        radial-gradient(circle at 90% 90%,rgba(147,91,210,.13),transparent 32%),
+        #fff;
+    border:1px solid #dfe5eb;
+    border-radius:25px;
+    padding:55px 30px;
+    text-align:center;
+    box-shadow:0 12px 35px rgba(30,50,80,.09);
+    margin-bottom:45px;
+}
+
+.cover-series{
+    font-size:24px;
+    font-weight:bold;
+    color:#596575;
+    letter-spacing:2px;
+}
+
+.cover-part{
+    margin-top:8px;
+    font-size:46px;
+    line-height:1.25;
+    font-weight:800;
+    color:#315ca5;
+}
+
+.cover-title{
+    margin-top:12px;
+    font-size:34px;
+    font-weight:800;
+    color:#633e9b;
+}
+
+.cover-subtitle{
+    margin-top:8px;
+    font-size:23px;
+    color:#59616b;
+}
+
+.goal{
+    max-width:1000px;
+    margin:30px auto 0;
+    padding:20px 24px;
+    border-left:6px solid #5275ba;
+    border-radius:12px;
+    text-align:left;
+    background:#f4f7fc;
+    font-size:22px;
+}
+
+/* ---------- LESSON ---------- */
+
+.lesson{
+    background:#fff;
+    border:1px solid #e1e5e9;
+    border-radius:20px;
+    padding:35px 38px;
+    margin:32px 0;
+    box-shadow:0 8px 25px rgba(30,40,55,.055);
+    opacity:0;
+    transform:translateY(35px);
+    transition:
+        opacity .8s ease,
+        transform .8s ease;
+}
+
+.lesson.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.lesson-title{
+    margin:-35px -38px 28px;
+    padding:18px 25px;
+    border-radius:20px 20px 0 0;
+    background:linear-gradient(135deg,#edf3ff,#f4effc);
+    border-bottom:1px solid #dce3ef;
+    color:#2f5798;
+    font-size:27px;
+    font-weight:800;
+}
+
+.section-title{
+    margin:30px 0 10px;
+    color:#68459b;
+    font-size:25px;
+    font-weight:800;
+}
+
+p{
+    margin:9px 0;
+}
+
+strong{
+    font-weight:800;
+}
+
+.example{
+    margin:14px 0;
+    padding:15px 20px;
+    border-left:5px solid #6688c5;
+    border-radius:10px;
+    background:#f7f9fc;
+}
+
+.rule{
+    margin:18px 0;
+    padding:16px 20px;
+    border:1px solid #d9e3f1;
+    border-left:6px solid #4e76b8;
+    border-radius:12px;
+    background:#f3f7fd;
+}
+
+.note{
+    margin:18px 0;
+    padding:16px 20px;
+    border-radius:12px;
+    background:#fff9e9;
+    border-left:6px solid #d8a52d;
+}
+
+.takeaway{
+    margin:20px 0;
+    padding:18px 22px;
+    border-radius:13px;
+    background:#f0f8f3;
+    border-left:6px solid #48a06c;
+}
+
+ul,
+ol{
+    margin:8px 0 12px 35px;
+}
+
+li{
+    margin:4px 0;
+}
+
+.inline-en{
+    color:#3f5f95;
+}
+
+.wrong{
+    color:#a73535;
+}
+
+.correct{
+    color:#287848;
+}
+
+.formula{
+    font-weight:800;
+    text-align:center;
+    margin:15px 0;
+    padding:12px;
+    border-radius:10px;
+    background:#f5f3fa;
+    color:#69479a;
+}
+
+/* ---------- TABLES ---------- */
+
+.table-wrap{
+    width:100%;
+    overflow-x:auto;
+    margin:20px 0;
+    border-radius:12px;
+}
+
+table{
+    width:100%;
+    min-width:650px;
+    border-collapse:collapse;
+    font-size:23px;
+    background:#fff;
+}
+
+th,
+td{
+    border:1px solid #cfd6de;
+    padding:12px 14px;
+    text-align:left;
+    vertical-align:top;
+}
+
+th{
+    background:#eef3fb;
+    color:#31558f;
+    font-weight:800;
+}
+
+tr:nth-child(even) td{
+    background:#fafbfc;
+}
+
+/* ---------- FINAL PRACTICE ---------- */
+
+.practice-box{
+    margin:14px 0;
+    padding:17px 20px;
+    border:1px solid #dfe4ea;
+    border-radius:12px;
+    background:#fbfcfd;
+}
+
+.practice-title{
+    font-weight:800;
+    color:#5d438d;
+}
+
+/* ---------- FOOTER ---------- */
+
+.footer{
+    width:min(1200px,94%);
+    margin:0 auto 35px;
+    padding:20px;
+    text-align:center;
+    font-size:17px;
+    color:#737b84;
+    border-top:1px solid #dfe3e7;
+}
+
+/* ---------- ANIMATION ---------- */
+
+@keyframes softFloat{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-4px);}
+}
+
+.cover{
+    animation:softFloat 5s ease-in-out infinite;
+}
+
+/* ---------- RESPONSIVE ---------- */
+
+@media(max-width:800px){
+
+    body{
+        font-size:22px;
+        line-height:1.75;
+    }
+
+    .book{
+        width:94%;
+        margin-top:22px;
+    }
+
+    .cover{
+        padding:40px 18px;
+        border-radius:18px;
+    }
+
+    .cover-part{
+        font-size:36px;
+    }
+
+    .cover-title{
+        font-size:28px;
+    }
+
+    .cover-series{
+        font-size:19px;
+    }
+
+    .cover-subtitle{
+        font-size:20px;
+    }
+
+    .goal{
+        font-size:20px;
+        padding:16px;
+    }
+
+    .lesson{
+        padding:27px 22px;
+        border-radius:16px;
+    }
+
+    .lesson-title{
+        margin:-27px -22px 23px;
+        border-radius:16px 16px 0 0;
+        font-size:23px;
+        padding:15px 18px;
+    }
+
+    .section-title{
+        font-size:23px;
+    }
+
+    .example,
+    .rule,
+    .note,
+    .takeaway{
+        padding:13px 15px;
+    }
+
+    table{
+        font-size:20px;
+    }
+}
+
+@media(max-width:500px){
+
+    body{
+        font-size:20px;
+        line-height:1.7;
+    }
+
+    .top-inner{
+        padding:9px 12px;
+    }
+
+    .book-label{
+        font-size:14px;
+    }
+
+    .pdf-btn{
+        font-size:15px;
+        padding:8px 12px;
+    }
+
+    .cover{
+        padding:30px 13px;
+    }
+
+    .cover-part{
+        font-size:31px;
+    }
+
+    .cover-title{
+        font-size:24px;
+    }
+
+    .cover-subtitle{
+        font-size:18px;
+    }
+
+    .goal{
+        font-size:18px;
+    }
+
+    .lesson{
+        padding:22px 15px;
+        margin:22px 0;
+    }
+
+    .lesson-title{
+        margin:-22px -15px 20px;
+        padding:13px 14px;
+        font-size:21px;
+    }
+
+    .section-title{
+        font-size:21px;
+    }
+
+    ul,
+    ol{
+        margin-left:25px;
+    }
+
+    table{
+        font-size:18px;
+        min-width:570px;
+    }
+
+    th,
+    td{
+        padding:9px 10px;
+    }
+}
+
+/* =========================================================
+   PRINT / PDF
+   Browser's native Print → Save as PDF keeps text selectable.
+   ========================================================= */
+
+@media print{
+
+    @page{
+        size:A4 portrait;
+        margin:12mm;
+    }
+
+    html,
+    body{
+        background:#fff !important;
+        color:#000 !important;
+        font-size:14pt;
+        line-height:1.55;
+    }
+
+    .top-bar,
+    .pdf-btn{
+        display:none !important;
+    }
+
+    .book{
+        width:100%;
+        margin:0;
+    }
+
+    .cover,
+    .lesson{
+        box-shadow:none !important;
+        animation:none !important;
+        border:1px solid #999;
+    }
+
+    .lesson{
+        opacity:1 !important;
+        transform:none !important;
+        page-break-inside:auto;
+    }
+
+    .lesson-title{
+        color:#000;
+        background:#eee;
+    }
+
+    .section-title{
+        color:#000;
+    }
+
+    .example,
+    .rule,
+    .note,
+    .takeaway{
+        background:#fff;
+        border-color:#777;
+    }
+
+    table{
+        font-size:12pt;
+    }
+
+    th{
+        background:#eee !important;
+        color:#000;
+    }
+
+    .footer{
+        display:none;
+    }
+
+    a{
+        color:#000;
+        text-decoration:none;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================================================
+     TOP BAR
+     ========================================================= -->
+
+<header class="top-bar">
+    <div class="top-inner">
+        <div class="book-label">ENGLISH GRAMMAR SERIES • PART 6</div>
+
+        <button class="pdf-btn" onclick="downloadPDF()">
+            ⬇ Download PDF
+        </button>
+    </div>
+</header>
+
+
+<main class="book">
+
+<!-- =========================================================
+     COVER
+     ========================================================= -->
+
+<section class="cover">
+
+    <div class="cover-series">
+        ENGLISH GRAMMAR SERIES
+    </div>
+
+    <div class="cover-part">
+        PART 6
+    </div>
+
+    <div class="cover-title">
+        VERB (ক্রিয়া)
+    </div>
+
+    <div class="cover-subtitle">
+        English &amp; Bangla Grammar Equivalent Guide
+    </div>
+
+    <div class="goal">
+        <strong>লক্ষ্য:</strong>
+        Verb (ক্রিয়া) কী, কীভাবে চেনা যায়, Verb-এর প্রকারভেদ,
+        Main Verb, Helping Verb, Auxiliary Verb, Modal Verb,
+        Transitive-Intransitive, Finite-Non-finite, Regular-Irregular
+        Verb, Verb-এর Forms এবং বাক্যে Verb-এর ব্যবহার সম্পর্কে পরিষ্কার ধারণা তৈরি করা
+        [cite: 25].
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     LESSON 1
+     ========================================================= -->
+
+<section class="lesson">
+
+<div class="lesson-title">
+    LESSON 1 - VERB-এর পরিচয়, সংজ্ঞা ও শনাক্তকরণ
+</div>
+
+<h3 class="section-title">1.1 WHAT IS A VERB? (ক্রিয়া কী?)</h3>
+
+<p>
+    <strong>Definition:</strong>
+    A Verb is a word that shows an action, state, or occurrence
+    [cite: 25].
+</p>
+
+<p>
+    Verb (ক্রিয়া) হলো এমন একটি শব্দ, যা কোনো কাজ, অবস্থা বা সংঘটন বোঝায়
+    [cite: 25].
+</p>
+
+<div class="example">
+    <strong>Examples:</strong>
+    <ul>
+        <li>go (যাওয়া) [cite: 25]</li>
+        <li>eat (খাওয়া) [cite: 25]</li>
+        <li>read (পড়া) [cite: 25]</li>
+        <li>write (লেখা) [cite: 25]</li>
+        <li>sleep (ঘুমানো) [cite: 25]</li>
+        <li>run (দৌড়ানো) [cite: 25]</li>
+        <li>be (হাওয়া/থাকা) [cite: 25]</li>
+        <li>know (জানা) [cite: 25]</li>
+        <li>love (ভালোবাসা) [cite: 25]</li>
+    </ul>
+</div>
+
+<div class="example">
+    <strong>Sentence Examples:</strong>
+    <ul>
+        <li>Rahim reads a book. (রহিম একটি বই পড়ে।) [cite: 25]</li>
+        <li>The baby sleeps. (শিশুচি ঘুমায়।) [cite: 25]</li>
+        <li>I know the answer. (আমি উত্তরটি জানি।) [cite: 25]</li>
+    </ul>
+</div>
+
+<div class="takeaway">
+    <strong>সহজে মনে রাখো:</strong>
+    কাজ + অবস্থা + সংঘটন = Verb [cite: 25]
+</div>
+
+<h3 class="section-title">1.2 HOW TO IDENTIFY A VERB (Verb শনাক্তকরণ)</h3>
+
+<p>
+    বাক্যে যে শব্দ কাজ বা অবস্থা বোঝায়, সেটি খুঁজে দেখো
+    [cite: 25].
+</p>
+
+<div class="example">
+    <strong>Example 1:</strong> Rahim plays football.
+    <ul>
+        <li>Rahim = কে? [cite: 25]</li>
+        <li>plays = কী করে? (Verb) [cite: 25]</li>
+        <li>football = কী? [cite: 25]</li>
+    </ul>
+</div>
+
+<div class="example">
+    <strong>Example 2:</strong> She is happy.
+    <ul>
+        <li>is = Verb [cite: 25]</li>
+        <li>happy = Adjective [cite: 26]</li>
+    </ul>
+</div>
+
+<div class="note">
+    <strong>মনে রাখো:</strong>
+    Verb শুধু কাজ বোঝায় না; অবস্থাও বোঝাতে পারে [cite: 26].
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     LESSON 2
+     ========================================================= -->
+
+<section class="lesson">
+
+<div class="lesson-title">
+    LESSON 2 - MAIN VERB, HELPING VERB ও AUXILIARY VERB
+</div>
+
+<h3 class="section-title">2.1 MAIN VERB (প্রধান ক্রিয়া)</h3>
+
+<p>
+    যে Verb বাক্যের মূল কাজ বা অবস্থা প্রকাশ করে, তাকে Main Verb বলে
+    [cite: 26].
+</p>
+
+<ul>
+    <li>I eat rice. (eat = Main Verb) [cite: 26]</li>
+    <li>He reads books. (reads = Main Verb) [cite: 26]</li>
+    <li>They play football. (play = Main Verb) [cite: 26]</li>
+</ul>
+
+<h3 class="section-title">2.2 HELPING VERB (সহায়ক ক্রিয়া)</h3>
+
+<p>
+    যে Verb Main Verb-কে সাহায্য করে, তাকে Helping Verb বা Auxiliary Verb বলে
+    [cite: 26].
+</p>
+
+<p>
+    <strong>Common Helping Verbs:</strong>
+    am, is, are, was, were, be, being, been, have, has, had, do, does, did
+    [cite: 26]
+</p>
+
+<div class="example">
+    <ul>
+        <li>I am reading. (am = Helping Verb, reading = Main Verb) [cite: 26]</li>
+        <li>She has finished the work. (has = Helping Verb, finished = Main Verb) [cite: 26]</li>
+        <li>They are playing. (are = Helping Verb, playing = Main Verb) [cite: 26]</li>
+    </ul>
+</div>
+
+<h3 class="section-title">2.3 PRIMARY AUXILIARY VERBS (প্রধান Auxiliary Verb)</h3>
+
+<p>
+    Primary Auxiliary Verb তিনটি প্রধান পরিবার [cite: 26]:
+</p>
+
+<ol>
+    <li>BE: am, is, are, was, were, be, being, been [cite: 26]</li>
+    <li>HAVE: have, has, had [cite: 26]</li>
+    <li>DO: do, does, did [cite: 26]</li>
+</ol>
+
+<div class="example">
+    He is reading. (সে পড়ছে।) |
+    I have finished. (আমি শেষ করেছি।) |
+    Do you know him? (তুমি কি তাকে চেনো?) [cite: 26]
+</div>
+
+<h3 class="section-title">2.4 MODAL VERB (Modal Auxiliary Verb)</h3>
+
+<p>
+    যে Auxiliary Verb দিয়ে সামর্থ্য, অনুমতি, সম্ভাবনা, বাধ্যবাধকতা,
+    পরামর্শ, ইচ্ছা ইত্যাদি বোঝানো হয়, তাকে Modal Verb বলে [cite: 26].
+</p>
+
+<p>
+    <strong>Common Modals:</strong>
+    can, could, may, might, shall, should, will, would, must
+    [cite: 26]
+</p>
+
+<div class="example">
+    <ul>
+        <li>I can swim. (আমি সাঁতার কাটতে পারি।) [cite: 26]</li>
+        <li>You should study. (তোমার পড়াশোনা করা উচিত।) [cite: 26]</li>
+        <li>You must obey the rules. (তোমাকে নিয়ম মানতেই হবে।) [cite: 26]</li>
+        <li>It may rain. (বৃষ্টি হতে পারে।) [cite: 26]</li>
+    </ul>
+</div>
+
+<div class="rule">
+    <strong>☑ Rule:</strong>
+    Modal Verb-এর পরে সাধারণত Verb-এর Base Form বসে [cite: 26].
+    <br>
+    যেমন: He can swim [cite: 26].
+    <span class="wrong">ভুল ✗: He can swims [cite: 26].</span>
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     LESSON 3
+     ========================================================= -->
+
+<section class="lesson">
+
+<div class="lesson-title">
+    LESSON 3 - ACTION VERB, STATIVE VERB ও TRANSITIVE-INTRANSITIVE VERB
+</div>
+
+<h3 class="section-title">3.1 ACTION VERB (কাজবাচক ক্রিয়া)</h3>
+
+<p>
+    যে Verb কোনো কাজ বোঝায়, তাকে Action Verb বলে [cite: 27].
+</p>
+
+<p>
+    <strong>Examples:</strong>
+    run (দৌড়ানো), eat (খাওয়া), write (লেখা), read (পড়া),
+    jump (লাফ দেওয়া), sing (গান গাওয়া) [cite: 27]
+</p>
+
+<div class="example">
+    Sentence Example:
+    The boy runs fast. (ছেলেটি দ্রুত দৌড়ায়।) [cite: 27]
+</div>
+
+<h3 class="section-title">3.2 STATIVE VERB (অবস্থাবাচক ক্রিয়া)</h3>
+
+<p>
+    যে Verb কোনো কাজের পরিবর্তে অবস্থা, অনুভূতি, চিন্তা, জ্ঞান বা মালিকানা
+    বোঝায়, তাকে Stative Verb বলে [cite: 27].
+</p>
+
+<p>
+    <strong>Examples:</strong>
+    know (জানা), believe (বিশ্বাস করা), love (ভালোবাসা),
+    like (পছন্দ করা), want (চাওয়া) [cite: 27]
+</p>
+
+<div class="example">
+    Sentence Examples:
+    I know him. (আমি তাকে চিনি।) |
+    She likes tea. (সে চা পছন্দ করে।) [cite: 27]
+</div>
+
+<h3 class="section-title">3.3 TRANSITIVE VERB (সকর্মক ক্রিয়া)</h3>
+
+<p>
+    যে Verb-এর কাজ সম্পূর্ণ করতে একটি Object প্রয়োজন হয়,
+    তাকে Transitive Verb বলে [cite: 27].
+</p>
+
+<div class="example">
+    I read a book.
+    (read = Transitive Verb, book = Object) [cite: 27]
+</div>
+
+<div class="formula">
+    Verb + Object = Transitive Verb [cite: 27]
+</div>
+
+<h3 class="section-title">3.4 INTRANSITIVE VERB (অকর্মক ক্রিয়া)</h3>
+
+<p>
+    যে Verb-এর কাজ সম্পূর্ণ করতে Object প্রয়োজন হয় না,
+    তাকে Intransitive Verb বলে [cite: 27].
+</p>
+
+<div class="example">
+    <ul>
+        <li>The baby cried. (শিশুচি কাঁদল।) [cite: 27]</li>
+        <li>He slept. (সে ঘুমাল।) [cite: 27]</li>
+    </ul>
+</div>
+
+<div class="formula">
+    Verb + No Object = Intransitive Verb [cite: 27]
+</div>
+
+<h3 class="section-title">3.5 TRANSITIVE vs INTRANSITIVE</h3>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+    <th>Transitive Example</th>
+    <th>Intransitive Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+    <td>
+        I opened the door.
+        <br>
+        (opened = Verb, door = Object) [cite: 27]
+    </td>
+    <td>
+        The door opened.
+        <br>
+        (opened = Verb, কোনো Object নেই) [cite: 27]
+    </td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<div class="note">
+    <strong>গুরুত্বপূর্ণ:</strong>
+    একই Verb ভিন্ন বাক্যে ভিন্নভাবে Transitive বা Intransitive হতে পারে
+    [cite: 27].
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     LESSON 4
+     ========================================================= -->
+
+<section class="lesson">
+
+<div class="lesson-title">
+    LESSON 4 - FINITE &amp; NON-FINITE VERB
+</div>
+
+<h3 class="section-title">4.1 FINITE VERB (সমাপিকা ক্রিয়া)</h3>
+
+<p>
+    যে Verb Subject ও Tense-এর সঙ্গে সম্পর্ক রাখে এবং একটি পূর্ণ বাক্যের
+    মূল Verb হিসেবে কাজ করতে পারে, তাকে Finite Verb বলে [cite: 27, 28].
+</p>
+
+<div class="example">
+    He plays football. (plays = Finite Verb) |
+    They play football. (play = Finite Verb) [cite: 28]
+</div>
+
+<p>
+    Subject পরিবর্তনের সঙ্গে Verb পরিবর্তিত হতে পারে:
+    He plays. | They play. [cite: 28]
+</p>
+
+<h3 class="section-title">4.2 NON-FINITE VERB (অসমাপিকা ক্রিয়া)</h3>
+
+<p>
+    যে Verb সাধারণত Subject বা Tense অনুযায়ী নিজের রূপ পরিবর্তন করে না
+    এবং বাক্যে বিশেষ ভূমিকা পালন করে, তাকে Non-finite Verb বলে [cite: 28].
+</p>
+
+<p>
+    প্রধান তিন প্রকার: Infinitive, Gerund, Participle [cite: 28]
+</p>
+
+<h3 class="section-title">4.3 INFINITIVE</h3>
+
+<p>
+    সাধারণত: to + Base Verb
+    (to go, to eat, to read, to write) [cite: 28]
+</p>
+
+<div class="example">
+    <ul>
+        <li>I want to learn English. (আমি ইংরেজি শিখতে চাই।) [cite: 28]</li>
+        <li>He likes to read. [cite: 28]</li>
+    </ul>
+</div>
+
+<p>
+    Bare Infinitive (to থাকে না):
+    can go, must study, let him go [cite: 28]
+</p>
+
+<h3 class="section-title">4.4 GERUND (ক্রিয়াবাচক বিশেষ্য)</h3>
+
+<p>
+    Verb + ing যখন Noun-এর মতো কাজ করে, তখন তাকে Gerund বলে [cite: 28].
+</p>
+
+<div class="example">
+    <ul>
+        <li>Swimming is good exercise. (সাঁতার কাটা ভালো ব্যায়াম।) [cite: 28]</li>
+        <li>Reading is useful. [cite: 28]</li>
+    </ul>
+</div>
+
+<h3 class="section-title">4.5 PARTICIPLE (ক্রিয়াজাত বিশেষণধর্মী রূপ)</h3>
+
+<p>
+    Participle Verb-এর একটি রূপ, যা অনেক সময় Adjective-এর মতো কাজ করে
+    বা Verb Phrase-এর অংশ হয় [cite: 28].
+</p>
+
+<div class="example">
+    <p>
+        <strong>Present Participle:</strong>
+        Verb + ing
+        (যেমন: a crying baby - কাঁদতে থাকা শিশু) [cite: 28]
+    </p>
+
+    <p>
+        <strong>Past Participle:</strong>
+        সাধারণত Verb-এর 3rd Form
+        (যেমন: a broken chair - ভাঙা চেয়ার) [cite: 28]
+    </p>
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     LESSON 5
+     ========================================================= -->
+
+<section class="lesson">
+
+<div class="lesson-title">
+    LESSON 5 - REGULAR, IRREGULAR ও VERB-এর ৫টি FORM
+</div>
+
+<h3 class="section-title">5.1 REGULAR VERB (নিয়মিত ক্রিয়া)</h3>
+
+<p>
+    যে Verb-এর Past ও Past Participle সাধারণত -ed যোগ করে তৈরি হয়,
+    তাকে Regular Verb বলে [cite: 28].
+</p>
+
+<div class="example">
+    play → played → played |
+    work → worked → worked |
+    open → opened → opened [cite: 28]
+</div>
+
+<h3 class="section-title">5.2 IRREGULAR VERB (অনিয়মিত ক্রিয়া)</h3>
+
+<p>
+    যে Verb-এর Past বা Past Participle সাধারণ -ed নিয়ম মেনে তৈরি হয় না,
+    তাকে Irregular Verb বলে [cite: 28].
+</p>
+
+<div class="example">
+    go → went → gone |
+    eat → ate → eaten |
+    see → saw → seen |
+    write → wrote → written [cite: 28]
+</div>
+
+<h3 class="section-title">5.3 FIVE FORMS OF VERB (Verb-এর ৫টি গুরুত্বপূর্ণ রূপ)</h3>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+    <th>Verb</th>
+    <th>V1 (Base)</th>
+    <th>V2 (Past)</th>
+    <th>V3 (Past Part.)</th>
+    <th>V4 (-ing)</th>
+    <th>V5 (s/es)</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+    <td>GO</td>
+    <td>go [cite: 28]</td>
+    <td>went [cite: 28]</td>
+    <td>gone [cite: 28]</td>
+    <td>going [cite: 28]</td>
+    <td>goes [cite: 28]</td>
+</tr>
+
+<tr>
+    <td>PLAY</td>
+    <td>play [cite: 28]</td>
+    <td>played [cite: 28]</td>
+    <td>played [cite: 28]</td>
+    <td>playing [cite: 28]</td>
+    <td>plays [cite: 28]</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<h3 class="section-title">5.4 V1, V2, V3, V4, V5 কোথায় ব্যবহার হয়?</h3>
+
+<ul>
+    <li>V1 (Base): I go to school. [cite: 28]</li>
+    <li>V2 (Past): I went to school. [cite: 28]</li>
+    <li>V3 (Past Participle): I have gone to school. [cite: 28, 29]</li>
+    <li>V4 (-ing): I am going to school. [cite: 29]</li>
+    <li>V5 (s/es): He goes to school. [cite: 29]</li>
+</ul>
+
+</section>
+
+
+<!-- =========================================================
+     LESSON 6
+     ========================================================= -->
+
+<section class="lesson">
+
+<div class="lesson-title">
+    LESSON 6 - VERB, TENSE, SUBJECT-VERB AGREEMENT ও AUXILIARY-এর ব্যবহার
+</div>
+
+<h3 class="section-title">6.1 VERB AND TENSE (Verb ও Tense)</h3>
+
+<p>
+    Verb-এর রূপ Tense বোঝাতে গুরুত্বপূর্ণ ভূমিকা পালন করে।
+    যেমন: I play (Present), I played (Past), I will play (Future)
+    [cite: 29].
+</p>
+
+<h3 class="section-title">6.2 SUBJECT-VERB AGREEMENT (কর্তা ও ক্রিয়ার সামঞ্জস্য)</h3>
+
+<p>
+    Subject অনুযায়ী Verb-এর সঠিক রূপ ব্যবহার করতে হয় [cite: 29].
+</p>
+
+<div class="example">
+    He plays (সঠিক ✓) / He play (ভুল ✗) |
+    They play (সঠিক ✓) / They plays (ভুল ✗) [cite: 29]
+</div>
+
+<h3 class="section-title">6.3 DO / DOES / DID</h3>
+
+<ul>
+    <li>Present Simple: I/You/We/They do | He/She/It does [cite: 29]</li>
+    <li>Past Simple: সব Subject-এর সঙ্গে did [cite: 29]</li>
+</ul>
+
+<div class="rule">
+    <strong>Rule:</strong>
+    Does/Did-এর পরে সবসময় Verb-এর Base Form বসে [cite: 29].
+    <br>
+    যেমন: Does he play [cite: 29]?
+    <span class="wrong">ভুল ✗: Does he goes [cite: 29]?</span>
+</div>
+
+<h3 class="section-title">6.4 HAVE / HAS / HAD &amp; 6.5 BE VERB</h3>
+
+<ul>
+    <li>
+        Have/Has: I/You/We/They have |
+        He/She/It has (Past: had) [cite: 29]
+    </li>
+    <li>
+        Be Verb: Present (am, is, are), Past (was, were),
+        Other (be, being, been) [cite: 29]
+    </li>
+</ul>
+
+</section>
+
+
+<!-- =========================================================
+     LESSON 7
+     ========================================================= -->
+
+<section class="lesson">
+
+<div class="lesson-title">
+    LESSON 7 - LINKING, PHRASAL, CAUSATIVE ও SPECIAL VERB STRUCTURES
+</div>
+
+<h3 class="section-title">7.1 LINKING VERB (সংযোগকারী ক্রিয়া)</h3>
+
+<p>
+    যে Verb Subject-কে তার Complement-এর সঙ্গে যুক্ত করে,
+    তাকে Linking Verb বলে
+    (be, become, seem, appear, feel, look) [cite: 29].
+</p>
+
+<div class="example">
+    He is happy. (is = Linking Verb) [cite: 29]
+</div>
+
+<h3 class="section-title">7.2 PHRASAL VERB (Verb + Particle)</h3>
+
+<p>
+    Verb-এর সঙ্গে একটি বা একাধিক ছোট শব্দ মিলে বিশেষ অর্থ তৈরি করলে
+    তাকে Phrasal Verb বলে
+    (get up, give up, look after, turn off) [cite: 29].
+</p>
+
+<h3 class="section-title">7.3 CAUSATIVE VERB (কাউকে দিয়ে কাজ করানো)</h3>
+
+<p>
+    কাউকে দিয়ে কোনো কাজ করানো বোঝাতে Causative Verb
+    (make, let, have, get) ব্যবহার করা হয়
+    (যেমন: She made me laugh) [cite: 29].
+</p>
+
+<h3 class="section-title">7.4 VERB + OBJECT + COMPLEMENT &amp; 7.5 VERB + PREPOSITION</h3>
+
+<ul>
+    <li>Object + Complement: They made him captain [cite: 29].</li>
+    <li>
+        Verb + Preposition:
+        listen to, look at, wait for, depend on
+        (যেমন: Listen to me) [cite: 29].
+    </li>
+</ul>
+
+</section>
+
+
+<!-- =========================================================
+     LESSON 8
+     ========================================================= -->
+
+<section class="lesson">
+
+<div class="lesson-title">
+    LESSON 8 - IMPORTANT VERB RULES ও COMMON MISTAKES
+</div>
+
+<h3 class="section-title">8.1 IMPORTANT VERB RULES</h3>
+
+<div class="rule">
+    <ul>
+        <li>
+            <strong>Rule 1:</strong>
+            He/She/It-এর সঙ্গে Present Simple-এ Verb-এ s/es হয়
+            (He plays) [cite: 29, 30].
+        </li>
+
+        <li>
+            <strong>Rule 2:</strong>
+            Modal-এর পরে Base Verb (He can swim) [cite: 30].
+        </li>
+
+        <li>
+            <strong>Rule 3:</strong>
+            Does/Did-এর পরে Base Verb (Does he play?) [cite: 30].
+        </li>
+
+        <li>
+            <strong>Rule 4:</strong>
+            Have/has/had-এর পরে V3 ব্যবহৃত হয় (I have eaten) [cite: 30].
+        </li>
+    </ul>
+</div>
+
+<h3 class="section-title">8.2 COMMON MISTAKES (সাধারণ ভুল)</h3>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+    <th>Incorrect (ভুল ✗)</th>
+    <th>Correct (সঠিক ✓)</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+    <td class="wrong">He go to school.</td>
+    <td class="correct">He goes to school. [cite: 30]</td>
+</tr>
+
+<tr>
+    <td class="wrong">They goes to school.</td>
+    <td class="correct">They go to school. [cite: 30]</td>
+</tr>
+
+<tr>
+    <td class="wrong">He can plays football.</td>
+    <td class="correct">He can play football. [cite: 30]</td>
+</tr>
+
+<tr>
+    <td class="wrong">Does he goes there?</td>
+    <td class="correct">Does he go there? [cite: 30]</td>
+</tr>
+
+<tr>
+    <td class="wrong">Did you went there?</td>
+    <td class="correct">Did you go there? [cite: 30]</td>
+</tr>
+
+<tr>
+    <td class="wrong">She have a book.</td>
+    <td class="correct">She has a book. [cite: 30]</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     LESSON 9
+     ========================================================= -->
+
+<section class="lesson">
+
+<div class="lesson-title">
+    LESSON 9 - VERB QUICK CLASSIFICATION, KEY TAKEAWAY &amp; CHAPTER MAP
+</div>
+
+<h3 class="section-title">9.1 VERB QUICK CLASSIFICATION</h3>
+
+<div class="takeaway">
+    Main Verb vs Auxiliary Verb (Primary &amp; Modal) |
+    Action vs Stative |
+    Transitive vs Intransitive |
+    Finite vs Non-finite (Infinitive, Gerund, Participle)
+    [cite: 30]
+</div>
+
+<div class="takeaway">
+    <strong>☑ VERB KEY TAKEAWAY</strong>
+
+    <p>
+        Verb হলো এমন শব্দ, যা সাধারণত কাজ, অবস্থা বা সংঘটন বোঝায়
+        [cite: 30].
+    </p>
+
+    <p>
+        উদাহরণ:
+        Rahim reads books.
+        (Rahim = Noun, reads = Verb, books = Noun)
+        [cite: 30]
+    </p>
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     LESSON 10
+     ========================================================= -->
+
+<section class="lesson">
+
+<div class="lesson-title">
+    LESSON 10 - FINAL PRACTICE ও QUICK REVISION
+</div>
+
+<h3 class="section-title">FINAL PRACTICE</h3>
+
+<div class="practice-box">
+    <span class="practice-title">A. Identify the Verb:</span>
+    Rahim reads a book. |
+    The baby sleeps. |
+    They play football. |
+    She is happy. |
+    I know the answer
+    [cite: 30].
+</div>
+
+<div class="practice-box">
+    <span class="practice-title">B. Identify Main &amp; Helping Verb:</span>
+    He is reading. |
+    They are playing. |
+    She has finished the work. |
+    I am learning English
+    [cite: 30, 31].
+</div>
+
+<div class="practice-box">
+    <span class="practice-title">C. Transitive or Intransitive?</span>
+    I opened the door. |
+    The baby cried. |
+    He bought a phone. |
+    The bird flew. |
+    She reads books
+    [cite: 31].
+</div>
+
+<div class="practice-box">
+    <span class="practice-title">D. Write V1, V2, V3, V4, V5:</span>
+    go, eat, write, play, see, come, take, work
+    [cite: 31]
+</div>
+
+<div class="practice-box">
+    <span class="practice-title">E. Correct the mistakes:</span>
+    He go to school. |
+    They plays football. |
+    Does he goes there? |
+    Did you went there? |
+    She have a book. |
+    He can plays football
+    [cite: 31].
+</div>
+
+<h3 class="section-title">
+    10.1 QUICK REVISION &amp; MEMORIZATION SUMMARY
+</h3>
+
+<div class="takeaway">
+
+<ul>
+    <li>
+        <strong>• ১. সংজ্ঞা:</strong>
+        কাজ + অবস্থা + সংঘটন [cite: 31]
+    </li>
+
+    <li>
+        <strong>• ২. প্রধান ভাগ:</strong>
+        Main Verb ও Helping / Auxiliary Verb [cite: 31]
+    </li>
+
+    <li>
+        <strong>• ৩. Auxiliary:</strong>
+        Primary (BE, HAVE, DO) ও Modal
+        (can, could, may, might, shall, should, will, would, must)
+        [cite: 31]
+    </li>
+
+    <li>
+        <strong>• ৪. কাজ ও অবস্থা:</strong>
+        Action Verb ও Stative Verb [cite: 31]
+    </li>
+
+    <li>
+        <strong>• ৫. Object ভিত্তিক:</strong>
+        Transitive Verb ও Intransitive Verb [cite: 31]
+    </li>
+
+    <li>
+        <strong>• ৬. Tense ভিত্তিক:</strong>
+        Finite Verb ও Non-finite Verb [cite: 31]
+    </li>
+
+    <li>
+        <strong>• ৭. Non-finite প্রকার:</strong>
+        Infinitive, Gerund, Participle [cite: 31]
+    </li>
+
+    <li>
+        <strong>• ৮. পরিবর্তন নিয়ম:</strong>
+        Regular Verb ও Irregular Verb [cite: 31]
+    </li>
+
+    <li>
+        <strong>• ৯. রূপসমূহ:</strong>
+        V1, V2, V3, V4, V5 [cite: 31]
+    </li>
+
+    <li>
+        <strong>• ১০. বিশেষ:</strong>
+        Linking Verb, Phrasal Verb, Causative Verb [cite: 31]
+    </li>
+
+    <li>
+        <strong>• ১১. গোল্ডেন রুলস:</strong>
+        Modal/Does/Did-এর পর V1; He/She/It-এর সঙ্গে V5
+        [cite: 31]
+    </li>
+</ul>
+
+</div>
+
+</section>
+
+</main>
+
+
+<footer class="footer">
+    ENGLISH GRAMMAR SERIES • PART 6 • VERB
+</footer>
+
+
+<script>
+/* =========================================================
+   PDF FUNCTION
+   Native browser printing is used so Bengali and Arabic/
+   Unicode text remains real selectable text in the PDF.
+   ========================================================= */
+
+function downloadPDF(){
+
+    const oldTitle = document.title;
+
+    document.title = "English Grammar Series - Part 6 - Verb";
+
+    /*
+       Browser Print dialog:
+       Choose "Save as PDF".
+       This keeps the document text selectable/copyable
+       instead of converting the page into screenshots.
+    */
+    window.print();
+
+    setTimeout(() => {
+        document.title = oldTitle;
+    }, 1000);
+}
+
+
+/* =========================================================
+   SCROLL ANIMATION
+   ========================================================= */
+
+const lessons = document.querySelectorAll(".lesson");
+
+const observer = new IntersectionObserver(
+    (entries) => {
+
+        entries.forEach((entry) => {
+
+            if(entry.isIntersecting){
+
+                entry.target.classList.add("show");
+
+                observer.unobserve(entry.target);
+            }
+
+        });
+
+    },
+    {
+        threshold:0.08
+    }
+);
+
+lessons.forEach((lesson) => {
+    observer.observe(lesson);
+});
+
+
+/* =========================================================
+   INITIAL LOAD
+   ========================================================= */
+
+window.addEventListener("load", () => {
+
+    /*
+       The first lesson is immediately visible.
+       Others animate naturally while scrolling.
+    */
+
+    if(lessons.length > 0){
+        lessons[0].classList.add("show");
+    }
+
+});
+
+
+/* =========================================================
+   PRINT SAFETY
+   ========================================================= */
+
+window.addEventListener("beforeprint", () => {
+
+    lessons.forEach((lesson) => {
+        lesson.classList.add("show");
+    });
+
+});
+
+</script>
+
+</body>
+</html>

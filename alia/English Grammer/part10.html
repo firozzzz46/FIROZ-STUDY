@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PART 10 - INTERJECTION | English Grammar & Bangla Grammar</title>
+
+<style>
+    /* =========================
+       FONT & BASIC RESET
+    ========================== */
+    @font-face {
+        font-family: "Kalpurush";
+        src: local("Kalpurush");
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        font-family: "Kalpurush", "Noto Sans Bengali", Arial, sans-serif;
+        font-size: 25px;
+        line-height: 1.8;
+        background: #f8fafc;
+        color: #202124;
+        padding: 25px;
+    }
+
+    /* =========================
+       TOP BUTTON
+    ========================== */
+    .top-actions {
+        position: fixed;
+        top: 18px;
+        right: 20px;
+        z-index: 1000;
+    }
+
+    .pdf-btn {
+        border: none;
+        border-radius: 12px;
+        padding: 10px 18px;
+        font-family: inherit;
+        font-size: 20px;
+        font-weight: bold;
+        cursor: pointer;
+        color: white;
+        background: linear-gradient(135deg, #2563eb, #7c3aed);
+        box-shadow: 0 7px 22px rgba(37, 99, 235, 0.25);
+        transition: 0.3s ease;
+    }
+
+    .pdf-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 28px rgba(37, 99, 235, 0.35);
+    }
+
+    /* =========================
+       BOOK CONTAINER
+    ========================== */
+    .book {
+        width: min(1200px, 100%);
+        margin: 55px auto 30px;
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(15, 23, 42, 0.08);
+        overflow: hidden;
+    }
+
+    /* =========================
+       HEADER
+    ========================== */
+    .book-header {
+        padding: 45px 35px;
+        text-align: center;
+        background: linear-gradient(
+            135deg,
+            #eff6ff,
+            #f5f3ff,
+            #ecfeff
+        );
+        border-bottom: 3px solid #dbeafe;
+    }
+
+    .book-header h1 {
+        font-size: clamp(30px, 4vw, 48px);
+        line-height: 1.3;
+        color: #1d4ed8;
+        margin-bottom: 12px;
+    }
+
+    .book-header h2 {
+        font-size: clamp(23px, 3vw, 32px);
+        color: #4c1d95;
+        font-weight: 700;
+    }
+
+    .goal {
+        margin-top: 25px;
+        padding: 20px;
+        border-left: 6px solid #6366f1;
+        background: rgba(255,255,255,0.75);
+        border-radius: 12px;
+        text-align: left;
+    }
+
+    /* =========================
+       LESSON
+    ========================== */
+    .lesson {
+        padding: 38px 45px;
+        border-bottom: 1px solid #e5e7eb;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .lesson.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .lesson:last-child {
+        border-bottom: none;
+    }
+
+    .lesson-title {
+        display: inline-block;
+        margin-bottom: 25px;
+        padding: 10px 18px;
+        font-size: clamp(24px, 3vw, 31px);
+        line-height: 1.45;
+        color: #fff;
+        border-radius: 12px;
+        background: linear-gradient(135deg, #2563eb, #7c3aed);
+        box-shadow: 0 7px 20px rgba(79,70,229,0.18);
+    }
+
+    h3 {
+        font-size: 27px;
+        color: #1e40af;
+        margin: 25px 0 12px;
+    }
+
+    h4 {
+        font-size: 25px;
+        color: #6d28d9;
+        margin: 22px 0 10px;
+    }
+
+    p {
+        margin: 10px 0 17px;
+    }
+
+    ul, ol {
+        margin: 10px 0 20px 35px;
+    }
+
+    li {
+        margin: 7px 0;
+    }
+
+    /* =========================
+       SPECIAL TEXT
+    ========================== */
+    .definition {
+        padding: 18px 22px;
+        margin: 15px 0;
+        border-left: 6px solid #2563eb;
+        background: #eff6ff;
+        border-radius: 10px;
+    }
+
+    .memory {
+        padding: 18px 22px;
+        margin: 20px 0;
+        border-left: 6px solid #f59e0b;
+        background: #fffbeb;
+        border-radius: 10px;
+    }
+
+    .important {
+        padding: 18px 22px;
+        margin: 20px 0;
+        border-left: 6px solid #dc2626;
+        background: #fef2f2;
+        border-radius: 10px;
+    }
+
+    .note {
+        padding: 16px 22px;
+        margin: 16px 0;
+        border-left: 6px solid #10b981;
+        background: #ecfdf5;
+        border-radius: 10px;
+    }
+
+    .formula {
+        padding: 20px;
+        margin: 20px 0;
+        text-align: center;
+        font-weight: bold;
+        color: #312e81;
+        background: linear-gradient(135deg, #eef2ff, #faf5ff);
+        border: 2px dashed #818cf8;
+        border-radius: 14px;
+    }
+
+    .example-list {
+        padding-left: 30px;
+    }
+
+    .example {
+        margin: 10px 0;
+    }
+
+    .english {
+        font-family: Arial, sans-serif;
+    }
+
+    /* =========================
+       CHART TABLE
+    ========================== */
+    .table-wrapper {
+        width: 100%;
+        overflow-x: auto;
+        margin: 20px 0;
+        border-radius: 12px;
+    }
+
+    table {
+        width: 100%;
+        min-width: 750px;
+        border-collapse: collapse;
+        font-size: 23px;
+        background: #fff;
+    }
+
+    th, td {
+        border: 1px solid #cbd5e1;
+        padding: 12px 14px;
+        text-align: left;
+        vertical-align: middle;
+    }
+
+    th {
+        background: #e0e7ff;
+        color: #312e81;
+        font-weight: bold;
+    }
+
+    tr:nth-child(even) td {
+        background: #f8fafc;
+    }
+
+    /* =========================
+       PRACTICE
+    ========================== */
+    .practice-box {
+        padding: 24px;
+        margin: 20px 0;
+        background: #f8fafc;
+        border: 1px solid #dbeafe;
+        border-radius: 14px;
+    }
+
+    .practice-box h3 {
+        margin-top: 0;
+    }
+
+    .question {
+        margin: 10px 0;
+    }
+
+    /* =========================
+       FOOTER
+    ========================== */
+    .footer {
+        padding: 25px;
+        text-align: center;
+        font-size: 19px;
+        color: #64748b;
+        background: #f8fafc;
+        border-top: 1px solid #e2e8f0;
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================== */
+    @media (max-width: 768px) {
+        body {
+            padding: 10px;
+            font-size: 22px;
+        }
+
+        .top-actions {
+            top: 10px;
+            right: 10px;
+        }
+
+        .pdf-btn {
+            font-size: 17px;
+            padding: 8px 13px;
+        }
+
+        .book {
+            margin-top: 55px;
+            border-radius: 14px;
+        }
+
+        .book-header {
+            padding: 32px 20px;
+        }
+
+        .lesson {
+            padding: 28px 20px;
+        }
+
+        h3 {
+            font-size: 25px;
+        }
+
+        h4 {
+            font-size: 23px;
+        }
+
+        table {
+            font-size: 21px;
+        }
+
+        .goal,
+        .definition,
+        .memory,
+        .important,
+        .note,
+        .practice-box {
+            padding: 15px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        body {
+            font-size: 20px;
+            padding: 6px;
+        }
+
+        .lesson {
+            padding: 24px 15px;
+        }
+
+        .lesson-title {
+            font-size: 23px;
+            padding: 8px 13px;
+        }
+
+        h3 {
+            font-size: 23px;
+        }
+
+        h4 {
+            font-size: 21px;
+        }
+
+        ul, ol {
+            margin-left: 25px;
+        }
+
+        table {
+            font-size: 19px;
+        }
+    }
+
+    /* =========================
+       PRINT / PDF
+    ========================== */
+    @media print {
+        @page {
+            size: A4;
+            margin: 12mm;
+        }
+
+        body {
+            background: white;
+            padding: 0;
+            font-size: 18px;
+            line-height: 1.6;
+            color: #000;
+        }
+
+        .top-actions {
+            display: none !important;
+        }
+
+        .book {
+            width: 100%;
+            margin: 0;
+            border: none;
+            box-shadow: none;
+            border-radius: 0;
+        }
+
+        .book-header {
+            background: white !important;
+            padding: 20px 0;
+            border-bottom: 2px solid #000;
+        }
+
+        .book-header h1,
+        .book-header h2,
+        h3,
+        h4 {
+            color: #000 !important;
+        }
+
+        .lesson {
+            padding: 22px 0;
+            opacity: 1 !important;
+            transform: none !important;
+            break-inside: auto;
+        }
+
+        .lesson-title {
+            color: #000 !important;
+            background: white !important;
+            border: 2px solid #000;
+            box-shadow: none;
+        }
+
+        .definition,
+        .memory,
+        .important,
+        .note,
+        .practice-box,
+        .formula {
+            background: white !important;
+            border: 1px solid #000;
+            border-left: 4px solid #000;
+        }
+
+        table {
+            font-size: 16px;
+        }
+
+        th, td {
+            border: 1px solid #000;
+        }
+
+        th {
+            background: #eee !important;
+            color: #000 !important;
+        }
+
+        .footer {
+            background: white;
+            color: #000;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<!-- PDF BUTTON -->
+<div class="top-actions">
+    <button class="pdf-btn" onclick="downloadPDF()">
+        📄 Download PDF
+    </button>
+</div>
+
+<main class="book">
+
+<header class="book-header">
+    <h1>PART 10 - INTERJECTION</h1>
+    <h2>(আবেগসূচক অব্যয়)</h2>
+    <h2>English Grammar &amp; Bangla Grammar Equivalent Guide</h2>
+
+    <div class="goal">
+        <strong>লক্ষ্য:</strong>
+        Interjection কী, কীভাবে চেনা যায়, কত প্রকার, আনন্দ, দুঃখ, বিস্ময়, ভয়, ব্যথা,
+        প্রশংসা, অনুমোদন, ডাক, ঘৃণা ইত্যাদি আবেগ প্রকাশে Interjection-এর ব্যবহার এবং
+        Punctuation সম্পর্কে পরিষ্কার ধারণা তৈরি করা[cite: 40].
+    </div>
+</header>
+
+
+<!-- =========================================================
+     LESSON 1
+========================================================== -->
+<section class="lesson">
+
+<h2 class="lesson-title">
+    LESSON 1 - WHAT IS AN INTERJECTION?
+    (Interjection কী ও কীভাবে চেনা যায়?)
+</h2>
+
+<div class="definition">
+    <strong>Definition:</strong>
+    An Interjection is a word or short expression that expresses a sudden feeling or emotion[cite: 40].
+</div>
+
+<p>
+    <strong>বাংলায়:</strong>
+    Interjection (আবেগসূচক অব্যয়) হলো এমন একটি শব্দ বা ছোট প্রকাশভঙ্গি, যা হঠাৎ কোনো আবেগ,
+    অনুভূতি বা মনের ভাব প্রকাশ করে[cite: 40].
+</p>
+
+<div class="memory">
+    <strong>সহজে মনে রাখো:</strong>
+    Interjection = Emotion Word = আবেগ প্রকাশের শব্দ[cite: 40]
+</div>
+
+<h3>কীভাবে শনাক্ত করবে?</h3>
+
+<p>
+    বাক্যে হঠাৎ আবেগ বা অনুভূতি প্রকাশ করছে এমন শব্দ থাকলে সেটি Interjection হতে পারে[cite: 40].
+</p>
+
+<h3>Examples:</h3>
+
+<ul class="example-list">
+    <li>Hurrah! (আনন্দ)[cite: 40]</li>
+    <li>Alas! (দুঃখ)[cite: 40]</li>
+    <li>Wow! (বিস্ময়/প্রশংসা)[cite: 40]</li>
+    <li>Oh! (বিস্ময়/অনুতাপ)[cite: 40]</li>
+    <li>Ouch! (ব্যথা)[cite: 40]</li>
+    <li>Ah! (স্বস্তি/উপলব্ধি)[cite: 40]</li>
+</ul>
+
+<h3>Examples in Sentences:</h3>
+
+<ul class="example-list">
+    <li>Hurrah! We won the match. (Hurrah! আনন্দ প্রকাশ করছে।)[cite: 40]</li>
+    <li>Alas! He is dead. (Alas! দুঃখ প্রকাশ করছে।)[cite: 40]</li>
+    <li>Wow! What a beautiful view! (Wow! বিস্ময়/প্রশংসা প্রকাশ করছে।)[cite: 40]</li>
+</ul>
+
+<div class="important">
+    <strong>মূল ধারণা:</strong>
+    Interjection সাধারণত বাক্যের মূল Grammatical Structure-এর অংশ নয়; এটি আলাদাভাবে আবেগ প্রকাশ করে[cite: 40].
+</div>
+
+<p><strong>Example:</strong> Hurrah! We won the match.</p>
+
+<ul>
+    <li>Hurrah! = আবেগ প্রকাশ করছে (Interjection)[cite: 40]</li>
+    <li>We = Pronoun[cite: 40]</li>
+    <li>won = Verb[cite: 40]</li>
+    <li>the = Article[cite: 40]</li>
+    <li>match = Noun[cite: 40]</li>
+</ul>
+
+</section>
+
+
+<!-- =========================================================
+     LESSON 2
+========================================================== -->
+<section class="lesson">
+
+<h2 class="lesson-title">
+    LESSON 2 - COMMON INTERJECTIONS &amp; TYPES
+    (সাধারণ Interjection ও আবেগের প্রকার)
+</h2>
+
+<h3>সাধারণ ও বহুল ব্যবহৃত Interjection:</h3>
+
+<div class="formula">
+    Oh! | Ah! | Alas! | Hurrah! | Wow! | Ouch! | Hurray! | Bravo! |
+    Hey! | Hello! | Well! | Oops! | Aha! | Oh no! | Goodness![cite: 40, 41]
+</div>
+
+<div class="note">
+    <strong>মনে রাখবে:</strong>
+    প্রতিটি শব্দের অর্থ বাক্যের পরিস্থিতি অনুযায়ী কিছুটা পরিবর্তিত হতে পারে[cite: 41].
+    Interjection বিভিন্ন ধরনের আবেগ প্রকাশ করতে পারে[cite: 41].
+</div>
+
+<ol>
+    <li>Joy (আনন্দ)[cite: 41]</li>
+    <li>Sorrow (দুঃখ)[cite: 41]</li>
+    <li>Surprise (বিস্ময়)[cite: 41]</li>
+    <li>Pain (ব্যথা)[cite: 41]</li>
+    <li>Approval (অনুমোদন/প্রশংসা)[cite: 41]</li>
+    <li>Greeting (অভিবাদন)[cite: 41]</li>
+    <li>Calling (ডাক)[cite: 41]</li>
+    <li>Fear (ভয়)[cite: 41]</li>
+    <li>Disgust (ঘৃণা)[cite: 41]</li>
+    <li>Admiration (প্রশংসা/বিস্ময়)[cite: 41]</li>
+    <li>Relief (স্বস্তি)[cite: 41]</li>
+    <li>Hesitation (দ্বিধা)[cite: 41]</li>
+    <li>Realization (উপলব্ধি)[cite: 41]</li>
+</ol>
+
+<div class="important">
+    <strong>গুরুত্বপূর্ণ:</strong>
+    একটি Interjection সবসময় শুধু একটি নির্দিষ্ট আবেগই প্রকাশ করবে—এমন নয়[cite: 41].
+    Context বা পরিস্থিতি অনুযায়ী এর অর্থ পরিবর্তিত হতে পারে[cite: 41].
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     LESSON 3
+========================================================== -->
+<section class="lesson">
+
+<h2 class="lesson-title">
+    LESSON 3 - INTERJECTION OF JOY, SORROW &amp; SURPRISE
+    (আনন্দ, দুঃখ ও বিস্ময়সূচক Interjection)
+</h2>
+
+<h3>1. INTERJECTION OF JOY (আনন্দসূচক Interjection)</h3>
+
+<p>
+    আনন্দ বা বিজয় প্রকাশ করতে ব্যবহৃত হয়: Hurrah!, Hurray!, Yay![cite: 41]
+</p>
+
+<h4>Examples:</h4>
+
+<ul>
+    <li>Hurrah! We have won the match. (আনন্দ! আমরা খেলায় জিতেছি।)[cite: 41]</li>
+    <li>Hurray! I passed the exam. (আনন্দ! আমি পরীক্ষায় পাস করেছি।)[cite: 41]</li>
+</ul>
+
+<h3>2. INTERJECTION OF SORROW (দুঃখসূচক Interjection)</h3>
+
+<p>
+    দুঃখ বা শোক প্রকাশ করতে ব্যবহৃত হয়: Alas![cite: 41]
+</p>
+
+<p>
+    <strong>Example:</strong>
+    Alas! We lost the game. (হায়! আমরা খেলায় হেরে গেলাম।)[cite: 41]
+</p>
+
+<div class="note">
+    <strong>*Note:</strong>
+    Alas সাধারণত দুঃখ বা শোক বোঝায়[cite: 41].
+</div>
+
+<h3>3. INTERJECTION OF SURPRISE (বিস্ময়সূচক Interjection)</h3>
+
+<p>
+    হঠাৎ বিস্ময় প্রকাশ করতে ব্যবহৃত হয়: Oh!, Wow!, Ah![cite: 41]
+</p>
+
+<ul>
+    <li>Wow! This is amazing! (বাহ! এটা অসাধারণ!)[cite: 41]</li>
+    <li>Oh! You are here! (ওহ! তুমি এখানে!)[cite: 41]</li>
+</ul>
+
+<div class="note">
+    <strong>Note:</strong>
+    "What" নিজে অনেক ক্ষেত্রে Exclamatory Sentence-এর অংশ হিসেবে ব্যবহৃত হয়,
+    যেমন: What a beautiful flower![cite: 41]
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     LESSON 4
+========================================================== -->
+<section class="lesson">
+
+<h2 class="lesson-title">
+    LESSON 4 - INTERJECTION OF PAIN, FEAR, DISGUST &amp; RELIEF
+    (ব্যথা, ভয়, ঘৃণা ও স্বস্তিসূচক)
+</h2>
+
+<h3>1. INTERJECTION OF PAIN (ব্যথাসূচক)</h3>
+
+<p>
+    ব্যথা বা আঘাতের অনুভূতি প্রকাশ করে: Ouch!, Ow![cite: 42]
+</p>
+
+<p>
+    <strong>Example:</strong>
+    Ouch! My hand hurts. (আহ! আমার হাতে ব্যথা করছে।)[cite: 42]
+</p>
+
+<h3>2. INTERJECTION OF FEAR (ভয়সূচক)</h3>
+
+<p>
+    ভয় বা আতঙ্ক প্রকাশ করতে ব্যবহৃত হয়: Oh!, Oh no!, Help![cite: 42]
+</p>
+
+<p>
+    <strong>Example:</strong>
+    Oh no! I forgot my book. (ওহ না! আমি আমার বই ভুলে গেছি।)[cite: 42]
+</p>
+
+<h3>3. INTERJECTION OF DISGUST (ঘৃণাসূচক)</h3>
+
+<p>
+    ঘৃণা বা বিরক্তি প্রকাশ করতে ব্যবহৃত হয়: Yuck!, Ugh![cite: 42]
+</p>
+
+<p>
+    <strong>Example:</strong>
+    Yuck! This food smells bad. (ছি! এই খাবারের গন্ধ খারাপ।)[cite: 42]
+</p>
+
+<h3>4. INTERJECTION OF RELIEF (স্বস্তিসূচক)</h3>
+
+<p>
+    কোনো চিন্তা বা বিপদ কেটে গেলে স্বস্তি প্রকাশ করতে ব্যবহৃত হয়: Phew!, Ah![cite: 42]
+</p>
+
+<p>
+    <strong>Example:</strong>
+    Phew! The exam is finally over. (উফ! অবশেষে পরীক্ষা শেষ হয়েছে।)[cite: 42]
+</p>
+
+<div class="memory">
+    <strong>মনে রাখো:</strong>
+    <ul>
+        <li>Ouch/Ow = Pain[cite: 42]</li>
+        <li>Oh no = Fear/Alarm[cite: 42]</li>
+        <li>Yuck/Ugh = Disgust[cite: 42]</li>
+        <li>Phew/Ah = Relief[cite: 42]</li>
+    </ul>
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     LESSON 5
+========================================================== -->
+<section class="lesson">
+
+<h2 class="lesson-title">
+    LESSON 5 - APPROVAL, ADMIRATION, GREETING &amp; CALLING
+    (প্রশংসা, অনুমোদন, অভিবাদন ও ডাক)
+</h2>
+
+<h3>1. INTERJECTION OF APPROVAL (অনুমোদন/প্রশংসাসূচক)</h3>
+
+<p>
+    কাউকে প্রশংসা বা অনুমোদন করতে ব্যবহৃত হয়: Bravo!, Well done![cite: 42]
+</p>
+
+<ul>
+    <li>Bravo! You did a great job. (বাহ! তুমি দারুণ কাজ করেছ।)[cite: 42, 43]</li>
+    <li>Well done! You answered correctly. (খুব ভালো! তুমি সঠিক উত্তর দিয়েছ।)[cite: 43]</li>
+</ul>
+
+<h3>2. INTERJECTION OF ADMIRATION (প্রশংসা/বিস্ময়সূচক)</h3>
+
+<p>
+    কারও কাজ বা কোনো সুন্দর জিনিস দেখে প্রশংসা বা বিস্ময় প্রকাশ করতে ব্যবহৃত হয়:
+    Wow!, Wonderful!, Bravo![cite: 43]
+</p>
+
+<p>
+    <strong>Example:</strong>
+    Wow! What a beautiful picture! (বাহ! কী সুন্দর ছবি!)[cite: 43]
+</p>
+
+<h3>3. INTERJECTION OF GREETING (অভিবাদনসূচক)</h3>
+
+<p>
+    অভিবাদন বা শুভেচ্ছা প্রকাশ করতে ব্যবহৃত হয়:
+    Hello!, Hi!, Good morning![cite: 43]
+</p>
+
+<ul>
+    <li>Hello! How are you? (হ্যালো! তুমি কেমন আছ?)[cite: 43]</li>
+    <li>Good morning, Sir. (সুপ্রভাত, স্যার।)[cite: 43]</li>
+</ul>
+
+<div class="note">
+    <strong>Note:</strong>
+    Good morning নিজে সবসময় Interjection হিসেবে শ্রেণিবদ্ধ করা হয় না;
+    এটি একটি greeting expression[cite: 43].
+</div>
+
+<h3>4. INTERJECTION OF CALLING (ডাকসূচক)</h3>
+
+<p>
+    কাউকে ডাকতে বা তার দৃষ্টি আকর্ষণ করতে ব্যবহৃত হয়: Hey!, Ho!, O![cite: 43, 44]
+</p>
+
+<ul>
+    <li>Hey! Come here. (এই! এখানে আসো।)[cite: 44]</li>
+    <li>O! Listen to me. (ওহে! আমার কথা শোনো।)[cite: 44]</li>
+</ul>
+
+</section>
+
+
+<!-- =========================================================
+     LESSON 6
+========================================================== -->
+<section class="lesson">
+
+<h2 class="lesson-title">
+    LESSON 6 - HESITATION, REALIZATION &amp; DAILY ENGLISH
+    (দ্বিধা, উপলব্ধি ও দৈনন্দিন ব্যবহার)
+</h2>
+
+<h3>1. INTERJECTION OF HESITATION (দ্বিধাসূচক)</h3>
+
+<p>
+    কথা বলার সময় দ্বিধা বা চিন্তা করার ভাব প্রকাশ করতে ব্যবহৃত হয়:
+    Um!, Er!, Well![cite: 44]
+</p>
+
+<p>
+    <strong>Example:</strong>
+    Well, I don't know. (উম/আচ্ছা, আমি জানি না।)[cite: 44]
+</p>
+
+<h3>2. INTERJECTION OF REALIZATION (উপলব্ধিসূচক)</h3>
+
+<p>
+    হঠাৎ কিছু বুঝতে পারলে ব্যবহার করা হয়: Aha!, Oh![cite: 44]
+</p>
+
+<p>
+    <strong>Example:</strong>
+    Aha! Now I understand. (আচ্ছা! এখন আমি বুঝতে পেরেছি।)[cite: 44]
+</p>
+
+<h3>3. INTERJECTION IN DAILY ENGLISH (দৈনন্দিন জীবনের উদাহরণ)[cite: 44]</h3>
+
+<ul>
+    <li>Wow! That's beautiful. (বাহ! এটা সুন্দর।)[cite: 44]</li>
+    <li>Oh! I forgot. (ওহ! আমি ভুলে গেছি।)[cite: 44]</li>
+    <li>Oops! I made a mistake. (উফ! আমি ভুল করেছি।)[cite: 44]</li>
+    <li>Great! You did it. (দারুণ! তুমি এটা করতে পেরেছ।)[cite: 44]</li>
+    <li>Phew! That was close. (উফ! অল্পের জন্য বেঁচে গেলাম।)[cite: 44]</li>
+    <li>Hey! Wait for me. (এই! আমার জন্য অপেক্ষা করো।)[cite: 44]</li>
+</ul>
+
+</section>
+
+
+<!-- =========================================================
+     LESSON 7
+========================================================== -->
+<section class="lesson">
+
+<h2 class="lesson-title">
+    LESSON 7 - PUNCTUATION &amp; INTERJECTION + SENTENCE
+    (যতিচিহ্ন ও বাক্যে ব্যবহার)
+</h2>
+
+<h3>PUNCTUATION[cite: 44]</h3>
+
+<p>
+    Interjection-এর পরে আবেগ বেশি হলে সাধারণত ! (Exclamation Mark) বসে[cite: 44].
+</p>
+
+<p>
+    Examples: Hurrah! | Alas! | Wow! | Ouch![cite: 44]
+</p>
+
+<p>
+    Wow! What a beautiful place![cite: 44]
+</p>
+
+<div class="note">
+    <strong>বিশেষ দ্রষ্টব্য:</strong>
+    সবসময় (!) লাগবেই এমন নয়[cite: 44].
+    বাক্যের স্বাভাবিক আবেগ কম হলে Comma (,) ব্যবহার হতে পারে[cite: 44].
+    যেমন: Well, I don't know[cite: 44].
+</div>
+
+<h3>INTERJECTION + SENTENCE[cite: 44, 45]</h3>
+
+<p>
+    Interjection সাধারণত বাক্যের মূল Grammatical Structure-এর অংশ নয়[cite: 45].
+</p>
+
+<p>
+    <strong>Sentence:</strong>
+    Hurrah! We won the match[cite: 45].
+</p>
+
+<ul>
+    <li>Hurrah! = আবেগ প্রকাশ করছে (Interjection)[cite: 45]</li>
+    <li>We = Pronoun | won = Verb | the = Article | match = Noun[cite: 45]</li>
+</ul>
+
+<div class="important">
+    <strong>মূল ধারণা:</strong>
+    Interjection বাদ দিলেও মূল বাক্যটি সাধারণত grammatical sentence হিসেবে থাকতে পারে
+    (যেমন: We won the match.)[cite: 45].
+    কিন্তু Interjection আনন্দের বা বিশেষ আবেগ প্রকাশ করে[cite: 45].
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     LESSON 8
+========================================================== -->
+<section class="lesson">
+
+<h2 class="lesson-title">
+    LESSON 8 - INTERJECTION vs EXCLAMATORY SENTENCE &amp; OTHER PARTS OF SPEECH
+</h2>
+
+<h3>1. INTERJECTION vs EXCLAMATORY SENTENCE[cite: 45]</h3>
+
+<ul>
+    <li>
+        Interjection: Wow!, Alas!, Hurrah!
+        (এগুলো সরাসরি একক শব্দ বা ছোট Expression হিসেবে আবেগ প্রকাশ করে।)[cite: 45]
+    </li>
+    <li>
+        Exclamatory Sentence:
+        What a beautiful flower! / How beautiful the flower is!
+        (এগুলো পুরো Exclamatory Sentence)[cite: 45]
+    </li>
+</ul>
+
+<h3>2. INTERJECTION vs OTHER PARTS OF SPEECH[cite: 45]</h3>
+
+<p>
+    একই শব্দ বিভিন্ন জায়গায় বিভিন্ন Part of Speech হিসেবে কাজ করতে পারে[cite: 45].
+    দেখে Part of Speech চিহ্নিত করতে হবে[cite: 45].
+</p>
+
+<h4>Examples of "Well":</h4>
+
+<ul>
+    <li>Well! I don't know. → Interjection[cite: 45]</li>
+    <li>He is well. → Adjective[cite: 45]</li>
+    <li>He did the work well. → Adverb[cite: 45]</li>
+</ul>
+
+<div class="important">
+    <strong>গুরুত্বপূর্ণ নিয়ম:</strong>
+    শব্দ দেখে নয়, বাক্যে তার কাজ বিবেচনা করতে হবে[cite: 45].
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     LESSON 9
+========================================================== -->
+<section class="lesson">
+
+<h2 class="lesson-title">
+    LESSON 9 - COMMON INTERJECTIONS CHART &amp; QUICK REVISION
+</h2>
+
+<h3>COMMON INTERJECTIONS CHART[cite: 45]</h3>
+
+<div class="table-wrapper">
+<table>
+    <thead>
+        <tr>
+            <th>Interjection</th>
+            <th>প্রকাশিত আবেগ/অর্থ</th>
+            <th>Interjection</th>
+            <th>প্রকাশিত আবেগ/অর্থ</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td>Hurrah!</td>
+            <td>আনন্দ[cite: 45]</td>
+            <td>Phew!</td>
+            <td>স্বস্তি[cite: 45]</td>
+        </tr>
+        <tr>
+            <td>Alas!</td>
+            <td>দুঃখ[cite: 45]</td>
+            <td>Aha!</td>
+            <td>উপলব্ধি[cite: 45]</td>
+        </tr>
+        <tr>
+            <td>Wow!</td>
+            <td>বিস্ময়/প্রশংসা[cite: 45]</td>
+            <td>Oops!</td>
+            <td>ছোটখাটো ভুল/বিব্রতভাব[cite: 45]</td>
+        </tr>
+        <tr>
+            <td>Ouch!</td>
+            <td>ব্যথা[cite: 45]</td>
+            <td>Well!</td>
+            <td>দ্বিধা/কথার শুরু[cite: 45]</td>
+        </tr>
+        <tr>
+            <td>Bravo!</td>
+            <td>প্রশংসা[cite: 45]</td>
+            <td>Hey!</td>
+            <td>ডাক[cite: 45]</td>
+        </tr>
+        <tr>
+            <td>Yuck!</td>
+            <td>ঘৃণা[cite: 45]</td>
+            <td>Hello!</td>
+            <td>অভিবাদন[cite: 45]</td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+<h3>INTERJECTION - KEY TAKEAWAY:[cite: 45]</h3>
+
+<p>
+    Interjection হলো এমন শব্দ বা ছোট expression, যা হঠাৎ আবেগ, অনুভূতি বা মনের ভাব প্রকাশ করে[cite: 45].
+</p>
+
+<div class="memory">
+    <strong>Punctuation:</strong>
+    তীব্র আবেগ হলে Exclamation Mark (!) এবং কম আবেগ বা স্বাভাবিক বাক্য হলে Comma (,)
+    হতে পারে[cite: 45].
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     LESSON 10
+========================================================== -->
+<section class="lesson">
+
+<h2 class="lesson-title">
+    LESSON 10 - FINAL PRACTICE &amp; 8 PARTS OF SPEECH MASTER SUMMARY
+</h2>
+
+<h3>FINAL PRACTICE[cite: 45]</h3>
+
+<div class="practice-box">
+
+<h3>A. Identify the Interjection:[cite: 45]</h3>
+
+<ol>
+    <li>Hurrah! We won the match.[cite: 45]</li>
+    <li>Alas! He failed.[cite: 45]</li>
+    <li>Wow! What a beautiful place![cite: 45]</li>
+    <li>Ouch! My hand hurts.[cite: 45]</li>
+    <li>Bravo! You did well.[cite: 45]</li>
+    <li>Oh! I forgot my book.[cite: 45]</li>
+    <li>Yuck! This smells bad.[cite: 45]</li>
+    <li>Phew! The work is finished.[cite: 45]</li>
+</ol>
+
+<h3>B. Match the Interjection:[cite: 45]</h3>
+
+<ul>
+    <li>1. Hurrah! → (b) Joy[cite: 45]</li>
+    <li>2. Alas! → (e) Sorrow[cite: 45]</li>
+    <li>3. Ouch! → (a) Pain[cite: 45]</li>
+    <li>4. Bravo! → (f) Approval[cite: 45]</li>
+    <li>5. Wow! → (g) Surprise[cite: 45]</li>
+    <li>6. Yuck! → (d) Disgust[cite: 45]</li>
+    <li>7. Phew! → (h) Relief[cite: 45]</li>
+    <li>8. Hey! → (c) Calling[cite: 45]</li>
+</ul>
+
+<h3>C. Fill in the blanks:[cite: 45]</h3>
+
+<ol>
+    <li>___ ! We have won.[cite: 45]</li>
+    <li>___ ! My hand hurts.[cite: 45]</li>
+    <li>___ ! What a beautiful view![cite: 45]</li>
+    <li>___ ! We lost the match.[cite: 45]</li>
+    <li>___ ! You did a great job.[cite: 45]</li>
+    <li>___ ! I forgot my pen.[cite: 45]</li>
+</ol>
+
+<h3>D. Add the correct punctuation:[cite: 45]</h3>
+
+<ol>
+    <li>Wow What a beautiful place → Wow! What a beautiful place![cite: 45]</li>
+    <li>Hurrah We won → Hurrah! We won.[cite: 45]</li>
+    <li>Alas He failed → Alas! He failed.[cite: 45]</li>
+    <li>Ouch My hand hurts → Ouch! My hand hurts.[cite: 45]</li>
+    <li>Bravo You did well → Bravo! You did well.[cite: 45]</li>
+</ol>
+
+</div>
+
+<h3>E. 8 PARTS OF SPEECH - MASTER SUMMARY[cite: 46]</h3>
+
+<div class="table-wrapper">
+<table>
+    <thead>
+        <tr>
+            <th>Parts of Speech</th>
+            <th>Core Function</th>
+            <th>Parts of Speech</th>
+            <th>Core Function</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td>1. Noun</td>
+            <td>Name (নাম)[cite: 46]</td>
+            <td>5. Adverb</td>
+            <td>Manner/Modification[cite: 46]</td>
+        </tr>
+
+        <tr>
+            <td>2. Pronoun</td>
+            <td>Replacement (পরিবর্তে)[cite: 46]</td>
+            <td>6. Preposition</td>
+            <td>Relation (সম্পর্ক)[cite: 46]</td>
+        </tr>
+
+        <tr>
+            <td>3. Verb</td>
+            <td>Action/State (কাজ)[cite: 46]</td>
+            <td>7. Conjunction</td>
+            <td>Joining (যুক্ত করা)[cite: 46]</td>
+        </tr>
+
+        <tr>
+            <td>4. Adjective</td>
+            <td>Quality (গুণ)[cite: 46]</td>
+            <td>8. Interjection</td>
+            <td>Emotion (আবেগ)[cite: 46]</td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+<h3>FINAL MEMORY FORMULA:[cite: 46]</h3>
+
+<div class="formula">
+    <p>Hurrah = Joy[cite: 46]</p>
+    <p>Alas = Sorrow[cite: 46]</p>
+    <p>Wow = Surprise[cite: 46]</p>
+    <p>Ouch = Pain[cite: 46]</p>
+    <p>Bravo = Approval[cite: 46]</p>
+    <p>Yuck = Disgust[cite: 46]</p>
+    <p>Phew = Relief[cite: 46]</p>
+    <p>Hey = Calling[cite: 46]</p>
+
+    <strong>
+        Interjection = Emotion Word = আবেগ প্রকাশের শব্দ[cite: 46]
+    </strong>
+</div>
+
+</section>
+
+
+<footer class="footer">
+    PART 10 - INTERJECTION | English Grammar &amp; Bangla Grammar Equivalent Guide
+</footer>
+
+</main>
+
+
+<script>
+/* =========================================================
+   PDF DOWNLOAD
+   Browser-এর নিজস্ব Print → Save as PDF ব্যবহার করে
+   Selectable/Copyable Text সহ PDF তৈরি হবে।
+========================================================= */
+
+function downloadPDF() {
+    const oldTitle = document.title;
+
+    document.title = "PART 10 - INTERJECTION - English Grammar";
+
+    setTimeout(() => {
+        window.print();
+
+        setTimeout(() => {
+            document.title = oldTitle;
+        }, 1000);
+    }, 100);
+}
+
+
+/* =========================================================
+   SCROLL ANIMATION
+========================================================= */
+
+const lessons = document.querySelectorAll(".lesson");
+
+const observer = new IntersectionObserver(
+    (entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("show");
+                observer.unobserve(entry.target);
+            }
+        });
+    },
+    {
+        threshold: 0.08
+    }
+);
+
+lessons.forEach((lesson) => {
+    observer.observe(lesson);
+});
+
+
+/* =========================================================
+   INITIAL ANIMATION
+========================================================= */
+
+window.addEventListener("load", () => {
+    document.querySelectorAll(".lesson").forEach((lesson, index) => {
+        if (index === 0) {
+            setTimeout(() => {
+                lesson.classList.add("show");
+            }, 250);
+        }
+    });
+});
+</script>
+
+</body>
+</html>

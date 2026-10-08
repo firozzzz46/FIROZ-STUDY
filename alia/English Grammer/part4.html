@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PART 4 — PRONOUN | English Grammar & Bangla Grammar</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Kalpurush&display=swap');
+
+:root{
+    --bg:#f8fafc;
+    --paper:#ffffff;
+    --text:#18212f;
+    --muted:#64748b;
+    --primary:#3157d5;
+    --secondary:#6846d9;
+    --green:#087f5b;
+    --orange:#c76b00;
+    --red:#c0392b;
+    --border:#dbe3ef;
+    --soft:#eef3ff;
+    --soft-green:#edf9f4;
+    --soft-orange:#fff7e9;
+    --shadow:0 10px 30px rgba(30,55,90,.08);
+}
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    min-height:100vh;
+    background:var(--bg);
+    color:var(--text);
+    font-family:"Kalpurush","Noto Sans Bengali",Arial,sans-serif;
+    font-size:25px;
+    line-height:1.75;
+}
+
+.book{
+    width:min(1200px,94%);
+    margin:35px auto 70px;
+}
+
+.topbar{
+    display:flex;
+    justify-content:flex-end;
+    margin-bottom:18px;
+}
+
+.pdf-btn{
+    border:0;
+    cursor:pointer;
+    padding:12px 24px;
+    border-radius:12px;
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+    color:#fff;
+    font-family:inherit;
+    font-size:20px;
+    font-weight:bold;
+    box-shadow:0 8px 22px rgba(49,87,213,.25);
+    transition:.3s ease;
+}
+
+.pdf-btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 12px 28px rgba(49,87,213,.32);
+}
+
+.cover{
+    background:var(--paper);
+    border:1px solid var(--border);
+    border-radius:24px;
+    padding:42px 35px;
+    text-align:center;
+    box-shadow:var(--shadow);
+    margin-bottom:30px;
+    animation:fadeUp .8s ease both;
+}
+
+.part-no{
+    display:inline-block;
+    padding:5px 18px;
+    border-radius:30px;
+    background:var(--soft);
+    color:var(--primary);
+    font-size:21px;
+    font-weight:bold;
+    margin-bottom:12px;
+}
+
+.cover h1{
+    color:var(--primary);
+    font-size:42px;
+    line-height:1.3;
+    margin-bottom:10px;
+}
+
+.cover h2{
+    color:var(--secondary);
+    font-size:28px;
+    font-weight:normal;
+}
+
+.goal{
+    margin-top:25px;
+    padding:18px 22px;
+    background:var(--soft-green);
+    border-left:6px solid var(--green);
+    border-radius:12px;
+    text-align:left;
+}
+
+.goal strong{
+    color:var(--green);
+}
+
+.lesson{
+    background:var(--paper);
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:30px 32px;
+    margin:28px 0;
+    box-shadow:var(--shadow);
+    opacity:0;
+    transform:translateY(35px);
+    transition:opacity .7s ease,transform .7s ease;
+}
+
+.lesson.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.lesson-title{
+    margin:-30px -32px 25px;
+    padding:18px 25px;
+    border-radius:20px 20px 0 0;
+    background:linear-gradient(135deg,#edf2ff,#f5f0ff);
+    border-bottom:2px solid var(--border);
+}
+
+.lesson-title h2{
+    color:var(--primary);
+    font-size:30px;
+    line-height:1.35;
+}
+
+.lesson-title p{
+    color:var(--secondary);
+    font-size:23px;
+    margin-top:3px;
+}
+
+h3{
+    color:var(--secondary);
+    font-size:28px;
+    margin:22px 0 9px;
+}
+
+p{
+    margin:9px 0;
+}
+
+.definition{
+    background:#f8faff;
+    border-left:6px solid var(--primary);
+    padding:14px 20px;
+    border-radius:10px;
+    margin:15px 0;
+}
+
+.meaning{
+    background:var(--soft-green);
+    border-left:6px solid var(--green);
+    padding:14px 20px;
+    border-radius:10px;
+    margin:15px 0;
+}
+
+.remember{
+    background:var(--soft-orange);
+    border-left:6px solid var(--orange);
+    padding:14px 20px;
+    border-radius:10px;
+    margin:17px 0;
+}
+
+.example{
+    background:#fafafa;
+    border:1px solid var(--border);
+    padding:14px 20px;
+    border-radius:12px;
+    margin:15px 0;
+}
+
+strong{
+    color:#273b70;
+}
+
+ul,ol{
+    margin:10px 0 10px 38px;
+}
+
+li{
+    margin:4px 0;
+}
+
+.number-list{
+    list-style:none;
+    margin-left:0;
+    counter-reset:item;
+}
+
+.number-list li{
+    counter-increment:item;
+    padding-left:38px;
+    position:relative;
+}
+
+.number-list li::before{
+    content:counter(item) ".";
+    position:absolute;
+    left:0;
+    color:var(--primary);
+    font-weight:bold;
+}
+
+.bullet-list{
+    margin-left:28px;
+}
+
+.rule{
+    padding:8px 0;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin:20px 0;
+    background:#fff;
+    font-size:23px;
+}
+
+th,td{
+    border:1px solid #bfcadd;
+    padding:9px 12px;
+    text-align:left;
+    vertical-align:top;
+}
+
+th{
+    background:#edf2ff;
+    color:#273b70;
+    font-weight:bold;
+}
+
+tr:nth-child(even) td{
+    background:#fafcff;
+}
+
+.mistakes td:first-child{
+    color:var(--red);
+    font-weight:bold;
+}
+
+.mistakes td:last-child{
+    color:var(--green);
+    font-weight:bold;
+}
+
+.quick{
+    overflow-x:auto;
+}
+
+.step{
+    background:#f8faff;
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:9px 16px;
+    margin:8px 0;
+}
+
+.footer{
+    text-align:center;
+    color:var(--muted);
+    font-size:18px;
+    margin-top:35px;
+}
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@media(max-width:700px){
+    body{
+        font-size:22px;
+        line-height:1.65;
+    }
+
+    .book{
+        width:96%;
+        margin-top:18px;
+    }
+
+    .cover{
+        padding:28px 18px;
+        border-radius:18px;
+    }
+
+    .cover h1{
+        font-size:31px;
+    }
+
+    .cover h2{
+        font-size:23px;
+    }
+
+    .lesson{
+        padding:22px 18px;
+        border-radius:16px;
+    }
+
+    .lesson-title{
+        margin:-22px -18px 20px;
+        border-radius:16px 16px 0 0;
+        padding:16px 17px;
+    }
+
+    .lesson-title h2{
+        font-size:25px;
+    }
+
+    .lesson-title p{
+        font-size:20px;
+    }
+
+    h3{
+        font-size:24px;
+    }
+
+    table{
+        font-size:20px;
+    }
+
+    th,td{
+        padding:7px 9px;
+    }
+
+    .pdf-btn{
+        width:100%;
+        font-size:19px;
+    }
+}
+
+/* PRINT / PDF */
+@media print{
+    @page{
+        size:A4 portrait;
+        margin:14mm;
+    }
+
+    body{
+        background:#fff;
+        color:#000;
+        font-size:14pt;
+        line-height:1.55;
+    }
+
+    .book{
+        width:100%;
+        margin:0;
+    }
+
+    .topbar{
+        display:none;
+    }
+
+    .cover,
+    .lesson{
+        box-shadow:none;
+        border:1px solid #aaa;
+        break-inside:avoid;
+        opacity:1 !important;
+        transform:none !important;
+    }
+
+    .cover{
+        margin-bottom:18px;
+    }
+
+    .lesson{
+        margin:18px 0;
+    }
+
+    .lesson-title{
+        background:#eee !important;
+        color:#000;
+    }
+
+    .goal,
+    .definition,
+    .meaning,
+    .remember,
+    .example,
+    .step{
+        background:#fff !important;
+        border:1px solid #999;
+    }
+
+    table{
+        font-size:12pt;
+    }
+
+    th,td{
+        border:1px solid #777;
+    }
+
+    .footer{
+        display:none;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="book">
+
+    <div class="topbar">
+        <button class="pdf-btn" onclick="downloadPDF()">⬇ Download PDF</button>
+    </div>
+
+    <header class="cover">
+        <div class="part-no">PART 4</div>
+        <h1>PRONOUN (সর্বনাম)</h1>
+        <h2>English Grammar &amp; Bangla Grammar Equivalent Guide | Complete Educational Textbook</h2>
+
+        <div class="goal">
+            ☑ <strong>লক্ষ্য:</strong> Pronoun (সর্বনাম) কী, কেন ব্যবহার করা হয়, কত প্রকার, কোন Pronoun কোথায় ব্যবহার করতে হয়,
+            এবং বাক্যে Pronoun-এর সঠিক ব্যবহার শেখা।
+        </div>
+    </header>
+
+    <!-- LESSON 1 -->
+    <section class="lesson">
+        <div class="lesson-title">
+            <h2>LESSON 1 - PRONOUN: BASIC CONCEPT, USE &amp; ANTECEDENT</h2>
+            <p>(সর্বনাম কী, কেন ব্যবহার করি এবং Antecedent)</p>
+        </div>
+
+        <div class="definition">
+            <strong>Definition:</strong> A Pronoun is a word used instead of a noun.
+        </div>
+
+        <div class="meaning">
+            <strong>অর্থ:</strong> Noun-এর পরিবর্তে যে শব্দ ব্যবহার করা হয়, তাকে Pronoun (সর্বনাম) বলে।
+        </div>
+
+        <div class="example">
+            <strong>Example:</strong><br>
+            Rahim is a student. Rahim is honest. Rahim reads every day.
+            (এখানে Rahim বারবার এসেছে।)<br><br>
+
+            <strong>Pronoun ব্যবহার করলে:</strong>
+            Rahim is a student. He is honest. He reads every day.
+            (He = Pronoun | Rahim = Noun)
+        </div>
+
+        <div class="remember">
+            ☑ <strong>সহজে মনে রাখো:</strong> Noun-এর বদলে ব্যবহৃত শব্দ → Pronoun
+        </div>
+
+        <h3>Why Do We Use Pronoun? (Pronoun কেন ব্যবহার করি?)</h3>
+        <p>
+            একই Noun বারবার ব্যবহার না করার জন্য Pronoun ব্যবহার করা হয়। এতে বাক্য সুন্দর, সহজ ও স্বাভাবিক হয়।
+        </p>
+
+        <div class="remember">
+            ☑ <strong>Antecedent (পূর্বনির্দেশিত Noun)</strong>
+        </div>
+
+        <p>
+            যে Noun-এর পরিবর্তে Pronoun ব্যবহৃত হয়, তাকে Antecedent বলা হয়।
+            (যেমন: Rahim is a student. He is honest. Rahim = Antecedent, He = Pronoun)
+        </p>
+    </section>
+
+    <!-- LESSON 2 -->
+    <section class="lesson">
+        <div class="lesson-title">
+            <h2>LESSON 2 - KINDS OF PRONOUN</h2>
+            <p>(সর্বনামের প্রকারভেদ)</p>
+        </div>
+
+        <p><strong>Pronoun-এর গুরুত্বপূর্ণ ১০টি প্রকার:</strong></p>
+
+        <ol class="number-list">
+            <li>Personal Pronoun (ব্যক্তিবাচক)</li>
+            <li>Possessive Pronoun (স্বত্ববাচক)</li>
+            <li>Reflexive Pronoun (আত্মবাচক)</li>
+            <li>Demonstrative Pronoun (নির্দেশক)</li>
+            <li>Interrogative Pronoun (প্রশ্নবাচক)</li>
+            <li>Relative Pronoun (সম্বন্ধবাচক)</li>
+            <li>Indefinite Pronoun (অনির্দিষ্ট)</li>
+            <li>Distributive Pronoun (বণ্টনবাচক)</li>
+            <li>Reciprocal Pronoun (পারস্পরিক)</li>
+            <li>Emphatic Pronoun (জোরবাচক)</li>
+        </ol>
+    </section>
+
+    <!-- LESSON 3 -->
+    <section class="lesson">
+        <div class="lesson-title">
+            <h2>LESSON 3 - PERSONAL PRONOUN: PERSON &amp; NUMBER</h2>
+            <p>(ব্যক্তিবাচক সর্বনাম, পুরুষ ও বচন)</p>
+        </div>
+
+        <h3>A. PERSONAL PRONOUN (ব্যক্তিবাচক সর্বনাম)</h3>
+        <p>
+            যে Pronoun ব্যক্তি বা ব্যক্তিদের বোঝায় (যেমন: I, We, You, He, She, It, They)
+        </p>
+
+        <h3>B. PERSON OF PRONOUN (Pronoun-এর পুরুষ)</h3>
+        <ul class="bullet-list">
+            <li><strong>1st Person (নিজেকে বোঝায়):</strong> I, We (I am ready.)</li>
+            <li><strong>2nd Person (যার সঙ্গে কথা বলা হয়):</strong> You (You are good.)</li>
+            <li><strong>3rd Person (যার সম্পর্কে কথা বলা হয়):</strong> He, She, It, They (He is a teacher.)</li>
+        </ul>
+
+        <h3>C. NUMBER OF PERSONAL PRONOUN</h3>
+        <div class="remember">
+            ☑ <strong>Singular:</strong> I, You, He, She, It |
+            <strong>Plural:</strong> We, You, They
+            (You Singular ও Plural উভয় ক্ষেত্রেই ব্যবহৃত হয়।)
+        </div>
+    </section>
+
+    <!-- LESSON 4 -->
+    <section class="lesson">
+        <div class="lesson-title">
+            <h2>LESSON 4 - SUBJECTIVE, OBJECTIVE &amp; POSSESSIVE FORMS</h2>
+            <p>(Subject, Object ও স্বত্ববাচক রূপ)</p>
+        </div>
+
+        <h3>A. SUBJECTIVE &amp; OBJECTIVE PRONOUN</h3>
+
+        <div class="quick">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Subjective</th>
+                        <th>Objective</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>I</td><td>me</td></tr>
+                    <tr><td>We</td><td>Us</td></tr>
+                    <tr><td>You</td><td>you</td></tr>
+                    <tr><td>He</td><td>him</td></tr>
+                    <tr><td>She</td><td>her</td></tr>
+                    <tr><td>It</td><td>it</td></tr>
+                    <tr><td>They</td><td>them</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p><strong>Examples:</strong> I saw him. | She helped me.</p>
+
+        <h3>B. POSSESSIVE PRONOUN (স্বত্ববাচক সর্বনাম)</h3>
+        <p>
+            মালিকানা বা স্বত্ব বোঝায়: mine, ours, yours, his, hers, theirs.
+        </p>
+
+        <div class="example">
+            <strong>Example:</strong> This book is mine.
+            (Possessive Pronoun-এর পরে Noun বসে না।)
+        </div>
+    </section>
+
+    <!-- LESSON 5 -->
+    <section class="lesson">
+        <div class="lesson-title">
+            <h2>LESSON 5 - REFLEXIVE &amp; EMPHATIC PRONOUN</h2>
+            <p>(আত্মবাচক ও জোরবাচক সর্বনাম)</p>
+        </div>
+
+        <h3>A. REFLEXIVE PRONOUN (আত্মবাচক সর্বনাম)</h3>
+        <p>
+            যখন Subject নিজেকেই বোঝায়
+            (myself, yourself, himself, herself, itself, ourselves, yourselves, themselves)।
+        </p>
+
+        <div class="example">
+            <strong>Example:</strong> I hurt myself. He taught himself.
+        </div>
+
+        <h3>B. EMPHATIC PRONOUN (জোরবাচক সর্বনাম)</h3>
+        <p>
+            কোনো Subject-এর ওপর বিশেষ জোর দিতে Reflexive form ব্যবহার করা হয়।
+        </p>
+
+        <div class="example">
+            <strong>Example:</strong> I myself did it. He himself came here.
+        </div>
+    </section>
+
+    <!-- LESSON 6 -->
+    <section class="lesson">
+        <div class="lesson-title">
+            <h2>LESSON 6 - DEMONSTRATIVE, INTERROGATIVE &amp; RELATIVE PRONOUN</h2>
+            <p>(নির্দেশক, প্রশ্নবাচক ও সম্বন্ধবাচক সর্বনাম)</p>
+        </div>
+
+        <p>
+            <strong>A. DEMONSTRATIVE PRONOUN (নির্দেশক):</strong>
+            ব্যক্তি বা বস্তু নির্দেশ করতে: this, that, these, those
+            (This is my book.)
+        </p>
+
+        <p>
+            <strong>B. INTERROGATIVE PRONOUN (প্রশ্নবাচক):</strong>
+            প্রশ্ন করতে: who, whom, whose, which, what
+            (Who are you?)
+        </p>
+
+        <p>
+            <strong>C. RELATIVE PRONOUN (সম্বন্ধবাচক):</strong>
+            Noun-এর সঙ্গে সম্পর্ক তৈরি করে: who, whom, whose, which, that
+            (The boy who came here is my brother.)
+        </p>
+    </section>
+
+    <!-- LESSON 7 -->
+    <section class="lesson">
+        <div class="lesson-title">
+            <h2>LESSON 7 - INDEFINITE, DISTRIBUTIVE &amp; RECIPROCAL PRONOUN</h2>
+            <p>(অনির্দিষ্ট, বণ্টনবাচক ও পারস্পরিক সর্বনাম)</p>
+        </div>
+
+        <p>
+            <strong>A. Indefinite Pronoun (অনির্দিষ্ট):</strong>
+            someone, anybody, everything, nobody, many, few, all, some
+            (Someone is knocking.)
+        </p>
+
+        <p>
+            <strong>B. Distributive Pronoun (বণ্টনবাচক):</strong>
+            each, either, neither
+            (Each of the boys received a prize.)
+        </p>
+
+        <p>
+            <strong>C. Reciprocal Pronoun (পারস্পরিক):</strong>
+            each other, one another
+            (They help each other.)
+        </p>
+    </section>
+
+    <!-- LESSON 8 -->
+    <section class="lesson">
+        <div class="lesson-title">
+            <h2>LESSON 8 - PRONOUN AGREEMENT, VERB AGREEMENT &amp; IMPORTANT RULES</h2>
+            <p>(Pronoun-এর সামঞ্জস্য ও গুরুত্বপূর্ণ নিয়ম)</p>
+        </div>
+
+        <p>
+            <strong>A. Pronoun Agreement:</strong>
+            Number ও Person অনুযায়ী Noun ও Pronoun মিল থাকতে হয়
+            (Rahim (Singular) → He)।
+        </p>
+
+        <p>
+            <strong>B. Verb Agreement:</strong>
+            I am, You are, He/She/It is, We/They are.
+        </p>
+
+        <h3>C. Important Rules:</h3>
+
+        <div class="rule">- <strong>Rule 1:</strong> 'I' সবসময় Capital Letter হবে (I am a student.)</div>
+        <div class="rule">- <strong>Rule 2:</strong> He পুরুষের জন্য এবং She নারীর জন্য।</div>
+        <div class="rule">- <strong>Rule 3:</strong> It জড়বস্তু/প্রাণীর জন্য।</div>
+        <div class="rule">- <strong>Rule 4:</strong> They একাধিক ব্যক্তি/বস্তুর জন্য।</div>
+    </section>
+
+    <!-- LESSON 9 -->
+    <section class="lesson">
+        <div class="lesson-title">
+            <h2>LESSON 9 - COMMON MISTAKES &amp; PRONOUN MASTER TABLE</h2>
+            <p>(সাধারণ ভুল ও একনজরে Pronoun)</p>
+        </div>
+
+        <h3>A. Common Mistakes</h3>
+
+        <div class="quick">
+            <table class="mistakes">
+                <thead>
+                    <tr>
+                        <th>Incorrect ✗</th>
+                        <th>Correct ✓</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Me am a student.</td>
+                        <td>I am a student.</td>
+                    </tr>
+                    <tr>
+                        <td>Him is my friend.</td>
+                        <td>He is my friend.</td>
+                    </tr>
+                    <tr>
+                        <td>This book is my.</td>
+                        <td>This book is mine.</td>
+                    </tr>
+                    <tr>
+                        <td>Myself went there.</td>
+                        <td>I went there.</td>
+                    </tr>
+                    <tr>
+                        <td>Rahim and me went.</td>
+                        <td>Rahim and I went.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>B. Pronoun Quick Table</h3>
+
+        <div class="quick">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Pronoun Forms</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Personal</td>
+                        <td>I → me, we → us, you → you, he → him, she → her, it → it, they → them</td>
+                    </tr>
+                    <tr>
+                        <td>Possessive</td>
+                        <td>my → mine, our → ours, your → yours, his → his, her → hers, their → theirs</td>
+                    </tr>
+                    <tr>
+                        <td>Reflexive</td>
+                        <td>myself, ourselves, yourself/yourselves, himself, herself, itself, themselves</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- LESSON 10 -->
+    <section class="lesson">
+        <div class="lesson-title">
+            <h2>LESSON 10 - FINAL PRACTICE, KEY TAKEAWAY &amp; STEP-BY-STEP REVISION</h2>
+            <p>(অনুশীলন, মূল কথা ও এক নজরে মুখস্থ তালিকা)</p>
+        </div>
+
+        <div class="remember">
+            ☑ <strong>Final Practice &amp; Key Takeaways</strong>
+        </div>
+
+        <div class="example">
+            - <strong>Identify &amp; Fill in:</strong> He is my friend.
+        </div>
+
+        <div class="example">
+            - Rahim is a student. He is honest.
+        </div>
+
+        <div class="example">
+            - <strong>Choose:</strong> (I/Me) am ready. → I am ready.
+        </div>
+
+        <div class="remember">
+            ☑ <strong>Step-by-Step Quick Memorization List</strong>
+        </div>
+
+        <div class="step">
+            • <strong>Step 1:</strong> Pronoun (Noun-এর বদলে ব্যবহৃত শব্দ) ও Antecedent (পূর্বনির্দেশিত Noun)।
+        </div>
+
+        <div class="step">
+            • <strong>Step 2:</strong> ১০টি প্রধান প্রকার
+            (Personal, Possessive, Reflexive, Emphatic, Demonstrative, Interrogative, Relative, Indefinite, Distributive, Reciprocal)
+        </div>
+
+        <div class="step">
+            • <strong>Step 3:</strong> Person (1st, 2nd, 3rd) ও Number (Singular, Plural)
+        </div>
+
+        <div class="step">
+            • <strong>Step 4:</strong> Subject, Object &amp; Possessive forms (I → me → mine/my)
+        </div>
+
+        <div class="step">
+            • <strong>Step 5:</strong> Verb Agreement (I am, You are, He is, They are)
+        </div>
+    </section>
+
+    <div class="footer">
+        English Grammar &amp; Bangla Grammar Equivalent Guide — PART 4: PRONOUN
+    </div>
+
+</div>
+
+<script>
+/* =========================================================
+   SMOOTH SCROLL ANIMATION
+   ========================================================= */
+
+const lessons = document.querySelectorAll(".lesson");
+
+const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+        if(entry.isIntersecting){
+            entry.target.classList.add("show");
+            observer.unobserve(entry.target);
+        }
+    });
+},{
+    threshold:0.08
+});
+
+lessons.forEach(lesson=>observer.observe(lesson));
+
+
+/* =========================================================
+   PDF DOWNLOAD / PRINT
+   Browser-এর Print → Save as PDF ব্যবহার করে
+   Selectable/Copyable Text সহ PDF তৈরি হবে।
+   ========================================================= */
+
+function downloadPDF(){
+
+    const oldTitle = document.title;
+
+    document.title = "PART 4 — PRONOUN — English Grammar";
+
+    setTimeout(()=>{
+        window.print();
+
+        setTimeout(()=>{
+            document.title = oldTitle;
+        },1000);
+
+    },150);
+}
+
+
+/* =========================================================
+   PRINT EVENT
+   ========================================================= */
+
+window.addEventListener("beforeprint",()=>{
+    document.querySelectorAll(".lesson").forEach(lesson=>{
+        lesson.classList.add("show");
+    });
+});
+</script>
+
+</body>
+</html>

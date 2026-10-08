@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PART 2 — Word, Syllable, Parts of Speech & Word Formation</title>
+
+<style>
+@font-face{
+    font-family:Kalpurush;
+    src:local("Kalpurush"),local("Kalpurush Regular");
+}
+
+:root{
+    --bg:#f8fafc;
+    --paper:#ffffff;
+    --text:#172033;
+    --muted:#5b6475;
+    --primary:#3157d5;
+    --secondary:#6844d9;
+    --accent:#08a88a;
+    --border:#dfe5ef;
+    --soft:#eef3ff;
+    --shadow:0 10px 35px rgba(35,55,90,.08);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:Kalpurush,"Noto Sans Bengali","SolaimanLipi",Arial,sans-serif;
+    font-size:25px;
+    line-height:1.8;
+}
+
+.container{
+    width:min(1180px,94%);
+    margin:0 auto;
+}
+
+.book{
+    background:var(--paper);
+    min-height:100vh;
+    box-shadow:var(--shadow);
+    padding:30px 45px 60px;
+    margin:25px auto;
+    border-radius:20px;
+}
+
+/* PDF BUTTON */
+.pdf-area{
+    display:flex;
+    justify-content:flex-end;
+    margin-bottom:20px;
+}
+
+.pdf-btn{
+    border:0;
+    border-radius:12px;
+    padding:10px 20px;
+    font-family:inherit;
+    font-size:20px;
+    font-weight:bold;
+    color:white;
+    background:linear-gradient(135deg,#3157d5,#6844d9);
+    cursor:pointer;
+    box-shadow:0 7px 18px rgba(49,87,213,.22);
+    transition:.25s ease;
+}
+
+.pdf-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 25px rgba(49,87,213,.3);
+}
+
+/* HEADINGS */
+.part-title{
+    text-align:center;
+    color:var(--primary);
+    font-size:32px;
+    line-height:1.45;
+    font-weight:bold;
+    padding:20px;
+    border:2px solid #cfd9f5;
+    border-radius:16px;
+    background:linear-gradient(135deg,#f3f6ff,#faf8ff);
+    margin-bottom:12px;
+}
+
+.part-subtitle{
+    text-align:center;
+    color:var(--muted);
+    font-size:22px;
+    margin-bottom:35px;
+}
+
+.lesson{
+    margin:45px 0;
+    scroll-margin-top:20px;
+}
+
+.lesson-title{
+    color:#263e9d;
+    font-size:29px;
+    font-weight:bold;
+    padding:10px 16px;
+    margin-bottom:25px;
+    border-left:7px solid var(--primary);
+    background:linear-gradient(90deg,#eef3ff,transparent);
+    border-radius:5px;
+}
+
+.section-title{
+    color:#5137a6;
+    font-size:26px;
+    font-weight:bold;
+    margin:25px 0 12px;
+}
+
+p{
+    margin:9px 0 15px;
+}
+
+ul,ol{
+    margin:8px 0 18px 35px;
+}
+
+li{
+    margin:4px 0;
+}
+
+strong{
+    font-weight:bold;
+}
+
+/* HIGHLIGHT */
+.note{
+    background:#f0faf7;
+    border-left:5px solid var(--accent);
+    border-radius:10px;
+    padding:13px 18px;
+    margin:18px 0;
+}
+
+.formula{
+    background:#f4f6fb;
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:13px 18px;
+    margin:15px 0;
+}
+
+.example{
+    background:#fffaf0;
+    border-left:5px solid #e4a52b;
+    border-radius:10px;
+    padding:12px 18px;
+    margin:16px 0;
+}
+
+.answer{
+    margin-bottom:15px;
+}
+
+.label{
+    color:var(--primary);
+    font-weight:bold;
+}
+
+/* TABLE */
+.table-wrap{
+    width:100%;
+    overflow-x:auto;
+    margin:20px 0 25px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:720px;
+    font-size:23px;
+    background:white;
+}
+
+th,td{
+    border:1px solid #cfd6e2;
+    padding:10px 12px;
+    text-align:left;
+    vertical-align:top;
+}
+
+th{
+    background:#eef3ff;
+    color:#263e9d;
+    font-weight:bold;
+}
+
+tr:nth-child(even) td{
+    background:#fafbfd;
+}
+
+/* TAKEAWAY */
+.takeaway{
+    margin-top:50px;
+    padding:25px;
+    border:2px solid #cdd7f4;
+    border-radius:17px;
+    background:linear-gradient(135deg,#f5f7ff,#fbf9ff);
+}
+
+.takeaway h2{
+    text-align:center;
+    color:var(--primary);
+    font-size:29px;
+    margin-bottom:18px;
+}
+
+.quick-table{
+    margin-top:25px;
+}
+
+/* ANIMATION */
+.reveal{
+    opacity:0;
+    transform:translateY(28px);
+    transition:opacity .8s ease,transform .8s ease;
+}
+
+.reveal.left{
+    transform:translateX(-35px);
+}
+
+.reveal.right{
+    transform:translateX(35px);
+}
+
+.reveal.show{
+    opacity:1;
+    transform:none;
+}
+
+/* RESPONSIVE */
+@media(max-width:800px){
+    body{
+        font-size:23px;
+        line-height:1.75;
+    }
+
+    .book{
+        width:100%;
+        margin:0;
+        border-radius:0;
+        padding:20px 20px 45px;
+        box-shadow:none;
+    }
+
+    .part-title{
+        font-size:28px;
+    }
+
+    .lesson-title{
+        font-size:26px;
+    }
+
+    .section-title{
+        font-size:24px;
+    }
+
+    table{
+        font-size:21px;
+    }
+
+    .pdf-btn{
+        font-size:18px;
+    }
+}
+
+@media(max-width:480px){
+    body{
+        font-size:21px;
+    }
+
+    .book{
+        padding:15px 13px 35px;
+    }
+
+    .part-title{
+        font-size:25px;
+        padding:15px 10px;
+    }
+
+    .part-subtitle{
+        font-size:19px;
+    }
+
+    .lesson-title{
+        font-size:23px;
+        padding-left:11px;
+    }
+
+    .section-title{
+        font-size:22px;
+    }
+
+    ul,ol{
+        margin-left:27px;
+    }
+
+    table{
+        font-size:19px;
+    }
+
+    th,td{
+        padding:8px;
+    }
+}
+
+/* PRINT / PDF */
+@page{
+    size:A4 portrait;
+    margin:14mm 12mm 15mm;
+}
+
+@media print{
+    body{
+        background:white;
+        color:#000;
+        font-size:14pt;
+        line-height:1.55;
+    }
+
+    .book{
+        width:100%;
+        margin:0;
+        padding:0;
+        box-shadow:none;
+        border-radius:0;
+    }
+
+    .pdf-area{
+        display:none;
+    }
+
+    .part-title{
+        font-size:19pt;
+        color:#000;
+        background:white;
+        border:1px solid #777;
+        padding:10px;
+    }
+
+    .part-subtitle{
+        font-size:13pt;
+        color:#000;
+    }
+
+    .lesson{
+        margin:25px 0;
+        break-inside:auto;
+    }
+
+    .lesson-title{
+        font-size:17pt;
+        color:#000;
+        background:white;
+        border-left:4px solid #000;
+        padding:5px 10px;
+        break-after:avoid;
+    }
+
+    .section-title{
+        font-size:15pt;
+        color:#000;
+        break-after:avoid;
+    }
+
+    .note,
+    .formula,
+    .example,
+    .takeaway{
+        background:white;
+        border-color:#555;
+        box-shadow:none;
+    }
+
+    table{
+        font-size:12pt;
+    }
+
+    th,td{
+        border:1px solid #555;
+    }
+
+    th{
+        background:#eee;
+        color:#000;
+    }
+
+    .reveal{
+        opacity:1 !important;
+        transform:none !important;
+    }
+
+    .table-wrap{
+        overflow:visible;
+    }
+
+    tr,td,th{
+        break-inside:avoid;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<main class="book">
+
+    <div class="pdf-area">
+        <button class="pdf-btn" onclick="downloadPDF()">⬇ Download PDF</button>
+    </div>
+
+    <header class="reveal">
+        <div class="part-title">
+            PART 2 — WORD, SYLLABLE, PARTS OF SPEECH &amp; WORD FORMATION FOUNDATIONS
+        </div>
+        <div class="part-subtitle">
+            English Grammar &amp; Bangla Grammar Equivalent Guide
+        </div>
+
+        <div class="note">
+            ☑ <strong>লক্ষ্য:</strong> Word কী, Syllable কী, Letter ও Word-এর পার্থক্য, Root Word, Prefix, Suffix,
+            Word Formation, Parts of Speech-এর পরিচয় এবং বাক্যে শব্দের কাজ সম্পর্কে মজবুত ভিত্তি তৈরি করা।
+        </div>
+    </header>
+
+    <!-- LESSON 1 -->
+    <section class="lesson reveal left">
+        <h1 class="lesson-title">LESSON 1 - LETTER, ALPHABET, WORD &amp; SENTENCE</h1>
+
+        <h2 class="section-title">1. WHAT IS A WORD? (Word কী?)</h2>
+
+        <p><span class="label">☑ Definition:</span> A Word is a group of letters that has a meaning.</p>
+
+        <p>Word (শব্দ) হলো এক বা একাধিক Letter-এর এমন সমষ্টি, যার একটি অর্থ আছে।</p>
+
+        <div class="example">
+            <strong>Examples:</strong>
+            <ul>
+                <li>book (বই)</li>
+                <li>pen (কলম)</li>
+                <li>school (বিদ্যালয়)</li>
+                <li>Rahim (রহিম)</li>
+                <li>beautiful (সুন্দর)</li>
+                <li>run (দৌড়ানো)</li>
+            </ul>
+        </div>
+
+        <div class="formula">
+            <strong>মনে রাখো:</strong><br>
+            Letter (অক্ষর) → Word (অর্থপূর্ণ শব্দ) → Sentence (সম্পূর্ণ অর্থ প্রকাশকারী শব্দসমষ্টি)
+        </div>
+
+        <h2 class="section-title">2. LETTER, WORD &amp; SENTENCE</h2>
+
+        <ul>
+            <li>Letter: A, B, C, D</li>
+            <li>Word: book, school, teacher</li>
+            <li>Sentence: I read a book.</li>
+        </ul>
+
+        <p><strong>সম্পর্ক:</strong> Letter → Word → Phrase / Clause → Sentence</p>
+
+        <h2 class="section-title">3. ALPHABET (Alphabet কী?)</h2>
+
+        <p>English Alphabet-এ মোট ২৬টি Letter আছে।</p>
+
+        <ul>
+            <li><strong>Capital Letters:</strong> A B C D E F G H I J K L M N O P Q R S T U V W X Y Z</li>
+            <li><strong>Small Letters:</strong> a b c d e f g h i j k l m n o p q r s t u v w x y z</li>
+        </ul>
+
+        <p><strong>দুই ধরনের Letter:</strong></p>
+        <ul>
+            <li>Capital Letter (বড় হাতের অক্ষর)</li>
+            <li>Small Letter (ছোট হাতের অক্ষর)</li>
+        </ul>
+
+        <h2 class="section-title">4. VOWELS &amp; CONSONANTS</h2>
+
+        <p>English-এর প্রধান Vowels: A, E, I, O, U</p>
+
+        <p>Examples: apple, egg, ice, orange, umbrella</p>
+
+        <div class="note">
+            <strong>বিশেষ নোট:</strong> কখনো Y-ও Vowel-এর মতো শব্দে কাজ করতে পারে।
+            <br>
+            Examples: my, happy
+        </div>
+
+        <p>বাকি Letter-গুলো সাধারণত Consonant (ব্যঞ্জনধ্বনি) হিসেবে ব্যবহৃত হয়।</p>
+        <p>Examples: B, C, D, F, G, H...</p>
+    </section>
+
+    <!-- LESSON 2 -->
+    <section class="lesson reveal right">
+        <h1 class="lesson-title">LESSON 2 - SYLLABLE &amp; MORPHEME</h1>
+
+        <h2 class="section-title">1. WHAT IS A SYLLABLE? (Syllable কী?)</h2>
+
+        <p><strong>Definition:</strong> A Syllable is a unit of pronunciation containing one vowel sound.</p>
+
+        <p>Syllable হলো শব্দ উচ্চারণের একটি অংশ, যেখানে সাধারণত একটি Vowel Sound থাকে।</p>
+
+        <p><strong>সহজভাবে:</strong> একটি শব্দ উচ্চারণ করার সময় যতগুলো ধাপে/অংশে ভাঙা যায়, সেগুলো Syllable।</p>
+
+        <div class="example">
+            <strong>Examples:</strong>
+            <ul>
+                <li>book → 1 syllable</li>
+                <li>teach-er → 2 syllables</li>
+                <li>beau-ti-ful → 3 syllables</li>
+            </ul>
+        </div>
+
+        <h2 class="section-title">2. TYPES OF SYLLABLE BY NUMBER</h2>
+
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>প্রকারের নাম</th>
+                        <th>বিবরণ</th>
+                        <th>উদাহরণ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1. Monosyllabic Word</td>
+                        <td>১টি Syllable</td>
+                        <td>book, pen, man, school, good</td>
+                    </tr>
+                    <tr>
+                        <td>2. Disyllabic Word</td>
+                        <td>২টি Syllable</td>
+                        <td>teacher, mother, water, happy</td>
+                    </tr>
+                    <tr>
+                        <td>3. Trisyllabic Word</td>
+                        <td>৩টি Syllable</td>
+                        <td>beautiful, banana, important</td>
+                    </tr>
+                    <tr>
+                        <td>4. Polysyllabic Word</td>
+                        <td>একাধিক Syllable</td>
+                        <td>education, information, communication</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="formula">
+            <strong>মনে রাখো:</strong> Mono = one | Di = two | Tri = three | Poly = many
+        </div>
+
+        <h2 class="section-title">3. SYLLABLE PRACTICE</h2>
+
+        <ul>
+            <li>1 syllable: cat, dog, book, pen, school</li>
+            <li>2 syllables: teacher, student, table, window, happy</li>
+            <li>3 syllables: beautiful, family, banana, computer</li>
+            <li>4 syllables: education, information, communication</li>
+        </ul>
+
+        <h2 class="section-title">4. WHAT IS A MORPHEME? (Morpheme-এর প্রাথমিক ধারণা)</h2>
+
+        <p>Morpheme হলো শব্দের এমন ছোট অর্থপূর্ণ অংশ, যা শব্দের অর্থ বা Grammar-এর অর্থ বহন করে।</p>
+
+        <div class="example">
+            <ul>
+                <li>un + happy = unhappy (happy = মূল অর্থ, un = not-এর ধারণা)</li>
+                <li>teach + er = teacher (teach = কাজ, -er = ব্যক্তি বোঝায়)</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- LESSON 3 -->
+    <section class="lesson reveal left">
+        <h1 class="lesson-title">LESSON 3 - ROOT WORD, PREFIX &amp; SUFFIX</h1>
+
+        <h2 class="section-title">1. ROOT WORD (Root Word কী?)</h2>
+
+        <p>Root Word হলো এমন মূল শব্দ, যার সঙ্গে Prefix বা Suffix যোগ করে নতুন শব্দ তৈরি করা যায়।</p>
+
+        <div class="example">
+            <ul>
+                <li>happy → unhappy, happiness</li>
+                <li>kind → unkind, kindness</li>
+                <li>help → helpful, helpless</li>
+            </ul>
+            <strong>(Root = মূল)</strong>
+        </div>
+
+        <h2 class="section-title">2. PREFIX (Prefix কী?)</h2>
+
+        <p><strong>Definition:</strong> A Prefix is a group of letters added to the beginning of a word to change its meaning.</p>
+
+        <p>Prefix হলো শব্দের শুরুতে যোগ হওয়া অংশ, যা শব্দের অর্থ পরিবর্তন করতে পারে।</p>
+
+        <div class="example">
+            <ul>
+                <li>un + happy = unhappy (অসুখী)</li>
+                <li>re + write = rewrite (আবার লেখা)</li>
+                <li>dis + agree = disagree (অসম্মত হওয়া)</li>
+            </ul>
+        </div>
+
+        <h2 class="section-title">3. COMMON PREFIXES</h2>
+
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Prefix</th>
+                        <th>অর্থ/কাজ</th>
+                        <th>উদাহরণ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>un-</td>
+                        <td>না/বিপরীত</td>
+                        <td>happy → unhappy</td>
+                    </tr>
+                    <tr>
+                        <td>dis-</td>
+                        <td>না/বিপরীত</td>
+                        <td>agree → disagree</td>
+                    </tr>
+                    <tr>
+                        <td>re-</td>
+                        <td>আবার</td>
+                        <td>write → rewrite</td>
+                    </tr>
+                    <tr>
+                        <td>pre-</td>
+                        <td>আগে</td>
+                        <td>view → preview</td>
+                    </tr>
+                    <tr>
+                        <td>mis-</td>
+                        <td>ভুলভাবে</td>
+                        <td>understand → misunderstand</td>
+                    </tr>
+                    <tr>
+                        <td>im-/in-</td>
+                        <td>না/বিপরীত</td>
+                        <td>possible → impossible, correct → incorrect</td>
+                    </tr>
+                    <tr>
+                        <td>/ir-/il</td>
+                        <td></td>
+                        <td>regular → irregular, legal → illegal</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p><strong>*Prefix সাধারণত Word-এর শুরুতে বসে।</strong></p>
+
+        <h2 class="section-title">4. SUFFIX (Suffix কী?)</h2>
+
+        <p><strong>Definition:</strong> A Suffix is a group of letters added to the end of a word to form a new word or change its grammatical function.</p>
+
+        <p>Suffix হলো শব্দের শেষে যোগ হওয়া অংশ, যার মাধ্যমে নতুন Word তৈরি হতে পারে বা Word-এর Grammar-এর কাজ পরিবর্তিত হতে পারে।</p>
+
+        <div class="example">
+            <ul>
+                <li>kind + ness = kindness</li>
+                <li>teach + er = teacher</li>
+                <li>quick + ly = quickly</li>
+            </ul>
+        </div>
+
+        <h2 class="section-title">5. COMMON SUFFIXES</h2>
+
+        <ul>
+            <li>-ness: Noun তৈরি করতে পারে (kind → kindness)</li>
+            <li>-ment: Noun তৈরি করতে পারে (develop → development)</li>
+            <li>-tion / -sion: Noun তৈরি করতে পারে (educate → education)</li>
+            <li>-er/-or: ব্যক্তি বোঝাতে পারে (teach → teacher, act → actor)</li>
+            <li>-ful: পূর্ণ (care → careful)</li>
+            <li>-less: বিহীন (care → careless)</li>
+            <li>-ly: Adverb তৈরি করতে পারে (quick → quickly)</li>
+        </ul>
+
+        <h2 class="section-title">6. PREFIX vs SUFFIX</h2>
+
+        <p><strong>PREFIX:</strong> Word-এর আগে বসে (un + happy = unhappy)</p>
+        <p><strong>SUFFIX:</strong> Word-এর শেষে বসে (happy + ness = happiness)</p>
+
+        <div class="formula">
+            <strong>সহজ সূত্র:</strong> Prefix = আগে | Suffix = শেষে
+        </div>
+
+        <h2 class="section-title">7. ROOT + PREFIX + SUFFIX</h2>
+
+        <p>একটি Word-এ Prefix ও Suffix দুটিই থাকতে পারে।</p>
+
+        <div class="example">
+            <ul>
+                <li>un + help + ful = unhelpful</li>
+                <li>kind + ness = kindness</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- LESSON 4 -->
+    <section class="lesson reveal right">
+        <h1 class="lesson-title">LESSON 4 - WORD FORMATION &amp; WORD FAMILY</h1>
+
+        <h2 class="section-title">1. WORD FORMATION (শব্দ গঠন)</h2>
+
+        <p>একটি Root Word থেকে বিভিন্ন ধরনের Word তৈরি করা যায়।</p>
+
+        <div class="example">
+            <ul>
+                <li>happy → happiness, happily, unhappy</li>
+                <li>care → careful, careless, carefully</li>
+                <li>beauty → beautiful, beautifully</li>
+            </ul>
+        </div>
+
+        <h2 class="section-title">2. NOUN FORMATION (বিশেষ্য গঠন)</h2>
+
+        <ul>
+            <li>Adjective → Noun: kind → kindness, happy → happiness, honest → honesty</li>
+            <li>Verb → Noun: develop → development, educate → education, move → movement</li>
+            <li>Person Noun: teach → teacher, write → writer, drive → driver</li>
+        </ul>
+
+        <h2 class="section-title">3. ADJECTIVE &amp; ADVERB FORMATION</h2>
+
+        <ul>
+            <li>Noun → Adjective: beauty → beautiful, care → careful, danger → dangerous</li>
+            <li>Verb → Adjective: interest → interesting, tire → tired</li>
+        </ul>
+
+        <p><strong>Adverb Formation:</strong> অনেক Adverb তৈরি হয় Adjective + -ly দিয়ে</p>
+
+        <p>(quick → quickly, slow → slowly, careful → carefully, beautiful → beautifully)</p>
+
+        <div class="example">
+            <strong>Example:</strong> He runs quickly. সে দ্রুত দৌড়ায়।
+        </div>
+
+        <div class="note">
+            <strong>Note:</strong> তবে সব Adverb -ly দিয়ে তৈরি হয় না (fast → fast, hard → hard)
+        </div>
+
+        <h2 class="section-title">4. VERB FORMATION &amp; WORD FAMILY</h2>
+
+        <p>কিছু ক্ষেত্রে Prefix/Suffix যোগ করে Verb তৈরি হয় (modern → modernize, beauty → beautify, simple → simplify)</p>
+
+        <p><strong>Word Family</strong> (একই মূলের শব্দসমূহ): একটি Root Word থেকে তৈরি সম্পর্কিত Word-গুলোকে Word Family বলা যায়।</p>
+
+        <div class="example">
+            <ul>
+                <li>ACT: act, action, active, actively, actor</li>
+                <li>CARE: care, careful, carefully, careless</li>
+            </ul>
+        </div>
+
+        <h2 class="section-title">5. WORD FORMATION PRACTICE</h2>
+
+        <p><strong>Complete the Word Family:</strong></p>
+
+        <ul>
+            <li>happy → happiness, happily</li>
+            <li>care → careful, carefully</li>
+            <li>beauty → beautiful, beautifully</li>
+            <li>teach → teacher, teaching</li>
+            <li>develop → development, developed</li>
+        </ul>
+    </section>
+
+    <!-- LESSON 5 -->
+    <section class="lesson reveal left">
+        <h1 class="lesson-title">LESSON 5 - PARTS OF SPEECH: NOUN, PRONOUN &amp; VERB</h1>
+
+        <h2 class="section-title">1. PARTS OF SPEECH (শব্দের পদভেদ)</h2>
+
+        <p>English Grammar-এ প্রচলিত ৮টি Parts of Speech:</p>
+
+        <ol>
+            <li>Noun</li>
+            <li>Pronoun</li>
+            <li>Verb</li>
+            <li>Adjective</li>
+            <li>Adverb</li>
+            <li>Preposition</li>
+            <li>Conjunction</li>
+            <li>Interjection</li>
+        </ol>
+
+        <h2 class="section-title">2. NOUN (বিশেষ্য)</h2>
+
+        <p>Noun হলো Naming Word। এটি বোঝাতে পারে Person (Rahim), Place (Dhaka), Animal (cat), Thing (book), Idea/Quality (honesty)।</p>
+
+        <div class="example">
+            Example: Rahim reads a book. (Rahim = Noun, book = Noun)
+        </div>
+
+        <h2 class="section-title">3. PRONOUN (সর্বনাম)</h2>
+
+        <p>Pronoun হলো এমন Word, যা Noun-এর পরিবর্তে ব্যবহৃত হয় (I, you, he, she, it, we, they)।</p>
+
+        <div class="example">
+            Example: Rahim is a student. He is honest. (He = Pronoun)
+        </div>
+
+        <h2 class="section-title">4. VERB (ক্রিয়া)</h2>
+
+        <p>Verb কাজ, ঘটনা বা অবস্থা বোঝায় (go, eat, read, write, play, sleep, is, am, are)।</p>
+
+        <div class="example">
+            <strong>Examples:</strong>
+            <ul>
+                <li>Rahim reads a book. (reads = Verb)</li>
+                <li>She is happy. (is = Verb)</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- LESSON 6 -->
+    <section class="lesson reveal right">
+        <h1 class="lesson-title">LESSON 6 - ADJECTIVE, ADVERB &amp; PREPOSITION</h1>
+
+        <h2 class="section-title">1. ADJECTIVE (বিশেষণ)</h2>
+
+        <p>Adjective সাধারণত Noun বা Pronoun-এর গুণ, অবস্থা, সংখ্যা বা বৈশিষ্ট্য বোঝায় (good, beautiful, tall, small, honest, five)।</p>
+
+        <div class="example">
+            Example: He is a good boy. (good = Adjective)
+        </div>
+
+        <h2 class="section-title">2. ADVERB (ক্রিয়া বিশেষণ)</h2>
+
+        <p>Adverb সাধারণত Verb, Adjective বা অন্য Adverb সম্পর্কে অতিরিক্ত তথ্য দেয় (quickly, slowly, very, well, carefully)।</p>
+
+        <div class="example">
+            <strong>Examples:</strong>
+            <ul>
+                <li>He runs quickly. (quickly = Adverb)</li>
+                <li>She is very happy. (very = Adverb)</li>
+            </ul>
+        </div>
+
+        <h2 class="section-title">3. PREPOSITION (পদান্বয়ী অব্যয়)</h2>
+
+        <p>Preposition সাধারণত Noun/Pronoun-এর সঙ্গে অন্য Word-এর সম্পর্ক প্রকাশ করে (in, on, at, under, over, beside, with, from, to)।</p>
+
+        <div class="example">
+            Example: The book is on the table. (on = Preposition)
+        </div>
+    </section>
+
+    <!-- LESSON 7 -->
+    <section class="lesson reveal left">
+        <h1 class="lesson-title">LESSON 7 - CONJUNCTION &amp; INTERJECTION</h1>
+
+        <h2 class="section-title">1. CONJUNCTION (সংযোজক অব্যয়)</h2>
+
+        <p>Conjunction Word, Phrase বা Clause যুক্ত করে (and, but, or, because, if, although)।</p>
+
+        <div class="example">
+            Example: Rahim and Karim are friends. (and = Conjunction)
+        </div>
+
+        <h2 class="section-title">2. INTERJECTION (আবেগসূচক অব্যয়)</h2>
+
+        <p>Interjection হঠাৎ আবেগ বা অনুভূতি প্রকাশ করে (Wow!, Alas!, Hurrah!, Ouch!, Oh!)।</p>
+
+        <div class="example">
+            Example: Wow! What a beautiful place! (Wow! = Interjection)
+        </div>
+    </section>
+
+    <!-- LESSON 8 -->
+    <section class="lesson reveal right">
+        <h1 class="lesson-title">LESSON 8 - WORD MEANING &amp; WORD RELATION</h1>
+
+        <h2 class="section-title">1. SYNONYM (সমার্থক শব্দ)</h2>
+
+        <p>Synonym হলো কাছাকাছি বা একই ধরনের অর্থের Word।</p>
+
+        <div class="example">
+            Examples: big → large, small → little, happy → glad, begin → start, quick → fast
+        </div>
+
+        <h2 class="section-title">2. ANTONYM (বিপরীতার্থক শব্দ)</h2>
+
+        <p>Antonym হলো বিপরীত অর্থের Word।</p>
+
+        <div class="example">
+            Examples: big → small, hot → cold, good → bad, happy → sad, early → late, rich → poor
+        </div>
+
+        <h2 class="section-title">3. HOMOPHONE &amp; HOMONYM</h2>
+
+        <div class="example">
+            <p><strong>• Homophone (সমোচ্চারিত ভিন্নার্থক শব্দ):</strong> যে শব্দগুলোর উচ্চারণ একই বা প্রায় একই, কিন্তু অর্থ ও বানান ভিন্ন (right vs write, see vs sea, to, too, two)।</p>
+
+            <p><strong>• Homonym (সমনাম শব্দ):</strong> একই Word-এর একাধিক ভিন্ন অর্থ থাকতে পারে (bat = বাদুড় / ক্রিকেটের ব্যাট, bank = ব্যাংক / নদীর তীর)।</p>
+        </div>
+    </section>
+
+    <!-- LESSON 9 -->
+    <section class="lesson reveal left">
+        <h1 class="lesson-title">LESSON 9 - COMPOUND WORD, ABBREVIATION &amp; DIFFERENT PARTS OF SPEECH</h1>
+
+        <h2 class="section-title">1. ONE WORD, DIFFERENT PARTS OF SPEECH</h2>
+
+        <p>একই Word ভিন্ন বাক্যে ভিন্ন Part of Speech হতে পারে।</p>
+
+        <div class="example">
+            <ul>
+                <li>He runs fast. (fast = Adverb) | He has a fast car. (fast = Adjective)</li>
+                <li>I read a book. (book = Noun) | Book a ticket. (book = Verb)</li>
+            </ul>
+        </div>
+
+        <h2 class="section-title">2. COMPOUND WORD (যৌগিক শব্দ)</h2>
+
+        <p>দুই বা ততোধিক Word মিলে নতুন Word তৈরি হলে Compound Word হয়।</p>
+
+        <div class="example">
+            Examples: classroom, toothpaste, sunlight, football
+        </div>
+
+        <h2 class="section-title">3. ABBREVIATION (সংক্ষিপ্ত রূপ)</h2>
+
+        <p>বড় Word বা Phrase-এর সংক্ষিপ্ত রূপকে Abbreviation বলা হয় (Mr., Dr., etc., e.g.)।</p>
+    </section>
+
+    <!-- LESSON 10 -->
+    <section class="lesson reveal right">
+        <h1 class="lesson-title">LESSON 10 - PARTS OF SPEECH ANALYSIS, FINAL PRACTICE &amp; MASTER REVISION</h1>
+
+        <h2 class="section-title">1. PARTS OF SPEECH ANALYSIS</h2>
+
+        <div class="example">
+            <p><strong>Example 1:</strong> Rahim reads a good book carefully.</p>
+
+            <ul>
+                <li>Rahim = Noun</li>
+                <li>reads = Verb</li>
+                <li>a = Article</li>
+                <li>good = Adjective</li>
+                <li>book = Noun</li>
+                <li>carefully = Adverb</li>
+            </ul>
+        </div>
+
+        <div class="example">
+            <p><strong>Example 2:</strong> Wow! Rahim and Karim are very happy.</p>
+
+            <ul>
+                <li>Wow = Interjection</li>
+                <li>Rahim = Noun</li>
+                <li>and = Conjunction</li>
+                <li>Karim = Noun</li>
+                <li>are = Verb</li>
+                <li>very = Adverb</li>
+                <li>happy = Adjective</li>
+            </ul>
+        </div>
+
+        <div class="takeaway">
+            <h2>☑ FINAL PRACTICE &amp; EXERCISES</h2>
+
+            <p><strong>• A. Identify Parts of Speech:</strong> Rahim is a good boy. / She reads books quickly.</p>
+
+            <p><strong>• B. Identify Prefix and Suffix:</strong> unhappy / rewrite / kindness</p>
+
+            <p><strong>• C. Make New Words:</strong> happy Noun (happiness) | kind Noun (kindness)</p>
+
+            <p><strong>• D. Identify Syllables:</strong> book (1) | teacher (2) | beautiful (3)</p>
+
+            <p><strong>• E. Synonym/Antonym:</strong> big - large (Synonym) | happy - sad (Antonym)</p>
+
+            <p><strong>• F. Compound Words:</strong> class + room = classroom</p>
+        </div>
+    </section>
+
+    <!-- MASTER SUMMARY -->
+    <section class="takeaway reveal">
+        <h2>PART 2 - KEY TAKEAWAY (মাস্টার সামারি)</h2>
+
+        <ol>
+            <li>Letter, Word, Syllable, Morpheme ও Root Word-এর মৌলিক ধারণা।</li>
+            <li>Prefix (আগে) ও Suffix (শেষে) যুক্ত করে Word Formation।</li>
+            <li>৮টি Parts of Speech এবং বাক্যে তাদের সঠিক ব্যবহার।</li>
+            <li>Synonym, Antonym, Homophone, Homonym ও Compound Words।</li>
+        </ol>
+
+        <h2 class="quick-table">QUICK REVISION TABLE - WORD &amp; PARTS OF SPEECH SUMMARY</h2>
+
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ক্যাটাগরি / বিষয়বস্তু</th>
+                        <th>মূল ধারণা ও শর্টকাট সূত্র (একনজরে রিভিশনের জন্য)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>১. Word ও Syllable</td>
+                        <td>শব্দ গঠন এবং উচ্চারণ অনুযায়ী Syllable-এর প্রকার (Mono, Di, Tri, Poly)</td>
+                    </tr>
+                    <tr>
+                        <td>২. Root, Prefix &amp; Suffix</td>
+                        <td>Root (মূল), Prefix (শুরুতে যুক্ত হয়), Suffix (শেষে)</td>
+                    </tr>
+                    <tr>
+                        <td>৩. Word Formation</td>
+                        <td>Noun, Adjective, Adverb ও Verb রূপান্তর</td>
+                    </tr>
+                    <tr>
+                        <td>৪. Parts of Speech (৮টি)</td>
+                        <td>Noun, Pronoun, Verb, Adjective, Adverb, Preposition, Conjunction, Interjection</td>
+                    </tr>
+                    <tr>
+                        <td>৫. শব্দার্থ ও সম্পর্ক</td>
+                        <td>Synonym (সমার্থক), Antonym (বিপরীত), Homophone (সমোচ্চারিত)</td>
+                    </tr>
+                    <tr>
+                        <td>৬. বিশেষ শব্দগঠন</td>
+                        <td>Compound Words (যৌগিক শব্দ) এবং Abbreviation</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+</main>
+</div>
+
+<script>
+/* Smooth scroll reveal */
+const revealElements = document.querySelectorAll(".reveal");
+
+const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+        if(entry.isIntersecting){
+            entry.target.classList.add("show");
+            observer.unobserve(entry.target);
+        }
+    });
+},{
+    threshold:0.08
+});
+
+revealElements.forEach(el=>observer.observe(el));
+
+/*
+  PDF:
+  Browser-এর Print system ব্যবহার করা হয়েছে।
+  এতে PDF-এ Text selectable/copyable থাকে এবং
+  বাংলা/ইংরেজি Text Image হিসেবে তৈরি হয় না।
+*/
+function downloadPDF(){
+    window.print();
+}
+</script>
+
+</body>
+</html>

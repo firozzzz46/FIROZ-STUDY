@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PART 3 - NOUN | English Grammar & Bangla Grammar</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:"Kalpurush","Noto Sans Bengali","SolaimanLipi",Arial,sans-serif;
+    background:#f8f9f7;
+    color:#20242a;
+    font-size:25px;
+    line-height:1.8;
+}
+
+/* =========================
+   TOP BAR
+========================= */
+.top-bar{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    display:flex;
+    justify-content:flex-end;
+    padding:12px 4%;
+    background:rgba(248,249,247,.92);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid #dfe4e1;
+}
+
+.pdf-btn{
+    border:0;
+    padding:10px 22px;
+    border-radius:12px;
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    color:white;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+    box-shadow:0 5px 18px rgba(37,99,235,.25);
+    transition:.3s ease;
+}
+
+.pdf-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 24px rgba(37,99,235,.35);
+}
+
+/* =========================
+   MAIN BOOK
+========================= */
+.book{
+    width:min(1200px,94%);
+    margin:35px auto 70px;
+}
+
+.cover{
+    background:linear-gradient(145deg,#ffffff,#eef4ff);
+    border:1px solid #dce4ef;
+    border-radius:24px;
+    padding:45px 35px;
+    text-align:center;
+    margin-bottom:35px;
+    box-shadow:0 12px 35px rgba(30,50,80,.08);
+}
+
+.part-number{
+    display:inline-block;
+    padding:6px 18px;
+    border-radius:30px;
+    background:#e7efff;
+    color:#2455a4;
+    font-size:20px;
+    font-weight:bold;
+    margin-bottom:15px;
+}
+
+.cover h1{
+    font-size:42px;
+    line-height:1.3;
+    color:#173b72;
+    margin-bottom:12px;
+}
+
+.cover h2{
+    font-size:25px;
+    color:#566273;
+    font-weight:normal;
+}
+
+.goal{
+    margin-top:25px;
+    padding:20px 25px;
+    background:#fff;
+    border-left:6px solid #3b82f6;
+    border-radius:12px;
+    text-align:left;
+}
+
+/* =========================
+   LESSON
+========================= */
+.lesson{
+    background:white;
+    border:1px solid #e0e5e9;
+    border-radius:20px;
+    padding:30px 34px;
+    margin:30px 0;
+    box-shadow:0 8px 25px rgba(20,30,40,.055);
+    opacity:0;
+    transform:translateY(25px);
+    animation:appear .7s ease forwards;
+}
+
+.lesson:nth-child(even){
+    animation-delay:.08s;
+}
+
+@keyframes appear{
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.lesson-title{
+    color:#174a8b;
+    font-size:31px;
+    line-height:1.45;
+    border-bottom:3px solid #dbeafe;
+    padding-bottom:12px;
+    margin-bottom:22px;
+}
+
+.lesson-subtitle{
+    display:block;
+    color:#667085;
+    font-size:22px;
+    margin-top:3px;
+    font-weight:normal;
+}
+
+h3{
+    font-size:27px;
+    color:#7c3aed;
+    margin:24px 0 8px;
+}
+
+h4{
+    font-size:25px;
+    color:#155e75;
+    margin:18px 0 6px;
+}
+
+p{
+    margin:10px 0;
+}
+
+.definition{
+    padding:16px 20px;
+    margin:15px 0;
+    background:#f0f7ff;
+    border-left:5px solid #3b82f6;
+    border-radius:9px;
+}
+
+.note{
+    padding:15px 20px;
+    margin:15px 0;
+    background:#fff9e8;
+    border-left:5px solid #eab308;
+    border-radius:9px;
+}
+
+.tip{
+    padding:15px 20px;
+    margin:15px 0;
+    background:#effcf5;
+    border-left:5px solid #22c55e;
+    border-radius:9px;
+}
+
+.example{
+    padding:14px 20px;
+    margin:12px 0;
+    background:#faf5ff;
+    border-left:5px solid #8b5cf6;
+    border-radius:9px;
+}
+
+ul{
+    margin:8px 0 15px 30px;
+}
+
+li{
+    margin:5px 0;
+}
+
+.english{
+    color:#173b72;
+}
+
+.bangla{
+    color:#24292f;
+}
+
+.inline-en{
+    font-family:Arial,sans-serif;
+}
+
+/* =========================
+   COMPARISON
+========================= */
+.compare{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+    margin:15px 0;
+}
+
+.compare div{
+    padding:14px 18px;
+    background:#f8fafc;
+    border:1px solid #e2e8f0;
+    border-radius:10px;
+}
+
+/* =========================
+   TABLE
+========================= */
+.table-wrap{
+    overflow-x:auto;
+    margin:20px 0;
+    border-radius:12px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+    font-size:23px;
+}
+
+th,td{
+    border:1px solid #cfd7df;
+    padding:12px 14px;
+    text-align:left;
+    vertical-align:top;
+}
+
+th{
+    background:#eaf1ff;
+    color:#173b72;
+}
+
+tr:nth-child(even) td{
+    background:#fafbfc;
+}
+
+/* =========================
+   SUMMARY
+========================= */
+.summary{
+    background:linear-gradient(145deg,#ffffff,#f3f7ff);
+    border:2px solid #cddcf7;
+    border-radius:22px;
+    padding:30px;
+    margin-top:35px;
+}
+
+.summary h2{
+    color:#173b72;
+    font-size:32px;
+    margin-bottom:20px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+.footer{
+    text-align:center;
+    padding:30px 10px 50px;
+    color:#667085;
+    font-size:18px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media(max-width:800px){
+    body{
+        font-size:22px;
+        line-height:1.75;
+    }
+
+    .book{
+        width:95%;
+        margin-top:20px;
+    }
+
+    .cover{
+        padding:30px 20px;
+        border-radius:18px;
+    }
+
+    .cover h1{
+        font-size:32px;
+    }
+
+    .cover h2{
+        font-size:21px;
+    }
+
+    .lesson{
+        padding:22px 19px;
+        border-radius:16px;
+    }
+
+    .lesson-title{
+        font-size:27px;
+    }
+
+    h3{
+        font-size:24px;
+    }
+
+    h4{
+        font-size:22px;
+    }
+
+    .compare{
+        grid-template-columns:1fr;
+    }
+
+    table{
+        font-size:20px;
+        min-width:700px;
+    }
+
+    .pdf-btn{
+        font-size:16px;
+        padding:8px 16px;
+    }
+}
+
+@media(max-width:480px){
+    body{
+        font-size:20px;
+    }
+
+    .cover h1{
+        font-size:27px;
+    }
+
+    .lesson-title{
+        font-size:24px;
+    }
+
+    .lesson-subtitle{
+        font-size:18px;
+    }
+
+    h3{
+        font-size:22px;
+    }
+
+    h4{
+        font-size:20px;
+    }
+
+    .lesson{
+        padding:18px 15px;
+    }
+
+    .definition,
+    .note,
+    .tip,
+    .example{
+        padding:12px 14px;
+    }
+
+    ul{
+        margin-left:24px;
+    }
+}
+
+/* =========================
+   PRINT / PDF
+========================= */
+@media print{
+    @page{
+        size:A4;
+        margin:14mm;
+    }
+
+    body{
+        background:white;
+        color:#000;
+        font-size:14pt;
+        line-height:1.6;
+    }
+
+    .top-bar{
+        display:none !important;
+    }
+
+    .book{
+        width:100%;
+        margin:0;
+    }
+
+    .cover{
+        box-shadow:none;
+        border:1px solid #aaa;
+        page-break-after:always;
+    }
+
+    .lesson{
+        box-shadow:none;
+        border:1px solid #aaa;
+        opacity:1;
+        transform:none;
+        animation:none;
+        page-break-inside:auto;
+    }
+
+    .lesson-title{
+        color:#000;
+    }
+
+    h3,h4{
+        color:#000;
+    }
+
+    .definition,
+    .note,
+    .tip,
+    .example{
+        border:1px solid #999;
+        background:white;
+    }
+
+    table{
+        font-size:12pt;
+    }
+
+    th{
+        background:#eee !important;
+        color:#000;
+    }
+
+    .footer{
+        display:none;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="top-bar">
+    <button class="pdf-btn" onclick="downloadPDF()">⬇ Download PDF</button>
+</div>
+
+<main class="book">
+
+<section class="cover">
+    <div class="part-number">PART 3</div>
+    <h1>NOUN (বিশেষ্য)</h1>
+    <h2>English Grammar &amp; Bangla Grammar Equivalent Guide | Complete Educational Textbook</h2>
+
+    <div class="goal">
+        <strong>লক্ষ্য:</strong>
+        Noun (বিশেষ্য) কী, কীভাবে চেনা যায়, Noun-এর প্রকারভেদ, Number (বচন), Gender (লিঙ্গ),
+        Case (কারক/সম্বন্ধের তুলনামূলক ধারণা), Possessive, Countable-Uncountable এবং বাক্যে Noun-এর ব্যবহার পরিষ্কারভাবে শেখা।
+    </div>
+
+    <div class="note">
+        <strong>IMPORTANT NOTE:</strong>
+        English Grammar এবং Bangla Grammar-এর মধ্যে অনেক ধারণার মিল আছে।
+        তবে সব নিয়ম ও ব্যাকরণগত শ্রেণির সরাসরি ১:১ মিল নেই।
+    </div>
+</section>
+
+
+<!-- LESSON 1 -->
+<section class="lesson">
+<h2 class="lesson-title">
+    LESSON 1 - NOUN: DEFINITION, IDENTIFICATION &amp; BASIC IDEA
+    <span class="lesson-subtitle">(বিশেষ্য কী, কীভাবে শনাক্ত করতে হয় ও মৌলিক ধারণা)</span>
+</h2>
+
+<div class="definition">
+<strong>Definition:</strong>
+A Noun is a word that names a person, place, animal, thing, or idea.
+</div>
+
+<p>
+<strong>Noun (বিশেষ্য):</strong>
+হলো এমন একটি শব্দ, যা কোনো ব্যক্তি, স্থান, প্রাণী, বস্তু, গুণ, অবস্থা বা ধারণার নাম বোঝায়।
+</p>
+
+<h3>Examples &amp; Sentence Usage:</h3>
+
+<div class="example">
+<strong>Rahim</strong> - রহিম
+<br>
+<span class="english">Rahim is a student.</span> -
+রহিম একজন ছাত্র।
+</div>
+
+<div class="example">
+<strong>Dhaka</strong> - ঢাকা
+<br>
+<span class="english">Dhaka is a large city.</span> -
+ঢাকা একটি বড় শহর।
+</div>
+
+<div class="example">
+<strong>cat</strong> - বিড়াল
+<br>
+<span class="english">The cat is sleeping.</span> -
+বিড়ালটি ঘুমাচ্ছে।
+</div>
+
+<div class="example">
+<strong>book</strong> - বই
+<br>
+<span class="english">This book is interesting.</span> -
+এই বইটি আকর্ষণীয়।
+</div>
+
+<div class="example">
+<strong>honesty</strong> - সততা
+<br>
+<span class="english">Honesty is a great virtue.</span> -
+সততা একটি মহান গুণ।
+</div>
+
+<div class="tip">
+<strong>সহজে মনে রাখো:</strong>
+Person + Place + Animal + Thing + Idea/Quality = Noun
+</div>
+
+<h3>How to Identify a Noun (বিশেষ্য শনাক্তকরণ)</h3>
+
+<p>
+<strong>গাইডলাইন:</strong>
+কোনো বাক্যে Noun খুঁজে বের করার জন্য ব্যক্তি, প্রাণী, বস্তু, স্থান, গুণ বা ধারণার নাম খুঁজে দেখো।
+Who? (কে?), What? (কী?), Where? (কোথায়?)
+</p>
+
+<div class="example">
+<strong>Example 1:</strong> Rahim reads a book.
+<br>
+- Who reads? Rahim = Noun
+<br>
+- What does he read? book = Noun
+</div>
+
+<div class="example">
+<strong>Example 2:</strong> I live in Dhaka.
+<br>
+- Where do I live? Dhaka = Noun
+</div>
+</section>
+
+
+<!-- LESSON 2 -->
+<section class="lesson">
+<h2 class="lesson-title">
+    LESSON 2 - KINDS OF NOUN: COMMON &amp; PROPER
+    <span class="lesson-subtitle">(জাতিবাচক ও নির্দিষ্টবাচক বিশেষ্য)</span>
+</h2>
+
+<p>
+Traditional Grammar-এ Noun-এর প্রধান ৫টি Kind (প্রকার):
+Common, Proper, Collective, Material, Abstract।
+এছাড়াও Concrete, Countable, Uncountable, Singular, Plural ইত্যাদি classification রয়েছে।
+</p>
+
+<h3>A. COMMON NOUN (জাতিবাচক বিশেষ্য)</h3>
+
+<div class="definition">
+<strong>Definition:</strong>
+A Common Noun is a general name of a person, place, animal, or thing.
+</div>
+
+<p>
+<strong>অর্থ:</strong>
+Common Noun কোনো ব্যক্তি, স্থান, প্রাণী বা বস্তুর সাধারণ নাম বোঝায়।
+</p>
+
+<p>
+<strong>Examples:</strong>
+boy (ছেলে), girl (মেয়ে), city (শহর), country (দেশ), river (নদী),
+school (বিদ্যালয়), book (বই), teacher (শিক্ষক)।
+</p>
+
+<p>
+<strong>Sentences:</strong>
+</p>
+
+<div class="example">
+I live in a city. (আমি একটি শহরে থাকি।)
+<br>
+He is a teacher. (সে একজন শিক্ষক।)
+</div>
+
+<h3>B. PROPER NOUN (নামবাচক/নির্দিষ্টবাচক বিশেষ্য)</h3>
+
+<div class="definition">
+<strong>Definition &amp; Rule:</strong>
+A Proper Noun is the particular name of a person, place, organization, country, etc.
+<br><br>
+☑ Proper Noun সাধারণত Capital Letter (বড় হাতের অক্ষর) দিয়ে শুরু হয়।
+</div>
+
+<p>
+<strong>অর্থ:</strong>
+Proper Noun কোনো নির্দিষ্ট ব্যক্তি, স্থান, প্রতিষ্ঠান, দেশ ইত্যাদির নির্দিষ্ট নাম বোঝায়।
+</p>
+
+<p>
+<strong>Examples:</strong>
+Rahim, Firoz, Dhaka, Bangladesh, Padma, Asia, Friday, January
+</p>
+
+<h3>Compare (Common vs Proper):</h3>
+
+<div class="compare">
+<div>city → Dhaka</div>
+<div>country → Bangladesh</div>
+<div>river → Padma</div>
+<div>boy → Rahim</div>
+</div>
+</section>
+
+
+<!-- LESSON 3 -->
+<section class="lesson">
+<h2 class="lesson-title">
+    LESSON 3 - COLLECTIVE, MATERIAL, ABSTRACT &amp; CONCRETE NOUN
+    <span class="lesson-subtitle">(সমষ্টিবাচক, বস্তুবাচক, ভাববাচক ও ইন্দ্রিয়গ্রাহ্য বিশেষ্য)</span>
+</h2>
+
+<h3>A. COLLECTIVE NOUN (সমষ্টিবাচক বিশেষ্য)</h3>
+
+<div class="definition">
+<strong>Definition:</strong>
+Names a group of people, animals, or things as a unit.
+(একদল ব্যক্তি, প্রাণী বা বস্তুকে সমষ্টি হিসেবে বোঝায়।)
+</div>
+
+<p>
+<strong>Examples:</strong>
+team (দল), class (শ্রেণি), family (পরিবার), army (সেনাবাহিনী),
+committee (কমিটি), flock (পাখির ঝাঁক), herd (পশুর পাল)।
+</p>
+
+<div class="example">
+Our team is strong. (আমাদের দল শক্তিশালী।)
+</div>
+
+<h3>B. MATERIAL NOUN (বস্তুবাচক/দ্রব্যবাচক বিশেষ্য)</h3>
+
+<div class="definition">
+<strong>Definition:</strong>
+Names a material or substance used to make things or existing as a substance.
+</div>
+
+<p>
+<strong>Examples:</strong>
+gold (সোনা), silver (রূপা), iron (লোহা), wood (কাঠ), water (পানি),
+milk (দুধ), rice (চাল), cotton (তুলা)।
+</p>
+
+<p>
+<strong>Sentence:</strong>
+</p>
+
+<div class="example">
+Gold is expensive. (সোনা দামী।)
+<br>
+Water is essential for life. (পানি জীবনের জন্য অপরিহার্য।)
+</div>
+
+<div class="note">
+<strong>☑ Important:</strong>
+Material Noun এবং Uncountable Noun একই বিষয় নয়।
+</div>
+
+<h3>C. ABSTRACT NOUN (ভাববাচক/গুণবাচক বিশেষ্য)</h3>
+
+<div class="definition">
+<strong>Definition:</strong>
+Names a quality, feeling, state, or idea that cannot normally be seen or touched.
+</div>
+
+<p>
+<strong>Examples:</strong>
+honesty (সততা), beauty (সৌন্দর্য), kindness (দয়া), happiness (সুখ),
+sadness (দুঃখ), freedom (স্বাধীনতা), childhood (শৈশব)।
+</p>
+
+<div class="example">
+Honesty is important. (সততা গুরুত্বপূর্ণ।)
+</div>
+
+<h3>D. CONCRETE NOUN (ইন্দ্রিয়গ্রাহ্য বিশেষ্য)</h3>
+
+<div class="definition">
+<strong>Definition:</strong>
+Names something that can normally be experienced through the senses.
+</div>
+
+<p>
+<strong>Examples:</strong>
+book, table, tree, apple, cat, teacher.
+</p>
+
+<div class="example">
+The table is new. (টেবিলটি নতুন।)
+</div>
+</section>
+
+
+<!-- LESSON 4 -->
+<section class="lesson">
+<h2 class="lesson-title">
+    LESSON 4 - COUNTABLE, UNCOUNTABLE &amp; NUMBER
+    <span class="lesson-subtitle">(গণনযোগ্য, অগণনযোগ্য, একবচন ও বহুবচন)</span>
+</h2>
+
+<h3>A. COUNTABLE NOUN (গণনযোগ্য বিশেষ্য)</h3>
+
+<p>
+যে Noun-কে আলাদা একক হিসেবে গোনা যায়
+(যেমন: one book / two books, one apple / three apples)।
+এটি Singular ও Plural উভয় রূপেই হতে পারে।
+</p>
+
+<h3>B. UNCOUNTABLE NOUN (অগণনযোগ্য বিশেষ্য)</h3>
+
+<p>
+যে Noun-কে সংখ্যা দিয়ে আলাদাভাবে গোনা যায় না
+(যেমন: water, milk, rice, sugar, salt, information, advice, knowledge)।
+</p>
+
+<div class="note">
+<strong>☑ Rule Check:</strong>
+<br>
+- a book / two books (সঠিক)
+<br>
+- a water (ভুল ✗)
+<br>
+- some water (সঠিক ✓)
+</div>
+
+<h3>C. SINGULAR &amp; D. PLURAL NOUN</h3>
+
+<p>
+<strong>Singular:</strong>
+একটি ব্যক্তি, প্রাণী, স্থান বা বস্তুকে বোঝায় (boy, girl, book)
+</p>
+
+<p>
+<strong>Plural:</strong>
+একের বেশি বোঝালে (boys, girls, books)
+</p>
+</section>
+
+
+<!-- LESSON 5 -->
+<section class="lesson">
+<h2 class="lesson-title">
+    LESSON 5 - PLURAL NOUN: RULES &amp; IRREGULAR PLURALS
+    <span class="lesson-subtitle">(বহুবচন তৈরির নিয়ম ও ব্যতিক্রম)</span>
+</h2>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>Rule</th>
+<th>Description / Rule Detail</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RULE 1</td>
+<td>সাধারণত শেষে s যোগ হয়</td>
+<td>book → books, pen → pens</td>
+</tr>
+<tr>
+<td>RULE 2</td>
+<td>s, sh, ch, x, z-এর শেষে es হয়</td>
+<td>bus → buses, box → boxes</td>
+</tr>
+<tr>
+<td>RULE 3</td>
+<td>Consonant + y হলে ies হয়</td>
+<td>city → cities, baby → babies</td>
+</tr>
+<tr>
+<td>RULE 4</td>
+<td>Vowel + y হলে s যোগ হয়</td>
+<td>boy → boys, day → days</td>
+</tr>
+<tr>
+<td>RULE 5</td>
+<td>f/fe থাকলে ves হয় (ব্যতিক্রম roof → roofs)</td>
+<td>leaf → leaves, knife → knives</td>
+</tr>
+<tr>
+<td>RULE 6</td>
+<td>Irregular Plurals (অনিয়মিত বহুবচন)</td>
+<td>
+man → men, child → children, tooth → teeth,
+foot → feet, mouse → mice, person → people
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+
+
+<!-- LESSON 6 -->
+<section class="lesson">
+<h2 class="lesson-title">
+    LESSON 6 - GENDER OF NOUN
+    <span class="lesson-subtitle">(বিশেষ্যের লিঙ্গ)</span>
+</h2>
+
+<p>
+English Grammar-এ Gender প্রধানত ৪ প্রকার:
+</p>
+
+<div class="example">
+<strong>1. Masculine Gender (পুংলিঙ্গ):</strong>
+man, boy, father, king, brother
+</div>
+
+<div class="example">
+<strong>2. Feminine Gender (স্ত্রীলিঙ্গ):</strong>
+woman, girl, mother, queen, sister
+</div>
+
+<div class="example">
+<strong>3. Common Gender (উভয়লিঙ্গ):</strong>
+student, teacher, friend, child, doctor
+</div>
+
+<div class="example">
+<strong>4. Neuter Gender (জড়লিঙ্গ):</strong>
+book, table, chair, pen, computer
+</div>
+
+<div class="note">
+<strong>Note:</strong>
+English Gender-এর এই শ্রেণিবিভাগ বাংলা ব্যাকরণের লিঙ্গের সঙ্গে পুরোপুরি ১:১ নয়।
+</div>
+</section>
+
+
+<!-- LESSON 7 -->
+<section class="lesson">
+<h2 class="lesson-title">
+    LESSON 7 - POSSESSIVE NOUN &amp; CASE OF NOUN
+    <span class="lesson-subtitle">(মালিকানা/সম্বন্ধবাচক রূপ ও কারক)</span>
+</h2>
+
+<h3>A. POSSESSIVE NOUN (মালিকানা/সম্বন্ধবাচক রূপ)</h3>
+
+<p>
+Shows ownership or possession.
+</p>
+
+<div class="example">
+<strong>Singular:</strong>
+Noun-এর পরে 's বসে
+(Rahim's book, the boy's bag)
+</div>
+
+<div class="example">
+<strong>Plural ending in s:</strong>
+শুধু apostrophe (') বসে
+(boys' room, girls' school)
+</div>
+
+<div class="example">
+<strong>Irregular Plural:</strong>
+'s বসে
+(children's books, men's clothes)
+</div>
+
+<h3>B. CASE OF NOUN (কারক/সম্বন্ধের ধারণা)</h3>
+
+<p>
+Traditional-ভাবে ৪টি Case:
+</p>
+
+<div class="example">
+<strong>1. Nominative Case (Subject হিসেবে):</strong>
+Rahim plays football.
+</div>
+
+<div class="example">
+<strong>2. Objective Case (Object হিসেবে):</strong>
+I saw Rahim.
+</div>
+
+<div class="example">
+<strong>3. Possessive Case (মালিকানা):</strong>
+This is Rahim's book.
+</div>
+
+<div class="example">
+<strong>4. Vocative Case (সম্বোধন):</strong>
+Rahim, come here.
+</div>
+</section>
+
+
+<!-- LESSON 8 -->
+<section class="lesson">
+<h2 class="lesson-title">
+    LESSON 8 - COMPOUND NOUN, NOUN POSITIONS &amp; ARTICLES
+    <span class="lesson-subtitle">(যৌগিক বিশেষ্য, বাক্যে Noun-এর অবস্থান, Article ও Determiner)</span>
+</h2>
+
+<h3>A. Compound Noun:</h3>
+
+<div class="example">
+tooth + paste = toothpaste
+<br>
+class + room = classroom
+<br>
+school + bag = schoolbag
+</div>
+
+<h3>B. Noun Positions in Sentences:</h3>
+
+<div class="example">
+<strong>Subject:</strong> Rahim reads a book.
+<br>
+<strong>Object:</strong> I read a book.
+<br>
+<strong>After Preposition:</strong> I live in Dhaka.
+<br>
+<strong>Complement:</strong> Rahim is a student.
+</div>
+
+<h3>C. Articles &amp; Determiners:</h3>
+
+<p>
+Singular Countable Noun-এর আগে a/an বসে
+(a book, an apple)।
+Uncountable-এর আগে a/an বসে না, some water বসে।
+</p>
+
+<h3>D. Important Uncountable Nouns:</h3>
+
+<div class="tip">
+water, milk, rice, sugar, salt, tea, money, information, advice,
+knowledge, news, furniture, luggage.
+</div>
+
+<div class="note">
+<strong>☑ বিশেষ দ্রষ্টব্য:</strong>
+News দেখতে s দিয়ে শেষ হলেও Singular হিসেবে ব্যবহৃত হয়
+(The news is good.)
+</div>
+</section>
+
+
+<!-- LESSON 9 -->
+<section class="lesson">
+<h2 class="lesson-title">
+    LESSON 9 - NOUN FORMATION, PHRASE, CLAUSE &amp; COMMON MISTAKES
+    <span class="lesson-subtitle">(Noun গঠন, Noun Phrase, Noun Clause ও সাধারণ ভুল)</span>
+</h2>
+
+<h3>A. Noun Formation:</h3>
+
+<div class="example">
+kind → kindness
+<br>
+develop → development
+<br>
+teach → teacher
+</div>
+
+<h3>B. Noun Phrase &amp; Clause:</h3>
+
+<div class="example">
+<strong>Noun Phrase:</strong>
+The tall boy is my friend.
+<br><br>
+<strong>Noun Clause:</strong>
+I know what he wants.
+</div>
+
+<h3>D. Common Mistakes (সঠিক প্রয়োগ):</h3>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>Incorrect ✗</th>
+<th>Correct ✓</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>He gave me an advice.</td>
+<td>He gave me some advice.</td>
+</tr>
+<tr>
+<td>I need an information.</td>
+<td>He needs some information.</td>
+</tr>
+<tr>
+<td>She has many money.</td>
+<td>She has much money.</td>
+</tr>
+<tr>
+<td>I bought two book.</td>
+<td>I bought two books.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+
+
+<!-- LESSON 10 -->
+<section class="lesson">
+<h2 class="lesson-title">
+    LESSON 10 - FINAL PRACTICE, MASTER REVISION &amp; QUICK SUMMARY
+    <span class="lesson-subtitle">(অনুশীলন, মাস্টার সামারি ও একনজরে Noun)</span>
+</h2>
+
+<h3>☑ Exercises &amp; Practice</h3>
+
+<h4>A. Identify the Nouns:</h4>
+
+<div class="example">
+Rahim is a good boy.
+<br>
+Dhaka is a large city.
+<br>
+The cat is under the table.
+</div>
+
+<h4>B. Identify the Kind:</h4>
+
+<div class="example">
+Bangladesh (Proper)
+<br>
+teacher (Common)
+<br>
+army (Collective)
+<br>
+gold (Material)
+<br>
+honesty (Abstract)
+</div>
+
+<h4>C. Make Plural &amp; Possessive:</h4>
+
+<div class="example">
+book → books
+<br>
+class → classes
+<br>
+child → children
+<br>
+Rahim's book
+<br>
+boys' room
+</div>
+</section>
+
+
+<!-- SUMMARY -->
+<section class="summary">
+
+<h2>QUICK REVISION TABLE - NOUN MASTER SUMMARY</h2>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>ক্যাটাগরি / বিষয়বস্তু</th>
+<th>মূল ধারণা ও শর্টকাট সূত্র (একনজরে রিভিশনের জন্য)</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td>১. Traditional ৫ প্রকার Noun</td>
+<td>
+Proper (নির্দিষ্ট নাম), Common (সাধারণ নাম),
+Collective (সমষ্টিগত নাম), Material (বস্তু/উপাদান),
+Abstract (গুণ/ভাব)
+</td>
+</tr>
+
+<tr>
+<td>২. আধুনিক Classification</td>
+<td>
+Concrete (ইন্দ্রিয়গ্রাহ্য), Abstract (অদৃশ্য),
+Countable (গণনাযোগ্য), Uncountable (অগণনযোগ্য),
+Singular/Plural
+</td>
+</tr>
+
+<tr>
+<td>৩. Gender (লিঙ্গ) - ৪ প্রকার</td>
+<td>
+Masculine (পুংলিঙ্গ), Feminine (স্ত্রীলিঙ্গ),
+Common (উভয়লিঙ্গ), Neuter (জড়লিঙ্গ)
+</td>
+</tr>
+
+<tr>
+<td>৪. Case (কারক) ৪ প্রকার</td>
+<td>
+Nominative (Subject), Objective (Object),
+Possessive (মালিকানা), Vocative (সম্বোধন)
+</td>
+</tr>
+
+<tr>
+<td>৫. Plural নিয়মের ব্যতিক্রম</td>
+<td>
+man → men, woman → women, child → children,
+tooth → teeth, foot → feet, mouse → mice
+</td>
+</tr>
+
+<tr>
+<td>৬. গুরুত্বপূর্ণ Uncountable Nouns</td>
+<td>
+water, milk, rice, sugar, salt, tea, money,
+information, advice, knowledge, news, furniture
+</td>
+</tr>
+
+<tr>
+<td>৭. Possessive Noun নিয়ম</td>
+<td>
+Singular-এ 's (Rahim's book), Plural s দিয়ে শেষ হলে
+শুধু ' (boys' room), Plural শেষ s না থাকলে 's
+(children's books)
+</td>
+</tr>
+
+<tr>
+<td>৮. বাক্যে Noun-এর অবস্থান</td>
+<td>
+Subject হিসেবে, Object হিসেবে, Preposition-এর পরে,
+Complement হিসেবে
+</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+</section>
+
+</main>
+
+<footer class="footer">
+    English Grammar &amp; Bangla Grammar Equivalent Guide — PART 3: NOUN
+</footer>
+
+
+<script>
+/* =========================
+   PDF DOWNLOAD
+   Browser Print → Save as PDF
+   Text remains selectable/copyable.
+========================= */
+function downloadPDF(){
+    window.print();
+}
+
+
+/* =========================
+   SCROLL ANIMATION
+========================= */
+const lessons = document.querySelectorAll(".lesson");
+
+const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+        if(entry.isIntersecting){
+            entry.target.style.animationPlayState = "running";
+        }
+    });
+},{
+    threshold:0.08
+});
+
+lessons.forEach(lesson=>{
+    lesson.style.animationPlayState = "paused";
+    observer.observe(lesson);
+});
+
+
+/* =========================
+   SMOOTH IMAGE/CONTENT LOAD
+========================= */
+window.addEventListener("load",()=>{
+    document.body.classList.add("loaded");
+});
+</script>
+
+</body>
+</html>

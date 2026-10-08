@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PART 8 - PREPOSITION | English Grammar</title>
+
+<style>
+@font-face{
+    font-family:"Kalpurush";
+    src:local("Kalpurush");
+}
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:"Kalpurush","SolaimanLipi","Noto Sans Bengali",Arial,sans-serif;
+    background:#f8fafc;
+    color:#202124;
+    font-size:25px;
+    line-height:1.75;
+}
+
+/* =========================
+   TOP BAR
+========================= */
+.topbar{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    width:100%;
+    background:rgba(255,255,255,.94);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid #dbe3ec;
+    box-shadow:0 3px 18px rgba(0,0,0,.06);
+    padding:10px 18px;
+    display:flex;
+    justify-content:flex-end;
+}
+
+.pdf-btn{
+    border:0;
+    border-radius:12px;
+    padding:9px 20px;
+    font-family:inherit;
+    font-size:18px;
+    font-weight:bold;
+    color:white;
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    box-shadow:0 6px 16px rgba(37,99,235,.25);
+    cursor:pointer;
+    transition:.25s ease;
+}
+
+.pdf-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 9px 20px rgba(37,99,235,.35);
+}
+
+/* =========================
+   BOOK CONTAINER
+========================= */
+.book{
+    width:min(1180px,94%);
+    margin:28px auto 60px;
+}
+
+.book-header{
+    text-align:center;
+    background:linear-gradient(135deg,#ffffff,#f1f5ff);
+    border:1px solid #dbe4f0;
+    border-radius:24px;
+    padding:32px 25px;
+    margin-bottom:28px;
+    box-shadow:0 10px 30px rgba(15,23,42,.07);
+}
+
+.book-header h1{
+    font-size:34px;
+    color:#1d4ed8;
+    line-height:1.35;
+    margin-bottom:8px;
+}
+
+.book-header h2{
+    font-size:25px;
+    color:#475569;
+    font-weight:normal;
+}
+
+/* =========================
+   LESSON
+========================= */
+.lesson{
+    background:#fff;
+    border:1px solid #dfe6ee;
+    border-radius:20px;
+    margin:28px 0;
+    padding:28px 32px;
+    box-shadow:0 8px 25px rgba(15,23,42,.055);
+    overflow:hidden;
+}
+
+.lesson-title{
+    margin:-28px -32px 24px;
+    padding:18px 24px;
+    background:linear-gradient(135deg,#eaf2ff,#f4efff);
+    border-bottom:2px solid #d7e2f3;
+    color:#1e40af;
+    font-size:29px;
+    font-weight:bold;
+}
+
+h3{
+    color:#7c3aed;
+    font-size:26px;
+    margin:24px 0 8px;
+}
+
+h4{
+    color:#2563eb;
+    font-size:25px;
+    margin:20px 0 6px;
+}
+
+p{
+    margin:8px 0 14px;
+}
+
+ul,ol{
+    margin:8px 0 18px 30px;
+}
+
+li{
+    margin:4px 0;
+}
+
+strong{
+    color:#1e3a8a;
+}
+
+.highlight{
+    background:#f0f9ff;
+    border-left:5px solid #0ea5e9;
+    border-radius:10px;
+    padding:14px 18px;
+    margin:14px 0;
+}
+
+.definition{
+    background:#f8f5ff;
+    border-left:5px solid #8b5cf6;
+    border-radius:10px;
+    padding:15px 18px;
+    margin:14px 0;
+}
+
+.takeaway{
+    background:#fff7ed;
+    border-left:5px solid #f97316;
+    border-radius:10px;
+    padding:18px 20px;
+    margin:20px 0;
+}
+
+.example{
+    background:#f0fdf4;
+    border-left:5px solid #22c55e;
+    border-radius:10px;
+    padding:14px 18px;
+    margin:14px 0;
+}
+
+.warning{
+    background:#fff1f2;
+    border-left:5px solid #ef4444;
+    border-radius:10px;
+    padding:14px 18px;
+    margin:14px 0;
+}
+
+/* =========================
+   TABLE
+========================= */
+.table-wrap{
+    width:100%;
+    overflow-x:auto;
+    margin:18px 0 24px;
+    border-radius:12px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:#fff;
+    font-size:23px;
+    min-width:650px;
+}
+
+th,td{
+    border:1px solid #cbd5e1;
+    padding:10px 12px;
+    text-align:left;
+    vertical-align:top;
+}
+
+th{
+    background:#e8eefc;
+    color:#1e3a8a;
+    font-weight:bold;
+}
+
+tr:nth-child(even) td{
+    background:#fafcff;
+}
+
+/* =========================
+   CODE / GRAMMAR LINE
+========================= */
+.grammar-line{
+    background:#f8fafc;
+    border:1px solid #dbe3ec;
+    border-radius:10px;
+    padding:12px 16px;
+    margin:12px 0;
+    font-family:"Kalpurush","Courier New",monospace;
+}
+
+.term{
+    color:#7c3aed;
+    font-weight:bold;
+}
+
+.eng{
+    font-family:Arial,sans-serif;
+}
+
+/* =========================
+   ANIMATION
+========================= */
+.reveal{
+    opacity:0;
+    transform:translateY(25px);
+    transition:opacity .7s ease,transform .7s ease;
+}
+
+.reveal.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media(max-width:900px){
+    body{
+        font-size:23px;
+    }
+
+    .book{
+        width:95%;
+    }
+
+    .lesson{
+        padding:24px;
+    }
+
+    .lesson-title{
+        margin:-24px -24px 20px;
+        font-size:27px;
+    }
+
+    table{
+        font-size:22px;
+    }
+}
+
+@media(max-width:600px){
+    body{
+        font-size:21px;
+        line-height:1.65;
+    }
+
+    .topbar{
+        padding:8px 10px;
+    }
+
+    .pdf-btn{
+        font-size:16px;
+        padding:7px 14px;
+    }
+
+    .book{
+        width:96%;
+        margin-top:15px;
+    }
+
+    .book-header{
+        padding:22px 14px;
+        border-radius:17px;
+    }
+
+    .book-header h1{
+        font-size:27px;
+    }
+
+    .book-header h2{
+        font-size:21px;
+    }
+
+    .lesson{
+        padding:18px;
+        border-radius:15px;
+        margin:20px 0;
+    }
+
+    .lesson-title{
+        margin:-18px -18px 18px;
+        padding:13px 16px;
+        font-size:24px;
+    }
+
+    h3{
+        font-size:23px;
+    }
+
+    h4{
+        font-size:22px;
+    }
+
+    ul,ol{
+        margin-left:25px;
+    }
+
+    table{
+        font-size:20px;
+        min-width:600px;
+    }
+
+    th,td{
+        padding:8px 9px;
+    }
+}
+
+/* =========================
+   PRINT / PDF
+========================= */
+@media print{
+    @page{
+        size:A4 portrait;
+        margin:13mm;
+    }
+
+    body{
+        background:white;
+        color:#000;
+        font-size:14pt;
+        line-height:1.55;
+    }
+
+    .topbar{
+        display:none !important;
+    }
+
+    .book{
+        width:100%;
+        margin:0;
+    }
+
+    .book-header{
+        box-shadow:none;
+        border:1px solid #bbb;
+        border-radius:0;
+        background:white;
+        page-break-after:avoid;
+    }
+
+    .book-header h1{
+        color:#000;
+        font-size:21pt;
+    }
+
+    .book-header h2{
+        color:#000;
+        font-size:15pt;
+    }
+
+    .lesson{
+        box-shadow:none;
+        border:1px solid #aaa;
+        border-radius:0;
+        margin:12px 0;
+        padding:14px 17px;
+        break-inside:auto;
+    }
+
+    .lesson-title{
+        margin:-14px -17px 12px;
+        padding:9px 12px;
+        background:#eee;
+        color:#000;
+        border-bottom:1px solid #999;
+        font-size:17pt;
+        page-break-after:avoid;
+    }
+
+    h3,h4,strong{
+        color:#000;
+    }
+
+    .highlight,
+    .definition,
+    .takeaway,
+    .example,
+    .warning{
+        background:#f8f8f8;
+        border-left:3px solid #555;
+    }
+
+    table{
+        font-size:12pt;
+        page-break-inside:auto;
+    }
+
+    th{
+        background:#eee;
+        color:#000;
+    }
+
+    tr{
+        break-inside:avoid;
+    }
+
+    .reveal{
+        opacity:1 !important;
+        transform:none !important;
+    }
+
+    p,li{
+        orphans:3;
+        widows:3;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+    <button class="pdf-btn" onclick="downloadPDF()">⬇ Download PDF</button>
+</div>
+
+<main class="book">
+
+<header class="book-header reveal">
+    <h1>PART 8 - PREPOSITION (পদান্বয়ী অব্যয়)</h1>
+    <h2>English Grammar &amp; Bangla Grammar Equivalent Guide | Complete Textbook Edition</h2>
+</header>
+
+<!-- =========================================================
+LESSON 1
+========================================================= -->
+<section class="lesson reveal">
+
+<div class="lesson-title">
+LESSON 1 - PREPOSITION: পরিচয়, কাজ ও প্রধান প্রকারভেদ
+</div>
+
+<h3>Definition:</h3>
+
+<div class="definition">
+<p>
+A Preposition is a word that shows the relationship between a Noun or Pronoun and another word in a sentence[cite: 40].
+</p>
+
+<p>
+Preposition (পদান্বয়ী অব্যয়) হলো এমন একটি শব্দ, যা বাক্যের একটি Noun/Pronoun-এর সঙ্গে অন্য শব্দের সম্পর্ক প্রকাশ করে[cite: 40].
+</p>
+</div>
+
+<div class="highlight">
+<strong>সহজে মনে রাখো:</strong> Preposition সম্পর্ক বোঝায়[cite: 40].
+</div>
+
+<h4>যেমন:</h4>
+
+<ul>
+<li><span class="term">in</span> = মধ্যে/ভিতরে[cite: 40]</li>
+<li><span class="term">on</span> = উপর[cite: 40]</li>
+<li><span class="term">under</span> = নিচে[cite: 40]</li>
+<li><span class="term">at</span> = এ/তে[cite: 40]</li>
+<li><span class="term">from</span> = থেকে[cite: 40]</li>
+<li><span class="term">to</span> = দিকে/তে[cite: 40]</li>
+<li><span class="term">with</span> = সঙ্গে[cite: 40]</li>
+<li><span class="term">for</span> = জন্য[cite: 40]</li>
+<li><span class="term">by</span> = দ্বারা/দিয়ে[cite: 40]</li>
+<li><span class="term">of</span> = এর[cite: 40]</li>
+</ul>
+
+<h4>Example:</h4>
+
+<div class="example">
+<p>
+The book is on the table. (on, book ও table-এর মধ্যে সম্পর্ক দেখাচ্ছে[cite: 40].)
+</p>
+<p>
+বইটি টেবিলের উপর আছে[cite: 40].
+</p>
+</div>
+
+<h3>PREPOSITION কী সম্পর্ক বোঝায়?</h3>
+
+<p>Preposition বিভিন্ন ধরনের সম্পর্ক প্রকাশ করতে পারে[cite: 40, 41]:</p>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>ক্রম</th>
+<th>সম্পর্কের ধরন</th>
+<th>উদাহরণ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>১</td>
+<td>Place (স্থান)</td>
+<td>in Dhaka (স্থানের সম্পর্ক)[cite: 41]</td>
+</tr>
+<tr>
+<td>২</td>
+<td>Time (সময়)</td>
+<td>at 5 pm (সময়ের সম্পর্ক)[cite: 41]</td>
+</tr>
+<tr>
+<td>৩</td>
+<td>Direction (দিক)</td>
+<td>to school (গন্তব্য)[cite: 41]</td>
+</tr>
+<tr>
+<td>৪</td>
+<td>Movement (গতি/চলন)</td>
+<td>into the room (ভেতরে প্রবেশ)[cite: 41]</td>
+</tr>
+<tr>
+<td>৫</td>
+<td>Instrument (উপকরণ)</td>
+<td>with a pen (কলম দিয়ে)[cite: 41]</td>
+</tr>
+<tr>
+<td>৬</td>
+<td>Agent (কর্তা/দ্বারা)</td>
+<td>by Rahim (রহিমের দ্বারা)[cite: 41]</td>
+</tr>
+<tr>
+<td>৭</td>
+<td>Cause (কারণ)</td>
+<td>from illness (অসুস্থতার কারণে)[cite: 41]</td>
+</tr>
+<tr>
+<td>৮</td>
+<td>Possession (অধিকার)</td>
+<td>of the room (ঘরের)[cite: 41]</td>
+</tr>
+<tr>
+<td>৯</td>
+<td>Source (উৎস)</td>
+<td>from Bangladesh (থেকে)[cite: 41]</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<h3>✔ Common Prepositions (গুরুত্বপূর্ণ Preposition):</h3>
+
+<div class="highlight">
+about, above, across, after, against, along, among, around, at, before, behind, below, beside, between, by, during, for, from, in, inside, into, near, of, off, on, over, through, to, toward, under, until, up, with, without[cite: 41].
+</div>
+
+</section>
+
+
+<!-- =========================================================
+LESSON 2
+========================================================= -->
+<section class="lesson reveal">
+
+<div class="lesson-title">
+LESSON 2 - PREPOSITION OF PLACE (স্থানবাচক Preposition)
+</div>
+
+<h3>Definition:</h3>
+
+<p>
+কোনো ব্যক্তি বা বস্তু কোথায় আছে, তা বোঝাতে Preposition of Place ব্যবহৃত হয়[cite: 41].
+</p>
+
+<p>
+<strong>প্রধান শব্দসমূহ:</strong> in, on, at, under, above, below, behind, beside, near, between, among, inside, outside[cite: 41].
+</p>
+
+<h3>Examples:</h3>
+
+<ul>
+<li>The book is on the table. (বইটি টেবিলের উপর আছে।)[cite: 41]</li>
+<li>The cat is under the table. (বিড়ালটি টেবিলের নিচে আছে।)[cite: 41]</li>
+<li>He is in the room. (সে ঘরের মধ্যে আছে।)[cite: 41]</li>
+<li>She is behind the door. (সে দরজার পেছনে আছে।)[cite: 41]</li>
+</ul>
+
+<h3>IN vs ON vs AT (Place-এর ক্ষেত্রে পার্থক্য)[cite: 41]</h3>
+
+<ul>
+<li><strong>in:</strong> বড় এলাকা/ভেতর (যেমন: in Bangladesh, in the room)[cite: 41]</li>
+<li><strong>on:</strong> পৃষ্ঠের উপর (যেমন: on the table, on the wall)[cite: 41]</li>
+<li><strong>at:</strong> নির্দিষ্ট স্থান/point (যেমন: at school, at the door)[cite: 41]</li>
+</ul>
+
+<h3>UNDER / BELOW এবং ABOVE / OVER</h3>
+
+<h4>Rules:</h4>
+
+<ul>
+<li><strong>under</strong> = সরাসরি নিচে অবস্থান (The cat is under the table.)[cite: 42]</li>
+<li><strong>below</strong> = কোনো স্তর/মাত্রার নিচে (The temperature is below zero.)[cite: 42]</li>
+<li><strong>above</strong> = উপরে (The picture is above the sofa.)[cite: 42]</li>
+<li><strong>over</strong> = উপরে/উপর দিয়ে (The plane flew over the city.)[cite: 42]</li>
+</ul>
+
+<h3>BESIDE / BESIDES এবং BETWEEN / AMONG</h3>
+
+<ul>
+<li><strong>beside</strong> = পাশে (He sat beside me.)[cite: 42]</li>
+<li><strong>besides</strong> = ছাড়া/এছাড়াও (Besides English, I study Arabic.)[cite: 42]</li>
+<li><strong>between</strong> = দুই ব্যক্তি/বস্তুর মধ্যে (The book is between the two boxes.)[cite: 42]</li>
+<li><strong>among</strong> = তিন বা ততোধিক ব্যক্তি/বস্তুর মধ্যে (He was among his friends.)[cite: 42]</li>
+</ul>
+
+</section>
+
+
+<!-- =========================================================
+LESSON 3
+========================================================= -->
+<section class="lesson reveal">
+
+<div class="lesson-title">
+LESSON 3 - PREPOSITION OF TIME (সময়বাচক Preposition)
+</div>
+
+<h3>Definition:</h3>
+
+<p>
+সময় বোঝাতে যে Preposition ব্যবহৃত হয়[cite: 42].
+</p>
+
+<p>
+<strong>প্রধান শব্দসমূহ:</strong> at, on, in, before, after, during, since, for, until, by[cite: 42].
+</p>
+
+<h3>AT / ON / IN FOR TIME[cite: 42]</h3>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>Preposition</th>
+<th>ব্যবহার</th>
+<th>উদাহরণ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AT</td>
+<td>নির্দিষ্ট সময়</td>
+<td>at 5 o'clock, at noon, at night[cite: 42]</td>
+</tr>
+<tr>
+<td>ON</td>
+<td>দিন / তারিখ</td>
+<td>on Monday, on 5 August[cite: 42]</td>
+</tr>
+<tr>
+<td>IN</td>
+<td>মাস / বছর / ঋতু / দীর্ঘ সময়</td>
+<td>in January, in 2026, in winter[cite: 42]</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<h3>Sentence Examples:</h3>
+
+<ul>
+<li>I wake up at 6 o'clock[cite: 42].</li>
+<li>I go to school on Monday[cite: 42].</li>
+<li>He was born in 2005[cite: 42].</li>
+</ul>
+
+<h3>SINCE / FOR এবং BY / UNTIL[cite: 42]</h3>
+
+<ul>
+<li><strong>since</strong> = নির্দিষ্ট সময় থেকে শুরু (I have lived here since 2020.)[cite: 42]</li>
+<li><strong>for</strong> = কত সময় ধরে পরিমাণ (I have lived here for six years.)[cite: 42]</li>
+<li><strong>by</strong> = নির্দিষ্ট সময়ের মধ্যে / deadline (Finish the work by 5 pm.)[cite: 42]</li>
+<li><strong>until</strong> = সেই সময় পর্যন্ত (Wait until 5 pm.)[cite: 42]</li>
+</ul>
+
+<h3>অন্যান্য Time Preposition:</h3>
+
+<ul>
+<li><strong>Before / After:</strong> Come before 8 pm. / I came after lunch[cite: 43].</li>
+<li><strong>During:</strong> কোনো সময়কাল/ঘটনার মধ্যে (Do not talk during the class.)[cite: 43]</li>
+</ul>
+
+</section>
+
+
+<!-- =========================================================
+LESSON 4
+========================================================= -->
+<section class="lesson reveal">
+
+<div class="lesson-title">
+LESSON 4 - PREPOSITION OF DIRECTION &amp; MOVEMENT
+</div>
+
+<h3>Definition:</h3>
+
+<p>
+দিক বা গতির পরিবর্তন বোঝাতে ব্যবহৃত Preposition[cite: 43].
+</p>
+
+<p>
+<strong>প্রধান শব্দসমূহ:</strong> to, towards, into, onto, from[cite: 43].
+</p>
+
+<h3>Examples:</h3>
+
+<ul>
+<li>Go to school. (স্কুলে যাও।)[cite: 43]</li>
+<li>He walked towards me. (সে আমার দিকে হাঁটল।)[cite: 43]</li>
+<li>She went into the room. (সে ঘরের ভিতরে গেল।)[cite: 43]</li>
+</ul>
+
+<h3>TO, INTO, ONTO, FROM এর বিস্তারিত[cite: 43]</h3>
+
+<ul>
+<li><strong>To:</strong> গন্তব্য বা দিক নির্দেশ করে (I go to school. / He went to Dhaka.)[cite: 43]</li>
+<li><strong>Into:</strong> বাইরে থেকে ভেতরের দিকে যাওয়ার গতি (The cat jumped into the box.)[cite: 43]</li>
+<li><strong>Onto:</strong> কোনো পৃষ্ঠের উপর ওঠা বা যাওয়ার গতি (The cat jumped onto the table.)[cite: 43]</li>
+<li><strong>From:</strong> স্থান, ব্যক্তি বা সময়ের উৎস/শুরু (I am from Bangladesh. / The shop is open from 9 to 5.)[cite: 43]</li>
+</ul>
+
+</section>
+
+
+<!-- =========================================================
+LESSON 5
+========================================================= -->
+<section class="lesson reveal">
+
+<div class="lesson-title">
+LESSON 5 - AGENT, INSTRUMENT, CAUSE, POSSESSION &amp; SOURCE
+</div>
+
+<h3>1. Preposition of Agent (কার দ্বারা)</h3>
+
+<p>
+by সাধারণত কাজটি কার দ্বারা হয়েছে তা বোঝায় (Passive Voice-এ অত্যন্ত গুরুত্বপূর্ণ)[cite: 43].
+</p>
+
+<ul>
+<li>The book was written by Rahim.[cite: 43]</li>
+<li>The poem was written by him.[cite: 43]</li>
+</ul>
+
+<h3>2. Preposition of Instrument (উপকরণ)</h3>
+
+<p>
+কোনো কাজ কোন উপকরণ দিয়ে করা হয়েছে তা বোঝাতে with ব্যবহৃত হয়[cite: 43].
+</p>
+
+<ul>
+<li>I write with a pen.[cite: 43]</li>
+<li>He cut it with a knife.[cite: 43]</li>
+</ul>
+
+<div class="highlight">
+<strong>পার্থক্য:</strong> by = কর্তা (Agent), with = উপকরণ (Instrument)[cite: 43].
+</div>
+
+<h3>3. Cause, Possession &amp; Source[cite: 44]</h3>
+
+<ul>
+<li>
+<strong>Cause (কারণ):</strong> because of, due to, from, through
+(যেমন: He died from illness. / The match was cancelled because of rain.)[cite: 44]
+</li>
+
+<li>
+<strong>Possession (অধিকার/সম্বন্ধ):</strong> of
+(যেমন: the door of the room, the name of the boy)[cite: 44]
+</li>
+
+<li>
+<strong>Source (উৎস):</strong> from
+(যেমন: This letter is from Rahim. / Milk comes from cows.)[cite: 44]
+</li>
+</ul>
+
+</section>
+
+
+<!-- =========================================================
+LESSON 6
+========================================================= -->
+<section class="lesson reveal">
+
+<div class="lesson-title">
+LESSON 6 - PREPOSITIONAL PHRASE, PRONOUN &amp; GERUND
+</div>
+
+<h3>1. Prepositional Phrase[cite: 44]</h3>
+
+<p>
+Preposition + Noun/Pronoun মিলে Prepositional Phrase তৈরি হয়[cite: 44].
+</p>
+
+<p>
+যেমন: in the room, on the table, under the tree, with my friend, after school[cite: 44].
+</p>
+
+<div class="example">
+<p>
+Example: The cat is under the table (under the table হলো Prepositional Phrase)[cite: 44].
+</p>
+</div>
+
+<h3>2. Preposition + Pronoun[cite: 44]</h3>
+
+<p>
+Preposition-এর পরে Pronoun থাকলে সর্বদা Objective Case ব্যবহৃত হয়[cite: 44].
+</p>
+
+<ul>
+<li>Correct: with me, with him, with her, with us, with them[cite: 44]</li>
+<li>Incorrect ✗: with I, with he, with she[cite: 44]</li>
+</ul>
+
+<h3>3. Preposition + Gerund[cite: 44]</h3>
+
+<p>
+Preposition-এর পরে Verb-এর -ing form অনেক সময় Gerund হিসেবে বসে[cite: 44].
+</p>
+
+<p>
+যেমন: before going, after eating, without studying, by working[cite: 44].
+</p>
+
+<div class="example">
+<p>
+Example: He left without saying goodbye[cite: 44].
+</p>
+</div>
+
+</section>
+
+
+<!-- =========================================================
+LESSON 7
+========================================================= -->
+<section class="lesson reveal">
+
+<div class="lesson-title">
+LESSON 7 - FIXED PREPOSITION, PREPOSITIONAL VERBS &amp; CONJUNCTION
+</div>
+
+<h3>1. Common Preposition Combinations (Fixed Preposition)[cite: 45]</h3>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>Combination</th>
+<th>বাংলা অর্থ</th>
+<th>Example Sentence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>afraid of</td>
+<td>ভীত</td>
+<td>He is afraid of dogs.[cite: 45]</td>
+</tr>
+<tr>
+<td>good at</td>
+<td>দক্ষ</td>
+<td>He is good at English.[cite: 45]</td>
+</tr>
+<tr>
+<td>interested in</td>
+<td>আগ্রহী</td>
+<td>I am interested in tech.[cite: 45]</td>
+</tr>
+<tr>
+<td>angry with</td>
+<td>রাগান্বিত</td>
+<td>He is angry with me.[cite: 45]</td>
+</tr>
+<tr>
+<td>proud of</td>
+<td>গর্বিত</td>
+<td>We are proud of our land.[cite: 45]</td>
+</tr>
+<tr>
+<td>famous for</td>
+<td>বিখ্যাত</td>
+<td>Sylhet is famous for tea.[cite: 45]</td>
+</tr>
+<tr>
+<td>depend on</td>
+<td>নির্ভর করা</td>
+<td>Success depends on effort.[cite: 45]</td>
+</tr>
+<tr>
+<td>listen to</td>
+<td>শোনা</td>
+<td>Listen to me.[cite: 45]</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<h3>2. Prepositional Verbs[cite: 45]</h3>
+
+<p>
+কিছু Verb-এর পরে নির্দিষ্ট Preposition বসে: look at, wait for, belong to, agree with, laugh at[cite: 45].
+</p>
+
+<ul>
+<li>I am waiting for you.[cite: 45]</li>
+<li>This book belongs to me.[cite: 45]</li>
+<li>Don't laugh at him.[cite: 45]</li>
+</ul>
+
+<h3>3. Preposition vs Conjunction[cite: 45]</h3>
+
+<ul>
+<li>
+<strong>Preposition:</strong> এর পরে Noun, Pronoun বা Gerund আসে
+(Before lunch / after school)[cite: 45].
+</li>
+
+<li>
+<strong>Conjunction:</strong> এর পরে পূর্ণাঙ্গ Clause আসতে পারে
+(Before I go / after he came)[cite: 45].
+</li>
+</ul>
+
+</section>
+
+
+<!-- =========================================================
+LESSON 8
+========================================================= -->
+<section class="lesson reveal">
+
+<div class="lesson-title">
+LESSON 8 - COMMON MISTAKES &amp; IMPORTANT DIFFERENCES
+</div>
+
+<h3>Common Mistakes (সাধারণ ভুল ও সংশোধন)[cite: 46]</h3>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>ভুল প্রয়োগ (Incorrect ✗)</th>
+<th>সঠিক প্রয়োগ (Correct ✓)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>He is good in English.</td>
+<td>He is good at English.[cite: 46]</td>
+</tr>
+<tr>
+<td>I am interested on science.</td>
+<td>I am interested in science.[cite: 46]</td>
+</tr>
+<tr>
+<td>He depends of me.</td>
+<td>He depends on me.[cite: 46]</td>
+</tr>
+<tr>
+<td>Listen me.</td>
+<td>Listen to me.[cite: 46]</td>
+</tr>
+<tr>
+<td>He is married with her.</td>
+<td>He is married to her.[cite: 46]</td>
+</tr>
+<tr>
+<td>I went in school.</td>
+<td>I went to school.[cite: 46]</td>
+</tr>
+<tr>
+<td>He came at Bangladesh.</td>
+<td>He came from Bangladesh.[cite: 46]</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<h3>Important Differences (তুলনামূলক পার্থক্য)[cite: 46]</h3>
+
+<ul>
+<li>
+<strong>In vs Into:</strong> He is in the room. (অবস্থান) vs He went into the room. (গতি)[cite: 46]
+</li>
+
+<li>
+<strong>On vs Onto:</strong> The book is on the table. (অবস্থান) vs He put the book onto the table. (গতি)[cite: 46]
+</li>
+
+<li>
+<strong>By vs Until:</strong> Come by 5 pm. (শেষ সময়/ডেডলাইন) vs Stay until 5 pm. (সেই সময় পর্যন্ত)[cite: 46]
+</li>
+</ul>
+
+</section>
+
+
+<!-- =========================================================
+LESSON 9
+========================================================= -->
+<section class="lesson reveal">
+
+<div class="lesson-title">
+LESSON 9 - PREPOSITION AT A GLANCE &amp; QUICK REVISION
+</div>
+
+<h3>Quick Revision &amp; Memorization Summary (একনজরে Preposition)[cite: 46]:</h3>
+
+<ul>
+<li>
+<strong>Place:</strong> in (ভিতরে), on (উপর), at (নির্দিষ্ট স্থান), under (নিচে), above (উপরে), behind (পেছনে), beside (পাশে), between (দুইয়ের মধ্যে), among (অনেকের মধ্যে)[cite: 46].
+</li>
+
+<li>
+<strong>Time:</strong> at (নির্দিষ্ট সময়), on (দিন/তারিখ), in (মাস/বছর), since (নির্দিষ্ট শুরু), for (পরিমাণ), before (আগে), after (পরে), during (সময়ে), by (ডেডলাইন), until (পর্যন্ত)[cite: 46].
+</li>
+
+<li>
+<strong>Direction:</strong> to (দিক), from (থেকে), into (ভেতরে), onto (উপরে), towards (দিকে)[cite: 46].
+</li>
+
+<li>
+<strong>Agent vs Instrument:</strong> by (কর্তা দ্বারা), with (উপকরণ দিয়ে)[cite: 46].
+</li>
+
+<li>
+<strong>Grammar Rules:</strong> Preposition + Pronoun (Objective Case); Preposition + Gerund (-ing form)[cite: 46, 47].
+</li>
+</ul>
+
+</section>
+
+
+<!-- =========================================================
+LESSON 10
+========================================================= -->
+<section class="lesson reveal">
+
+<div class="lesson-title">
+LESSON 10 - FINAL PRACTICE, KEY TAKEAWAY &amp; GRAMMAR CONNECTION
+</div>
+
+<h3>A. Fill in the blanks (শূন্যস্থান পূরণ করো)[cite: 47]:</h3>
+
+<ol>
+<li>The book is ___ the table.</li>
+<li>He lives ___ Bangladesh.</li>
+<li>I wake up ___ 6 am.</li>
+<li>He came ___ Dhaka.</li>
+<li>I go ___ school.</li>
+<li>She is good ___ English.</li>
+<li>He is interested ___ science.</li>
+<li>I am waiting ___ you.</li>
+<li>He wrote ___ a pen.</li>
+<li>The book was written ___ Rahim.</li>
+</ol>
+
+<h3>B. Correct the mistakes (ভুল সংশোধন করো)[cite: 47]:</h3>
+
+<ol>
+<li>He is good in English.</li>
+<li>Listen me.</li>
+<li>He depends of me.</li>
+<li>I am interested on science.</li>
+<li>He came at Bangladesh.</li>
+<li>She went in the room.</li>
+</ol>
+
+</section>
+
+
+<!-- =========================================================
+KEY TAKEAWAY
+========================================================= -->
+<section class="lesson reveal">
+
+<div class="lesson-title">
+PREPOSITION - KEY TAKEAWAY (মূল কথা)
+</div>
+
+<div class="takeaway">
+
+<p>
+Preposition হলো এমন শব্দ, যা বাক্যের একটি Noun/Pronoun-এর সঙ্গে অন্য শব্দের সম্পর্ক প্রকাশ করে[cite: 47].
+</p>
+
+<p>
+সঠিক Preposition ব্যবহার না করলে বাক্যের অর্থ অস্পষ্ট হয়ে যায়[cite: 47].
+</p>
+
+<p>
+তাই স্থান, সময়, দিক এবং Fixed Preposition-এর নিয়মগুলো নিয়মিত চর্চা করতে হবে[cite: 47].
+</p>
+
+</div>
+
+<h3>Grammar-এর ধারাবাহিকতা (Sentence Structure)[cite: 47]:</h3>
+
+<div class="grammar-line">
+The very good boy runs quickly in the field.
+</div>
+
+<div class="grammar-line">
+boy = Noun | good = Adjective | very = Adverb | runs = Verb | quickly = Adverb | in = Preposition | field = Noun[cite: 47]
+</div>
+
+</section>
+
+</main>
+
+
+<script>
+/* =========================================
+   SCROLL REVEAL ANIMATION
+========================================= */
+const elements = document.querySelectorAll(".reveal");
+
+const observer = new IntersectionObserver(
+    entries => {
+        entries.forEach(entry => {
+            if(entry.isIntersecting){
+                entry.target.classList.add("show");
+            }
+        });
+    },
+    {
+        threshold:0.08
+    }
+);
+
+elements.forEach(element => observer.observe(element));
+
+
+/* =========================================
+   PDF DOWNLOAD
+   Uses the browser's native Print → Save as PDF.
+   This keeps Bengali/Unicode text selectable
+   instead of converting the page into an image.
+========================================= */
+function downloadPDF(){
+    window.print();
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PART 9 - CONJUNCTION | English Grammar & Bangla Grammar</title>
+
+<style>
+@font-face {
+    font-family: "Kalpurush";
+    src: local("Kalpurush");
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Kalpurush", "Noto Sans Bengali", Arial, sans-serif;
+    background: #f8f9f7;
+    color: #202124;
+    font-size: 25px;
+    line-height: 1.75;
+    overflow-x: hidden;
+}
+
+/* ---------- TOP BUTTON ---------- */
+.pdf-btn {
+    position: fixed;
+    top: 18px;
+    right: 22px;
+    z-index: 9999;
+    border: none;
+    border-radius: 12px;
+    padding: 11px 20px;
+    font-family: inherit;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(135deg, #1769aa, #7b2cbf);
+    box-shadow: 0 7px 22px rgba(50, 50, 80, .20);
+    cursor: pointer;
+    transition: .3s ease;
+}
+
+.pdf-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 28px rgba(50, 50, 80, .28);
+}
+
+/* ---------- MAIN BOOK ---------- */
+.book {
+    width: min(1200px, 94%);
+    margin: 35px auto 70px;
+}
+
+.cover {
+    background: linear-gradient(135deg, #ffffff, #eef5ff);
+    border: 2px solid #d8e3f1;
+    border-radius: 24px;
+    padding: 42px 35px;
+    text-align: center;
+    box-shadow: 0 15px 45px rgba(45, 65, 90, .10);
+    margin-bottom: 30px;
+    animation: fadeDown .8s ease both;
+}
+
+.cover h1 {
+    font-size: clamp(30px, 5vw, 52px);
+    color: #154c79;
+    line-height: 1.25;
+    margin-bottom: 10px;
+}
+
+.cover h2 {
+    font-size: clamp(22px, 3vw, 31px);
+    color: #6a1b9a;
+    font-weight: 600;
+}
+
+.cover-line {
+    width: 120px;
+    height: 5px;
+    margin: 22px auto 0;
+    border-radius: 20px;
+    background: linear-gradient(90deg, #1769aa, #8e44ad, #e67e22);
+}
+
+/* ---------- LESSON ---------- */
+.lesson {
+    background: #fff;
+    border: 1px solid #dfe5ea;
+    border-radius: 18px;
+    padding: 30px 34px;
+    margin: 25px 0;
+    box-shadow: 0 8px 28px rgba(40, 50, 60, .07);
+    animation: fadeUp .7s ease both;
+}
+
+.lesson-title {
+    color: #174a6e;
+    font-size: 31px;
+    line-height: 1.35;
+    border-left: 7px solid #7b2cbf;
+    padding: 8px 0 8px 17px;
+    margin-bottom: 25px;
+}
+
+h3 {
+    font-size: 28px;
+    color: #6a1b9a;
+    margin: 24px 0 10px;
+}
+
+h4 {
+    font-size: 26px;
+    color: #1769aa;
+    margin: 20px 0 8px;
+}
+
+p {
+    margin: 10px 0;
+}
+
+ul,
+ol {
+    margin: 8px 0 14px 34px;
+}
+
+li {
+    margin: 5px 0;
+}
+
+strong {
+    color: #173f5f;
+}
+
+.source {
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    color: #888;
+    vertical-align: super;
+    white-space: nowrap;
+}
+
+/* ---------- HIGHLIGHT ---------- */
+.remember {
+    margin: 18px 0;
+    padding: 16px 20px;
+    border-left: 6px solid #f39c12;
+    background: #fff8e8;
+    border-radius: 10px;
+}
+
+.example {
+    margin: 15px 0;
+    padding: 16px 20px;
+    background: #f2f8ff;
+    border-left: 5px solid #3498db;
+    border-radius: 10px;
+}
+
+.key-box {
+    margin: 22px 0;
+    padding: 18px 22px;
+    background: #f7f0ff;
+    border: 1px solid #dfc8f1;
+    border-radius: 12px;
+}
+
+/* ---------- FANBOYS ---------- */
+.fanboys {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    margin: 18px 0;
+}
+
+.fan {
+    text-align: center;
+    padding: 10px 5px;
+    background: #f5f8fb;
+    border: 1px solid #d8e1e9;
+    border-radius: 10px;
+}
+
+.fan b {
+    display: block;
+    font-family: Arial, sans-serif;
+    font-size: 25px;
+    color: #7b2cbf;
+}
+
+/* ---------- TABLE ---------- */
+.table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    margin: 20px 0;
+}
+
+table {
+    width: 100%;
+    min-width: 720px;
+    border-collapse: collapse;
+    background: white;
+    font-size: 23px;
+}
+
+th,
+td {
+    border: 1px solid #bfc9d4;
+    padding: 13px 15px;
+    vertical-align: top;
+}
+
+th {
+    background: #edf3f8;
+    color: #164b70;
+    font-weight: bold;
+}
+
+tr:nth-child(even) td {
+    background: #fafbfd;
+}
+
+/* ---------- ERROR / CORRECT ---------- */
+.incorrect {
+    color: #b42318;
+}
+
+.correct {
+    color: #18794e;
+}
+
+/* ---------- TAKEAWAY ---------- */
+.takeaway {
+    background: linear-gradient(135deg, #f0f7ff, #faf3ff);
+    border: 2px solid #d5c8eb;
+    border-radius: 20px;
+    padding: 30px;
+    margin-top: 30px;
+    box-shadow: 0 10px 30px rgba(70, 50, 100, .08);
+}
+
+.takeaway h2 {
+    color: #6a1b9a;
+    font-size: 32px;
+    margin-bottom: 15px;
+}
+
+/* ---------- ANIMATION ---------- */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeDown {
+    from {
+        opacity: 0;
+        transform: translateY(-25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(25px);
+    transition: opacity .7s ease, transform .7s ease;
+}
+
+.reveal.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ---------- PRINT / PDF ---------- */
+@media print {
+    @page {
+        size: A4 portrait;
+        margin: 14mm;
+    }
+
+    body {
+        background: white;
+        color: #000;
+        font-size: 16pt;
+        line-height: 1.55;
+    }
+
+    .pdf-btn {
+        display: none !important;
+    }
+
+    .book {
+        width: 100%;
+        margin: 0;
+    }
+
+    .cover,
+    .lesson,
+    .takeaway {
+        box-shadow: none;
+        break-inside: avoid;
+    }
+
+    .lesson {
+        border: 1px solid #bbb;
+        margin: 12px 0;
+        padding: 18px;
+    }
+
+    .lesson-title {
+        font-size: 21pt;
+    }
+
+    h3 {
+        font-size: 19pt;
+    }
+
+    h4 {
+        font-size: 18pt;
+    }
+
+    table {
+        font-size: 15pt;
+    }
+
+    .reveal {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    a {
+        color: black;
+        text-decoration: none;
+    }
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 900px) {
+    body {
+        font-size: 23px;
+    }
+
+    .book {
+        width: 95%;
+    }
+
+    .lesson {
+        padding: 25px;
+    }
+
+    .fanboys {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    body {
+        font-size: 21px;
+        line-height: 1.7;
+    }
+
+    .pdf-btn {
+        top: 10px;
+        right: 10px;
+        font-size: 15px;
+        padding: 8px 13px;
+    }
+
+    .book {
+        width: 96%;
+        margin-top: 70px;
+    }
+
+    .cover {
+        padding: 28px 18px;
+        border-radius: 17px;
+    }
+
+    .lesson {
+        padding: 20px 17px;
+        border-radius: 14px;
+    }
+
+    .lesson-title {
+        font-size: 25px;
+        padding-left: 12px;
+        border-left-width: 5px;
+    }
+
+    h3 {
+        font-size: 24px;
+    }
+
+    h4 {
+        font-size: 22px;
+    }
+
+    ul,
+    ol {
+        margin-left: 27px;
+    }
+
+    .fanboys {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .example,
+    .remember,
+    .key-box,
+    .takeaway {
+        padding: 14px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<button class="pdf-btn" onclick="downloadPDF()">⬇ Download PDF</button>
+
+<main class="book">
+
+<section class="cover">
+    <h1>PART 9 - CONJUNCTION</h1>
+    <h2>সংযোজক অব্যয়</h2>
+    <div class="cover-line"></div>
+    <p>English Grammar &amp; Bangla Grammar Equivalent Guide</p>
+</section>
+
+
+<!-- ========================================================= -->
+<!-- LESSON 1 -->
+<!-- ========================================================= -->
+
+<section class="lesson reveal">
+<h2 class="lesson-title">LESSON 1 - CONJUNCTION: পরিচয়, কাজ ও প্রকারভেদ</h2>
+
+<h3>Definition:</h3>
+
+<p>
+A Conjunction is a word that joins words, phrases, or clauses together
+<span class="source">[cite: 48]</span>.
+</p>
+
+<p>
+Conjunction (সংযোজক অব্যয়) হলো এমন একটি শব্দ, যা দুটি বা ততোধিক Word, Phrase বা Clause-কে একসঙ্গে যুক্ত করে
+<span class="source">[cite: 48]</span>.
+</p>
+
+<div class="remember">
+<strong>সহজে মনে রাখো:</strong> Conjunction = Joiner (অর্থাৎ যুক্তকারী শব্দ।)
+<span class="source">[cite: 48]</span>
+<br>
+যেমন: and = এবং, but = কিন্তু, or = অথবা, so = তাই, because = কারণ, if = যদি, although = যদিও
+<span class="source">[cite: 48]</span>
+</div>
+
+<h3>Examples:</h3>
+
+<ul>
+<li>Rahim and Karim: and দুটি Noun যুক্ত করেছে<span class="source">[cite: 48]</span>.</li>
+<li>Tea or coffee: or দুটি Noun যুক্ত করেছে<span class="source">[cite: 48]</span>.</li>
+<li>I came but he left: but দুটি Clause যুক্ত করেছে<span class="source">[cite: 48]</span>.</li>
+</ul>
+
+<h3>CONJUNCTION কী কী যুক্ত করে?<span class="source">[cite: 48]</span></h3>
+
+<ol>
+<li>Word + Word (যেমন: Rahim and Karim are friends.)<span class="source">[cite: 48]</span></li>
+<li>Phrase + Phrase (যেমন: He likes reading and writing.)<span class="source">[cite: 48]</span></li>
+<li>Clause + Clause (যেমন: I went to school and I met Rahim.)<span class="source">[cite: 48]</span></li>
+</ol>
+
+<h3>KINDS OF CONJUNCTION (Conjunction-এর প্রকারভেদ)<span class="source">[cite: 48]</span></h3>
+
+<p>Conjunction-এর প্রধান ৩ প্রকার:<span class="source">[cite: 48]</span></p>
+
+<ol>
+<li>Coordinating Conjunction (সমন্বয়কারী সংযোজক)<span class="source">[cite: 48]</span></li>
+<li>Subordinating Conjunction (অধীনতাসূচক সংযোজক)<span class="source">[cite: 48]</span></li>
+<li>Correlative Conjunction (যুগ্ম সংযোজক)<span class="source">[cite: 48]</span></li>
+</ol>
+
+</section>
+
+
+<!-- ========================================================= -->
+<!-- LESSON 2 -->
+<!-- ========================================================= -->
+
+<section class="lesson reveal">
+<h2 class="lesson-title">LESSON 2 - COORDINATING CONJUNCTION &amp; FANBOYS</h2>
+
+<p>
+যে Conjunction সমমানের Word, Phrase বা Clause-কে যুক্ত করে তাকে Coordinating Conjunction বলে
+<span class="source">[cite: 48]</span>.
+</p>
+
+<h3>FANBOYS মনে রাখার সহজ উপায়:<span class="source">[cite: 49]</span></h3>
+
+<div class="fanboys">
+    <div class="fan"><b>F</b>for<br>(কারণ)</div>
+    <div class="fan"><b>A</b>and<br>(এবং)</div>
+    <div class="fan"><b>N</b>nor<br>(এবং না)</div>
+    <div class="fan"><b>B</b>but<br>(কিন্তু)</div>
+    <div class="fan"><b>O</b>or<br>(অথবা)</div>
+    <div class="fan"><b>Y</b>yet<br>(তবুও)</div>
+    <div class="fan"><b>S</b>so<br>(তাই)</div>
+</div>
+
+<h3>AND (and-এর ব্যবহার)<span class="source">[cite: 49]</span></h3>
+
+<p>
+and = এবং / ও। দুটি বা ততোধিক একই ধরনের শব্দ বা ধারণা যুক্ত করতে ব্যবহৃত হয়
+<span class="source">[cite: 49]</span>.
+</p>
+
+<div class="example">
+Examples: Rahim and Karim are friends. (রহিম ও করিম বন্ধু।) | I bought a pen and a book. | He reads and writes
+<span class="source">[cite: 49]</span>.
+</div>
+
+<h3>BUT (but-এর ব্যবহার)<span class="source">[cite: 49]</span></h3>
+
+<p>
+but = কিন্তু। বিপরীত বা contrast বোঝাতে ব্যবহৃত হয়। Pattern: A + but + B
+<span class="source">[cite: 49]</span>
+</p>
+
+<div class="example">
+Examples: He is poor but honest. (সে গরিব কিন্তু সৎ।) | I tried but I failed
+<span class="source">[cite: 49]</span>.
+</div>
+
+<h3>OR (or-এর ব্যবহার)<span class="source">[cite: 49]</span></h3>
+
+<p>
+or = অথবা / নাকি। দুটি বা ততোধিক বিকল্প বোঝাতে ব্যবহৃত হয়
+<span class="source">[cite: 49]</span>.
+</p>
+
+<div class="example">
+Examples: Tea or coffee? | You can take tea or coffee
+<span class="source">[cite: 49]</span>.
+</div>
+
+<h3>SO (so-এর ব্যবহার)<span class="source">[cite: 49]</span></h3>
+
+<p>
+so = তাই / সুতরাং। ফলাফল বা consequence বোঝাতে ব্যবহৃত হয়
+<span class="source">[cite: 49]</span>.
+</p>
+
+<div class="example">
+Examples: It was raining, so I stayed home. | He was ill, so he could not come
+<span class="source">[cite: 49]</span>.
+</div>
+
+<h3>FOR, YET &amp; NOR<span class="source">[cite: 49]</span></h3>
+
+<ul>
+<li><strong>FOR:</strong> He stayed home, for he was ill. (এখানে for = Conjunction, আর "This gift is for you" এ Preposition)<span class="source">[cite: 49]</span>.</li>
+<li><strong>YET:</strong> He is poor, yet he is happy. (সে গরিব, তবুও সে সুখী - unexpected result)<span class="source">[cite: 49]</span>.</li>
+<li><strong>NOR:</strong> He does not smoke, nor does he drink. (ধূমপান করে না, মদ্যপানও করে না। Nor-এর পরে inversion হয়)<span class="source">[cite: 49]</span>.</li>
+</ul>
+
+</section>
+
+
+<!-- ========================================================= -->
+<!-- LESSON 3 -->
+<!-- ========================================================= -->
+
+<section class="lesson reveal">
+<h2 class="lesson-title">LESSON 3 - SUBORDINATING CONJUNCTION: মূল ধারণা</h2>
+
+<p>
+যে Conjunction একটি Main Clause-এর সঙ্গে একটি Dependent/Subordinate Clause যুক্ত করে, তাকে Subordinating Conjunction বলে
+<span class="source">[cite: 49, 50]</span>.
+</p>
+
+<p>
+প্রধান: because, if, although, though, when, while, before, after, since, unless, until, as, where, wherever, whether
+<span class="source">[cite: 49, 50]</span>
+</p>
+
+<h3>Example Breakdown:<span class="source">[cite: 50]</span></h3>
+
+<div class="example">
+<p><strong>Sentence:</strong> I stayed home because it was raining.<span class="source">[cite: 50]</span></p>
+<p>- <strong>Main Clause:</strong> I stayed home<span class="source">[cite: 50]</span>.</p>
+<p>- <strong>Subordinate Clause:</strong> because it was raining<span class="source">[cite: 50]</span>.</p>
+</div>
+
+<h3>BECAUSE &amp; IF<span class="source">[cite: 50]</span></h3>
+
+<ul>
+<li><strong>BECAUSE</strong> (because + Clause): I stayed home because it was raining. (বৃষ্টি হচ্ছিল বলে বাড়িতে ছিলাম।)<span class="source">[cite: 50]</span></li>
+<li><strong>IF</strong> (If + Condition, Result): If you work hard, you will succeed. (তুমি কঠোর পরিশ্রম করলে সফল হবে।)<span class="source">[cite: 50]</span></li>
+</ul>
+
+<h3>UNLESS &amp; ALTHOUGH / THOUGH<span class="source">[cite: 50]</span></h3>
+
+<ul>
+<li><strong>UNLESS</strong> (unless = if...not): You will fail unless you study. (পড়াশোনা না করলে ব্যর্থ হবে।)<span class="source">[cite: 50]</span></li>
+<li><strong>ALTHOUGH / THOUGH:</strong> Although he is poor, he is honest. / Though it was raining, we went outside<span class="source">[cite: 50]</span>.</li>
+</ul>
+
+</section>
+
+
+<!-- ========================================================= -->
+<!-- LESSON 4 -->
+<!-- ========================================================= -->
+
+<section class="lesson reveal">
+<h2 class="lesson-title">LESSON 4 - TIME, REASON, CONDITION &amp; UNCERTAINTY</h2>
+
+<h3>WHEN/WHILE &amp; BEFORE/AFTER<span class="source">[cite: 50]</span></h3>
+
+<ul>
+<li>When / While: When I came, he was sleeping. | While I was reading, he came (while চলমান কাজের সময় বসে)<span class="source">[cite: 50]</span>.</li>
+<li>Before / After: Wash your hands before you eat. | I went home after I finished the work<span class="source">[cite: 50]</span>.</li>
+</ul>
+
+<h3>SINCE / AS, UNTIL &amp; WHETHER<span class="source">[cite: 50]</span></h3>
+
+<ul>
+<li>Since / As: Since you are here, help me. | As it was raining, we stayed home (যেহেতু / কারণ)<span class="source">[cite: 50]</span>.</li>
+<li>Until: Wait until I come. / Stay here until evening (যতক্ষণ না / পর্যন্ত)<span class="source">[cite: 50]</span>.</li>
+<li>Whether: I don't know whether he will come. / Whether you agree or not, I will go (কিনা / কি না / অনিশ্চয়তা)<span class="source">[cite: 50]</span>.</li>
+</ul>
+
+</section>
+
+
+<!-- ========================================================= -->
+<!-- LESSON 5 -->
+<!-- ========================================================= -->
+
+<section class="lesson reveal">
+<h2 class="lesson-title">LESSON 5 - CORRELATIVE CONJUNCTION (যুগ্ম সংযোজক)</h2>
+
+<p>
+যে Conjunction জোড়ায় জোড়ায় ব্যবহৃত হয়, তাকে Correlative Conjunction বলে
+<span class="source">[cite: 50]</span>.
+</p>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>Pair</th>
+<th>Meaning &amp; Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>both ... and</strong></td>
+<td>উভয়ই...এবং (Both Rahim and Karim are students.)<span class="source">[cite: 50]</span></td>
+</tr>
+<tr>
+<td><strong>either ... or</strong></td>
+<td>হয়...নয়তো (Either Rahim or Karim will come.)<span class="source">[cite: 50]</span></td>
+</tr>
+<tr>
+<td><strong>neither ... nor</strong></td>
+<td>না...না (Neither Rahim nor Karim came.)<span class="source">[cite: 50]</span></td>
+</tr>
+<tr>
+<td><strong>not only ... but also</strong></td>
+<td>শুধু...নয়, বরং...ও (He is not only intelligent but also honest.)<span class="source">[cite: 50]</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+</section>
+
+
+<!-- ========================================================= -->
+<!-- LESSON 6 -->
+<!-- ========================================================= -->
+
+<section class="lesson reveal">
+<h2 class="lesson-title">LESSON 6 - CORRELATIVE CONJUNCTION: AS...AS, SO...THAT &amp; SUCH...THAT</h2>
+
+<ul>
+<li><strong>AS ... AS</strong> (Equality / সমতা): Rahim is as tall as Karim. (রহিম করিমের মতোই লম্বা।)<span class="source">[cite: 51]</span></li>
+<li><strong>SO ... THAT</strong> (so + Adjective/Adverb + that + Clause): He was so tired that he could not walk. (সে এত ক্লান্ত ছিল যে হাঁটতে পারেনি।)<span class="source">[cite: 51]</span></li>
+<li><strong>SUCH ... THAT</strong> (such + a/an + Adj + Noun + that): It was such a beautiful day that we went outside. (দিনটি এত সুন্দর ছিল যে বাইরে গেলাম।)<span class="source">[cite: 51]</span></li>
+</ul>
+
+</section>
+
+
+<!-- ========================================================= -->
+<!-- LESSON 7 -->
+<!-- ========================================================= -->
+
+<section class="lesson reveal">
+<h2 class="lesson-title">LESSON 7 - CONJUNCTION vs PREPOSITION, ADVERB &amp; CLAUSE</h2>
+
+<h3>Conjunction vs Preposition<span class="source">[cite: 51]</span></h3>
+
+<p>
+একই শব্দ কখনো Preposition, আবার কখনো Conjunction হতে পারে
+<span class="source">[cite: 51]</span>.
+</p>
+
+<div class="example">
+<p>• Before lunch, I prayed. (before + Noun = Preposition)<span class="source">[cite: 51]</span></p>
+<p>• Before I ate lunch, I prayed. (before + Clause = Conjunction)<span class="source">[cite: 51]</span></p>
+</div>
+
+<h3>Conjunction vs Adverb<span class="source">[cite: 51]</span></h3>
+
+<div class="example">
+<p>• He was tired, so he slept. (so = Conjunction)<span class="source">[cite: 51]</span></p>
+<p>• He was tired; therefore, he slept. (therefore = Adverb)<span class="source">[cite: 51]</span></p>
+</div>
+
+<h3>Clause + Conjunction<span class="source">[cite: 51]</span></h3>
+
+<div class="example">
+<p>
+• I studied hard because I had an exam. (because দুটি Clause যুক্ত করেছে)
+<span class="source">[cite: 51]</span>.
+</p>
+</div>
+
+</section>
+
+
+<!-- ========================================================= -->
+<!-- LESSON 8 -->
+<!-- ========================================================= -->
+
+<section class="lesson reveal">
+<h2 class="lesson-title">LESSON 8 - PUNCTUATION, PARALLEL STRUCTURE &amp; COMMON MISTAKES</h2>
+
+<h3>Punctuation with Conjunction<span class="source">[cite: 51]</span></h3>
+
+<p>
+দুটি সম্পূর্ণ Independent Clause, Coordinating Conjunction দিয়ে যুক্ত হলে অনেক ক্ষেত্রে Conjunction-এর আগে Comma (,) বসে। যেমন: I was tired, but I continued working
+<span class="source">[cite: 51]</span>.
+</p>
+
+<h3>Parallel Structure<span class="source">[cite: 51]</span></h3>
+
+<p>
+Conjunction দিয়ে যুক্ত অংশগুলোর গঠন একই ধরনের হতে হয়
+<span class="source">[cite: 51]</span>.
+</p>
+
+<div class="example">
+<p class="incorrect">• Incorrect ✗: He likes reading and to write<span class="source">[cite: 51]</span>.</p>
+<p class="correct">• Correct ✓: He likes reading and writing<span class="source">[cite: 51]</span>.</p>
+</div>
+
+<h3>Common Mistakes (সাধারণ ভুল ও সংশোধন)<span class="source">[cite: 51, 52]</span></h3>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>Incorrect (ভুল ✗)</th>
+<th>Correct (সঠিক ✓)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="incorrect">Although he is poor but he is honest.<span class="source">[cite: 51]</span></td>
+<td class="correct">Although he is poor, he is honest.<span class="source">[cite: 51]</span></td>
+</tr>
+<tr>
+<td class="incorrect">Because it was raining, so I stayed home.<span class="source">[cite: 51]</span></td>
+<td class="correct">It was raining, so I stayed home.<span class="source">[cite: 51]</span></td>
+</tr>
+<tr>
+<td class="incorrect">Unless you do not study, you will fail.<span class="source">[cite: 51]</span></td>
+<td class="correct">Unless you study, you will fail.<span class="source">[cite: 51]</span></td>
+</tr>
+<tr>
+<td class="incorrect">Both Rahim or Karim came.<span class="source">[cite: 51]</span></td>
+<td class="correct">Both Rahim and Karim came.<span class="source">[cite: 51]</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+</section>
+
+
+<!-- ========================================================= -->
+<!-- LESSON 9 -->
+<!-- ========================================================= -->
+
+<section class="lesson reveal">
+<h2 class="lesson-title">LESSON 9 - IMPORTANT CONJUNCTION LIST &amp; QUICK CHART</h2>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Members &amp; Function</th>
+</tr>
+</thead>
+<tbody>
+
+<tr>
+<td>
+<strong>1. Coordinating</strong><br>
+(FANBOYS)
+</td>
+<td>
+for, and, nor, but, or, yet, so
+<span class="source">[cite: 52]</span>
+<br>
+কাজ: সমমানের (Independent) শব্দ বা বাক্য যুক্ত করা
+<span class="source">[cite: 52]</span>
+</td>
+</tr>
+
+<tr>
+<td>
+<strong>2. Subordinating</strong>
+</td>
+<td>
+because, if, although, though, when, while, before, after, since,
+unless, until, as, whether
+<span class="source">[cite: 52]</span>
+<br>
+কাজ: Main Clause-এর সাথে Dependent Clause যুক্ত করা
+<span class="source">[cite: 52]</span>
+</td>
+</tr>
+
+<tr>
+<td>
+<strong>3. Correlative</strong>
+</td>
+<td>
+both...and, either...or, neither...nor, not only...but also,
+whether...or, as...as, so...that, such...that
+<span class="source">[cite: 52]</span>
+</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+<div class="remember">
+<strong>Quick Revision:</strong> Conjunction = Joining Word. if = যদি, unless = যদি না। Although-এর সাথে but বসে না
+<span class="source">[cite: 52]</span>.
+</div>
+
+</section>
+
+
+<!-- ========================================================= -->
+<!-- LESSON 10 -->
+<!-- ========================================================= -->
+
+<section class="lesson reveal">
+<h2 class="lesson-title">LESSON 10 - FINAL PRACTICE &amp; KEY TAKEAWAY</h2>
+
+<h3>A. Identify the Conjunction:<span class="source">[cite: 52]</span></h3>
+
+<ol>
+<li>Rahim and Karim are friends<span class="source">[cite: 52]</span>.</li>
+<li>I tried but I failed<span class="source">[cite: 52]</span>.</li>
+<li>Tea or coffee?<span class="source">[cite: 52]</span></li>
+<li>I stayed home because it was raining<span class="source">[cite: 52]</span>.</li>
+<li>If you work hard, you will succeed<span class="source">[cite: 52]</span>.</li>
+</ol>
+
+<h3>B. Fill in the blanks:<span class="source">[cite: 52]</span></h3>
+
+<ol>
+<li>Rahim ___ Karim are friends. (and)<span class="source">[cite: 52]</span></li>
+<li>He is poor ___ honest. (but)<span class="source">[cite: 52]</span></li>
+<li>Hurry up ___ you will miss the bus. (or)<span class="source">[cite: 52]</span></li>
+<li>I stayed home ___ I was sick. (because / as)<span class="source">[cite: 52]</span></li>
+<li>___ you study, you will pass. (If)<span class="source">[cite: 52]</span></li>
+</ol>
+
+<h3>C. Correct the mistakes:<span class="source">[cite: 52]</span></h3>
+
+<ol>
+<li>
+Although he is poor but he is honest.
+→ Although he is poor, he is honest
+<span class="source">[cite: 52]</span>.
+</li>
+
+<li>
+Because he was sick, so he stayed home.
+→ Because he was sick, he stayed home
+<span class="source">[cite: 52]</span>.
+</li>
+
+<li>
+Unless you do not study, you will fail.
+→ Unless you study, you will fail
+<span class="source">[cite: 52]</span>.
+</li>
+</ol>
+
+</section>
+
+
+<!-- ========================================================= -->
+<!-- KEY TAKEAWAY -->
+<!-- ========================================================= -->
+
+<section class="takeaway reveal">
+
+<h2>CONJUNCTION - KEY TAKEAWAY (মূল কথা)</h2>
+
+<p>
+Conjunction হলো এমন একটি শব্দ যা Word, Phrase বা Clause-কে যুক্ত করে
+<span class="source">[cite: 52]</span>.
+</p>
+
+<p>
+AND = যোগ, BUT = বিপরীত, OR = বিকল্প, SO = ফলাফল, BECAUSE = কারণ,
+IF = শর্ত, ALTHOUGH = যদিও
+<span class="source">[cite: 52]</span>.
+</p>
+
+</section>
+
+</main>
+
+
+<script>
+/* =========================================================
+   PDF BUTTON
+   Browser-এর Print → Save as PDF ব্যবহার করলে
+   Text selectable/copyable থাকবে।
+========================================================= */
+
+function downloadPDF() {
+    window.print();
+}
+
+
+/* =========================================================
+   SCROLL ANIMATION
+========================================================= */
+
+const revealElements = document.querySelectorAll(".reveal");
+
+const observer = new IntersectionObserver(
+    (entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("show");
+                observer.unobserve(entry.target);
+            }
+        });
+    },
+    {
+        threshold: 0.08
+    }
+);
+
+revealElements.forEach((element) => {
+    observer.observe(element);
+});
+
+
+/* =========================================================
+   PRINT করার সময় সব Animation সম্পূর্ণ দৃশ্যমান রাখা
+========================================================= */
+
+window.addEventListener("beforeprint", () => {
+    revealElements.forEach((element) => {
+        element.classList.add("show");
+    });
+});
+</script>
+
+</body>
+</html>

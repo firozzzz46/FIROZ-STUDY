@@ -1,451 +1,635 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Part 5 - Noun | Infinity MCQ</title>
+<title>English Grammar Series - Part 5 | Adjective</title>
 
 <style>
-/* =========================================================
-   PART 5 - NOUN
-   INFINITY MCQ PRACTICE SYSTEM
-   Single File HTML + CSS + JavaScript
-========================================================= */
-
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700;800&display=swap');
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+@font-face{
+    font-family:Kalpurush;
+    src:local("Kalpurush");
 }
 
-:root {
-    --soft-bg: #f8fafc;
-    --card-bg: rgba(255,255,255,0.72);
-    --border: rgba(255,255,255,0.85);
-    --text: #172033;
-    --muted: #64748b;
-    --primary: #4f46e5;
-    --primary-dark: #3730a3;
-    --green: #15803d;
-    --green-bg: rgba(220,252,231,0.85);
-    --red: #dc2626;
-    --red-bg: rgba(254,226,226,0.85);
-    --shadow: 0 20px 60px rgba(30,41,59,0.10);
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-body {
-    min-height: 100vh;
-    color: var(--text);
+:root{
+    --bg:#f8fafc;
+    --paper:#ffffff;
+    --text:#202124;
+    --muted:#5f6368;
+    --primary:#3157d5;
+    --primary-light:#eef2ff;
+    --secondary:#087f5b;
+    --secondary-light:#e9f8f1;
+    --orange:#d97706;
+    --orange-light:#fff7e6;
+    --red:#c62828;
+    --red-light:#fff0f0;
+    --border:#dfe3ea;
+    --shadow:0 8px 28px rgba(30,41,59,.08);
+}
 
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    min-height:100vh;
+    background:var(--bg);
+    color:var(--text);
+    font-family:Kalpurush,"Noto Sans Bengali","SolaimanLipi",Arial,sans-serif;
+    font-size:25px;
+    line-height:1.75;
+}
+
+/* =========================
+   TOP BAR
+========================= */
+
+.top-bar{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    display:flex;
+    justify-content:flex-end;
+    align-items:center;
+    padding:12px 20px;
+    background:rgba(255,255,255,.92);
+    border-bottom:1px solid var(--border);
+    backdrop-filter:blur(12px);
+}
+
+.pdf-btn{
+    border:0;
+    outline:0;
+    cursor:pointer;
+    padding:10px 20px;
+    border-radius:12px;
+    color:white;
+    background:linear-gradient(135deg,#3157d5,#6648d9);
+    font-family:inherit;
+    font-size:20px;
+    font-weight:bold;
+    box-shadow:0 5px 16px rgba(49,87,213,.25);
+    transition:.25s ease;
+}
+
+.pdf-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 22px rgba(49,87,213,.32);
+}
+
+.pdf-btn:active{
+    transform:scale(.97);
+}
+
+/* =========================
+   BOOK
+========================= */
+
+.book{
+    width:min(1180px,94%);
+    margin:30px auto 60px;
+}
+
+.book-page{
+    background:var(--paper);
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:42px 48px;
+    box-shadow:var(--shadow);
+}
+
+/* =========================
+   COVER
+========================= */
+
+.cover{
+    text-align:center;
+    padding:55px 35px;
+    margin-bottom:30px;
     background:
-        radial-gradient(circle at 10% 10%, rgba(99,102,241,0.08), transparent 30%),
-        radial-gradient(circle at 90% 20%, rgba(14,165,233,0.08), transparent 30%),
-        radial-gradient(circle at 50% 100%, rgba(168,85,247,0.06), transparent 35%),
-        linear-gradient(135deg, #ffffff 0%, #f8fafc 50%, #f1f5f9 100%);
-
-    font-family: "Times New Roman", "Noto Sans Bengali", serif;
-    padding: 25px 15px;
+        radial-gradient(circle at 10% 10%,rgba(49,87,213,.09),transparent 30%),
+        radial-gradient(circle at 90% 90%,rgba(8,127,91,.09),transparent 30%),
+        white;
 }
 
-/* Main Container */
-
-.app {
-    width: min(100%, 1050px);
-    margin: auto;
+.series{
+    display:inline-block;
+    padding:6px 18px;
+    border-radius:30px;
+    color:var(--primary);
+    background:var(--primary-light);
+    font-size:20px;
+    font-weight:bold;
+    letter-spacing:.5px;
 }
 
-/* Header */
-
-.header {
-    text-align: center;
-    margin-bottom: 22px;
-    animation: headerIn 1s cubic-bezier(.16,1,.3,1);
+.cover h1{
+    margin:20px 0 8px;
+    font-size:38px;
+    line-height:1.3;
+    color:#243b80;
 }
 
-.header h1 {
-    font-size: clamp(28px, 5vw, 44px);
-    font-weight: 800;
-    letter-spacing: .5px;
+.cover h2{
+    font-size:30px;
+    color:var(--secondary);
+    font-weight:700;
 }
 
-.header h1 span {
-    color: var(--primary);
+.cover-description{
+    max-width:900px;
+    margin:25px auto 0;
+    color:var(--muted);
+    font-size:23px;
 }
 
-.header p {
-    margin-top: 8px;
-    font-family: "Noto Sans Bengali", "Kalpurush", sans-serif;
-    font-size: 18px;
-    color: var(--muted);
+/* =========================
+   GOAL
+========================= */
+
+.goal{
+    margin:0 0 32px;
+    padding:20px 24px;
+    border-left:6px solid var(--primary);
+    background:var(--primary-light);
+    border-radius:12px;
 }
 
-/* Glass Card */
-
-.glass-card {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-    border-radius: 28px;
-    box-shadow: var(--shadow);
+.goal-title{
+    font-weight:bold;
+    color:var(--primary);
+    margin-bottom:5px;
 }
 
-/* Top Information */
+/* =========================
+   LESSON
+========================= */
 
-.top-bar {
-    padding: 18px 22px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 15px;
-    margin-bottom: 18px;
+.lesson{
+    margin:40px 0;
+    padding-top:10px;
 }
 
-.part-label {
-    font-size: 21px;
-    font-weight: 700;
+.lesson-header{
+    margin-bottom:24px;
+    padding:17px 22px;
+    border-radius:14px;
+    background:linear-gradient(135deg,#f1f4ff,#f8faff);
+    border-left:6px solid var(--primary);
 }
 
-.part-label span {
-    color: var(--primary);
+.lesson-number{
+    display:block;
+    color:var(--primary);
+    font-size:18px;
+    font-weight:bold;
+    letter-spacing:.5px;
 }
 
-.stats {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    justify-content: flex-end;
+.lesson-title{
+    margin-top:3px;
+    font-size:29px;
+    line-height:1.4;
+    color:#263b7a;
+    font-weight:bold;
 }
 
-.stat {
-    padding: 9px 14px;
-    border-radius: 14px;
-    background: rgba(255,255,255,.8);
-    border: 1px solid rgba(226,232,240,.9);
-    font-size: 17px;
-    font-weight: 700;
+.lesson-subtitle{
+    color:var(--muted);
+    font-size:21px;
 }
 
-/* Progress */
+/* =========================
+   CONTENT
+========================= */
 
-.progress-wrapper {
-    margin-bottom: 18px;
+p{
+    margin:0 0 15px;
 }
 
-.progress-info {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 8px;
-    font-size: 17px;
-    font-weight: 700;
+.definition{
+    padding:18px 22px;
+    margin:16px 0 22px;
+    border:1px solid #cfd8ff;
+    border-radius:13px;
+    background:#f8f9ff;
 }
 
-.progress-track {
-    height: 9px;
-    background: rgba(203,213,225,.55);
-    border-radius: 50px;
-    overflow: hidden;
+.label{
+    color:var(--primary);
+    font-weight:bold;
 }
 
-.progress-bar {
-    height: 100%;
-    width: 0%;
-    background: linear-gradient(90deg, #4f46e5, #7c3aed, #0ea5e9);
-    border-radius: 50px;
-    transition: width .7s cubic-bezier(.16,1,.3,1);
+.english{
+    font-family:Arial,"Times New Roman",sans-serif;
+    font-size:24px;
 }
 
-/* Question Card */
-
-.question-card {
-    padding: clamp(22px, 5vw, 42px);
-    overflow: hidden;
+.example-list{
+    margin:8px 0 18px 28px;
+    padding-left:24px;
 }
 
-/* Question Animation Container */
-
-.question-content {
-    animation: questionEnter .9s cubic-bezier(.16,1,.3,1);
+.example-list li{
+    margin:5px 0;
 }
 
-.question-number {
-    display: inline-block;
-    padding: 7px 13px;
-    border-radius: 12px;
-    background: rgba(79,70,229,.10);
-    color: var(--primary-dark);
-    font-weight: 800;
-    font-size: 16px;
-    margin-bottom: 16px;
+.rule{
+    margin:18px 0;
+    padding:15px 20px;
+    border-radius:12px;
+    background:var(--secondary-light);
+    border-left:5px solid var(--secondary);
 }
 
-.question {
-    font-family: "Times New Roman", serif;
-    font-size: clamp(22px, 3vw, 29px);
-    line-height: 1.5;
-    font-weight: 700;
+.note{
+    margin:17px 0;
+    padding:14px 20px;
+    border-radius:12px;
+    background:var(--orange-light);
+    border-left:5px solid var(--orange);
 }
 
-.question-bangla {
-    margin-top: 8px;
-    font-family: "Noto Sans Bengali", "Kalpurush", sans-serif;
-    font-size: 18px;
-    line-height: 1.7;
-    color: #64748b;
+.important{
+    margin:17px 0;
+    padding:15px 20px;
+    border-radius:12px;
+    background:#fff8e8;
+    border-left:5px solid #e0a000;
 }
 
-/* Options */
-
-.options {
-    margin-top: 28px;
-    display: grid;
-    gap: 13px;
+.subheading{
+    margin:25px 0 10px;
+    font-size:27px;
+    color:#263b7a;
+    font-weight:bold;
 }
 
-.option {
-    width: 100%;
-    padding: 16px 18px;
-    border-radius: 17px;
-    border: 1px solid rgba(203,213,225,.8);
-    background: rgba(255,255,255,.72);
-    cursor: pointer;
+.kind-title{
+    margin:23px 0 9px;
+    color:var(--secondary);
+    font-size:27px;
+    font-weight:bold;
+}
 
-    display: flex;
-    align-items: center;
-    gap: 14px;
+.structure{
+    display:inline-block;
+    padding:5px 13px;
+    margin:3px 2px;
+    border-radius:8px;
+    background:#f0f3ff;
+    color:#273c91;
+    font-family:Arial,sans-serif;
+    font-size:22px;
+    font-weight:bold;
+}
 
-    font-family: "Times New Roman", serif;
-    font-size: 20px;
-    text-align: left;
+/* =========================
+   DEGREE TABLE
+========================= */
 
+.degree-table,
+.error-table{
+    width:100%;
+    border-collapse:collapse;
+    margin:18px 0 25px;
+    font-size:23px;
+}
+
+.degree-table th,
+.degree-table td,
+.error-table th,
+.error-table td{
+    border:1px solid var(--border);
+    padding:12px 14px;
+    text-align:left;
+    vertical-align:top;
+}
+
+.degree-table th{
+    background:#eef2ff;
+    color:#263b7a;
+}
+
+.error-table th{
+    background:#f3f4f6;
+    color:#263238;
+}
+
+.incorrect{
+    color:#b42318;
+    background:#fff5f5;
+}
+
+.correct{
+    color:#087f5b;
+    background:#f0fbf6;
+}
+
+/* =========================
+   DEGREE BOX
+========================= */
+
+.degree-box{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+    margin:18px 0 25px;
+}
+
+.degree-card{
+    padding:17px;
+    text-align:center;
+    border:1px solid var(--border);
+    border-radius:13px;
+    background:#fff;
+}
+
+.degree-card strong{
+    display:block;
+    color:var(--primary);
+    margin-bottom:5px;
+}
+
+.degree-card span{
+    display:block;
+    font-family:Arial,sans-serif;
+    font-size:23px;
+}
+
+/* =========================
+   PRACTICE
+========================= */
+
+.practice{
+    margin-top:20px;
+    padding:22px 24px;
+    border-radius:15px;
+    background:#f8fafc;
+    border:1px solid var(--border);
+}
+
+.practice-title{
+    color:var(--primary);
+    font-weight:bold;
+    font-size:27px;
+    margin-bottom:10px;
+}
+
+.practice ol{
+    padding-left:35px;
+}
+
+.practice li{
+    margin:9px 0;
+}
+
+/* =========================
+   FINAL TAKEAWAY
+========================= */
+
+.takeaway{
+    margin-top:45px;
+    padding:28px;
+    border-radius:18px;
+    background:
+        linear-gradient(135deg,#eef3ff,#f0fbf6);
+    border:1px solid #cfd8e8;
+}
+
+.takeaway h2{
+    margin-bottom:12px;
+    color:#263b7a;
+    font-size:30px;
+}
+
+.final-example{
+    margin-top:18px;
+    padding:17px 20px;
+    border-radius:12px;
+    background:white;
+    border-left:5px solid var(--secondary);
+}
+
+/* =========================
+   ANIMATION
+========================= */
+
+.reveal{
+    opacity:0;
+    transform:translateY(28px);
     transition:
-        transform .35s cubic-bezier(.16,1,.3,1),
-        box-shadow .35s ease,
-        border-color .35s ease,
-        background .35s ease;
+        opacity .8s ease,
+        transform .8s ease;
 }
 
-.option:hover {
-    transform: translateX(5px);
-    border-color: rgba(79,70,229,.4);
-    box-shadow: 0 10px 28px rgba(79,70,229,.10);
+.reveal.left{
+    transform:translateX(-35px);
 }
 
-.option-letter {
-    min-width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    background: rgba(79,70,229,.10);
-    color: var(--primary);
-    display: grid;
-    place-items: center;
-    font-weight: 800;
+.reveal.right{
+    transform:translateX(35px);
 }
 
-.option.correct {
-    background: var(--green-bg);
-    border-color: rgba(21,128,61,.4);
-    color: #166534;
+.reveal.active{
+    opacity:1;
+    transform:translate(0);
 }
 
-.option.correct .option-letter {
-    background: #15803d;
-    color: white;
-}
+/* =========================
+   RESPONSIVE
+========================= */
 
-.option.wrong {
-    background: var(--red-bg);
-    border-color: rgba(220,38,38,.4);
-    color: #991b1b;
-}
-
-.option.wrong .option-letter {
-    background: #dc2626;
-    color: white;
-}
-
-.option.disabled {
-    cursor: default;
-}
-
-.option.disabled:hover {
-    transform: none;
-}
-
-/* Explanation */
-
-.explanation {
-    margin-top: 25px;
-    padding: 20px;
-    border-radius: 20px;
-    background: rgba(248,250,252,.85);
-    border-left: 5px solid var(--primary);
-
-    font-family: "Noto Sans Bengali", "Kalpurush", sans-serif;
-    font-size: 18px;
-    line-height: 1.9;
-
-    animation: explanationIn .7s cubic-bezier(.16,1,.3,1);
-}
-
-.explanation strong {
-    color: var(--primary-dark);
-}
-
-/* Controls */
-
-.controls {
-    margin-top: 22px;
-    display: flex;
-    justify-content: space-between;
-    gap: 12px;
-}
-
-.btn {
-    border: none;
-    padding: 14px 24px;
-    border-radius: 15px;
-    cursor: pointer;
-
-    font-family: "Times New Roman", serif;
-    font-size: 18px;
-    font-weight: 700;
-
-    transition:
-        transform .3s cubic-bezier(.16,1,.3,1),
-        box-shadow .3s ease,
-        opacity .3s ease;
-}
-
-.btn:hover:not(:disabled) {
-    transform: translateY(-3px);
-}
-
-.btn:active:not(:disabled) {
-    transform: scale(.96);
-}
-
-.previous {
-    background: rgba(226,232,240,.85);
-    color: #334155;
-}
-
-.next {
-    background: linear-gradient(135deg, #4f46e5, #7c3aed);
-    color: white;
-    box-shadow: 0 10px 25px rgba(79,70,229,.22);
-}
-
-.btn:disabled {
-    opacity: .4;
-    cursor: not-allowed;
-}
-
-/* Footer */
-
-.footer {
-    text-align: center;
-    margin-top: 18px;
-    color: #64748b;
-    font-size: 15px;
-}
-
-/* Animations */
-
-@keyframes questionEnter {
-    0% {
-        opacity: 0;
-        transform: translateX(35px) scale(.985);
-        filter: blur(4px);
+@media(max-width:900px){
+    body{
+        font-size:23px;
     }
 
-    100% {
-        opacity: 1;
-        transform: translateX(0) scale(1);
-        filter: blur(0);
+    .book{
+        width:96%;
+    }
+
+    .book-page{
+        padding:32px 28px;
+    }
+
+    .cover h1{
+        font-size:33px;
+    }
+
+    .degree-box{
+        grid-template-columns:1fr;
     }
 }
 
-@keyframes explanationIn {
-    0% {
-        opacity: 0;
-        transform: translateY(18px);
+@media(max-width:600px){
+    body{
+        font-size:21px;
+        line-height:1.7;
     }
 
-    100% {
-        opacity: 1;
-        transform: translateY(0);
+    .top-bar{
+        padding:9px 12px;
+    }
+
+    .pdf-btn{
+        font-size:17px;
+        padding:8px 14px;
+    }
+
+    .book{
+        width:100%;
+        margin:0;
+    }
+
+    .book-page{
+        border-radius:0;
+        border-left:0;
+        border-right:0;
+        padding:25px 17px 40px;
+        box-shadow:none;
+    }
+
+    .cover{
+        padding:40px 15px;
+    }
+
+    .cover h1{
+        font-size:28px;
+    }
+
+    .cover h2{
+        font-size:24px;
+    }
+
+    .cover-description{
+        font-size:20px;
+    }
+
+    .lesson{
+        margin:32px 0;
+    }
+
+    .lesson-title{
+        font-size:25px;
+    }
+
+    .lesson-subtitle{
+        font-size:18px;
+    }
+
+    .subheading,
+    .kind-title{
+        font-size:24px;
+    }
+
+    .english{
+        font-size:21px;
+    }
+
+    .degree-table,
+    .error-table{
+        font-size:19px;
+    }
+
+    .degree-table th,
+    .degree-table td,
+    .error-table th,
+    .error-table td{
+        padding:9px 8px;
+    }
+
+    .structure{
+        font-size:19px;
     }
 }
 
-@keyframes headerIn {
-    0% {
-        opacity: 0;
-        transform: translateY(-20px);
+/* =========================
+   PRINT / PDF
+========================= */
+
+@media print{
+    @page{
+        size:A4 portrait;
+        margin:12mm;
     }
 
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Mobile */
-
-@media (max-width: 650px) {
-
-    body {
-        padding: 14px 10px;
+    html,
+    body{
+        background:#fff !important;
+        color:#000 !important;
+        font-size:14pt !important;
     }
 
-    .glass-card {
-        border-radius: 21px;
+    .top-bar{
+        display:none !important;
     }
 
-    .top-bar {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 16px;
+    .book{
+        width:100%;
+        margin:0;
     }
 
-    .stats {
-        width: 100%;
-        justify-content: flex-start;
+    .book-page{
+        border:0 !important;
+        box-shadow:none !important;
+        border-radius:0 !important;
+        padding:0 !important;
     }
 
-    .stat {
-        font-size: 16px;
+    .cover{
+        page-break-after:always;
+        break-after:page;
+        padding:20mm 10mm;
     }
 
-    .question-card {
-        padding: 22px 17px;
+    .lesson{
+        break-inside:auto;
+        page-break-inside:auto;
     }
 
-    .question {
-        font-size: 22px;
+    .lesson-header{
+        break-after:avoid;
+        page-break-after:avoid;
     }
 
-    .question-bangla {
-        font-size: 18px;
+    .definition,
+    .rule,
+    .note,
+    .important,
+    .practice,
+    .takeaway{
+        break-inside:avoid;
+        page-break-inside:avoid;
     }
 
-    .option {
-        font-size: 19px;
-        padding: 14px;
+    .degree-table,
+    .error-table{
+        break-inside:avoid;
+        page-break-inside:avoid;
     }
 
-    .controls {
-        position: sticky;
-        bottom: 8px;
-        padding-top: 10px;
+    .degree-table tr,
+    .error-table tr{
+        break-inside:avoid;
+        page-break-inside:avoid;
     }
 
-    .btn {
-        flex: 1;
-        padding: 13px 10px;
+    .reveal{
+        opacity:1 !important;
+        transform:none !important;
+    }
+
+    a{
+        color:#000;
+        text-decoration:none;
     }
 }
 </style>
@@ -453,864 +637,1101 @@ body {
 
 <body>
 
-<div class="app">
+<div class="top-bar">
+    <button class="pdf-btn" onclick="downloadPDF()">
+        ⬇ Download PDF
+    </button>
+</div>
 
-    <header class="header">
-        <h1>Part 5 — <span>Noun</span></h1>
-        <p>Infinity MCQ Practice System</p>
-    </header>
+<main class="book">
+<div class="book-page">
 
-    <div class="glass-card top-bar">
+<!-- =========================================================
+     COVER
+========================================================= -->
 
-        <div class="part-label">
-            Grammar Part: <span>Noun</span>
-        </div>
+<section class="cover reveal">
+    <span class="series">ENGLISH GRAMMAR SERIES</span>
 
-        <div class="stats">
-            <div class="stat">
-                Score: <span id="score">0</span>
-            </div>
+    <h1>PART 5 - ADJECTIVE</h1>
 
-            <div class="stat">
-                Correct: <span id="correct">0</span>
-            </div>
+    <h2>(বিশেষণ)</h2>
 
-            <div class="stat">
-                Attempted: <span id="attempted">0</span>
-            </div>
-        </div>
+    <p class="cover-description">
+        English Grammar &amp; Bangla Grammar Equivalent Guide
+    </p>
+</section>
 
+
+<!-- =========================================================
+     GOAL
+========================================================= -->
+
+<section class="goal reveal">
+    <div class="goal-title">☑ লক্ষ্য:</div>
+
+    Adjective (বিশেষণ) কী, কীভাবে চেনা যায়, কত প্রকার,
+    Noun/Pronoun-কে কীভাবে বিশেষিত করে, Adjective-এর Degree of Comparison,
+    Adjective-এর অবস্থান, এবং বাক্যে Adjective-এর গুরুত্বপূর্ণ ব্যবহার সম্পর্কে
+    পরিষ্কার ধারণা তৈরি করা।
+</section>
+
+
+<!-- =========================================================
+     LESSON 1
+========================================================= -->
+
+<section class="lesson reveal left">
+
+<div class="lesson-header">
+    <span class="lesson-number">LESSON 1</span>
+    <div class="lesson-title">WHAT IS AN ADJECTIVE?</div>
+    <div class="lesson-subtitle">
+        (Adjective কী, কীভাবে শনাক্ত করা যায় ও এর কাজ)
+    </div>
+</div>
+
+<div class="definition">
+    <span class="label">☑ Definition:</span>
+
+    <p class="english">
+        An Adjective is a word that describes or modifies a Noun or Pronoun.
+    </p>
+
+    <p>
+        Adjective (বিশেষণ) হলো এমন একটি শব্দ, যা কোনো Noun (বিশেষ্য) বা
+        Pronoun (সর্বনাম)-এর গুণ, দোষ, অবস্থা, সংখ্যা, পরিমাণ বা পরিচয় প্রকাশ করে।
+    </p>
+</div>
+
+<div class="subheading">Examples:</div>
+
+<ul class="example-list">
+    <li><span class="english">good</span> (ভালো)</li>
+    <li><span class="english">bad</span> (খারাপ)</li>
+    <li><span class="english">beautiful</span> (সুন্দর)</li>
+    <li><span class="english">big</span> (বড়)</li>
+    <li><span class="english">small</span> (ছোট)</li>
+    <li><span class="english">honest</span> (সৎ)</li>
+    <li><span class="english">three</span> (তিন)</li>
+    <li><span class="english">some</span> (কিছু)</li>
+</ul>
+
+<div class="subheading">Sentence Examples:</div>
+
+<ul class="example-list">
+    <li>
+        <span class="english">Rahim is a good boy.</span>
+        (good boy-এর গুণ বোঝাচ্ছে।)
+    </li>
+    <li>
+        <span class="english">She has a beautiful dress.</span>
+        (beautiful dress-এর গুণ বোঝাচ্ছে।)
+    </li>
+</ul>
+
+<div class="rule">
+    ☑ সহজে মনে রাখো:
+    <strong>Adjective = Noun/Pronoun-এর গুণ, অবস্থা, সংখ্যা বা পরিমাণ বোঝায়।</strong>
+</div>
+
+<div class="subheading">How to Identify an Adjective (Adjective শনাক্তকরণ)</div>
+
+<p>Noun সম্পর্কে প্রশ্ন করো:</p>
+
+<ul class="example-list">
+    <li><span class="english">What kind?</span> (কেমন?)</li>
+    <li><span class="english">Which?</span> (কোনটি?)</li>
+    <li><span class="english">How many?</span> (কতটি?)</li>
+    <li><span class="english">How much?</span> (কতটুকু?)</li>
+</ul>
+
+<div class="subheading">Sentence Examples:</div>
+
+<ul class="example-list">
+    <li>
+        <span class="english">He is a good boy.</span>
+        (What kind of boy? good | good = Adjective)
+    </li>
+    <li>
+        <span class="english">I have three books.</span>
+        (How many books? three | three = Adjective)
+    </li>
+    <li>
+        <span class="english">This book is interesting.</span>
+        (What kind of book? interesting | interesting = Adjective)
+    </li>
+</ul>
+
+</section>
+
+
+<!-- =========================================================
+     LESSON 2
+========================================================= -->
+
+<section class="lesson reveal right">
+
+<div class="lesson-header">
+    <span class="lesson-number">LESSON 2</span>
+    <div class="lesson-title">KINDS OF ADJECTIVE: QUALITY, QUANTITY &amp; NUMBER</div>
+    <div class="lesson-subtitle">
+        (গুণবাচক, পরিমাণবাচক ও সংখ্যাবাচক বিশেষণ)
+    </div>
+</div>
+
+<div class="subheading">প্রধান প্রকারসমূহ:</div>
+
+<ol class="example-list">
+    <li>Adjective of Quality (গুণবাচক)</li>
+    <li>Adjective of Quantity (পরিমাণবাচক)</li>
+    <li>Adjective of Number (সংখ্যাবাচক)</li>
+    <li>Demonstrative Adjective (নির্দেশক)</li>
+    <li>Possessive Adjective (অধিকার/সম্বন্ধসূচক)</li>
+    <li>Interrogative Adjective (প্রশ্নবাচক)</li>
+    <li>Distributive Adjective (বণ্টনবাচক)</li>
+    <li>Proper Adjective (নামবাচক)</li>
+    <li>Compound Adjective (যৌগিক)</li>
+</ol>
+
+<div class="kind-title">A. ADJECTIVE OF QUALITY (গুণবাচক বিশেষণ)</div>
+
+<p>
+    যে Adjective কোনো Noun-এর গুণ, দোষ, অবস্থা বা বৈশিষ্ট্য বোঝায়,
+    তাকে Adjective of Quality বলে। প্রশ্ন:
+    <span class="english">What kind?</span> কেমন?
+</p>
+
+<p>
+    Examples:
+    <span class="english">good, bad, beautiful, honest, brave, clever, large, small, red</span>
+</p>
+
+<ul class="example-list">
+    <li><span class="english">He is an honest man.</span> (সে একজন সৎ মানুষ।)</li>
+    <li><span class="english">She is beautiful.</span> (সে সুন্দর।)</li>
+    <li><span class="english">It is a large house.</span> (এটি একটি বড় বাড়ি।)</li>
+</ul>
+
+<div class="kind-title">B. ADJECTIVE OF QUANTITY (পরিমাণবাচক বিশেষণ)</div>
+
+<p>
+    যে Adjective কোনো Uncountable Noun-এর পরিমাণ বোঝায়,
+    তাকে Adjective of Quantity বলে।
+    প্রশ্ন: <span class="english">How much?</span> → কতটুকু?
+</p>
+
+<p>
+    Examples:
+    <span class="english">some water</span> (কিছু পানি),
+    <span class="english">much money</span> (অনেক টাকা),
+    <span class="english">little milk</span> (অল্প দুধ),
+    <span class="english">enough food</span> (যথেষ্ট খাবার)
+</p>
+
+<ul class="example-list">
+    <li><span class="english">I have some money.</span> (আমার কিছু টাকা আছে।)</li>
+    <li><span class="english">There is little water.</span> (অল্প পানি আছে।)</li>
+</ul>
+
+<div class="kind-title">C. ADJECTIVE OF NUMBER (সংখ্যাবাচক বিশেষণ)</div>
+
+<p>
+    যে Adjective কোনো Countable Noun-এর সংখ্যা বা ক্রম বোঝায়,
+    তাকে Adjective of Number বলে।
+    প্রশ্ন: <span class="english">How many?</span> (কতটি?) /
+    <span class="english">Which order?</span> (কততম?)
+</p>
+
+<p>
+    Cardinal:
+    <span class="english">one book, two books, three boys</span>
+</p>
+
+<p>
+    Ordinal:
+    <span class="english">first boy, second chapter, third lesson</span>
+</p>
+
+<ul class="example-list">
+    <li><span class="english">I have two books.</span> (আমার দুটি বই আছে।)</li>
+    <li><span class="english">He came first.</span> (সে প্রথম এসেছে।)</li>
+</ul>
+
+<div class="kind-title">D. CARDINAL &amp; ORDINAL NUMBER</div>
+
+<ul class="example-list">
+    <li>
+        Cardinal Number (সংখ্যা বোঝায়):
+        <span class="english">one, two, three, four, five</span>
+    </li>
+    <li>
+        Ordinal Number (ক্রম বোঝায়):
+        <span class="english">first, second, third, fourth, fifth</span>
+    </li>
+    <li>
+        <span class="english">I have three books.</span> (three = Cardinal)
+    </li>
+    <li>
+        <span class="english">This is my first book.</span> (first = Ordinal)
+    </li>
+</ul>
+
+</section>
+
+
+<!-- =========================================================
+     LESSON 3
+========================================================= -->
+
+<section class="lesson reveal left">
+
+<div class="lesson-header">
+    <span class="lesson-number">LESSON 3</span>
+    <div class="lesson-title">
+        DEMONSTRATIVE, POSSESSIVE &amp; INTERROGATIVE ADJECTIVE
+    </div>
+    <div class="lesson-subtitle">
+        (নির্দেশক, অধিকারসূচক ও প্রশ্নবাচক বিশেষণ)
+    </div>
+</div>
+
+<div class="kind-title">A. DEMONSTRATIVE ADJECTIVE (নির্দেশক বিশেষণ)</div>
+
+<p>
+    যে Adjective কোনো Noun-কে নির্দেশ করে, তাকে Demonstrative Adjective বলে।
+    প্রধান শব্দসমূহ:
+    <span class="english">this, that, these, those</span>
+</p>
+
+<p>
+    Examples:
+    <span class="english">this book</span> (এই বই),
+    <span class="english">that house</span> (ওই বাড়ি),
+    <span class="english">these books</span> (এই বইগুলো),
+    <span class="english">those boys</span> (ওই ছেলেরা)
+</p>
+
+<div class="rule">
+    ☑ Rule:
+    <span class="english">this/that + Singular Noun | these/those + Plural Noun</span>
+</div>
+
+<div class="kind-title">B. POSSESSIVE ADJECTIVE (অধিকার/সম্বন্ধসূচক বিশেষণ)</div>
+
+<p>
+    যে শব্দ মালিকানা বা সম্পর্ক বোঝায় এবং Noun-এর আগে বসে,
+    তাকে Possessive Adjective বলে।
+    প্রধান শব্দসমূহ:
+    <span class="english">my, your, his, her, its, our, their</span>
+</p>
+
+<ul class="example-list">
+    <li><span class="english">My book is new.</span> (আমার বইটি নতুন।)</li>
+    <li><span class="english">His father is a teacher.</span> (তার বাবা একজন শিক্ষক।)</li>
+    <li><span class="english">Their house is big.</span> (তাদের বাড়ি বড়।)</li>
+</ul>
+
+<div class="note">
+    মনে রাখো:
+    <span class="english">my book | your pen | his car | her bag | our school | their house</span>
+</div>
+
+<div class="kind-title">C. INTERROGATIVE ADJECTIVE (প্রশ্নবাচক বিশেষণ)</div>
+
+<p>
+    যে শব্দ Noun-এর আগে বসে প্রশ্ন করে, তাকে Interrogative Adjective বলে।
+    প্রধান শব্দসমূহ:
+    <span class="english">what, which, whose</span>
+</p>
+
+<ul class="example-list">
+    <li><span class="english">What book do you want?</span> (তুমি কোন বই চাও?)</li>
+    <li><span class="english">Which pen is yours?</span> (কোন কলমটি তোমার?)</li>
+    <li><span class="english">Whose book is this?</span> (এটি কার বই?)</li>
+</ul>
+
+<div class="note">
+    মনে রাখো: এখানে
+    <span class="english">what/which/whose</span>-এর পরে সরাসরি Noun আছে,
+    তাই এগুলো Adjective হিসেবে কাজ করছে।
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     LESSON 4
+========================================================= -->
+
+<section class="lesson reveal right">
+
+<div class="lesson-header">
+    <span class="lesson-number">LESSON 4</span>
+    <div class="lesson-title">
+        DISTRIBUTIVE, PROPER &amp; COMPOUND ADJECTIVE
+    </div>
+    <div class="lesson-subtitle">
+        (বণ্টনবাচক, নামবাচক ও যৌগিক বিশেষণ)
+    </div>
+</div>
+
+<div class="kind-title">A. DISTRIBUTIVE ADJECTIVE (বণ্টনবাচক বিশেষণ)</div>
+
+<p>
+    যে Adjective কোনো ব্যক্তি বা বস্তুকে একটি একটি করে নির্দেশ করে,
+    তাকে Distributive Adjective বলে।
+    প্রধান শব্দসমূহ:
+    <span class="english">each, every, either, neither</span>
+</p>
+
+<ul class="example-list">
+    <li><span class="english">Each student has a book.</span> (প্রত্যেক ছাত্রের একটি বই আছে।)</li>
+    <li><span class="english">Every boy was present.</span> (প্রত্যেক ছেলে উপস্থিত ছিল।)</li>
+    <li><span class="english">Either answer is correct.</span> (দুটি উত্তরের যেকোনো একটি সঠিক।)</li>
+    <li><span class="english">Neither answer is correct.</span> (কোনো উত্তরই সঠিক নয়।)</li>
+</ul>
+
+<div class="kind-title">B. PROPER ADJECTIVE (নামবাচক বিশেষণ)</div>
+
+<p>
+    Proper Noun থেকে তৈরি Adjective-কে Proper Adjective বলে।
+</p>
+
+<p>
+    Examples:
+    <span class="english">
+        Bangladesh → Bangladeshi |
+        India → Indian |
+        Japan → Japanese |
+        England → English |
+        America → American
+    </span>
+</p>
+
+<ul class="example-list">
+    <li><span class="english">Bangladeshi people</span> (বাংলাদেশের মানুষ)</li>
+    <li><span class="english">Indian food</span> (ভারতীয় খাবার)</li>
+    <li><span class="english">English language</span> (ইংরেজি ভাষা)</li>
+</ul>
+
+<div class="note">
+    মনে রাখো: Proper Adjective সাধারণত Capital Letter দিয়ে শুরু হয়।
+</div>
+
+<div class="kind-title">C. COMPOUND ADJECTIVE (যৌগিক বিশেষণ)</div>
+
+<p>
+    দুই বা ততোধিক শব্দ মিলে একটি Adjective-এর কাজ করলে তাকে Compound Adjective বলে।
+</p>
+
+<p>
+    Examples:
+    <span class="english">
+        well-known (সুপরিচিত),
+        five-year-old (পাঁচ বছর বয়সী),
+        hard-working (পরিশ্রমী),
+        English-speaking (ইংরেজিভাষী)
+    </span>
+</p>
+
+<ul class="example-list">
+    <li>
+        <span class="english">He is a well-known teacher.</span>
+        (তিনি একজন সুপরিচিত শিক্ষক।)
+    </li>
+</ul>
+
+</section>
+
+
+<!-- =========================================================
+     LESSON 5
+========================================================= -->
+
+<section class="lesson reveal left">
+
+<div class="lesson-header">
+    <span class="lesson-number">LESSON 5</span>
+    <div class="lesson-title">ADJECTIVE POSITION &amp; USE</div>
+    <div class="lesson-subtitle">(বাক্যে Adjective-এর অবস্থান)</div>
+</div>
+
+<p>
+    Adjective সাধারণত দুইভাবে ব্যবহৃত হয়:
+    <span class="structure">1. Before Noun (a good boy)</span>
+    |
+    <span class="structure">2. After Linking Verb (The boy is good)</span>
+</p>
+
+<div class="kind-title">A. ATTRIBUTIVE ADJECTIVE (বিশেষ্যের আগে Adjective)</div>
+
+<p>
+    যখন Adjective সরাসরি Noun-এর আগে বসে, তখন তাকে Attributive Use বলা হয়।
+</p>
+
+<p>
+    Examples:
+    <span class="english">
+        a beautiful girl, a big house, a red flower, an honest man
+    </span>
+</p>
+
+<div class="note">
+    Note: beautiful girl (Noun)-কে বিশেষিত করছে।
+</div>
+
+<div class="kind-title">B. PREDICATIVE ADJECTIVE (বিধেয় হিসেবে Adjective)</div>
+
+<p>
+    যখন Adjective Linking Verb-এর পরে বসে Subject-এর গুণ বা অবস্থা প্রকাশ করে,
+    তখন তাকে Predicative Use বলে।
+</p>
+
+<ul class="example-list">
+    <li><span class="english">The girl is beautiful.</span> (beautiful = Predicative Adjective)</li>
+    <li><span class="english">The house is big.</span> (big = Predicative Adjective)</li>
+    <li><span class="english">He became angry.</span> (angry = Predicative Adjective)</li>
+</ul>
+
+<div class="kind-title">C. ADJECTIVE AFTER LINKING VERB</div>
+
+<p>
+    Common Linking Verbs:
+    <span class="english">
+        be, become, seem, look, feel, appear, remain
+    </span>
+</p>
+
+<ul class="example-list">
+    <li><span class="english">She is happy.</span></li>
+    <li><span class="english">He became angry.</span></li>
+    <li><span class="english">You look tired.</span></li>
+    <li><span class="english">I feel sick.</span></li>
+    <li><span class="english">He seems honest.</span></li>
+</ul>
+
+<div class="rule">
+    মনে রাখো: এই Linking Verb গুলোর পর Adverb নয়, Adjective ব্যবহৃত হয়।
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     LESSON 6
+========================================================= -->
+
+<section class="lesson reveal right">
+
+<div class="lesson-header">
+    <span class="lesson-number">LESSON 6</span>
+    <div class="lesson-title">DEGREES OF COMPARISON</div>
+    <div class="lesson-subtitle">(তুলনার মাত্রা)</div>
+</div>
+
+<p>
+    Adjective-এর তিনটি Degree রয়েছে:
+    <span class="structure">Positive Degree (tall)</span>
+    <span class="structure">Comparative Degree (taller)</span>
+    <span class="structure">Superlative Degree (tallest)</span>
+</p>
+
+<div class="degree-box">
+    <div class="degree-card">
+        <strong>Positive Degree</strong>
+        <span>tall</span>
     </div>
 
-    <div class="progress-wrapper">
-
-        <div class="progress-info">
-            <span>Progress</span>
-            <span id="progressText">Question 1</span>
-        </div>
-
-        <div class="progress-track">
-            <div class="progress-bar" id="progressBar"></div>
-        </div>
-
+    <div class="degree-card">
+        <strong>Comparative Degree</strong>
+        <span>taller</span>
     </div>
 
-    <main class="glass-card question-card">
-
-        <div id="questionArea"></div>
-
-        <div class="controls">
-
-            <button class="btn previous" id="previousBtn">
-                ← Previous
-            </button>
-
-            <button class="btn next" id="nextBtn">
-                Next →
-            </button>
-
-        </div>
-
-    </main>
-
-    <div class="footer">
-        Part 5 — Noun • Infinity Practice
+    <div class="degree-card">
+        <strong>Superlative Degree</strong>
+        <span>tallest</span>
     </div>
+</div>
+
+<div class="kind-title">A. POSITIVE DEGREE</div>
+
+<p>
+    শুধু সাধারণ গুণ বোঝালে, অর্থাৎ কারও সঙ্গে তুলনা না করলে Positive Degree হয়।
+</p>
+
+<ul class="example-list">
+    <li>
+        <span class="english">Rahim is tall.</span>
+        (রহিম লম্বা। এখানে কারও সঙ্গে তুলনা করা হচ্ছে না।)
+    </li>
+</ul>
+
+<div class="kind-title">B. COMPARATIVE DEGREE</div>
+
+<p>
+    দুই ব্যক্তি বা বস্তুর মধ্যে তুলনা করলে Comparative Degree হয়।
+    সাধারণত: Adjective + er
+</p>
+
+<p>
+    Examples:
+    <span class="english">
+        tall → taller | small → smaller | fast → faster
+    </span>
+</p>
+
+<ul class="example-list">
+    <li>
+        <span class="english">Rahim is taller than Karim.</span>
+        (রহিম করিমের চেয়ে লম্বা।)
+    </li>
+</ul>
+
+<div class="note">
+    মনে রাখো: Comparative-এর সাথে তুলনা প্রকাশে সাধারণত
+    <span class="english">than</span> ব্যবহৃত হয়।
+</div>
+
+<div class="kind-title">C. SUPERLATIVE DEGREE</div>
+
+<p>
+    তিন বা ততোধিক ব্যক্তি/বস্তুর মধ্যে সর্বোচ্চ মাত্রা বোঝালে
+    Superlative Degree হয়।
+    সাধারণত: the + Adjective + est
+</p>
+
+<p>
+    Examples:
+    <span class="english">
+        tall → tallest | small → smallest | fast → fastest
+    </span>
+</p>
+
+<ul class="example-list">
+    <li>
+        <span class="english">Rahim is the tallest boy in the class.</span>
+        (রহিম শ্রেণির সবচেয়ে লম্বা ছেলে।)
+    </li>
+</ul>
+
+</section>
+
+
+<!-- =========================================================
+     LESSON 7
+========================================================= -->
+
+<section class="lesson reveal left">
+
+<div class="lesson-header">
+    <span class="lesson-number">LESSON 7</span>
+    <div class="lesson-title">
+        MORE/MOST, IRREGULAR COMPARISON &amp; SPELLING RULES
+    </div>
+    <div class="lesson-subtitle">
+        (দীর্ঘ শব্দ, অনিয়মিত তুলনা ও বানানের নিয়ম)
+    </div>
+</div>
+
+<div class="kind-title">A. MORE &amp; MOST</div>
+
+<p>
+    দীর্ঘ Adjective-এর (একাধিক Syllable) ক্ষেত্রে সাধারণত more / most ব্যবহৃত হয়।
+</p>
+
+<p>
+    Examples:
+    <span class="english">
+        beautiful → more beautiful → most beautiful |
+        important → more important → most important
+    </span>
+</p>
+
+<ul class="example-list">
+    <li>
+        <span class="english">This book is more interesting.</span>
+        (এই বইটি আরও বেশি আকর্ষণীয়।)
+    </li>
+    <li>
+        <span class="english">This is the most beautiful flower.</span>
+        (এটি সবচেয়ে সুন্দর ফুল।)
+    </li>
+</ul>
+
+<div class="kind-title">B. IRREGULAR COMPARISON (অনিয়মিত তুলনা)</div>
+
+<p>কিছু Adjective কোনো নির্দিষ্ট নিয়ম মেনে পরিবর্তিত হয় না:</p>
+
+<table class="degree-table">
+    <tr>
+        <th>Positive</th>
+        <th>Comparative</th>
+        <th>Superlative</th>
+    </tr>
+    <tr>
+        <td class="english">good</td>
+        <td class="english">better</td>
+        <td class="english">best</td>
+    </tr>
+    <tr>
+        <td class="english">bad</td>
+        <td class="english">worse</td>
+        <td class="english">worst</td>
+    </tr>
+    <tr>
+        <td class="english">little</td>
+        <td class="english">less</td>
+        <td class="english">least</td>
+    </tr>
+    <tr>
+        <td class="english">many/much</td>
+        <td class="english">more</td>
+        <td class="english">most</td>
+    </tr>
+    <tr>
+        <td class="english">far</td>
+        <td class="english">farther/further</td>
+        <td class="english">farthest/furthest</td>
+    </tr>
+</table>
+
+<p class="english">
+    He is good. He is better. He is the best.
+</p>
+
+<div class="kind-title">C. SPELLING RULES (বানানের নিয়মাবলী)</div>
+
+<ul class="example-list">
+    <li>
+        Rule 1 (সাধারণ নিয়ম):
+        <span class="english">tall → taller → tallest</span>
+    </li>
+    <li>
+        Rule 2 (শেষে 'e' থাকলে):
+        <span class="english">large → larger → largest</span>
+    </li>
+    <li>
+        Rule 3 (Consonant + 'y' হলে):
+        <span class="english">happy → happier → happiest</span>
+        ('y' উঠে 'i' হয়)
+    </li>
+    <li>
+        Rule 4 (CVC গঠন থাকলে):
+        <span class="english">big → bigger → biggest</span>
+        (শেষের consonant দ্বিগুণ হয়)
+    </li>
+</ul>
+
+</section>
+
+
+<!-- =========================================================
+     LESSON 8
+========================================================= -->
+
+<section class="lesson reveal right">
+
+<div class="lesson-header">
+    <span class="lesson-number">LESSON 8</span>
+    <div class="lesson-title">
+        SPECIAL ADJECTIVE STRUCTURES &amp; PREPOSITION
+    </div>
+    <div class="lesson-subtitle">
+        (বিশেষ গঠন ও Adjective-এর সঙ্গে Preposition)
+    </div>
+</div>
+
+<div class="kind-title">A. AS ... AS (সমান তুলনা)</div>
+
+<p>
+    সমান মাত্রা বোঝাতে:
+    <span class="structure">as + Adjective + as</span>
+</p>
+
+<ul class="example-list">
+    <li>
+        <span class="english">Rahim is as tall as Karim.</span>
+        (রহিম করিমের মতোই লম্বা।)
+    </li>
+</ul>
+
+<p>অসমান মাত্রা (Negative):</p>
+
+<ul class="example-list">
+    <li>
+        <span class="english">Rahim is not as tall as Karim.</span>
+        (রহিম করিমের মতো এত লম্বা নয়।)
+    </li>
+</ul>
+
+<div class="kind-title">B. TOO/ENOUGH</div>
+
+<p>
+    <span class="structure">too = প্রয়োজনের চেয়ে বেশি</span>
+    (Structure: <span class="english">too + Adjective</span>)
+</p>
+
+<ul class="example-list">
+    <li>
+        <span class="english">He is too weak to walk.</span>
+        (সে হাঁটার জন্য অতিরিক্ত দুর্বল।)
+    </li>
+</ul>
+
+<p>
+    <span class="structure">enough = প্রয়োজনমতো যথেষ্ট</span>
+    (Structure: <span class="english">Adjective + enough</span>)
+</p>
+
+<ul class="example-list">
+    <li>
+        <span class="english">He is strong enough to walk.</span>
+        (সে হাঁটার জন্য যথেষ্ট শক্তিশালী।)
+    </li>
+</ul>
+
+<div class="kind-title">C. ADJECTIVE + PREPOSITION (Appropriate Preposition)</div>
+
+<p>
+    কিছু Adjective-এর পরে নির্দিষ্ট Preposition ব্যবহৃত হয়:
+    <span class="english">
+        good at, interested in, afraid of, proud of,
+        angry with, famous for, different from
+    </span>
+</p>
+
+<ul class="example-list">
+    <li>
+        <span class="english">He is good at English.</span>
+        (সে ইংরেজিতে ভালো।)
+    </li>
+    <li>
+        <span class="english">She is interested in science.</span>
+        (সে বিজ্ঞানে আগ্রহী।)
+    </li>
+    <li>
+        <span class="english">I am proud of you.</span>
+        (আমি তোমার জন্য গর্বিত।)
+    </li>
+</ul>
+
+</section>
+
+
+<!-- =========================================================
+     LESSON 9
+========================================================= -->
+
+<section class="lesson reveal left">
+
+<div class="lesson-header">
+    <span class="lesson-number">LESSON 9</span>
+    <div class="lesson-title">
+        ADJECTIVE ORDER, PARTICIPIAL ADJECTIVE, ADJECTIVE vs ADVERB &amp; DETERMINER
+    </div>
+    <div class="lesson-subtitle">
+        (Adjective-এর ক্রম, কৃদন্ত বিশেষণ এবং পার্থক্য)
+    </div>
+</div>
+
+<div class="kind-title">A. ADJECTIVE ORDER (একাধিক Adjective-এর ক্রম)</div>
+
+<p>
+    একটি Noun-এর আগে একাধিক Adjective থাকলে সাধারণত এই ক্রম অনুসরণ করা হয়:
+</p>
+
+<div class="rule english">
+    Opinion → Size → Age → Shape → Color → Origin → Material → Noun
+</div>
+
+<p>
+    <span class="english">
+        a beautiful small old red wooden box
+    </span>
+    (beautiful = Opinion, small = Size, old = Age, red = Color,
+    wooden = Material, box = Noun)
+</p>
+
+<div class="kind-title">B. PARTICIPIAL ADJECTIVE (কৃদন্ত বিশেষণ)</div>
+
+<p>
+    Verb-এর -ing বা V3 form অনেক সময় Adjective-এর মতো কাজ করে।
+    যেমন:
+    <span class="english">
+        interesting, boring, exciting, tired, broken, closed
+    </span>
+</p>
+
+<ul class="example-list">
+    <li>
+        <span class="english">The movie is interesting.</span>
+        (সিনেমাটি আকর্ষণীয়।)
+    </li>
+    <li>
+        <span class="english">I am interested in the movie.</span>
+        (আমি সিনেমাটিতে আগ্রহী।)
+    </li>
+</ul>
+
+<div class="important">
+    <strong>গুরুত্বপূর্ণ পার্থক্য:</strong>
+    <span class="english">interesting</span> = যা আগ্রহ সৃষ্টি করে (বস্তু/বিষয়) |
+    <span class="english">interested</span> = যে আগ্রহ অনুভব করে (ব্যক্তি)
+</div>
+
+<div class="kind-title">C. ADJECTIVE vs ADVERB</div>
+
+<p>
+    <strong>Adjective:</strong> Noun/Pronoun-কে বিশেষিত করে
+    (e.g.,
+    <span class="english">He is a careful driver.</span>
+    careful = Adjective)
+</p>
+
+<p>
+    <strong>Adverb:</strong> Verb/Adjective/Adverb-কে বিশেষিত করে
+    (e.g.,
+    <span class="english">He drives carefully.</span>
+    carefully = Adverb)
+</p>
+
+<div class="kind-title">D. ADJECTIVE vs DETERMINER</div>
+
+<p>
+    কিছু শব্দ Noun-এর আগে বসে তাকে নির্দেশ বা নির্ধারণ করে
+    (e.g.,
+    <span class="english">this book, my book, some books, many books</span>)
+</p>
+
+<div class="note">
+    ☑ Note: Modern Grammar-এ এই শব্দগুলোকে Determiner বলা হয়,
+    কিন্তু Traditional Grammar-এ এগুলোকে Adjective-এর বিভিন্ন প্রকার হিসেবে গণ্য করা হয়।
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     LESSON 10
+========================================================= -->
+
+<section class="lesson reveal right">
+
+<div class="lesson-header">
+    <span class="lesson-number">LESSON 10</span>
+    <div class="lesson-title">
+        COMMON MISTAKES, PRACTICE &amp; MASTER REVISION
+    </div>
+    <div class="lesson-subtitle">
+        (সাধারণ ভুল, অনুশীলনী ও একনজরে পুরো Adjective)
+    </div>
+</div>
+
+<div class="kind-title">A. COMMON MISTAKES (সাধারণ ভুল ও সংশোধন)</div>
+
+<table class="error-table">
+    <tr>
+        <th>ভুল বাক্য (Incorrect ✗)</th>
+        <th>সঠিক বাক্য (Correct ✓)</th>
+    </tr>
+
+    <tr>
+        <td class="incorrect english">He is a beautifully boy.</td>
+        <td class="correct english">He is a beautiful boy.</td>
+    </tr>
+
+    <tr>
+        <td class="incorrect english">She is a carefully girl.</td>
+        <td class="correct english">She is a careful girl.</td>
+    </tr>
+
+    <tr>
+        <td class="incorrect english">This books are new.</td>
+        <td class="correct english">These books are new.</td>
+    </tr>
+
+    <tr>
+        <td class="incorrect english">This book is more better.</td>
+        <td class="correct english">This book is better.</td>
+    </tr>
+
+    <tr>
+        <td class="incorrect english">He is the most tallest boy.</td>
+        <td class="correct english">He is the tallest boy.</td>
+    </tr>
+
+    <tr>
+        <td class="incorrect english">She is good in English.</td>
+        <td class="correct english">She is good at English.</td>
+    </tr>
+</table>
+
+<div class="kind-title">B. ADJECTIVE QUICK CLASSIFICATION &amp; FINAL PRACTICE</div>
+
+<div class="rule">
+    <strong>ADJECTIVE STRUCTURE:</strong>
+    Quality, Quantity, Number (Cardinal / Ordinal), Demonstrative,
+    Possessive, Interrogative, Distributive, Proper, Compound
+</div>
+
+<div class="rule">
+    <strong>DEGREE STRUCTURE:</strong>
+    Positive → Comparative → Superlative
+</div>
+
+<div class="practice">
+
+    <div class="practice-title">☑ FINAL PRACTICE (অনুশীলনী):</div>
+
+    <ol>
+        <li>
+            Identify the Adjective:
+            <span class="english">
+                Rahim is a good boy. / Dhaka is a large city. /
+                She has a beautiful dress. / I have three books.
+            </span>
+        </li>
+
+        <li>
+            Identify the Kind:
+            <span class="english">
+                good, some, three, this, my, which, each, Bangladeshi
+            </span>
+        </li>
+
+        <li>
+            Make Comparative &amp; Superlative:
+            <span class="english">
+                tall, small, big, happy, beautiful, good, bad, little
+            </span>
+        </li>
+
+        <li>
+            Fill in the blanks:
+            <span class="english">
+                He is a ___ boy. (good) |
+                I have ___ books. (three) |
+                Rahim is ___ than Karim. (tall)
+            </span>
+        </li>
+
+        <li>
+            Correct the mistakes:
+            <span class="english">
+                He is a beautifully boy.
+                This books are new.
+                He is more better than me.
+            </span>
+        </li>
+    </ol>
 
 </div>
 
+</section>
+
+
+<!-- =========================================================
+     KEY TAKEAWAY
+========================================================= -->
+
+<section class="takeaway reveal">
+
+    <h2>ADJECTIVE - KEY TAKEAWAY (মূল কথা)</h2>
+
+    <p>
+        Adjective (বিশেষণ) হলো এমন শব্দ, যা Noun বা Pronoun-এর
+        গুণ, দোষ, অবস্থা, সংখ্যা, পরিমাণ বা পরিচয় প্রকাশ করে।
+    </p>
+
+    <div class="final-example">
+        <strong>উদাহরণ বাক্য:</strong>
+
+        <p class="english">
+            The very beautiful girl sings well.
+        </p>
+
+        <p>
+            (girl = Noun, beautiful = Adjective, very = Adverb,
+            sings = Verb, well = Adverb)
+        </p>
+    </div>
+
+</section>
+
+</div>
+</main>
+
 
 <script>
-
 /* =========================================================
-   PART 5 — NOUN
-   INFINITE QUESTION GENERATOR
+   SMOOTH SCROLL ANIMATION
 ========================================================= */
 
+const revealElements = document.querySelectorAll(".reveal");
 
-/* ---------------------------------------------------------
-   Allowed Names
---------------------------------------------------------- */
-
-const names = [
-    "Firoz",
-    "Fatiha",
-    "Fatema",
-    "Jui",
-    "Ema",
-    "Rupa",
-    "Moksed",
-    "Ferjousi",
-    "Jannati",
-    "Mini",
-    "Miraz",
-    "Mujahid",
-    "Milon",
-    "Hannan",
-    "Joba",
-    "Tanzila",
-    "Rina",
-    "Tania",
-    "Taslima"
-];
-
-
-/* ---------------------------------------------------------
-   Question History
---------------------------------------------------------- */
-
-let questions = [];
-let currentIndex = 0;
-
-let score = 0;
-let correctCount = 0;
-let attempted = 0;
-
-
-/* ---------------------------------------------------------
-   Random Helper
---------------------------------------------------------- */
-
-function randomItem(array) {
-    return array[Math.floor(Math.random() * array.length)];
-}
-
-function shuffle(array) {
-    return [...array].sort(() => Math.random() - 0.5);
-}
-
-
-/* ---------------------------------------------------------
-   Question Templates
---------------------------------------------------------- */
-
-const generators = [
-
-    /* 1. Identify Common Noun */
-
-    function() {
-
-        const data = [
-            {
-                sentence: `${randomItem(names)} bought a new book.`,
-                answer: "book",
-                options: ["Firoz", "book", "new", "bought"],
-                explanation:
-                "‘Book’ হলো Common Noun। কারণ এটি কোনো নির্দিষ্ট একটি বইয়ের নাম নয়; সাধারণভাবে একটি বইকে বোঝাচ্ছে। ‘Firoz’ হলো Proper Noun, ‘new’ adjective এবং ‘bought’ verb।"
-            },
-            {
-                sentence: `${randomItem(names)} visited the school.`,
-                answer: "school",
-                options: ["visited", "school", "the", randomItem(names)],
-                explanation:
-                "‘School’ এখানে Common Noun। কারণ এটি একটি সাধারণ প্রতিষ্ঠানের নাম বোঝাচ্ছে। কোনো নির্দিষ্ট স্কুলের নিজস্ব নাম দেওয়া হয়নি।"
-            },
-            {
-                sentence: `${randomItem(names)} opened the door.`,
-                answer: "door",
-                options: ["opened", "the", "door", randomItem(names)],
-                explanation:
-                "‘Door’ হলো Common Noun। এটি একটি সাধারণ দরজাকে বোঝাচ্ছে। ‘Opened’ verb এবং ব্যক্তির নামটি Proper Noun।"
+const observer = new IntersectionObserver(
+    (entries)=>{
+        entries.forEach(entry=>{
+            if(entry.isIntersecting){
+                entry.target.classList.add("active");
             }
-        ];
-
-        const item = randomItem(data);
-
-        return makeQuestion(
-            item.sentence,
-            "Which word is a Common Noun?",
-            item.answer,
-            item.options,
-            item.explanation
-        );
+        });
     },
-
-
-    /* 2. Proper Noun */
-
-    function() {
-
-        const person = randomItem(names);
-
-        return makeQuestion(
-            `${person} is reading an English grammar book.`,
-            "Which word is a Proper Noun?",
-            person,
-            [person, "reading", "grammar", "book"],
-            `‘${person}’ একটি নির্দিষ্ট ব্যক্তির নাম। তাই এটি Proper Noun। Proper Noun কোনো নির্দিষ্ট ব্যক্তি, স্থান, প্রতিষ্ঠান বা বস্তুর বিশেষ নাম বোঝায় এবং সাধারণত Capital Letter দিয়ে শুরু হয়।`
-        );
-    },
-
-
-    /* 3. Abstract Noun */
-
-    function() {
-
-        const items = [
-            ["Honesty", "Honesty is a great virtue."],
-            ["Kindness", "Kindness makes a person respected."],
-            ["Wisdom", "Wisdom is valuable."],
-            ["Beauty", "Beauty attracts attention."],
-            ["Freedom", "Freedom is precious."]
-        ];
-
-        const item = randomItem(items);
-
-        return makeQuestion(
-            item[1],
-            "Which word is an Abstract Noun?",
-            item[0],
-            [item[0], "person", "attention", "great"],
-            `‘${item[0]}’ হলো Abstract Noun। কারণ এটি এমন একটি গুণ, অবস্থা বা ধারণাকে বোঝায়, যাকে সরাসরি চোখে দেখা বা হাতে স্পর্শ করা যায় না।`
-        );
-    },
-
-
-    /* 4. Collective Noun */
-
-    function() {
-
-        const data = [
-            ["A team of players won the match.", "team"],
-            ["A flock of birds flew away.", "flock"],
-            ["A bunch of flowers was on the table.", "bunch"],
-            ["A group of students entered the room.", "group"],
-            ["A herd of cattle was moving.", "herd"]
-        ];
-
-        const item = randomItem(data);
-
-        return makeQuestion(
-            item[0],
-            "Which word is a Collective Noun?",
-            item[1],
-            [item[1], "match", "room", "moving"],
-            `‘${item[1]}’ হলো Collective Noun। এটি একাধিক ব্যক্তি, প্রাণী বা বস্তুকে একসঙ্গে একটি দল বা সমষ্টি হিসেবে বোঝায়।`
-        );
-    },
-
-
-    /* 5. Material Noun */
-
-    function() {
-
-        const data = [
-            ["Gold is a valuable metal.", "Gold"],
-            ["Water is essential for life.", "Water"],
-            ["Silver is used to make ornaments.", "Silver"],
-            ["Milk is good for health.", "Milk"],
-            ["Iron is a useful metal.", "Iron"]
-        ];
-
-        const item = randomItem(data);
-
-        return makeQuestion(
-            item[0],
-            "Which word is a Material Noun?",
-            item[1],
-            [item[1], "valuable", "life", "useful"],
-            `‘${item[1]}’ হলো Material Noun। Material Noun এমন পদার্থের নাম বোঝায়, যেগুলো দিয়ে বিভিন্ন বস্তু তৈরি করা যায় অথবা যেগুলো কোনো পদার্থকে নির্দেশ করে।`
-        );
-    },
-
-
-    /* 6. Countable Noun */
-
-    function() {
-
-        const data = [
-            ["I bought three books.", "books"],
-            ["Firoz has two pens.", "pens"],
-            ["Jui bought five apples.", "apples"],
-            ["Milon has four bags.", "bags"]
-        ];
-
-        const item = randomItem(data);
-
-        return makeQuestion(
-            item[0],
-            "Which word is a Countable Noun?",
-            item[1],
-            [item[1], "bought", "has", "five"],
-            `‘${item[1]}’ হলো Countable Noun। কারণ এটিকে সংখ্যা দিয়ে গণনা করা যায়—যেমন one ${item[1].replace(/s$/, "")}, two ${item[1]}, three ${item[1]} ইত্যাদি।`
-        );
-    },
-
-
-    /* 7. Uncountable Noun */
-
-    function() {
-
-        const data = [
-            ["We need some water.", "water"],
-            ["Fatiha bought some rice.", "rice"],
-            ["There is some milk in the glass.", "milk"],
-            ["We need some information.", "information"],
-            ["He gave me some advice.", "advice"]
-        ];
-
-        const item = randomItem(data);
-
-        return makeQuestion(
-            item[0],
-            "Which word is an Uncountable Noun?",
-            item[1],
-            [item[1], "some", "glass", "need"],
-            `‘${item[1]}’ সাধারণভাবে সরাসরি সংখ্যা দিয়ে গণনা করা যায় না। তাই এটি Uncountable Noun। এ ধরনের noun-এর আগে সাধারণত some, much, little ইত্যাদি ব্যবহার করা যায়।`
-        );
-    },
-
-
-    /* 8. Gender */
-
-    function() {
-
-        const data = [
-            ["The boy is playing.", "boy"],
-            ["The woman is reading.", "woman"],
-            ["The king ruled the country.", "king"],
-            ["The mother loves her child.", "mother"]
-        ];
-
-        const item = randomItem(data);
-
-        return makeQuestion(
-            item[0],
-            "Which word is a Masculine or Feminine Gender Noun?",
-            item[1],
-            [item[1], "playing", "reading", "country"],
-            `‘${item[1]}’ একটি Gender Noun। এটি ব্যক্তি বা প্রাণীর পুরুষ বা স্ত্রীলিঙ্গ বোঝাতে ব্যবহৃত হয়েছে।`
-        );
-    },
-
-
-    /* 9. Plural Noun */
-
-    function() {
-
-        const data = [
-            ["Firoz bought two books.", "books"],
-            ["There are three boxes.", "boxes"],
-            ["Jannati has two pens.", "pens"],
-            ["The children are playing.", "children"]
-        ];
-
-        const item = randomItem(data);
-
-        return makeQuestion(
-            item[0],
-            "Which word is a Plural Noun?",
-            item[1],
-            [item[1], "bought", "two", "playing"],
-            `‘${item[1]}’ একাধিক ব্যক্তি বা বস্তুকে বোঝাচ্ছে। তাই এটি Plural Noun। Plural Noun সাধারণত একের বেশি ব্যক্তি, প্রাণী বা বস্তুর নাম প্রকাশ করে।`
-        );
-    },
-
-
-    /* 10. Possessive Noun */
-
-    function() {
-
-        const person = randomItem(names);
-
-        return makeQuestion(
-            `This is ${person}'s book.`,
-            "Which word shows possession?",
-            `${person}'s`,
-            [`${person}'s`, "book", "This", "is"],
-            `‘${person}'s’ মালিকানা বা অধিকার বোঝাচ্ছে। তাই এটি Possessive form। Apostrophe + s (‘s) সাধারণত কোনো ব্যক্তি বা বস্তুর মালিকানা প্রকাশ করতে ব্যবহৃত হয়।`
-        );
-    },
-
-
-    /* 11. Noun as Subject */
-
-    function() {
-
-        const person = randomItem(names);
-
-        return makeQuestion(
-            `${person} reads English every day.`,
-            "Which word is the Subject of the sentence?",
-            person,
-            [person, "reads", "English", "day"],
-            `‘${person}’ বাক্যের Subject। কারণ কাজটি কে করছে—এই প্রশ্নের উত্তর হলো ‘${person}’। Subject সাধারণত কাজের কর্তা বা বাক্যের মূল বিষয়কে প্রকাশ করে।`
-        );
-    },
-
-
-    /* 12. Noun as Object */
-
-    function() {
-
-        const person = randomItem(names);
-
-        return makeQuestion(
-            `${person} reads a book.`,
-            "Which word is the Object of the verb?",
-            "book",
-            [person, "reads", "book", "a"],
-            "‘Book’ হলো verb ‘reads’-এর Object। কারণ ‘reads’ কাজটি কিসের ওপর করা হচ্ছে—এই প্রশ্নের উত্তর হলো ‘a book’।"
-        );
-    },
-
-
-    /* 13. Noun from Adjective */
-
-    function() {
-
-        const data = [
-            ["honest", "honesty"],
-            ["kind", "kindness"],
-            ["beautiful", "beauty"],
-            ["wise", "wisdom"],
-            ["brave", "bravery"]
-        ];
-
-        const item = randomItem(data);
-
-        return makeQuestion(
-            `The quality of being ${item[0]} is called ______.`,
-            "Choose the correct Abstract Noun.",
-            item[1],
-            [item[1], item[0], item[0] + "ly", item[0] + "ing"],
-            `‘${item[1]}’ হলো ‘${item[0]}’ থেকে গঠিত Abstract Noun। এটি একটি গুণ বা অবস্থার নাম প্রকাশ করে।`
-        );
-    },
-
-
-    /* 14. Singular Noun */
-
-    function() {
-
-        const data = [
-            ["a book", "book"],
-            ["a pen", "pen"],
-            ["a student", "student"],
-            ["a flower", "flower"]
-        ];
-
-        const item = randomItem(data);
-
-        return makeQuestion(
-            `${randomItem(names)} has ${item[0]}.`,
-            "Which word is a Singular Noun?",
-            item[1],
-            [item[1], "has", randomItem(names), "a"],
-            `‘${item[1]}’ একজন বা একটি বস্তুকে বোঝাচ্ছে। তাই এটি Singular Noun। Singular Noun সাধারণত এক ব্যক্তি, প্রাণী বা বস্তুর নাম প্রকাশ করে।`
-        );
-    },
-
-
-    /* 15. Proper vs Common */
-
-    function() {
-
-        const person = randomItem(names);
-
-        return makeQuestion(
-            `${person} lives in a village.`,
-            "Which word is a Proper Noun?",
-            person,
-            [person, "lives", "village", "a"],
-            `‘${person}’ একটি নির্দিষ্ট ব্যক্তির নাম। তাই এটি Proper Noun। অন্যদিকে ‘village’ সাধারণ একটি গ্রামের নাম বোঝায়, তাই এটি Common Noun।`
-        );
+    {
+        threshold:0.08,
+        rootMargin:"0px 0px -40px 0px"
     }
+);
 
-];
-
-
-/* ---------------------------------------------------------
-   Question Builder
---------------------------------------------------------- */
-
-function makeQuestion(sentence, question, answer, options, explanation) {
-
-    let uniqueOptions = [...new Set(options)];
-
-    while (uniqueOptions.length < 4) {
-
-        const extra = randomItem([
-            "teacher",
-            "student",
-            "book",
-            "school",
-            "river",
-            "garden"
-        ]);
-
-        if (!uniqueOptions.includes(extra)) {
-            uniqueOptions.push(extra);
-        }
-    }
-
-    uniqueOptions = shuffle(uniqueOptions).slice(0, 4);
-
-    return {
-        sentence,
-        question,
-        answer,
-        options: uniqueOptions,
-        explanation,
-        selected: null,
-        answered: false
-    };
-}
-
-
-/* ---------------------------------------------------------
-   Generate New Question
---------------------------------------------------------- */
-
-function generateQuestion() {
-
-    const generator = randomItem(generators);
-
-    let newQuestion = generator();
-
-    /*
-       Prevent immediate duplicate question
-    */
-
-    if (questions.length > 0) {
-
-        const last = questions[questions.length - 1];
-
-        let attempts = 0;
-
-        while (
-            newQuestion.sentence === last.sentence &&
-            attempts < 10
-        ) {
-            newQuestion = randomItem(generators)();
-            attempts++;
-        }
-    }
-
-    return newQuestion;
-}
-
-
-/* ---------------------------------------------------------
-   Add Question
---------------------------------------------------------- */
-
-function addQuestion() {
-
-    questions.push(generateQuestion());
-
-}
-
-
-/* ---------------------------------------------------------
-   Render Question
---------------------------------------------------------- */
-
-function renderQuestion(direction = "next") {
-
-    const question = questions[currentIndex];
-
-    const area = document.getElementById("questionArea");
-
-    /*
-       Replace content so only the inner question changes.
-       No page reload.
-    */
-
-    area.innerHTML = "";
-
-    const wrapper = document.createElement("div");
-
-    wrapper.className = "question-content";
-
-    wrapper.innerHTML = `
-
-        <div class="question-number">
-            Question ${currentIndex + 1}
-        </div>
-
-        <div class="question">
-            ${escapeHTML(question.question)}
-        </div>
-
-        <div class="question-bangla">
-            (${escapeHTML(question.sentence)})
-        </div>
-
-        <div class="options"></div>
-
-        ${
-            question.answered
-            ?
-            `
-            <div class="explanation">
-                <strong>Explanation:</strong><br>
-                ${question.explanation}
-            </div>
-            `
-            :
-            ""
-        }
-
-    `;
-
-    area.appendChild(wrapper);
-
-
-    const optionsContainer =
-        wrapper.querySelector(".options");
-
-
-    const letters = ["A", "B", "C", "D"];
-
-
-    question.options.forEach((option, index) => {
-
-        const button = document.createElement("button");
-
-        button.className = "option";
-
-        if (question.answered) {
-            button.classList.add("disabled");
-
-            if (option === question.answer) {
-                button.classList.add("correct");
-            }
-
-            if (
-                option === question.selected &&
-                option !== question.answer
-            ) {
-                button.classList.add("wrong");
-            }
-        }
-
-        button.innerHTML = `
-            <span class="option-letter">
-                ${letters[index]}
-            </span>
-
-            <span>
-                ${escapeHTML(option)}
-            </span>
-        `;
-
-        if (!question.answered) {
-
-            button.addEventListener(
-                "click",
-                () => selectAnswer(option)
-            );
-
-        }
-
-        optionsContainer.appendChild(button);
-
-    });
-
-
-    updateControls();
-    updateProgress();
-
-}
-
-
-/* ---------------------------------------------------------
-   Select Answer
---------------------------------------------------------- */
-
-function selectAnswer(selected) {
-
-    const question = questions[currentIndex];
-
-    if (question.answered) {
-        return;
-    }
-
-    question.selected = selected;
-    question.answered = true;
-
-    attempted++;
-
-    if (selected === question.answer) {
-
-        correctCount++;
-        score += 10;
-
-    } else {
-
-        score = Math.max(0, score - 2);
-
-    }
-
-    updateStats();
-
-    renderQuestion("same");
-
-}
-
-
-/* ---------------------------------------------------------
-   Next Question
---------------------------------------------------------- */
-
-function nextQuestion() {
-
-    if (currentIndex < questions.length - 1) {
-
-        currentIndex++;
-
-    } else {
-
-        /*
-           Infinite system:
-           Whenever user reaches the end,
-           automatically generate a brand-new question.
-        */
-
-        addQuestion();
-        currentIndex++;
-
-    }
-
-    renderQuestion("next");
-
-}
-
-
-/* ---------------------------------------------------------
-   Previous Question
---------------------------------------------------------- */
-
-function previousQuestion() {
-
-    if (currentIndex > 0) {
-
-        currentIndex--;
-
-        renderQuestion("previous");
-
-    }
-
-}
-
-
-/* ---------------------------------------------------------
-   Controls
---------------------------------------------------------- */
-
-function updateControls() {
-
-    document.getElementById("previousBtn").disabled =
-        currentIndex === 0;
-
-}
-
-
-/* ---------------------------------------------------------
-   Progress
---------------------------------------------------------- */
-
-function updateProgress() {
-
-    const number = currentIndex + 1;
-
-    document.getElementById("progressText").textContent =
-        `Question ${number}`;
-
-    /*
-       Since this is infinite, the progress bar represents
-       the current position in the generated session.
-    */
-
-    const total = Math.max(questions.length, number);
-
-    let percent = (number / total) * 100;
-
-    if (number === total) {
-        percent = 100;
-    }
-
-    document.getElementById("progressBar").style.width =
-        percent + "%";
-}
-
-
-/* ---------------------------------------------------------
-   Statistics
---------------------------------------------------------- */
-
-function updateStats() {
-
-    document.getElementById("score").textContent =
-        score;
-
-    document.getElementById("correct").textContent =
-        correctCount;
-
-    document.getElementById("attempted").textContent =
-        attempted;
-
-}
-
-
-/* ---------------------------------------------------------
-   Escape HTML
---------------------------------------------------------- */
-
-function escapeHTML(value) {
-
-    return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-
-}
-
-
-/* ---------------------------------------------------------
-   Button Events
---------------------------------------------------------- */
-
-document
-    .getElementById("nextBtn")
-    .addEventListener("click", nextQuestion);
-
-document
-    .getElementById("previousBtn")
-    .addEventListener("click", previousQuestion);
-
-
-/* ---------------------------------------------------------
-   Initial Questions
---------------------------------------------------------- */
-
-for (let i = 0; i < 5; i++) {
-    addQuestion();
-}
-
-renderQuestion();
-updateStats();
-
-
-/* ---------------------------------------------------------
-   Keyboard Navigation
---------------------------------------------------------- */
-
-document.addEventListener("keydown", function(event) {
-
-    if (event.key === "ArrowRight") {
-        nextQuestion();
-    }
-
-    if (event.key === "ArrowLeft") {
-        previousQuestion();
-    }
-
+revealElements.forEach(element=>{
+    observer.observe(element);
 });
 
+
+/* =========================================================
+   PDF DOWNLOAD
+   Uses the browser's native Print-to-PDF engine.
+   This preserves selectable/copyable Bengali and English text
+   instead of converting the page into an image.
+========================================================= */
+
+function downloadPDF(){
+
+    const oldTitle = document.title;
+
+    document.title =
+        "English Grammar Series - Part 5 - Adjective";
+
+    /*
+      Browser native PDF engine is used so that:
+      - Bengali remains text
+      - English remains text
+      - text can be selected/copied
+      - page remains sharp when printed
+      - no external library is required
+    */
+
+    setTimeout(()=>{
+        window.print();
+
+        setTimeout(()=>{
+            document.title = oldTitle;
+        },1000);
+
+    },100);
+}
+
+
+/* =========================================================
+   PRINT EVENT
+========================================================= */
+
+window.addEventListener("beforeprint",()=>{
+    document.querySelectorAll(".reveal").forEach(el=>{
+        el.classList.add("active");
+    });
+});
 </script>
 
 </body>

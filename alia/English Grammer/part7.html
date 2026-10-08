@@ -1,0 +1,1407 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English Grammar Series - Part 7 | Adverb</title>
+
+<style>
+@font-face {
+    font-family: "Kalpurush";
+    src: local("Kalpurush");
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --bg: #f8fafc;
+    --paper: #ffffff;
+    --text: #202124;
+    --muted: #64748b;
+    --primary: #3157d5;
+    --secondary: #673ab7;
+    --green: #138a5b;
+    --orange: #d97706;
+    --red: #dc2626;
+    --border: #dbe3ef;
+    --soft-blue: #eef4ff;
+    --soft-green: #eefaf5;
+    --soft-orange: #fff7e8;
+    --shadow: 0 8px 30px rgba(30, 50, 80, .08);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Kalpurush", "Noto Sans Bengali", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 25px;
+    line-height: 1.85;
+    padding-bottom: 60px;
+}
+
+/* ================= HEADER ================= */
+
+.topbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    background: rgba(255,255,255,.94);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 4px 18px rgba(0,0,0,.05);
+}
+
+.topbar-inner {
+    max-width: 1250px;
+    margin: auto;
+    padding: 14px 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.brand {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--primary);
+    line-height: 1.3;
+}
+
+.pdf-btn {
+    border: none;
+    border-radius: 12px;
+    padding: 10px 18px;
+    background: linear-gradient(135deg, #3157d5, #673ab7);
+    color: white;
+    font-family: inherit;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(49,87,213,.25);
+    transition: .25s ease;
+}
+
+.pdf-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 9px 23px rgba(49,87,213,.32);
+}
+
+.pdf-btn:active {
+    transform: scale(.97);
+}
+
+/* ================= BOOK ================= */
+
+.book {
+    max-width: 1200px;
+    margin: 35px auto;
+    padding: 0 20px;
+}
+
+.paper {
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    padding: 42px 48px;
+    margin-bottom: 30px;
+}
+
+/* ================= MAIN TITLE ================= */
+
+.book-title {
+    text-align: center;
+    padding: 15px 10px 35px;
+    border-bottom: 2px solid var(--border);
+    margin-bottom: 35px;
+}
+
+.book-title h1 {
+    font-size: clamp(28px, 4vw, 43px);
+    line-height: 1.35;
+    color: var(--primary);
+    font-weight: 800;
+}
+
+.book-title h2 {
+    margin-top: 8px;
+    font-size: clamp(22px, 3vw, 30px);
+    color: var(--secondary);
+}
+
+.book-title p {
+    margin-top: 12px;
+    color: var(--muted);
+    font-size: 21px;
+}
+
+/* ================= LESSON ================= */
+
+.lesson {
+    margin: 45px 0;
+    padding-top: 10px;
+    scroll-margin-top: 90px;
+}
+
+.lesson-title {
+    font-size: clamp(27px, 3vw, 34px);
+    color: white;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    border-radius: 14px;
+    padding: 12px 20px;
+    margin-bottom: 28px;
+    line-height: 1.45;
+    box-shadow: 0 7px 20px rgba(49,87,213,.15);
+}
+
+.subsection {
+    margin: 30px 0;
+}
+
+.subsection h3 {
+    font-size: 27px;
+    color: var(--secondary);
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+.subsection h4 {
+    font-size: 25px;
+    color: var(--green);
+    margin: 20px 0 8px;
+}
+
+p {
+    margin: 8px 0 16px;
+}
+
+ul, ol {
+    margin: 10px 0 20px 35px;
+}
+
+li {
+    margin: 5px 0;
+}
+
+strong {
+    font-weight: 700;
+}
+
+.example {
+    background: var(--soft-blue);
+    border-left: 5px solid var(--primary);
+    border-radius: 10px;
+    padding: 15px 20px;
+    margin: 18px 0;
+}
+
+.note {
+    background: var(--soft-orange);
+    border-left: 5px solid var(--orange);
+    border-radius: 10px;
+    padding: 15px 20px;
+    margin: 18px 0;
+}
+
+.remember {
+    background: var(--soft-green);
+    border-left: 5px solid var(--green);
+    border-radius: 10px;
+    padding: 15px 20px;
+    margin: 18px 0;
+}
+
+/* ================= CATEGORY LIST ================= */
+
+.category-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 18px 0;
+}
+
+.category-item {
+    background: #f7f9fc;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 8px 13px;
+}
+
+/* ================= TABLE ================= */
+
+.table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    margin: 22px 0;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+}
+
+table {
+    width: 100%;
+    min-width: 650px;
+    border-collapse: collapse;
+    font-size: 23px;
+    background: white;
+}
+
+th {
+    background: #eef2ff;
+    color: #273b91;
+    font-weight: 700;
+}
+
+th, td {
+    border: 1px solid var(--border);
+    padding: 11px 14px;
+    text-align: left;
+    vertical-align: top;
+}
+
+.wrong {
+    color: var(--red);
+}
+
+.correct {
+    color: var(--green);
+}
+
+/* ================= PRACTICE ================= */
+
+.practice {
+    background: #faf7ff;
+    border: 1px solid #e4d9ff;
+    border-radius: 14px;
+    padding: 22px;
+    margin-top: 25px;
+}
+
+.practice h3 {
+    color: var(--secondary);
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+/* ================= TAKEAWAY ================= */
+
+.takeaway {
+    background: linear-gradient(135deg, #f0f5ff, #faf5ff);
+    border: 2px solid #d8defb;
+    border-radius: 16px;
+    padding: 25px;
+    margin-top: 35px;
+}
+
+.takeaway h2 {
+    color: var(--primary);
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+
+/* ================= ANIMATION ================= */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity .7s ease, transform .7s ease;
+}
+
+.reveal.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.from-left {
+    opacity: 0;
+    transform: translateX(-35px);
+    transition: opacity .7s ease, transform .7s ease;
+}
+
+.from-left.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.from-right {
+    opacity: 0;
+    transform: translateX(35px);
+    transition: opacity .7s ease, transform .7s ease;
+}
+
+.from-right.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 900px) {
+    body {
+        font-size: 24px;
+    }
+
+    .paper {
+        padding: 32px;
+    }
+
+    .category-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    body {
+        font-size: 22px;
+        line-height: 1.75;
+    }
+
+    .topbar-inner {
+        padding: 10px 12px;
+    }
+
+    .brand {
+        font-size: 16px;
+    }
+
+    .pdf-btn {
+        font-size: 15px;
+        padding: 8px 12px;
+    }
+
+    .book {
+        padding: 0 9px;
+        margin-top: 18px;
+    }
+
+    .paper {
+        padding: 20px 16px;
+        border-radius: 14px;
+    }
+
+    .lesson {
+        margin: 35px 0;
+    }
+
+    .lesson-title {
+        font-size: 25px;
+        padding: 10px 14px;
+    }
+
+    .subsection h3 {
+        font-size: 24px;
+    }
+
+    .subsection h4 {
+        font-size: 22px;
+    }
+
+    .example,
+    .note,
+    .remember,
+    .practice,
+    .takeaway {
+        padding: 13px 15px;
+    }
+
+    .category-list {
+        grid-template-columns: 1fr;
+    }
+
+    table {
+        font-size: 20px;
+    }
+}
+
+/* ================= PRINT / PDF ================= */
+
+@media print {
+
+    @page {
+        size: A4 portrait;
+        margin: 15mm 13mm 17mm 13mm;
+    }
+
+    html, body {
+        background: white !important;
+        color: black !important;
+        font-size: 14pt !important;
+        line-height: 1.65 !important;
+    }
+
+    .topbar {
+        display: none !important;
+    }
+
+    .book {
+        max-width: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .paper {
+        box-shadow: none !important;
+        border: none !important;
+        border-radius: 0 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    .book-title {
+        padding-top: 0;
+    }
+
+    .book-title h1 {
+        font-size: 23pt !important;
+    }
+
+    .book-title h2 {
+        font-size: 17pt !important;
+    }
+
+    .book-title p {
+        font-size: 12pt !important;
+    }
+
+    .lesson-title {
+        color: black !important;
+        background: #eeeeee !important;
+        border: 1px solid #777 !important;
+        box-shadow: none !important;
+        font-size: 18pt !important;
+        break-after: avoid;
+    }
+
+    .subsection h3 {
+        font-size: 16pt !important;
+        color: black !important;
+    }
+
+    .subsection h4 {
+        font-size: 14pt !important;
+        color: black !important;
+    }
+
+    p, li {
+        font-size: 14pt !important;
+    }
+
+    .example,
+    .note,
+    .remember,
+    .practice,
+    .takeaway {
+        background: white !important;
+        color: black !important;
+        border: 1px solid #999 !important;
+        border-left: 4px solid #555 !important;
+    }
+
+    table {
+        font-size: 12pt !important;
+    }
+
+    th {
+        background: #eeeeee !important;
+        color: black !important;
+    }
+
+    tr, .example, .note, .remember, .practice {
+        break-inside: avoid;
+    }
+
+    .lesson {
+        break-inside: auto;
+    }
+
+    .reveal,
+    .from-left,
+    .from-right {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="topbar">
+    <div class="topbar-inner">
+        <div class="brand">ENGLISH GRAMMAR • PART 7</div>
+        <button class="pdf-btn" onclick="downloadPDF()">⬇ Download PDF</button>
+    </div>
+</header>
+
+<main class="book">
+
+<div class="paper">
+
+    <section class="book-title reveal">
+        <h1>ENGLISH GRAMMAR SERIES - PART 7</h1>
+        <h2>ADVERB (ক্রিয়া বিশেষণ)</h2>
+        <p>English Grammar &amp; Bangla Grammar Equivalent Guide</p>
+    </section>
+
+
+    <!-- ========================================================= -->
+    <!-- LESSON 1 -->
+    <!-- ========================================================= -->
+
+    <section class="lesson reveal">
+        <h2 class="lesson-title">LESSON 1 - ADVERB-এর পরিচয়, সংজ্ঞা ও শনাক্তকরণ</h2>
+
+        <div class="subsection">
+            <h3>1.1 WHAT IS AN ADVERB? (Adverb কী?)</h3>
+
+            <p>
+                <strong>Definition:</strong> An Adverb is a word that modifies a verb, an adjective,
+                another adverb, or sometimes a whole sentence[cite: 32].
+            </p>
+
+            <p>
+                <strong>বাংলায়:</strong> Adverb এমন একটি শব্দ, যা Verb, Adjective, অন্য Adverb অথবা
+                কখনো পুরো বাক্যের অর্থকে বিশেষভাবে প্রকাশ করে[cite: 32].
+            </p>
+
+            <div class="remember">
+                <strong>সহজে মনে রাখো:</strong>
+                <ul>
+                    <li>Adverb → Verb-কে বিশেষিত করে[cite: 32]</li>
+                    <li>Adverb → Adjective-কে বিশেষিত করে[cite: 32]</li>
+                    <li>Adverb → Adverb-কে বিশেষিত করে[cite: 32]</li>
+                    <li>Adverb → কখনো পুরো বাক্যকেও বিশেষিত করে[cite: 32]</li>
+                </ul>
+            </div>
+
+            <div class="example">
+                <strong>Example:</strong>
+                <ul>
+                    <li>
+                        He runs quickly. (runs = Verb, quickly = Adverb; quickly বোঝাচ্ছে সে কীভাবে দৌড়ায়.)[cite: 32]
+                    </li>
+                    <li>
+                        She is very beautiful. (beautiful = Adjective, very = Adverb; very বোঝাচ্ছে কতটা beautiful)[cite: 32]
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="subsection">
+            <h3>1.2 HOW TO IDENTIFY AN ADVERB (Adverb শনাক্তকরণ)</h3>
+
+            <p>Adverb খুঁজতে বাক্যে প্রশ্ন করতে পারো[cite: 32]:</p>
+
+            <ul>
+                <li>How? (কীভাবে?)[cite: 32]</li>
+                <li>When? (কখন?)[cite: 32]</li>
+                <li>Where? (কোথায়?)[cite: 32]</li>
+                <li>How often? (কতবার?)[cite: 32]</li>
+                <li>How much / To what degree? (কতটা?)[cite: 32]</li>
+            </ul>
+
+            <h4>Sentence Examples:</h4>
+
+            <div class="example">
+                <ul>
+                    <li>He runs quickly. (How does he run? quickly)[cite: 32]</li>
+                    <li>She came yesterday. (When did he/she come? yesterday)[cite: 32]</li>
+                    <li>He lives here. (Where does he live? here)[cite: 32]</li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="subsection">
+            <h3>1.3 WHAT DOES AN ADVERB MODIFY?</h3>
+
+            <p>
+                Adverb প্রধানত ৪ ধরনের শব্দ/অংশকে বিশেষিত করতে পারে[cite: 32, 33]:
+            </p>
+
+            <ol>
+                <li>Verb: He speaks slowly. (slowly speaks-কে বিশেষিত করছে।)[cite: 32]</li>
+                <li>Adjective: She is very beautiful. (very beautiful-কে বিশেষিত করছে।)[cite: 32, 33]</li>
+                <li>Another Adverb: He runs very quickly. (very quickly-কে বিশেষিত করছে।)[cite: 33]</li>
+                <li>Whole Sentence: Fortunately, he passed. (Fortunately পুরো বাক্যের প্রতি বক্তার মনোভাব প্রকাশ করছে।)[cite: 33]</li>
+            </ol>
+        </div>
+    </section>
+
+
+    <!-- ========================================================= -->
+    <!-- LESSON 2 -->
+    <!-- ========================================================= -->
+
+    <section class="lesson from-left">
+        <h2 class="lesson-title">LESSON 2 - ADVERB-এর প্রধান প্রকারভেদ: MANNER, PLACE ও TIME</h2>
+
+        <div class="subsection">
+            <h3>2.1 KINDS OF ADVERB (Adverb-এর প্রকারভেদ)</h3>
+
+            <p>প্রধান Adverb-এর প্রকারভেদগুলো নিচে আলোচনা করা হলো[cite: 33]:</p>
+
+            <div class="category-list">
+                <div class="category-item">Adverb of Manner[cite: 33]</div>
+                <div class="category-item">Adverb of Place[cite: 33]</div>
+                <div class="category-item">Adverb of Time[cite: 33]</div>
+                <div class="category-item">Adverb of Frequency[cite: 33]</div>
+                <div class="category-item">Adverb of Degree[cite: 33]</div>
+                <div class="category-item">Adverb of Reason / Purpose[cite: 33]</div>
+                <div class="category-item">Interrogative Adverb[cite: 33]</div>
+                <div class="category-item">Relative Adverb[cite: 33]</div>
+                <div class="category-item">Sentence Adverb[cite: 33]</div>
+            </div>
+        </div>
+
+
+        <div class="subsection">
+            <h3>2.2 ADVERB OF MANNER (পদ্ধতিবাচক ক্রিয়া বিশেষণ)</h3>
+
+            <p>
+                কাজটি কীভাবে সংঘটিত হয় তা বোঝালে Adverb of Manner.
+                প্রশ্ন: How? / কীভাবে?[cite: 33]
+            </p>
+
+            <p>
+                <strong>Examples:</strong> slowly (ধীরে), quickly (দ্রুত), carefully (সাবধানে),
+                badly (খারাপভাবে), well (ভালোভাবে), loudly (জোরে), happily (আনন্দের সঙ্গে)[cite: 33].
+            </p>
+
+            <div class="example">
+                <strong>Sentence Examples:</strong>
+                <ul>
+                    <li>He runs quickly. (সে দ্রুত দৌড়ায়।)[cite: 33]</li>
+                    <li>She writes carefully. (সে সাবধানে লেখে।)[cite: 33]</li>
+                    <li>He speaks loudly. (সে জোরে কথা বলে।)[cite: 33]</li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="subsection">
+            <h3>2.3 ADVERB OF PLACE (স্থানবাচক ক্রিয়া বিশেষণ)</h3>
+
+            <p>
+                কাজটি কোথায় সংঘটিত হচ্ছে তা বোঝালে Adverb of Place.
+                প্রশ্ন: Where? / কোথায়?[cite: 33]
+            </p>
+
+            <p>
+                <strong>Examples:</strong> here (এখানে), there (সেখানে), everywhere (সর্বত্র),
+                nowhere (কোথাও নয়), outside (বাইরে), inside (ভিতরে), upstairs (উপরে),
+                downstairs (নিচে)[cite: 34].
+            </p>
+
+            <div class="example">
+                <strong>Sentence Examples:</strong>
+                <ul>
+                    <li>Come here. (এখানে আসো।)[cite: 34]</li>
+                    <li>He lives there. (সে সেখানে থাকে।)[cite: 34]</li>
+                    <li>The children are playing outside. (শিশুরা বাইরে খেলছে।)[cite: 34]</li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="subsection">
+            <h3>2.4 ADVERB OF TIME (সময়বাচক ক্রিয়া বিশেষণ)</h3>
+
+            <p>
+                কাজটি কখন সংঘটিত হয় তা বোঝালে Adverb of Time.
+                প্রশ্ন: When? / কখন?[cite: 34]
+            </p>
+
+            <p>
+                <strong>Examples:</strong> now (এখন), then (তখন), today (আজ),
+                yesterday (গতকাল), tomorrow (আগামীকাল), soon (শিগগির),
+                already (ইতোমধ্যে), still (এখনও), later (পরে)[cite: 34].
+            </p>
+
+            <div class="example">
+                <strong>Sentence Examples:</strong>
+                <ul>
+                    <li>I am busy now. (আমি এখন ব্যস্ত।)[cite: 34]</li>
+                    <li>He came yesterday. (সে গতকাল এসেছিল।)[cite: 34]</li>
+                    <li>I will go tomorrow. (আমি আগামীকাল যাব।)[cite: 34]</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ========================================================= -->
+    <!-- LESSON 3 -->
+    <!-- ========================================================= -->
+
+    <section class="lesson from-right">
+        <h2 class="lesson-title">LESSON 3 - FREQUENCY, DEGREE ও REASON/PURPOSE ADVERB</h2>
+
+        <div class="subsection">
+            <h3>3.1 ADVERB OF FREQUENCY (ঘটনাবৃত্তিবাচক ক্রিয়া বিশেষণ)</h3>
+
+            <p>
+                কোনো কাজ কতবার বা কত ঘন ঘন হয় তা বোঝালে Adverb of Frequency.
+                প্রশ্ন: How often? / কতবার?[cite: 35]
+            </p>
+
+            <p>
+                <strong>Examples:</strong> always (সবসময়), usually (সাধারণত), often (প্রায়ই),
+                sometimes (মাঝে মাঝে), rarely (কদাচিৎ), seldom (কদাচিৎ), never (কখনো নয়),
+                daily (প্রতিদিন), weekly (প্রতি সপ্তাহে)[cite: 35].
+            </p>
+
+            <div class="example">
+                <strong>Sentence Examples:</strong>
+                <ul>
+                    <li>I always pray. (আমি সবসময় নামাজ পড়ি।)[cite: 35]</li>
+                    <li>He often reads books. (সে প্রায়ই বই পড়ে।)[cite: 35]</li>
+                    <li>She never lies. (সে কখনো মিথ্যা বলে না।)[cite: 35]</li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="subsection">
+            <h3>3.2 ADVERB OF DEGREE (মাত্রাবাচক ক্রিয়া বিশেষণ)</h3>
+
+            <p>
+                কোনো কাজ, গুণ বা অবস্থার মাত্রা বা পরিমাণ বোঝালে Adverb of Degree.
+                প্রশ্ন: How much? / To what degree? / কতটা?[cite: 35]
+            </p>
+
+            <p>
+                <strong>Examples:</strong> very (খুব), too (অতিরিক্ত), quite (বেশ),
+                almost (প্রায়), enough (যথেষ্ট), really (সত্যিই/খুব), so (এত),
+                rather (বরং/বেশ)[cite: 35].
+            </p>
+
+            <div class="example">
+                <strong>Sentence Examples:</strong>
+                <ul>
+                    <li>He is very good. (সে খুব ভালো।)[cite: 35]</li>
+                    <li>The tea is too hot. (চা অতিরিক্ত গরম।)[cite: 35]</li>
+                    <li>I am quite tired. (আমি বেশ ক্লান্ত।)[cite: 35]</li>
+                    <li>He is old enough. (সে যথেষ্ট বয়স্ক।)[cite: 35]</li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="subsection">
+            <h3>3.3 ADVERB OF REASON / PURPOSE (কারণ/উদ্দেশ্যবাচক)</h3>
+
+            <p>
+                কিছু Adverb বা Adverbial expression কারণ বা ফলাফল বোঝাতে ব্যবহৃত হয়[cite: 35].
+            </p>
+
+            <p>
+                <strong>Examples:</strong> therefore (অতএব), thus (এভাবে/ফলে),
+                hence (অতএব), so (তাই)[cite: 35].
+            </p>
+
+            <div class="example">
+                <strong>Sentence Example:</strong>
+                He was ill; therefore, he stayed home. (সে অসুস্থ ছিল; তাই সে বাড়িতে ছিল।)[cite: 35]
+            </div>
+
+            <div class="note">
+                <strong>মনে রাখো:</strong> কারণ প্রকাশের ক্ষেত্রে because, since ইত্যাদি সাধারণত
+                Conjunction হিসেবে ব্যবহৃত হয়[cite: 35].
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ========================================================= -->
+    <!-- LESSON 4 -->
+    <!-- ========================================================= -->
+
+    <section class="lesson reveal">
+        <h2 class="lesson-title">LESSON 4 - INTERROGATIVE, RELATIVE ও SENTENCE ADVERB</h2>
+
+        <div class="subsection">
+            <h3>4.1 INTERROGATIVE ADVERB (প্রশ্নবাচক ক্রিয়া বিশেষণ)</h3>
+
+            <p>
+                প্রশ্ন করার জন্য ব্যবহৃত Adverb; প্রধান শব্দসমূহ: when (কখন),
+                where (কোথায়), why (কেন), how (কীভাবে)[cite: 36]
+            </p>
+
+            <div class="example">
+                <strong>Sentence Examples:</strong>
+                <ul>
+                    <li>When will you come? (তুমি কখন আসবে?)[cite: 36]</li>
+                    <li>Where do you live? (তুমি কোথায় থাকো?)[cite: 36]</li>
+                    <li>Why are you late? (তুমি দেরি করেছ কেন?)[cite: 36]</li>
+                    <li>How did you do it? (তুমি কীভাবে এটি করলে?)[cite: 36]</li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="subsection">
+            <h3>4.2 RELATIVE ADVERB (সম্বন্ধবাচক ক্রিয়া বিশেষণ)</h3>
+
+            <p>
+                যে Adverb কোনো Clause-কে একটি Noun বা পূর্ববর্তী শব্দের সঙ্গে সম্পর্কিত করে,
+                তাকে Relative Adverb বলে। প্রধান শব্দসমূহ: when, where, why[cite: 36]
+            </p>
+
+            <div class="example">
+                <strong>Sentence Examples:</strong>
+                <ul>
+                    <li>I remember the day when we met. (when = Relative Adverb)[cite: 36]</li>
+                    <li>This is the place where I live. (where = Relative Adverb)[cite: 36]</li>
+                    <li>I know the reason why he left. (why = Relative Adverb)[cite: 36]</li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="subsection">
+            <h3>4.3 SENTENCE ADVERB (বাক্যবাচক Adverb)</h3>
+
+            <p>
+                কিছু Adverb পুরো বাক্যের প্রতি বক্তার মনোভাব, মতামত বা মূল্যায়ন প্রকাশ করে[cite: 36].
+            </p>
+
+            <p>
+                <strong>Examples:</strong> fortunately (সৌভাগ্যক্রমে), unfortunately (দুর্ভাগ্যক্রমে),
+                probably (সম্ভবত), certainly (নিশ্চয়ই), perhaps (হয়তো),
+                clearly (স্পষ্টভাবে)[cite: 36].
+            </p>
+
+            <div class="example">
+                <strong>Sentence Examples:</strong>
+                <ul>
+                    <li>Fortunately, he passed. (সৌভাগ্যক্রমে, সে পাস করেছে।)[cite: 36]</li>
+                    <li>Perhaps he is busy. (হয়তো সে ব্যস্ত।)[cite: 36]</li>
+                    <li>Certainly, I will help you. (নিশ্চয়ই, আমি তোমাকে সাহায্য করব।)[cite: 36]</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ========================================================= -->
+    <!-- LESSON 5 -->
+    <!-- ========================================================= -->
+
+    <section class="lesson from-left">
+        <h2 class="lesson-title">LESSON 5 - ADVERB FORMATION ও -LY-এর ব্যবহার</h2>
+
+        <div class="subsection">
+            <h3>5.1 FORMATION OF ADVERB (Adverb কীভাবে তৈরি হয়?)</h3>
+
+            <p>
+                অনেক Adverb Adjective-এর শেষে -ly যোগ করে তৈরি হয়[cite: 36].
+            </p>
+
+            <p>
+                <strong>Examples:</strong> slow → slowly, quick → quickly, careful → carefully,
+                beautiful → beautifully, honest → honestly[cite: 36]
+            </p>
+
+            <div class="example">
+                <strong>Sentence Example:</strong>
+                <ul>
+                    <li>He is a careful driver. (careful = Adjective)[cite: 36]</li>
+                    <li>He drives carefully. (carefully = Adverb)[cite: 36]</li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="subsection">
+            <h3>5.2 ADJECTIVE TO ADVERB (শব্দ পরিবর্তনের নিয়ম)</h3>
+
+            <p>
+                সাধারণ পরিবর্তনসমূহ: slow → slowly, quick → quickly, careful → carefully,
+                beautiful → beautifully, quiet → quietly[cite: 36, 37]
+            </p>
+
+            <div class="remember">
+                <strong>Rule (y → i + ly):</strong>
+                Consonant + y হলে 'y' উঠে 'i' বসে এবং পরে 'ly' যোগ হয়[cite: 37].
+                <ul>
+                    <li>happy → happily[cite: 37]</li>
+                    <li>easy → easily[cite: 37]</li>
+                    <li>angry → angrily[cite: 37]</li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="subsection">
+            <h3>5.3 ADVERBS WITHOUT -LY (-ly ছাড়া Adverb)</h3>
+
+            <p>সব Adverb-এর শেষে -ly থাকে না[cite: 37].</p>
+
+            <p>
+                <strong>Examples:</strong> fast, hard, late, early, well, very, often, never,
+                always, soon[cite: 37]
+            </p>
+
+            <div class="example">
+                <strong>Sentence Examples:</strong>
+                <ul>
+                    <li>He runs fast. (সে দ্রুত দৌড়ায়।)[cite: 37]</li>
+                    <li>She works hard. (সে কঠোর পরিশ্রম করে।)[cite: 37]</li>
+                    <li>He came early. (সে তাড়াতাড়ি এসেছিল।)[cite: 37]</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ========================================================= -->
+    <!-- LESSON 6 -->
+    <!-- ========================================================= -->
+
+    <section class="lesson from-right">
+        <h2 class="lesson-title">LESSON 6 - IMPORTANT ADVERB CONFUSIONS ও COMPARISON</h2>
+
+        <div class="subsection">
+            <h3>6.1 HARD vs HARDLY (গুরুত্বপূর্ণ পার্থক্য)</h3>
+
+            <ul>
+                <li>hard = কঠোরভাবে / অনেক পরিশ্রম করে (যেমন: He works hard.)[cite: 37]</li>
+                <li>hardly = প্রায় না / কদাচিৎ (যেমন: He hardly works.)[cite: 37]</li>
+            </ul>
+
+            <div class="remember">
+                <strong>মনে রাখো:</strong> hard ≠ hardly (অর্থ সম্পূর্ণ আলাদা!)[cite: 37]
+            </div>
+        </div>
+
+
+        <div class="subsection">
+            <h3>6.2 LATE vs LATELY (গুরুত্বপূর্ণ পার্থক্য)</h3>
+
+            <ul>
+                <li>late = দেরিতে (যেমন: He came late.)[cite: 37]</li>
+                <li>lately = ইদানীং / সম্প্রতি (যেমন: I have been busy lately.)[cite: 37]</li>
+            </ul>
+
+            <div class="remember">
+                <strong>মনে রাখো:</strong> late ≠ lately (অর্থ সম্পূর্ণ আলাদা!)[cite: 37]
+            </div>
+        </div>
+
+
+        <div class="subsection">
+            <h3>6.3 GOOD vs WELL</h3>
+
+            <ul>
+                <li>good = Adjective (যেমন: He is a good student.)[cite: 37]</li>
+                <li>well = সাধারণত Adverb (যেমন: He studies well.)[cite: 37]</li>
+            </ul>
+
+            <div class="note">
+                <strong>ব্যতিক্রম:</strong> well কখনো Adjective-ও হতে পারে, বিশেষ করে স্বাস্থ্য/শারীরিক
+                অবস্থা বোঝাতে (যেমন: I am well. আমি ভালো আছি।)[cite: 37]
+            </div>
+        </div>
+
+
+        <div class="subsection">
+            <h3>6.4 COMPARISON OF ADVERBS (Adverb-এর তুলনা)</h3>
+
+            <p>
+                কিছু Adverb-এর Comparative ও Superlative form হয়:
+                fast → faster → fastest, hard → harder → hardest,
+                early → earlier → earliest[cite: 37]
+            </p>
+
+            <div class="note">
+                <strong>Note:</strong> কিছু Adverb-এর ক্ষেত্রে more/most ব্যবহার হয়
+                (যেমন: carefully → more carefully → most carefully)[cite: 37]
+            </div>
+        </div>
+
+
+        <div class="subsection">
+            <h3>6.5 IRREGULAR COMPARISON (ব্যতিক্রমী তুলনা)</h3>
+
+            <p>কিছু Adverb-এর রূপ নিয়মিত নয়[cite: 37]:</p>
+
+            <ul>
+                <li>well → better → best[cite: 37]</li>
+                <li>badly → worse → worst[cite: 37]</li>
+                <li>far → farther/further → farthest/furthest[cite: 37, 38]</li>
+            </ul>
+        </div>
+    </section>
+
+
+    <!-- ========================================================= -->
+    <!-- LESSON 7 -->
+    <!-- ========================================================= -->
+
+    <section class="lesson reveal">
+        <h2 class="lesson-title">LESSON 7 - POSITION OF ADVERB ও FREQUENCY ADVERB-এর অবস্থান</h2>
+
+        <div class="subsection">
+            <h3>7.1 POSITION OF ADVERB (বাক্যে Adverb-এর অবস্থান)</h3>
+
+            <p>Adverb বাক্যের বিভিন্ন জায়গায় বসতে পারে[cite: 38]:</p>
+
+            <ul>
+                <li>Verb-এর পরে: He runs quickly.[cite: 38]</li>
+                <li>বাক্যের শুরুতে: Yesterday, I went there.[cite: 38]</li>
+                <li>Main Verb-এর আগে: I always pray.[cite: 38]</li>
+            </ul>
+        </div>
+
+
+        <div class="subsection">
+            <h3>7.2 FREQUENCY ADVERB POSITION (Frequency Adverb-এর অবস্থান)</h3>
+
+            <p>
+                Adverbs of Frequency (always, usually, often, sometimes, never)
+                সাধারণত Main Verb-এর আগে বসে[cite: 38]:
+            </p>
+
+            <div class="example">
+                <ul>
+                    <li>I always pray.[cite: 38]</li>
+                    <li>He often reads.[cite: 38]</li>
+                </ul>
+            </div>
+
+            <p>কিন্তু Be Verb-এর পরে বসে[cite: 38]:</p>
+
+            <div class="example">
+                <ul>
+                    <li>He is always happy.[cite: 38]</li>
+                    <li>She is never late.[cite: 38]</li>
+                </ul>
+            </div>
+
+            <div class="remember">
+                <strong>গুরুত্বপূর্ণ:</strong> এই নিয়মটি পরীক্ষায় ও লেখার ক্ষেত্রে খুব গুরুত্বপূর্ণ[cite: 38].
+            </div>
+        </div>
+
+
+        <div class="subsection">
+            <h3>7.3 ADVERB WITH AUXILIARY VERB</h3>
+
+            <p>
+                Auxiliary Verb থাকলে Frequency Adverb সাধারণত প্রথম Auxiliary-এর পরে বসে[cite: 38].
+            </p>
+
+            <div class="example">
+                <strong>Sentence Examples:</strong>
+                <ul>
+                    <li>He is always working.[cite: 38]</li>
+                    <li>They have never seen it.[cite: 38]</li>
+                    <li>I can always help you.[cite: 38]</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ========================================================= -->
+    <!-- LESSON 8 -->
+    <!-- ========================================================= -->
+
+    <section class="lesson from-left">
+        <h2 class="lesson-title">LESSON 8 - ADVERB PHRASE, ADVERB CLAUSE ও একাধিক ADVERB</h2>
+
+        <div class="subsection">
+            <h3>8.1 ADVERB PHRASE</h3>
+
+            <p>
+                একাধিক শব্দ একসঙ্গে Adverb-এর মতো কাজ করলে তাকে Adverb Phrase বলে[cite: 38].
+            </p>
+
+            <p>
+                <strong>Examples:</strong> very quickly, in the morning, with great care, quite slowly[cite: 38]
+            </p>
+
+            <div class="example">
+                <strong>Sentence Example:</strong>
+                He works with great care. (with great care = Adverb Phrase)[cite: 38]
+            </div>
+        </div>
+
+
+        <div class="subsection">
+            <h3>8.2 ADVERB CLAUSE</h3>
+
+            <p>
+                যে Clause বাক্যে Adverb-এর মতো কাজ করে, তাকে Adverb Clause বলে[cite: 38].
+            </p>
+
+            <div class="example">
+                <strong>Sentence Examples:</strong>
+                <ul>
+                    <li>I will call you when I arrive. (when I arrive = Adverb Clause)[cite: 38]</li>
+                    <li>He stayed home because he was sick. (because he was sick = Adverb Clause)[cite: 38]</li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="subsection">
+            <h3>8.3 ADVERB IN A SENTENCE (একই বাক্যে একাধিক Adverb)</h3>
+
+            <p>একটি বাক্যে একাধিক Adverb থাকতে পারে[cite: 38].</p>
+
+            <div class="example">
+                <strong>Sentence Example:</strong>
+                He runs very (Degree) quickly (Manner) today (Time).
+                (সে আজ খুব দ্রুত দৌড়ায়।)[cite: 38, 39]
+            </div>
+        </div>
+
+
+        <div class="subsection">
+            <h3>8.4 ADVERB ORDER (একাধিক Adverb-এর সঠিক ক্রম)</h3>
+
+            <div class="remember">
+                <strong>MPT Rule:</strong>
+                একাধিক Adverb থাকলে সাধারণভাবে ক্রম হলো:
+                Manner + Place + Time[cite: 39]
+            </div>
+
+            <div class="example">
+                <strong>Example:</strong>
+                He worked carefully (Manner) at home (Place) yesterday (Time).
+                (সে গতকাল বাড়িতে সাবধানে কাজ করেছে।)[cite: 39]
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ========================================================= -->
+    <!-- LESSON 9 -->
+    <!-- ========================================================= -->
+
+    <section class="lesson from-right">
+        <h2 class="lesson-title">LESSON 9 - ADVERB vs ADJECTIVE, IMPORTANT WORDS ও COMMON MISTAKES</h2>
+
+        <div class="subsection">
+            <h3>9.1 ADVERB vs ADJECTIVE (মূল পার্থক্য)</h3>
+
+            <p>
+                Adjective সাধারণত Noun/Pronoun-কে বিশেষিত করে। Adverb সাধারণত Verb,
+                Adjective বা অন্য Adverb-কে বিশেষিত করে[cite: 39].
+            </p>
+
+            <div class="example">
+                <strong>Examples:</strong>
+                <ul>
+                    <li>He is a careful driver. (careful = Adjective, driver = Noun)[cite: 39]</li>
+                    <li>He drives carefully. (carefully = Adverb, drives = Verb)[cite: 39]</li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="subsection">
+            <h3>9.2 IMPORTANT ADVERB WORDS (শ্রেণিভিত্তিক গুরুত্বপূর্ণ শব্দকোষ)</h3>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Keywords</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Manner</td>
+                            <td>slowly, quickly, carefully, well, badly[cite: 39]</td>
+                        </tr>
+                        <tr>
+                            <td>Place</td>
+                            <td>here, there, everywhere, outside, inside[cite: 39]</td>
+                        </tr>
+                        <tr>
+                            <td>Time</td>
+                            <td>now, today, yesterday, tomorrow, soon, later[cite: 39]</td>
+                        </tr>
+                        <tr>
+                            <td>Frequency</td>
+                            <td>always, usually, often, sometimes, never, rarely[cite: 39]</td>
+                        </tr>
+                        <tr>
+                            <td>Degree</td>
+                            <td>very, too, quite, almost, enough, really[cite: 39]</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+        <div class="subsection">
+            <h3>9.3 COMMON MISTAKES (সাধারণ ভুল ও সংশোধন)</h3>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Incorrect (ভুল ✗)</th>
+                            <th>Correct (সঠিক ✓)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="wrong">He runs quick.[cite: 39]</td>
+                            <td class="correct">He runs quickly.[cite: 39]</td>
+                        </tr>
+                        <tr>
+                            <td class="wrong">She sings beautiful.[cite: 39]</td>
+                            <td class="correct">She sings beautifully.[cite: 39]</td>
+                        </tr>
+                        <tr>
+                            <td class="wrong">He works hardly.[cite: 39]</td>
+                            <td class="correct">He works hard.[cite: 39]</td>
+                        </tr>
+                        <tr>
+                            <td class="wrong">I am never late not.[cite: 39]</td>
+                            <td class="correct">I am never late.[cite: 39]</td>
+                        </tr>
+                        <tr>
+                            <td class="wrong">She speaks English good.[cite: 39]</td>
+                            <td class="correct">She speaks English well.[cite: 39]</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ========================================================= -->
+    <!-- LESSON 10 -->
+    <!-- ========================================================= -->
+
+    <section class="lesson reveal">
+        <h2 class="lesson-title">LESSON 10 - FINAL PRACTICE, KEY TAKEAWAY ও QUICK REVISION</h2>
+
+        <div class="practice">
+            <h3>FINAL PRACTICE (অনুশীলনী)</h3>
+
+            <h4>A. Identify the Adverb:</h4>
+            <ol>
+                <li>He runs quickly.</li>
+                <li>She sings beautifully.</li>
+                <li>I will go tomorrow.</li>
+                <li>He lives there.</li>
+                <li>I always pray.</li>
+            </ol>
+
+            <h4>B. Adjective or Adverb?</h4>
+            <ol>
+                <li>He is a careful driver. / He drives carefully.</li>
+                <li>She is a beautiful singer. / She sings beautifully.</li>
+            </ol>
+
+            <h4>C. Correct the mistakes:</h4>
+            <ol>
+                <li>He runs quick. → He runs quickly.</li>
+                <li>She sings beautiful. → She sings beautifully.</li>
+                <li>He works hardly. → He works hard.</li>
+            </ol>
+        </div>
+    </section>
+
+
+    <!-- ========================================================= -->
+    <!-- FINAL TAKEAWAY -->
+    <!-- ========================================================= -->
+
+    <section class="takeaway reveal">
+
+        <h2>ADVERB KEY TAKEAWAY &amp; QUICK REVISION</h2>
+
+        <p>
+            Adverb হলো এমন শব্দ, যা প্রধানত Verb, Adjective, অন্য Adverb অথবা পুরো বাক্যকে বিশেষিত করে.
+        </p>
+
+        <p>
+            <strong>5 Identification Questions:</strong>
+            How?, When?, Where?, How often?, How much?
+        </p>
+
+        <div class="example">
+            <strong>উদাহরণ বাক্য:</strong>
+            The very good boy runs extremely fast.
+            <br><br>
+            (boy = Noun, good = Adjective, very = Adverb, runs = Verb,
+            fast = Adverb, extremely = Adverb)
+        </div>
+
+    </section>
+
+</div>
+</main>
+
+
+<script>
+/* =========================================================
+   PDF / PRINT
+   ========================================================= */
+
+function downloadPDF() {
+    /*
+      Browser-এর Print system ব্যবহার করা হচ্ছে।
+      এতে PDF তৈরি করলে বাংলা/ইংরেজি Text selectable ও copyable থাকে।
+      Print dialog-এ Destination হিসেবে "Save as PDF" নির্বাচন করুন।
+    */
+    window.print();
+}
+
+
+/* =========================================================
+   SCROLL ANIMATION
+   ========================================================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const animatedItems = document.querySelectorAll(
+        ".reveal, .from-left, .from-right"
+    );
+
+    const observer = new IntersectionObserver(
+        function (entries, obs) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("show");
+                    obs.unobserve(entry.target);
+                }
+            });
+        },
+        {
+            threshold: 0.08,
+            rootMargin: "0px 0px -40px 0px"
+        }
+    );
+
+    animatedItems.forEach(function (item) {
+        observer.observe(item);
+    });
+
+});
+</script>
+
+</body>
+</html>
