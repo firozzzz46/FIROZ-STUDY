@@ -635,19 +635,20 @@ body {
 
 
 
-/* =====================================
-   LARGE STATIC TOP-RIGHT CLOCK BOX
-===================================== */
+/* =========================================
+   RESPONSIVE CLOCK BOX (HERO SECTION BELOW)
+   ========================================= */
 
-/* Outer Position Box */
 .hero-time {
-    position: fixed;
-    top: 25px;
-    right: 25px;
-    z-index: 1000;
+    position: relative; /* Fixed tule diye normal flow te ana holo */
+    top: auto;
+    right: auto;
+    z-index: 2;
 
-    width: 240px; /* Box size boro kora hoyeche */
-    padding: 20px 25px;
+    width: 100%; /* Topic card gulor moto full width nebe */
+    max-width: 100%; 
+    margin: 25px 0 35px 0; /* Welcome hero er niche ebong topics er opore gap */
+    padding: 22px 25px;
     border-radius: 22px;
 
     /* Glassmorphism Styling */
@@ -663,11 +664,10 @@ body {
         0 15px 35px rgba(0, 0, 0, 0.6),
         0 0 30px rgba(124, 92, 255, 0.2);
 
-    /* Side theke slide hoye ashbe, tarpor sthir thakbe */
-    animation: slideInRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: fadeUp 0.8s ease both;
 }
 
-/* Background Glow Effect - Non Animated */
+/* Background Glow Effect */
 .hero-time::before {
     content: "";
     position: absolute;
@@ -694,13 +694,13 @@ body {
     pointer-events: none;
 }
 
-/* Time Output (Boro o bold font) */
+/* Time Output (Responsive Font Size) */
 #liveTime {
     position: relative;
     z-index: 2;
-    font-size: 32px;
+    font-size: clamp(28px, 6vw, 38px); /* Mobile-e automatic choto r PC-te boro hobe */
     font-weight: 900;
-    letter-spacing: 2.5px;
+    letter-spacing: 2px;
     text-align: center;
 
     background: linear-gradient(135deg, #ffffff, #c2d8ff, #7c5cff);
@@ -716,7 +716,7 @@ body {
     z-index: 2;
     margin-top: 8px;
     color: #e5e9ff;
-    font-size: 14px;
+    font-size: clamp(12px, 2.5vw, 15px);
     font-weight: 500;
     letter-spacing: 0.5px;
     text-align: center;
@@ -728,134 +728,17 @@ body {
     z-index: 2;
     margin-top: 4px;
     color: #9cb8ff;
-    font-size: 13px;
+    font-size: clamp(11px, 2vw, 13px);
     text-align: center;
 }
 
-/* Prothombar side theke dukhar animation (Sthir hoye jabe) */
-@keyframes slideInRight {
-    0% {
-        opacity: 0;
-        transform: translateX(150px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-/* Mobile Responsive Adjustments */
+/* Mobile Adjustments */
 @media (max-width: 600px) {
     .hero-time {
-        top: 15px;
-        right: 15px;
-        width: 190px;
-        padding: 15px 18px;
+        padding: 16px 18px;
+        margin: 20px 0 25px 0;
         border-radius: 18px;
     }
-
-    #liveTime {
-        font-size: 24px;
-    }
-
-    #liveDate {
-        font-size: 12px;
-    }
-
-    #hijriDate {
-        font-size: 11px;
-    }
 }
-
-
-
-
-
-
-
-/* =========================================
-   SLOW SLIDE-UP & FLOAT ENTRANCE FOR TOPICS
-   ========================================= */
-
-/* Topic Card Style */
-.topic {
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 17px;
-    padding: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 22px;
-    background: rgba(255, 255, 255, 0.055);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    cursor: pointer;
-    overflow: hidden;
-
-    transition:
-        transform 0.3s ease,
-        border-color 0.3s ease,
-        background 0.3s ease,
-        box-shadow 0.3s ease;
-
-    /* Extra slow o smooth entrance animation */
-    animation: slowFloatIn 1.6s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-/* Protita topic card aktar por arkti dhire dhire veshe ashbe (Staggered Delay) */
-.topic:nth-child(1) { animation-delay: 0.2s; }
-.topic:nth-child(2) { animation-delay: 0.4s; }
-.topic:nth-child(3) { animation-delay: 0.6s; }
-.topic:nth-child(4) { animation-delay: 0.8s; }
-.topic:nth-child(5) { animation-delay: 1.0s; }
-.topic:nth-child(6) { animation-delay: 1.2s; }
-
-/* Slow Side-Up Floating Animation Keyframes */
-@keyframes slowFloatIn {
-    0% {
-        opacity: 0;
-        transform: translateY(50px) translateX(-15px) scale(0.96);
-        filter: blur(4px);
-    }
-    60% {
-        opacity: 0.8;
-        filter: blur(0px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0) translateX(0) scale(1);
-        filter: blur(0px);
-    }
-}
-/* =========================================
-   FIX FOR MOBILE OVERLAPPING CLOCK ISSUE
-   ========================================= */
-
-@media (max-width: 600px) {
-    .hero-time {
-        position: relative; /* Fixed তুলে দিয়ে স্বাভাবিক লেআউটে আনা হলো */
-        top: 0;
-        right: 0;
-        width: 100%;
-        max-width: 280px;
-        margin: 0 auto 20px auto; /* সেন্টারে থাকবে এবং নিচে গ্যাপ তৈরি করবে */
-        padding: 14px 18px;
-        border-radius: 18px;
-    }
-
-    #liveTime {
-        font-size: 26px;
-    }
-
-    #liveDate {
-        font-size: 12px;
-    }
-
-    #hijriDate {
-        font-size: 11px;
-    }
-}
-
-
 
 
