@@ -1,128 +1,1251 @@
+
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PART 29 - Infinity MCQ Practice</title>
 
-    <!-- Google Fonts for Bengali & English -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Inter:wght@700;900&display=swap" rel="stylesheet">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+:root {
+  --primary: #5267df;
+  --primary-dark: #3949ab;
+  --green: #15803d;
+  --red: #dc2626;
+  --text: #202943;
+  --muted: #64748b;
+  --border: rgba(148,163,184,.24);
+}
 
-    <style>
-        body {
-            font-family: 'Hind Siliguri', 'Inter', sans-serif;
-            background-color: #030712;
-            overflow: hidden;
-        }
+* { box-sizing: border-box; }
 
-        /* Gradient glowing animation on text */
-        .glow-text {
-            background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 50%, #38bdf8 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shine 6s linear infinite;
-        }
+body {
+  margin: 0;
+  min-height: 100vh;
+  padding: 24px 15px 40px;
+  color: var(--text);
+  font-family: "Times New Roman", "Kalpurush", serif;
+  font-size: 19px;
+  background:
+    radial-gradient(ellipse at 10% 0%, #e7edff 0%, transparent 40%),
+    radial-gradient(ellipse at 100% 80%, #e3f6f1 0%, transparent 38%),
+    linear-gradient(135deg, #ffffff, #f4f6fb);
+}
 
-        @keyframes shine {
-            0% { background-position: 0% center; }
-            50% { background-position: 100% center; }
-            100% { background-position: 0% center; }
-        }
+button { font: inherit; }
 
-        /* Keyframes for initial entry: Floating in from below with opacity */
-        @keyframes floatIn {
-            0% {
-                opacity: 0;
-                transform: translateY(40px) scale(0.95);
-                filter: blur(8px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-                filter: blur(0);
-            }
-        }
+.container {
+  width: min(850px, 100%);
+  margin: auto;
+}
 
-        /* Continuous subtle float effect once arrived */
-        @keyframes subtleFloat {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-8px);
-            }
-        }
+.header {
+  text-align: center;
+  padding: 22px 12px 28px;
+  animation: enterDown .8s cubic-bezier(.16,1,.3,1) both;
+}
 
-        /* Animation class for Heading */
-        .animate-heading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards,
-                subtleFloat 6s ease-in-out 1.2s infinite;
-        }
+.badge {
+  display: inline-block;
+  padding: 7px 15px;
+  border-radius: 50px;
+  color: #3949ab;
+  background: #e8edff;
+  font: 600 14px Arial, sans-serif;
+  letter-spacing: 1px;
+}
 
-        /* Animation class for Subheading (staggered delay) */
-        .animate-subheading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards,
-                subtleFloat 6s ease-in-out 1.55s infinite;
-            opacity: 0; /* Hidden until animation kicks in */
-        }
+h1 {
+  font-size: clamp(27px, 5vw, 42px);
+  margin: 17px 0 8px;
+  line-height: 1.2;
+}
 
-        /* Ambient background lighting */
-        .ambient-glow {
-            position: absolute;
-            width: 450px;
-            height: 450px;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(3, 7, 18, 0) 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            transition: left 0.4s ease-out, top 0.4s ease-out;
-        }
-    </style>
+.subtitle {
+  color: var(--muted);
+  font-size: 19px;
+  margin: 0;
+}
+
+.glass {
+  background: rgba(255,255,255,.79);
+  border: 1px solid rgba(255,255,255,.9);
+  box-shadow: 0 15px 45px rgba(42,58,110,.09);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-radius: 24px;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 17px;
+  animation: enterUp .8s cubic-bezier(.16,1,.3,1) both;
+}
+
+.stat {
+  padding: 17px 8px;
+  text-align: center;
+}
+
+.stat-label {
+  color: var(--muted);
+  font: 13px Arial, sans-serif;
+  margin-bottom: 8px;
+}
+
+.stat-value {
+  font-size: 27px;
+  font-weight: bold;
+  color: var(--primary-dark);
+}
+
+.progress-wrap {
+  height: 7px;
+  overflow: hidden;
+  border-radius: 20px;
+  background: #e6eaf2;
+  margin-bottom: 20px;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #5267df, #8b5cf6);
+  transition: width .65s cubic-bezier(.16,1,.3,1);
+}
+
+.quiz-card {
+  padding: clamp(19px, 4vw, 34px);
+  overflow: hidden;
+}
+
+.question-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 22px;
+}
+
+.question-number, .topic-tag {
+  font: 600 13px Arial, sans-serif;
+  border-radius: 30px;
+  padding: 8px 12px;
+  background: #edf0ff;
+  color: #4658bf;
+}
+
+.topic-tag {
+  background: #edf8f1;
+  color: #187341;
+}
+
+#questionStage {
+  opacity: 1;
+  transform: translateX(0);
+  transition:
+    opacity .45s ease,
+    transform .65s cubic-bezier(.16,1,.3,1);
+}
+
+#questionStage.leaving {
+  opacity: 0;
+  transform: translateX(-18px);
+}
+
+#questionStage.entering {
+  animation: questionEnter .85s cubic-bezier(.16,1,.3,1) both;
+}
+
+.question {
+  font-size: clamp(21px, 3vw, 25px);
+  line-height: 1.55;
+  font-weight: bold;
+  margin: 0 0 10px;
+  overflow-wrap: anywhere;
+}
+
+.question-hint {
+  color: #53627b;
+  font-family: "Hind Siliguri", "Kalpurush", sans-serif;
+  font-size: 18px;
+  line-height: 1.7;
+  margin: 0 0 24px;
+}
+
+.options {
+  display: grid;
+  gap: 12px;
+}
+
+.option {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  text-align: left;
+  color: var(--text);
+  background: rgba(255,255,255,.83);
+  border: 1.5px solid #e0e5ef;
+  border-radius: 15px;
+  padding: 15px 16px;
+  min-height: 60px;
+  cursor: pointer;
+  transition:
+    background .25s ease,
+    border-color .25s ease,
+    transform .3s cubic-bezier(.16,1,.3,1),
+    box-shadow .3s ease;
+}
+
+.option:hover:not(:disabled) {
+  transform: translateY(-2px);
+  border-color: #929ff0;
+  box-shadow: 0 7px 20px #5267df12;
+}
+
+.option:focus-visible, .btn:focus-visible {
+  outline: 3px solid #9aa8ff;
+  outline-offset: 3px;
+}
+
+.letter {
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: #eef1f8;
+  color: #4b5871;
+  font: bold 15px Arial, sans-serif;
+}
+
+.option.correct {
+  background: #ecfdf3;
+  border-color: #35a568;
+  color: #166534;
+}
+
+.option.correct .letter {
+  background: #15803d;
+  color: white;
+}
+
+.option.wrong {
+  background: #fff1f2;
+  border-color: #f87171;
+  color: #991b1b;
+}
+
+.option.wrong .letter {
+  background: #dc2626;
+  color: white;
+}
+
+.option:disabled { cursor: default; }
+
+.feedback {
+  margin-top: 23px;
+  padding: 19px;
+  border-radius: 16px;
+  background: #f0f4ff;
+  border: 1px solid #dce4ff;
+  animation: enterUp .5s ease both;
+}
+
+.feedback[hidden] { display: none; }
+
+.feedback-title {
+  font-weight: bold;
+  font-size: 21px;
+  margin-bottom: 10px;
+}
+
+.feedback-title.good { color: var(--green); }
+.feedback-title.bad { color: var(--red); }
+
+.explanation {
+  font-family: "Hind Siliguri", "Kalpurush", sans-serif;
+  font-size: 18px;
+  line-height: 1.85;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+
+.rule-box {
+  margin-top: 13px;
+  padding: 12px 14px;
+  border-left: 4px solid var(--primary);
+  border-radius: 8px;
+  background: #ffffffbd;
+  font-family: "Hind Siliguri", "Kalpurush", sans-serif;
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+.controls {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.btn {
+  border: 0;
+  border-radius: 13px;
+  padding: 13px 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform .25s ease, filter .25s ease;
+}
+
+.btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  filter: brightness(.97);
+}
+
+.btn:disabled {
+  opacity: .4;
+  cursor: not-allowed;
+}
+
+.primary {
+  color: white;
+  background: linear-gradient(135deg, #5267df, #6d55db);
+  box-shadow: 0 6px 18px #5267df30;
+}
+
+.secondary {
+  color: #3d4c68;
+  background: #edf0f6;
+}
+
+#nextBtn { margin-left: auto; }
+
+.footer {
+  text-align: center;
+  margin-top: 24px;
+  color: #778198;
+  font: 13px Arial, sans-serif;
+}
+
+@keyframes enterDown {
+  from { opacity: 0; transform: translateY(-22px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes enterUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes questionEnter {
+  from { opacity: 0; transform: translateY(20px) translateX(8px); }
+  to { opacity: 1; transform: translateY(0) translateX(0); }
+}
+
+@media (max-width: 520px) {
+  body { padding: 12px 10px 25px; }
+  .header { padding: 20px 5px 23px; }
+  .stats { gap: 7px; }
+  .stat { padding: 13px 5px; }
+  .stat-value { font-size: 23px; }
+  .quiz-card { border-radius: 19px; }
+  .option { padding: 12px; gap: 10px; }
+  .controls { gap: 8px; }
+  .btn { padding: 12px 15px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
 </head>
-<body class="min-h-screen flex items-center justify-center relative select-none px-4">
 
-    <!-- Ambient glow center element -->
-    <div id="glow" class="ambient-glow top-1/2 left-1/2"></div>
+<body>
+<div class="container">
 
-    <!-- Centered minimal content with entry animations -->
-    <main class="text-center z-10 space-y-6 max-w-3xl mx-auto py-8 px-4">
-        
-        <!-- Main English Title -->
-        <h1 class="animate-heading text-5xl sm:text-7xl md:text-8xl font-black tracking-tight glow-text font-['Inter'] drop-shadow-lg">
-            Coming Soon...
-        </h1>
+  <header class="header">
+    <span class="badge">INFINITY MCQ SYSTEM</span>
+    <h1>PART 29 - Special Uses of Words &amp; Phrases</h1>
+    <p class="subtitle">Learn • Practice • Understand • Improve</p>
+  </header>
 
-        <!-- Bengali Subheading -->
-        <p class="animate-subheading text-xl sm:text-3xl md:text-4xl font-semibold text-emerald-400/90 leading-relaxed tracking-wide drop-shadow">
-            ইনশাআল্লাহ, খুব শীঘ্রই ডাটা যোগ করা হবে।
-        </p>
+  <section class="stats">
+    <div class="glass stat">
+      <div class="stat-label">Question</div>
+      <div class="stat-value" id="questionCount">1</div>
+    </div>
+    <div class="glass stat">
+      <div class="stat-label">Correct</div>
+      <div class="stat-value" id="correctCount">0</div>
+    </div>
+    <div class="glass stat">
+      <div class="stat-label">Accuracy</div>
+      <div class="stat-value" id="accuracy">0%</div>
+    </div>
+  </section>
 
-    </main>
+  <div class="progress-wrap" aria-label="Session progress">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
 
-    <script>
-        const glow = document.getElementById('glow');
+  <main class="glass quiz-card">
+    <div id="questionStage">
+      <div class="question-top">
+        <span class="question-number" id="questionLabel">QUESTION 1</span>
+        <span class="topic-tag" id="topicTag">Grammar Practice</span>
+      </div>
 
-        // Mouse move interactive glow background
-        window.addEventListener('mousemove', (e) => {
-            glow.style.left = e.clientX + 'px';
-            glow.style.top = e.clientY + 'px';
-        });
+      <h2 class="question" id="questionText"></h2>
+      <p class="question-hint" id="questionHint"></p>
 
-        // Touch move interactive glow background for mobile screens
-        window.addEventListener('touchmove', (e) => {
-            if (e.touches.length > 0) {
-                glow.style.left = e.touches[0].clientX + 'px';
-                glow.style.top = e.touches[0].clientY + 'px';
-            }
-        });
-    </script>
+      <div class="options" id="options" aria-label="Answer options"></div>
+
+      <section class="feedback" id="feedback" hidden aria-live="polite">
+        <div class="feedback-title" id="feedbackTitle"></div>
+        <div class="explanation" id="explanation"></div>
+        <div class="rule-box" id="ruleBox"></div>
+      </section>
+    </div>
+
+    <div class="controls">
+      <button class="btn secondary" id="prevBtn" disabled>← Previous</button>
+      <button class="btn secondary" id="newBtn">New Question</button>
+      <button class="btn primary" id="nextBtn">Next →</button>
+    </div>
+  </main>
+
+  <footer class="footer">
+    PART 29 • INFINITY PRACTICE • Keep Learning
+  </footer>
+</div>
+
+<script>
+"use strict";
+
+/* =========================================
+   PART 29: QUESTION GENERATOR ENGINE
+   Add more templates to expand the question bank.
+========================================= */
+
+const names = [
+  "Firoz", "Fatiha", "Fatema", "Jui", "Ema", "Rupa",
+  "Moksed", "Ferjousi", "Jannati", "Mini", "Miraz",
+  "Mujahid", "Milon", "Hannan", "Joba", "Tanzila",
+  "Rina", "Tania", "Taslima"
+];
+
+const templates = [
+
+{
+ topic: "Used to",
+ make(n) {
+  return {
+   q: `${n} ______ live in this village when he was young.`,
+   hint: "(বাক্যটি অতীতের অভ্যাস বোঝাচ্ছে। সঠিক phrase বেছে নিন।)",
+   options: ["used to", "is used to", "use to", "was use to"],
+   answer: "used to",
+   explanation: "সঠিক উত্তর: used to। এখানে অতীতে নিয়মিত গ্রামে বসবাস করার অভ্যাস বোঝানো হয়েছে। সেই অভ্যাস এখন আর আছে কি না, তা বাক্যে বলা হয়নি।\n\nUsed to-এর পরে verb-এর মূল রূপ (V1) বসে। তাই live সঠিক।",
+   rule: "Structure: Subject + used to + V1"
+  };
+ }
+},
+
+{
+ topic: "Be used to",
+ make(n) {
+  return {
+   q: `${n} is accustomed to ______ early in the morning.`,
+   hint: "(এখানে কোনো কাজে অভ্যস্ত হওয়া বোঝানো হয়েছে।)",
+   options: ["wake up", "waking up", "woke up", "to wake up"],
+   answer: "waking up",
+   explanation: "সঠিক উত্তর: waking up। Be used to অর্থ কোনো কাজে অভ্যস্ত হওয়া। এই ব্যবহারে to হলো preposition; তাই এর পরে noun অথবা verb-এর -ing form বসে।\n\nএখানে is accustomed to waking up অর্থ সকালে তাড়াতাড়ি ঘুম থেকে ওঠায় অভ্যস্ত।",
+   rule: "Structure: am/is/are + used to + V-ing / noun"
+  };
+ }
+},
+
+{
+ topic: "Would rather",
+ make(n) {
+  return {
+   q: `${n} would rather ______ at home than go outside.`,
+   hint: "(দুটি কাজের মধ্যে একটি বেশি পছন্দ করা বোঝানো হয়েছে।)",
+   options: ["staying", "to stay", "stay", "stayed"],
+   answer: "stay",
+   explanation: "সঠিক উত্তর: stay। Would rather-এর পরে verb-এর মূল রূপ বসে। এখানে বাড়িতে থাকা এবং বাইরে যাওয়ার মধ্যে বাড়িতে থাকাকে বেশি পছন্দ করার কথা বলা হয়েছে।\n\nThan-এর পরে go-ও মূল রূপে আছে।",
+   rule: "Structure: would rather + V1 + than + V1"
+  };
+ }
+},
+
+{
+ topic: "Had better",
+ make(n) {
+  return {
+   q: `${n} had better ______ harder for the examination.`,
+   hint: "(পরামর্শ দেওয়ার জন্য ব্যবহৃত phrase-এর সঠিক রূপ বেছে নিন।)",
+   options: ["studies", "studying", "study", "to study"],
+   answer: "study",
+   explanation: "সঠিক উত্তর: study। Had better-এর পরে verb-এর মূল রূপ বসে। এটি পরামর্শ বা প্রয়োজনীয় সতর্কতা বোঝাতে ব্যবহৃত হয়।\n\nHad better to study ভুল, কারণ এই গঠনে to বসে না।",
+   rule: "Structure: Subject + had better + V1"
+  };
+ }
+},
+
+{
+ topic: "No sooner",
+ make(n) {
+  return {
+   q: `No sooner ______ ${n} arrived than the class began.`,
+   hint: "(No sooner-এর বাক্যে সঠিক auxiliary verb বেছে নিন।)",
+   options: ["did", "has", "had", "was"],
+   answer: "had",
+   explanation: "সঠিক উত্তর: had। No sooner-এর সঙ্গে past perfect-এর inversion ব্যবহার করা হয়। No sooner বাক্যের শুরুতে থাকায় auxiliary verb subject-এর আগে বসে।\n\nএখানে arrived হলো V3-এর রূপ, তাই had arrived সঠিক।",
+   rule: "Structure: No sooner + had + subject + V3 + than + past simple"
+  };
+ }
+},
+
+{
+ topic: "Hardly",
+ make(n) {
+  return {
+   q: `Hardly had ${n} reached the station ______ the train left.`,
+   hint: "(Hardly-এর সঙ্গে উপযুক্ত conjunction বেছে নিন।)",
+   options: ["than", "when", "then", "while"],
+   answer: "when",
+   explanation: "সঠিক উত্তর: when। Hardly ... when দিয়ে একটি কাজের ঠিক পরপর অন্য কাজ ঘটে যাওয়া বোঝানো হয়।\n\nThan সাধারণত No sooner-এর সঙ্গে ব্যবহৃত হয়।",
+   rule: "Structure: Hardly/Scarcely + had + subject + V3 + when/before + past simple"
+  };
+ }
+},
+
+{
+ topic: "Too ... to",
+ make(n) {
+  return {
+   q: `The box is too heavy for ${n} ______.`,
+   hint: "(Too ... to গঠনটি সম্পূর্ণ করুন।)",
+   options: ["lift", "lifting", "lifted", "lifts"],
+   answer: "lift",
+   explanation: "সঠিক উত্তর: lift। Too ... to গঠন কোনো কাজ করার ক্ষেত্রে অতিরিক্ত মাত্রা বা বাধা বোঝাতে ব্যবহৃত হয়।\n\nঅর্থ: বাক্সটি এত ভারী যে Firoz-এর পক্ষে এটি তোলা সম্ভব নয়। For-এর পরে object থাকলেও to-এর পরে verb-এর মূল রূপ হয়।",
+   rule: "Structure: too + adjective + (for + object) + to + V1"
+  };
+ }
+},
+
+{
+ topic: "Enough to",
+ make(n) {
+  return {
+   q: `${n} is strong enough ______ the bag.`,
+   hint: "(Enough-এর সঙ্গে সঠিক infinitive বেছে নিন।)",
+   options: ["carry", "carrying", "to carry", "carried"],
+   answer: "to carry",
+   explanation: "সঠিক উত্তর: to carry। Enough adjective-এর পরে বসলে তার সঙ্গে to + verb ব্যবহার করে কোনো কাজ করার যথেষ্ট সামর্থ্য বোঝানো যায়।\n\nStrong enough to carry অর্থ ব্যাগটি বহন করার মতো যথেষ্ট শক্তিশালী।",
+   rule: "Structure: adjective + enough + to + V1"
+  };
+ }
+},
+
+{
+ topic: "So ... that",
+ make(n) {
+  return {
+   q: `${n} was so tired ______ he could not continue working.`,
+   hint: "(ফলাফল বোঝানোর conjunction বেছে নিন।)",
+   options: ["because", "that", "although", "unless"],
+   answer: "that",
+   explanation: "সঠিক উত্তর: that। So ... that দিয়ে কোনো অবস্থা বা মাত্রার ফলাফল বোঝানো হয়।\n\nএখানে খুব ক্লান্ত হওয়ার ফল হলো কাজ চালিয়ে যেতে না পারা।",
+   rule: "Structure: so + adjective/adverb + that + clause"
+  };
+ }
+},
+
+{
+ topic: "Such ... that",
+ make(n) {
+  return {
+   q: `It was such ______ interesting book that ${n} read it twice.`,
+   hint: "(Such-এর পরে article ও adjective-এর সঠিক ক্রম বেছে নিন।)",
+   options: ["a", "an", "the", "no article"],
+   answer: "an",
+   explanation: "সঠিক উত্তর: an। Singular countable noun-এর আগে such + a/an + adjective + noun + that গঠন ব্যবহৃত হয়।\n\nInteresting শব্দটি vowel sound দিয়ে শুরু হওয়ায় an বসে।",
+   rule: "Structure: such + a/an + adjective + singular countable noun + that"
+  };
+ }
+},
+
+{
+ topic: "Lest",
+ make(n) {
+  return {
+   q: `${n} studied carefully lest he ______ make a mistake.`,
+   hint: "(Lest-এর পরে প্রচলিত grammar rule অনুযায়ী সঠিক রূপ বেছে নিন।)",
+   options: ["should", "will", "has", "is"],
+   answer: "should",
+   explanation: "সঠিক উত্তর: should। Lest অর্থ পাছে বা যাতে কোনো অনাকাঙ্ক্ষিত ঘটনা না ঘটে। প্রচলিত পরীক্ষামুখী গঠনে lest-এর পরে subject + should + V1 ব্যবহৃত হয়।\n\nShould make এখানে সঠিক।",
+   rule: "Common exam structure: lest + subject + should + V1"
+  };
+ }
+},
+
+{
+ topic: "As if",
+ make(n) {
+  return {
+   q: `${n} talks as if he ______ everything.`,
+   hint: "(অবাস্তব বা কল্পিত ধারণা বোঝানো হয়েছে।)",
+   options: ["knows", "knew", "will know", "has know"],
+   answer: "knew",
+   explanation: "সঠিক উত্তর: knew। As if-এর পরে অবাস্তব বা বাস্তবতার বিপরীত ধারণা বোঝালে past form ব্যবহার করা যায়। এখানে সে এমনভাবে কথা বলে যেন সবকিছু জানে।\n\nএই ধরনের পরীক্ষামুখী বাক্যে knew প্রচলিত উত্তর। বাস্তব ঘটনা বোঝালে as if-এর পরে অন্য tense-ও হতে পারে।",
+   rule: "Unreal present comparison: as if + past simple"
+  };
+ }
+},
+
+{
+ topic: "Unless",
+ make(n) {
+  return {
+   q: `Unless ${n} works hard, he ______ fail the test.`,
+   hint: "(Unless-এর অর্থ অনুযায়ী সঠিক verb বেছে নিন।)",
+   options: ["would", "may have", "will", "has"],
+   answer: "will",
+   explanation: "সঠিক উত্তর: will। Unless অর্থ if ... not, অর্থাৎ যদি না। সাধারণ first conditional-এ unless-এর clause-এ present simple এবং মূল clause-এ will + V1 ব্যবহার করা হয়।\n\nএখানে অর্থ: Firoz কঠোর পরিশ্রম না করলে পরীক্ষায় ফেল করবে।",
+   rule: "Structure: Unless + present simple, subject + will + V1"
+  };
+ }
+},
+
+{
+ topic: "As soon as",
+ make(n) {
+  return {
+   q: `As soon as ${n} ______ home, he will call us.`,
+   hint: "(ভবিষ্যৎ সময় বোঝানো time clause-এর সঠিক tense বেছে নিন।)",
+   options: ["will reach", "reached", "reaches", "has reach"],
+   answer: "reaches",
+   explanation: "সঠিক উত্তর: reaches। ভবিষ্যৎ সময় বোঝানো as soon as-এর clause-এ সাধারণত present simple ব্যবহার হয়; মূল clause-এ will থাকতে পারে।\n\nতৃতীয় পুরুষ একবচন subject-এর সঙ্গে reaches হয়।",
+   rule: "Structure: As soon as + present simple, ... will + V1"
+  };
+ }
+},
+
+{
+ topic: "Provided that",
+ make(n) {
+  return {
+   q: `${n} can join the trip provided that he ______ permission.`,
+   hint: "(শর্ত বোঝানোর phrase-এর সঠিক রূপ বেছে নিন।)",
+   options: ["get", "gets", "gotten", "getting"],
+   answer: "gets",
+   explanation: "সঠিক উত্তর: gets। Provided that অর্থ এই শর্তে যে। বর্তমান সাধারণ শর্ত বোঝাতে provided that-এর পরে present simple ব্যবহার করা হয়।\n\nHe তৃতীয় পুরুষ একবচন, তাই gets সঠিক।",
+   rule: "Structure: provided that + subject + present simple"
+  };
+ }
+},
+
+{
+ topic: "In spite of",
+ make(n) {
+  return {
+   q: `In spite of ______ tired, ${n} completed the work.`,
+   hint: "(In spite of-এর পরে সঠিক grammatical form বেছে নিন।)",
+   options: ["be", "was", "being", "is"],
+   answer: "being",
+   explanation: "সঠিক উত্তর: being। In spite of একটি preposition-যুক্ত phrase। এর পরে noun, pronoun অথবা gerund (verb + ing) বসতে পারে।\n\nBeing tired অর্থ ক্লান্ত থাকা। এখানে সম্পূর্ণ clause হিসেবে was tired বসানো যায় না।",
+   rule: "Structure: in spite of + noun/pronoun/gerund"
+  };
+ }
+},
+
+{
+ topic: "Despite",
+ make(n) {
+  return {
+   q: `Despite ______ hard, ${n} could not solve the problem.`,
+   hint: "(Despite-এর পরে সঠিক form নির্বাচন করুন।)",
+   options: ["try", "tried", "trying", "to try"],
+   answer: "trying",
+   explanation: "সঠিক উত্তর: trying। Despite-এর পরে noun বা gerund বসে। তাই trying hard সঠিক।\n\nDespite এবং in spite of-এর অর্থ প্রায় একই: সত্ত্বেও। এদের পরে সরাসরি subject + verb-যুক্ত পূর্ণ clause বসে না; clause ব্যবহার করতে হলে উপযুক্ত কাঠামো প্রয়োজন।",
+   rule: "Structure: despite + noun/gerund"
+  };
+ }
+},
+
+{
+ topic: "Because of",
+ make(n) {
+  return {
+   q: `The match was cancelled because of ______ rain.`,
+   hint: "(কারণ বোঝানো phrase-এর সঠিক ব্যবহার বেছে নিন।)",
+   options: ["heavy", "heavily", "heavier than", "heaviest"],
+   answer: "heavy",
+   explanation: "সঠিক উত্তর: heavy। Because of-এর পরে noun phrase বসে। এখানে rain একটি noun এবং heavy সেটিকে বর্ণনা করছে। তাই heavy rain সঠিক।\n\nBecause-এর পরে সাধারণত subject ও verb-সহ clause বসে; because of-এর পরে noun phrase বসে।",
+   rule: "Because + clause | Because of + noun phrase"
+  };
+ }
+},
+
+{
+ topic: "Look forward to",
+ make(n) {
+  return {
+   q: `${n} looks forward to ______ the result.`,
+   hint: "(Look forward to-এর পরে সঠিক verb form বেছে নিন।)",
+   options: ["know", "knowing", "knew", "to know"],
+   answer: "knowing",
+   explanation: "সঠিক উত্তর: knowing। Look forward to অর্থ আগ্রহের সঙ্গে অপেক্ষা করা। এখানে to একটি preposition, infinitive marker নয়। তাই এর পরে verb-এর -ing form বসে।",
+   rule: "Structure: look forward to + noun/gerund"
+  };
+ }
+},
+
+{
+ topic: "Cannot help",
+ make(n) {
+  return {
+   q: `${n} could not help ______ when he heard the joke.`,
+   hint: "(Cannot help-এর পরে সঠিক verb form বেছে নিন।)",
+   options: ["laugh", "to laugh", "laughing", "laughed"],
+   answer: "laughing",
+   explanation: "সঠিক উত্তর: laughing। Cannot help + V-ing অর্থ কোনো কাজ না করে থাকতে না পারা।\n\nCould not help laughing অর্থ সে না হেসে থাকতে পারেনি।",
+   rule: "Structure: cannot/could not help + V-ing"
+  };
+ }
+},
+
+{
+ topic: "There is no use",
+ make(n) {
+  return {
+   q: `There is no use ______ with ${n} about this matter.`,
+   hint: "(কোনো কাজ করে লাভ নেই—এই অর্থের সঠিক form বেছে নিন।)",
+   options: ["argue", "to argue", "arguing", "argued"],
+   answer: "arguing",
+   explanation: "সঠিক উত্তর: arguing। There is no use অর্থ কোনো কাজ করে লাভ নেই। এই গঠনে সাধারণত verb-এর -ing form বসে।\n\nArguing with Firoz অর্থ Firoz-এর সঙ্গে তর্ক করা।",
+   rule: "Structure: There is no use + V-ing"
+  };
+ }
+},
+
+{
+ topic: "Prefer",
+ make(n) {
+  return {
+   q: `${n} prefers reading books ______ watching television.`,
+   hint: "(Prefer-এর সঙ্গে প্রচলিত comparison structure বেছে নিন।)",
+   options: ["than", "to", "over than", "from"],
+   answer: "to",
+   explanation: "সঠিক উত্তর: to। Prefer A to B গঠনে একটি কাজ বা জিনিসকে অন্যটির চেয়ে বেশি পছন্দ করা বোঝায়।\n\nএখানে reading books এবং watching television—দুটি gerund একই grammatical form-এ আছে।",
+   rule: "Structure: prefer + noun/gerund + to + noun/gerund"
+  };
+ }
+},
+
+{
+ topic: "Would prefer",
+ make(n) {
+  return {
+   q: `${n} would prefer ______ at home tonight.`,
+   hint: "(Would prefer-এর পরে সঠিক infinitive বেছে নিন।)",
+   options: ["stay", "staying", "to stay", "stayed"],
+   answer: "to stay",
+   explanation: "সঠিক উত্তর: to stay। Would prefer-এর পরে সাধারণত to + verb-এর মূল রূপ বসে।\n\nWould prefer to stay অর্থ বাড়িতে থাকাকেই বেশি পছন্দ করবে।",
+   rule: "Structure: would prefer + to + V1"
+  };
+ }
+},
+
+{
+ topic: "Rather than",
+ make(n) {
+  return {
+   q: `${n} decided to walk rather than ______ a bus.`,
+   hint: "(Rather than-এর সঙ্গে parallel structure অনুসরণ করুন।)",
+   options: ["taking", "took", "take", "to taking"],
+   answer: "take",
+   explanation: "সঠিক উত্তর: take। Rather than-এর সঙ্গে একই ধরনের structure বজায় রাখতে হয়। এখানে to walk-এর সঙ্গে মূল রূপ take ব্যবহার করা হয়েছে।\n\nRather than অর্থ এর পরিবর্তে বা না করে।",
+   rule: "Common structure: to + V1 ... rather than + V1"
+  };
+ }
+},
+
+{
+ topic: "As long as",
+ make(n) {
+  return {
+   q: `${n} may use the computer as long as he ______ it carefully.`,
+   hint: "(শর্ত বোঝানোর phrase-এর সঠিক tense বেছে নিন।)",
+   options: ["uses", "will use", "using", "use"],
+   answer: "uses",
+   explanation: "সঠিক উত্তর: uses। As long as অর্থ যতক্ষণ বা এই শর্তে যে। ভবিষ্যৎ অর্থ থাকলেও এই ধরনের time/condition clause-এ present simple ব্যবহার করা হয়।\n\nHe-এর সঙ্গে uses সঠিক।",
+   rule: "Structure: as long as + present simple (for future conditions)"
+  };
+ }
+},
+
+{
+ topic: "Needn't have",
+ make(n) {
+  return {
+   q: `${n} needn't have ______ so much food; there was enough already.`,
+   hint: "(অতীতে অপ্রয়োজনীয়ভাবে করা কাজ বোঝানোর সঠিক form বেছে নিন।)",
+   options: ["buy", "bought", "buying", "to buy"],
+   answer: "bought",
+   explanation: "সঠিক উত্তর: bought। Needn't have + V3 বোঝায় অতীতে কোনো কাজ করা হয়েছিল, কিন্তু কাজটি প্রয়োজন ছিল না।\n\nএখানে খাবার আগে থেকেই যথেষ্ট ছিল, তাই আরও খাবার কেনার প্রয়োজন ছিল না।",
+   rule: "Structure: needn't have + past participle (V3)"
+  };
+ }
+},
+
+{
+ topic: "Let alone",
+ make(n) {
+  return {
+   q: `${n} cannot afford a bicycle, let alone ______ a car.`,
+   hint: "(Let alone-এর পরে parallel structure বজায় রাখুন।)",
+   options: ["buy", "buys", "buying", "bought"],
+   answer: "buy",
+   explanation: "সঠিক উত্তর: buy। Let alone অর্থ তো দূরের কথা। প্রথম কাজটি করতে অক্ষম হলে আরও কঠিন বা ব্যয়বহুল কাজটি করতে অক্ষমতা বোঝাতে এটি ব্যবহৃত হয়।\n\nCannot afford-এর সঙ্গে মূল রূপ buy ব্যবহার করা হয়েছে।",
+   rule: "Let alone = not to mention; much less"
+  };
+ }
+},
+
+{
+ topic: "What if",
+ make(n) {
+  return {
+   q: `What if ${n} ______ the wrong answer in the examination?`,
+   hint: "(সম্ভাব্য পরিস্থিতি নিয়ে প্রশ্ন করার সঠিক form বেছে নিন।)",
+   options: ["give", "gives", "giving", "given"],
+   answer: "gives",
+   explanation: "সঠিক উত্তর: gives। What if দিয়ে কোনো সম্ভাব্য পরিস্থিতি বা তার ফল নিয়ে প্রশ্ন করা হয়। বর্তমান বা ভবিষ্যতের সম্ভাবনা বোঝাতে present simple ব্যবহার করা যেতে পারে।\n\nএখানে Firoz-এর মতো তৃতীয় পুরুষ একবচন subject-এর সঙ্গে gives বসে।",
+   rule: "Common structure: What if + present simple ...?"
+  };
+ }
+},
+
+{
+ topic: "Be about to",
+ make(n) {
+  return {
+   q: `${n} is about to ______ the examination hall.`,
+   hint: "(কোনো কাজ এখনই ঘটতে যাচ্ছে—এই অর্থের সঠিক form বেছে নিন।)",
+   options: ["left", "leaving", "leave", "leaves"],
+   answer: "leave",
+   explanation: "সঠিক উত্তর: leave। Be about to কোনো কাজ অতি শিগগির ঘটতে যাচ্ছে বোঝায়। এর পরে to + verb-এর মূল রূপ বসে।\n\nIs about to leave অর্থ এখনই বের হতে যাচ্ছে।",
+   rule: "Structure: am/is/are + about to + V1"
+  };
+ }
+},
+
+{
+ topic: "Would you mind",
+ make(n) {
+  return {
+   q: `Would you mind ______ the door, ${n}?`,
+   hint: "(ভদ্রভাবে অনুরোধ করার phrase-এর সঠিক form বেছে নিন।)",
+   options: ["open", "to open", "opening", "opened"],
+   answer: "opening",
+   explanation: "সঠিক উত্তর: opening। Would you mind-এর পরে verb-এর -ing form বসে। এটি ভদ্রভাবে কোনো কাজ করার অনুরোধ জানাতে ব্যবহৃত হয়।\n\nWould you mind opening the door? অর্থ দরজাটি খুলে দিলে কি আপনার আপত্তি হবে?",
+   rule: "Structure: Would you mind + V-ing?"
+  };
+ }
+},
+
+{
+ topic: "Had better not",
+ make(n) {
+  return {
+   q: `${n} had better not ______ late for class.`,
+   hint: "(নেতিবাচক পরামর্শের সঠিক গঠন বেছে নিন।)",
+   options: ["be", "to be", "being", "is"],
+   answer: "be",
+   explanation: "সঠিক উত্তর: be। Had better not-এর পরে verb-এর মূল রূপ বসে। এটি কোনো কাজ না করার পরামর্শ দেয়।\n\nHad better not be late অর্থ দেরি না করাই ভালো।",
+   rule: "Structure: had better not + V1"
+  };
+ }
+},
+
+{
+ topic: "So that",
+ make(n) {
+  return {
+   q: `${n} studies regularly so that he ______ pass the examination.`,
+   hint: "(উদ্দেশ্য বোঝানোর so that clause-এর সঠিক modal বেছে নিন।)",
+   options: ["can", "has", "was", "does"],
+   answer: "can",
+   explanation: "সঠিক উত্তর: can। So that উদ্দেশ্য বা কোনো কাজের লক্ষ্য বোঝায়। Present context-এ সক্ষমতা বা সম্ভাবনা বোঝাতে so that-এর পরে can ব্যবহার করা যায়।\n\nএখানে নিয়মিত পড়ার উদ্দেশ্য হলো পরীক্ষায় পাস করতে পারা।",
+   rule: "Common structure: so that + subject + can/may + V1"
+  };
+ }
+},
+
+{
+ topic: "Although",
+ make(n) {
+  return {
+   q: `Although ${n} was tired, he ______ working.`,
+   hint: "(বিপরীত পরিস্থিতি বোঝানোর উপযুক্ত phrase বেছে নিন।)",
+   options: ["gave up", "kept on", "looked after", "put off"],
+   answer: "kept on",
+   explanation: "সঠিক উত্তর: kept on। Keep on অর্থ চালিয়ে যাওয়া। Although tired থাকা সত্ত্বেও কাজ চালিয়ে যাওয়ার বিপরীতধর্মী ভাব প্রকাশ করছে।\n\nGave up অর্থ ছেড়ে দেওয়া, looked after অর্থ দেখাশোনা করা এবং put off অর্থ স্থগিত করা।",
+   rule: "Keep on + V-ing = continue doing something"
+  };
+ }
+},
+
+{
+ topic: "Look after",
+ make(n) {
+  return {
+   q: `${n} looks ______ his younger sister when their parents are away.`,
+   hint: "(Look-এর সঙ্গে সঠিক preposition বেছে নিন।)",
+   options: ["for", "after", "into", "at"],
+   answer: "after",
+   explanation: "সঠিক উত্তর: after। Look after অর্থ দেখাশোনা করা বা যত্ন নেওয়া।\n\nLook for অর্থ খোঁজা, look into অর্থ তদন্ত করা এবং look at অর্থ কোনো কিছুর দিকে তাকানো।",
+   rule: "Look after = take care of"
+  };
+ }
+},
+
+{
+ topic: "Put off",
+ make(n) {
+  return {
+   q: `${n} had to put ______ the meeting until Monday.`,
+   hint: "(স্থগিত করা বোঝানোর phrasal verb সম্পূর্ণ করুন।)",
+   options: ["on", "out", "off", "up"],
+   answer: "off",
+   explanation: "সঠিক উত্তর: off। Put off অর্থ কোনো কাজ বা অনুষ্ঠান পিছিয়ে দেওয়া বা স্থগিত করা।\n\nএখানে meeting সোমবার পর্যন্ত স্থগিত করতে হয়েছে।",
+   rule: "Put off = postpone"
+  };
+ }
+},
+
+{
+ topic: "Carry on",
+ make(n) {
+  return {
+   q: `Despite the noise, ${n} carried ______ reading.`,
+   hint: "(কোনো কাজ চালিয়ে যাওয়া বোঝানোর phrasal verb বেছে নিন।)",
+   options: ["away", "on", "out", "over"],
+   answer: "on",
+   explanation: "সঠিক উত্তর: on। Carry on অর্থ চালিয়ে যাওয়া। Carry on reading অর্থ পড়া চালিয়ে যাওয়া।\n\nএখানে despite the noise বোঝায় শব্দ থাকা সত্ত্বেও সে পড়া বন্ধ করেনি।",
+   rule: "Carry on + V-ing = continue"
+  };
+ }
+},
+
+{
+ topic: "Take part in",
+ make(n) {
+  return {
+   q: `${n} took part ______ the debate competition.`,
+   hint: "(অংশগ্রহণ করা বোঝানোর phrase-এর সঠিক preposition বেছে নিন।)",
+   options: ["at", "on", "in", "for"],
+   answer: "in",
+   explanation: "সঠিক উত্তর: in। Take part in অর্থ কোনো প্রতিযোগিতা, অনুষ্ঠান বা কাজে অংশগ্রহণ করা।\n\nএখানে debate competition-এ অংশ নেওয়া বোঝানো হয়েছে।",
+   rule: "Take part in = participate in"
+  };
+ }
+},
+
+{
+ topic: "Make up one's mind",
+ make(n) {
+  return {
+   q: `${n} has made up his ______ to study regularly.`,
+   hint: "(সিদ্ধান্ত নেওয়া বোঝানোর phrase সম্পূর্ণ করুন।)",
+   options: ["thought", "mind", "idea", "brain"],
+   answer: "mind",
+   explanation: "সঠিক উত্তর: mind। Make up one's mind অর্থ কোনো বিষয়ে সিদ্ধান্ত নেওয়া।\n\nHas made up his mind to study অর্থ সে নিয়মিত পড়াশোনা করার সিদ্ধান্ত নিয়েছে।",
+   rule: "Make up one's mind = decide"
+  };
+ }
+},
+
+{
+ topic: "At least",
+ make(n) {
+  return {
+   q: `${n} may not win the prize, but he should ______ try.`,
+   hint: "(ন্যূনতম বা অন্তত বোঝানোর phrase বেছে নিন।)",
+   options: ["at last", "at once", "at least", "at times"],
+   answer: "at least",
+   explanation: "সঠিক উত্তর: at least। At least অর্থ অন্তত বা ন্যূনতম।\n\nAt last অর্থ অবশেষে, at once অর্থ সঙ্গে সঙ্গে এবং at times অর্থ মাঝে মাঝে।",
+   rule: "At least = not less than; anyway, as a minimum"
+  };
+ }
+},
+
+{
+ topic: "In case",
+ make(n) {
+  return {
+   q: `${n} took an umbrella in case it ______.`,
+   hint: "(সম্ভাব্য ঘটনা থেকে সতর্ক থাকার অর্থে সঠিক form বেছে নিন।)",
+   options: ["rains", "rained", "will rain", "rain"],
+   answer: "rained",
+   explanation: "সঠিক উত্তর: rained। এই বাক্যে অতীতের ঘটনা বর্ণনা করা হয়েছে। তাই past simple rained স্বাভাবিকভাবে ব্যবহৃত হয়েছে।\n\nIn case অর্থ যদি এমন কিছু ঘটে বা ঘটতে পারে, সেই সম্ভাবনার জন্য প্রস্তুতি নেওয়া। বর্তমান বা ভবিষ্যৎ প্রসঙ্গে in case-এর পরে present simple-ও ব্যবহৃত হয়।",
+   rule: "In case + suitable tense according to the time and context"
+  };
+ }
+}
+
+];
+
+/* =========================================
+   STATE
+========================================= */
+
+const $ = id => document.getElementById(id);
+
+let questionNumber = 1;
+let correctTotal = 0;
+let answeredTotal = 0;
+let currentQuestion = null;
+let currentTemplateIndex = -1;
+let lastTemplateIndex = -1;
+let sessionHistory = [];
+let busy = false;
+
+const letters = ["A", "B", "C", "D"];
+
+function randomItem(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
+function shuffle(arr) {
+  const result = [...arr];
+
+  for (let i = result.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [result[i], result[j]] = [result[j], result[i]];
+  }
+
+  return result;
+}
+
+/* Avoid repeating the same template immediately. */
+function chooseTemplate() {
+  if (templates.length === 1) return 0;
+
+  let index;
+
+  do {
+    index = Math.floor(Math.random() * templates.length);
+  } while (index === lastTemplateIndex);
+
+  lastTemplateIndex = index;
+  return index;
+}
+
+function createQuestion() {
+  const index = chooseTemplate();
+  const template = templates[index];
+  const name = randomItem(names);
+  const raw = template.make(name);
+
+  return {
+    ...raw,
+    topic: template.topic,
+    name,
+    templateIndex: index
+  };
+}
+
+function updateStats() {
+  $("questionCount").textContent = questionNumber;
+  $("correctCount").textContent = correctTotal;
+
+  const percent = answeredTotal
+    ? Math.round((correctTotal / answeredTotal) * 100)
+    : 0;
+
+  $("accuracy").textContent = percent + "%";
+
+  /*
+    This is session progress, not a claim that all
+    possible generated questions have been completed.
+  */
+  $("progressBar").style.width =
+    (answeredTotal ? Math.min(100, answeredTotal % 20 * 5) : 0) + "%";
+
+  $("questionLabel").textContent =
+    "QUESTION " + questionNumber;
+}
+
+function renderQuestion(q, animate = true) {
+  currentQuestion = q;
+
+  $("questionText").textContent = q.q;
+  $("questionHint").textContent = q.hint;
+  $("topicTag").textContent = q.topic;
+  $("feedback").hidden = true;
+
+  const optionsBox = $("options");
+  optionsBox.replaceChildren();
+
+  const shuffledOptions = shuffle(q.options);
+
+  shuffledOptions.forEach((optionText, index) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "option";
+
+    const letter = document.createElement("span");
+    letter.className = "letter";
+    letter.textContent = letters[index];
+
+    const text = document.createElement("span");
+    text.textContent = optionText;
+
+    button.append(letter, text);
+    button.addEventListener("click", () => selectAnswer(button, optionText));
+    optionsBox.appendChild(button);
+  });
+
+  $("prevBtn").disabled = sessionHistory.length === 0;
+  $("nextBtn").textContent = "Next →";
+  $("nextBtn").disabled = false;
+
+  updateStats();
+
+  const stage = $("questionStage");
+
+  if (animate) {
+    stage.classList.remove("leaving", "entering");
+    void stage.offsetWidth;
+    stage.classList.add("entering");
+  }
+}
+
+function selectAnswer(button, selected) {
+  if (busy || $("feedback").hidden === false) return;
+
+  const q = currentQuestion;
+  const isCorrect = selected === q.answer;
+
+  answeredTotal++;
+
+  if (isCorrect) {
+    correctTotal++;
+  }
+
+  const allButtons = [...$("options").querySelectorAll(".option")];
+
+  allButtons.forEach(btn => {
+    const optionText = btn.lastElementChild.textContent;
+    btn.disabled = true;
+
+    if (optionText === q.answer) {
+      btn.classList.add("correct");
+    }
+
+    if (btn === button && !isCorrect) {
+      btn.classList.add("wrong");
+    }
+  });
+
+  $("feedbackTitle").textContent = isCorrect
+    ? "✓ Correct Answer!"
+    : "✗ Incorrect Answer";
+
+  $("feedbackTitle").className =
+    "feedback-title " + (isCorrect ? "good" : "bad");
+
+  $("explanation").textContent = q.explanation;
+  $("ruleBox").textContent = "Grammar Rule: " + q.rule;
+  $("feedback").hidden = false;
+
+  updateStats();
+
+  $("nextBtn").textContent = "Next →";
+}
+
+function goNext() {
+  if (busy) return;
+
+  busy = true;
+
+  const stage = $("questionStage");
+  stage.classList.remove("entering");
+  stage.classList.add("leaving");
+
+  window.setTimeout(() => {
+    sessionHistory.push(currentQuestion);
+    questionNumber++;
+
+    const nextQuestion = createQuestion();
+    renderQuestion(nextQuestion, true);
+
+    busy = false;
+  }, 420);
+}
+
+function goPrevious() {
+  if (busy || sessionHistory.length === 0) return;
+
+  busy = true;
+
+  const stage = $("questionStage");
+  stage.classList.remove("entering");
+  stage.classList.add("leaving");
+
+  window.setTimeout(() => {
+    const previousQuestion = sessionHistory.pop();
+
+    questionNumber = Math.max(1, questionNumber - 1);
+
+    /*
+      Previous restores the question for review.
+      The score is not automatically reversed.
+    */
+    renderQuestion(previousQuestion, true);
+    busy = false;
+  }, 420);
+}
+
+function newQuestion() {
+  if (busy) return;
+
+  busy = true;
+
+  const stage = $("questionStage");
+  stage.classList.remove("entering");
+  stage.classList.add("leaving");
+
+  window.setTimeout(() => {
+    sessionHistory.push(currentQuestion);
+    questionNumber++;
+
+    renderQuestion(createQuestion(), true);
+    busy = false;
+  }, 420);
+}
+
+$("nextBtn").addEventListener("click", goNext);
+$("prevBtn").addEventListener("click", goPrevious);
+$("newBtn").addEventListener("click", newQuestion);
+
+/* Start the practice session. */
+renderQuestion(createQuestion(), false);
+</script>
 </body>
 </html>

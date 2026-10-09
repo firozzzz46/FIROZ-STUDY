@@ -1,128 +1,442 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en" class="h-full">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon</title>
-
-    <!-- Google Fonts for Bengali & English -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Inter:wght@700;900&display=swap" rel="stylesheet">
-
-    <!-- Tailwind CSS -->
+    <title>PART 28 - Connectors & Linking Words | Infinite Practice Engine</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-
+    <!-- Google Fonts for Kalpurush / Bengali support -->
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        eng: ['"Times New Roman"', 'serif'],
+                        ben: ['"Hind Siliguri"', '"Kalpurush"', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
     <style>
         body {
-            font-family: 'Hind Siliguri', 'Inter', sans-serif;
-            background-color: #030712;
-            overflow: hidden;
+            font-family: 'Times New Roman', serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #edf2f7 50%, #e2e8f0 100%);
+            min-height: 100vh;
         }
-
-        /* Gradient glowing animation on text */
-        .glow-text {
-            background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 50%, #38bdf8 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shine 6s linear infinite;
+        .bengali-text {
+            font-family: 'Hind Siliguri', 'Kalpurush', sans-serif;
         }
-
-        @keyframes shine {
-            0% { background-position: 0% center; }
-            50% { background-position: 100% center; }
-            100% { background-position: 0% center; }
+        /* Glassmorphism card effect */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.07), 0 0 15px rgba(0, 0, 0, 0.03);
         }
-
-        /* Keyframes for initial entry: Floating in from below with opacity */
-        @keyframes floatIn {
-            0% {
-                opacity: 0;
-                transform: translateY(40px) scale(0.95);
-                filter: blur(8px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-                filter: blur(0);
-            }
+        /* Smooth cubic-bezier transition container */
+        .question-transition {
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
-
-        /* Continuous subtle float effect once arrived */
-        @keyframes subtleFloat {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-8px);
-            }
-        }
-
-        /* Animation class for Heading */
-        .animate-heading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards,
-                subtleFloat 6s ease-in-out 1.2s infinite;
-        }
-
-        /* Animation class for Subheading (staggered delay) */
-        .animate-subheading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards,
-                subtleFloat 6s ease-in-out 1.55s infinite;
-            opacity: 0; /* Hidden until animation kicks in */
-        }
-
-        /* Ambient background lighting */
-        .ambient-glow {
-            position: absolute;
-            width: 450px;
-            height: 450px;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(3, 7, 18, 0) 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            transition: left 0.4s ease-out, top 0.4s ease-out;
+        .option-btn {
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
     </style>
 </head>
-<body class="min-h-screen flex items-center justify-center relative select-none px-4">
+<body class="flex flex-col justify-between text-slate-800 antialiased">
 
-    <!-- Ambient glow center element -->
-    <div id="glow" class="ambient-glow top-1/2 left-1/2"></div>
+    <header class="w-full max-w-4xl mx-auto px-4 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-indigo-200">
+                28
+            </div>
+            <div>
+                <h1 class="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 font-eng">Connectors & Linking Words</h1>
+                <p class="text-xs sm:text-sm text-slate-500 font-ben">অসীম প্র্যাকটিস সিস্টেম (Infinite Practice Engine)</p>
+            </div>
+        </div>
 
-    <!-- Centered minimal content with entry animations -->
-    <main class="text-center z-10 space-y-6 max-w-3xl mx-auto py-8 px-4">
-        
-        <!-- Main English Title -->
-        <h1 class="animate-heading text-5xl sm:text-7xl md:text-8xl font-black tracking-tight glow-text font-['Inter'] drop-shadow-lg">
-            Coming Soon...
-        </h1>
+        <!-- Progress & Score badge -->
+        <div class="flex items-center gap-3 bg-white/80 px-4 py-2 rounded-2xl border border-slate-200/80 shadow-sm">
+            <div class="text-right">
+                <span class="text-xs text-slate-400 block font-eng uppercase tracking-wider">Score</span>
+                <span id="score-display" class="font-bold text-indigo-600 text-base">0 / 0</span>
+            </div>
+            <div class="h-8 w-px bg-slate-200"></div>
+            <div>
+                <span class="text-xs text-slate-400 block font-eng uppercase tracking-wider">Question</span>
+                <span id="progress-display" class="font-bold text-slate-700 text-base">1</span>
+            </div>
+        </div>
+    </header>
 
-        <!-- Bengali Subheading -->
-        <p class="animate-subheading text-xl sm:text-3xl md:text-4xl font-semibold text-emerald-400/90 leading-relaxed tracking-wide drop-shadow">
-            ইনশাআল্লাহ, খুব শীঘ্রই ডাটা যোগ করা হবে।
-        </p>
+    <main class="w-full max-w-3xl mx-auto px-4 py-2 flex-grow flex items-center justify-center">
+        <div id="quiz-container" class="glass-card w-full rounded-3xl p-6 sm:p-10 question-transition opacity-100 transform translate-y-0">
+            
+            <!-- Question Header / Category Tag -->
+            <div class="flex items-center justify-between mb-6">
+                <span id="category-tag" class="px-3 py-1 bg-indigo-50 text-indigo-700 text-xs font-semibold rounded-full uppercase tracking-wider font-eng border border-indigo-100">
+                    Contrast & Concession
+                </span>
+                <span id="streak-badge" class="text-xs font-medium text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-100 hidden">
+                    🔥 Streak: <span id="streak-count">0</span>
+                </span>
+            </div>
 
+            <!-- Question Sentence (English + Bengali Meaning) -->
+            <div class="mb-8">
+                <h2 id="question-text" class="text-xl sm:text-2xl font-eng font-medium text-slate-900 leading-relaxed mb-3">
+                    <!-- Dynamic Question Goes Here -->
+                </h2>
+                <p id="question-translation" class="bengali-text text-base sm:text-lg text-slate-600 bg-slate-100/70 p-3 rounded-xl border border-slate-200/50">
+                    <!-- Dynamic Bengali Explanation Goes Here -->
+                </p>
+            </div>
+
+            <!-- Options Grid -->
+            <div id="options-container" class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mb-8">
+                <!-- Dynamic Options Go Here -->
+            </div>
+
+            <!-- Explanation Box (Initially Hidden) -->
+            <div id="explanation-box" class="hidden mb-8 p-4 sm:p-5 rounded-2xl bg-amber-50/80 border border-amber-200/80 text-amber-900 transition-all">
+                <h3 class="font-bold text-sm uppercase tracking-wider font-eng mb-1 text-amber-800 flex items-center gap-2">
+                    <span>💡 Detailed Explanation</span>
+                </h3>
+                <p id="explanation-text" class="bengali-text text-base leading-relaxed text-amber-950">
+                    <!-- Dynamic Explanation Goes Here -->
+                </p>
+            </div>
+
+            <!-- Navigation Controls -->
+            <div class="flex items-center justify-between pt-4 border-t border-slate-200/60">
+                <button id="prev-btn" onclick="prevQuestion()" class="px-5 py-2.5 rounded-xl border border-slate-300 text-slate-600 hover:bg-slate-50 font-medium text-sm transition disabled:opacity-40 disabled:cursor-not-allowed">
+                    Previous
+                </button>
+                <button id="next-btn" onclick="nextQuestion()" class="px-6 py-2.5 rounded-xl bg-indigo-600 text-white hover:bg-indigo-700 font-medium text-sm shadow-lg shadow-indigo-200 transition">
+                    Next Question →
+                </button>
+            </div>
+
+        </div>
     </main>
 
+    <footer class="w-full text-center py-6 text-xs text-slate-400 font-eng">
+        PART 28 Connectors & Linking Words &bull; Infinite Generator Engine &bull; Strict Name Filtering Active
+    </footer>
+
     <script>
-        const glow = document.getElementById('glow');
+        // Permitted names list strictly enforced
+        const ALLOWED_NAMES = [
+            "Firoz", "Fatiha", "Fatema", "Jui", "Ema", "Rupa", 
+            "Moksed", "Ferjousi", "Jannati", "Mini", "Miraz", 
+            "Mujahid", "Milon", "Hannan", "Joba", "Tanzila", 
+            "Rina", "Tania", "Taslima"
+        ];
 
-        // Mouse move interactive glow background
-        window.addEventListener('mousemove', (e) => {
-            glow.style.left = e.clientX + 'px';
-            glow.style.top = e.clientY + 'px';
-        });
-
-        // Touch move interactive glow background for mobile screens
-        window.addEventListener('touchmove', (e) => {
-            if (e.touches.length > 0) {
-                glow.style.left = e.touches[0].clientX + 'px';
-                glow.style.top = e.touches[0].clientY + 'px';
+        // Question Templates Database with connector rules and Bengali translations
+        const TEMPLATE_POOL = [
+            {
+                type: "Contrast",
+                pattern: "{name1} studied very hard for the final exam; _________, {name2} achieved a higher grade with minimal effort.",
+                translation: "{name1} চূড়ান্ত পরীক্ষার জন্য খুব কঠোর পড়াশোনা করেছিল; _________, {name2} সামান্য প্রচেষ্টাতেই উচ্চ গ্রেড অর্জন করল।",
+                correct: "however",
+                distractors: ["therefore", "furthermore", "consequently"],
+                explanation: "এখানে দুটি বাক্যের মধ্যে বৈপরীত্য (Contrast) প্রকাশ পাচ্ছে। প্রথম জন খুব পড়েও দ্বিতীয় জন অল্প পড়ে ভালো করায় 'however' (যাহোক / তা সত্ত্বেও) ব্যবহৃত হয়েছে। 'therefore' বা 'consequently' ফলাফল প্রকাশ করে যা এখানে সঠিক নয়।"
+            },
+            {
+                type: "Cause & Effect",
+                pattern: "{name} missed the morning bus _________ heavy traffic jam on the highway.",
+                translation: "{name} মহাসড়কে তীব্র যানজটের কারণে সকালের বাসটি মিস করেছিল।",
+                correct: "because of",
+                distractors: ["although", "in spite of", "moreover"],
+                explanation: "'heavy traffic jam' হলো একটি নাউন ফ্রেজ। কারণ (Cause) প্রকাশ করতে নাউন ফ্রেজের পূর্বে 'because of' বা 'due to' বসে। 'although' বা 'in spite of' বিপরীত ভাব প্রকাশ করে।"
+            },
+            {
+                type: "Concession",
+                pattern: "_________ {name} was feeling unwell, she attended the long study session.",
+                translation: "_________ {name} অসুস্থ বোধ করা সত্ত্বেও, সে দীর্ঘ স্টাডি সেশনে উপস্থিত ছিল।",
+                correct: "Although",
+                distractors: ["Because", "Therefore", "Moreover"],
+                explanation: "অসুস্থ থাকা সত্ত্বেও ক্লাসে উপস্থিত থাকা একটি বিপরীতমুখী বা ছাড় দেওয়ার (Concession) পরিস্থিতি। তাই শুরুতে 'Although' (যদিও) ব্যবহৃত হবে।"
+            },
+            {
+                type: "Result",
+                pattern: "{name} practiced conversational English every single day; _________, her fluency improved remarkably.",
+                translation: "{name} প্রতিদিন কথ্য ইংরেজি চর্চা করত; _________, তার সাবলীলতা চমৎকারভাবে উন্নত হলো।",
+                correct: "consequently",
+                distractors: ["meanwhile", "otherwise", "instead"],
+                explanation: "নিয়মিত চর্চা করার ফলে সাবলীলতা উন্নত হওয়া হলো সরাসরি ফলাফল (Result)। তাই 'consequently' বা 'as a result' সঠিক উত্তর।"
+            },
+            {
+                type: "Addition",
+                pattern: "{name} completed all the assignment tasks on time; _________, she helped her classmates.",
+                translation: "{name} সময়ের মধ্যে সমস্ত অ্যাসাইনমেন্টের কাজ সম্পন্ন করেছিল; _________, সে তার সহপাঠীদেরও সাহায্য করেছিল।",
+                correct: "moreover",
+                distractors: ["however", "otherwise", "instead"],
+                explanation: "আগের কাজের সাথে অতিরিক্ত আরেকটি ভালো কাজের তথ্য যোগ করতে 'moreover' বা 'furthermore' ব্যবহৃত হয়।"
+            },
+            {
+                type: "Condition",
+                pattern: "{name} will not secure the scholarship _________ she maintains top academic scores.",
+                translation: "{name} শীর্ষস্থানীয় একাডেমিক স্কোর বজায় না রাখলে স্কলারশিপ পাবে না।",
+                correct: "unless",
+                distractors: ["if", "since", "although"],
+                explanation: "'unless' অর্থ 'যদি না'। বাক্যটির অর্থ হলো—যদি না সে শীর্ষ স্কোর বজায় রাখে, সে স্কলারশিপ পাবে না। 'if' বসালে অর্থ উল্টে যায়।"
+            },
+            {
+                type: "Time / Sequence",
+                pattern: "{name} finished organizing the research notes; _________, she started drafting the presentation slides.",
+                translation: "{name} গবেষণার নোট গোছানোর কাজ শেষ করল; _________, সে প্রেজেন্টেশন স্লাইড তৈরি করা শুরু করল।",
+                correct: "then",
+                distractors: ["however", "because", "unless"],
+                explanation: "একটি কাজের পরপরই আরেকটি কাজ সম্পন্ন হওয়ার ক্রম বা ধারাবাহিকতা (Sequence) বোঝাতে 'then' বা 'afterwards' ব্যবহৃত হয়।"
+            },
+            {
+                type: "Alternative",
+                pattern: "{name} must submit the project report today, _________ it will be rejected by the committee.",
+                translation: "{name}-কে আজই প্রজেক্ট রিপোর্ট জমা দিতে হবে, _________ এটি কমিটি কর্তৃক প্রত্যাখ্যাত হবে।",
+                correct: "otherwise",
+                distractors: ["moreover", "therefore", "similarly"],
+                explanation: "কোনো কাজ না করলে তার নেতিবাচক পরিণতি কী হতে পারে তা বোঝাতে 'otherwise' বা 'or else' (নতুবা / অন্যথায়) ব্যবহৃত হয়।"
+            },
+            {
+                type: "Similarity",
+                pattern: "{name1} demonstrated exceptional leadership skills; _________, {name2} managed the team project brilliantly.",
+                translation: "{name1} অসাধারণ নেতৃত্ব দক্ষতা প্রদর্শন করেছে; _________, {name2} টিম প্রজেক্টটি দারুণভাবে পরিচালনা করেছে।",
+                correct: "similarly",
+                distractors: ["however", "conversely", "instead"],
+                explanation: "দুটি ঘটনার মধ্যে সাদৃশ্য বা মিল (Similarity) প্রকাশ করতে 'similarly' বা 'likewise' ব্যবহার করা হয়।"
+            },
+            {
+                type: "Example",
+                pattern: "Natural science encompasses various disciplines, _________ physics, chemistry, and biology.",
+                translation: "প্রাকৃতিক বিজ্ঞানের মধ্যে বিভিন্ন শাখা অন্তর্ভুক্ত রয়েছে, _________ পদার্থবিজ্ঞান, রসায়ন এবং জীববিজ্ঞান।",
+                correct: "such as",
+                distractors: ["therefore", "however", "meanwhile"],
+                explanation: "উদাহরণ বা নির্দিষ্ট কোনো তালিকা পেশ করার সময় 'such as' বা 'for example' ব্যবহার করা হয়।"
             }
-        });
+        ];
+
+        // State Management
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let streak = 0;
+        let answeredCurrent = false;
+        let questionHistory = [];
+
+        // Helper to pick random array item
+        function getRandomItem(arr) {
+            return arr[Math.floor(Math.random() * arr.length)];
+        }
+
+        // Helper to get two distinct random names from ALLOWED_NAMES
+        function getRandomNames(count = 1) {
+            let shuffled = [...ALLOWED_NAMES].sort(() => 0.5 - Math.random());
+            return shuffled.slice(0, count);
+        }
+
+        // Generate a unique infinite question
+        function generateQuestion() {
+            let template = getRandomItem(TEMPLATE_POOL);
+            let names = getRandomNames(2);
+            
+            let name1 = names[0];
+            let name2 = names[1] || ALLOWED_NAMES[0];
+
+            let sentence = template.pattern
+                .replace(/{name1}/g, name1)
+                .replace(/{name2}/g, name2)
+                .replace(/{name}/g, name1);
+
+            let translation = template.translation
+                .replace(/{name1}/g, name1)
+                .replace(/{name2}/g, name2)
+                .replace(/{name}/g, name1);
+
+            // Shuffle options
+            let options = [template.correct, ...template.distractors].sort(() => 0.5 - Math.random());
+
+            return {
+                category: template.type,
+                sentence: sentence,
+                translation: translation,
+                correct: template.correct,
+                options: options,
+                explanation: template.explanation
+            };
+        }
+
+        // Load question into UI with buttery smooth transition
+        function loadQuestion() {
+            const container = document.getElementById('quiz-container');
+            
+            // Fade out
+            container.classList.remove('opacity-150', 'translate-y-0');
+            container.classList.add('opacity-0', 'translate-y-4');
+
+            setTimeout(() => {
+                // Check if we need to generate a new question or navigate history
+                if (currentQuestionIndex >= questionHistory.length) {
+                    let newQ = generateQuestion();
+                    questionHistory.push(newQ);
+                }
+
+                const q = questionHistory[currentQuestionIndex];
+                answeredCurrent = false;
+
+                // Update UI elements
+                document.getElementById('category-tag').textContent = `${q.category} Connector`;
+                document.getElementById('question-text').textContent = q.sentence;
+                document.getElementById('question-translation').textContent = `(${q.translation})`;
+                document.getElementById('progress-display').textContent = currentQuestionIndex + 1;
+                document.getElementById('score-display').textContent = `${score} / ${currentQuestionIndex}`;
+
+                // Hide explanation box
+                const expBox = document.getElementById('explanation-box');
+                expBox.classList.add('hidden');
+
+                // Render options
+                const optionsContainer = document.getElementById('options-container');
+                optionsContainer.innerHTML = '';
+
+                q.options.forEach((opt, idx) => {
+                    let btn = document.createElement('button');
+                    btn.className = 'option-btn text-left p-4 rounded-2xl bg-white/80 border border-slate-200/80 hover:bg-indigo-50/50 hover:border-indigo-300 font-eng text-base font-medium text-slate-700 shadow-sm flex items-center justify-between group';
+                    btn.innerHTML = `
+                        <span class="flex items-center gap-3">
+                            <span class="w-7 h-7 rounded-lg bg-slate-100 group-hover:bg-indigo-100 text-slate-500 group-hover:text-indigo-600 flex items-center justify-center text-xs font-bold transition">${String.fromCharCode(65 + idx)}</span>
+                            <span>${opt}</span>
+                        </span>
+                    `;
+                    btn.onclick = () => selectOption(opt, btn, q.correct);
+                    optionsContainer.appendChild(btn);
+                });
+
+                // Update previous button state
+                document.getElementById('prev-btn').disabled = currentQuestionIndex === 0;
+
+                // Fade in
+                container.classList.remove('opacity-0', 'translate-y-4');
+                container.classList.add('opacity-100', 'translate-y-0');
+            }, 250);
+        }
+
+        // Handle Option Selection
+        function selectOption(selectedOpt, selectedBtn, correctOpt) {
+            if (answeredCurrent) return;
+            answeredCurrent = true;
+
+            const optionsContainer = document.getElementById('options-container');
+            const buttons = optionsContainer.getElementsByTagName('button');
+
+            let isCorrect = (selectedOpt.toLowerCase() === correctOpt.toLowerCase());
+
+            if (isCorrect) {
+                score++;
+                streak++;
+                selectedBtn.className = 'option-btn text-left p-4 rounded-2xl bg-emerald-50 border border-emerald-300 text-emerald-900 font-eng text-base font-medium shadow-sm flex items-center justify-between ring-2 ring-emerald-400/30';
+                selectedBtn.innerHTML += `<span class="text-emerald-600 font-bold">✓ Correct</span>`;
+            } else {
+                streak = 0;
+                selectedBtn.className = 'option-btn text-left p-4 rounded-2xl bg-rose-50 border border-rose-300 text-rose-900 font-eng text-base font-medium shadow-sm flex items-center justify-between ring-2 ring-rose-400/30';
+                selectedBtn.innerHTML += `<span class="text-rose-600 font-bold">✗ Incorrect</span>`;
+
+                // Highlight correct button
+                for (let btn of buttons) {
+                    if (btn.textContent.includes(correctOpt)) {
+                        btn.className = 'option-btn text-left p-4 rounded-2xl bg-emerald-50 border border-emerald-300 text-emerald-900 font-eng text-base font-medium shadow-sm flex items-center justify-between';
+                    }
+                }
+            }
+
+            // Update streak UI
+            const streakBadge = document.getElementById('streak-badge');
+            const streakCount = document.getElementById('streak-count');
+            if (streak > 1) {
+                streakBadge.classList.remove('hidden');
+                streakCount.textContent = streak;
+            } else {
+                streakBadge.classList.add('hidden');
+            }
+
+            // Disable all buttons after answering
+            for (let btn of buttons) {
+                btn.disabled = true;
+            }
+
+            // Show explanation
+            const q = questionHistory[currentQuestionIndex];
+            document.getElementById('explanation-text').textContent = q.explanation;
+            document.getElementById('explanation-box').classList.remove('hidden');
+
+            // Update score display
+            document.getElementById('score-display').textContent = `${score} / ${currentQuestionIndex + 1}`;
+        }
+
+        // Navigation handlers
+        function nextQuestion() {
+            currentQuestionIndex++;
+            loadQuestion();
+        }
+
+        function prevQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                // Load historical question without new generation
+                const container = document.getElementById('quiz-container');
+                container.classList.remove('opacity-100', 'translate-y-0');
+                container.classList.add('opacity-0', 'translate-y-4');
+
+                setTimeout(() => {
+                    const q = questionHistory[currentQuestionIndex];
+                    answeredCurrent = true; // Review mode
+
+                    document.getElementById('category-tag').textContent = `${q.category} Connector`;
+                    document.getElementById('question-text').textContent = q.sentence;
+                    document.getElementById('question-translation').textContent = `(${q.translation})`;
+                    document.getElementById('progress-display').textContent = currentQuestionIndex + 1;
+                    document.getElementById('score-display').textContent = `${score} / ${currentQuestionIndex + 1}`;
+
+                    const optionsContainer = document.getElementById('options-container');
+                    optionsContainer.innerHTML = '';
+
+                    q.options.forEach((opt, idx) => {
+                        let btn = document.createElement('button');
+                        let isCorrectOpt = (opt.toLowerCase() === q.correct.toLowerCase());
+                        
+                        btn.className = `option-btn text-left p-4 rounded-2xl border font-eng text-base font-medium shadow-sm flex items-center justify-between ${
+                            isCorrectOpt ? 'bg-emerald-50 border-emerald-300 text-emerald-900' : 'bg-white/80 border-slate-200 text-slate-700 opacity-70'
+                        }`;
+                        
+                        btn.innerHTML = `
+                            <span class="flex items-center gap-3">
+                                <span class="w-7 h-7 rounded-lg bg-slate-100 text-slate-500 flex items-center justify-center text-xs font-bold">${String.fromCharCode(65 + idx)}</span>
+                                <span>${opt}</span>
+                            </span>
+                            ${isCorrectOpt ? '<span class="text-emerald-600 font-bold text-sm">Correct Answer</span>' : ''}
+                        `;
+                        btn.disabled = true;
+                        optionsContainer.appendChild(btn);
+                    });
+
+                    document.getElementById('explanation-text').textContent = q.explanation;
+                    document.getElementById('explanation-box').classList.remove('hidden');
+                    document.getElementById('prev-btn').disabled = currentQuestionIndex === 0;
+
+                    container.classList.remove('opacity-0', 'translate-y-4');
+                    container.classList.add('opacity-100', 'translate-y-0');
+                }, 250);
+            }
+        }
+
+        // Initialize on window load
+        window.onload = function() {
+            loadQuestion();
+        };
     </script>
 </body>
 </html>

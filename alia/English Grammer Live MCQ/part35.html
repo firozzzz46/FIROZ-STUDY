@@ -1,128 +1,654 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon</title>
-
-    <!-- Google Fonts for Bengali & English -->
+    <title>PART 35 - Integrated Grammar Review Practice Engine</title>
+    <!-- Tailwind CSS for utility classes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for Bengali and English -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Inter:wght@700;900&display=swap" rel="stylesheet">
-
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&family=Tiro+Bangla&display=swap" rel="stylesheet">
     <style>
+        @import url('https://fonts.maateen.me/kalpurush/font.css');
+
+        :root {
+            --font-english: 'Times New Roman', Times, serif;
+            --font-bengali: 'Kalpurush', 'Noto Sans Bengali', 'SolaimanLipi', sans-serif;
+        }
+
         body {
-            font-family: 'Hind Siliguri', 'Inter', sans-serif;
-            background-color: #030712;
-            overflow: hidden;
+            font-family: var(--font-english);
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e9f2 50%, #c3cfe2 100%);
+            min-height: 100vh;
+            color: #1f2937;
         }
 
-        /* Gradient glowing animation on text */
-        .glow-text {
-            background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 50%, #38bdf8 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shine 6s linear infinite;
+        .en-font {
+            font-family: var(--font-english);
         }
 
-        @keyframes shine {
-            0% { background-position: 0% center; }
-            50% { background-position: 100% center; }
-            100% { background-position: 0% center; }
+        .bn-font {
+            font-family: var(--font-bengali);
         }
 
-        /* Keyframes for initial entry: Floating in from below with opacity */
-        @keyframes floatIn {
-            0% {
+        /* Enforce minimum 18px text sizes as required */
+        .question-text-en {
+            font-family: var(--font-english);
+            font-size: 1.35rem; /* 21.6px */
+            line-height: 1.6;
+            font-weight: 700;
+        }
+
+        .question-text-bn {
+            font-family: var(--font-bengali);
+            font-size: 1.15rem; /* ~18.4px */
+            line-height: 1.6;
+        }
+
+        .option-text-en {
+            font-family: var(--font-english);
+            font-size: 1.2rem; /* 19.2px */
+        }
+
+        .explanation-text {
+            font-family: var(--font-bengali);
+            font-size: 1.15rem; /* 18.4px */
+            line-height: 1.7;
+        }
+
+        /* Glassmorphism Styling */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .glass-pill {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+        }
+
+        /* Ultra Smooth Transition Animations */
+        .slide-enter {
+            animation: slideInRight 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .slide-exit {
+            animation: slideOutLeft 0.3s cubic-bezier(0.7, 0, 0.84, 0) forwards;
+        }
+
+        @keyframes slideInRight {
+            from {
                 opacity: 0;
-                transform: translateY(40px) scale(0.95);
-                filter: blur(8px);
+                transform: translateX(35px) scale(0.98);
             }
-            100% {
+            to {
                 opacity: 1;
-                transform: translateY(0) scale(1);
-                filter: blur(0);
+                transform: translateX(0) scale(1);
             }
         }
 
-        /* Continuous subtle float effect once arrived */
-        @keyframes subtleFloat {
-            0%, 100% {
-                transform: translateY(0px);
+        @keyframes slideOutLeft {
+            from {
+                opacity: 1;
+                transform: translateX(0) scale(1);
             }
-            50% {
-                transform: translateY(-8px);
+            to {
+                opacity: 0;
+                transform: translateX(-35px) scale(0.98);
             }
         }
 
-        /* Animation class for Heading */
-        .animate-heading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards,
-                subtleFloat 6s ease-in-out 1.2s infinite;
+        /* Option Button Animations & States */
+        .option-btn {
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* Animation class for Subheading (staggered delay) */
-        .animate-subheading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards,
-                subtleFloat 6s ease-in-out 1.55s infinite;
-            opacity: 0; /* Hidden until animation kicks in */
+        .option-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(79, 70, 229, 0.12);
+            border-color: #6366f1;
         }
 
-        /* Ambient background lighting */
-        .ambient-glow {
-            position: absolute;
-            width: 450px;
-            height: 450px;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(3, 7, 18, 0) 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            transition: left 0.4s ease-out, top 0.4s ease-out;
+        .option-btn:active:not(:disabled) {
+            transform: translateY(0);
+        }
+
+        .option-correct {
+            background-color: #ecfdf5 !important;
+            border-color: #10b981 !important;
+            color: #065f46 !important;
+            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.2) !important;
+        }
+
+        .option-wrong {
+            background-color: #fef2f2 !important;
+            border-color: #ef4444 !important;
+            color: #991b1b !important;
+            box-shadow: 0 4px 14px rgba(239, 68, 68, 0.15) !important;
+        }
+
+        .option-dimmed {
+            opacity: 0.55;
+        }
+
+        /* Custom Scrollbar for smooth explanation reading */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.02);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(156, 163, 175, 0.5);
+            border-radius: 9999px;
         }
     </style>
 </head>
-<body class="min-h-screen flex items-center justify-center relative select-none px-4">
+<body class="py-6 px-3 sm:px-6 md:py-10">
 
-    <!-- Ambient glow center element -->
-    <div id="glow" class="ambient-glow top-1/2 left-1/2"></div>
+    <div class="max-w-4xl mx-auto">
+        <!-- Main Application Header -->
+        <header class="glass-card rounded-3xl p-6 mb-6 text-center relative overflow-hidden">
+            <div class="absolute -right-10 -top-10 w-32 h-32 bg-indigo-200/40 rounded-full blur-2xl pointer-events-none"></div>
+            <div class="absolute -left-10 -bottom-10 w-32 h-32 bg-blue-200/40 rounded-full blur-2xl pointer-events-none"></div>
 
-    <!-- Centered minimal content with entry animations -->
-    <main class="text-center z-10 space-y-6 max-w-3xl mx-auto py-8 px-4">
-        
-        <!-- Main English Title -->
-        <h1 class="animate-heading text-5xl sm:text-7xl md:text-8xl font-black tracking-tight glow-text font-['Inter'] drop-shadow-lg">
-            Coming Soon...
-        </h1>
+            <span class="inline-block px-4 py-1.5 rounded-full bg-indigo-100 text-indigo-800 text-sm font-semibold tracking-wide uppercase mb-2 border border-indigo-200">
+                Grammar Practice Engine
+            </span>
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight en-font">
+                PART 35: Integrated Grammar Review
+            </h1>
+            <p class="bn-font text-gray-600 mt-2 text-lg">
+                (সমস্ত গুরুত্বপূর্ণ ইংরেজি গ্রামার নিয়মের অসীম প্র্যাকটিস সিস্টেম)
+            </p>
+        </header>
 
-        <!-- Bengali Subheading -->
-        <p class="animate-subheading text-xl sm:text-3xl md:text-4xl font-semibold text-emerald-400/90 leading-relaxed tracking-wide drop-shadow">
-            ইনশাআল্লাহ, খুব শীঘ্রই ডাটা যোগ করা হবে।
-        </p>
+        <!-- Stats Bar -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
+            <div class="glass-pill rounded-2xl p-4 text-center">
+                <span class="text-xs uppercase tracking-wider text-gray-500 font-semibold block mb-1">Question</span>
+                <span id="stat-count" class="text-2xl font-bold text-gray-800 en-font">1</span>
+            </div>
+            <div class="glass-pill rounded-2xl p-4 text-center">
+                <span class="text-xs uppercase tracking-wider text-gray-500 font-semibold block mb-1">Score</span>
+                <span id="stat-score" class="text-2xl font-bold text-indigo-600 en-font">0</span>
+            </div>
+            <div class="glass-pill rounded-2xl p-4 text-center">
+                <span class="text-xs uppercase tracking-wider text-gray-500 font-semibold block mb-1">Accuracy</span>
+                <span id="stat-accuracy" class="text-2xl font-bold text-emerald-600 en-font">0%</span>
+            </div>
+            <div class="glass-pill rounded-2xl p-4 text-center">
+                <span class="text-xs uppercase tracking-wider text-gray-500 font-semibold block mb-1">Streak</span>
+                <span id="stat-streak" class="text-2xl font-bold text-amber-500 en-font">0 🔥</span>
+            </div>
+        </div>
 
-    </main>
+        <!-- Quiz Question Container -->
+        <main class="glass-card rounded-3xl p-6 sm:p-8 relative min-h-[420px] flex flex-col justify-between transition-all">
+            <!-- Animated Content Box -->
+            <div id="quiz-content-box" class="slide-enter">
+                <!-- Question Header -->
+                <div class="flex items-center justify-between gap-4 mb-4 pb-3 border-b border-gray-200/60">
+                    <span id="question-category" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold bg-gray-100 text-gray-700 en-font">
+                        Rule Type
+                    </span>
+                    <span id="question-number-badge" class="text-sm font-semibold text-gray-400 en-font">
+                        Question #1
+                    </span>
+                </div>
+
+                <!-- English Question Statement -->
+                <div id="question-text-en" class="question-text-en text-gray-900 mb-2">
+                    Loading question...
+                </div>
+
+                <!-- Bengali Translation / Hint -->
+                <div id="question-text-bn" class="question-text-bn text-indigo-900/80 italic mb-6">
+                    (প্রশ্ন লোড হচ্ছে...)
+                </div>
+
+                <!-- Options Grid -->
+                <div id="options-container" class="grid grid-cols-1 gap-3.5 mb-6">
+                    <!-- Options populated dynamically -->
+                </div>
+
+                <!-- Explanation Box (Hidden initially) -->
+                <div id="explanation-box" class="hidden mt-6 p-5 rounded-2xl bg-indigo-50/80 border border-indigo-100/80 text-gray-800">
+                    <div class="flex items-center gap-2 mb-2 font-bold text-indigo-900 text-lg">
+                        <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <span class="bn-font">ব্যাখ্যা (Detailed Explanation):</span>
+                    </div>
+                    <div id="explanation-text" class="explanation-text text-gray-800">
+                        <!-- Explanation details inserted dynamically -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Controls Bar -->
+            <div class="flex items-center justify-between gap-4 pt-6 mt-6 border-t border-gray-200/60">
+                <button id="btn-prev" onclick="handlePrevious()" disabled class="px-5 py-2.5 rounded-xl bg-white/80 hover:bg-white text-gray-700 font-semibold text-base shadow-sm border border-gray-200 disabled:opacity-40 disabled:cursor-not-allowed transition-all en-font flex items-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                    Previous
+                </button>
+
+                <button id="btn-reset" onclick="resetPractice()" class="px-4 py-2.5 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-600 font-medium text-sm transition-all en-font">
+                    Reset Practice
+                </button>
+
+                <button id="btn-next" onclick="handleNext()" class="px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 text-white font-semibold text-base shadow-lg shadow-indigo-500/25 transition-all en-font flex items-center gap-2">
+                    Next
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </button>
+            </div>
+        </main>
+    </div>
 
     <script>
-        const glow = document.getElementById('glow');
+        // STRICTLY ALLOWED NAMES ONLY
+        const ALLOWED_NAMES = [
+            "Firoz", "Fatiha", "Fatema", "Jui", "Ema", "Rupa", "Moksed", 
+            "Ferjousi", "Jannati", "Mini", "Miraz", "Mujahid", "Milon", 
+            "Hannan", "Joba", "Tanzila", "Rina", "Tania", "Taslima"
+        ];
 
-        // Mouse move interactive glow background
-        window.addEventListener('mousemove', (e) => {
-            glow.style.left = e.clientX + 'px';
-            glow.style.top = e.clientY + 'px';
-        });
+        // Global Application State
+        let currentQuestionIndex = 0;
+        let generatedQuestionsHistory = [];
+        let totalAnswered = 0;
+        let correctAnswers = 0;
+        let currentStreak = 0;
 
-        // Touch move interactive glow background for mobile screens
-        window.addEventListener('touchmove', (e) => {
-            if (e.touches.length > 0) {
-                glow.style.left = e.touches[0].clientX + 'px';
-                glow.style.top = e.touches[0].clientY + 'px';
+        // Helper function: Random array item selection
+        function getRandomItem(arr) {
+            return arr[Math.floor(Math.random() * arr.length)];
+        }
+
+        // Helper function: Shuffle array items
+        function shuffleArray(arr) {
+            const shuffled = [...arr];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
             }
-        });
+            return shuffled;
+        }
+
+        // INFINITE DYNAMIC GRAMMAR GENERATOR ENGINES
+        const grammarGenerators = [
+            // 1. Subject-Verb Agreement (Neither...nor / Either...or)
+            function generateSubjectVerbAgreement() {
+                const name1 = getRandomItem(ALLOWED_NAMES);
+                let name2 = getRandomItem(ALLOWED_NAMES);
+                while (name1 === name2) name2 = getRandomItem(ALLOWED_NAMES);
+
+                const subjects = [
+                    { p: "friends", plural: true },
+                    { p: "brothers", plural: true },
+                    { p: "classmates", plural: true },
+                    { p: "colleagues", plural: true }
+                ];
+                const group = getRandomItem(subjects);
+
+                const correct = "are";
+                const wrongOptions = ["is", "was", "has"];
+
+                return {
+                    category: "Subject-Verb Agreement",
+                    en: `Neither ${name1} nor his ${group.p} ______ present in the class yesterday.`,
+                    bn: `(${name1} অথবা তার বন্ধুরা কেউই গতকাল ক্লাসে উপস্থিত ছিল না।)`,
+                    options: shuffleArray([correct, ...wrongOptions]),
+                    correct: correct,
+                    explanation: `<b>নিয়ম:</b> "Neither... nor" বা "Either... or" দ্বারা দুটি Subject যুক্ত থাকলে, শেষের Subject (এখানে plural: "his ${group.p}") অনুযায়ী Verb নির্ধারিত হয়। যেহেতু "his ${group.p}" বহুবচন (Plural), তাই Plural Verb <b>'are'</b> বা অতীতকালের ক্ষেত্রভেদে Plural Verb ব্যবহার করতে হয়। প্রদত্ত বিকল্পগুলোর মধ্যে সঠিকভাবে 'are' বসেছে।`
+                };
+            },
+
+            // 2. Right Forms of Verbs (No sooner had... than)
+            function generateNoSoonerHad() {
+                const name1 = getRandomItem(ALLOWED_NAMES);
+                const verbs = [
+                    { v1: "reach", v3: "reached", act: "the station" },
+                    { v1: "enter", v3: "entered", act: "the classroom" },
+                    { v1: "finish", v3: "finished", act: "her homework" }
+                ];
+                const verbObj = getRandomItem(verbs);
+
+                const correct = "than";
+                const wrongOptions = ["when", "then", "besides"];
+
+                return {
+                    category: "Right Forms of Verbs",
+                    en: `No sooner had ${name1} ${verbObj.v3} ${verbObj.act} ______ the bell rang.`,
+                    bn: `(${name1} স্টেশনে/ক্লাসে পৌঁছাতে না পৌঁছাতেই ঘণ্টা বেজে উঠল।)`,
+                    options: shuffleArray([correct, ...wrongOptions]),
+                    correct: correct,
+                    explanation: `<b>নিয়ম:</b> 'No sooner had... than' একটি নির্দিষ্ট স্ট্রাকচার। 'No sooner had' যুক্ত Clause-এর পর সর্বদা <b>'than'</b> বসে ('then' বা 'when' ব্যবহার করা ভুল)।`
+                };
+            },
+
+            // 3. Conditionals (Third Conditional)
+            function generateThirdConditional() {
+                const name1 = getRandomItem(ALLOWED_NAMES);
+                const verbs = [
+                    { action: "studied attentively", result: "passed the exam with distinction" },
+                    { action: "started earlier", result: "caught the morning train" },
+                    { action: "followed the instructions", result: "completed the task smoothly" }
+                ];
+                const item = getRandomItem(verbs);
+
+                const correct = "would have";
+                const wrongOptions = ["will have", "would", "has"];
+
+                return {
+                    category: "Conditionals",
+                    en: `If ${name1} had ${item.action}, she/he ______ ${item.result}.`,
+                    bn: `(যদি ${name1} মনোযোগ দিয়ে পড়ত/শুরু করত, তবে সে পরীক্ষায় ভালো ফলাফল করতে পারত।)`,
+                    options: shuffleArray([correct, ...wrongOptions]),
+                    correct: correct,
+                    explanation: `<b>নিয়ম:</b> এটি Third Conditional (অতীতের অসম্ভব শর্ত)। If + Past Perfect (had + V3) থাকলে অপর অংশে Structure হয়: <b>Subject + would have / could have / might have + Past Participle (V3)</b>। তাই সঠিক উত্তর <b>'would have'</b>।`
+                };
+            },
+
+            // 4. Articles (Unique / Omission / Specific)
+            function generateArticles() {
+                const name1 = getRandomItem(ALLOWED_NAMES);
+                const items = [
+                    { obj: "honest student", ans: "an", exp: "Honest শব্দটির প্রথম বর্ণ 'h' অনুচ্চারিত থেকে ভাওয়েল সাউন্ড (অ) উচ্চারিত হয়, তাই 'an' বসে।" },
+                    { obj: "one-eyed man", ans: "a", exp: "'One' শব্দের শুরুতে 'O' থাকলেও উচ্চারণ 'ওয়া' (wa)-এর মতো হওয়ায় 'an' না বসে 'a' বসে।" },
+                    { obj: "unique proposal", ans: "a", exp: "'Unique' শব্দের প্রথম বর্ণ 'U'-এর উচ্চারণ 'ইউ' (You)-এর মতো হওয়ায় 'a' বসে।" }
+                ];
+                const target = getRandomItem(items);
+
+                const wrongOptions = ["a", "an", "the", "no article"].filter(o => o !== target.ans);
+
+                return {
+                    category: "Articles",
+                    en: `${name1} met ______ ${target.obj} yesterday afternoon.`,
+                    bn: `(${name1} গতকাল বিকেলে একজন ব্যক্তির সাথে দেখা করেছিল।)`,
+                    options: shuffleArray([target.ans, ...wrongOptions.slice(0, 3)]),
+                    correct: target.ans,
+                    explanation: `<b>নিয়ম:</b> ${target.exp} সুতরাং সঠিক আর্টিক্যাল হলো <b>'${target.ans}'</b>।`
+                };
+            },
+
+            // 5. Prepositions (Appropriate Preposition)
+            function generatePrepositions() {
+                const name1 = getRandomItem(ALLOWED_NAMES);
+                const prepList = [
+                    { verb: "accused of", word: "theft", ans: "of", exp: "'Accuse'-এর পর নির্দিষ্ট প্রিপজিশন হিসেবে 'of' বসে (Accused of = অভিযুক্ত)।" },
+                    { verb: "insisted on", word: "going there", ans: "on", exp: "'Insist'-এর পর নির্দিষ্ট প্রিপজিশন হিসেবে 'on' বসে (Insist on = জেদ ধরা)।" },
+                    { verb: "absorbed in", word: "deep thought", ans: "in", exp: "'Absorbed'-এর পর নির্দিষ্ট প্রিপজিশন হিসেবে 'in' বসে (Absorbed in = নিমগ্ন)।" },
+                    { verb: "congratulated on", word: "winning the competition", ans: "on", exp: "'Congratulate'-এর পর নির্দিষ্ট প্রিপজিশন 'on' বসে।" }
+                ];
+                const item = getRandomItem(prepList);
+                const wrongOptions = ["for", "at", "to", "with", "about"].filter(p => p !== item.ans);
+
+                return {
+                    category: "Appropriate Preposition",
+                    en: `${name1} was ${item.verb.split(' ')[0]} ______ ${item.word}.`,
+                    bn: `(${name1} উক্ত বিষয়ের সাথে যুক্ত ছিল/মনোযোগী ছিল।)`,
+                    options: shuffleArray([item.ans, ...wrongOptions.slice(0, 3)]),
+                    correct: item.ans,
+                    explanation: `<b>নিয়ম:</b> ${item.exp} তাই সঠিক উত্তর <b>'${item.ans}'</b>।`
+                };
+            },
+
+            // 6. Voice Change (Passive Causative / Modal Passive)
+            function generateVoiceChange() {
+                const name1 = getRandomItem(ALLOWED_NAMES);
+                const correct = "must be completed";
+                const wrongOptions = ["must complete", "must be complete", "must completed"];
+
+                return {
+                    category: "Voice Change",
+                    en: `The assigned project ______ by ${name1} before Friday.`,
+                    bn: `(নির্ধারিত প্রজেক্টটি শুক্রবারের আগেই ${name1} কর্তৃক সম্পন্ন হতে হবে।)`,
+                    options: shuffleArray([correct, ...wrongOptions]),
+                    correct: correct,
+                    explanation: `<b>নিয়ম:</b> Modal Auxiliary (must/can/should) যুক্ত বাক্যকে Passive করার নিয়ম: <b>Modal + be + Past Participle (V3)</b>। তাই "must be completed" সঠিক।`
+                };
+            },
+
+            // 7. Modals & Semi-Modals (Lest...should)
+            function generateLestStructure() {
+                const name1 = getRandomItem(ALLOWED_NAMES);
+                const correct = "should miss";
+                const wrongOptions = ["would miss", "might missed", "will miss"];
+
+                return {
+                    category: "Modals & Connectors",
+                    en: `${name1} walked fast lest he/she ______ the train.`,
+                    bn: `(${name1} দ্রুত হেঁটেছিল পাছে সে ট্রেনটি মিস করে এই ভয়ে।)`,
+                    options: shuffleArray([correct, ...wrongOptions]),
+                    correct: correct,
+                    explanation: `<b>নিয়ম:</b> 'Lest' যুক্ত Sentence-এ Lest-এর পরের Clause-এ Structure হয়: <b>Subject + should/might + Base Verb (V1)</b>। তাই সঠিক উত্তর <b>'should miss'</b>।`
+                };
+            },
+
+            // 8. Causative Verbs (Make / Have / Get)
+            function generateCausativeVerbs() {
+                const name1 = getRandomItem(ALLOWED_NAMES);
+                let name2 = getRandomItem(ALLOWED_NAMES);
+                while (name1 === name2) name2 = getRandomItem(ALLOWED_NAMES);
+
+                const correct = "clean";
+                const wrongOptions = ["to clean", "cleaned", "cleaning"];
+
+                return {
+                    category: "Causative Verbs",
+                    en: `${name1} made ${name2} ______ the entire study room.`,
+                    bn: `(${name1}, ${name2}-কে দিয়ে পুরো পড়ার ঘরটি পরিষ্কার করিয়ে নিল।)`,
+                    options: shuffleArray([correct, ...wrongOptions]),
+                    correct: correct,
+                    explanation: `<b>নিয়ম:</b> Causative Verb 'Make' এর পর Person (ব্যক্তি) থাকলে পরবর্তী Verb-এর Bare Infinitive (V1 base form, 'to' ছাড়া) বসে। তাই সঠিক উত্তর <b>'clean'</b>।`
+                };
+            },
+
+            // 9. Subjunctive Mood
+            function generateSubjunctive() {
+                const name1 = getRandomItem(ALLOWED_NAMES);
+                let name2 = getRandomItem(ALLOWED_NAMES);
+                while (name1 === name2) name2 = getRandomItem(ALLOWED_NAMES);
+
+                const correct = "attend";
+                const wrongOptions = ["attends", "attended", "should attend"];
+
+                return {
+                    category: "Subjunctive Mood",
+                    en: `${name1} recommended that ${name2} ______ the grammar workshop.`,
+                    bn: `(${name1} সুপারিশ করেছিল যেন ${name2} গ্রামার ওয়ার্কশপে উপস্থিত থাকে।)`,
+                    options: shuffleArray([correct, ...wrongOptions]),
+                    correct: correct,
+                    explanation: `<b>নিয়ম:</b> Subjunctive Verbs (such as recommend, suggest, demand, insist) এর পর 'that' clause থাকলে Subject যাই হোক না কেন, Verb-এর Base Form (V1) বসে (s/es বা past tense হয় না)। তাই সঠিক উত্তর <b>'attend'</b>।`
+                };
+            },
+
+            // 10. Tag Questions
+            function generateTagQuestions() {
+                const name1 = getRandomItem(ALLOWED_NAMES);
+                const items = [
+                    { sentence: `${name1} seldom comes late to office`, ans: "does he/she?", exp: "'Seldom' একটি না-বোধক (negative) শব্দ, তাই Tag Question-টি হ্যাঁ-বোধক (affirmative) 'does he/she?' হবে।" },
+                    { sentence: `${name1} spoke very politely yesterday`, ans: "didn't he/she?", exp: "মূল বাক্যটি Past Simple (spoke)-এ রয়েছে এবং হ্যাঁ-বোধক, তাই Tag Question হবে 'didn't he/she?'।" }
+                ];
+                const selected = getRandomItem(items);
+                const wrongOptions = ["doesn't he/she?", "did he/she?", "isn't he/she?"].filter(o => o !== selected.ans);
+
+                return {
+                    category: "Tag Questions",
+                    en: `${selected.sentence}, ______?`,
+                    bn: `(${selected.sentence}-এর সঠিক ট্যাগ প্রশ্নটি নির্বাচন করুন।)`,
+                    options: shuffleArray([selected.ans, ...wrongOptions.slice(0, 3)]),
+                    correct: selected.ans,
+                    explanation: `<b>নিয়ম:</b> ${selected.exp}`
+                };
+            }
+        ];
+
+        // Core Question Generator Wrapper
+        function createNewQuestion() {
+            const randomEngine = getRandomItem(grammarGenerators);
+            return randomEngine();
+        }
+
+        function getQuestion(index) {
+            if (index < generatedQuestionsHistory.length) {
+                return generatedQuestionsHistory[index];
+            }
+            // Generate new question and push to history
+            const newQ = createNewQuestion();
+            newQ.userAnswer = null;
+            newQ.isCorrect = false;
+            generatedQuestionsHistory.push(newQ);
+            return newQ;
+        }
+
+        // Render UI Function
+        function renderCurrentQuestion() {
+            const q = getQuestion(currentQuestionIndex);
+            const contentBox = document.getElementById('quiz-content-box');
+
+            // Set Header Badges
+            document.getElementById('question-category').innerText = q.category;
+            document.getElementById('question-number-badge').innerText = `Question #${currentQuestionIndex + 1}`;
+
+            // Set Text Content
+            document.getElementById('question-text-en').innerText = q.en;
+            document.getElementById('question-text-bn').innerText = q.bn;
+
+            // Render Options
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+
+            const optionLabels = ['A', 'B', 'C', 'D'];
+
+            q.options.forEach((optText, i) => {
+                const btn = document.createElement('button');
+                btn.className = `option-btn w-full text-left p-4 rounded-2xl bg-white/90 border border-gray-200/90 flex items-center gap-3.5 transition-all text-gray-800 focus:outline-none`;
+
+                // Status styling if already answered
+                if (q.userAnswer !== null) {
+                    btn.disabled = true;
+                    if (optText === q.correct) {
+                        btn.classList.add('option-correct');
+                    } else if (optText === q.userAnswer) {
+                        btn.classList.add('option-wrong');
+                    } else {
+                        btn.classList.add('option-dimmed');
+                    }
+                } else {
+                    btn.onclick = () => selectOption(optText);
+                }
+
+                btn.innerHTML = `
+                    <span class="w-8 h-8 rounded-xl bg-gray-100 flex items-center justify-center font-bold text-sm text-gray-600 shrink-0 border border-gray-200/60 en-font">
+                        ${optionLabels[i] || i+1}
+                    </span>
+                    <span class="option-text-en font-semibold">${optText}</span>
+                `;
+
+                optionsContainer.appendChild(btn);
+            });
+
+            // Handle Explanation Box
+            const expBox = document.getElementById('explanation-box');
+            if (q.userAnswer !== null) {
+                document.getElementById('explanation-text').innerHTML = q.explanation;
+                expBox.classList.remove('hidden');
+            } else {
+                expBox.classList.add('hidden');
+            }
+
+            // Update Statistics
+            updateStats();
+
+            // Navigation Buttons State
+            document.getElementById('btn-prev').disabled = (currentQuestionIndex === 0);
+        }
+
+        // Handle User Answer Selection
+        function selectOption(selectedOpt) {
+            const q = generatedQuestionsHistory[currentQuestionIndex];
+            if (q.userAnswer !== null) return; // Prevent re-selection
+
+            q.userAnswer = selectedOpt;
+            q.isCorrect = (selectedOpt === q.correct);
+
+            totalAnswered++;
+
+            if (q.isCorrect) {
+                correctAnswers++;
+                currentStreak++;
+            } else {
+                currentStreak = 0;
+            }
+
+            renderCurrentQuestion();
+        }
+
+        // Smooth Transition wrapper
+        function transitionToQuestion(actionCallback) {
+            const contentBox = document.getElementById('quiz-content-box');
+            contentBox.classList.remove('slide-enter');
+            contentBox.classList.add('slide-exit');
+
+            setTimeout(() => {
+                actionCallback();
+                contentBox.classList.remove('slide-exit');
+                contentBox.classList.add('slide-enter');
+            }, 300);
+        }
+
+        function handleNext() {
+            transitionToQuestion(() => {
+                currentQuestionIndex++;
+                renderCurrentQuestion();
+            });
+        }
+
+        function handlePrevious() {
+            if (currentQuestionIndex > 0) {
+                transitionToQuestion(() => {
+                    currentQuestionIndex--;
+                    renderCurrentQuestion();
+                });
+            }
+        }
+
+        function updateStats() {
+            document.getElementById('stat-count').innerText = currentQuestionIndex + 1;
+            document.getElementById('stat-score').innerText = correctAnswers;
+            
+            const accuracy = totalAnswered > 0 ? Math.round((correctAnswers / totalAnswered) * 100) : 0;
+            document.getElementById('stat-accuracy').innerText = `${accuracy}%`;
+            document.getElementById('stat-streak').innerText = `${currentStreak} 🔥`;
+        }
+
+        function resetPractice() {
+            if (confirm("Are you sure you want to reset your practice progress?")) {
+                currentQuestionIndex = 0;
+                generatedQuestionsHistory = [];
+                totalAnswered = 0;
+                correctAnswers = 0;
+                currentStreak = 0;
+                
+                transitionToQuestion(() => {
+                    renderCurrentQuestion();
+                });
+            }
+        }
+
+        // Initialize on window load
+        window.onload = function() {
+            renderCurrentQuestion();
+        };
     </script>
 </body>
 </html>

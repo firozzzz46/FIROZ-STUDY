@@ -1,128 +1,1008 @@
+
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PART 25 - WH-Questions & Tag Questions</title>
 
-    <!-- Google Fonts for Bengali & English -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Inter:wght@700;900&display=swap" rel="stylesheet">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+:root {
+  --blue: #4361ee;
+  --purple: #7657e8;
+  --green: #15803d;
+  --red: #dc2626;
+  --text: #202b40;
+  --muted: #68758a;
+  --glass: rgba(255,255,255,.86);
+  --border: rgba(100,116,139,.15);
+}
 
-    <style>
-        body {
-            font-family: 'Hind Siliguri', 'Inter', sans-serif;
-            background-color: #030712;
-            overflow: hidden;
-        }
+* { box-sizing: border-box; }
 
-        /* Gradient glowing animation on text */
-        .glow-text {
-            background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 50%, #38bdf8 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shine 6s linear infinite;
-        }
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--text);
+  font-family: "Times New Roman", "Hind Siliguri", serif;
+  font-size: 18px;
+  background:
+    radial-gradient(ellipse at 5% 5%, #e5edff 0%, transparent 38%),
+    radial-gradient(ellipse at 95% 95%, #f0e9ff 0%, transparent 40%),
+    linear-gradient(135deg, #fbfdff, #f5f7fc, #ffffff);
+  background-attachment: fixed;
+}
 
-        @keyframes shine {
-            0% { background-position: 0% center; }
-            50% { background-position: 100% center; }
-            100% { background-position: 0% center; }
-        }
+button { font: inherit; }
 
-        /* Keyframes for initial entry: Floating in from below with opacity */
-        @keyframes floatIn {
-            0% {
-                opacity: 0;
-                transform: translateY(40px) scale(0.95);
-                filter: blur(8px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-                filter: blur(0);
-            }
-        }
+.app {
+  width: min(920px, 94%);
+  margin: auto;
+  padding: 28px 0 42px;
+}
 
-        /* Continuous subtle float effect once arrived */
-        @keyframes subtleFloat {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-8px);
-            }
-        }
+.hero {
+  text-align: center;
+  padding: 24px 12px 28px;
+  animation: heroIn 1s cubic-bezier(.22,1,.36,1) both;
+}
 
-        /* Animation class for Heading */
-        .animate-heading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards,
-                subtleFloat 6s ease-in-out 1.2s infinite;
-        }
+.eyebrow {
+  display: inline-block;
+  padding: 7px 14px;
+  border: 1px solid #dbe4ff;
+  border-radius: 50px;
+  background: rgba(255,255,255,.75);
+  color: var(--blue);
+  font: 700 13px "Times New Roman", serif;
+  letter-spacing: 1.5px;
+}
 
-        /* Animation class for Subheading (staggered delay) */
-        .animate-subheading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards,
-                subtleFloat 6s ease-in-out 1.55s infinite;
-            opacity: 0; /* Hidden until animation kicks in */
-        }
+h1 {
+  font-size: clamp(27px, 5vw, 42px);
+  margin: 17px 0 10px;
+  line-height: 1.2;
+}
 
-        /* Ambient background lighting */
-        .ambient-glow {
-            position: absolute;
-            width: 450px;
-            height: 450px;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(3, 7, 18, 0) 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            transition: left 0.4s ease-out, top 0.4s ease-out;
-        }
-    </style>
+.subtitle {
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.glass {
+  background: var(--glass);
+  border: 1px solid rgba(255,255,255,.95);
+  box-shadow: 0 15px 45px rgba(39,57,94,.09),
+              0 2px 8px rgba(39,57,94,.04);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-radius: 24px;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 13px;
+  margin-bottom: 20px;
+}
+
+.stat {
+  padding: 17px 12px;
+  text-align: center;
+}
+
+.stat-label {
+  font-size: 14px;
+  color: var(--muted);
+  letter-spacing: .5px;
+}
+
+.stat-value {
+  font-size: 25px;
+  font-weight: bold;
+  margin-top: 8px;
+  overflow-wrap: anywhere;
+}
+
+.progress-track {
+  height: 8px;
+  background: #e8edf6;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-top: 17px;
+}
+
+.progress-fill {
+  width: 0;
+  height: 100%;
+  background: linear-gradient(90deg, #4361ee, #9b6bfa);
+  border-radius: inherit;
+  transition: width .7s cubic-bezier(.22,1,.36,1);
+}
+
+.quiz-card {
+  padding: clamp(19px, 4vw, 35px);
+  overflow: hidden;
+}
+
+.question-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 23px;
+}
+
+.pill {
+  padding: 8px 13px;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: bold;
+  background: #edf1ff;
+  color: #4057ca;
+}
+
+.pill.secondary {
+  background: #f1eaff;
+  color: #7046c7;
+}
+
+.question-number {
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.question-stage {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.question-stage.enter {
+  animation: questionIn .85s cubic-bezier(.16,1,.3,1) both;
+}
+
+.question-stage.exit {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity .16s ease, transform .16s ease;
+}
+
+.question {
+  font-size: clamp(21px, 3.5vw, 27px);
+  line-height: 1.55;
+  font-weight: bold;
+  overflow-wrap: anywhere;
+}
+
+.meaning {
+  font-family: "Kalpurush", "Hind Siliguri", sans-serif;
+  font-size: 19px;
+  font-weight: 400;
+  line-height: 1.8;
+  color: #58677e;
+  margin-top: 10px;
+}
+
+.options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 13px;
+  margin-top: 27px;
+}
+
+.option {
+  min-height: 62px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+  padding: 14px 16px;
+  color: var(--text);
+  background: rgba(255,255,255,.8);
+  border: 1px solid #e0e6f0;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: transform .25s ease, border-color .25s ease,
+              background .25s ease, box-shadow .25s ease;
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+
+.option:hover:not(:disabled) {
+  transform: translateY(-3px);
+  border-color: #9aabff;
+  box-shadow: 0 8px 22px rgba(67,97,238,.09);
+}
+
+.option:focus-visible, .btn:focus-visible {
+  outline: 3px solid #a5b4fc;
+  outline-offset: 3px;
+}
+
+.option:disabled { cursor: default; }
+
+.letter {
+  flex: 0 0 31px;
+  height: 31px;
+  display: grid;
+  place-items: center;
+  border-radius: 9px;
+  background: #eef2f8;
+  color: #53627a;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.option.correct {
+  background: #eaf8ef;
+  border-color: #58bb7a;
+}
+
+.option.correct .letter {
+  background: #16803d;
+  color: white;
+}
+
+.option.wrong {
+  background: #fff0f0;
+  border-color: #ed8585;
+}
+
+.option.wrong .letter {
+  background: #dc2626;
+  color: white;
+}
+
+.explanation {
+  display: none;
+  margin-top: 22px;
+  padding: 19px;
+  border-radius: 17px;
+  line-height: 1.85;
+  font-family: "Kalpurush", "Hind Siliguri", sans-serif;
+  font-size: 18px;
+  animation: explanationIn .5s ease both;
+}
+
+.explanation.show { display: block; }
+
+.explanation.good {
+  background: #effaf2;
+  border: 1px solid #c8ecd2;
+}
+
+.explanation.bad {
+  background: #fff5f2;
+  border: 1px solid #f5d5ca;
+}
+
+.explanation strong {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 20px;
+}
+
+.english-answer {
+  font-family: "Times New Roman", serif;
+  font-weight: bold;
+  color: #2459b9;
+  overflow-wrap: anywhere;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 26px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  border: 0;
+  padding: 13px 21px;
+  border-radius: 13px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform .2s ease, opacity .2s ease,
+              box-shadow .2s ease;
+}
+
+.btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 7px 18px rgba(35,48,80,.1);
+}
+
+.btn:disabled {
+  opacity: .4;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  color: white;
+  background: linear-gradient(120deg, #4361ee, #7957e8);
+}
+
+.btn-light {
+  color: #35445b;
+  background: #edf1f7;
+}
+
+.mode-row {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 0 0 20px;
+}
+
+.mode-btn {
+  border: 1px solid #dce3ef;
+  background: rgba(255,255,255,.8);
+  border-radius: 50px;
+  padding: 10px 16px;
+  cursor: pointer;
+  color: #44516a;
+  font-weight: bold;
+  transition: .25s ease;
+}
+
+.mode-btn.active {
+  color: white;
+  background: linear-gradient(120deg, #4361ee, #7957e8);
+  border-color: transparent;
+}
+
+.footer {
+  text-align: center;
+  color: #7c8799;
+  font-size: 14px;
+  margin-top: 25px;
+  line-height: 1.7;
+}
+
+kbd {
+  font: inherit;
+  font-weight: bold;
+}
+
+@keyframes heroIn {
+  from { opacity: 0; transform: translateY(-18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes questionIn {
+  from { opacity: 0; transform: translateY(24px) scale(.99); filter: blur(2px); }
+  to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+}
+
+@keyframes explanationIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 560px) {
+  .app { width: 94%; padding-top: 12px; }
+  .hero { padding: 20px 5px 23px; }
+  .stats { gap: 8px; }
+  .stat { padding: 13px 5px; border-radius: 17px; }
+  .stat-label { font-size: 12px; }
+  .stat-value { font-size: 22px; }
+  .options { grid-template-columns: 1fr; gap: 10px; margin-top: 21px; }
+  .option { min-height: 56px; padding: 12px; }
+  .quiz-card { border-radius: 20px; }
+  .controls { display: grid; grid-template-columns: 1fr 1fr; }
+  .btn { padding: 13px 10px; }
+  .meaning { font-size: 18px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
 </head>
-<body class="min-h-screen flex items-center justify-center relative select-none px-4">
 
-    <!-- Ambient glow center element -->
-    <div id="glow" class="ambient-glow top-1/2 left-1/2"></div>
+<body>
+<main class="app">
 
-    <!-- Centered minimal content with entry animations -->
-    <main class="text-center z-10 space-y-6 max-w-3xl mx-auto py-8 px-4">
-        
-        <!-- Main English Title -->
-        <h1 class="animate-heading text-5xl sm:text-7xl md:text-8xl font-black tracking-tight glow-text font-['Inter'] drop-shadow-lg">
-            Coming Soon...
-        </h1>
+  <header class="hero">
+    <span class="eyebrow">ENGLISH GRAMMAR • PART 25</span>
+    <h1>WH-Questions &amp; Tag Questions</h1>
+    <p class="subtitle">Infinity MCQ Practice System</p>
+  </header>
 
-        <!-- Bengali Subheading -->
-        <p class="animate-subheading text-xl sm:text-3xl md:text-4xl font-semibold text-emerald-400/90 leading-relaxed tracking-wide drop-shadow">
-            ইনশাআল্লাহ, খুব শীঘ্রই ডাটা যোগ করা হবে।
-        </p>
+  <section class="stats" aria-label="Quiz statistics">
+    <div class="stat glass">
+      <div class="stat-label">SCORE</div>
+      <div class="stat-value" id="score">0</div>
+    </div>
+    <div class="stat glass">
+      <div class="stat-label">STREAK</div>
+      <div class="stat-value" id="streak">0</div>
+    </div>
+    <div class="stat glass">
+      <div class="stat-label">ACCURACY</div>
+      <div class="stat-value" id="accuracy">0%</div>
+    </div>
+  </section>
 
-    </main>
+  <div class="mode-row" aria-label="Question mode">
+    <button class="mode-btn active" data-mode="all">All Questions</button>
+    <button class="mode-btn" data-mode="wh">WH-Questions</button>
+    <button class="mode-btn" data-mode="tag">Tag Questions</button>
+  </div>
 
-    <script>
-        const glow = document.getElementById('glow');
+  <section class="glass quiz-card">
+    <div class="question-top">
+      <span class="pill" id="topicBadge">WH-QUESTIONS</span>
+      <span class="question-number" id="questionNumber">Question 1</span>
+    </div>
 
-        // Mouse move interactive glow background
-        window.addEventListener('mousemove', (e) => {
-            glow.style.left = e.clientX + 'px';
-            glow.style.top = e.clientY + 'px';
-        });
+    <div class="progress-track" aria-label="Session progress">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
 
-        // Touch move interactive glow background for mobile screens
-        window.addEventListener('touchmove', (e) => {
-            if (e.touches.length > 0) {
-                glow.style.left = e.touches[0].clientX + 'px';
-                glow.style.top = e.touches[0].clientY + 'px';
-            }
-        });
-    </script>
+    <div class="question-stage enter" id="questionStage" aria-live="polite">
+      <div class="question" id="question"></div>
+      <div class="meaning" id="meaning"></div>
+      <div class="options" id="options"></div>
+      <div class="explanation" id="explanation" aria-live="polite"></div>
+    </div>
+
+    <div class="controls">
+      <button class="btn btn-light" id="prevBtn" disabled>← Previous</button>
+      <button class="btn btn-primary" id="nextBtn">Next →</button>
+    </div>
+  </section>
+
+  <div class="footer">
+    Practice • Learn • Improve<br>
+    Questions are generated continuously from grammar patterns.
+  </div>
+</main>
+
+<script>
+"use strict";
+
+/* ==========================================================
+   PART 25: WH-QUESTIONS & TAG QUESTIONS
+   Self-contained question generator. No page reload required.
+   ========================================================== */
+
+const $ = id => document.getElementById(id);
+
+const names = [
+  "Firoz", "Fatiha", "Fatema", "Jui", "Ema", "Rupa",
+  "Moksed", "Ferjousi", "Jannati", "Mini", "Miraz",
+  "Mujahid", "Milon", "Hannan", "Joba", "Tanzila",
+  "Rina", "Tania", "Taslima"
+];
+
+const nameMeanings = {
+  Firoz:"ফিরোজ", Fatiha:"ফাতিহা", Fatema:"ফাতেমা",
+  Jui:"জুঁই", Ema:"ইমা", Rupa:"রূপা", Moksed:"মকসেদ",
+  Ferjousi:"ফেরদৌসী", Jannati:"জান্নাতি", Mini:"মিনি",
+  Miraz:"মিরাজ", Mujahid:"মুজাহিদ", Milon:"মিলন",
+  Hannan:"হান্নান", Joba:"জবা", Tanzila:"তানজিলা",
+  Rina:"রিনা", Tania:"তানিয়া", Taslima:"তাসলিমা"
+};
+
+const whWords = [
+  {word:"Who", meaning:"কে", use:"ব্যক্তি কাজটি করলে Who ব্যবহার হয়।"},
+  {word:"Whom", meaning:"কাকে", use:"ব্যক্তি কাজের লক্ষ্য বা কর্ম হলে Whom ব্যবহার হতে পারে।"},
+  {word:"Whose", meaning:"কার", use:"মালিকানা জানতে Whose ব্যবহার হয়।"},
+  {word:"What", meaning:"কী", use:"কোনো বস্তু, কাজ বা বিষয় জানতে What ব্যবহার হয়।"},
+  {word:"Which", meaning:"কোনটি", use:"সীমিত কয়েকটি বিকল্প থেকে জানতে Which ব্যবহার হয়।"},
+  {word:"When", meaning:"কখন", use:"সময় জানতে When ব্যবহার হয়।"},
+  {word:"Where", meaning:"কোথায়", use:"স্থান জানতে Where ব্যবহার হয়।"},
+  {word:"Why", meaning:"কেন", use:"কারণ জানতে Why ব্যবহার হয়।"},
+  {word:"How", meaning:"কীভাবে", use:"পদ্ধতি বা অবস্থা জানতে How ব্যবহার হয়।"},
+  {word:"How often", meaning:"কত ঘন ঘন", use:"কোনো কাজ কতবার বা কত ঘন ঘন হয় তা জানতে How often ব্যবহার হয়।"},
+  {word:"How many", meaning:"কতগুলো", use:"গণনা করা যায় এমন বহুবচন বস্তু বা ব্যক্তির সংখ্যা জানতে How many ব্যবহার হয়।"},
+  {word:"How much", meaning:"কতটুকু / কত দাম", use:"অগণনীয় পরিমাণ বা দাম জানতে How much ব্যবহার হয়।"},
+  {word:"How long", meaning:"কতক্ষণ / কত দীর্ঘ", use:"সময়কাল বা দৈর্ঘ্য জানতে How long ব্যবহার হয়।"}
+];
+
+const actions = [
+  {v:"reads a book", obj:"a book", objBangla:"একটি বই", verb:"read", form:"reads", place:"at home", placeBangla:"বাড়িতে", time:"every evening", timeBangla:"প্রতি সন্ধ্যায়", reason:"to learn English", reasonBangla:"ইংরেজি শেখার জন্য"},
+  {v:"writes a letter", obj:"a letter", objBangla:"একটি চিঠি", verb:"write", form:"writes", place:"at school", placeBangla:"স্কুলে", time:"every morning", timeBangla:"প্রতিদিন সকালে", reason:"to help a friend", reasonBangla:"একজন বন্ধুকে সাহায্য করার জন্য"},
+  {v:"plays football", obj:"football", objBangla:"ফুটবল", verb:"play", form:"plays", place:"in the field", placeBangla:"মাঠে", time:"every afternoon", timeBangla:"প্রতি বিকেলে", reason:"to stay active", reasonBangla:"সক্রিয় থাকার জন্য"},
+  {v:"cooks rice", obj:"rice", objBangla:"ভাত", verb:"cook", form:"cooks", place:"in the kitchen", placeBangla:"রান্নাঘরে", time:"at noon", timeBangla:"দুপুরে", reason:"for the family", reasonBangla:"পরিবারের জন্য"},
+  {v:"studies English", obj:"English", objBangla:"ইংরেজি", verb:"study", form:"studies", place:"in the library", placeBangla:"লাইব্রেরিতে", time:"every day", timeBangla:"প্রতিদিন", reason:"to improve grammar", reasonBangla:"ব্যাকরণ উন্নত করার জন্য"},
+  {v:"visits the market", obj:"the market", objBangla:"বাজার", verb:"visit", form:"visits", place:"near the village", placeBangla:"গ্রামের কাছে", time:"on Fridays", timeBangla:"শুক্রবারে", reason:"to buy food", reasonBangla:"খাবার কেনার জন্য"}
+];
+
+const whPatterns = [
+  {
+    make() {
+      const n = pick(names), a = pick(actions);
+      return {
+        q:`Where does ${n} ${a.verb === "study" ? "study" : a.verb === "play" ? "play" : a.verb === "read" ? "read" : a.verb === "write" ? "write" : a.verb === "cook" ? "cook" : "visit"}?`,
+        meaning:`${nameMeanings[n]} কোথায় ${a.verb === "study" ? "পড়াশোনা করে" : a.verb === "play" ? "খেলে" : a.verb === "read" ? "পড়ে" : a.verb === "write" ? "লেখে" : a.verb === "cook" ? "রান্না করে" : "যায়"}?`,
+        correct:a.place,
+        wrong:unique([a.time,a.reason,a.obj,"yesterday"]),
+        explanation:`স্থান জানতে Where ব্যবহার হয়। প্রশ্নে does আছে, তাই মূল verb-এর base form ব্যবহৃত হয়েছে। এখানে সঠিক উত্তর <b>${a.place}</b>, কারণ এটি স্থান নির্দেশ করে।`
+      };
+    }
+  },
+  {
+    make() {
+      const n = pick(names), a = pick(actions);
+      return {
+        q:`When does ${n} ${a.verb}?`,
+        meaning:`${nameMeanings[n]} কখন ${a.verb === "study" ? "পড়াশোনা করে" : a.verb === "play" ? "খেলে" : a.verb === "read" ? "পড়ে" : a.verb === "write" ? "লেখে" : a.verb === "cook" ? "রান্না করে" : "বাজারে যায়"}?`,
+        correct:a.time,
+        wrong:unique([a.place,a.reason,a.obj,"very carefully"]),
+        explanation:`সময় জানতে When ব্যবহার হয়। <b>${a.time}</b> একটি সময় নির্দেশক উত্তর। Present Simple প্রশ্নে does-এর পরে verb-এর মূল রূপ বসে।`
+      };
+    }
+  },
+  {
+    make() {
+      const n = pick(names), a = pick(actions);
+      return {
+        q:`Why does ${n} ${a.verb}?`,
+        meaning:`${nameMeanings[n]} কেন ${a.verb === "study" ? "পড়াশোনা করে" : a.verb === "play" ? "খেলে" : a.verb === "read" ? "পড়ে" : a.verb === "write" ? "লেখে" : a.verb === "cook" ? "রান্না করে" : "বাজারে যায়"}?`,
+        correct:a.reason,
+        wrong:unique([a.time,a.place,a.obj,"twice a week"]),
+        explanation:`কারণ জানতে Why ব্যবহার হয়। <b>${a.reason}</b> কারণ বোঝায়। মনে রাখবে: Why = কেন, When = কখন, Where = কোথায়।`
+      };
+    }
+  },
+  {
+    make() {
+      const n = pick(names), a = pick(actions);
+      return {
+        q:`What does ${n} ${a.verb}?`,
+        meaning:`${nameMeanings[n]} কী ${a.verb === "study" ? "পড়াশোনা করে" : a.verb === "play" ? "খেলে" : a.verb === "read" ? "পড়ে" : a.verb === "write" ? "লেখে" : a.verb === "cook" ? "রান্না করে" : "করে"}?`,
+        correct:a.obj,
+        wrong:unique([a.time,a.place,a.reason,"at night"]),
+        explanation:`কাজ বা বস্তু সম্পর্কে জানতে What ব্যবহার হয়। <b>${a.obj}</b> এখানে কাজের বিষয় বা বস্তু। Does-এর পরে verb-এর base form ব্যবহৃত হয়েছে।`
+      };
+    }
+  },
+  {
+    make() {
+      const n = pick(names), a = pick(actions);
+      return {
+        q:`Who ${a.form} ${a.obj}?`,
+        meaning:`কে ${a.objBangla} ${a.verb === "study" ? "পড়ে" : a.verb === "play" ? "খেলে" : a.verb === "read" ? "পড়ে" : a.verb === "write" ? "লেখে" : a.verb === "cook" ? "রান্না করে" : "বাজারে যায়"}?`,
+        correct:n,
+        wrong:unique(names.filter(x=>x!==n).slice(0,3)),
+        explanation:`Who যখন বাক্যের subject বা কর্তা সম্পর্কে প্রশ্ন করে, তখন সাধারণত আলাদা do/does লাগে না। এখানে <b>${n}</b> কাজটি করে—তাই এটিই সঠিক উত্তর।`
+      };
+    }
+  },
+  {
+    make() {
+      const n = pick(names);
+      const objects = [
+        {thing:"a blue bag", bn:"একটি নীল ব্যাগ"},
+        {thing:"a red book", bn:"একটি লাল বই"},
+        {thing:"a new pen", bn:"একটি নতুন কলম"},
+        {thing:"a small box", bn:"একটি ছোট বাক্স"}
+      ];
+      const o=pick(objects);
+      return {
+        q:`Whose ${o.thing} is this?`,
+        meaning:`এটি কার ${o.bn.replace("একটি ","")} ?`,
+        correct:`It is ${n}'s.`,
+        wrong:unique([`It is ${pick(names)}.`,`It is in the room.`,`It is very new.`]),
+        explanation:`মালিকানা জানতে Whose ব্যবহার হয়। <b>${n}'s</b> দ্বারা ${nameMeanings[n]}-এর মালিকানা বোঝানো হয়েছে। Whose + noun দিয়েও প্রশ্ন করা যায়।`
+      };
+    }
+  },
+  {
+    make() {
+      const n=pick(names);
+      const items=["the red pen","the blue bag","the English book","the small box"];
+      const item=pick(items);
+      return {
+        q:`Which ${item.includes("book") ? "book" : item.includes("pen") ? "pen" : item.includes("bag") ? "bag" : "box"} does ${n} want?`,
+        meaning:`${nameMeanings[n]} কোন ${item.includes("book") ? "বই" : item.includes("pen") ? "কলম" : item.includes("bag") ? "ব্যাগ" : "বাক্স"}টি চায়?`,
+        correct:item,
+        wrong:unique(items.filter(x=>x!==item)),
+        explanation:`সীমিত কয়েকটি বিকল্প থেকে কোনটি জানতে Which ব্যবহৃত হয়। এখানে নির্দিষ্ট বস্তুটি <b>${item}</b>।`
+      };
+    }
+  },
+  {
+    make() {
+      const n=pick(names);
+      const activities=[
+        {v:"reads English",bn:"ইংরেজি পড়ে"},
+        {v:"plays football",bn:"ফুটবল খেলে"},
+        {v:"visits the library",bn:"লাইব্রেরিতে যায়"}
+      ];
+      const a=pick(activities);
+      return {
+        q:`How often does ${n} ${a.v.split(" ")[0]}${a.v.startsWith("plays")?" football":a.v.startsWith("visits")?" the library":" English"}?`,
+        meaning:`${nameMeanings[n]} কত ঘন ঘন ${a.bn}?`,
+        correct:"Every day",
+        wrong:["At the library","Because it is useful","A new book"],
+        explanation:`কোনো কাজ কত ঘন ঘন হয় জানতে How often ব্যবহার হয়। <b>Every day</b> কাজের পুনরাবৃত্তির হার নির্দেশ করে।`
+      };
+    }
+  },
+  {
+    make() {
+      const n=pick(names);
+      const number=pick([3,4,5,6,7,8,9,10]);
+      return {
+        q:`How many books does ${n} have?`,
+        meaning:`${nameMeanings[n]}-এর কতটি বই আছে?`,
+        correct:`${number} books`,
+        wrong:unique([`${number} years`,`At home`,`Every morning`]),
+        explanation:`গণনা করা যায় এমন বহুবচন noun-এর সংখ্যা জানতে How many ব্যবহৃত হয়। Book গণনাযোগ্য, তাই How many books সঠিক গঠন।`
+      };
+    }
+  },
+  {
+    make() {
+      const n=pick(names);
+      const prices=[20,30,40,50,60,80,100];
+      const price=pick(prices);
+      return {
+        q:`How much is this pen?`,
+        meaning:`এই কলমটির দাম কত?`,
+        correct:`${price} taka`,
+        wrong:unique(["Three pens","In the classroom","Every day"]),
+        explanation:`দাম জানতে How much ব্যবহার করা হয়। <b>${price} taka</b> একটি দামের উত্তর। How many সাধারণত গণনাযোগ্য জিনিসের সংখ্যা জানতে ব্যবহৃত হয়।`
+      };
+    }
+  },
+  {
+    make() {
+      const n=pick(names);
+      const hours=pick([1,2,3,4,5]);
+      return {
+        q:`How long does ${n} study every day?`,
+        meaning:`${nameMeanings[n]} প্রতিদিন কতক্ষণ পড়াশোনা করে?`,
+        correct:`${hours} hours`,
+        wrong:unique(["At school","English grammar","Five books"]),
+        explanation:`কাজের সময়কাল জানতে How long ব্যবহার হয়। <b>${hours} hours</b> সময়ের দৈর্ঘ্য বোঝায়।`
+      };
+    }
+  },
+  {
+    make() {
+      const n=pick(names);
+      const targets=[
+        {verb:"is", ans:"a student", bn:"একজন শিক্ষার্থী"},
+        {verb:"are", ans:"ready", bn:"প্রস্তুত"},
+        {verb:"was", ans:"at home", bn:"বাড়িতে ছিল"},
+        {verb:"can", ans:"swim", bn:"সাঁতার কাটতে পারে"}
+      ];
+      const t=pick(targets);
+      return {
+        q:`How ${t.verb==="is"?"is":t.verb==="are"?"are":t.verb==="was"?"was":"can"} ${n}?`,
+        meaning:`${nameMeanings[n]} ${t.verb==="was"?"কেমন ছিল":t.verb==="can"?"কী করতে পারে":"কেমন / কী অবস্থায় আছে"}?`,
+        correct:t.ans,
+        wrong:unique(["Yesterday","Three books","At seven o'clock"]),
+        explanation:`How দিয়ে অবস্থা বা পদ্ধতি সম্পর্কে প্রশ্ন করা যায়। এই বাক্যে প্রশ্নটি ${nameMeanings[n]}-এর অবস্থা বা সক্ষমতা জানতে চায়।`
+      };
+    }
+  }
+];
+
+/* Tag question templates with carefully paired auxiliaries. */
+const tagPatterns = [
+  {s:"Firoz is a student",tag:"isn't he?",bn:"ফিরোজ একজন শিক্ষার্থী",why:"ইতিবাচক বাক্যে is আছে, তাই নেতিবাচক tag হবে isn't he?"},
+  {s:"Fatiha is reading a book",tag:"isn't she?",bn:"ফাতিহা একটি বই পড়ছে",why:"Present Continuous-এ is আছে। ইতিবাচক বাক্যের tag নেতিবাচক হয়।"},
+  {s:"Fatema was happy",tag:"wasn't she?",bn:"ফাতেমা খুশি ছিল",why:"Past Simple-এর be verb was। তাই tag হবে wasn't she?"},
+  {s:"Jui can swim",tag:"can't she?",bn:"জুঁই সাঁতার কাটতে পারে",why:"মূল বাক্যে can আছে; তাই নেতিবাচক tag can't she?"},
+  {s:"Ema will come tomorrow",tag:"won't she?",bn:"ইমা আগামীকাল আসবে",why:"Will-এর নেতিবাচক রূপ won't। Subject Ema-এর pronoun she।"},
+  {s:"Rupa has finished her work",tag:"hasn't she?",bn:"রূপা তার কাজ শেষ করেছে",why:"Present Perfect-এ has auxiliary আছে, তাই tag hasn't she?"},
+  {s:"Moksed plays football",tag:"doesn't he?",bn:"মকসেদ ফুটবল খেলে",why:"Present Simple-এর ইতিবাচক বাক্যে main verb আছে, auxiliary নেই। তাই tag-এ doesn't ব্যবহার হয়।"},
+  {s:"Ferjousi went to school",tag:"didn't she?",bn:"ফেরদৌসী স্কুলে গিয়েছিল",why:"Past Simple-এ went-এর জন্য tag-এ did ব্যবহার হয়। ইতিবাচক বাক্য, তাই didn't she?"},
+  {s:"Jannati likes English",tag:"doesn't she?",bn:"জান্নাতি ইংরেজি পছন্দ করে",why:"Present Simple-এর third-person singular subject-এর tag-এ doesn't ব্যবহার হয়।"},
+  {s:"Mini does not play tennis",tag:"does she?",bn:"মিনি টেনিস খেলে না",why:"মূল বাক্য নেতিবাচক, তাই tag ইতিবাচক হবে। Does not-এর tag হলো does she?"},
+  {s:"Miraz isn't tired",tag:"is he?",bn:"মিরাজ ক্লান্ত নয়",why:"মূল বাক্যে isn't নেতিবাচক, তাই tag ইতিবাচক is he? হবে।"},
+  {s:"Mujahid doesn't eat fish",tag:"does he?",bn:"মুজাহিদ মাছ খায় না",why:"মূল বাক্য নেতিবাচক Present Simple। তাই tag-এ ইতিবাচক does he? হবে।"},
+  {s:"Milon didn't call you",tag:"did he?",bn:"মিলন তোমাকে ফোন করেনি",why:"Didn't নেতিবাচক Past Simple auxiliary। তাই tag হবে ইতিবাচক did he?"},
+  {s:"Hannan has arrived",tag:"hasn't he?",bn:"হান্নান পৌঁছেছে",why:"Present Perfect-এ has ব্যবহৃত হয়েছে। ইতিবাচক বাক্যের tag হবে hasn't he?"},
+  {s:"Joba and Rina are friends",tag:"aren't they?",bn:"জবা ও রিনা বন্ধু",why:"দুই ব্যক্তি একসঙ্গে subject হলে pronoun they হয়। Are-এর নেতিবাচক tag aren't they?"},
+  {s:"Tanzila was not late",tag:"was she?",bn:"তানজিলা দেরি করেনি",why:"Was not নেতিবাচক; তাই tag ইতিবাচক was she? হবে।"},
+  {s:"Tania has a pen",tag:"doesn't she?",bn:"তানিয়ার একটি কলম আছে",why:"Possession বোঝানো has যখন main verb হিসেবে ব্যবহৃত হয়, সাধারণত Present Simple tag-এ does ব্যবহার হয়।"},
+  {s:"Taslima speaks English",tag:"doesn't she?",bn:"তাসলিমা ইংরেজি বলে",why:"Present Simple-এ speaks আছে। তাই tag-এ does এবং নেতিবাচক রূপ doesn't হবে।"},
+  {s:"You are ready",tag:"aren't you?",bn:"তুমি প্রস্তুত",why:"You are-এর ইতিবাচক tag সাধারণত aren't you? হয়।"},
+  {s:"They were absent",tag:"weren't they?",bn:"তারা অনুপস্থিত ছিল",why:"মূল বাক্যে were আছে। তাই নেতিবাচক tag weren't they? হবে।"},
+  {s:"We should help others",tag:"shouldn't we?",bn:"আমাদের অন্যদের সাহায্য করা উচিত",why:"Should modal verb-এর নেতিবাচক tag হলো shouldn't।"},
+  {s:"You have completed the task",tag:"haven't you?",bn:"তুমি কাজটি শেষ করেছ",why:"Present Perfect-এ have auxiliary আছে। তাই tag haven't you? হবে।"},
+  {s:"Firoz never tells a lie",tag:"does he?",bn:"ফিরোজ কখনো মিথ্যা বলে না",why:"Never নেতিবাচক অর্থ প্রকাশ করে। তাই tag ইতিবাচক হবে: does he?"},
+  {s:"Nobody came to the meeting",tag:"did they?",bn:"সভায় কেউ আসেনি",why:"Nobody নেতিবাচক অর্থ প্রকাশ করে। প্রচলিত tag question-এ nobody-এর pronoun হিসেবে they ব্যবহৃত হয়।"},
+  {s:"Let's start the lesson",tag:"shall we?",bn:"চলো পাঠ শুরু করি",why:"Let's দিয়ে প্রস্তাব বোঝালে প্রচলিত tag হলো shall we?"},
+  {s:"Open the window",tag:"will you?",bn:"জানালাটি খোলো",why:"আদেশ বা অনুরোধের শেষে সাধারণত will you? ব্যবহার করা যায়।"},
+  {s:"Don't make a noise",tag:"will you?",bn:"শব্দ কোরো না",why:"নেতিবাচক আদেশের শেষে সাধারণত will you? ব্যবহার হয়।"},
+  {s:"I am late",tag:"aren't I?",bn:"আমি দেরি করে ফেলেছি",why:"I am-এর প্রচলিত tag form হলো aren't I?"},
+  {s:"Everything is ready",tag:"isn't it?",bn:"সবকিছু প্রস্তুত",why:"Everything-এর tag pronoun হলো it এবং be verb is।"},
+  {s:"There is a problem",tag:"isn't there?",bn:"একটি সমস্যা আছে",why:"There is-যুক্ত বাক্যের tag-এ there-ই থাকে: isn't there?"},
+  {s:"Few students understood the lesson",tag:"did they?",bn:"অল্প কয়েকজন শিক্ষার্থী পাঠটি বুঝেছিল",why:"Few সাধারণত নেতিবাচক অর্থ প্রকাশ করে। তাই tag ইতিবাচক did they? হবে।"},
+  {s:"Everyone enjoyed the class",tag:"didn't they?",bn:"সবাই ক্লাস উপভোগ করেছিল",why:"Everyone একবচন অর্থে হলেও আধুনিক প্রচলিত tag-এ pronoun they ব্যবহৃত হয়।"},
+  {s:"Nothing happened yesterday",tag:"did it?",bn:"গতকাল কিছুই ঘটেনি",why:"Nothing নেতিবাচক অর্থ প্রকাশ করে। এর tag pronoun it এবং auxiliary did।"},
+  {s:"The boys are playing",tag:"aren't they?",bn:"ছেলেরা খেলছে",why:"Plural subject-এর pronoun they। Are-এর নেতিবাচক tag aren't they? হবে।"},
+  {s:"She had finished before noon",tag:"hadn't she?",bn:"সে দুপুরের আগে শেষ করেছিল",why:"Past Perfect-এ had ব্যবহৃত হয়েছে। তাই tag হবে hadn't she?"},
+  {s:"You cannot solve this problem",tag:"can you?",bn:"তুমি এই সমস্যাটি সমাধান করতে পারবে না",why:"Cannot নেতিবাচক, তাই tag ইতিবাচক can you? হবে।"},
+  {s:"He must follow the rules",tag:"mustn't he?",bn:"তাকে নিয়মগুলো মানতেই হবে",why:"Must-এর ইতিবাচক বাক্যের নেতিবাচক tag mustn't he? হতে পারে।"},
+  {s:"Rina has not arrived",tag:"has she?",bn:"রিনা পৌঁছায়নি",why:"Has not নেতিবাচক auxiliary। তাই tag ইতিবাচক has she? হবে।"}
+];
+
+let score = 0;
+let streak = 0;
+let attempted = 0;
+let correctCount = 0;
+let mode = "all";
+let current = null;
+let history = [];
+let historyIndex = -1;
+let busy = false;
+let lastKeys = new Set();
+
+function pick(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
+function unique(arr) {
+  return [...new Set(arr)];
+}
+
+function shuffle(arr) {
+  const copy = [...arr];
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
+
+function escapeHTML(s) {
+  return String(s).replace(/[&<>"']/g, c => ({
+    "&":"&amp;", "<":"&lt;", ">":"&gt;",
+    '"':"&quot;", "'":"&#39;"
+  })[c]);
+}
+
+function makeWH() {
+  const pattern = pick(whPatterns);
+  const item = pattern.make();
+  return buildQuestion("wh", item);
+}
+
+function makeTag() {
+  const t = pick(tagPatterns);
+  const right = t.tag;
+  const options = makeTagOptions(right);
+
+  return buildQuestion("tag", {
+    q:`${t.s}, ______`,
+    meaning:`${t.bn} — বাক্যটির শেষে সঠিক question tag বসাও।`,
+    correct:right,
+    wrong:options.filter(x => x !== right).slice(0,3),
+    explanation:`<b>নিয়ম:</b> ${t.why}<br><br><b>মনে রাখবে:</b> সাধারণত affirmative statement-এর পরে negative tag এবং negative statement-এর পরে affirmative tag বসে। Subject-এর উপযুক্ত pronoun ব্যবহার করতে হয়।`
+  });
+}
+
+function makeTagOptions(right) {
+  const common = [
+    "is he?", "isn't he?", "does he?", "doesn't he?",
+    "did he?", "didn't he?", "is she?", "isn't she?",
+    "does she?", "doesn't she?", "did she?", "didn't she?",
+    "are they?", "aren't they?", "were they?", "weren't they?",
+    "can he?", "can't he?", "will he?", "won't he?",
+    "has she?", "hasn't she?", "have you?", "haven't you?",
+    "was she?", "wasn't she?", "shall we?", "will you?",
+    "aren't I?", "isn't it?", "isn't there?", "hadn't she?",
+    "shouldn't we?", "mustn't he?", "can you?", "did they?"
+  ];
+  return shuffle(unique([right, ...shuffle(common.filter(x => x !== right)).slice(0,3)]));
+}
+
+function buildQuestion(type, item) {
+  let options = shuffle(unique([item.correct, ...item.wrong]));
+  while (options.length < 4) {
+    const extra = type === "tag"
+      ? pick(["isn't he?", "does she?", "didn't they?", "aren't you?"])
+      : pick(["in the morning", "at school", "because it is useful", "a new book"]);
+    if (!options.includes(extra) && extra !== item.correct) options.push(extra);
+  }
+  options = shuffle(options.slice(0,4));
+
+  const key = type + "|" + item.q + "|" + item.correct;
+  return {
+    type,
+    q:item.q,
+    meaning:item.meaning,
+    correct:item.correct,
+    options,
+    explanation:item.explanation,
+    key,
+    chosen:null,
+    answered:false
+  };
+}
+
+function generateQuestion() {
+  let q, tries = 0;
+  do {
+    q = (mode === "wh") ? makeWH()
+      : (mode === "tag") ? makeTag()
+      : (Math.random() < .5 ? makeWH() : makeTag());
+    tries++;
+  } while (lastKeys.has(q.key) && tries < 15);
+
+  lastKeys.add(q.key);
+  if (lastKeys.size > 30) lastKeys.delete(lastKeys.values().next().value);
+  return q;
+}
+
+function renderQuestion(q, animate = true) {
+  current = q;
+  busy = false;
+
+  $("topicBadge").textContent =
+    q.type === "wh" ? "WH-QUESTIONS" : "TAG QUESTIONS";
+
+  $("questionNumber").textContent =
+    `Question ${Math.max(1, historyIndex + 1)}`;
+
+  $("question").innerHTML = escapeHTML(q.q);
+  $("meaning").textContent = `(বাংলা অর্থ: ${q.meaning})`;
+
+  const optionsBox = $("options");
+  optionsBox.innerHTML = "";
+
+  q.options.forEach((opt, i) => {
+    const button = document.createElement("button");
+    button.className = "option";
+    button.type = "button";
+    button.innerHTML =
+      `<span class="letter">${"ABCD"[i]}</span>` +
+      `<span>${escapeHTML(opt)}</span>`;
+    button.disabled = q.answered;
+    button.addEventListener("click", () => chooseAnswer(opt, button));
+    optionsBox.appendChild(button);
+  });
+
+  const exp = $("explanation");
+  exp.className = "explanation";
+  exp.innerHTML = "";
+
+  if (q.answered) {
+    showAnsweredState(q);
+  }
+
+  $("prevBtn").disabled = historyIndex <= 0 || busy;
+  $("nextBtn").textContent = "Next →";
+  updateStats();
+
+  const stage = $("questionStage");
+  stage.classList.remove("enter", "exit");
+  if (animate) {
+    void stage.offsetWidth;
+    stage.classList.add("enter");
+  }
+}
+
+function showAnsweredState(q) {
+  const buttons = [...$("options").querySelectorAll(".option")];
+  buttons.forEach(btn => {
+    const text = btn.querySelector("span:last-child").textContent;
+    btn.disabled = true;
+    if (text === q.correct) btn.classList.add("correct");
+    if (text === q.chosen && q.chosen !== q.correct) {
+      btn.classList.add("wrong");
+    }
+  });
+
+  const exp = $("explanation");
+  exp.className = "explanation show " +
+    (q.chosen === q.correct ? "good" : "bad");
+
+  exp.innerHTML =
+    `<strong>${q.chosen === q.correct ? "Correct Answer ✓" : "Incorrect Answer ✗"}</strong>` +
+    `<div>সঠিক উত্তর: <span class="english-answer">${escapeHTML(q.correct)}</span></div>` +
+    `<div style="margin-top:8px">${q.explanation}</div>`;
+}
+
+function chooseAnswer(answer) {
+  if (!current || current.answered) return;
+
+  current.answered = true;
+  current.chosen = answer;
+  attempted++;
+
+  if (answer === current.correct) {
+    score += 10;
+    streak++;
+    correctCount++;
+  } else {
+    streak = 0;
+  }
+
+  showAnsweredState(current);
+  updateStats();
+}
+
+function updateStats() {
+  $("score").textContent = score;
+  $("streak").textContent = streak;
+  $("accuracy").textContent =
+    attempted ? Math.round(correctCount / attempted * 100) + "%" : "0%";
+
+  // Session indicator: advances as the user explores new questions.
+  $("progressFill").style.width =
+    (historyIndex < 0 ? 0 : ((historyIndex % 20) + 1) * 5) + "%";
+}
+
+function nextQuestion() {
+  if (busy) return;
+
+  if (historyIndex < history.length - 1) {
+    historyIndex++;
+    renderQuestion(history[historyIndex]);
+    return;
+  }
+
+  const stage = $("questionStage");
+  busy = true;
+  stage.classList.add("exit");
+
+  // Only the question panel transitions; the page never reloads.
+  window.setTimeout(() => {
+    const q = generateQuestion();
+    history.push(q);
+    historyIndex = history.length - 1;
+    renderQuestion(q);
+  }, 180);
+}
+
+function previousQuestion() {
+  if (busy || historyIndex <= 0) return;
+  historyIndex--;
+  renderQuestion(history[historyIndex]);
+}
+
+$("nextBtn").addEventListener("click", nextQuestion);
+$("prevBtn").addEventListener("click", previousQuestion);
+
+document.querySelectorAll(".mode-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const newMode = btn.dataset.mode;
+    if (newMode === mode) return;
+
+    mode = newMode;
+    document.querySelectorAll(".mode-btn").forEach(b =>
+      b.classList.toggle("active", b === btn)
+    );
+
+    history = [];
+    historyIndex = -1;
+    lastKeys.clear();
+    nextQuestion();
+  });
+});
+
+document.addEventListener("keydown", e => {
+  if (e.altKey || e.ctrlKey || e.metaKey) return;
+  if (e.key === "ArrowRight") nextQuestion();
+  if (e.key === "ArrowLeft") previousQuestion();
+
+  if (/^[1-4]$/.test(e.key) && current && !current.answered) {
+    const btn = $("options").querySelectorAll(".option")[Number(e.key)-1];
+    if (btn) btn.click();
+  }
+});
+
+// Start the practice system.
+history.push(generateQuestion());
+historyIndex = 0;
+renderQuestion(history[0], false);
+</script>
 </body>
 </html>

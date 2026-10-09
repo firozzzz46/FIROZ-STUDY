@@ -1,128 +1,630 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon</title>
-
-    <!-- Google Fonts for Bengali & English -->
+    <title>Part 32 - Punctuation & Capitalization Practice</title>
+    <!-- Tailwind CSS for utility styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for Bengali and English -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Inter:wght@700;900&display=swap" rel="stylesheet">
-
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
-        body {
-            font-family: 'Hind Siliguri', 'Inter', sans-serif;
-            background-color: #030712;
-            overflow: hidden;
+        /* Bengali typography setup */
+        @font-family {
+            font-family: 'Kalpurush';
+            src: local('Kalpurush'), url('https://fonts.cdnfonts.com/s/72922/Kalpurush.woff') format('woff');
+        }
+        
+        .bengali-text {
+            font-family: 'Kalpurush', 'Hind Siliguri', sans-serif;
         }
 
-        /* Gradient glowing animation on text */
-        .glow-text {
-            background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 50%, #38bdf8 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shine 6s linear infinite;
+        .english-text {
+            font-family: 'Times New Roman', Times, serif;
         }
 
-        @keyframes shine {
-            0% { background-position: 0% center; }
-            50% { background-position: 100% center; }
-            100% { background-position: 0% center; }
+        /* Glassmorphism styling */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04);
         }
 
-        /* Keyframes for initial entry: Floating in from below with opacity */
-        @keyframes floatIn {
-            0% {
-                opacity: 0;
-                transform: translateY(40px) scale(0.95);
-                filter: blur(8px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-                filter: blur(0);
-            }
+        /* Custom smooth cubic-bezier transitions for card slide/fade */
+        .card-transition-enter {
+            opacity: 0;
+            transform: translateY(24px) scale(0.98);
         }
 
-        /* Continuous subtle float effect once arrived */
-        @keyframes subtleFloat {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-8px);
-            }
+        .card-transition-active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            transition: opacity 0.45s cubic-bezier(0.25, 1, 0.5, 1), transform 0.45s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
-        /* Animation class for Heading */
-        .animate-heading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards,
-                subtleFloat 6s ease-in-out 1.2s infinite;
+        .card-transition-exit {
+            opacity: 0;
+            transform: translateY(-24px) scale(0.98);
+            transition: opacity 0.35s cubic-bezier(0.25, 1, 0.5, 1), transform 0.35s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
-        /* Animation class for Subheading (staggered delay) */
-        .animate-subheading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards,
-                subtleFloat 6s ease-in-out 1.55s infinite;
-            opacity: 0; /* Hidden until animation kicks in */
+        /* Smooth option item hover effect */
+        .option-card {
+            transition: all 0.25s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        
+        .option-card:hover:not(.disabled) {
+            transform: translateX(6px);
+            background-color: rgba(243, 244, 246, 0.9);
         }
 
-        /* Ambient background lighting */
-        .ambient-glow {
-            position: absolute;
-            width: 450px;
-            height: 450px;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(3, 7, 18, 0) 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            transition: left 0.4s ease-out, top 0.4s ease-out;
+        /* Responsive minimum font sizes as strictly required */
+        .question-title {
+            font-size: 1.25rem; /* 20px */
+            line-height: 1.75rem;
+        }
+
+        .option-text {
+            font-size: 1.15rem; /* 18.4px */
+            line-height: 1.6rem;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
         }
     </style>
 </head>
-<body class="min-h-screen flex items-center justify-center relative select-none px-4">
+<body class="bg-gradient-to-br from-[#f5f7fa] to-[#e4e8f0] min-h-screen flex flex-col justify-between text-gray-800 selection:bg-indigo-100">
 
-    <!-- Ambient glow center element -->
-    <div id="glow" class="ambient-glow top-1/2 left-1/2"></div>
+    <!-- Header Controls -->
+    <header class="w-full max-w-4xl mx-auto px-4 pt-6 pb-2">
+        <div class="glass-card rounded-2xl p-4 sm:p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>
+                <div class="inline-block bg-indigo-100 text-indigo-800 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider mb-1">
+                    English Grammar Masterclass
+                </div>
+                <h1 class="text-xl sm:text-2xl font-bold text-gray-900 tracking-tight english-text">
+                    PART 32 - PUNCTUATION & CAPITALIZATION
+                </h1>
+                <p class="text-xs sm:text-sm text-gray-500 bengali-text mt-0.5">
+                    অসীম নতুন নতুন এমসিকিউ প্রশ্ন প্র্যাকটিস করুন
+                </p>
+            </div>
+            
+            <!-- Overall Stats Badge -->
+            <div class="flex items-center gap-3">
+                <div class="bg-white/90 border border-gray-100 rounded-xl px-4 py-2 text-center shadow-sm">
+                    <span class="text-xs text-gray-400 font-medium uppercase block">Score</span>
+                    <span id="score-text" class="text-lg font-bold text-indigo-600">0</span>
+                </div>
+                <div class="bg-white/90 border border-gray-100 rounded-xl px-4 py-2 text-center shadow-sm">
+                    <span class="text-xs text-gray-400 font-medium uppercase block">Accuracy</span>
+                    <span id="accuracy-text" class="text-lg font-bold text-emerald-600">0%</span>
+                </div>
+                <div class="bg-white/90 border border-gray-100 rounded-xl px-4 py-2 text-center shadow-sm">
+                    <span class="text-xs text-gray-400 font-medium uppercase block">Question</span>
+                    <span id="question-count-text" class="text-lg font-bold text-purple-600">#1</span>
+                </div>
+            </div>
+        </div>
+    </header>
 
-    <!-- Centered minimal content with entry animations -->
-    <main class="text-center z-10 space-y-6 max-w-3xl mx-auto py-8 px-4">
-        
-        <!-- Main English Title -->
-        <h1 class="animate-heading text-5xl sm:text-7xl md:text-8xl font-black tracking-tight glow-text font-['Inter'] drop-shadow-lg">
-            Coming Soon...
-        </h1>
+    <!-- Main Interactive Container -->
+    <main class="w-full max-w-4xl mx-auto px-4 py-4 flex-1 flex flex-col justify-center">
+        <!-- Question Card Wrapper -->
+        <div id="card-wrapper" class="glass-card rounded-3xl p-6 sm:p-8 relative overflow-hidden transition-all duration-300">
+            
+            <!-- Progress Bar -->
+            <div class="w-full bg-gray-200/60 h-2 rounded-full mb-6 overflow-hidden">
+                <div id="progress-bar" class="bg-indigo-600 h-full rounded-full transition-all duration-500 ease-out" style="width: 100%;"></div>
+            </div>
 
-        <!-- Bengali Subheading -->
-        <p class="animate-subheading text-xl sm:text-3xl md:text-4xl font-semibold text-emerald-400/90 leading-relaxed tracking-wide drop-shadow">
-            ইনশাআল্লাহ, খুব শীঘ্রই ডাটা যোগ করা হবে।
-        </p>
+            <!-- Dynamic Question Section -->
+            <div id="question-container" class="card-transition-active">
+                
+                <!-- Category Tag -->
+                <div class="flex items-center justify-between mb-3">
+                    <span id="topic-tag" class="text-xs font-semibold uppercase tracking-wider text-indigo-600 bg-indigo-50 border border-indigo-100 px-3 py-1 rounded-lg">
+                        Capitalization Rule
+                    </span>
+                    <span id="rule-code" class="text-xs text-gray-400 font-mono">
+                        Rule 32.1
+                    </span>
+                </div>
 
+                <!-- English Question Statement -->
+                <h2 id="english-question" class="english-text question-title font-semibold text-gray-900 mb-2">
+                    Which sentence is correctly formatted with appropriate punctuation and capitalization?
+                </h2>
+
+                <!-- Bengali Meaning Statement (strictly inside brackets) -->
+                <p id="bengali-meaning" class="bengali-text text-base text-gray-600 mb-6 bg-slate-50/80 p-3 rounded-xl border border-slate-100">
+                    (কোন বাক্যটি সঠিক বিরামচিহ্ন এবং বড় হাতের অক্ষরের নিয়মানুযায়ী সঠিকভাবে লেখা হয়েছে?)
+                </p>
+
+                <!-- MCQ Options Container -->
+                <div id="options-container" class="space-y-3.5 mb-6">
+                    <!-- Dynamic Options will be injected here -->
+                </div>
+
+                <!-- Explanation Box (Initially Hidden) -->
+                <div id="explanation-box" class="hidden rounded-2xl p-5 border transition-all duration-300 mb-6">
+                    <div class="flex items-center gap-2 mb-2">
+                        <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <h3 class="font-bold text-gray-900 text-base bengali-text">বিস্তারিত ব্যাখ্যা (Explanation):</h3>
+                    </div>
+                    <p id="explanation-text" class="bengali-text text-base text-gray-700 leading-relaxed">
+                        <!-- Dynamic Bengali explanation -->
+                    </p>
+                </div>
+            </div>
+
+            <!-- UI Navigation Controls -->
+            <div class="flex items-center justify-between pt-4 border-t border-gray-200/60 mt-2">
+                <button id="prev-btn" onclick="handlePrevious()" disabled class="px-5 py-2.5 rounded-xl bg-gray-100 text-gray-400 font-medium text-sm flex items-center gap-2 transition cursor-not-allowed">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                    Previous Question
+                </button>
+
+                <div class="flex items-center gap-3">
+                    <button id="restart-btn" onclick="restartQuiz()" class="px-4 py-2.5 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium text-sm transition">
+                        Restart
+                    </button>
+                    <button id="next-btn" onclick="handleNext()" class="px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-medium text-sm shadow-lg shadow-indigo-200 flex items-center gap-2 transition active:scale-95">
+                        Next Question
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </button>
+                </div>
+            </div>
+
+        </div>
     </main>
 
+    <!-- Footer -->
+    <footer class="w-full text-center py-4 text-xs text-gray-400 bengali-text">
+        Part 32: Punctuation & Capitalization • Infinity MCQ Practice Engine
+    </footer>
+
     <script>
-        const glow = document.getElementById('glow');
+        /**
+         * STRICT NAMES ARRAY (Only these 19 names are permitted)
+         */
+        const ALLOWED_NAMES = [
+            'Firoz', 'Fatiha', 'Fatema', 'Jui', 'Ema', 'Rupa', 
+            'Moksed', 'Ferjousi', 'Jannati', 'Mini', 'Miraz', 
+            'Mujahid', 'Milon', 'Hannan', 'Joba', 'Tanzila', 
+            'Rina', 'Tania', 'Taslima'
+        ];
 
-        // Mouse move interactive glow background
-        window.addEventListener('mousemove', (e) => {
-            glow.style.left = e.clientX + 'px';
-            glow.style.top = e.clientY + 'px';
-        });
+        // State Management
+        let currentQuestionIndex = 0;
+        let questionHistory = [];
+        let score = 0;
+        let totalAttempted = 0;
+        let userAnswers = {}; // Map question index to selected option
 
-        // Touch move interactive glow background for mobile screens
-        window.addEventListener('touchmove', (e) => {
-            if (e.touches.length > 0) {
-                glow.style.left = e.touches[0].clientX + 'px';
-                glow.style.top = e.touches[0].clientY + 'px';
+        // Helper: Pick random element from array
+        function getRandomItem(arr) {
+            return arr[Math.floor(Math.random() * arr.length)];
+        }
+
+        // Helper: Pick unique names
+        function getUniqueNames(count) {
+            const shuffled = [...ALLOWED_NAMES].sort(() => 0.5 - Math.random());
+            return shuffled.slice(0, count);
+        }
+
+        // Helper: Shuffle Array
+        function shuffle(arr) {
+            return [...arr].sort(() => 0.5 - Math.random());
+        }
+
+        /**
+         * INFINITE QUESTION GENERATOR ENGINE
+         * Dynamically generates rule-based MCQ questions with zero external names.
+         */
+        function generateDynamicQuestion() {
+            const ruleType = Math.floor(Math.random() * 8);
+            const [n1, n2, n3] = getUniqueNames(3);
+
+            switch (ruleType) {
+                case 0: {
+                    // Proper Nouns & Sentence Capitalization
+                    const places = ['Dhaka', 'Chittagong', 'Sylhet', 'Rajshahi'];
+                    const place = getRandomItem(places);
+                    
+                    const correct = `${n1} and ${n2} visited ${place} last Friday.`;
+                    const wrong1 = `${n1.toLowerCase()} and ${n2} visited ${place} last Friday.`;
+                    const wrong2 = `${n1} and ${n2.toLowerCase()} visited ${place.toLowerCase()} last friday.`;
+                    const wrong3 = `${n1} and ${n2} visited ${place} last friday.`;
+
+                    return {
+                        category: "Capitalization Rules",
+                        ruleCode: "Rule 32.1",
+                        questionEn: "Which sentence correctly applies capitalization for proper nouns and days?",
+                        questionBn: "(কোন বাক্যটিতে নির্দিষ্ট নাম এবং বারের নামের ক্ষেত্রে সঠিক ক্যাপিটালাইজেশন ব্যবহার করা হয়েছে?)",
+                        options: shuffle([
+                            { text: correct, correct: true },
+                            { text: wrong1, correct: false },
+                            { text: wrong2, correct: false },
+                            { text: wrong3, correct: false }
+                        ]),
+                        explanation: `ব্যক্তিবাচক নাম (${n1}, ${n2}), স্থান (${place}) এবং সপ্তাহের দিন (Friday) হলো Proper Noun। নিয়মানুসারে Proper Noun এবং বাক্যের প্রথম অক্ষরের জন্য সর্বদা Capital Letter (বড় হাতের অক্ষর) ব্যবহৃত হয়।`
+                    };
+                }
+
+                case 1: {
+                    // Direct Speech & Quotation Marks
+                    const verbs = ['said', 'replied', 'asked', 'exclaimed'];
+                    const verb = getRandomItem(verbs);
+                    
+                    const correct = `${n1} ${verb}, "I am going to help ${n2} today."`;
+                    const wrong1 = `${n1} ${verb} "I am going to help ${n2} today."`;
+                    const wrong2 = `${n1} ${verb}, i am going to help ${n2} today.`;
+                    const wrong3 = `${n1} ${verb}, "i am going to help ${n2} today"`;
+
+                    return {
+                        category: "Quotation & Direct Speech",
+                        ruleCode: "Rule 32.2",
+                        questionEn: "Identify the sentence with correct quotation marks and punctuation in direct speech:",
+                        questionBn: "(পরোক্ষ বা প্রত্যক্ষ উক্তিতে সঠিক কোটেশন চিহ্ন ও কমাযুক্ত বাক্যটি সনাক্ত করুন:)",
+                        options: shuffle([
+                            { text: correct, correct: true },
+                            { text: wrong1, correct: false },
+                            { text: wrong2, correct: false },
+                            { text: wrong3, correct: false }
+                        ]),
+                        explanation: `Direct Speech বা প্রত্যক্ষ উক্তিতে Reporting verb-এর পর একটি কমা (,) বসে এবং বক্তার মূল বক্তব্য কোটেশন মার্কের ("...") ভেতরে থাকে। কোটেশন মার্কের ভেতরের প্রথম অক্ষরটি Capital Letter হয় এবং Full Stop কোটেশন মার্কের ভেতরেই বসে। pronoun 'I' সর্বদা Capital হয়।`
+                    };
+                }
+
+                case 2: {
+                    // Apostrophe for Possession
+                    const objects = ['book', 'pen', 'laptop', 'house', 'garden'];
+                    const obj = getRandomItem(objects);
+
+                    const correct = `This is ${n1}'s ${obj}, not ${n2}'s.`;
+                    const wrong1 = `This is ${n1}s ${obj}, not ${n2}s.`;
+                    const wrong2 = `This is ${n1}s' ${obj}, not ${n2}s'.`;
+                    const wrong3 = `This is ${n1}'s ${obj}, not ${n2}s.`;
+
+                    return {
+                        category: "Apostrophe for Possession",
+                        ruleCode: "Rule 32.3",
+                        questionEn: "Choose the sentence that correctly uses the apostrophe to show ownership:",
+                        questionBn: "(মালিকানা বা অধিকার বোঝাতে অ্যাপোস্ট্রফি (') এর সঠিক ব্যবহার থাকা বাক্যটি নির্বাচন করুন:)",
+                        options: shuffle([
+                            { text: correct, correct: true },
+                            { text: wrong1, correct: false },
+                            { text: wrong2, correct: false },
+                            { text: wrong3, correct: false }
+                        ]),
+                        explanation: `একবচন নাম বা Singular Noun-এর সাথে মালিকানা/অধিকার বোঝাতে নামটির শেষে Apostrophe s ('s) যুক্ত করতে হয়। যেমন: ${n1}'s ${obj} (অর্থ: ${n1}-এর ${obj}) এবং ${n2}'s (অর্থ: ${n2}-এর)।`
+                    };
+                }
+
+                case 3: {
+                    // Commas in Series / Listing
+                    const items = ['apples', 'bananas', 'oranges', 'mangoes'];
+                    
+                    const correct = `${n1}, ${n2}, and ${n3} bought apples, bananas, and oranges.`;
+                    const wrong1 = `${n1} ${n2} and ${n3} bought apples bananas and oranges.`;
+                    const wrong2 = `${n1}, ${n2} and ${n3}, bought apples, bananas and, oranges.`;
+                    const wrong3 = `${n1}, ${n2}, and ${n3} bought apples, bananas and oranges,`;
+
+                    return {
+                        category: "Commas in Series",
+                        ruleCode: "Rule 32.4",
+                        questionEn: "Which option correctly uses commas to separate items in a list?",
+                        questionBn: "(তালিকায় একাধিক নাম বা বস্তু পৃথক করতে কমার (,) সঠিক ব্যবহার কোনটি?)",
+                        options: shuffle([
+                            { text: correct, correct: true },
+                            { text: wrong1, correct: false },
+                            { text: wrong2, correct: false },
+                            { text: wrong3, correct: false }
+                        ]),
+                        explanation: `দুইয়ের অধিক নাম বা বস্তুর তালিকা (Series) তৈরি করতে প্রতিটির মাঝে কমা (,) বসাতে হয়। শেষ উপাদানটির পূর্বে 'and' ব্যবহৃত হয়। ব্যক্তির নাম আলাদা করতেও একইভাবে কমা প্রয়োজন।`
+                    };
+                }
+
+                case 4: {
+                    // Contractions vs Possessives
+                    const correct = `It's time for ${n1} to clean her room, as its door is open.`;
+                    const wrong1 = `Its time for ${n1} to clean her room, as it's door is open.`;
+                    const wrong2 = `It's time for ${n1} to clean her room, as it's door is open.`;
+                    const wrong3 = `Its time for ${n1} to clean her room, as its door is open.`;
+
+                    return {
+                        category: "Contractions (It's vs Its)",
+                        ruleCode: "Rule 32.5",
+                        questionEn: "Select the sentence with correct distinction between 'It's' and 'Its':",
+                        questionBn: "('It's' এবং 'Its'-এর সঠিক পার্থক্য বজায় রেখে তৈরি বাক্যটি চিহ্নিত করুন:)",
+                        options: shuffle([
+                            { text: correct, correct: true },
+                            { text: wrong1, correct: false },
+                            { text: wrong2, correct: false },
+                            { text: wrong3, correct: false }
+                        ]),
+                        explanation: `'It's' হলো 'It is' বা 'It has'-এর সংক্ষিপ্ত রূপ (Contraction)। পক্ষান্তরে 'Its' হলো Possessive Pronoun (এর)। তাই "It's time" (ইহা হয় সময়) এবং "its door" (এটির দরজা) ব্যবহারটিই সম্পূর্ণ সঠিক।`
+                    };
+                }
+
+                case 5: {
+                    // Question Marks & Exclamation Points
+                    const correct = `What a brilliant student ${n1} is! Did ${n2} call her?`;
+                    const wrong1 = `What a brilliant student ${n1} is? Did ${n2} call her!`;
+                    const wrong2 = `what a brilliant student ${n1} is! did ${n2} call her?`;
+                    const wrong3 = `What a brilliant student ${n1} is. Did ${n2} call her.`;
+
+                    return {
+                        category: "End Punctuation",
+                        ruleCode: "Rule 32.6",
+                        questionEn: "Choose the sentence with correct exclamation and question marks:",
+                        questionBn: "(বিস্ময়সূচক ও প্রশ্নবোধক চিহ্নের সঠিক প্রয়োগযুক্ত বাক্যটি বেছে নিন:)",
+                        options: shuffle([
+                            { text: correct, correct: true },
+                            { text: wrong1, correct: false },
+                            { text: wrong2, correct: false },
+                            { text: wrong3, correct: false }
+                        ]),
+                        explanation: `Exclamatory Sentence (আবেগ/বিস্ময় প্রকাশ) এর শেষে Exclamation Mark (!) বসে এবং Interrogative Sentence (প্রশ্নবোধক) এর শেষে Question Mark (?) বসে। এছাড়া প্রতিটি বাক্যের সূচনায় ও প্রপার নাউনে Capital Letter ব্যবহার করা বাধ্যতামূলক।`
+                    };
+                }
+
+                case 6: {
+                    // Semicolon & Independent Clauses
+                    const correct = `${n1} loves reading history; ${n2} prefers solving math problems.`;
+                    const wrong1 = `${n1} loves reading history, ${n2} prefers solving math problems.`;
+                    const wrong2 = `${n1} loves reading history ${n2} prefers solving math problems.`;
+                    const wrong3 = `${n1} loves reading history; ${n2} Prefers solving math problems.`;
+
+                    return {
+                        category: "Semicolon Usage",
+                        ruleCode: "Rule 32.7",
+                        questionEn: "Which sentence correctly connects two closely related independent clauses using a semicolon?",
+                        questionBn: "(দুটি সম্পর্কিত স্বাধীন ক্লজ যুক্ত করতে সেমিকোলনের (;) সঠিক ব্যবহার কোনটি?)",
+                        options: shuffle([
+                            { text: correct, correct: true },
+                            { text: wrong1, correct: false },
+                            { text: wrong2, correct: false },
+                            { text: wrong3, correct: false }
+                        ]),
+                        explanation: `দুটি স্বাধীন ও ঘনিষ্ঠভাবে সম্পর্কিত বাক্যকে কোনো Conjunction (and, but, so) ছাড়া যুক্ত করতে সেমিকোলন (;) ব্যবহার করা হয়। সেমিকোলনের পরের অংশটি নতুন বাক্য না হওয়ায় প্রথম অক্ষর ছোট হাতের (Small Letter) হয় (ব্যক্তিবাচক নাম না হলে)।`
+                    };
+                }
+
+                default: {
+                    // Introductory Clauses
+                    const correct = `Although ${n1} worked hard, ${n2} won the prize.`;
+                    const wrong1 = `Although ${n1} worked hard ${n2} won the prize.`;
+                    const wrong2 = `Although ${n1} worked hard, ${n2} Won the prize.`;
+                    const wrong3 = `although ${n1} worked hard, ${n2} won the prize.`;
+
+                    return {
+                        category: "Introductory Clauses",
+                        ruleCode: "Rule 32.8",
+                        questionEn: "Identify the sentence that correctly uses a comma after an introductory clause:",
+                        questionBn: "(সূচনামূলক এডভার্বিয়াল ক্লজের পর কমার সঠিক ব্যবহার কোন বাক্যে আছে?)",
+                        options: shuffle([
+                            { text: correct, correct: true },
+                            { text: wrong1, correct: false },
+                            { text: wrong2, correct: false },
+                            { text: wrong3, correct: false }
+                        ]),
+                        explanation: `যখন কোনো বাক্য Subordinate Conjunction (যেমন: Although, If, When) দিয়ে শুরু হয়, তখন Introductory Clause-এর শেষে প্রধান ক্লজের পূর্বে একটি কমা (,) ব্যবহার করতে হয়।`
+                    };
+                }
             }
-        });
+        }
+
+        /**
+         * Get or generate question at specified index
+         */
+        function getQuestion(index) {
+            if (!questionHistory[index]) {
+                questionHistory[index] = generateDynamicQuestion();
+            }
+            return questionHistory[index];
+        }
+
+        /**
+         * Render Question UI
+         */
+        function renderQuestion(index) {
+            const q = getQuestion(index);
+            const container = document.getElementById('question-container');
+            
+            // Set header tags
+            document.getElementById('topic-tag').innerText = q.category;
+            document.getElementById('rule-code').innerText = q.ruleCode;
+
+            // Questions Text
+            document.getElementById('english-question').innerText = q.questionEn;
+            document.getElementById('bengali-meaning').innerText = q.questionBn;
+
+            // Counter UI
+            document.getElementById('question-count-text').innerText = `#${index + 1}`;
+
+            // Render Options
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+
+            const selectedAnswer = userAnswers[index];
+            const isAnswered = selectedAnswer !== undefined;
+
+            q.options.forEach((opt, optIdx) => {
+                const optBtn = document.createElement('button');
+                optBtn.className = `option-card w-full text-left p-4 rounded-xl border flex items-start gap-3 transition-all ${
+                    isAnswered ? 'disabled cursor-default' : 'hover:border-indigo-300'
+                }`;
+
+                let stateClasses = 'bg-white/80 border-gray-200 text-gray-800';
+
+                if (isAnswered) {
+                    if (opt.correct) {
+                        stateClasses = 'bg-emerald-50 border-emerald-300 text-emerald-900 font-medium shadow-sm';
+                    } else if (selectedAnswer === optIdx) {
+                        stateClasses = 'bg-rose-50 border-rose-300 text-rose-900 font-medium';
+                    } else {
+                        stateClasses = 'bg-gray-50/50 border-gray-100 text-gray-400 opacity-60';
+                    }
+                }
+
+                optBtn.className += ` ${stateClasses}`;
+
+                // Prefix letter (A, B, C, D)
+                const letter = String.fromCharCode(65 + optIdx);
+                
+                optBtn.innerHTML = `
+                    <span class="inline-flex items-center justify-center w-7 h-7 rounded-lg text-xs font-bold ${
+                        isAnswered && opt.correct 
+                            ? 'bg-emerald-600 text-white' 
+                            : isAnswered && selectedAnswer === optIdx 
+                            ? 'bg-rose-600 text-white' 
+                            : 'bg-gray-100 text-gray-600'
+                    }">${letter}</span>
+                    <span class="english-text option-text flex-1 pt-0.5">${opt.text}</span>
+                    ${isAnswered && opt.correct ? `
+                        <svg class="w-6 h-6 text-emerald-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                    ` : ''}
+                    ${isAnswered && selectedAnswer === optIdx && !opt.correct ? `
+                        <svg class="w-6 h-6 text-rose-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    ` : ''}
+                `;
+
+                if (!isAnswered) {
+                    optBtn.onclick = () => selectOption(index, optIdx);
+                }
+
+                optionsContainer.appendChild(optBtn);
+            });
+
+            // Explanation Box Handling
+            const expBox = document.getElementById('explanation-box');
+            if (isAnswered) {
+                expBox.classList.remove('hidden');
+                document.getElementById('explanation-text').innerText = q.explanation;
+
+                const isCorrect = q.options[selectedAnswer].correct;
+                if (isCorrect) {
+                    expBox.className = "rounded-2xl p-5 border bg-emerald-50/90 border-emerald-200 transition-all duration-300 mb-6";
+                } else {
+                    expBox.className = "rounded-2xl p-5 border bg-amber-50/90 border-amber-200 transition-all duration-300 mb-6";
+                }
+            } else {
+                expBox.classList.add('hidden');
+            }
+
+            // Button states
+            document.getElementById('prev-btn').disabled = index === 0;
+            if (index === 0) {
+                document.getElementById('prev-btn').classList.add('opacity-50', 'cursor-not-allowed');
+            } else {
+                document.getElementById('prev-btn').classList.remove('opacity-50', 'cursor-not-allowed');
+            }
+        }
+
+        /**
+         * Option Selection Event with score calculation
+         */
+        function selectOption(qIdx, optIdx) {
+            if (userAnswers[qIdx] !== undefined) return;
+
+            userAnswers[qIdx] = optIdx;
+            totalAttempted++;
+
+            const q = getQuestion(qIdx);
+            if (q.options[optIdx].correct) {
+                score++;
+            }
+
+            // Update Header Stats
+            document.getElementById('score-text').innerText = score;
+            const accuracy = Math.round((score / totalAttempted) * 100);
+            document.getElementById('accuracy-text').innerText = `${accuracy}%`;
+
+            // Re-render question view smoothly
+            renderQuestion(qIdx);
+        }
+
+        /**
+         * Smooth Animation Transitions
+         */
+        function transitionToQuestion(nextIdx) {
+            const container = document.getElementById('question-container');
+
+            // Slide out
+            container.classList.remove('card-transition-active');
+            container.classList.add('card-transition-exit');
+
+            setTimeout(() => {
+                currentQuestionIndex = nextIdx;
+                renderQuestion(currentQuestionIndex);
+
+                // Prepare slide in
+                container.classList.remove('card-transition-exit');
+                container.classList.add('card-transition-enter');
+
+                // Force reflow
+                void container.offsetWidth;
+
+                // Slide in
+                container.classList.remove('card-transition-enter');
+                container.classList.add('card-transition-active');
+            }, 300);
+        }
+
+        function handleNext() {
+            transitionToQuestion(currentQuestionIndex + 1);
+        }
+
+        function handlePrevious() {
+            if (currentQuestionIndex > 0) {
+                transitionToQuestion(currentQuestionIndex - 1);
+            }
+        }
+
+        function restartQuiz() {
+            if (confirm("Are you sure you want to restart the session?")) {
+                currentQuestionIndex = 0;
+                questionHistory = [];
+                userAnswers = {};
+                score = 0;
+                totalAttempted = 0;
+
+                document.getElementById('score-text').innerText = '0';
+                document.getElementById('accuracy-text').innerText = '0%';
+
+                transitionToQuestion(0);
+            }
+        }
+
+        // Initialize App on Window Load
+        window.onload = function() {
+            renderQuestion(0);
+        };
     </script>
 </body>
 </html>

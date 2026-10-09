@@ -1,128 +1,674 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon</title>
-
-    <!-- Google Fonts for Bengali & English -->
+    <title>PART 33 - Synonyms & Antonyms Practice Engine</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Inter:wght@700;900&display=swap" rel="stylesheet">
-
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        @font-face {
+            font-family: 'Kalpurush';
+            src: url('https://cdn.jsdelivr.net/gh/mhasan/bangla-fonts@master/kalpurush.ttf') format('truetype');
+            font-display: swap;
+        }
+
+        :root {
+            --font-bengali: 'Kalpurush', 'Hind Siliguri', sans-serif;
+            --font-english: 'Times New Roman', Times, serif;
+        }
+
         body {
-            font-family: 'Hind Siliguri', 'Inter', sans-serif;
-            background-color: #030712;
-            overflow: hidden;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            min-height: 100vh;
+            font-family: var(--font-english);
         }
 
-        /* Gradient glowing animation on text */
-        .glow-text {
-            background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 50%, #38bdf8 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shine 6s linear infinite;
+        .bn-text {
+            font-family: var(--font-bengali);
         }
 
-        @keyframes shine {
-            0% { background-position: 0% center; }
-            50% { background-position: 100% center; }
-            100% { background-position: 0% center; }
+        .en-text {
+            font-family: var(--font-english);
         }
 
-        /* Keyframes for initial entry: Floating in from below with opacity */
-        @keyframes floatIn {
-            0% {
-                opacity: 0;
-                transform: translateY(40px) scale(0.95);
-                filter: blur(8px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-                filter: blur(0);
-            }
+        /* Glassmorphism Styling */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
         }
 
-        /* Continuous subtle float effect once arrived */
-        @keyframes subtleFloat {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-8px);
-            }
+        .glass-button {
+            background: rgba(255, 255, 255, 0.9);
+            transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
-        /* Animation class for Heading */
-        .animate-heading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards,
-                subtleFloat 6s ease-in-out 1.2s infinite;
+        .glass-button:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(79, 70, 229, 0.15);
         }
 
-        /* Animation class for Subheading (staggered delay) */
-        .animate-subheading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards,
-                subtleFloat 6s ease-in-out 1.55s infinite;
-            opacity: 0; /* Hidden until animation kicks in */
+        /* Smooth isolated slide transition for question container */
+        .card-transition-enter {
+            opacity: 0;
+            transform: translateX(40px) scale(0.98);
         }
 
-        /* Ambient background lighting */
-        .ambient-glow {
-            position: absolute;
-            width: 450px;
-            height: 450px;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(3, 7, 18, 0) 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            transition: left 0.4s ease-out, top 0.4s ease-out;
+        .card-transition-active {
+            opacity: 1;
+            transform: translateX(0) scale(1);
+            transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1), transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .card-transition-exit {
+            opacity: 0;
+            transform: translateX(-40px) scale(0.98);
+            transition: opacity 0.3s cubic-bezier(0.7, 0, 0.84, 0), transform 0.3s cubic-bezier(0.7, 0, 0.84, 0);
+        }
+
+        /* Option button custom state styling */
+        .option-btn {
+            font-size: 1.15rem; /* 18px+ equivalent */
+            min-height: 56px;
+            border: 2px solid #e2e8f0;
+            transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .option-btn:hover:not(.disabled) {
+            border-color: #6366f1;
+            background-color: #f5f3ff;
+        }
+
+        .option-btn.selected-correct {
+            border-color: #10b981 !important;
+            background-color: #ecfdf5 !important;
+            color: #065f46 !important;
+        }
+
+        .option-btn.selected-wrong {
+            border-color: #ef4444 !important;
+            background-color: #fef2f2 !important;
+            color: #991b1b !important;
+        }
+
+        .option-btn.show-correct {
+            border-color: #10b981 !important;
+            background-color: #f0fdf4 !important;
         }
     </style>
 </head>
-<body class="min-h-screen flex items-center justify-center relative select-none px-4">
+<body class="flex flex-col min-h-screen text-slate-800 antialiased p-4 md:p-8">
 
-    <!-- Ambient glow center element -->
-    <div id="glow" class="ambient-glow top-1/2 left-1/2"></div>
+    <div class="max-w-3xl mx-auto w-full flex-grow flex flex-col justify-center">
+        <!-- Top App Header -->
+        <header class="mb-6 text-center">
+            <span class="inline-block px-3 py-1 bg-indigo-100 text-indigo-700 text-sm font-semibold rounded-full mb-2 tracking-wide uppercase">
+                PART 33: Grammar & Vocabulary Series
+            </span>
+            <h1 class="text-2xl md:text-3xl font-bold text-slate-900 tracking-tight">
+                Synonyms & Antonyms Practice Engine
+            </h1>
+            <p class="text-slate-500 text-sm md:text-base mt-1 bn-text">
+                অসীম অবিরত অনুশীলনের মাধ্যমে সমার্থক ও বিপরীত শব্দে দক্ষতা অর্জন করুন
+            </p>
+        </header>
 
-    <!-- Centered minimal content with entry animations -->
-    <main class="text-center z-10 space-y-6 max-w-3xl mx-auto py-8 px-4">
-        
-        <!-- Main English Title -->
-        <h1 class="animate-heading text-5xl sm:text-7xl md:text-8xl font-black tracking-tight glow-text font-['Inter'] drop-shadow-lg">
-            Coming Soon...
-        </h1>
+        <!-- Dashboard Stats Bar -->
+        <div class="glass-card rounded-2xl p-4 mb-6 flex justify-between items-center text-center">
+            <div class="flex-1 border-r border-slate-200/60">
+                <span class="text-xs uppercase text-slate-400 font-semibold tracking-wider block">Total Answered</span>
+                <span id="total-count" class="text-xl md:text-2xl font-extrabold text-indigo-600">0</span>
+            </div>
+            <div class="flex-1 border-r border-slate-200/60">
+                <span class="text-xs uppercase text-slate-400 font-semibold tracking-wider block">Score</span>
+                <span id="score-count" class="text-xl md:text-2xl font-extrabold text-emerald-600">0</span>
+            </div>
+            <div class="flex-1 border-r border-slate-200/60">
+                <span class="text-xs uppercase text-slate-400 font-semibold tracking-wider block">Accuracy</span>
+                <span id="accuracy-rate" class="text-xl md:text-2xl font-extrabold text-amber-600">0%</span>
+            </div>
+            <div class="flex-1">
+                <span class="text-xs uppercase text-slate-400 font-semibold tracking-wider block">Streak</span>
+                <span id="streak-count" class="text-xl md:text-2xl font-extrabold text-rose-500">🔥 0</span>
+            </div>
+        </div>
 
-        <!-- Bengali Subheading -->
-        <p class="animate-subheading text-xl sm:text-3xl md:text-4xl font-semibold text-emerald-400/90 leading-relaxed tracking-wide drop-shadow">
-            ইনশাআল্লাহ, খুব শীঘ্রই ডাটা যোগ করা হবে।
-        </p>
+        <div class="relative min-h-[420px]">
+            <div id="question-card" class="glass-card rounded-3xl p-6 md:p-8 card-transition-active w-full">
+                
+                <!-- Question Type Tag & Difficulty -->
+                <div class="flex justify-between items-center mb-4">
+                    <span id="target-type-badge" class="px-3 py-1 rounded-lg text-xs font-bold uppercase tracking-wider bg-indigo-50 text-indigo-600 border border-indigo-100">
+                        SYNONYM TASK
+                    </span>
+                    <span id="question-number-badge" class="text-xs font-semibold text-slate-400">
+                        Question #1
+                    </span>
+                </div>
 
-    </main>
+                <!-- Main English Question Sentence (Font Size >= 18px / 1.25rem) -->
+                <div class="mb-2">
+                    <h2 id="question-text-en" class="en-text text-xl md:text-2xl font-semibold leading-relaxed text-slate-900">
+                        <!-- English Question loaded dynamically -->
+                    </h2>
+                </div>
+
+                <!-- Bengali Sub-translation & Explanation Context -->
+                <div class="mb-6 p-3 rounded-xl bg-slate-50/80 border border-slate-100">
+                    <p id="question-text-bn" class="bn-text text-lg text-slate-600 leading-normal">
+                        <!-- Bengali translation inside brackets loaded dynamically -->
+                    </p>
+                </div>
+
+                <!-- Options List (Always >= 18px) -->
+                <div id="options-container" class="grid grid-cols-1 md:grid-cols-2 gap-3.5 mb-6">
+                    <!-- Option buttons generated dynamically -->
+                </div>
+
+                <div id="explanation-box" class="hidden rounded-2xl p-5 mb-6 bg-slate-50 border border-indigo-100/80">
+                    <div class="flex items-center gap-2 mb-2 text-indigo-700 font-bold text-base bn-text">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        বিস্তারিত সঠিক ব্যাখ্যা (Detailed Breakdown):
+                    </div>
+                    <div id="explanation-content" class="bn-text text-base text-slate-700 leading-relaxed">
+                        <!-- Detailed Explanation in Bengali inserted dynamically -->
+                    </div>
+                </div>
+
+                <!-- Bottom Controls Bar (English UI) -->
+                <div class="flex justify-between items-center border-t border-slate-100 pt-5">
+                    <button id="skip-btn" onclick="skipQuestion()" class="glass-button px-5 py-2.5 rounded-xl text-slate-500 font-medium hover:text-slate-700 hover:bg-slate-100 text-sm">
+                        Skip Question
+                    </button>
+                    <button id="next-btn" onclick="nextQuestion()" disabled class="px-7 py-3 rounded-xl bg-indigo-600 text-white font-semibold shadow-lg shadow-indigo-200 hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all text-sm flex items-center gap-2">
+                        <span>Next Question</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                        </svg>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Footer Note -->
+        <footer class="mt-8 text-center text-xs text-slate-400 bn-text">
+            PART 33: Synonyms & Antonyms Interactive Learning Module • Powered by Dynamic Generator Engine
+        </footer>
+    </div>
 
     <script>
-        const glow = document.getElementById('glow');
+        /*
+         * STRICT NAME LIST MANDATED BY USER REQUIREMENTS
+         */
+        const ALLOWED_NAMES = [
+            'Firoz', 'Fatiha', 'Fatema', 'Jui', 'Ema', 'Rupa', 'Moksed',
+            'Ferjousi', 'Jannati', 'Mini', 'Miraz', 'Mujahid', 'Milon',
+            'Hannan', 'Joba', 'Tanzila', 'Rina', 'Tania', 'Taslima'
+        ];
 
-        // Mouse move interactive glow background
-        window.addEventListener('mousemove', (e) => {
-            glow.style.left = e.clientX + 'px';
-            glow.style.top = e.clientY + 'px';
-        });
-
-        // Touch move interactive glow background for mobile screens
-        window.addEventListener('touchmove', (e) => {
-            if (e.touches.length > 0) {
-                glow.style.left = e.touches[0].clientX + 'px';
-                glow.style.top = e.touches[0].clientY + 'px';
+        /*
+         * COMPREHENSIVE VOCABULARY DATABASE FOR PART 33 (SYNONYMS & ANTONYMS)
+         */
+        const VOCABULARY_DATABASE = [
+            {
+                targetWord: "Generous",
+                targetMeaningBn: "দয়ালু / উদার",
+                synonyms: ["Magnanimous", "Benevolent", "Charitable", "Bountiful"],
+                antonyms: ["Miserly", "Stingy", "Niggardly", "Selfish"],
+                distractors: ["Hostile", "Arrogant", "Fragile", "Obscure"],
+                sentenceTemplates: [
+                    "{Name} is known throughout the town as a very generous leader.",
+                    "{Name} gave a generous donation to help the poor students."
+                ],
+                sentenceBnTemplates: [
+                    "{Name} সমাজ জুড়ে অত্যন্ত একজন উদার/দয়ালু নেতা হিসেবে পরিচিত।",
+                    "{Name} দরিদ্র শিক্ষার্থীদের সাহায্য করার জন্য একটি বড় মনের অনুদান দিয়েছিলেন।"
+                ]
+            },
+            {
+                targetWord: "Brave",
+                targetMeaningBn: "সাহসী / নির্ভীক",
+                synonyms: ["Courageous", "Valiant", "Intrepid", "Fearless"],
+                antonyms: ["Cowardly", "Timid", "Fearful", "Craven"],
+                distractors: ["Polite", "Careless", "Gloom", "Lazy"],
+                sentenceTemplates: [
+                    "{Name} remained remarkably brave during the sudden emergency.",
+                    "Everyone praised {Name} for taking a brave stand against injustice."
+                ],
+                sentenceBnTemplates: [
+                    "{Name} আকস্মিক জরুরি পরিস্থিতির সময় অত্যন্ত সাহসী ভূমিকা রেখেছিলেন।",
+                    "অন্যায়ের বিরুদ্ধে একটি সাহসী অবস্থান নেওয়ার জন্য সবাই {Name}-এর প্রশংসা করেছিল।"
+                ]
+            },
+            {
+                targetWord: "Diligent",
+                targetMeaningBn: "পরিশ্রমী / অধ্যবসায়ী",
+                synonyms: ["Industrious", "Assiduous", "Hardworking", "Persevering"],
+                antonyms: ["Lazy", "Indolent", "Slothful", "Idle"],
+                distractors: ["Fragile", "Clumsy", "Noisy", "Bitter"],
+                sentenceTemplates: [
+                    "{Name} is a diligent student who always completes assignments on time.",
+                    "The company rewarded {Name} for being extremely diligent."
+                ],
+                sentenceBnTemplates: [
+                    "{Name} একজন অধ্যবসায়ী শিক্ষার্থী যিনি সবসময় সময়মতো অ্যাসাইনমেন্ট শেষ করেন।",
+                    "অত্যন্ত পরিশ্রমী হওয়ার কারণে প্রতিষ্ঠানটি {Name}-কে পুরস্কৃত করেছিল।"
+                ]
+            },
+            {
+                targetWord: "Candid",
+                targetMeaningBn: "স্পষ্টবাদী / সৎ",
+                synonyms: ["Frank", "Outspoken", "Honest", "Sincere"],
+                antonyms: ["Deceitful", "Evasive", "Insincere", "Dishonest"],
+                distractors: ["Rapid", "Obscure", "Gentle", "Dense"],
+                sentenceTemplates: [
+                    "{Name} gave a candid opinion about the new project proposal.",
+                    "Everyone respects {Name} for having a candid and truthful nature."
+                ],
+                sentenceBnTemplates: [
+                    "{Name} নতুন প্রকল্প প্রস্তাব সম্পর্কে একটি স্পষ্টবাদী মতামত দিয়েছিলেন।",
+                    "স্পষ্টবাদী ও সৎ স্বভাবের হওয়ার কারণে সবাই {Name}-কে সম্মান করে।"
+                ]
+            },
+            {
+                targetWord: "Fragile",
+                targetMeaningBn: "ভঙ্গুর / দুর্বল",
+                synonyms: ["Delicate", "Brittle", "Frail", "Vulnerable"],
+                antonyms: ["Sturdy", "Robust", "Durable", "Strong"],
+                distractors: ["Generous", "Spacious", "Gleaming", "Agile"],
+                sentenceTemplates: [
+                    "{Name} carefully handled the fragile glass vase on the shelf.",
+                    "{Name} realized that the old bridge structure was too fragile."
+                ],
+                sentenceBnTemplates: [
+                    "{Name} তাকের ওপর থাকা ভঙ্গুর কাঁচের ফুলদানিটি খুব সাবধানে ধরেছিলেন।",
+                    "{Name} বুঝতে পেরেছিলেন যে পুরোনো ব্রিজের কাঠামোটি অত্যন্ত দুর্বল বা ভঙ্গুর ছিল।"
+                ]
+            },
+            {
+                targetWord: "Arrogant",
+                targetMeaningBn: "অহংকারী / দম্ভপূর্ণ",
+                synonyms: ["Haughty", "Conceited", "Overbearing", "Insolent"],
+                antonyms: ["Humble", "Modest", "Meek", "Polite"],
+                distractors: ["Swift", "Frail", "Sincere", "Vivid"],
+                sentenceTemplates: [
+                    "{Name} disliked the arrogant tone used by the stranger.",
+                    "Despite high success, {Name} never became arrogant."
+                ],
+                sentenceBnTemplates: [
+                    "{Name} অপরিচিত লোকটির অহংকারী আচরণ পছন্দ করেননি।",
+                    "প্রচুর সফলতা সত্ত্বেও {Name} কখনোই অহংকারী হয়ে ওঠেননি।"
+                ]
+            },
+            {
+                targetWord: "Abundant",
+                targetMeaningBn: "প্রাচুর্যময় / প্রচুর",
+                synonyms: ["Plentiful", "Bountiful", "Copious", "Ample"],
+                antonyms: ["Scarce", "Meager", "Deficient", "Sparsely"],
+                distractors: ["Rigid", "Humble", "Grave", "Lethargic"],
+                sentenceTemplates: [
+                    "{Name} noticed an abundant supply of fresh fruits in the market.",
+                    "The region enjoyed abundant rainfall this season, pleasing {Name}."
+                ],
+                sentenceBnTemplates: [
+                    "{Name} বাজারে টাটকা ফলের প্রচুর সরবরাহ লক্ষ্য করেছিলেন।",
+                    "চলতি মৌসুমে অঞ্চলে প্রচুর বৃষ্টিপাত হয়েছিল যা {Name}-কে আনন্দিত করে।"
+                ]
+            },
+            {
+                targetWord: "Hostile",
+                targetMeaningBn: "শত্রুভাবাপন্ন / বৈরী",
+                synonyms: ["Antagonistic", "Belligerent", "Unfriendly", "Inimical"],
+                antonyms: ["Friendly", "Amiable", "Cordial", "Hospitable"],
+                distractors: ["Assiduous", "Bright", "Transparent", "Valid"],
+                sentenceTemplates: [
+                    "{Name} faced a hostile reaction when presenting the new rules.",
+                    "{Name} worked hard to turn a hostile environment into a friendly one."
+                ],
+                sentenceBnTemplates: [
+                    "{Name} নতুন নিয়ম উপস্থাপনের সময় একটি বৈরী প্রতিক্রিয়ার মুখোমুখি হন।",
+                    "{Name} একটি শত্রুভাবাপন্ন পরিবেশকে বন্ধুত্বপূর্ণ পরিবেশে রূপান্তর করতে কঠোর পরিশ্রম করেছিলেন।"
+                ]
+            },
+            {
+                targetWord: "Obscure",
+                targetMeaningBn: "অস্পষ্ট / অজানা",
+                synonyms: ["Vague", "Ambiguous", "Unclear", "Arcane"],
+                antonyms: ["Clear", "Explicit", "Obvious", "Lucid"],
+                distractors: ["Miserly", "Fragile", "Eager", "Valid"],
+                sentenceTemplates: [
+                    "{Name} found the instructions on the document quite obscure.",
+                    "The origin of the ancient village remained obscure to {Name}."
+                ],
+                sentenceBnTemplates: [
+                    "{Name} নথির ভেতরের নির্দেশাবলি বেশ অস্পষ্ট দেখতে পেয়েছিলেন।",
+                    "প্রাচীন গ্রামটির উৎপত্তি {Name}-এর কাছে অস্পষ্ট থেকে গিয়েছিল।"
+                ]
+            },
+            {
+                targetWord: "Prudent",
+                targetMeaningBn: "বিচক্ষণ / দূরদর্শী",
+                synonyms: ["Judicious", "Wise", "Cautious", "Discreet"],
+                antonyms: ["Imprudent", "Reckless", "Rash", "Foolish"],
+                distractors: ["Brittle", "Copious", "Haughty", "Lethargic"],
+                sentenceTemplates: [
+                    "{Name} made a prudent financial decision during the market crisis.",
+                    "Everyone follows {Name}'s prudent advice regarding career growth."
+                ],
+                sentenceBnTemplates: [
+                    "{Name} বাজারের মন্দার সময় একটি অত্যন্ত বিচক্ষণ আর্থিক সিদ্ধান্ত নিয়েছিলেন।",
+                    "ক্যারিয়ার গঠনের ক্ষেত্রে সবাই {Name}-এর দূরদর্শী পরামর্শ মেনে চলে।"
+                ]
+            },
+            {
+                targetWord: "Lethargic",
+                targetMeaningBn: "অলস / নিস্তেজ",
+                synonyms: ["Sluggish", "Apathetic", "Torpid", "Inactive"],
+                antonyms: ["Energetic", "Active", "Vigorous", "Lively"],
+                distractors: ["Judicious", "Delicate", "Cordial", "Frank"],
+                sentenceTemplates: [
+                    "{Name} felt lethargic after working non-stop for ten hours.",
+                    "{Name} advised the team to avoid becoming lethargic during training."
+                ],
+                sentenceBnTemplates: [
+                    "টানা দশ ঘণ্টা কাজ করার পর {Name} বেশ নিস্তেজ বা শ্রান্ত বোধ করেছিলেন।",
+                    "{Name} দলের সদস্যদের প্রশিক্ষণের সময় নিস্তেজ বা অলস না হওয়ার পরামর্শ দেন।"
+                ]
+            },
+            {
+                targetWord: "Authentic",
+                targetMeaningBn: "খাাঁটি / নির্ভরযোগ্য / প্রামাণিক",
+                synonyms: ["Genuine", "Real", "Legitimate", "Veritable"],
+                antonyms: ["Fake", "Spurious", "Counterfeit", "Bogus"],
+                distractors: ["Sluggish", "Stingy", "Vague", "Belligerent"],
+                sentenceTemplates: [
+                    "{Name} verified that the historic antique painting was authentic.",
+                    "Consumers trust {Name} for selling authentic organic goods."
+                ],
+                sentenceBnTemplates: [
+                    "{Name} নিশ্চিত করেছিলেন যে ঐতিহাসিক প্রাচীন চিত্রকর্মটি একদম খাাঁটি ছিল।",
+                    "খাাঁটি অর্গানিক পণ্য বিক্রি করার জন্য ক্রেতারা {Name}-কে বিশ্বাস করেন।"
+                ]
             }
-        });
+        ];
+
+        /*
+         * ENGINE STATE MANAGEMENT
+         */
+        let stats = {
+            total: 0,
+            correct: 0,
+            streak: 0
+        };
+
+        let currentQuestion = null;
+        let questionCounter = 0;
+        let hasAnswered = false;
+
+        // Helper function: Random item from Array
+        function getRandomItem(arr) {
+            return arr[Math.floor(Math.random() * arr.length)];
+        }
+
+        // Helper function: Shuffle array in place
+        function shuffleArray(arr) {
+            const copy = [...arr];
+            for (let i = copy.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [copy[i], copy[j]] = [copy[j], copy[i]];
+            }
+            return copy;
+        }
+
+        /*
+         * INFINITE QUESTION GENERATOR LOGIC
+         */
+        function generateDynamicQuestion() {
+            questionCounter++;
+            const vocab = getRandomItem(VOCABULARY_DATABASE);
+            const name = getRandomItem(ALLOWED_NAMES);
+            const isSynonymTask = Math.random() < 0.5; // 50% Synonyms, 50% Antonyms
+
+            // Select random template and replace {Name}
+            const templateIndex = Math.floor(Math.random() * vocab.sentenceTemplates.length);
+            const rawSentenceEn = vocab.sentenceTemplates[templateIndex].replace(/{Name}/g, name);
+            const rawSentenceBn = vocab.sentenceBnTemplates[templateIndex].replace(/{Name}/g, name);
+
+            // Determine Target & Distractors
+            let correctAnswer = "";
+            let questionTypeLabel = "";
+            let targetList = [];
+            let oppositeList = [];
+
+            if (isSynonymTask) {
+                questionTypeLabel = "SYNONYM TASK";
+                correctAnswer = getRandomItem(vocab.synonyms);
+                targetList = vocab.synonyms;
+                oppositeList = vocab.antonyms;
+            } else {
+                questionTypeLabel = "ANTONYM TASK";
+                correctAnswer = getRandomItem(vocab.antonyms);
+                targetList = vocab.antonyms;
+                oppositeList = vocab.synonyms;
+            }
+
+            // Create 4 distinct options
+            let optionsPool = [correctAnswer];
+
+            // Add one option from the opposite category (e.g. an antonym when looking for a synonym) to test precision
+            const oppositeWrong = getRandomItem(oppositeList);
+            if (oppositeWrong && !optionsPool.includes(oppositeWrong)) {
+                optionsPool.push(oppositeWrong);
+            }
+
+            // Add distractors from other database entries or general list
+            const shuffledDistractors = shuffleArray([...vocab.distractors]);
+            for (let dist of shuffledDistractors) {
+                if (optionsPool.length >= 4) break;
+                if (!optionsPool.includes(dist) && dist !== correctAnswer) {
+                    optionsPool.push(dist);
+                }
+            }
+
+            // Fallback if options list is still under 4
+            const backupWords = ["Plausible", "Exuberant", "Nostalgic", "Vivid", "Static"];
+            for (let b of backupWords) {
+                if (optionsPool.length >= 4) break;
+                if (!optionsPool.includes(b)) {
+                    optionsPool.push(b);
+                }
+            }
+
+            const shuffledOptions = shuffleArray(optionsPool);
+
+            // Build Main English Question Text
+            const taskPrefix = isSynonymTask ? "What is the SYNONYM of" : "What is the ANTONYM of";
+            const mainQuestionEn = `${taskPrefix} '${vocab.targetWord.toUpperCase()}' in the context: "${rawSentenceEn}"?`;
+            const mainQuestionBn = `("${rawSentenceBn}" - এই বাক্যে '${vocab.targetWord}' [${vocab.targetMeaningBn}] শব্দটির ${isSynonymTask ? 'সমার্থক (Synonym)' : 'বিপরীত (Antonym)'} শব্দ কোনটি?)`;
+
+            // Prepare Bengali Detailed Explanation
+            let explanationBn = `
+                <div class="space-y-1 text-sm md:text-base">
+                    <p>• <b>মূল শব্দ:</b> <span class="font-bold text-indigo-600 en-text">${vocab.targetWord}</span> (${vocab.targetMeaningBn})</p>
+                    <p>• <b>কাঙ্ক্ষিত টাস্ক:</b> <span class="font-semibold">${isSynonymTask ? 'সমার্থক শব্দ (Synonym)' : 'বিপরীত শব্দ (Antonym)'}</span> নির্বাচন করা।</p>
+                    <p>• <b>সঠিক উত্তর:</b> <span class="font-bold text-emerald-600 en-text">${correctAnswer}</span></p>
+                    <div class="mt-2 text-xs md:text-sm text-slate-600 border-t border-slate-200 pt-2">
+                        <p><b>শব্দকোষ বিশ্লেষণ:</b></p>
+                        <p class="en-text">• Synonyms: ${vocab.synonyms.join(", ")}</p>
+                        <p class="en-text">• Antonyms: ${vocab.antonyms.join(", ")}</p>
+                    </div>
+                </div>
+            `;
+
+            return {
+                id: questionCounter,
+                typeLabel: questionTypeLabel,
+                isSynonym: isSynonymTask,
+                targetWord: vocab.targetWord,
+                sentenceEn: mainQuestionEn,
+                sentenceBn: mainQuestionBn,
+                options: shuffledOptions,
+                correctAnswer: correctAnswer,
+                explanation: explanationBn
+            };
+        }
+
+        /*
+         * UI RENDER FUNCTION (WITH SMOOTH ISOLATED CUBIC-BEZIER TRANSITION)
+         */
+        function renderQuestion(q) {
+            hasAnswered = false;
+            currentQuestion = q;
+
+            const card = document.getElementById('question-card');
+            
+            // Exit animation trigger
+            card.classList.remove('card-transition-active');
+            card.classList.add('card-transition-exit');
+
+            setTimeout(() => {
+                // Update UI text content after slide-out
+                document.getElementById('target-type-badge').textContent = q.typeLabel;
+                if (q.isSynonym) {
+                    document.getElementById('target-type-badge').className = "px-3 py-1 rounded-lg text-xs font-bold uppercase tracking-wider bg-indigo-50 text-indigo-600 border border-indigo-100";
+                } else {
+                    document.getElementById('target-type-badge').className = "px-3 py-1 rounded-lg text-xs font-bold uppercase tracking-wider bg-amber-50 text-amber-700 border border-amber-100";
+                }
+
+                document.getElementById('question-number-badge').textContent = `Question #${q.id}`;
+                document.getElementById('question-text-en').textContent = q.sentenceEn;
+                document.getElementById('question-text-bn').textContent = q.sentenceBn;
+                
+                // Hide explanation box & disable Next button until option clicked
+                document.getElementById('explanation-box').classList.add('hidden');
+                document.getElementById('next-btn').disabled = true;
+
+                // Render Options Buttons
+                const optionsContainer = document.getElementById('options-container');
+                optionsContainer.innerHTML = '';
+
+                q.options.forEach((opt, idx) => {
+                    const btn = document.createElement('button');
+                    btn.className = 'option-btn glass-button rounded-xl px-5 py-3 text-left font-medium text-slate-800 flex items-center justify-between w-full en-text';
+                    btn.setAttribute('data-option', opt);
+                    
+                    btn.innerHTML = `
+                        <div class="flex items-center gap-3">
+                            <span class="w-7 h-7 rounded-lg bg-slate-100 text-slate-500 flex items-center justify-center text-sm font-bold border border-slate-200">
+                                ${String.fromCharCode(65 + idx)}
+                            </span>
+                            <span>${opt}</span>
+                        </div>
+                        <span class="status-icon"></span>
+                    `;
+
+                    btn.onclick = () => handleOptionSelect(opt, btn);
+                    optionsContainer.appendChild(btn);
+                });
+
+                // Enter animation trigger
+                card.classList.remove('card-transition-exit');
+                card.classList.add('card-transition-enter');
+                
+                // Force reflow
+                void card.offsetWidth;
+
+                card.classList.remove('card-transition-enter');
+                card.classList.add('card-transition-active');
+
+            }, 250);
+        }
+
+        /*
+         * ANSWER EVALUATION & STATS UPDATE
+         */
+        function handleOptionSelect(selectedOption, clickedBtn) {
+            if (hasAnswered) return;
+            hasAnswered = true;
+
+            stats.total++;
+            const isCorrect = (selectedOption === currentQuestion.correctAnswer);
+
+            const allOptions = document.querySelectorAll('.option-btn');
+            allOptions.forEach(btn => {
+                btn.classList.add('disabled');
+                btn.disabled = true;
+                const optVal = btn.getAttribute('data-option');
+                
+                if (optVal === currentQuestion.correctAnswer) {
+                    btn.classList.add('show-correct');
+                    btn.querySelector('.status-icon').innerHTML = `
+                        <svg class="w-6 h-6 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                    `;
+                }
+            });
+
+            if (isCorrect) {
+                stats.correct++;
+                stats.streak++;
+                clickedBtn.classList.remove('show-correct');
+                clickedBtn.classList.add('selected-correct');
+            } else {
+                stats.streak = 0;
+                clickedBtn.classList.add('selected-wrong');
+                clickedBtn.querySelector('.status-icon').innerHTML = `
+                    <svg class="w-6 h-6 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                `;
+            }
+
+            // Reveal Detailed Bengali Explanation
+            const expBox = document.getElementById('explanation-box');
+            document.getElementById('explanation-content').innerHTML = currentQuestion.explanation;
+            expBox.classList.remove('hidden');
+
+            // Enable Next Button
+            document.getElementById('next-btn').disabled = false;
+
+            // Update Header Stats
+            updateScoreboard();
+        }
+
+        /*
+         * SCOREBOARD UPDATE
+         */
+        function updateScoreboard() {
+            document.getElementById('total-count').textContent = stats.total;
+            document.getElementById('score-count').textContent = stats.correct;
+            const accuracy = stats.total > 0 ? Math.round((stats.correct / stats.total) * 100) : 0;
+            document.getElementById('accuracy-rate').textContent = `${accuracy}%`;
+            document.getElementById('streak-count').textContent = `🔥 ${stats.streak}`;
+        }
+
+        /*
+         * NAVIGATION ACTIONS
+         */
+        function nextQuestion() {
+            const newQ = generateDynamicQuestion();
+            renderQuestion(newQ);
+        }
+
+        function skipQuestion() {
+            const newQ = generateDynamicQuestion();
+            renderQuestion(newQ);
+        }
+
+        // Initialize on Window Load
+        window.onload = function() {
+            const initialQuestion = generateDynamicQuestion();
+            renderQuestion(initialQuestion);
+        };
     </script>
 </body>
 </html>

@@ -1,128 +1,1191 @@
+
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PART 27 - Completing Sentences | Firoz Study</title>
 
-    <!-- Google Fonts for Bengali & English -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Inter:wght@700;900&display=swap" rel="stylesheet">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+:root {
+  --primary: #6254d9;
+  --primary-dark: #4537b7;
+  --text: #20253a;
+  --muted: #697086;
+  --surface: rgba(255,255,255,.82);
+  --border: rgba(110,105,170,.17);
+  --green: #15803d;
+  --red: #dc2626;
+}
 
-    <style>
-        body {
-            font-family: 'Hind Siliguri', 'Inter', sans-serif;
-            background-color: #030712;
-            overflow: hidden;
-        }
+* { box-sizing: border-box; }
 
-        /* Gradient glowing animation on text */
-        .glow-text {
-            background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 50%, #38bdf8 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shine 6s linear infinite;
-        }
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--text);
+  font-family: "Times New Roman", "Hind Siliguri", serif;
+  font-size: 19px;
+  background:
+    radial-gradient(ellipse at 5% 5%, #e7eaff 0, transparent 38%),
+    radial-gradient(ellipse at 95% 90%, #e4f7f0 0, transparent 38%),
+    linear-gradient(135deg, #ffffff, #f5f6fc 55%, #fbfcff);
+  background-attachment: fixed;
+}
 
-        @keyframes shine {
-            0% { background-position: 0% center; }
-            50% { background-position: 100% center; }
-            100% { background-position: 0% center; }
-        }
+button { font: inherit; }
 
-        /* Keyframes for initial entry: Floating in from below with opacity */
-        @keyframes floatIn {
-            0% {
-                opacity: 0;
-                transform: translateY(40px) scale(0.95);
-                filter: blur(8px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-                filter: blur(0);
-            }
-        }
+.container {
+  width: min(900px, 94%);
+  margin: auto;
+  padding: 25px 0 40px;
+}
 
-        /* Continuous subtle float effect once arrived */
-        @keyframes subtleFloat {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-8px);
-            }
-        }
+.header {
+  text-align: center;
+  margin: 12px 0 25px;
+  animation: fadeDown .9s cubic-bezier(.2,.8,.2,1) both;
+}
 
-        /* Animation class for Heading */
-        .animate-heading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards,
-                subtleFloat 6s ease-in-out 1.2s infinite;
-        }
+.logo {
+  width: 58px;
+  height: 58px;
+  margin: 0 auto 12px;
+  display: grid;
+  place-items: center;
+  color: white;
+  font: bold 27px "Times New Roman", serif;
+  border-radius: 19px;
+  background: linear-gradient(135deg, #8175f7, #4939bd);
+  box-shadow: 0 10px 28px #6254d94a;
+}
 
-        /* Animation class for Subheading (staggered delay) */
-        .animate-subheading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards,
-                subtleFloat 6s ease-in-out 1.55s infinite;
-            opacity: 0; /* Hidden until animation kicks in */
-        }
+.header h1 {
+  margin: 0;
+  font-size: clamp(25px, 4vw, 35px);
+  line-height: 1.25;
+}
 
-        /* Ambient background lighting */
-        .ambient-glow {
-            position: absolute;
-            width: 450px;
-            height: 450px;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(3, 7, 18, 0) 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            transition: left 0.4s ease-out, top 0.4s ease-out;
-        }
-    </style>
+.header p {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 18px;
+}
+
+.pill {
+  display: inline-block;
+  padding: 6px 13px;
+  margin-bottom: 12px;
+  border: 1px solid var(--border);
+  border-radius: 30px;
+  color: var(--primary-dark);
+  background: #ffffffb8;
+  font: 600 13px Arial, sans-serif;
+  letter-spacing: 1px;
+}
+
+.glass {
+  background: var(--surface);
+  border: 1px solid #ffffff;
+  border-radius: 24px;
+  box-shadow: 0 15px 45px rgba(45,48,95,.09),
+              0 2px 8px rgba(45,48,95,.04);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.dashboard {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 19px;
+  animation: fadeUp .8s .1s both;
+}
+
+.stat {
+  padding: 16px 10px;
+  text-align: center;
+}
+
+.stat-label {
+  display: block;
+  font: 600 12px Arial, sans-serif;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .8px;
+  margin-bottom: 7px;
+}
+
+.stat-value {
+  font-size: 25px;
+  font-weight: bold;
+  color: var(--primary-dark);
+}
+
+.progress-track {
+  height: 7px;
+  background: #e8e9f3;
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 0 0 20px;
+}
+
+.progress-fill {
+  width: 0%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #8375fa, #4d43c9, #39b9a2);
+  transition: width .65s cubic-bezier(.22,1,.36,1);
+}
+
+.quiz-card {
+  padding: clamp(20px, 4vw, 34px);
+  overflow: hidden;
+  animation: fadeUp .8s .15s both;
+}
+
+.question-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 23px;
+}
+
+.question-tag {
+  font: 600 13px Arial, sans-serif;
+  color: var(--primary-dark);
+  background: #efedff;
+  border-radius: 10px;
+  padding: 9px 12px;
+}
+
+.level-tag {
+  font: 13px Arial, sans-serif;
+  color: #526174;
+  background: #eef4f8;
+  border-radius: 10px;
+  padding: 9px 12px;
+}
+
+.question-text {
+  font-size: clamp(21px, 3.3vw, 26px);
+  font-weight: bold;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+}
+
+.bangla {
+  font-family: "Hind Siliguri", "Kalpurush", sans-serif;
+  font-size: 19px;
+  line-height: 1.85;
+  font-weight: 400;
+}
+
+.question-meaning {
+  margin: 13px 0 25px;
+  padding: 13px 15px;
+  border-left: 4px solid #8c80f5;
+  background: #f4f2ffb8;
+  border-radius: 5px 13px 13px 5px;
+  color: #44465d;
+}
+
+.options {
+  display: grid;
+  gap: 12px;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  text-align: left;
+  gap: 13px;
+  width: 100%;
+  min-height: 62px;
+  padding: 14px 16px;
+  color: var(--text);
+  background: #ffffffc9;
+  border: 1px solid #e2e4f0;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: transform .3s cubic-bezier(.2,.8,.2,1),
+              border-color .3s, background .3s, box-shadow .3s;
+}
+
+.option:hover:not(:disabled) {
+  transform: translateY(-2px);
+  border-color: #aaa0ff;
+  box-shadow: 0 7px 19px #6254d916;
+}
+
+.option:focus-visible, .nav-btn:focus-visible {
+  outline: 3px solid #a59cff;
+  outline-offset: 3px;
+}
+
+.option-letter {
+  flex: 0 0 34px;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: #f0eff9;
+  color: #6155c8;
+  font: bold 15px Arial, sans-serif;
+}
+
+.option.correct {
+  background: #effaf2;
+  border-color: #36a65b;
+}
+
+.option.correct .option-letter {
+  background: #d6f5df;
+  color: #137536;
+}
+
+.option.wrong {
+  background: #fff1f1;
+  border-color: #e47c7c;
+}
+
+.option.wrong .option-letter {
+  background: #ffdddd;
+  color: #bd2525;
+}
+
+.option:disabled { cursor: default; }
+
+.feedback {
+  display: none;
+  margin-top: 22px;
+  padding: 19px;
+  border-radius: 17px;
+  animation: fadeUp .45s cubic-bezier(.2,.8,.2,1) both;
+}
+
+.feedback.show { display: block; }
+
+.feedback.success {
+  background: #f0fbf3;
+  border: 1px solid #c6ebce;
+}
+
+.feedback.error {
+  background: #fff6f4;
+  border: 1px solid #f3d0c9;
+}
+
+.feedback h3 {
+  font-size: 20px;
+  margin: 0 0 12px;
+}
+
+.feedback p {
+  margin: 9px 0;
+  line-height: 1.75;
+}
+
+.explanation-title {
+  margin-top: 16px;
+  padding-top: 13px;
+  border-top: 1px solid #00000012;
+  font-weight: bold;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 23px;
+}
+
+.nav-btn {
+  padding: 13px 21px;
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  background: #ffffffd9;
+  color: var(--text);
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform .25s, background .25s, box-shadow .25s;
+}
+
+.nav-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 7px 20px #6254d918;
+}
+
+.nav-btn.primary {
+  color: white;
+  background: linear-gradient(135deg, #7566ec, #4d40bf);
+  border: none;
+  box-shadow: 0 6px 18px #6254d933;
+}
+
+.nav-btn:disabled {
+  opacity: .38;
+  cursor: not-allowed;
+}
+
+.footer {
+  text-align: center;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.8;
+  padding: 25px 10px 0;
+}
+
+.screen-transition {
+  animation: questionEnter .7s cubic-bezier(.16,1,.3,1) both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes questionEnter {
+  from { opacity: 0; transform: translateY(19px) scale(.993); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (max-width: 540px) {
+  .container { width: 93%; padding-top: 17px; }
+  .dashboard { gap: 8px; }
+  .stat { padding: 13px 5px; border-radius: 16px; }
+  .stat-label { font-size: 10px; letter-spacing: .3px; }
+  .stat-value { font-size: 22px; }
+  .quiz-card { border-radius: 19px; }
+  .option { padding: 12px 10px; gap: 10px; }
+  .option-letter { flex-basis: 30px; width: 30px; height: 30px; }
+  .nav-btn { padding: 12px 14px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
 </head>
-<body class="min-h-screen flex items-center justify-center relative select-none px-4">
 
-    <!-- Ambient glow center element -->
-    <div id="glow" class="ambient-glow top-1/2 left-1/2"></div>
+<body>
+<main class="container">
 
-    <!-- Centered minimal content with entry animations -->
-    <main class="text-center z-10 space-y-6 max-w-3xl mx-auto py-8 px-4">
-        
-        <!-- Main English Title -->
-        <h1 class="animate-heading text-5xl sm:text-7xl md:text-8xl font-black tracking-tight glow-text font-['Inter'] drop-shadow-lg">
-            Coming Soon...
-        </h1>
+  <header class="header">
+    <div class="logo">FS</div>
+    <div class="pill">FIROZ STUDY • INFINITY PRACTICE</div>
+    <h1>PART 27 — Completing Sentences</h1>
+    <p>Learn the rules. Practice every day. Improve your grammar.</p>
+  </header>
 
-        <!-- Bengali Subheading -->
-        <p class="animate-subheading text-xl sm:text-3xl md:text-4xl font-semibold text-emerald-400/90 leading-relaxed tracking-wide drop-shadow">
-            ইনশাআল্লাহ, খুব শীঘ্রই ডাটা যোগ করা হবে।
-        </p>
+  <section class="dashboard" aria-label="Quiz statistics">
+    <div class="stat glass">
+      <span class="stat-label">Question</span>
+      <span class="stat-value" id="questionNumber">1</span>
+    </div>
+    <div class="stat glass">
+      <span class="stat-label">Correct Answers</span>
+      <span class="stat-value" id="score">0</span>
+    </div>
+    <div class="stat glass">
+      <span class="stat-label">Accuracy</span>
+      <span class="stat-value" id="accuracy">0%</span>
+    </div>
+  </section>
 
-    </main>
+  <div class="progress-track" aria-label="Progress">
+    <div class="progress-fill" id="progressFill"></div>
+  </div>
 
-    <script>
-        const glow = document.getElementById('glow');
+  <section class="quiz-card glass" id="quizCard">
+    <div class="question-top">
+      <span class="question-tag" id="questionTag">QUESTION 1</span>
+      <span class="level-tag" id="levelTag">Grammar Practice</span>
+    </div>
 
-        // Mouse move interactive glow background
-        window.addEventListener('mousemove', (e) => {
-            glow.style.left = e.clientX + 'px';
-            glow.style.top = e.clientY + 'px';
-        });
+    <div class="question-text" id="questionText"></div>
 
-        // Touch move interactive glow background for mobile screens
-        window.addEventListener('touchmove', (e) => {
-            if (e.touches.length > 0) {
-                glow.style.left = e.touches[0].clientX + 'px';
-                glow.style.top = e.touches[0].clientY + 'px';
-            }
-        });
-    </script>
+    <div class="question-meaning bangla" id="questionMeaning"></div>
+
+    <div class="options" id="options" aria-label="Answer options"></div>
+
+    <div class="feedback bangla" id="feedback" aria-live="polite"></div>
+
+    <div class="nav">
+      <button class="nav-btn" id="previousBtn" type="button">← Previous</button>
+      <button class="nav-btn primary" id="nextBtn" type="button">Next →</button>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div>FIROZ STUDY — English Grammar Practice</div>
+    <div>Practice • Understand • Improve</div>
+  </footer>
+</main>
+
+<script>
+"use strict";
+
+/*
+  PART 27 — COMPLETING SENTENCES
+
+  This generator creates new question variations using:
+  - Multiple grammar rules
+  - Different sentence patterns
+  - Approved example names
+  - Randomized answer-option order
+
+  Note: This is a rule-based practice generator, not a truly
+  unlimited database. Questions are generated dynamically.
+*/
+
+const NAMES = [
+  "Firoz", "Fatiha", "Fatema", "Jui", "Ema", "Rupa",
+  "Moksed", "Ferjousi", "Jannati", "Mini", "Miraz",
+  "Mujahid", "Milon", "Hannan", "Joba", "Tanzila",
+  "Rina", "Tania", "Taslima"
+];
+
+const $ = id => document.getElementById(id);
+
+const questionText = $("questionText");
+const questionMeaning = $("questionMeaning");
+const optionsBox = $("options");
+const feedback = $("feedback");
+const questionNumber = $("questionNumber");
+const scoreDisplay = $("score");
+const accuracyDisplay = $("accuracy");
+const progressFill = $("progressFill");
+const questionTag = $("questionTag");
+const levelTag = $("levelTag");
+const previousBtn = $("previousBtn");
+const nextBtn = $("nextBtn");
+const quizCard = $("quizCard");
+
+let currentQuestion = null;
+let questionCount = 0;
+let score = 0;
+let attempted = 0;
+let history = [];
+let historyIndex = -1;
+let busy = false;
+
+const rand = arr => arr[Math.floor(Math.random() * arr.length)];
+
+function shuffle(arr) {
+  const result = [...arr];
+  for (let i = result.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [result[i], result[j]] = [result[j], result[i]];
+  }
+  return result;
+}
+
+function makeQuestion(stem, meaning, correct, explanation, distractors, level = "Grammar Practice") {
+  const options = shuffle([
+    { text: correct, correct: true, explanation },
+    ...distractors.map(item => ({
+      text: item.text,
+      correct: false,
+      explanation: item.explanation
+    }))
+  ]);
+
+  return {
+    stem,
+    meaning,
+    options,
+    level,
+    answered: false,
+    selected: null
+  };
+}
+
+function generateQuestion() {
+  const name = rand(NAMES);
+  const other = rand(NAMES.filter(n => n !== name));
+
+  const generators = [
+
+    // 1. Conditional sentence: second conditional
+    () => makeQuestion(
+      `If ${name} were rich, ${name} ____ the poor.`,
+      `যদি ${name} ধনী হতো, তাহলে সে দরিদ্রদের সাহায্য করত।`,
+      "would help",
+      "দ্বিতীয় শর্তমূলক বাক্যে If + past simple-এর পরে সাধারণত would + verb-এর base form বসে। তাই would help সঠিক।",
+      [
+        { text: "will helped", explanation: "will-এর পরে verb-এর base form বসে; will helped ভুল।" },
+        { text: "would helped", explanation: "would-এর পরে verb-এর base form বসে; helped নয়।" },
+        { text: "would helps", explanation: "would-এর পরে verb-এর সঙ্গে s/es যোগ হয় না।" }
+      ]
+    ),
+
+    // 2. Unless
+    () => makeQuestion(
+      "Unless you work hard, you ____ the examination.",
+      "তুমি কঠোর পরিশ্রম না করলে পরীক্ষায় সফল হবে না।",
+      "will not pass",
+      "Unless অর্থ যদি না। এটি if...not-এর অর্থ দেয়। প্রথম অংশে সাধারণ present tense থাকলে ভবিষ্যৎ ফল বোঝাতে অন্য অংশে will ব্যবহার করা যায়।",
+      [
+        { text: "would not passed", explanation: "would-এর পরে base form লাগে; passed ভুল।" },
+        { text: "did not passed", explanation: "did-এর পরে pass হবে, passed নয়; বাক্যের গঠনও এখানে ঠিক নয়।" },
+        { text: "will not passed", explanation: "will-এর পরে pass বসে, passed নয়।" }
+      ]
+    ),
+
+    // 3. It is high time
+    () => makeQuestion(
+      `It is high time ${name} ____ home.`,
+      `এখনই ${name}-এর বাড়ি যাওয়ার উপযুক্ত সময় হয়েছে।`,
+      "went",
+      "It is high time-এর পরে subject থাকলে প্রচলিত নিয়মে past simple ব্যবহৃত হয়, যদিও অর্থ বর্তমান বা ভবিষ্যৎ সময়ের জরুরিতা বোঝায়।",
+      [
+        { text: "goes", explanation: "এই নির্দিষ্ট গঠনে সাধারণত past simple ব্যবহৃত হয়।" },
+        { text: "will go", explanation: "It is high time-এর পরে সাধারণত will go বসে না।" },
+        { text: "has gone", explanation: "এই বাক্যের প্রচলিত পরীক্ষাভিত্তিক গঠনের সঙ্গে has gone মেলে না।" }
+      ]
+    ),
+
+    // 4. Would rather
+    () => makeQuestion(
+      `${name} would rather ____ at home than go outside.`,
+      `${name} বাইরে যাওয়ার চেয়ে বাড়িতে থাকতে বেশি পছন্দ করবে।`,
+      "stay",
+      "একই subject-এর পছন্দ বোঝাতে would rather-এর পরে verb-এর base form বসে। তাই stay সঠিক।",
+      [
+        { text: "stayed", explanation: "এখানে would rather-এর পরে past form প্রয়োজন নেই।" },
+        { text: "staying", explanation: "এই গঠনে verb-এর -ing form বসে না।" },
+        { text: "to stay", explanation: "would rather-এর পরে সাধারণত সরাসরি base form বসে, to stay নয়।" }
+      ]
+    ),
+
+    // 5. Lest
+    () => makeQuestion(
+      `Walk carefully lest you ____.`,
+      `সাবধানে হাঁটো, পাছে তুমি পড়ে যাও।`,
+      "should fall",
+      "Lest অর্থ পাছে বা যেন এমন না হয়। প্রচলিত পরীক্ষাভিত্তিক নিয়মে lest-এর পরে should + base verb ব্যবহার করা হয়।",
+      [
+        { text: "will fall", explanation: "lest-এর পরে এই প্রচলিত গঠনে will fall সাধারণত ব্যবহৃত হয় না।" },
+        { text: "fell", explanation: "এখানে প্রচলিত পরীক্ষাভিত্তিক গঠনে should fall প্রত্যাশিত।" },
+        { text: "falls", explanation: "এখানে falls প্রচলিত lest-গঠনের উপযুক্ত উত্তর নয়।" }
+      ]
+    ),
+
+    // 6. No sooner
+    () => makeQuestion(
+      `No sooner had ${name} arrived ____ the class began.`,
+      `${name} আসামাত্রই ক্লাস শুরু হলো।`,
+      "than",
+      "No sooner had + subject + past participle-এর পরে than বসে। এটি দুটি ঘটনার দ্রুত ধারাবাহিকতা বোঝায়।",
+      [
+        { text: "when", explanation: "No sooner-এর প্রচলিত জোড়া শব্দ হলো than।" },
+        { text: "then", explanation: "Then অর্থ তখন; এখানে নির্দিষ্ট conjunction হিসেবে than প্রয়োজন।" },
+        { text: "while", explanation: "While অর্থ যখন বা একই সময়ে; এটি No sooner-এর নির্ধারিত জোড়া নয়।" }
+      ]
+    ),
+
+    // 7. Hardly ... when
+    () => makeQuestion(
+      `Hardly had ${name} reached home ____ it started raining.`,
+      `${name} বাড়িতে পৌঁছাতেই বৃষ্টি শুরু হলো।`,
+      "when",
+      "Hardly had + subject + past participle-এর পরে সাধারণত when বসে।",
+      [
+        { text: "than", explanation: "Than সাধারণত No sooner-এর সঙ্গে ব্যবহৃত হয়।" },
+        { text: "then", explanation: "Then এই গঠনের নির্ধারিত সংযোজক নয়।" },
+        { text: "because", explanation: "Because কারণ বোঝায়; এখানে দ্রুত পরপর ঘটনা বোঝানো হয়েছে।" }
+      ]
+    ),
+
+    // 8. So ... that
+    () => makeQuestion(
+      "The box was so heavy ____ I could not lift it.",
+      "বাক্সটি এত ভারী ছিল যে আমি সেটি তুলতে পারিনি।",
+      "that",
+      "So + adjective/adverb + that দিয়ে ফলাফল বোঝানো হয়। So heavy that সঠিক গঠন।",
+      [
+        { text: "than", explanation: "Than সাধারণত তুলনা বোঝাতে ব্যবহৃত হয়।" },
+        { text: "because", explanation: "Because কারণ বোঝায়; so...that ফলাফল বোঝায়।" },
+        { text: "although", explanation: "Although বৈপরীত্য বোঝায়; এখানে ফলাফল বোঝানো হয়েছে।" }
+      ]
+    ),
+
+    // 9. Too ... to
+    () => makeQuestion(
+      `The child is too young ____ alone.`,
+      "শিশুটি একা যাওয়ার জন্য অতিরিক্ত ছোট।",
+      "to travel",
+      "Too + adjective + to + base verb দিয়ে প্রয়োজনীয় কাজটি করার মতো সক্ষমতা না থাকা বোঝানো হয়।",
+      [
+        { text: "for travel", explanation: "এই গঠনে for-এর পরে সরাসরি travel বসানো সঠিক নয়।" },
+        { text: "that travel", explanation: "Too-এর পরে এই অর্থে that travel ব্যবহৃত হয় না।" },
+        { text: "travelling", explanation: "এখানে too young-এর পরে to travel প্রয়োজন।" }
+      ]
+    ),
+
+    // 10. Although
+    () => makeQuestion(
+      `Although ${name} was tired, ${name} ____.`,
+      `যদিও ${name} ক্লান্ত ছিল, তবুও সে কাজটি করেছিল।`,
+      "continued working",
+      "Although অর্থ যদিও। এর পরে বৈপরীত্যপূর্ণ মূল বাক্য আসে। Continued working বোঝায় ক্লান্ত থাকা সত্ত্বেও কাজ চালিয়ে যাওয়া।",
+      [
+        { text: "because continued working", explanation: "Although-এর সঙ্গে এইভাবে because বসানো যায় না।" },
+        { text: "but continued working", explanation: "Although-যুক্ত একই বাক্যে সাধারণত আলাদা করে but বসে না।" },
+        { text: "despite was tired", explanation: "Despite-এর পরে সাধারণত noun বা -ing form লাগে; was tired নয়।" }
+      ]
+    ),
+
+    // 11. Since
+    () => makeQuestion(
+      `${name} has been studying here ____ 2024.`,
+      `${name} ২০২৪ সাল থেকে এখানে পড়াশোনা করছে।`,
+      "since",
+      "নির্দিষ্ট শুরুর সময় বোঝাতে since ব্যবহৃত হয়। For সাধারণত সময়ের দৈর্ঘ্য বোঝায়, যেমন for two years।",
+      [
+        { text: "for", explanation: "For-এর পরে সাধারণত সময়ের দৈর্ঘ্য বসে; 2024 একটি নির্দিষ্ট সময়।" },
+        { text: "from", explanation: "Present perfect continuous-এর এই গঠনে since 2024 বেশি উপযুক্ত।" },
+        { text: "during", explanation: "During-এর পরে সাধারণত কোনো সময়কাল বা ঘটনা বোঝানো noun বসে।" }
+      ]
+    ),
+
+    // 12. As soon as
+    () => makeQuestion(
+      `As soon as the bell rang, the students ____.`,
+      "ঘণ্টা বাজামাত্র শিক্ষার্থীরা বের হয়ে গেল।",
+      "left",
+      "অতীতের ধারাবাহিক দুটি ঘটনা বোঝাতে As soon as-এর পরে past simple এবং মূল বাক্যেও past simple ব্যবহার করা যায়।",
+      [
+        { text: "will leave", explanation: "এটি ভবিষ্যৎ কাল; এখানে অতীতের ঘটনা বোঝানো হয়েছে।" },
+        { text: "have left", explanation: "প্রদত্ত অতীতের ঘটনাক্রমে left উপযুক্ত।" },
+        { text: "leaving", explanation: "এখানে সম্পূর্ণ finite verb প্রয়োজন; leaving একা যথেষ্ট নয়।" }
+      ]
+    ),
+
+    // 13. Third conditional
+    () => makeQuestion(
+      `If ${name} had studied hard, ${name} ____ the examination.`,
+      `যদি ${name} কঠোর পরিশ্রম করে পড়ত, তাহলে সে পরীক্ষায় সফল হতো।`,
+      "would have passed",
+      "তৃতীয় শর্তমূলক বাক্যে If + past perfect-এর পরে would have + past participle বসে।",
+      [
+        { text: "will pass", explanation: "এটি ভবিষ্যৎ বোঝায়; অতীতের অসম্পন্ন শর্তের ফল নয়।" },
+        { text: "would passed", explanation: "Would-এর পরে have এবং past participle প্রয়োজন।" },
+        { text: "would have pass", explanation: "Would have-এর পরে past participle লাগে; pass নয়, passed।" }
+      ]
+    ),
+
+    // 14. Had I known
+    () => makeQuestion(
+      `Had I known the truth, I ____ differently.`,
+      "আমি সত্যটি জানলে অন্যভাবে কাজ করতাম।",
+      "would have acted",
+      "Had I known হলো If I had known-এর সংক্ষিপ্ত উল্টানো রূপ। এর ফলাফল অংশে would have + past participle বসে।",
+      [
+        { text: "will act", explanation: "এটি ভবিষ্যৎ বোঝায়, অতীতের অবাস্তব শর্ত নয়।" },
+        { text: "would act", explanation: "অতীতের অবাস্তব ফল বোঝাতে would have acted প্রয়োজন।" },
+        { text: "had acted", explanation: "Had acted past perfect; এখানে ফলাফল অংশে would have acted প্রয়োজন।" }
+      ]
+    ),
+
+    // 15. Not only ... but also
+    () => makeQuestion(
+      `${name} is not only intelligent ____ hardworking.`,
+      `${name} শুধু বুদ্ধিমানই নয়, পরিশ্রমীও।`,
+      "but also",
+      "Not only-এর সঙ্গে but also ব্যবহৃত হয়। এটি দুটি বিষয়কে জোর দিয়ে যুক্ত করে।",
+      [
+        { text: "and also", explanation: "এখানে নির্দিষ্ট জোড়া গঠন not only...but also।" },
+        { text: "but too", explanation: "Not only-এর প্রচলিত জোড়া হলো but also।" },
+        { text: "as well", explanation: "As well অন্যভাবে ব্যবহার করা যায়, কিন্তু এই শূন্যস্থানে নির্ধারিত জোড়া প্রয়োজন।" }
+      ]
+    ),
+
+    // 16. Provided that
+    () => makeQuestion(
+      `You may go outside provided that you ____ your work.`,
+      "তুমি কাজ শেষ করলে বাইরে যেতে পারো।",
+      "finish",
+      "Provided that অর্থ এই শর্তে যে। ভবিষ্যতের শর্ত বোঝানো হলেও এই ধরনের subordinate clause-এ সাধারণত present simple ব্যবহৃত হয়।",
+      [
+        { text: "will finished", explanation: "Will-এর পরে base form লাগে; finished ভুল।" },
+        { text: "finished", explanation: "এই শর্তমূলক বাক্যে present simple finish প্রয়োজন।" },
+        { text: "will finish", explanation: "ভবিষ্যৎ অর্থ থাকলেও provided that-এর এই clause-এ সাধারণত will ব্যবহার করা হয় না।" }
+      ]
+    ),
+
+    // 17. In spite of
+    () => makeQuestion(
+      `In spite of ____ hard, ${name} could not finish the task.`,
+      "কঠোর পরিশ্রম করা সত্ত্বেও ${name} কাজটি শেষ করতে পারেনি।",
+      "working",
+      "In spite of একটি preposition-যুক্ত গঠন। এর পরে noun বা verb-এর -ing form বসে। তাই working সঠিক।",
+      [
+        { text: "worked", explanation: "In spite of-এর পরে সাধারণত finite past verb সরাসরি বসে না।" },
+        { text: "work", explanation: "এই গঠনে verb-এর -ing form প্রয়োজন।" },
+        { text: "to work", explanation: "In spite of-এর পরে সাধারণত to + verb নয়, noun বা -ing form বসে।" }
+      ]
+    ),
+
+    // 18. Because
+    () => makeQuestion(
+      `${name} stayed at home because ____.`,
+      `${name} বাড়িতে ছিল, কারণ সে অসুস্থ ছিল।`,
+      "he was ill",
+      "Because কারণ বোঝায়। তাই এর পরে কারণ প্রকাশকারী একটি পূর্ণ clause বসে।",
+      [
+        { text: "of he was ill", explanation: "Because of-এর পরে noun বা noun phrase বসে; পূর্ণ clause নয়।" },
+        { text: "although he was ill", explanation: "Although বৈপরীত্য বোঝায়; এখানে কারণ প্রয়োজন।" },
+        { text: "despite he was ill", explanation: "Despite-এর পরে সরাসরি পূর্ণ clause বসে না; noun বা -ing form ব্যবহার করা হয়।" }
+      ]
+    ),
+
+    // 19. As if
+    () => makeQuestion(
+      `${name} talks as if he ____ everything.`,
+      `${name} এমনভাবে কথা বলে যেন সে সবকিছু জানে।`,
+      "knew",
+      "বাস্তবতার সঙ্গে মেলে না এমন কল্পিত পরিস্থিতি বোঝাতে as if-এর পরে past simple ব্যবহার করা যায়।",
+      [
+        { text: "knows", explanation: "এটি সরাসরি বাস্তব জ্ঞান বোঝাতে পারে; এখানে কল্পিত তুলনা বোঝানো হয়েছে।" },
+        { text: "will know", explanation: "এই গঠনে will know উপযুক্ত নয়।" },
+        { text: "had knew", explanation: "Had-এর পরে past participle প্রয়োজন; knew নয়।" }
+      ]
+    ),
+
+    // 20. Neither ... nor
+    () => makeQuestion(
+      `Neither ${name} nor ${other} ____ present yesterday.`,
+      `গতকাল ${name} এবং ${other}—কেউই উপস্থিত ছিল না।`,
+      "was",
+      "Neither...nor দুটি বিষয়কে নাকচ করে। প্রচলিত subject-verb agreement-এ nor-এর কাছের subject একবচন হলে was ব্যবহার করা হয়।",
+      [
+        { text: "were", explanation: "এখানে nor-এর কাছের subject একবচন; তাই was প্রত্যাশিত।" },
+        { text: "are", explanation: "Yesterday অতীত সময় বোঝায়; তাই are নয়, was প্রয়োজন।" },
+        { text: "have", explanation: "এখানে be verb প্রয়োজন; have উপযুক্ত নয়।" }
+      ]
+    ),
+
+    // 21. The more ... the more
+    () => makeQuestion(
+      `The more you practise, ____ you become.`,
+      "তুমি যত বেশি অনুশীলন করবে, তত বেশি দক্ষ হবে।",
+      "the better",
+      "The more...the more গঠনে দুটি পরিবর্তনের সম্পর্ক বোঝানো হয়। Good-এর comparative হলো better।",
+      [
+        { text: "better", explanation: "এই নির্দিষ্ট জোড়া গঠনে the better ব্যবহার করা হয়।" },
+        { text: "the best", explanation: "Best superlative; এখানে comparative সম্পর্ক প্রয়োজন।" },
+        { text: "the good", explanation: "Good-এর comparative হলো better; the good এখানে সঠিক নয়।" }
+      ]
+    ),
+
+    // 22. Unless + present
+    () => makeQuestion(
+      `Unless you hurry, you ____ the bus.`,
+      "তুমি তাড়াতাড়ি না করলে বাসটি ধরতে পারবে না।",
+      "will miss",
+      "Unless অর্থ if...not। ভবিষ্যৎ ফল বোঝাতে unless-clause-এ present simple এবং মূল clause-এ will ব্যবহার করা যায়।",
+      [
+        { text: "would missed", explanation: "Would-এর পরে base form প্রয়োজন; missed ভুল।" },
+        { text: "will missed", explanation: "Will-এর পরে miss হবে, missed নয়।" },
+        { text: "are miss", explanation: "Are-এর পরে এভাবে base verb ব্যবহার করা যায় না।" }
+      ]
+    ),
+
+    // 23. Relative clause
+    () => makeQuestion(
+      `The person ____ helped me was very kind.`,
+      "যে ব্যক্তি আমাকে সাহায্য করেছিলেন, তিনি খুব দয়ালু ছিলেন।",
+      "who",
+      "মানুষকে বোঝানো relative clause-এ subject হিসেবে who ব্যবহৃত হয়।",
+      [
+        { text: "which", explanation: "Which সাধারণত বস্তু বা প্রাণীর ক্ষেত্রে ব্যবহৃত হয়, মানুষের জন্য নয়।" },
+        { text: "where", explanation: "Where স্থান বোঝায়; এখানে ব্যক্তিকে বোঝানো হয়েছে।" },
+        { text: "when", explanation: "When সময় বোঝায়; এখানে ব্যক্তিকে বোঝানো হয়েছে।" }
+      ]
+    ),
+
+    // 24. Because of
+    () => makeQuestion(
+      `The match was cancelled because of ____.`,
+      "বৃষ্টির কারণে খেলাটি বাতিল করা হয়েছিল।",
+      "the heavy rain",
+      "Because of-এর পরে noun বা noun phrase বসে। The heavy rain একটি noun phrase, তাই সঠিক।",
+      [
+        { text: "it rained heavily", explanation: "এটি একটি পূর্ণ clause; because of-এর পরে noun phrase প্রয়োজন।" },
+        { text: "the rain was heavy", explanation: "এটিও একটি পূর্ণ clause; because of-এর পরে এটি সরাসরি বসে না।" },
+        { text: "it was raining", explanation: "এটি একটি পূর্ণ clause; because of-এর পরে noun phrase ব্যবহার করতে হবে।" }
+      ]
+    ),
+
+    // 25. Although vs despite
+    () => makeQuestion(
+      `Despite ____ ill, ${name} attended the class.`,
+      `অসুস্থ থাকা সত্ত্বেও ${name} ক্লাসে উপস্থিত হয়েছিল।`,
+      "being",
+      "Despite-এর পরে noun বা verb-এর -ing form বসে। তাই despite being ill সঠিক।",
+      [
+        { text: "was", explanation: "Despite-এর পরে এভাবে finite verb বসে না।" },
+        { text: "he was", explanation: "এটি পূর্ণ clause; despite-এর পরে সাধারণত noun বা -ing form লাগে।" },
+        { text: "be", explanation: "এই অর্থে despite-এর পরে being ill প্রয়োজন।" }
+      ]
+    ),
+
+    // 26. Until
+    () => makeQuestion(
+      `Wait here until ${name} ____.`,
+      `${name} না আসা পর্যন্ত এখানে অপেক্ষা করো।`,
+      "comes",
+      "Until সময়ের সীমা বোঝায়। ভবিষ্যৎ অর্থ থাকলেও until-clause-এ সাধারণত present simple ব্যবহার করা হয়।",
+      [
+        { text: "will come", explanation: "এই ধরনের time clause-এ সাধারণত will ব্যবহার করা হয় না।" },
+        { text: "came", explanation: "এখানে নির্দেশের সঙ্গে ভবিষ্যৎ অর্থে present simple comes উপযুক্ত।" },
+        { text: "coming", explanation: "এখানে একটি পূর্ণ clause-এর finite verb প্রয়োজন।" }
+      ]
+    ),
+
+    // 27. Wish
+    () => makeQuestion(
+      `I wish I ____ more time to study.`,
+      "ইশ! পড়াশোনার জন্য যদি আমার আরও সময় থাকত।",
+      "had",
+      "বর্তমানের অপূর্ণ ইচ্ছা বোঝাতে I wish-এর পরে past simple ব্যবহার করা যায়। এখানে had বর্তমানের কল্পিত অবস্থা বোঝায়।",
+      [
+        { text: "have", explanation: "বর্তমানের অপূর্ণ ইচ্ছা বোঝাতে সাধারণত wish-এর পরে past simple হয়।" },
+        { text: "will have", explanation: "এই গঠনে will have উপযুক্ত নয়।" },
+        { text: "am having", explanation: "এখানে বর্তমানের কল্পিত অবস্থা বোঝাতে had প্রয়োজন।" }
+      ]
+    ),
+
+    // 28. Used to
+    () => makeQuestion(
+      `${name} used to ____ early in the morning.`,
+      `${name} আগে সকালে তাড়াতাড়ি উঠত।`,
+      "wake up",
+      "অতীতের অভ্যাস বোঝাতে used to + base verb ব্যবহৃত হয়।",
+      [
+        { text: "woke up", explanation: "Used to-এর পরে base verb বসে, past form নয়।" },
+        { text: "waking up", explanation: "Used to + infinitive এবং be used to + -ing আলাদা গঠন। এখানে প্রথমটি প্রয়োজন।" },
+        { text: "wakes up", explanation: "Used to-এর পরে wakes নয়, wake বসে।" }
+      ]
+    ),
+
+    // 29. Had better
+    () => makeQuestion(
+      `${name} had better ____ the truth.`,
+      `${name}-এর সত্য কথাটি বলা ভালো।`,
+      "tell",
+      "Had better-এর পরে verb-এর base form বসে।",
+      [
+        { text: "tells", explanation: "Had better-এর পরে verb-এর সঙ্গে s/es যোগ হয় না।" },
+        { text: "to tell", explanation: "Had better-এর পরে to ছাড়া base verb বসে।" },
+        { text: "telling", explanation: "এখানে -ing form প্রয়োজন নেই।" }
+      ]
+    ),
+
+    // 30. As long as
+    () => makeQuestion(
+      `You can use my book as long as you ____ it carefully.`,
+      "তুমি আমার বইটি ব্যবহার করতে পারো, যদি সেটি যত্নসহকারে রাখো।",
+      "keep",
+      "As long as শর্ত বোঝাতে পারে। ভবিষ্যৎ শর্তমূলক clause-এ সাধারণত present simple ব্যবহৃত হয়।",
+      [
+        { text: "will kept", explanation: "Will-এর পরে base verb লাগে; kept ভুল।" },
+        { text: "kept", explanation: "এখানে present simple keep উপযুক্ত।" },
+        { text: "will keep", explanation: "এই ধরনের শর্তমূলক clause-এ সাধারণত will keep নয়, keep ব্যবহৃত হয়।" }
+      ]
+    ),
+
+    // 31. Such ... that
+    () => makeQuestion(
+      `It was such a difficult question ____ nobody could answer it.`,
+      "প্রশ্নটি এত কঠিন ছিল যে কেউ উত্তর দিতে পারেনি।",
+      "that",
+      "Such + a/an + adjective + noun + that দিয়ে ফলাফল বোঝানো হয়।",
+      [
+        { text: "than", explanation: "Than তুলনা বোঝায়; এখানে ফলাফল প্রয়োজন।" },
+        { text: "because", explanation: "Because কারণ বোঝায়; such...that ফলাফল বোঝায়।" },
+        { text: "although", explanation: "Although বৈপরীত্য বোঝায়; এখানে ফলাফল বোঝানো হয়েছে।" }
+      ]
+    ),
+
+    // 32. Enough to
+    () => makeQuestion(
+      `${name} is strong enough ____ the box.`,
+      `${name} বাক্সটি তোলার মতো যথেষ্ট শক্তিশালী।`,
+      "to lift",
+      "Adjective + enough + to + base verb দিয়ে কোনো কাজ করার যথেষ্ট সক্ষমতা বোঝানো হয়।",
+      [
+        { text: "lifting", explanation: "Enough-এর এই গঠনে to lift প্রয়োজন।" },
+        { text: "that lift", explanation: "এখানে that lift সঠিক গঠন নয়।" },
+        { text: "for lift", explanation: "এই অর্থে enough-এর পরে to + base verb বসে।" }
+      ]
+    ),
+
+    // 33. As well as
+    () => makeQuestion(
+      `${name}, as well as ${other}, ____ invited to the programme.`,
+      `${other}-এর পাশাপাশি ${name}-কেও অনুষ্ঠানে আমন্ত্রণ জানানো হয়েছিল।`,
+      "was",
+      "As well as দিয়ে অতিরিক্ত তথ্য যোগ করা হয়; এটি সাধারণত মূল subject-এর সংখ্যা বদলায় না। এখানে মূল subject ${name} একবচন, তাই was সঠিক।",
+      [
+        { text: "were", explanation: "As well as-এর পরের অংশকে সাধারণত মূল subject-এর সঙ্গে সমন্বিত subject হিসেবে ধরা হয় না।" },
+        { text: "are", explanation: "বাক্যটি অতীতের ঘটনা; তাই are নয়, was।" },
+        { text: "have", explanation: "এখানে passive structure-এর জন্য was invited প্রয়োজন।" }
+      ]
+    ),
+
+    // 34. Prefer
+    () => makeQuestion(
+      `${name} prefers reading books ____ watching television.`,
+      `${name} টেলিভিশন দেখার চেয়ে বই পড়া বেশি পছন্দ করে।`,
+      "to",
+      "Prefer A to B গঠনে দুটি পছন্দ তুলনা করা হয়। তাই reading books to watching television সঠিক।",
+      [
+        { text: "than", explanation: "Prefer-এর এই গঠনে than নয়, to ব্যবহৃত হয়।" },
+        { text: "over than", explanation: "এই বাক্যের নির্ধারিত গঠন Prefer A to B।" },
+        { text: "from", explanation: "Prefer-এর এই তুলনামূলক গঠনে from ব্যবহৃত হয় না।" }
+      ]
+    ),
+
+    // 35. So that
+    () => makeQuestion(
+      `${name} studies hard so that ${name} ____ succeed.`,
+      `${name} কঠোর পরিশ্রম করে, যাতে সে সফল হতে পারে।`,
+      "can",
+      "So that উদ্দেশ্য বোঝায়। বর্তমানের উদ্দেশ্য বা সক্ষমতা বোঝাতে can ব্যবহার করা যায়।",
+      [
+        { text: "because", explanation: "Because কারণ বোঝায়; so that উদ্দেশ্য বোঝায়।" },
+        { text: "although", explanation: "Although বৈপরীত্য বোঝায়; এখানে উদ্দেশ্য প্রকাশ করা হয়েছে।" },
+        { text: "despite", explanation: "Despite-এর পরে noun বা -ing form লাগে; এখানে পূর্ণ clause প্রয়োজন।" }
+      ]
+    ),
+
+    // 36. Both ... and
+    () => makeQuestion(
+      `Both ${name} and ${other} ____ present today.`,
+      `আজ ${name} এবং ${other} দুজনই উপস্থিত।`,
+      "are",
+      "Both...and দুটি subject-কে যুক্ত করে। তাই সাধারণত plural verb are ব্যবহার করা হয়।",
+      [
+        { text: "is", explanation: "Both...and-এ দুটি subject থাকে; তাই plural verb প্রয়োজন।" },
+        { text: "was", explanation: "Today বর্তমান সময় বোঝাচ্ছে; এখানে are উপযুক্ত।" },
+        { text: "has", explanation: "এখানে be verb are প্রয়োজন; has নয়।" }
+      ]
+    ),
+
+    // 37. As long as with can
+    () => makeQuestion(
+      `You will succeed as long as you ____ trying.`,
+      "তুমি চেষ্টা চালিয়ে গেলে সফল হবে।",
+      "keep",
+      "Keep + verb-ing দিয়ে কোনো কাজ চালিয়ে যাওয়া বোঝায়। As long as-এর clause-এ present simple ব্যবহার করা হয়েছে।",
+      [
+        { text: "will keep", explanation: "এই শর্তমূলক clause-এ সাধারণত present simple ব্যবহৃত হয়।" },
+        { text: "kept", explanation: "এখানে ভবিষ্যৎ শর্তের জন্য present simple keep প্রয়োজন।" },
+        { text: "keeping", explanation: "Subject-এর পরে এখানে finite verb keep প্রয়োজন।" }
+      ]
+    ),
+
+    // 38. The sooner
+    () => makeQuestion(
+      `The sooner you start, ____ you will finish.`,
+      "তুমি যত তাড়াতাড়ি শুরু করবে, তত তাড়াতাড়ি শেষ করবে।",
+      "the sooner",
+      "The sooner...the sooner একটি comparative correlation; দুটি ঘটনার সময়ের সম্পর্ক বোঝায়।",
+      [
+        { text: "sooner", explanation: "প্রচলিত জোড়া গঠনে the sooner...the sooner ব্যবহৃত হয়।" },
+        { text: "the soonest", explanation: "Soonest superlative; এখানে comparative correlation প্রয়োজন।" },
+        { text: "as soon", explanation: "এখানে the sooner ব্যবহার করতে হবে।" }
+      ]
+    ),
+
+    // 39. In case
+    () => makeQuestion(
+      `Take an umbrella in case it ____.`,
+      "যদি বৃষ্টি হয়, সেই সম্ভাবনার কথা ভেবে একটি ছাতা নাও।",
+      "rains",
+      "In case সম্ভাব্য পরিস্থিতির প্রস্তুতি বোঝায়। ভবিষ্যৎ সম্ভাবনার clause-এ present simple rains ব্যবহার করা যায়।",
+      [
+        { text: "will rain", explanation: "এই ধরনের in case clause-এ সাধারণত will rain-এর বদলে rains ব্যবহৃত হয়।" },
+        { text: "rained", explanation: "এখানে ভবিষ্যৎ সম্ভাবনা বোঝাতে present simple উপযুক্ত।" },
+        { text: "raining", explanation: "এখানে পূর্ণ clause-এর finite verb প্রয়োজন।" }
+      ]
+    ),
+
+    // 40. Not until
+    () => makeQuestion(
+      `Not until the teacher arrived ____ the lesson begin.`,
+      "শিক্ষক আসার পরেই পাঠ শুরু হলো।",
+      "did",
+      "Not until বাক্যের শুরুতে এলে মূল clause-এ inversion হয়। অতীতের simple verb-এর আগে did বসে এবং মূল verb base form হয়: did the lesson begin।",
+      [
+        { text: "does", explanation: "এখানে অতীতের ঘটনা বোঝানো হয়েছে, তাই does নয়, did।" },
+        { text: "had", explanation: "এই বাক্যের গঠনে did the lesson begin প্রত্যাশিত।" },
+        { text: "was", explanation: "এখানে begin মূল verb; প্রশ্নের মতো inversion-এ did প্রয়োজন।" }
+      ]
+    )
+  ];
+
+  return rand(generators)();
+}
+
+function renderQuestion(q, animate = true) {
+  currentQuestion = q;
+
+  if (animate) {
+    quizCard.classList.remove("screen-transition");
+    void quizCard.offsetWidth;
+    quizCard.classList.add("screen-transition");
+  }
+
+  questionText.textContent = q.stem;
+  questionMeaning.textContent = "(বাংলা অর্থ: " + q.meaning + ")";
+  questionTag.textContent = "QUESTION " + (historyIndex + 1);
+  levelTag.textContent = q.level;
+
+  optionsBox.replaceChildren();
+  feedback.className = "feedback bangla";
+  feedback.replaceChildren();
+
+  q.options.forEach((option, index) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "option";
+    button.disabled = q.answered;
+
+    const letter = document.createElement("span");
+    letter.className = "option-letter";
+    letter.textContent = String.fromCharCode(65 + index);
+
+    const text = document.createElement("span");
+    text.textContent = option.text;
+
+    button.append(letter, text);
+    button.addEventListener("click", () => selectAnswer(index));
+    optionsBox.appendChild(button);
+
+    if (q.answered) {
+      if (option.correct) button.classList.add("correct");
+      if (index === q.selected && !option.correct) {
+        button.classList.add("wrong");
+      }
+    }
+  });
+
+  if (q.answered) showFeedback(q);
+
+  updateDashboard();
+  previousBtn.disabled = historyIndex <= 0;
+  nextBtn.textContent =
+    historyIndex < history.length - 1 ? "Next →" : "Next →";
+}
+
+function selectAnswer(index) {
+  if (!currentQuestion || currentQuestion.answered || busy) return;
+
+  const q = currentQuestion;
+  q.answered = true;
+  q.selected = index;
+
+  attempted++;
+  const selected = q.options[index];
+
+  if (selected.correct) score++;
+
+  renderQuestion(q, false);
+  showFeedback(q);
+  updateDashboard();
+}
+
+function showFeedback(q) {
+  const selected = q.options[q.selected];
+  const correct = q.options.find(o => o.correct);
+
+  feedback.className = "feedback bangla show " +
+    (selected.correct ? "success" : "error");
+
+  const heading = document.createElement("h3");
+  heading.textContent = selected.correct
+    ? "✓ Correct Answer!"
+    : "✗ Incorrect Answer";
+
+  const chosen = document.createElement("p");
+  chosen.textContent = "Your answer: " + selected.text +
+    " — " + selected.explanation;
+
+  const answer = document.createElement("p");
+  answer.textContent = "Correct answer: " + correct.text;
+
+  const reasonTitle = document.createElement("p");
+  reasonTitle.className = "explanation-title";
+  reasonTitle.textContent = "Explanation (ব্যাখ্যা)";
+
+  const reason = document.createElement("p");
+  reason.textContent = correct.explanation;
+
+  feedback.replaceChildren(heading, chosen, answer, reasonTitle, reason);
+}
+
+function updateDashboard() {
+  questionNumber.textContent = Math.max(1, historyIndex + 1);
+  scoreDisplay.textContent = score;
+  accuracyDisplay.textContent =
+    attempted ? Math.round(score / attempted * 100) + "%" : "0%";
+
+  // The progress bar represents position within the current session.
+  // Practice can continue indefinitely.
+  const progress = ((historyIndex + 1) % 20) / 20 * 100;
+  progressFill.style.width = (progress || (historyIndex >= 0 ? 100 : 0)) + "%";
+}
+
+function addNewQuestion() {
+  const q = generateQuestion();
+  history.push(q);
+  historyIndex = history.length - 1;
+  questionCount++;
+  renderQuestion(q);
+}
+
+function goPrevious() {
+  if (historyIndex <= 0 || busy) return;
+  historyIndex--;
+  renderQuestion(history[historyIndex]);
+}
+
+function goNext() {
+  if (busy) return;
+
+  if (historyIndex < history.length - 1) {
+    historyIndex++;
+    renderQuestion(history[historyIndex]);
+    return;
+  }
+
+  addNewQuestion();
+}
+
+previousBtn.addEventListener("click", goPrevious);
+nextBtn.addEventListener("click", goNext);
+
+// Start the practice system.
+addNewQuestion();
+</script>
 </body>
 </html>

@@ -3,126 +3,679 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon</title>
+    <title>PART 23 - Degree of Comparison | Infinite Grammar Practice Engine</title>
 
-    <!-- Google Fonts for Bengali & English -->
+    <!-- External Fonts setup: Google Fonts for Kalpurush fallback (Siam Rupali, Hind Siliguri) & Times New Roman default -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Inter:wght@700;900&display=swap" rel="stylesheet">
-
-    <!-- Tailwind CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Tiro+Bangla&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
 
     <style>
+        @font-face {
+            font-family: 'Kalpurush';
+            src: local('Kalpurush'), url('https://cdnjs.cloudflare.com/ajax/libs/kalpurush/1.0.0/kalpurush.ttf') format('truetype');
+            font-display: swap;
+        }
+
+        :root {
+            --font-bengali: 'Kalpurush', 'Hind Siliguri', 'Tiro Bangla', sans-serif;
+            --font-english: 'Times New Roman', Times, serif;
+        }
+
         body {
-            font-family: 'Hind Siliguri', 'Inter', sans-serif;
-            background-color: #030712;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e9f2 50%, #c3cfe2 100%);
+            min-height: 100vh;
+            font-family: var(--font-english);
+            color: #2d3748;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        .bn-font {
+            font-family: var(--font-bengali) !important;
+        }
+
+        .en-font {
+            font-family: var(--font-english) !important;
+        }
+
+        /* Enforce minimum 18px size for question text and key readability elements */
+        .readable-text {
+            font-size: clamp(18px, 2.2vw, 22px);
+            line-height: 1.6;
+        }
+
+        .bn-subtext {
+            font-size: clamp(16px, 1.8vw, 19px);
+            line-height: 1.5;
+        }
+
+        /* Glassmorphic UI Card Styling */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.82);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.07), 0 0 15px rgba(255, 255, 255, 0.5);
+            border-radius: 20px;
+        }
+
+        .glass-badge {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+
+        /* Smooth Butter Slider Transitions */
+        .question-wrapper {
+            position: relative;
             overflow: hidden;
+            min-height: 380px;
         }
 
-        /* Gradient glowing animation on text */
-        .glow-text {
-            background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 50%, #38bdf8 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shine 6s linear infinite;
+        .slide-container {
+            transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform, opacity;
         }
 
-        @keyframes shine {
-            0% { background-position: 0% center; }
-            50% { background-position: 100% center; }
-            100% { background-position: 0% center; }
+        .slide-enter-next {
+            opacity: 0;
+            transform: translateX(60px) scale(0.98);
         }
 
-        /* Keyframes for initial entry: Floating in from below with opacity */
-        @keyframes floatIn {
-            0% {
-                opacity: 0;
-                transform: translateY(40px) scale(0.95);
-                filter: blur(8px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-                filter: blur(0);
-            }
+        .slide-exit-next {
+            opacity: 0;
+            transform: translateX(-60px) scale(0.98);
         }
 
-        /* Continuous subtle float effect once arrived */
-        @keyframes subtleFloat {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-8px);
-            }
+        .slide-enter-prev {
+            opacity: 0;
+            transform: translateX(-60px) scale(0.98);
         }
 
-        /* Animation class for Heading */
-        .animate-heading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards,
-                subtleFloat 6s ease-in-out 1.2s infinite;
+        .slide-exit-prev {
+            opacity: 0;
+            transform: translateX(60px) scale(0.98);
         }
 
-        /* Animation class for Subheading (staggered delay) */
-        .animate-subheading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards,
-                subtleFloat 6s ease-in-out 1.55s infinite;
-            opacity: 0; /* Hidden until animation kicks in */
+        .slide-active {
+            opacity: 1;
+            transform: translateX(0) scale(1);
         }
 
-        /* Ambient background lighting */
-        .ambient-glow {
-            position: absolute;
-            width: 450px;
-            height: 450px;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(3, 7, 18, 0) 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            transition: left 0.4s ease-out, top 0.4s ease-out;
+        /* Option Button Custom Styles */
+        .option-btn {
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid rgba(203, 213, 225, 0.6);
+            background: rgba(255, 255, 255, 0.9);
+            font-size: clamp(17px, 2vw, 20px);
+        }
+
+        .option-btn:hover:not(:disabled) {
+            border-color: #3b82f6;
+            background: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px -6px rgba(59, 130, 246, 0.25);
+        }
+
+        .option-btn:active:not(:disabled) {
+            transform: translateY(0);
+        }
+
+        .option-btn.selected-correct {
+            background: #f0fdf4 !important;
+            border-color: #22c55e !important;
+            color: #15803d !important;
+            box-shadow: 0 4px 14px rgba(34, 197, 94, 0.25);
+        }
+
+        .option-btn.selected-wrong {
+            background: #fef2f2 !important;
+            border-color: #ef4444 !important;
+            color: #b91c1c !important;
+            box-shadow: 0 4px 14px rgba(239, 68, 68, 0.25);
+        }
+
+        .option-btn.show-correct {
+            background: #f0fdf4 !important;
+            border-color: #22c55e !important;
+            color: #15803d !important;
+        }
+
+        /* Custom Scrollbar for Guide Modal */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.03);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(100,116,139,0.3);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(100,116,139,0.5);
         }
     </style>
 </head>
-<body class="min-h-screen flex items-center justify-center relative select-none px-4">
+<body class="flex flex-col min-h-screen py-6 px-3 sm:px-6 lg:px-8 justify-between">
 
-    <!-- Ambient glow center element -->
-    <div id="glow" class="ambient-glow top-1/2 left-1/2"></div>
+    <header class="max-w-4xl w-full mx-auto mb-4">
+        <div class="glass-card p-4 sm:p-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div>
+                <div class="flex items-center gap-2 mb-1">
+                    <span class="px-3 py-1 bg-blue-100 text-blue-800 font-bold rounded-full text-xs sm:text-sm tracking-wide">PART 23</span>
+                    <span class="text-xs sm:text-sm text-gray-500 font-semibold uppercase tracking-wider">Grammar Mastery</span>
+                </div>
+                <h1 class="text-2xl sm:text-3xl font-extrabold text-gray-800 tracking-tight">Degree of Comparison</h1>
+                <p class="bn-font bn-subtext text-gray-600 mt-1">ইনফিনিটি এমসিকিউ প্র্যাকটিস ও লাইভ রুলস লার্নিং প্ল্যাটফর্ম</p>
+            </div>
+            <button id="guideBtn" class="flex items-center gap-2 px-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-medium shadow-lg shadow-blue-500/20 transition-all hover:scale-105 active:scale-95 text-sm sm:text-base">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+                <span>Degree Rules Quick Guide</span>
+            </button>
+        </div>
+    </header>
 
-    <!-- Centered minimal content with entry animations -->
-    <main class="text-center z-10 space-y-6 max-w-3xl mx-auto py-8 px-4">
-        
-        <!-- Main English Title -->
-        <h1 class="animate-heading text-5xl sm:text-7xl md:text-8xl font-black tracking-tight glow-text font-['Inter'] drop-shadow-lg">
-            Coming Soon...
-        </h1>
+    <main class="max-w-4xl w-full mx-auto flex-grow flex flex-col justify-center">
+        <!-- Live Dashboard Stats -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-5">
+            <div class="glass-card p-3 sm:p-4 text-center">
+                <span class="text-xs uppercase tracking-wider text-gray-500 font-bold block mb-1">Questions</span>
+                <span id="statAttempted" class="text-2xl sm:text-3xl font-black text-gray-800">0</span>
+            </div>
+            <div class="glass-card p-3 sm:p-4 text-center">
+                <span class="text-xs uppercase tracking-wider text-gray-500 font-bold block mb-1">Score</span>
+                <span id="statScore" class="text-2xl sm:text-3xl font-black text-emerald-600">0</span>
+            </div>
+            <div class="glass-card p-3 sm:p-4 text-center">
+                <span class="text-xs uppercase tracking-wider text-gray-500 font-bold block mb-1">Accuracy</span>
+                <span id="statAccuracy" class="text-2xl sm:text-3xl font-black text-blue-600">0%</span>
+            </div>
+            <div class="glass-card p-3 sm:p-4 text-center">
+                <span class="text-xs uppercase tracking-wider text-gray-500 font-bold block mb-1">Current Streak</span>
+                <span id="statStreak" class="text-2xl sm:text-3xl font-black text-amber-500">0 🔥</span>
+            </div>
+        </div>
 
-        <!-- Bengali Subheading -->
-        <p class="animate-subheading text-xl sm:text-3xl md:text-4xl font-semibold text-emerald-400/90 leading-relaxed tracking-wide drop-shadow">
-            ইনশাআল্লাহ, খুব শীঘ্রই ডাটা যোগ করা হবে।
-        </p>
+        <div class="glass-card p-5 sm:p-8 relative">
+            <div class="question-wrapper">
+                <div id="slideContainer" class="slide-container slide-active">
+                    
+                    <!-- Question Header & Tag -->
+                    <div class="flex items-center justify-between gap-3 mb-4 border-b border-gray-200/60 pb-3">
+                        <span id="questionCategory" class="px-3 py-1 bg-indigo-100 text-indigo-700 text-xs sm:text-sm font-bold rounded-lg uppercase tracking-wide">
+                            Degree Transformation
+                        </span>
+                        <span id="questionNumber" class="text-sm font-bold text-gray-400">
+                            Question #1
+                        </span>
+                    </div>
 
+                    <!-- Main Question Display -->
+                    <div class="mb-6">
+                        <h2 id="enQuestion" class="readable-text font-bold text-gray-800 mb-2">
+                            Loading question...
+                        </h2>
+                        <p id="bnQuestion" class="bn-font bn-subtext text-blue-900 bg-blue-50/70 p-3 rounded-xl border border-blue-100">
+                            (প্রশ্নটি লোড হচ্ছে...)
+                        </p>
+                    </div>
+
+                    <!-- MCQ Options Grid -->
+                    <div id="optionsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 mb-6">
+                        <!-- Options generated dynamically -->
+                    </div>
+
+                    <!-- Detailed Explanation Panel -->
+                    <div id="explanationBox" class="hidden mt-6 p-4 sm:p-5 bg-emerald-50/90 border border-emerald-200 rounded-2xl transition-all duration-300">
+                        <div class="flex items-center gap-2 text-emerald-800 font-bold mb-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <span class="bn-font text-lg">ব্যাখ্যা (Grammar Explanation):</span>
+                        </div>
+                        <p id="explanationText" class="bn-font bn-subtext text-gray-800 leading-relaxed">
+                            <!-- Bengali explanation goes here -->
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Navigation Controls -->
+            <div class="flex items-center justify-between mt-6 pt-4 border-t border-gray-200/60">
+                <button id="prevBtn" class="flex items-center gap-2 px-5 py-2.5 rounded-xl border border-gray-300 bg-white/80 hover:bg-white text-gray-700 font-bold transition-all shadow-sm disabled:opacity-40 disabled:cursor-not-allowed hover:shadow text-sm sm:text-base" disabled>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                    </svg>
+                    <span>Previous</span>
+                </button>
+
+                <button id="nextBtn" class="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold transition-all shadow-md shadow-indigo-500/20 hover:scale-105 active:scale-95 text-sm sm:text-base">
+                    <span>Next Question</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                </button>
+            </div>
+        </div>
     </main>
 
+    <!-- Rules Guide Modal -->
+    <div id="guideModal" class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="glass-card max-w-2xl w-full max-h-[85vh] flex flex-col overflow-hidden shadow-2xl bg-white/95">
+            <div class="p-5 border-b border-gray-200 flex justify-between items-center bg-gray-50/80">
+                <h3 class="text-xl font-bold text-gray-800 flex items-center gap-2">
+                    <span>📘</span> Degree of Comparison Rules Guide
+                </h3>
+                <button id="closeGuideBtn" class="text-gray-400 hover:text-gray-600 text-2xl font-bold p-1">&times;</button>
+            </div>
+            <div class="p-6 overflow-y-auto space-y-5 bn-font text-gray-800 text-base sm:text-lg">
+                <div class="p-4 bg-blue-50 border-l-4 border-blue-500 rounded-r-xl">
+                    <h4 class="font-bold text-blue-900 text-lg mb-1">১. Positive Degree</h4>
+                    <p>কারো সাথে তুলনা না করে সাধারণ গুণ বোঝাতে বা সমমানের তুলনা করতে ব্যবহার হয়।</p>
+                    <p class="en-font font-semibold text-gray-700 mt-1">Structure: Very few / No other + Noun ... as + Adjective + as ...</p>
+                    <p class="text-sm text-blue-800 mt-1">উদাহরণ: No other boy is as tall as Firoz.</p>
+                </div>
+
+                <div class="p-4 bg-emerald-50 border-l-4 border-emerald-500 rounded-r-xl">
+                    <h4 class="font-bold text-emerald-900 text-lg mb-1">২. Comparative Degree</h4>
+                    <p>দুইজন ব্যক্তি বা বস্তুর মধ্যে তুলনা বোঝাতে ব্যবহার হয়।</p>
+                    <p class="en-font font-semibold text-gray-700 mt-1">Structure: Subject + Verb + Comparative Adjective + than any other / than most other ...</p>
+                    <p class="text-sm text-emerald-800 mt-1">উদাহরণ: Miraz is taller than any other boy.</p>
+                </div>
+
+                <div class="p-4 bg-amber-50 border-l-4 border-amber-500 rounded-r-xl">
+                    <h4 class="font-bold text-amber-900 text-lg mb-1">৩. Superlative Degree</h4>
+                    <p>দুইয়ের অধিক বা সকলের মধ্যে সর্বোচ্চ বা সর্বনিম্ন মাত্রা বোঝাতে ব্যবহার হয়।</p>
+                    <p class="en-font font-semibold text-gray-700 mt-1">Structure: Subject + Verb + the / one of the + Superlative Adjective + Noun ...</p>
+                    <p class="text-sm text-amber-800 mt-1">উদাহরণ: Mujahid is the bravest boy in the village.</p>
+                </div>
+
+                <div class="p-4 bg-purple-50 border-l-4 border-purple-500 rounded-r-xl">
+                    <h4 class="font-bold text-purple-900 text-lg mb-1">৪. গুরুত্বপূর্ণ নিয়মাবলি</h4>
+                    <ul class="list-disc pl-5 space-y-1 text-sm sm:text-base">
+                        <li><strong>No other</strong> থাকলে Comparative-এ <strong>than any other</strong> এবং Superlative-এ <strong>the + superlative</strong> হয়।</li>
+                        <li><strong>Very few</strong> থাকলে Comparative-এ <strong>than most other</strong> এবং Superlative-এ <strong>one of the + superlative</strong> হয়।</li>
+                        <li>এক সিলেবল বিশিষ্ট শব্দের সাথে -er, -est যুক্ত হয় (fast -> faster -> fastest)।</li>
+                        <li>বহু সিলেবল বিশিষ্ট শব্দের পূর্বে more, most বসে (beautiful -> more beautiful -> most beautiful)।</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="p-4 border-t border-gray-200 bg-gray-50 text-right">
+                <button id="closeGuideModalBtn" class="px-5 py-2 bg-gray-800 hover:bg-gray-900 text-white font-bold rounded-xl text-sm transition-all">Close Guide</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center py-4 text-xs sm:text-sm text-gray-500 font-semibold">
+        PART 23 — Professional English Grammar & Learning System
+    </footer>
+
     <script>
-        const glow = document.getElementById('glow');
+        // STRICT NAME LIST - ONLY THESE NAMES ARE ALLOWED ACCORDING TO REQUIREMENTS
+        const APPROVED_NAMES = [
+            "Firoz", "Fatiha", "Fatema", "Jui", "Ema", "Rupa", "Moksed", 
+            "Ferjousi", "Jannati", "Mini", "Miraz", "Mujahid", "Milon", 
+            "Hannan", "Joba", "Tanzila", "Rina", "Tania", "Taslima"
+        ];
 
-        // Mouse move interactive glow background
-        window.addEventListener('mousemove', (e) => {
-            glow.style.left = e.clientX + 'px';
-            glow.style.top = e.clientY + 'px';
-        });
+        // Grammar Adjectives Database with Degrees
+        const ADJECTIVES = [
+            { pos: "tall", comp: "taller", sup: "tallest", type: "single", bn: "লম্বা" },
+            { pos: "fast", comp: "faster", sup: "fastest", type: "single", bn: "দ্রুতগামী" },
+            { pos: "wise", comp: "wiser", sup: "wisest", type: "single", bn: "জ্ঞানী" },
+            { pos: "brave", comp: "braver", sup: "bravest", type: "single", bn: "সাহসী" },
+            { pos: "strong", comp: "stronger", sup: "strongest", type: "single", bn: "শক্তিশালী" },
+            { pos: "smart", comp: "smarter", sup: "smartest", type: "single", bn: "চতুর/স্মার্ট" },
+            { pos: "good", comp: "better", sup: "best", type: "irregular", bn: "ভালো" },
+            { pos: "beautiful", comp: "more beautiful", sup: "most beautiful", type: "multi", bn: "সুন্দর" },
+            { pos: "industrious", comp: "more industrious", sup: "most industrious", type: "multi", bn: "পরিশ্রমী" },
+            { pos: "intelligent", comp: "more intelligent", sup: "most intelligent", type: "multi", bn: "বুদ্ধিমান" },
+            { pos: "active", comp: "more active", sup: "most active", type: "multi", bn: "কর্মঠ" },
+            { pos: "brilliant", comp: "more brilliant", sup: "most brilliant", type: "multi", bn: "মেধাবী" }
+        ];
 
-        // Touch move interactive glow background for mobile screens
-        window.addEventListener('touchmove', (e) => {
-            if (e.touches.length > 0) {
-                glow.style.left = e.touches[0].clientX + 'px';
-                glow.style.top = e.touches[0].clientY + 'px';
+        // Global State Management
+        let history = [];
+        let currentIndex = -1;
+        let score = 0;
+        let streak = 0;
+        let attempted = 0;
+
+        // Helper Functions
+        function getRandomItem(arr) {
+            return arr[Math.floor(Math.random() * arr.length)];
+        }
+
+        function getRandomTwoNames() {
+            let n1 = getRandomItem(APPROVED_NAMES);
+            let n2 = getRandomItem(APPROVED_NAMES);
+            while (n1 === n2) {
+                n2 = getRandomItem(APPROVED_NAMES);
             }
+            return { name1: n1, name2: n2 };
+        }
+
+        function shuffleArray(array) {
+            let arr = [...array];
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        // Generator Engine: Infinite dynamic generator logic based on grammar templates
+        function generateQuestion() {
+            const templateTypes = [
+                "POS_TO_COMP",
+                "SUPER_TO_POS",
+                "COMP_TO_SUPER",
+                "ADJECTIVE_FORM",
+                "IDENTIFY_DEGREE",
+                "VERY_FEW_ONE_OF"
+            ];
+
+            const type = getRandomItem(templateTypes);
+            const { name1, name2 } = getRandomTwoNames();
+            const adj = getRandomItem(ADJECTIVES);
+
+            let category = "";
+            let enQ = "";
+            let bnQ = "";
+            let options = [];
+            let correctOption = "";
+            let explanation = "";
+
+            if (type === "POS_TO_COMP") {
+                category = "Transformation (Positive → Comparative)";
+                enQ = `Convert to Comparative Degree: "${name1} is as ${adj.pos} as ${name2}."`;
+                bnQ = `(${name2} এর মতো ${name1} ও ${adj.bn} - বাক্যটিকে Comparative Degree-তে রূপান্তর করুন।)`;
+                
+                correctOption = `${name2} is not ${adj.comp} than ${name1}.`;
+                options = [
+                    correctOption,
+                    `${name2} is ${adj.comp} than ${name1}.`,
+                    `${name1} is not more ${adj.pos} than ${name2}.`,
+                    `${name2} is the ${adj.sup} than ${name1}.`
+                ];
+
+                explanation = `Positive-এ Affirmative ("as...as") থাকলে Comparative করার সময় বাক্যটিকে Negative করতে হয় এবং Subject দুটি অদলবদল হয়। তাই সঠিক রূপ: "${correctOption}"।`;
+            
+            } else if (type === "SUPER_TO_POS") {
+                category = "Transformation (Superlative → Positive)";
+                enQ = `Convert to Positive Degree: "${name1} is the ${adj.sup} student in the class."`;
+                bnQ = `(${name1} ক্লাসের সবচেয়ে ${adj.bn} শিক্ষার্থী - বাক্যটিকে Positive Degree-তে রূপান্তর করুন।)`;
+
+                correctOption = `No other student in the class is as ${adj.pos} as ${name1}.`;
+                options = [
+                    correctOption,
+                    `Very few students in the class are as ${adj.pos} as ${name1}.`,
+                    `${name1} is more ${adj.pos} than any other student.`,
+                    `No other student in the class is ${adj.comp} than ${name1}.`
+                ];
+
+                explanation = `সাধারণ Superlative Degree ("the + superlative")-কে Positive করতে বাক্যের শুরুতে "No other + Singular Noun" বসে এবং শেষে "as + positive form + as" বসে।`;
+
+            } else if (type === "COMP_TO_SUPER") {
+                category = "Transformation (Comparative → Superlative)";
+                enQ = `Convert to Superlative Degree: "${name1} is ${adj.comp} than any other boy in the village."`;
+                bnQ = `(${name1} গ্রামের অন্য যেকোনো ছেলের চেয়ে বেশি ${adj.bn} - বাক্যটিকে Superlative Degree-তে রূপান্তর করুন।)`;
+
+                correctOption = `${name1} is the ${adj.sup} boy in the village.`;
+                options = [
+                    correctOption,
+                    `${name1} is one of the ${adj.sup} boys in the village.`,
+                    `No other boy in the village is as ${adj.pos} as ${name1}.`,
+                    `${name1} is more ${adj.sup} boy in the village.`
+                ];
+
+                explanation = `Comparative Degree-তে "than any other" থাকলে Superlative করার সময় Subject + Verb + the + Superlative form + Singular Noun বসে।`;
+
+            } else if (type === "ADJECTIVE_FORM") {
+                category = "Adjective Selection";
+                enQ = `Select the correct form of adjective: "${name1} is _____ than ${name2}."`;
+                bnQ = `(${name1}, ${name2} এর চেয়ে বেশি ${adj.bn} — শূন্যস্থানে সঠিক Adjective ফর্মটি বসান।)`;
+
+                correctOption = adj.comp;
+                let wrong1 = adj.pos;
+                let wrong2 = adj.sup;
+                let wrong3 = adj.type === "multi" ? `${adj.pos}er` : `more ${adj.pos}`;
+
+                options = [correctOption, wrong1, wrong2, wrong3];
+                explanation = `দুইজন ব্যক্তির (${name1} এবং ${name2}) মধ্যে তুলনা করতে "than" ব্যবহৃত হয়েছে। তাই এখানে Comparative Degree (${adj.comp}) বসবে।`;
+
+            } else if (type === "IDENTIFY_DEGREE") {
+                category = "Degree Identification";
+                const choice = getRandomItem(["POS", "COMP", "SUPER"]);
+                let sentence = "";
+                let degreeType = "";
+
+                if (choice === "POS") {
+                    sentence = `No other girl is as ${adj.pos} as ${name1}.`;
+                    degreeType = "Positive Degree";
+                    explanation = `বাক্যে "No other ... as + Adjective (${adj.pos}) + as" কাঠামো থাকায় এটি Positive Degree।`;
+                } else if (choice === "COMP") {
+                    sentence = `${name1} is ${adj.comp} than ${name2}.`;
+                    degreeType = "Comparative Degree";
+                    explanation = `বাক্যে Comparative Adjective (${adj.comp}) এবং "than" থাকার কারণে এটি Comparative Degree।`;
+                } else {
+                    sentence = `${name1} is the ${adj.sup} student.`;
+                    degreeType = "Superlative Degree";
+                    explanation = `বাক্যে "the + Superlative Adjective (${adj.sup})" ব্যবহৃত হওয়ার কারণে এটি Superlative Degree।`;
+                }
+
+                enQ = `Identify the degree of the sentence: "${sentence}"`;
+                bnQ = `(প্রদত্ত বাক্যটি কোন Degree-তে রয়েছে তা চিহ্নিত করুন।)`;
+
+                correctOption = degreeType;
+                options = ["Positive Degree", "Comparative Degree", "Superlative Degree", "None of these"];
+
+            } else if (type === "VERY_FEW_ONE_OF") {
+                category = "Transformation (One of the...)";
+                enQ = `Convert to Positive Degree: "${name1} is one of the ${adj.sup} girls in the school."`;
+                bnQ = `(${name1} স্কুলেই অন্যতম ${adj.bn} মেয়ে - বাক্যটিকে Positive Degree-তে রূপান্তর করুন।)`;
+
+                correctOption = `Very few girls in the school are as ${adj.pos} as ${name1}.`;
+                options = [
+                    correctOption,
+                    `No other girl in the school is as ${adj.pos} as ${name1}.`,
+                    `Very few girls in the school is as ${adj.comp} as ${name1}.`,
+                    `${name1} is ${adj.comp} than any other girl.`
+                ];
+
+                explanation = `Superlative-এ "one of the" থাকলে Positive করার সময় বাক্যের শুরুতে "Very few" বসে এবং এরপর Plural Noun (girls) ও Plural Verb (are) ব্যবহৃত হয়।`;
+            }
+
+            // Ensure unique option list and shuffle
+            options = Array.from(new Set(options));
+            while (options.length < 4) {
+                options.push(`${adj.pos} comparative extra option`);
+            }
+            options = shuffleArray(options);
+
+            return {
+                category,
+                enQ,
+                bnQ,
+                options,
+                correctOption,
+                explanation,
+                userAnswer: null,
+                isCorrect: false
+            };
+        }
+
+        function renderCurrentQuestion(direction = "next") {
+            const slideContainer = document.getElementById("slideContainer");
+            
+            // Animation Slide Out
+            const exitClass = direction === "next" ? "slide-exit-next" : "slide-exit-prev";
+            const enterClass = direction === "next" ? "slide-enter-next" : "slide-enter-prev";
+
+            slideContainer.classList.remove("slide-active");
+            slideContainer.classList.add(exitClass);
+
+            setTimeout(() => {
+                const q = history[currentIndex];
+
+                // Update UI elements
+                document.getElementById("questionCategory").innerText = q.category;
+                document.getElementById("questionNumber").innerText = `Question #${currentIndex + 1}`;
+                document.getElementById("enQuestion").innerText = q.enQ;
+                document.getElementById("bnQuestion").innerText = q.bnQ;
+
+                // Render Options
+                const optionsGrid = document.getElementById("optionsGrid");
+                optionsGrid.innerHTML = "";
+
+                q.options.forEach((optText, idx) => {
+                    const btn = document.createElement("button");
+                    btn.className = "option-btn p-4 rounded-xl text-left font-medium text-gray-800 flex items-center justify-between transition-all";
+                    
+                    const optionLetter = String.fromCharCode(65 + idx);
+                    btn.innerHTML = `
+                        <span class="flex items-center gap-3">
+                            <span class="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center font-bold text-gray-600 text-sm border border-gray-200">${optionLetter}</span>
+                            <span>${optText}</span>
+                        </span>
+                        <span class="icon-holder"></span>
+                    `;
+
+                    // If question already answered
+                    if (q.userAnswer !== null) {
+                        btn.disabled = true;
+                        if (optText === q.correctOption) {
+                            btn.classList.add("show-correct");
+                            btn.querySelector(".icon-holder").innerHTML = `✓`;
+                        }
+                        if (q.userAnswer === optText && !q.isCorrect) {
+                            btn.classList.add("selected-wrong");
+                            btn.querySelector(".icon-holder").innerHTML = `✗`;
+                        }
+                    } else {
+                        btn.onclick = () => handleAnswerSelect(optText);
+                    }
+
+                    optionsGrid.appendChild(btn);
+                });
+
+                // Explanation Visibility
+                const expBox = document.getElementById("explanationBox");
+                if (q.userAnswer !== null) {
+                    document.getElementById("explanationText").innerText = q.explanation;
+                    expBox.classList.remove("hidden");
+                } else {
+                    expBox.classList.add("hidden");
+                }
+
+                // Update Navigation state
+                document.getElementById("prevBtn").disabled = (currentIndex === 0);
+
+                // Prepare for Slide In
+                slideContainer.classList.remove(exitClass);
+                slideContainer.classList.add(enterClass);
+
+                // Force reflow
+                void slideContainer.offsetWidth;
+
+                slideContainer.classList.remove(enterClass);
+                slideContainer.classList.add("slide-active");
+
+            }, 250);
+        }
+
+        function handleAnswerSelect(selectedOption) {
+            const q = history[currentIndex];
+            if (q.userAnswer !== null) return; // Prevent re-answers
+
+            q.userAnswer = selectedOption;
+            q.isCorrect = (selectedOption === q.correctOption);
+
+            attempted++;
+            if (q.isCorrect) {
+                score++;
+                streak++;
+            } else {
+                streak = 0;
+            }
+
+            updateStats();
+            renderCurrentQuestion("none");
+        }
+
+        function updateStats() {
+            document.getElementById("statAttempted").innerText = attempted;
+            document.getElementById("statScore").innerText = score;
+            document.getElementById("statStreak").innerText = `${streak} 🔥`;
+            
+            const acc = attempted > 0 ? Math.round((score / attempted) * 100) : 0;
+            document.getElementById("statAccuracy").innerText = `${acc}%`;
+        }
+
+        function nextQuestion() {
+            if (currentIndex === history.length - 1) {
+                // Generate a new infinite question dynamically
+                history.push(generateQuestion());
+            }
+            currentIndex++;
+            renderCurrentQuestion("next");
+        }
+
+        function prevQuestion() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                renderCurrentQuestion("prev");
+            }
+        }
+
+        // Modal Handlers
+        const guideModal = document.getElementById("guideModal");
+        const guideBtn = document.getElementById("guideBtn");
+        const closeGuideBtn = document.getElementById("closeGuideBtn");
+        const closeGuideModalBtn = document.getElementById("closeGuideModalBtn");
+
+        function openModal() {
+            guideModal.classList.remove("opacity-0", "pointer-events-none");
+            guideModal.classList.add("opacity-100");
+        }
+
+        function closeModal() {
+            guideModal.classList.remove("opacity-100");
+            guideModal.classList.add("opacity-0", "pointer-events-none");
+        }
+
+        guideBtn.addEventListener("click", openModal);
+        closeGuideBtn.addEventListener("click", closeModal);
+        closeGuideModalBtn.addEventListener("click", closeModal);
+        guideModal.addEventListener("click", (e) => {
+            if (e.target === guideModal) closeModal();
         });
+
+        // Event Listeners for Navigation Buttons
+        document.getElementById("nextBtn").addEventListener("click", nextQuestion);
+        document.getElementById("prevBtn").addEventListener("click", prevQuestion);
+
+        // Keyboard Shortcut Controls
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "ArrowRight") nextQuestion();
+            if (e.key === "ArrowLeft") prevQuestion();
+        });
+
+        // Initialize First Dynamic Question on Window Load
+        window.onload = function() {
+            history.push(generateQuestion());
+            currentIndex = 0;
+            renderCurrentQuestion("next");
+        };
     </script>
 </body>
 </html>

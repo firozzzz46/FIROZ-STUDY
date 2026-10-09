@@ -1,128 +1,376 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon</title>
-
-    <!-- Google Fonts for Bengali & English -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Inter:wght@700;900&display=swap" rel="stylesheet">
-
-    <!-- Tailwind CSS -->
+    <title>PART 24 - Conditional Sentences | Infinite Practice Engine</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-
+    <!-- Google Fonts for Kalpurush & Times New Roman -->
+    <link href="https://fonts.googleapis.com/css2?family=Kalpurush&family=Times+New+Roman:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Hind Siliguri', 'Inter', sans-serif;
-            background-color: #030712;
-            overflow: hidden;
+            font-family: 'Times New Roman', serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            min-height: 100vh;
         }
-
-        /* Gradient glowing animation on text */
-        .glow-text {
-            background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 50%, #38bdf8 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shine 6s linear infinite;
+        .bengali-text {
+            font-family: 'Kalpurush', sans-serif;
         }
-
-        @keyframes shine {
-            0% { background-position: 0% center; }
-            50% { background-position: 100% center; }
-            100% { background-position: 0% center; }
+        .english-text {
+            font-family: 'Times New Roman', serif;
         }
-
-        /* Keyframes for initial entry: Floating in from below with opacity */
-        @keyframes floatIn {
-            0% {
-                opacity: 0;
-                transform: translateY(40px) scale(0.95);
-                filter: blur(8px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-                filter: blur(0);
-            }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
         }
-
-        /* Continuous subtle float effect once arrived */
-        @keyframes subtleFloat {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-8px);
-            }
+        /* Buttery smooth cubic-bezier transitions */
+        .slide-transition {
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
-
-        /* Animation class for Heading */
-        .animate-heading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards,
-                subtleFloat 6s ease-in-out 1.2s infinite;
+        @keyframes fadeInScale {
+            0% { opacity: 0; transform: translateY(15px) scale(0.98); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
         }
-
-        /* Animation class for Subheading (staggered delay) */
-        .animate-subheading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards,
-                subtleFloat 6s ease-in-out 1.55s infinite;
-            opacity: 0; /* Hidden until animation kicks in */
-        }
-
-        /* Ambient background lighting */
-        .ambient-glow {
-            position: absolute;
-            width: 450px;
-            height: 450px;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(3, 7, 18, 0) 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            transition: left 0.4s ease-out, top 0.4s ease-out;
+        .animate-question {
+            animation: fadeInScale 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
     </style>
 </head>
-<body class="min-h-screen flex items-center justify-center relative select-none px-4">
+<body class="text-gray-800 flex flex-col min-h-screen py-8 px-4 sm:px-6">
 
-    <!-- Ambient glow center element -->
-    <div id="glow" class="ambient-glow top-1/2 left-1/2"></div>
-
-    <!-- Centered minimal content with entry animations -->
-    <main class="text-center z-10 space-y-6 max-w-3xl mx-auto py-8 px-4">
-        
-        <!-- Main English Title -->
-        <h1 class="animate-heading text-5xl sm:text-7xl md:text-8xl font-black tracking-tight glow-text font-['Inter'] drop-shadow-lg">
-            Coming Soon...
+    <header class="max-w-3xl w-full mx-auto text-center mb-8">
+        <div class="inline-block px-4 py-1.5 mb-3 text-xs font-semibold uppercase tracking-wider text-indigo-700 bg-indigo-100 rounded-full">
+            PART 24 • Advanced Grammar Series
+        </div>
+        <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 english-text">
+            Conditional Sentences Masterclass
         </h1>
-
-        <!-- Bengali Subheading -->
-        <p class="animate-subheading text-xl sm:text-3xl md:text-4xl font-semibold text-emerald-400/90 leading-relaxed tracking-wide drop-shadow">
-            ইনশাআল্লাহ, খুব শীঘ্রই ডাটা যোগ করা হবে।
+        <p class="mt-2 text-slate-600 text-base bengali-text">
+            শর্তমূলক বাক্যের নিয়ম ও শূন্য, প্রথম, দ্বিতীয়, তৃতীয় এবং মিশ্র কন্ডিশনালের অসীম প্র্যাকটিস সিস্টেম।
         </p>
+    </header>
 
+    <main class="max-w-3xl w-full mx-auto flex-grow flex flex-col justify-center">
+        
+        <!-- Dashboard / Stats Bar -->
+        <div class="flex flex-wrap items-center justify-between gap-4 mb-6 px-2">
+            <div class="flex items-center gap-3">
+                <span class="px-3 py-1 bg-white/85 shadow-sm rounded-lg text-sm font-medium text-slate-700 border border-slate-200">
+                    Question: <span id="current-q-num" class="font-bold text-indigo-600">1</span>
+                </span>
+                <span class="px-3 py-1 bg-white/85 shadow-sm rounded-lg text-sm font-medium text-slate-700 border border-slate-200">
+                    Score: <span id="current-score" class="font-bold text-emerald-600">0</span>
+                </span>
+            </div>
+            <div class="flex items-center gap-2">
+                <span class="text-xs uppercase font-bold text-slate-500 tracking-wider">Difficulty Level:</span>
+                <select id="difficulty-select" class="bg-white/85 border border-slate-200 text-slate-700 text-sm rounded-lg px-3 py-1 focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-sm">
+                    <option value="all">Mixed Levels</option>
+                    <option value="zero">Zero Conditional</option>
+                    <option value="first">First Conditional</option>
+                    <option value="second">Second Conditional</option>
+                    <option value="third">Third Conditional</option>
+                    <option value="mixed">Mixed Conditional</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Glassmorphic Question Card -->
+        <div id="quiz-card" class="glass-card rounded-2xl p-6 sm:p-8 mb-6 slide-transition animate-question relative overflow-hidden">
+            
+            <!-- Category Badge -->
+            <div class="flex justify-between items-center mb-4">
+                <span id="condition-type-badge" class="px-2.5 py-1 text-xs font-bold uppercase tracking-wider bg-indigo-50 text-indigo-700 rounded-md border border-indigo-100">
+                    Zero Conditional
+                </span>
+                <span id="streak-counter" class="text-xs font-semibold text-amber-600 flex items-center gap-1">
+                    🔥 Streak: <span id="streak-num">0</span>
+                </span>
+            </div>
+
+            <!-- Question text (English 18px+ & Bengali translation) -->
+            <div class="mb-6">
+                <h2 id="question-text" class="text-xl sm:text-2xl font-semibold text-slate-900 english-text leading-snug mb-2">
+                    <!-- Dynamic Question Loaded Here -->
+                </h2>
+                <p id="question-bengali" class="text-slate-600 bengali-text text-base italic">
+                    <!-- Dynamic Bengali Meaning Loaded Here -->
+                </p>
+            </div>
+
+            <!-- Options Container -->
+            <div id="options-container" class="space-y-3 mb-6">
+                <!-- Dynamic Options Loaded Here -->
+            </div>
+
+            <!-- Explanation Box (Hidden initially) -->
+            <div id="explanation-box" class="hidden mt-6 p-4 rounded-xl bg-slate-50 border border-slate-200 transition-all duration-300">
+                <h3 class="text-sm font-bold uppercase tracking-wide text-slate-700 mb-1 flex items-center gap-2 bengali-text">
+                    💡 বিস্তারিত ব্যাখ্যা (Detailed Explanation):
+                </h3>
+                <p id="explanation-text" class="text-slate-700 bengali-text text-base leading-relaxed">
+                    <!-- Dynamic Explanation Loaded Here -->
+                </p>
+            </div>
+        </div>
+
+        <!-- Navigation Controls -->
+        <div class="flex items-center justify-between gap-4 px-2">
+            <button id="prev-btn" onclick="prevQuestion()" class="px-5 py-2.5 rounded-xl bg-white/80 hover:bg-white text-slate-700 font-medium border border-slate-200 shadow-sm transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-2">
+                ← Previous
+            </button>
+            <button id="next-btn" onclick="nextQuestion()" class="px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-medium shadow-md hover:shadow-lg transition-all duration-200 flex items-center gap-2">
+                Next Question →
+            </button>
+        </div>
     </main>
 
+    <footer class="max-w-3xl w-full mx-auto text-center mt-12 text-slate-500 text-xs sm:text-sm bengali-text">
+        <p>Conditional Sentences Infinite Practice Engine •Designed with High-Standard Grammar Rules & Glassmorphism UI</p>
+    </footer>
+
     <script>
-        const glow = document.getElementById('glow');
+        // Permitted names pool ONLY
+        const ALLOWED_NAMES = [
+            "Firoz", "Fatiha", "Fatema", "Jui", "Ema", "Rupa", "Moksed", 
+            "Ferjousi", "Jannati", "Mini", "Miraz", "Mujahid", "Milon", 
+            "Hannan", "Joba", "Tanzila", "Rina", "Tania", "Taslima"
+        ];
 
-        // Mouse move interactive glow background
-        window.addEventListener('mousemove', (e) => {
-            glow.style.left = e.clientX + 'px';
-            glow.style.top = e.clientY + 'px';
-        });
+        function getRandomName() {
+            return ALLOWED_NAMES[Math.floor(Math.random() * ALLOWED_NAMES.length)];
+        }
 
-        // Touch move interactive glow background for mobile screens
-        window.addEventListener('touchmove', (e) => {
-            if (e.touches.length > 0) {
-                glow.style.left = e.touches[0].clientX + 'px';
-                glow.style.top = e.touches[0].clientY + 'px';
+        // Quiz State
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let streak = 0;
+        let questionsHistory = [];
+        let selectedAnswerIndex = null;
+        let isAnswered = false;
+
+        // Question Templates & Generator Engine
+        const conditionalTypes = ['zero', 'first', 'second', 'third', 'mixed'];
+
+        function generateQuestion(forcedType = 'all') {
+            let type = forcedType;
+            if (type === 'all') {
+                type = conditionalTypes[Math.floor(Math.random() * conditionalTypes.length)];
             }
+
+            const n1 = getRandomName();
+            const n2 = getRandomName();
+
+            let qObj = {};
+
+            switch(type) {
+                case 'zero':
+                    {
+                        const actions = [
+                            { en: `If you heat ice, it _____`, bn: `যদি আপনি বরফ গরম করেন, তবে এটি গলে যায়।`, ans: `melts`, opts: [`melted`, `will melt`, `melts`, `would melt`], exp: `জিরো কন্ডিশনাল (Zero Conditional)-এ চিরন্তন সত্য বা বৈজ্ঞানিক নিয়ম বোঝাতে 'If + Present Simple' এর সাথে অপর ক্লজটিও 'Present Simple' tense হয়। তাই সঠিক উত্তর 'melts' হবে।` },
+                            { en: `If ${n1} mixes red and blue, ${n1 === 'Fatiha' || n1 === 'Fatema' || n1 === 'Jui' || n1 === 'Ema' || n1 === 'Rupa' || n1 === 'Ferjousi' || n1 === 'Jannati' || n1 === 'Mini' || n1 === 'Joba' || n1 === 'Tanzila' || n1 === 'Rina' || n1 === 'Tania' || n1 === 'Taslima' ? 'she' : 'he'} _____ purple.`, bn: `যদি ${n1} লাল এবং নীল মেশায়, তবে সে বেগুনি রং পায়।`, ans: `gets`, opts: [`got`, `will get`, `gets`, `would get`], exp: `বৈজ্ঞানিক সত্য বা সাধারণ অভ্যাসের ক্ষেত্রে জিরো কন্ডিশনালে উভয় পাশে প্রেজেন্ট ইনডিফিনিট টেন্স বসে। এখানে ${n1} থার্ড পারসন সিঙ্গুলার হওয়ায় মূল ভার্বের সাথে 's' যুক্ত হয়ে 'gets' হয়েছে।` }
+                        ];
+                        qObj = actions[Math.floor(Math.random() * actions.length)];
+                        qObj.category = "Zero Conditional (Universal Truths)";
+                    }
+                    break;
+
+                case 'first':
+                    {
+                        const actions = [
+                            { en: `If ${n1} studies hard, ${n1} _____ the exam.`, bn: `যদি ${n1} কঠোর পড়াশোনা করে, তবে সে পরীক্ষায় পাস করবে।`, ans: `will pass`, opts: [`passed`, `would pass`, `will pass`, `passes`], exp: `ফার্স্ট কন্ডিশনাল (First Conditional) গঠনরীতি হলো: 'If + Present Simple' + 'Future Simple (will + base verb)'। তাই এখানে 'will pass' সঠিক উত্তর।` },
+                            { en: `If it rains tomorrow, ${n1} _____ stay at home.`, bn: `যদি আগামীকাল বৃষ্টি হয়, তবে ${n1} বাড়িতে থাকবে।`, ans: `will`, opts: [`would`, `will`, `did`, `had`], exp: `সম্ভাব্য ভবিষ্যতের ফলাফল বোঝাতে First Conditional-এর প্রধান ক্লজে 'will' ব্যবহার করা হয়।` }
+                        ];
+                        qObj = actions[Math.floor(Math.random() * actions.length)];
+                        qObj.category = "First Conditional (Real Future Possibility)";
+                    }
+                    break;
+
+                case 'second':
+                    {
+                        const actions = [
+                            { en: `If ${n1} were a bird, ${n1} _____ fly in the sky.`, bn: `যদি ${n1} পাখি হতো, তবে সে আকাশে উড়ত।`, ans: `would`, opts: [`will`, `would`, `can`, `shall`], exp: `সেকেন্ড কন্ডিশনাল (Second Conditional) অবাস্তব বা কাল্পনিক বর্তমান অবস্থা বোঝায়। এর গঠন: 'If + Past Simple' + 'would/could/might + base verb'। তাই এখানে 'would' সঠিক।` },
+                            { en: `If ${n1} had a million dollars, ${n1} _____ help the poor.`, bn: `যদি ${n1} এর এক মিলিয়ন ডলার থাকত, তবে সে গরিবদের সাহায্য করত।`, ans: `would help`, opts: [`will help`, `helps`, `would help`, `helped`], exp: `অবাস্তব বর্তমান কল্পনা বোঝাতে 'If + Past Simple' (had) থাকলে পরবর্তী অংশে 'would + base verb' (would help) বসে।` }
+                        ];
+                        qObj = actions[Math.floor(Math.random() * actions.length)];
+                        qObj.category = "Second Conditional (Hypothetical Situations)";
+                    }
+                    break;
+
+                case 'third':
+                    {
+                        const actions = [
+                            { en: `If ${n1} had invited ${n2}, ${n2} _____ attended the party.`, bn: `যদি ${n1} ${n2}-কে আমন্ত্রণ জানাত, তবে ${n2} পার্টিতে যোগ দিত।`, ans: `would have`, opts: [`would have`, `will have`, `had`, `would`], exp: `থার্ড কন্ডিশনাল (Third Conditional) অতীতের অপূর্ণ বা অবাস্তব কল্পনা প্রকাশ করে। এর গঠন: 'If + Past Perfect (had + V3)' + 'would have / could have / might have + V3'। তাই সঠিক উত্তর 'would have'।` },
+                            { en: `If ${n1} had studied diligently, ${n1} _____ passed the test.`, bn: `যদি ${n1} মনোযোগ সহকারে পড়াশোনা করত, তবে সে পরীক্ষায় পাস করত।`, ans: `would have passed`, opts: [`will pass`, `would pass`, `would have passed`, `passed`], exp: `অতীতে ঘটে যাওয়া কোনো কাজের বিপরীত ফলাফল প্রকাশের নিয়ম অনুযায়ী 'had studied' এর সাথে 'would have passed' বসবে।` }
+                        ];
+                        qObj = actions[Math.floor(Math.random() * actions.length)];
+                        qObj.category = "Third Conditional (Past Unreal Condition)";
+                    }
+                    break;
+
+                case 'mixed':
+                    {
+                        const actions = [
+                            { en: `If ${n1} had won the lottery last year, ${n1} _____ rich today.`, bn: `যদি ${n1} গত বছর লটারি জিতত, তবে সে আজ ধনী হতো।`, ans: `would be`, opts: [`would have been`, `would be`, `will be`, `is`], exp: `এটি মিশ্র কন্ডিশনাল (Mixed Conditional)। অতীতের শর্ত ('If + Past Perfect') এর প্রভাবে বর্তমানের ফল ('would + base verb') বোঝাতে 'would be' ব্যবহৃত হয়েছে।` },
+                            { en: `If ${n1} were more careful, ${n1} _____ made that mistake yesterday.`, bn: `যদি ${n1} আরও সতর্ক হতো, তবে সে গতকাল ওই ভুলটি করত না।`, ans: `would not have`, opts: [`would not`, `would not have`, `will not`, `did not`], exp: `বর্তমান অবস্থার ফলস্বরূপ অতীতের ঘটনার ওপর প্রভাব বোঝাতে সেকেন্ড ও থার্ড কন্ডিশনালের মিশ্রণ ঘটে। এখানে সঠিক উত্তর 'would not have'।` }
+                        ];
+                        qObj = actions[Math.floor(Math.random() * actions.length)];
+                        qObj.category = "Mixed Conditional (Past & Present Mix)";
+                    }
+                    break;
+            }
+
+            // Shuffle options to randomize correct answer placement
+            let shuffledOpts = [...qObj.opts];
+            // Ensure correct answer is present
+            if (!shuffledOpts.includes(qObj.ans)) {
+                shuffledOpts[0] = qObj.ans;
+            }
+            // Shuffle array
+            shuffledOpts.sort(() => Math.random() - 0.5);
+            const correctIndex = shuffledOpts.indexOf(qObj.ans);
+
+            return {
+                question: qObj.en,
+                bengali: qObj.bn,
+                category: qObj.category,
+                options: shuffledOpts,
+                correct: correctIndex,
+                explanation: qObj.exp
+            };
+        }
+
+        // Initialize question history cache
+        function getQuestion(index) {
+            if (index < questionsHistory.length) {
+                return questionsHistory[index];
+            }
+            const diff = document.getElementById('difficulty-select').value;
+            const newQ = generateQuestion(diff);
+            questionsHistory.push(newQ);
+            return newQ;
+        }
+
+        // DOM Elements
+        const cardEl = document.getElementById('quiz-card');
+        const qNumEl = document.getElementById('current-q-num');
+        const scoreEl = document.getElementById('current-score');
+        const streakNumEl = document.getElementById('streak-num');
+        const badgeEl = document.getElementById('condition-type-badge');
+        const questionTextEl = document.getElementById('question-text');
+        const questionBengaliEl = document.getElementById('question-bengali');
+        const optionsContainerEl = document.getElementById('options-container');
+        const explanationBoxEl = document.getElementById('explanation-box');
+        const explanationTextEl = document.getElementById('explanation-text');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const difficultySelect = document.getElementById('difficulty-select');
+
+        difficultySelect.addEventListener('change', () => {
+            questionsHistory = [];
+            currentQuestionIndex = 0;
+            score = 0;
+            streak = 0;
+            scoreEl.textContent = score;
+            streakNumEl.textContent = streak;
+            loadQuestion();
         });
+
+        function loadQuestion() {
+            isAnswered = false;
+            selectedAnswerIndex = null;
+            explanationBoxEl.classList.add('hidden');
+            
+            // Trigger smooth transition animation
+            cardEl.classList.remove('animate-question');
+            void cardEl.offsetWidth; // Trigger reflow
+            cardEl.classList.add('animate-question');
+
+            const q = getQuestion(currentQuestionIndex);
+            qNumEl.textContent = currentQuestionIndex + 1;
+            badgeEl.textContent = q.category;
+            questionTextEl.textContent = q.question;
+            questionBengaliEl.textContent = q.bengali;
+
+            optionsContainerEl.innerHTML = '';
+            q.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = `w-full text-left px-5 py-3.5 rounded-xl border border-slate-200/80 bg-white/70 hover:bg-white text-slate-800 font-medium transition-all duration-200 shadow-sm flex items-center justify-between group cursor-pointer`;
+                btn.innerHTML = `
+                    <span class="flex items-center gap-3">
+                        <span class="w-7 h-7 rounded-lg bg-slate-100 group-hover:bg-indigo-100 group-hover:text-indigo-600 flex items-center justify-center text-xs font-bold text-slate-600 transition-colors">
+                            ${String.fromCharCode(65 + idx)}
+                        </span>
+                        <span class="text-base english-text">${opt}</span>
+                    </span>
+                `;
+                btn.onclick = () => selectOption(idx);
+                optionsContainerEl.appendChild(btn);
+            });
+
+            prevBtn.disabled = currentQuestionIndex === 0;
+            nextBtn.textContent = "Next Question →";
+        }
+
+        function selectOption(idx) {
+            if (isAnswered) return;
+            isAnswered = true;
+            selectedAnswerIndex = idx;
+
+            const q = getQuestion(currentQuestionIndex);
+            const buttons = optionsContainerEl.getElementsByTagName('button');
+
+            for (let i = 0; i < buttons.length; i++) {
+                buttons[i].disabled = true;
+                if (i === q.correct) {
+                    buttons[i].classList.remove('bg-white/70', 'border-slate-200');
+                    buttons[i].classList.add('bg-emerald-50', 'border-emerald-300', 'text-emerald-900', 'shadow-sm');
+                    buttons[i].querySelector('span span:first-child').classList.replace('bg-slate-100', 'bg-emerald-200');
+                    buttons[i].querySelector('span span:first-child').classList.replace('text-slate-600', 'text-emerald-800');
+                } else if (i === idx) {
+                    buttons[i].classList.remove('bg-white/70', 'border-slate-200');
+                    buttons[i].classList.add('bg-rose-50', 'border-rose-300', 'text-rose-900');
+                    buttons[i].querySelector('span span:first-child').classList.replace('bg-slate-100', 'bg-rose-200');
+                    buttons[i].querySelector('span span:first-child').classList.replace('text-slate-600', 'text-rose-800');
+                } else {
+                    buttons[i].style.opacity = '0.5';
+                }
+            }
+
+            if (idx === q.correct) {
+                score += 10;
+                streak += 1;
+                scoreEl.textContent = score;
+                streakNumEl.textContent = streak;
+            } else {
+                streak = 0;
+                streakNumEl.textContent = streak;
+            }
+
+            explanationTextEl.textContent = q.explanation;
+            explanationBoxEl.classList.remove('hidden');
+        }
+
+        function nextQuestion() {
+            currentQuestionIndex++;
+            loadQuestion();
+        }
+
+        function prevQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                loadQuestion();
+            }
+        }
+
+        // Initialize first question on window load
+        window.onload = function() {
+            loadQuestion();
+        };
     </script>
 </body>
 </html>

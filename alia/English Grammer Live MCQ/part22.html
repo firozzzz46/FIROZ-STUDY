@@ -1,128 +1,966 @@
+
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PART 22 - Narration Infinity MCQ</title>
 
-    <!-- Google Fonts for Bengali & English -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Inter:wght@700;900&display=swap" rel="stylesheet">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+:root {
+  --primary: #5267dc;
+  --primary-dark: #3849b8;
+  --green: #16845b;
+  --red: #d94848;
+  --text: #263248;
+  --muted: #64748b;
+  --glass: rgba(255,255,255,.78);
+  --border: rgba(100,116,139,.17);
+}
 
-    <style>
-        body {
-            font-family: 'Hind Siliguri', 'Inter', sans-serif;
-            background-color: #030712;
-            overflow: hidden;
-        }
+* {
+  box-sizing: border-box;
+}
 
-        /* Gradient glowing animation on text */
-        .glow-text {
-            background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 50%, #38bdf8 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shine 6s linear infinite;
-        }
+body {
+  margin: 0;
+  min-height: 100vh;
+  padding: 24px 16px 40px;
+  color: var(--text);
+  font-family: "Times New Roman", "Kalpurush", serif;
+  font-size: 19px;
+  background:
+    radial-gradient(ellipse at 10% 10%, #e9efff 0%, transparent 40%),
+    radial-gradient(ellipse at 90% 85%, #e7f8f0 0%, transparent 40%),
+    linear-gradient(135deg, #fff, #f5f7fc, #fff);
+  background-attachment: fixed;
+}
 
-        @keyframes shine {
-            0% { background-position: 0% center; }
-            50% { background-position: 100% center; }
-            100% { background-position: 0% center; }
-        }
+button {
+  font: inherit;
+}
 
-        /* Keyframes for initial entry: Floating in from below with opacity */
-        @keyframes floatIn {
-            0% {
-                opacity: 0;
-                transform: translateY(40px) scale(0.95);
-                filter: blur(8px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-                filter: blur(0);
-            }
-        }
+.app {
+  max-width: 900px;
+  margin: auto;
+}
 
-        /* Continuous subtle float effect once arrived */
-        @keyframes subtleFloat {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-8px);
-            }
-        }
+.header {
+  text-align: center;
+  padding: 24px 12px 28px;
+  animation: revealDown .9s cubic-bezier(.16,1,.3,1) both;
+}
 
-        /* Animation class for Heading */
-        .animate-heading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards,
-                subtleFloat 6s ease-in-out 1.2s infinite;
-        }
+.badge {
+  display: inline-block;
+  padding: 8px 15px;
+  border-radius: 30px;
+  color: var(--primary-dark);
+  background: #e9edff;
+  font: 600 14px Arial, sans-serif;
+  letter-spacing: 1px;
+}
 
-        /* Animation class for Subheading (staggered delay) */
-        .animate-subheading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards,
-                subtleFloat 6s ease-in-out 1.55s infinite;
-            opacity: 0; /* Hidden until animation kicks in */
-        }
+h1 {
+  margin: 18px 0 8px;
+  font-size: clamp(27px, 5vw, 42px);
+}
 
-        /* Ambient background lighting */
-        .ambient-glow {
-            position: absolute;
-            width: 450px;
-            height: 450px;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(3, 7, 18, 0) 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            transition: left 0.4s ease-out, top 0.4s ease-out;
-        }
-    </style>
+.subtitle {
+  color: var(--muted);
+  margin: 0;
+  font-size: 19px;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.stat {
+  padding: 16px 8px;
+  text-align: center;
+  background: var(--glass);
+  border: 1px solid white;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px #273a6010;
+  backdrop-filter: blur(15px);
+}
+
+.stat-label {
+  display: block;
+  color: var(--muted);
+  font: 14px Arial, sans-serif;
+  margin-bottom: 9px;
+}
+
+.stat-value {
+  font: bold 25px "Times New Roman", serif;
+}
+
+.progress-track {
+  height: 8px;
+  overflow: hidden;
+  border-radius: 20px;
+  background: #e2e7f1;
+  margin: 0 2px 22px;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #6978ed, #44c49a);
+  transition: width .7s cubic-bezier(.16,1,.3,1);
+}
+
+.card {
+  padding: clamp(19px, 4vw, 34px);
+  border: 1px solid rgba(255,255,255,.95);
+  border-radius: 28px;
+  background: var(--glass);
+  box-shadow:
+    0 20px 65px rgba(41,55,94,.09),
+    inset 0 1px 0 rgba(255,255,255,.8);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+}
+
+.question-content {
+  animation: questionEnter .8s cubic-bezier(.16,1,.3,1) both;
+}
+
+.question-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.topic-tag {
+  color: var(--primary-dark);
+  background: #edf0ff;
+  border-radius: 10px;
+  padding: 8px 12px;
+  font: 600 14px Arial, sans-serif;
+}
+
+.question-number {
+  color: var(--muted);
+  font: 15px Arial, sans-serif;
+}
+
+.question {
+  font-size: clamp(21px, 3vw, 25px);
+  line-height: 1.55;
+  margin: 0 0 10px;
+  overflow-wrap: anywhere;
+}
+
+.translation {
+  color: #56657a;
+  font-family: "Kalpurush", "Hind Siliguri", sans-serif;
+  font-size: 19px;
+  line-height: 1.8;
+  margin: 0 0 26px;
+}
+
+.options {
+  display: grid;
+  gap: 13px;
+}
+
+.option {
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+  width: 100%;
+  padding: 16px;
+  text-align: left;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: rgba(255,255,255,.8);
+  cursor: pointer;
+  line-height: 1.55;
+  transition:
+    transform .3s cubic-bezier(.16,1,.3,1),
+    border-color .3s,
+    background .3s,
+    box-shadow .3s;
+}
+
+.option:hover:not(:disabled) {
+  transform: translateY(-3px);
+  border-color: #9ba8f3;
+  box-shadow: 0 8px 22px #5267dc12;
+}
+
+.option:focus-visible,
+.btn:focus-visible {
+  outline: 3px solid #91a0ff;
+  outline-offset: 3px;
+}
+
+.option-letter {
+  display: grid;
+  place-items: center;
+  flex: 0 0 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: #eff2f8;
+  color: #526079;
+  font: bold 16px Arial, sans-serif;
+}
+
+.option.correct {
+  border-color: #5cc49b;
+  background: #e8f8f0;
+}
+
+.option.correct .option-letter {
+  background: #16845b;
+  color: white;
+}
+
+.option.wrong {
+  border-color: #f0a0a0;
+  background: #fff0f0;
+}
+
+.option.wrong .option-letter {
+  background: #d94848;
+  color: white;
+}
+
+.option:disabled {
+  cursor: default;
+}
+
+.feedback {
+  margin-top: 22px;
+  padding: 20px;
+  border-radius: 18px;
+  background: #f0f4ff;
+  border: 1px solid #dce4ff;
+  animation: revealUp .55s cubic-bezier(.16,1,.3,1) both;
+}
+
+.feedback-title {
+  font-weight: bold;
+  font-size: 21px;
+  margin-bottom: 12px;
+}
+
+.feedback-title.good {
+  color: var(--green);
+}
+
+.feedback-title.bad {
+  color: var(--red);
+}
+
+.explanation {
+  font-family: "Kalpurush", "Hind Siliguri", sans-serif;
+  font-size: 19px;
+  line-height: 1.95;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+
+.answer-line {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid #d9e1f5;
+  font-size: 19px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 25px;
+}
+
+.control-group {
+  display: flex;
+  gap: 10px;
+}
+
+.btn {
+  border: 0;
+  border-radius: 13px;
+  padding: 13px 20px;
+  cursor: pointer;
+  font: 600 15px Arial, sans-serif;
+  transition: transform .25s, opacity .25s, box-shadow .25s;
+}
+
+.btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px #273a6015;
+}
+
+.btn:disabled {
+  opacity: .38;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #6678ed, #4859c6);
+  color: white;
+}
+
+.btn-secondary {
+  background: #edf0f7;
+  color: #39465e;
+}
+
+.btn-success {
+  background: #16845b;
+  color: white;
+}
+
+.hint {
+  color: var(--muted);
+  font: 14px Arial, sans-serif;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.footer {
+  text-align: center;
+  color: #718096;
+  font: 13px Arial, sans-serif;
+  margin-top: 24px;
+}
+
+@keyframes questionEnter {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 24px, 0) scale(.985);
+    filter: blur(3px);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes revealDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes revealUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 520px) {
+  body { padding: 12px 10px 28px; }
+  .header { padding: 20px 5px 24px; }
+  .stats { gap: 7px; }
+  .stat { padding: 13px 4px; border-radius: 15px; }
+  .stat-label { font-size: 12px; }
+  .stat-value { font-size: 22px; }
+  .card { border-radius: 21px; padding: 19px 15px; }
+  .option { padding: 13px 11px; gap: 10px; }
+  .option-letter { flex-basis: 30px; height: 30px; }
+  .controls { align-items: stretch; }
+  .control-group { flex: 1; }
+  .control-group .btn { flex: 1; padding: 13px 9px; }
+  .controls > .btn { flex: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
 </head>
-<body class="min-h-screen flex items-center justify-center relative select-none px-4">
 
-    <!-- Ambient glow center element -->
-    <div id="glow" class="ambient-glow top-1/2 left-1/2"></div>
+<body>
+<div class="app">
 
-    <!-- Centered minimal content with entry animations -->
-    <main class="text-center z-10 space-y-6 max-w-3xl mx-auto py-8 px-4">
-        
-        <!-- Main English Title -->
-        <h1 class="animate-heading text-5xl sm:text-7xl md:text-8xl font-black tracking-tight glow-text font-['Inter'] drop-shadow-lg">
-            Coming Soon...
-        </h1>
+  <header class="header">
+    <span class="badge">INFINITY PRACTICE SERIES</span>
+    <h1>PART 22 - Narration</h1>
+    <p class="subtitle">Direct &amp; Indirect Speech | Learn • Practice • Improve</p>
+  </header>
 
-        <!-- Bengali Subheading -->
-        <p class="animate-subheading text-xl sm:text-3xl md:text-4xl font-semibold text-emerald-400/90 leading-relaxed tracking-wide drop-shadow">
-            ইনশাআল্লাহ, খুব শীঘ্রই ডাটা যোগ করা হবে।
-        </p>
+  <section class="stats" aria-label="Practice statistics">
+    <div class="stat">
+      <span class="stat-label">QUESTION</span>
+      <span class="stat-value" id="questionCount">1</span>
+    </div>
+    <div class="stat">
+      <span class="stat-label">SCORE</span>
+      <span class="stat-value" id="score">0</span>
+    </div>
+    <div class="stat">
+      <span class="stat-label">ACCURACY</span>
+      <span class="stat-value" id="accuracy">0%</span>
+    </div>
+  </section>
 
-    </main>
+  <div class="progress-track" aria-label="Practice progress">
+    <div class="progress-fill" id="progress"></div>
+  </div>
 
-    <script>
-        const glow = document.getElementById('glow');
+  <main class="card">
+    <div id="questionArea" aria-live="polite"></div>
 
-        // Mouse move interactive glow background
-        window.addEventListener('mousemove', (e) => {
-            glow.style.left = e.clientX + 'px';
-            glow.style.top = e.clientY + 'px';
-        });
+    <div class="controls">
+      <div class="control-group">
+        <button class="btn btn-secondary" id="previousBtn">← Previous</button>
+        <button class="btn btn-secondary" id="nextBtn">Next →</button>
+      </div>
+      <button class="btn btn-primary" id="newBtn">New Question ↻</button>
+    </div>
+  </main>
 
-        // Touch move interactive glow background for mobile screens
-        window.addEventListener('touchmove', (e) => {
-            if (e.touches.length > 0) {
-                glow.style.left = e.touches[0].clientX + 'px';
-                glow.style.top = e.touches[0].clientY + 'px';
-            }
-        });
-    </script>
+  <p class="hint">Choose an answer to see the explanation.</p>
+  <footer class="footer">PART 22 • NARRATION INFINITY MCQ PRACTICE</footer>
+</div>
+
+<script>
+"use strict";
+
+/*
+  PART 22: NARRATION
+  Rule-based random question generator.
+  All questions and options are generated locally.
+*/
+
+const $ = id => document.getElementById(id);
+
+const names = [
+  "Firoz", "Fatiha", "Fatema", "Jui", "Ema",
+  "Rupa", "Moksed", "Ferjousi", "Jannati", "Mini",
+  "Miraz", "Mujahid", "Milon", "Hannan", "Joba",
+  "Tanzila", "Rina", "Tania", "Taslima"
+];
+
+const letters = ["A", "B", "C", "D"];
+
+let history = [];
+let currentIndex = 0;
+let score = 0;
+let attempted = 0;
+let questionSerial = 0;
+let busy = false;
+
+function pick(array) {
+  return array[Math.floor(Math.random() * array.length)];
+}
+
+function shuffle(array) {
+  const result = [...array];
+  for (let i = result.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [result[i], result[j]] = [result[j], result[i]];
+  }
+  return result;
+}
+
+function makeQuestion(data) {
+  const correct = data.answer;
+  const candidates = [...new Set(data.wrongs)]
+    .filter(item => item !== correct);
+
+  const options = shuffle([
+    correct,
+    ...shuffle(candidates).slice(0, 3)
+  ]);
+
+  return {
+    ...data,
+    options,
+    correctIndex: options.indexOf(correct),
+    selected: null,
+    serial: ++questionSerial
+  };
+}
+
+function statementQuestion() {
+  const name = pick(names);
+
+  const patterns = [
+    {
+      direct: ` ${name} said, "I am happy."`,
+      answer: `${name} said that ${name === "Firoz" || name === "Miraz" || name === "Mujahid" || name === "Milon" || name === "Moksed" || name === "Hannan" ? "he" : "she"} was happy.`,
+      wrongs: [
+        `${name} said that I was happy.`,
+        `${name} said that ${name} is happy.`,
+        `${name} told that ${name} was happy.`
+      ],
+      explanation: "Reporting verb 'said' অতীতকালে আছে। তাই Direct Speech-এর am পরিবর্তিত হয়ে was হয়েছে। এখানে I বক্তার নাম অনুযায়ী he/she হয়েছে। Statement-এ that ব্যবহার করা যায়।"
+    },
+    {
+      direct: `${name} said, "I have finished my work."`,
+      answer: `${name} said that ${name === "Firoz" || name === "Miraz" || name === "Mujahid" || name === "Milon" || name === "Moksed" || name === "Hannan" ? "he" : "she"} had finished ${name === "Firoz" || name === "Miraz" || name === "Mujahid" || name === "Milon" || name === "Moksed" || name === "Hannan" ? "his" : "her"} work.`,
+      wrongs: [
+        `${name} said that I have finished my work.`,
+        `${name} said that ${name} has finished the work.`,
+        `${name} told that the work has finished.`
+      ],
+      explanation: "Present Perfect (have finished) সাধারণত Past Perfect (had finished) হয়। I বক্তা অনুযায়ী he/she এবং my পরিবর্তিত হয়ে his/her হয়েছে।"
+    },
+    {
+      direct: `${name} said, "I will help you."`,
+      answer: `${name} said that ${name === "Firoz" || name === "Miraz" || name === "Mujahid" || name === "Milon" || name === "Moksed" || name === "Hannan" ? "he" : "she"} would help me.`,
+      wrongs: [
+        `${name} said that I will help you.`,
+        `${name} said that ${name} will help me.`,
+        `${name} told that he would help you.`
+      ],
+      explanation: "Past reporting verb-এর অধীনে will সাধারণত would হয়। Direct Speech-এ you কাকে বোঝাচ্ছে, তা প্রসঙ্গ অনুযায়ী নির্ধারিত হয়। এখানে ধরে নেওয়া হয়েছে, কথাটি শ্রোতাকে বলা হয়েছিল এবং শ্রোতা পরে তা বর্ণনা করছে; তাই you → me।"
+    },
+    {
+      direct: `${name} said, "I can solve the problem."`,
+      answer: `${name} said that ${name === "Firoz" || name === "Miraz" || name === "Mujahid" || name === "Milon" || name === "Moksed" || name === "Hannan" ? "he" : "she"} could solve the problem.`,
+      wrongs: [
+        `${name} said that I could solve the problem.`,
+        `${name} said that ${name} can solved the problem.`,
+        `${name} told that she can solve the problem.`
+      ],
+      explanation: "Past reporting verb-এর পরে can সাধারণত could হয়। বাক্যটি Statement, তাই said that ব্যবহার করা হয়েছে।"
+    },
+    {
+      direct: `${name} said, "I was reading a book."`,
+      answer: `${name} said that ${name === "Firoz" || name === "Miraz" || name === "Mujahid" || name === "Milon" || name === "Moksed" || name === "Hannan" ? "he" : "she"} had been reading a book.`,
+      wrongs: [
+        `${name} said that I was reading a book.`,
+        `${name} said that ${name} has been reading a book.`,
+        `${name} told that she had read a book.`
+      ],
+      explanation: "Past Continuous সাধারণত Past Perfect Continuous হয়: was reading → had been reading। I বক্তা অনুযায়ী he/she হয়।"
+    },
+    {
+      direct: `${name} said, "I bought a book yesterday."`,
+      answer: `${name} said that ${name === "Firoz" || name === "Miraz" || name === "Mujahid" || name === "Milon" || name === "Moksed" || name === "Hannan" ? "he" : "she"} had bought a book the previous day.`,
+      wrongs: [
+        `${name} said that I bought a book yesterday.`,
+        `${name} said that ${name} has bought a book tomorrow.`,
+        `${name} told that she had buy a book the previous day.`
+      ],
+      explanation: "Simple Past সাধারণত Past Perfect হয়: bought → had bought। Yesterday প্রসঙ্গ অনুযায়ী the previous day হয়।"
+    }
+  ];
+
+  const item = pick(patterns);
+  return makeQuestion({
+    type: "Statement",
+    direct: item.direct.trim(),
+    answer: item.answer,
+    wrongs: item.wrongs,
+    explanation: item.explanation,
+    translation: "বাক্যটিকে Direct Speech থেকে Indirect Speech-এ পরিবর্তন করো।"
+  });
+}
+
+function yesNoQuestion() {
+  const name = pick(names);
+  const isMale = ["Firoz", "Miraz", "Mujahid", "Milon", "Moksed", "Hannan"].includes(name);
+  const subject = isMale ? "he" : "she";
+
+  const items = [
+    {
+      direct: `${name} said to me, "Are you ready?"`,
+      answer: `${name} asked me if I was ready.`,
+      wrongs: [
+        `${name} said me that I was ready.`,
+        `${name} asked me that was I ready.`,
+        `${name} asked me if was I ready.`
+      ],
+      explanation: "Yes/No প্রশ্নে said to পরিবর্তিত হয়ে asked হয়। If/whether ব্যবহার করা হয় এবং প্রশ্নের বাক্যকে সাধারণ Statement-এর শব্দক্রমে লিখতে হয়: I was, was I নয়।"
+    },
+    {
+      direct: `${name} said to me, "Do you know the answer?"`,
+      answer: `${name} asked me if I knew the answer.`,
+      wrongs: [
+        `${name} asked me if did I know the answer.`,
+        `${name} told me whether do I know the answer.`,
+        `${name} asked me that I know the answer.`
+      ],
+      explanation: "Do you know → if I knew। Indirect Speech-এ প্রশ্নের সহায়ক do বাদ যায় এবং অতীত reporting verb-এর কারণে know → knew হয়।"
+    },
+    {
+      direct: `${name} said to me, "Have you completed the work?"`,
+      answer: `${name} asked me whether I had completed the work.`,
+      wrongs: [
+        `${name} asked me whether had I completed the work.`,
+        `${name} said me if I have completed the work.`,
+        `${name} asked me that I had completed the work.`
+      ],
+      explanation: "Yes/No প্রশ্নে whether বা if ব্যবহার করা যায়। Have you completed → I had completed। Indirect Speech-এ subject আগে, verb পরে আসে।"
+    },
+    {
+      direct: `${name} said to me, "Will you come tomorrow?"`,
+      answer: `${name} asked me if I would come the next day.`,
+      wrongs: [
+        `${name} asked me if will I come tomorrow.`,
+        `${name} told me that I would come the next day.`,
+        `${name} asked me whether I will came the next day.`
+      ],
+      explanation: "Will → would এবং tomorrow → the next day হয়। প্রশ্নটি Yes/No question হওয়ায় if ব্যবহার করা হয়েছে।"
+    }
+  ];
+
+  const item = pick(items);
+  return makeQuestion({
+    type: "Yes/No Question",
+    direct: item.direct,
+    answer: item.answer,
+    wrongs: item.wrongs,
+    explanation: item.explanation,
+    translation: "সঠিক Indirect Speech নির্বাচন করো।"
+  });
+}
+
+function whQuestion() {
+  const name = pick(names);
+
+  const items = [
+    {
+      direct: `${name} said to me, "Where do you live?"`,
+      answer: `${name} asked me where I lived.`,
+      wrongs: [
+        `${name} asked me where did I live.`,
+        `${name} said me where I lived.`,
+        `${name} asked me that where I lived.`
+      ],
+      explanation: "Wh-question-এ Where-এর মতো প্রশ্নবোধক শব্দটি থাকে। Do বাদ যায়, live → lived হয় এবং প্রশ্নের শব্দক্রম Statement-এর মতো হয়: where I lived।"
+    },
+    {
+      direct: `${name} said to me, "Why are you late?"`,
+      answer: `${name} asked me why I was late.`,
+      wrongs: [
+        `${name} asked me why was I late.`,
+        `${name} said me why I am late.`,
+        `${name} asked me that why I was late.`
+      ],
+      explanation: "Why রাখা হয়, are → was হয় এবং you → I হয়। Indirect Speech-এ why I was late লিখতে হয়, why was I late নয়।"
+    },
+    {
+      direct: `${name} said to me, "What are you doing?"`,
+      answer: `${name} asked me what I was doing.`,
+      wrongs: [
+        `${name} asked me what was I doing.`,
+        `${name} told me what am I doing.`,
+        `${name} asked me that what I was doing.`
+      ],
+      explanation: "What প্রশ্নবোধক শব্দটি থাকে। Are you doing → I was doing। Indirect Speech-এ subject-এর আগে auxiliary বসে না।"
+    },
+    {
+      direct: `${name} said to me, "When will you return?"`,
+      answer: `${name} asked me when I would return.`,
+      wrongs: [
+        `${name} asked me when would I return.`,
+        `${name} told me when will I returned.`,
+        `${name} asked me that when I would return.`
+      ],
+      explanation: "When বজায় থাকে, will → would হয় এবং you → I হয়। Indirect Speech-এ when I would return লিখতে হয়।"
+    }
+  ];
+
+  const item = pick(items);
+  return makeQuestion({
+    type: "Wh-Question",
+    direct: item.direct,
+    answer: item.answer,
+    wrongs: item.wrongs,
+    explanation: item.explanation,
+    translation: "Wh-question-এর সঠিক Indirect Speech বেছে নাও।"
+  });
+}
+
+function commandQuestion() {
+  const name = pick(names);
+  const items = [
+    {
+      direct: `${name} said to me, "Please help me."`,
+      answer: `${name} requested me to help ${["Firoz", "Miraz", "Mujahid", "Milon", "Moksed", "Hannan"].includes(name) ? "him" : "her"}.`,
+      wrongs: [
+        `${name} told me that please help me.`,
+        `${name} asked me that I helped her.`,
+        `${name} requested me that to help her.`
+      ],
+      explanation: "Please-যুক্ত অনুরোধে requested ব্যবহার করা যায়। কাঠামো: requested + object + to + verb। তাই to help হবে। Me বলতে বক্তাকে বোঝানো হয়েছে; তাই এখানে him/her ব্যবহৃত হয়েছে।"
+    },
+    {
+      direct: `${name} said to me, "Open the door."`,
+      answer: `${name} told me to open the door.`,
+      wrongs: [
+        `${name} told me that open the door.`,
+        `${name} said me to open the door.`,
+        `${name} asked me opened the door.`
+      ],
+      explanation: "আদেশসূচক বাক্যে told + object + to + verb ব্যবহার করা যায়। Open অপরিবর্তিত মূল verb থাকে।"
+    },
+    {
+      direct: `${name} said to me, "Do not waste your time."`,
+      answer: `${name} advised me not to waste my time.`,
+      wrongs: [
+        `${name} advised me to not wasted my time.`,
+        `${name} told me do not waste my time.`,
+        `${name} said me not waste my time.`
+      ],
+      explanation: "নিষেধসূচক উপদেশে advised + object + not to + verb হয়। Your এখানে শ্রোতাকে বোঝায়; তাই শ্রোতার বর্ণনায় my হয়েছে।"
+    },
+    {
+      direct: `${name} said to me, "Never tell a lie."`,
+      answer: `${name} advised me never to tell a lie.`,
+      wrongs: [
+        `${name} said me never tell a lie.`,
+        `${name} advised me never told a lie.`,
+        `${name} told me that never to tell a lie.`
+      ],
+      explanation: "উপদেশ বা নিষেধ বোঝাতে advised + object + never to + verb ব্যবহার করা যায়। Tell হলো মূল verb; told নয়।"
+    }
+  ];
+
+  const item = pick(items);
+  return makeQuestion({
+    type: "Command / Request",
+    direct: item.direct,
+    answer: item.answer,
+    wrongs: item.wrongs,
+    explanation: item.explanation,
+    translation: "আদেশ, অনুরোধ বা উপদেশের সঠিক রূপ নির্বাচন করো।"
+  });
+}
+
+function exclamationQuestion() {
+  const name = pick(names);
+
+  const items = [
+    {
+      direct: `${name} said, "What a beautiful flower it is!"`,
+      answer: `${name} exclaimed with wonder that it was a very beautiful flower.`,
+      wrongs: [
+        `${name} asked that what a beautiful flower it was.`,
+        `${name} exclaimed that what a beautiful flower it is.`,
+        `${name} said with wonder what a beautiful flower it is.`
+      ],
+      explanation: "What a...! দিয়ে বিস্ময় প্রকাশ করলে exclaimed with wonder ব্যবহার করা যায়। Indirect Speech-এ সাধারণত that + Statement হয়; it is → it was।"
+    },
+    {
+      direct: `${name} said, "Alas! I am ruined."`,
+      answer: `${name} exclaimed with sorrow that ${["Firoz", "Miraz", "Mujahid", "Milon", "Moksed", "Hannan"].includes(name) ? "he" : "she"} was ruined.`,
+      wrongs: [
+        `${name} asked with sorrow if she was ruined.`,
+        `${name} exclaimed that alas I am ruined.`,
+        `${name} told with sorrow that she is ruined.`
+      ],
+      explanation: "Alas দুঃখ প্রকাশ করে। তাই exclaimed with sorrow ব্যবহার করা যায়। I বক্তা অনুযায়ী he/she হয় এবং am → was হয়।"
+    },
+    {
+      direct: `${name} said, "Hurrah! We have won the match."`,
+      answer: `${name} exclaimed with joy that they had won the match.`,
+      wrongs: [
+        `${name} asked with joy whether they had won the match.`,
+        `${name} exclaimed that hurrah we have won the match.`,
+        `${name} told with joy that they have win the match.`
+      ],
+      explanation: "Hurrah আনন্দ প্রকাশ করে। তাই exclaimed with joy হয়। We → they এবং have won → had won হয়।"
+    }
+  ];
+
+  const item = pick(items);
+  return makeQuestion({
+    type: "Exclamatory Sentence",
+    direct: item.direct,
+    answer: item.answer,
+    wrongs: item.wrongs,
+    explanation: item.explanation,
+    translation: "Exclamatory Sentence-এর সঠিক Indirect Speech বেছে নাও।"
+  });
+}
+
+function narrationQuestion() {
+  const generators = [
+    statementQuestion,
+    statementQuestion,
+    statementQuestion,
+    yesNoQuestion,
+    whQuestion,
+    commandQuestion,
+    exclamationQuestion
+  ];
+
+  return pick(generators)();
+}
+
+function renderQuestion(direction = "next") {
+  const q = history[currentIndex];
+  if (!q) return;
+
+  $("questionCount").textContent = currentIndex + 1;
+  $("score").textContent = score;
+  $("accuracy").textContent =
+    attempted ? Math.round(score / attempted * 100) + "%" : "0%";
+
+  // This is practice progress, not a claim of course completion.
+  $("progress").style.width =
+    (100 * (currentIndex + 1) / (currentIndex + 2)) + "%";
+
+  $("previousBtn").disabled = currentIndex === 0;
+  $("nextBtn").disabled = currentIndex === history.length - 1;
+
+  const area = $("questionArea");
+  area.innerHTML = "";
+
+  const content = document.createElement("div");
+  content.className = "question-content";
+
+  const meta = document.createElement("div");
+  meta.className = "question-meta";
+
+  const tag = document.createElement("span");
+  tag.className = "topic-tag";
+  tag.textContent = q.type;
+
+  const number = document.createElement("span");
+  number.className = "question-number";
+  number.textContent = "Question " + (currentIndex + 1);
+
+  meta.append(tag, number);
+
+  const question = document.createElement("h2");
+  question.className = "question";
+  question.textContent = q.direct;
+
+  const translation = document.createElement("p");
+  translation.className = "translation";
+  translation.textContent = "(" + q.translation + ")";
+
+  const options = document.createElement("div");
+  options.className = "options";
+
+  q.options.forEach((optionText, index) => {
+    const button = document.createElement("button");
+    button.className = "option";
+
+    const letter = document.createElement("span");
+    letter.className = "option-letter";
+    letter.textContent = letters[index];
+
+    const text = document.createElement("span");
+    text.textContent = optionText;
+
+    button.append(letter, text);
+    button.type = "button";
+
+    if (q.selected !== null) {
+      button.disabled = true;
+      if (index === q.correctIndex) {
+        button.classList.add("correct");
+      }
+      if (index === q.selected && index !== q.correctIndex) {
+        button.classList.add("wrong");
+      }
+    } else {
+      button.addEventListener("click", () => selectAnswer(index));
+    }
+
+    options.appendChild(button);
+  });
+
+  content.append(meta, question, translation, options);
+
+  if (q.selected !== null) {
+    const feedback = document.createElement("section");
+    feedback.className = "feedback";
+
+    const title = document.createElement("div");
+    title.className = "feedback-title " +
+      (q.selected === q.correctIndex ? "good" : "bad");
+
+    title.textContent = q.selected === q.correctIndex
+      ? "✓ Correct Answer!"
+      : "✗ Incorrect Answer";
+
+    const explanation = document.createElement("div");
+    explanation.className = "explanation";
+    explanation.textContent = q.explanation;
+
+    const answer = document.createElement("div");
+    answer.className = "answer-line";
+    answer.textContent = "Correct Answer: " + q.answer;
+
+    feedback.append(title, explanation, answer);
+    content.appendChild(feedback);
+  }
+
+  area.appendChild(content);
+}
+
+function selectAnswer(index) {
+  const q = history[currentIndex];
+  if (!q || q.selected !== null) return;
+
+  q.selected = index;
+  attempted++;
+
+  if (index === q.correctIndex) score++;
+
+  renderQuestion();
+}
+
+function nextQuestion() {
+  if (currentIndex < history.length - 1) {
+    currentIndex++;
+    renderQuestion();
+  } else {
+    history.push(narrationQuestion());
+    currentIndex++;
+    renderQuestion();
+  }
+}
+
+function previousQuestion() {
+  if (currentIndex > 0) {
+    currentIndex--;
+    renderQuestion();
+  }
+}
+
+function newQuestion() {
+  // A new independent practice item; previous answers remain in history.
+  history.push(narrationQuestion());
+  currentIndex = history.length - 1;
+  renderQuestion();
+}
+
+$("nextBtn").addEventListener("click", nextQuestion);
+$("previousBtn").addEventListener("click", previousQuestion);
+$("newBtn").addEventListener("click", newQuestion);
+
+// Keyboard shortcuts: arrow navigation.
+document.addEventListener("keydown", event => {
+  if (event.key === "ArrowRight") nextQuestion();
+  if (event.key === "ArrowLeft") previousQuestion();
+});
+
+// Start practice.
+history.push(narrationQuestion());
+renderQuestion();
+</script>
 </body>
 </html>

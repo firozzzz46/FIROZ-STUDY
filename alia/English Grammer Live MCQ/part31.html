@@ -1,128 +1,884 @@
+
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PART 31 - Prefix, Suffix & Word Formation</title>
 
-    <!-- Google Fonts for Bengali & English -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Inter:wght@700;900&display=swap" rel="stylesheet">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Hind+Siliguri:wght@400;500;600;700&display=swap');
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+:root {
+  --primary: #6558e8;
+  --primary-dark: #4435bd;
+  --green: #138a5b;
+  --red: #d94352;
+  --ink: #20243b;
+  --muted: #6e7489;
+  --glass: rgba(255,255,255,.78);
+  --border: rgba(110,105,180,.15);
+}
 
-    <style>
-        body {
-            font-family: 'Hind Siliguri', 'Inter', sans-serif;
-            background-color: #030712;
-            overflow: hidden;
-        }
+* { box-sizing: border-box; }
 
-        /* Gradient glowing animation on text */
-        .glow-text {
-            background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 50%, #38bdf8 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shine 6s linear infinite;
-        }
+body {
+  margin: 0;
+  min-height: 100vh;
+  padding: 24px 14px 40px;
+  color: var(--ink);
+  font-family: 'Poppins', 'Times New Roman', serif;
+  background:
+    radial-gradient(ellipse at 5% 5%, #e8e9ff 0, transparent 40%),
+    radial-gradient(ellipse at 95% 90%, #e2f7f0 0, transparent 38%),
+    linear-gradient(135deg, #fafbff, #f2f5fa);
+  font-size: 18px;
+}
 
-        @keyframes shine {
-            0% { background-position: 0% center; }
-            50% { background-position: 100% center; }
-            100% { background-position: 0% center; }
-        }
+button { font: inherit; }
 
-        /* Keyframes for initial entry: Floating in from below with opacity */
-        @keyframes floatIn {
-            0% {
-                opacity: 0;
-                transform: translateY(40px) scale(0.95);
-                filter: blur(8px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-                filter: blur(0);
-            }
-        }
+.container {
+  max-width: 900px;
+  margin: auto;
+}
 
-        /* Continuous subtle float effect once arrived */
-        @keyframes subtleFloat {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-8px);
-            }
-        }
+header {
+  text-align: center;
+  margin: 12px 0 28px;
+  animation: appear .9s ease both;
+}
 
-        /* Animation class for Heading */
-        .animate-heading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards,
-                subtleFloat 6s ease-in-out 1.2s infinite;
-        }
+.eyebrow {
+  display: inline-block;
+  padding: 7px 14px;
+  border-radius: 30px;
+  background: #e9e7ff;
+  color: var(--primary-dark);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
 
-        /* Animation class for Subheading (staggered delay) */
-        .animate-subheading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards,
-                subtleFloat 6s ease-in-out 1.55s infinite;
-            opacity: 0; /* Hidden until animation kicks in */
-        }
+h1 {
+  font-size: clamp(25px, 5vw, 38px);
+  line-height: 1.3;
+  margin: 18px 0 10px;
+  letter-spacing: -.8px;
+}
 
-        /* Ambient background lighting */
-        .ambient-glow {
-            position: absolute;
-            width: 450px;
-            height: 450px;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(3, 7, 18, 0) 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            transition: left 0.4s ease-out, top 0.4s ease-out;
-        }
-    </style>
+.subtitle {
+  color: var(--muted);
+  font-size: 17px;
+  margin: 0;
+}
+
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 13px;
+  margin-bottom: 20px;
+}
+
+.stat {
+  padding: 17px 10px;
+  text-align: center;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: var(--glass);
+  box-shadow: 0 8px 28px #33335a0b;
+  backdrop-filter: blur(14px);
+}
+
+.stat-label {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.stat-value {
+  font-size: 25px;
+  font-weight: 700;
+  margin-top: 4px;
+}
+
+.panel {
+  padding: clamp(19px, 4vw, 35px);
+  background: var(--glass);
+  border: 1px solid #ffffff;
+  border-radius: 25px;
+  box-shadow: 0 20px 60px rgba(54,57,105,.09);
+  backdrop-filter: blur(20px);
+}
+
+.progress-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.progress-track {
+  height: 8px;
+  background: #e7e9f3;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 27px;
+}
+
+#progressBar {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, #8c7aff, #5d51e5);
+  border-radius: inherit;
+  transition: width .8s cubic-bezier(.22,1,.36,1);
+}
+
+.question-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.tag {
+  font-size: 13px;
+  padding: 6px 11px;
+  border-radius: 30px;
+  background: #eeecff;
+  color: var(--primary-dark);
+  font-weight: 600;
+}
+
+#question {
+  font-family: 'Times New Roman', serif;
+  font-size: clamp(21px, 4vw, 25px);
+  line-height: 1.55;
+  margin: 0 0 8px;
+}
+
+#questionBn {
+  font-family: 'Hind Siliguri', sans-serif;
+  color: #656c80;
+  font-size: 18px;
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+
+.options {
+  display: grid;
+  gap: 12px;
+}
+
+.option {
+  display: flex;
+  gap: 13px;
+  align-items: center;
+  width: 100%;
+  text-align: left;
+  border: 1px solid #e0e3ef;
+  background: rgba(255,255,255,.77);
+  color: var(--ink);
+  border-radius: 15px;
+  padding: 15px 17px;
+  cursor: pointer;
+  transition: border-color .25s, background .25s,
+              transform .3s cubic-bezier(.22,1,.36,1),
+              box-shadow .25s;
+  font-family: 'Times New Roman', serif;
+  font-size: 20px;
+}
+
+.option:hover:not(:disabled) {
+  border-color: #aaa2ff;
+  background: #f6f5ff;
+  transform: translateX(4px);
+  box-shadow: 0 7px 18px #6558e811;
+}
+
+.letter {
+  display: grid;
+  place-items: center;
+  min-width: 35px;
+  height: 35px;
+  border-radius: 10px;
+  background: #f0effa;
+  color: #5148b4;
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.option.correct {
+  border-color: #6bc49b;
+  background: #eaf9f1;
+}
+
+.option.correct .letter {
+  background: #c9f0dc;
+  color: #087443;
+}
+
+.option.wrong {
+  border-color: #f1a1a8;
+  background: #fff0f1;
+}
+
+.option.wrong .letter {
+  background: #ffdbde;
+  color: #b42332;
+}
+
+.option:disabled { cursor: default; }
+
+#feedback {
+  display: none;
+  margin-top: 23px;
+  padding: 19px;
+  border-radius: 16px;
+  background: #f0efff;
+  border: 1px solid #dedbff;
+  animation: appear .55s cubic-bezier(.22,1,.36,1) both;
+}
+
+#feedback.show { display: block; }
+
+#feedbackTitle {
+  font-size: 19px;
+  font-weight: 700;
+  margin-bottom: 9px;
+}
+
+#feedbackText {
+  font-family: 'Hind Siliguri', sans-serif;
+  font-size: 18px;
+  line-height: 1.85;
+  white-space: pre-line;
+}
+
+.correct-text { color: #087443; }
+.wrong-text { color: #bd303d; }
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-top: 25px;
+}
+
+.btn {
+  padding: 12px 22px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: transform .3s, opacity .2s, box-shadow .3s;
+}
+
+.btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+
+.btn:disabled {
+  opacity: .4;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  color: white;
+  background: linear-gradient(135deg, #7567f6, #5144d2);
+  box-shadow: 0 8px 18px #6558e82a;
+}
+
+.btn-secondary {
+  background: white;
+  color: #454b65;
+  border: 1px solid #e0e3ef;
+}
+
+.btn-reset {
+  background: #fff0f1;
+  color: #bb3443;
+}
+
+.footer {
+  text-align: center;
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 23px;
+  line-height: 1.8;
+}
+
+#completion {
+  display: none;
+  text-align: center;
+  padding: 30px 12px;
+  animation: appear .7s ease both;
+}
+
+#completion h2 { font-size: 28px; }
+#finalMessage { line-height: 1.9; color: var(--muted); }
+
+.question-content { will-change: transform, opacity; }
+
+.question-content.enter {
+  animation: questionEnter 1s cubic-bezier(.16,1,.3,1) both;
+}
+
+@keyframes questionEnter {
+  from { opacity: 0; transform: translateY(24px) scale(.99); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 520px) {
+  body { padding: 15px 10px 25px; }
+  .dashboard { gap: 8px; }
+  .stat { padding: 13px 5px; }
+  .stat-label { font-size: 12px; }
+  .stat-value { font-size: 22px; }
+  .panel { border-radius: 20px; }
+  .option { padding: 13px 11px; font-size: 19px; }
+  .navigation .btn { padding: 12px 15px; }
+}
+</style>
 </head>
-<body class="min-h-screen flex items-center justify-center relative select-none px-4">
 
-    <!-- Ambient glow center element -->
-    <div id="glow" class="ambient-glow top-1/2 left-1/2"></div>
+<body>
+<div class="container">
 
-    <!-- Centered minimal content with entry animations -->
-    <main class="text-center z-10 space-y-6 max-w-3xl mx-auto py-8 px-4">
-        
-        <!-- Main English Title -->
-        <h1 class="animate-heading text-5xl sm:text-7xl md:text-8xl font-black tracking-tight glow-text font-['Inter'] drop-shadow-lg">
-            Coming Soon...
-        </h1>
+<header>
+  <span class="eyebrow">ENGLISH GRAMMAR • PART 31</span>
+  <h1>Prefix, Suffix &amp;<br>Word Formation</h1>
+  <p class="subtitle">Learn • Practice • Improve</p>
+</header>
 
-        <!-- Bengali Subheading -->
-        <p class="animate-subheading text-xl sm:text-3xl md:text-4xl font-semibold text-emerald-400/90 leading-relaxed tracking-wide drop-shadow">
-            ইনশাআল্লাহ, খুব শীঘ্রই ডাটা যোগ করা হবে।
-        </p>
+<div class="dashboard">
+  <div class="stat">
+    <div class="stat-label">Questions Answered</div>
+    <div class="stat-value" id="answered">0</div>
+  </div>
+  <div class="stat">
+    <div class="stat-label">Correct Answers</div>
+    <div class="stat-value" id="score">0</div>
+  </div>
+  <div class="stat">
+    <div class="stat-label">Accuracy</div>
+    <div class="stat-value" id="accuracy">0%</div>
+  </div>
+</div>
 
-    </main>
+<section class="panel" id="quizPanel">
+  <div id="quizContent" class="question-content">
+    <div class="progress-head">
+      <span id="questionCounter">Question 1</span>
+      <span id="progressText">0% Complete</span>
+    </div>
 
-    <script>
-        const glow = document.getElementById('glow');
+    <div class="progress-track">
+      <div id="progressBar"></div>
+    </div>
 
-        // Mouse move interactive glow background
-        window.addEventListener('mousemove', (e) => {
-            glow.style.left = e.clientX + 'px';
-            glow.style.top = e.clientY + 'px';
-        });
+    <div class="question-meta">
+      <span class="tag" id="topicTag">Prefix</span>
+      <span class="tag">Choose the correct answer</span>
+    </div>
 
-        // Touch move interactive glow background for mobile screens
-        window.addEventListener('touchmove', (e) => {
-            if (e.touches.length > 0) {
-                glow.style.left = e.touches[0].clientX + 'px';
-                glow.style.top = e.touches[0].clientY + 'px';
-            }
-        });
-    </script>
+    <h2 id="question">Loading question...</h2>
+    <div id="questionBn"></div>
+
+    <div class="options" id="options"></div>
+
+    <div id="feedback" aria-live="polite">
+      <div id="feedbackTitle"></div>
+      <div id="feedbackText"></div>
+    </div>
+
+    <div class="navigation">
+      <button class="btn btn-secondary" id="prevBtn" disabled>← Previous</button>
+      <button class="btn btn-primary" id="nextBtn">Next →</button>
+    </div>
+  </div>
+
+  <div id="completion">
+    <div style="font-size:50px">🎉</div>
+    <h2>Practice Completed!</h2>
+    <div id="finalMessage"></div>
+    <button class="btn btn-primary" id="againBtn">Practice Again ↻</button>
+  </div>
+</section>
+
+<div class="footer">
+  PART 31 — Prefix, Suffix &amp; Word Formation<br>
+  Keep practising to improve your English grammar.
+</div>
+</div>
+
+<script>
+"use strict";
+
+/*
+  This practice engine generates varied questions from
+  verified word-building patterns. It avoids repeating a
+  question during a normal run until the pool is exhausted.
+*/
+
+const BANK = [
+  // PREFIX: negative and meaning-changing forms
+  {type:"Prefix", base:"happy", answer:"unhappy", wrong:["happily","happiness","rehappy"], rule:"un- + happy = unhappy.", bn:"happy অর্থ সুখী। happy-এর আগে un- যোগ করলে unhappy হয়, যার অর্থ অসুখী। un- এখানে বিপরীত অর্থ তৈরি করেছে।"},
+  {type:"Prefix", base:"possible", answer:"impossible", wrong:["unpossible","dispossible","possibleness"], rule:"im- + possible = impossible.", bn:"possible অর্থ সম্ভব। possible-এর আগে im- যোগ করলে impossible হয়, যার অর্থ অসম্ভব। p দিয়ে শুরু হওয়া কিছু শব্দের আগে im- বসে।"},
+  {type:"Prefix", base:"correct", answer:"incorrect", wrong:["uncorrect","discorrect","recorrect"], rule:"in- + correct = incorrect.", bn:"correct অর্থ সঠিক। এর আগে in- যোগ করলে incorrect হয়, যার অর্থ ভুল বা সঠিক নয়।"},
+  {type:"Prefix", base:"regular", answer:"irregular", wrong:["unregular","inregular","disregular"], rule:"ir- + regular = irregular.", bn:"regular অর্থ নিয়মিত। r দিয়ে শুরু হওয়া অনেক শব্দের আগে in- এর পরিবর্তে ir- বসে: irregular অর্থ অনিয়মিত।"},
+  {type:"Prefix", base:"legal", answer:"illegal", wrong:["unlegal","inlegal","dislegal"], rule:"il- + legal = illegal.", bn:"legal অর্থ আইনসম্মত। legal-এর আগে il- যোগ করলে illegal হয়, যার অর্থ বেআইনি। l দিয়ে শুরু হওয়া কিছু শব্দের আগে il- বসে।"},
+  {type:"Prefix", base:"honest", answer:"dishonest", wrong:["unhonest","inhonest","rehonest"], rule:"dis- + honest = dishonest.", bn:"honest অর্থ সৎ। dishonest অর্থ অসৎ। এখানে dis- শব্দটির বিপরীত অর্থ তৈরি করেছে।"},
+  {type:"Prefix", base:"agree", answer:"disagree", wrong:["unagree","inagree","misagree"], rule:"dis- + agree = disagree.", bn:"agree অর্থ একমত হওয়া। disagree অর্থ একমত না হওয়া। dis- যোগে বিপরীত অর্থ হয়েছে।"},
+  {type:"Prefix", base:"write", answer:"rewrite", wrong:["unwrite","miswrite","prewrite"], rule:"re- + write = rewrite.", bn:"write অর্থ লেখা। re- অর্থ আবার। rewrite অর্থ আবার লেখা। re- সাধারণত পুনরাবৃত্তি বোঝায়।"},
+  {type:"Prefix", base:"understand", answer:"misunderstand", wrong:["reunderstand","ununderstand","preunderstand"], rule:"mis- + understand = misunderstand.", bn:"mis- অনেক ক্ষেত্রে ভুলভাবে বোঝায়। misunderstand অর্থ ভুল বোঝা।"},
+  {type:"Prefix", base:"view", answer:"preview", wrong:["unview","disview","misview"], rule:"pre- + view = preview.", bn:"pre- অর্থ আগে। preview অর্থ আগাম দেখা বা আগে দেখে নেওয়া।"},
+  {type:"Prefix", base:"national", answer:"international", wrong:["prenational","unnational","misnational"], rule:"inter- + national = international.", bn:"inter- অর্থ মধ্যে বা পারস্পরিক। international অর্থ আন্তর্জাতিক, অর্থাৎ বিভিন্ন দেশের মধ্যে সম্পর্কিত।"},
+  {type:"Prefix", base:"understand", answer:"overestimate", wrong:["underestimate","misestimate","reestimate"], prompt:"Choose the word that means 'to estimate too highly'.", rule:"over- can mean too much.", bn:"over- অনেক ক্ষেত্রে অতিরিক্ত বোঝায়। overestimate অর্থ কোনো কিছুর পরিমাণ, গুরুত্ব বা মূল্য বাস্তবের চেয়ে বেশি ধরে নেওয়া।", type:"Prefix"},
+  {type:"Prefix", base:"active", answer:"inactive", wrong:["disactive","misactive","reactive"], rule:"in- + active = inactive.", bn:"active অর্থ সক্রিয়। inactive অর্থ নিষ্ক্রিয়। এখানে in- বিপরীত অর্থ তৈরি করেছে।"},
+  {type:"Prefix", base:"appear", answer:"disappear", wrong:["reappear","unappear","misappear"], rule:"dis- + appear = disappear.", bn:"appear অর্থ দেখা দেওয়া। disappear অর্থ অদৃশ্য হওয়া বা মিলিয়ে যাওয়া।"},
+  {type:"Prefix", base:"possible", answer:"impossible", wrong:["possibility","possibly","possibilize"], prompt:"Which word means 'not possible'?", rule:"im- + possible = impossible.", bn:"not possible অর্থ সম্ভব নয়। এর সঠিক শব্দ impossible। এটি negative prefix-এর উদাহরণ।"},
+
+  // SUFFIX: noun formation
+  {type:"Suffix", base:"kind", answer:"kindness", wrong:["kindful","kindment","unkindly"], prompt:"Firoz is known for his ______.", rule:"kind + -ness = kindness.", bn:"এখানে his-এর পরে একটি noun দরকার। kind অর্থ দয়ালু; kind + ness = kindness, অর্থ দয়া বা সদয়তা। -ness adjective থেকে noun তৈরি করে।"},
+  {type:"Suffix", base:"happy", answer:"happiness", wrong:["happyment","happiful","happily"], prompt:"Everyone wishes for ______.", rule:"happy → happiness.", bn:"for-এর পরে এখানে noun দরকার। happy একটি adjective। y পরিবর্তন করে i এবং -ness যোগ করলে happiness হয়, যার অর্থ সুখ।"},
+  {type:"Suffix", base:"develop", answer:"development", wrong:["developful","developness","developly"], prompt:"The ______ of a country takes time.", rule:"develop + -ment = development.", bn:"The-এর পরে এবং of-এর আগে noun প্রয়োজন। develop + ment = development, অর্থ উন্নয়ন। -ment অনেক verb থেকে noun তৈরি করে।"},
+  {type:"Suffix", base:"educate", answer:"education", wrong:["educateful","educateness","educative"], prompt:"______ is important for everyone.", rule:"educate → education.", bn:"বাক্যের শুরুতে subject হিসেবে noun দরকার। education অর্থ শিক্ষা। educate থেকে education তৈরি হয়েছে।"},
+  {type:"Suffix", base:"dark", answer:"darkness", wrong:["darkment","darkful","darkly"], prompt:"The ______ of the room frightened Jui.", rule:"dark + -ness = darkness.", bn:"The-এর পরে noun দরকার। dark অর্থ অন্ধকারাচ্ছন্ন; darkness অর্থ অন্ধকার। -ness adjective থেকে noun তৈরি করে।"},
+  {type:"Suffix", base:"friend", answer:"friendship", wrong:["friendness","friendful","friendly"], prompt:"Their ______ lasted for years.", rule:"friend + -ship = friendship.", bn:"Their-এর পরে এখানে noun দরকার। friendship অর্থ বন্ধুত্ব। -ship কোনো সম্পর্ক বা অবস্থাকে বোঝানো noun তৈরি করতে পারে।"},
+  {type:"Suffix", base:"inform", answer:"information", wrong:["informness","informful","informly"], prompt:"Please give me the correct ______.", rule:"inform → information.", bn:"the correct-এর পরে noun দরকার। information অর্থ তথ্য। inform থেকে information তৈরি হয়েছে।"},
+  {type:"Suffix", base:"perform", answer:"performance", wrong:["performful","performness","performly"], prompt:"Milon gave an excellent ______.", rule:"perform → performance.", bn:"an excellent-এর পরে noun দরকার। performance অর্থ পরিবেশনা বা কাজের মান।"},
+  {type:"Suffix", base:"ill", answer:"illness", wrong:["illful","illment","illly"], prompt:"His ______ kept him at home.", rule:"ill + -ness = illness.", bn:"His-এর পরে noun দরকার। illness অর্থ অসুস্থতা।"},
+  {type:"Suffix", base:"dark", answer:"darkness", wrong:["darkful","darkment","darknessful"], prompt:"The room was filled with ______.", rule:"dark + -ness = darkness.", bn:"with-এর পরে এখানে noun দরকার। darkness অর্থ অন্ধকার।"},
+
+  // SUFFIX: adjective formation
+  {type:"Suffix", base:"care", answer:"careful", wrong:["carement","careness","carely"], prompt:"Be ______ when you cross the road.", rule:"care + -ful = careful.", bn:"Be-এর পরে adjective দরকার, যা কর্তার অবস্থা বোঝায়। careful অর্থ সতর্ক। -ful দিয়ে অনেক adjective তৈরি হয়।"},
+  {type:"Suffix", base:"beauty", answer:"beautiful", wrong:["beautiment","beautyness","beautily"], prompt:"Fatiha saw a ______ flower.", rule:"beauty → beautiful.", bn:"flower-এর গুণ বোঝাতে adjective দরকার। beautiful অর্থ সুন্দর। beauty থেকে beautiful তৈরি হয়েছে।"},
+  {type:"Suffix", base:"help", answer:"helpful", wrong:["helpness","helpment","helply"], prompt:"Rupa is always ______ to others.", rule:"help + -ful = helpful.", bn:"is-এর পরে subject-এর গুণ বোঝানো adjective দরকার। helpful অর্থ সাহায্যকারী বা উপকারী।"},
+  {type:"Suffix", base:"hope", answer:"hopeless", wrong:["hopefulful","hopeness","hopement"], prompt:"Without hope, he felt ______.", rule:"hope + -less = hopeless.", bn:"-less অর্থ ছাড়া। hopeless অর্থ আশাহীন। বাক্যে অনুভূতির অবস্থা বোঝাতে adjective দরকার।"},
+  {type:"Suffix", base:"use", answer:"useful", wrong:["usement","useness","useably"], prompt:"This book is very ______.", rule:"use + -ful = useful.", bn:"is very-এর পরে adjective বসে। useful অর্থ উপকারী।"},
+  {type:"Suffix", base:"danger", answer:"dangerous", wrong:["dangerment","dangerness","dangerful"], prompt:"That road is ______.", rule:"danger + -ous = dangerous.", bn:"is-এর পরে adjective দরকার। dangerous অর্থ বিপজ্জনক। -ous অনেক noun থেকে adjective তৈরি করে।"},
+  {type:"Suffix", base:"fame", answer:"famous", wrong:["fameness","fament","famely"], prompt:"He is a ______ writer.", rule:"fame → famous.", bn:"writer-এর আগে গুণ বোঝাতে adjective দরকার। famous অর্থ বিখ্যাত।"},
+  {type:"Suffix", base:"comfort", answer:"comfortable", wrong:["comfortness","comfortment","comfortly"], prompt:"This chair is very ______.", rule:"comfort + -able = comfortable.", bn:"is very-এর পরে adjective দরকার। comfortable অর্থ আরামদায়ক। -able অনেক ক্ষেত্রে সক্ষমতা বা উপযোগিতা বোঝায়।"},
+  {type:"Suffix", base:"read", answer:"readable", wrong:["readness","readment","readful"], prompt:"The handwriting is clearly ______.", rule:"read + -able = readable.", bn:"readable অর্থ সহজে পড়া যায় এমন। -able যোগে adjective তৈরি হয়েছে।"},
+  {type:"Suffix", base:"child", answer:"childish", wrong:["childment","childness","childful"], prompt:"His ______ behaviour annoyed others.", rule:"child + -ish = childish.", bn:"behaviour-এর আগে adjective দরকার। childish অর্থ শিশুসুলভ; প্রসঙ্গভেদে নেতিবাচক অর্থও হতে পারে।"},
+
+  // SUFFIX: adverb formation
+  {type:"Suffix", base:"quick", answer:"quickly", wrong:["quickness","quickful","quickment"], prompt:"Tanzila finished the work ______.", rule:"quick + -ly = quickly.", bn:"finished the work কীভাবে—এটি বোঝাতে adverb দরকার। quickly অর্থ দ্রুত। -ly অনেক adjective থেকে adverb তৈরি করে।"},
+  {type:"Suffix", base:"careful", answer:"carefully", wrong:["carefulnessly","carefulment","carefulness"], prompt:"Read the question ______.", rule:"careful → carefully.", bn:"Read ক্রিয়াটি কীভাবে করতে হবে তা বোঝাতে carefully দরকার। carefully অর্থ সতর্কভাবে।"},
+  {type:"Suffix", base:"slow", answer:"slowly", wrong:["slowness","slowful","slowment"], prompt:"The old man walked ______.", rule:"slow + -ly = slowly.", bn:"walked কীভাবে—এটি বোঝাতে adverb দরকার। slowly অর্থ ধীরে।"},
+  {type:"Suffix", base:"happy", answer:"happily", wrong:["happyness","happyment","happiful"], prompt:"The children played ______.", rule:"happy → happily.", bn:"played ক্রিয়াটি কীভাবে হয়েছে তা বোঝাতে happily দরকার। happy-এর y পরিবর্তন করে i, তারপর -ly যোগ হয়।"},
+  {type:"Suffix", base:"easy", answer:"easily", wrong:["easyness","easement","easyful"], prompt:"She solved the problem ______.", rule:"easy → easily.", bn:"solved কীভাবে—তা বোঝাতে easily দরকার। easy-এর y পরিবর্তন করে i, তারপর -ly যোগ হয়।"},
+
+  // WORD FORMATION: context-based
+  {type:"Word Formation", base:"decide", answer:"decision", wrong:["decisive","decided","deciding"], prompt:"Firoz made a wise ______.", rule:"decide (verb) → decision (noun).", bn:"a wise-এর পরে noun দরকার। decide হলো verb; decision হলো noun, যার অর্থ সিদ্ধান্ত।"},
+  {type:"Word Formation", base:"succeed", answer:"success", wrong:["successful","successfully","succeeding"], prompt:"Hard work is the key to ______.", rule:"succeed (verb) → success (noun).", bn:"to এখানে preposition হিসেবে ব্যবহৃত হয়েছে; এর পরে noun দরকার। success অর্থ সাফল্য।"},
+  {type:"Word Formation", base:"succeed", answer:"successful", wrong:["success","successfully","succeed"], prompt:"Ema is a ______ student.", rule:"success → successful (adjective).", bn:"student-এর আগে adjective দরকার। successful অর্থ সফল। success থেকে successful তৈরি হয়েছে।"},
+  {type:"Word Formation", base:"succeed", answer:"successfully", wrong:["success","successful","succeed"], prompt:"Jui completed the task ______.", rule:"successful → successfully (adverb).", bn:"completed কীভাবে—তা বোঝাতে adverb দরকার। successfully অর্থ সফলভাবে।"},
+  {type:"Word Formation", base:"beauty", answer:"beautifully", wrong:["beautiful","beautify","beautician"], prompt:"Rina sings ______.", rule:"beautiful → beautifully.", bn:"sings কীভাবে—তা বোঝাতে adverb দরকার। beautifully অর্থ সুন্দরভাবে।"},
+  {type:"Word Formation", base:"strong", answer:"strength", wrong:["strongly","strengthen","strongest"], prompt:"Regular practice builds ______.", rule:"strong (adjective) → strength (noun).", bn:"builds-এর object হিসেবে noun দরকার। strength অর্থ শক্তি। strong থেকে strength তৈরি হয়; বানানেও পরিবর্তন ঘটে।"},
+  {type:"Word Formation", base:"wide", answer:"width", wrong:["widely","widen","widest"], prompt:"Measure the ______ of the table.", rule:"wide → width.", bn:"the-এর পরে noun দরকার। width অর্থ প্রস্থ। wide adjective থেকে width noun তৈরি হয়েছে।"},
+  {type:"Word Formation", base:"long", answer:"length", wrong:["longly","lengthen","longest"], prompt:"What is the ______ of this road?", rule:"long → length.", bn:"the-এর পরে noun দরকার। length অর্থ দৈর্ঘ্য।"},
+  {type:"Word Formation", base:"strong", answer:"strengthen", wrong:["strength","strongly","strongness"], prompt:"Exercise can ______ the body.", rule:"strength → strengthen (verb).", bn:"can-এর পরে base-form verb দরকার। strengthen অর্থ শক্তিশালী করা।"},
+  {type:"Word Formation", base:"simple", answer:"simplify", wrong:["simplicity","simply","simplest"], prompt:"Can you ______ this explanation?", rule:"simple → simplify (verb).", bn:"Can-এর পরে মূল verb দরকার। simplify অর্থ সহজ করা।"},
+  {type:"Word Formation", base:"modern", answer:"modernize", wrong:["modernity","modernly","modernest"], prompt:"The school plans to ______ its library.", rule:"modern → modernize (verb).", bn:"to-এর পরে base-form verb দরকার। modernize অর্থ আধুনিক করা।"},
+  {type:"Word Formation", base:"wide", answer:"widen", wrong:["width","widely","widest"], prompt:"They want to ______ the road.", rule:"wide → widen (verb).", bn:"to-এর পরে verb দরকার। widen অর্থ প্রশস্ত করা।"},
+  {type:"Word Formation", base:"strong", answer:"strongly", wrong:["strength","strengthen","strongest"], prompt:"I ______ disagree with that idea.", rule:"strong → strongly (adverb).", bn:"disagree ক্রিয়াকে জোরালোভাবে বোঝাতে strongly দরকার। strongly অর্থ দৃঢ়ভাবে।"},
+  {type:"Word Formation", base:"differ", answer:"different", wrong:["difference","differently","differ"], prompt:"Firoz and Milon have ______ opinions.", rule:"differ (verb) → different (adjective).", bn:"opinions-এর আগে adjective দরকার। different অর্থ ভিন্ন।"},
+  {type:"Word Formation", base:"differ", answer:"difference", wrong:["different","differently","differing"], prompt:"There is a clear ______ between the two words.", rule:"different → difference (noun).", bn:"a clear-এর পরে noun দরকার। difference অর্থ পার্থক্য।"},
+  {type:"Word Formation", base:"create", answer:"creative", wrong:["creation","creatively","creator"], prompt:"Taslima has a ______ mind.", rule:"create → creative (adjective).", bn:"mind-এর আগে adjective দরকার। creative অর্থ সৃজনশীল।"},
+  {type:"Word Formation", base:"create", answer:"creation", wrong:["creative","creatively","create"], prompt:"The ______ of this design took time.", rule:"create → creation (noun).", bn:"The-এর পরে noun দরকার। creation অর্থ সৃষ্টি বা তৈরির কাজ।"},
+  {type:"Word Formation", base:"act", answer:"action", wrong:["active","actively","actor"], prompt:"We must take immediate ______.", rule:"act → action (noun).", bn:"immediate adjective-এর পরে noun দরকার। action অর্থ কাজ বা পদক্ষেপ।"},
+  {type:"Word Formation", base:"act", answer:"active", wrong:["action","actively","activity"], prompt:"Mujahid is an ______ member of the team.", rule:"act → active (adjective).", bn:"member-এর আগে adjective দরকার। active অর্থ সক্রিয়।"},
+  {type:"Word Formation", base:"permit", answer:"permission", wrong:["permissive","permitted","permitting"], prompt:"You need ______ to enter.", rule:"permit (verb) → permission (noun).", bn:"need-এর object হিসেবে noun দরকার। permission অর্থ অনুমতি।"},
+  {type:"Word Formation", base:"protect", answer:"protection", wrong:["protective","protectively","protected"], prompt:"Sunlight protection is important for skin ______.", rule:"protect → protection (noun).", bn:"skin-এর পরে noun দরকার। protection অর্থ সুরক্ষা।"},
+  {type:"Word Formation", base:"protect", answer:"protective", wrong:["protection","protectively","protect"], prompt:"Wear ______ clothing in cold weather.", rule:"protect → protective (adjective).", bn:"clothing-এর আগে adjective দরকার। protective অর্থ সুরক্ষামূলক।"},
+  {type:"Word Formation", base:"danger", answer:"dangerously", wrong:["danger","dangerous","dangerousness"], prompt:"The car was moving ______ fast.", rule:"dangerous → dangerously.", bn:"moving কীভাবে হচ্ছে তা বোঝাতে adverb দরকার। dangerously অর্থ বিপজ্জনকভাবে।"},
+  {type:"Word Formation", base:"honest", answer:"honestly", wrong:["honesty","dishonest","honestness"], prompt:"Please answer the question ______.", rule:"honest → honestly.", bn:"answer কীভাবে দিতে হবে তা বোঝাতে honestly দরকার। honestly অর্থ সততার সঙ্গে।"},
+  {type:"Word Formation", base:"honest", answer:"honesty", wrong:["honestly","honest","dishonest"], prompt:"______ is an important quality.", rule:"honest (adjective) → honesty (noun).", bn:"বাক্যের subject হিসেবে noun দরকার। honesty অর্থ সততা।"},
+  {type:"Word Formation", base:"patient", answer:"patience", wrong:["patiently","impatient","patientness"], prompt:"A good teacher needs ______.", rule:"patient (adjective) → patience (noun).", bn:"needs-এর object হিসেবে noun দরকার। patience অর্থ ধৈর্য।"},
+  {type:"Word Formation", base:"patient", answer:"patiently", wrong:["patience","patient","impatient"], prompt:"Hannan listened ______ to the student.", rule:"patient → patiently.", bn:"listened কীভাবে—তা বোঝাতে patiently দরকার। patiently অর্থ ধৈর্যসহকারে।"},
+  {type:"Word Formation", base:"possible", answer:"possibility", wrong:["possibly","possible","impossible"], prompt:"There is a ______ of rain today.", rule:"possible (adjective) → possibility (noun).", bn:"a-এর পরে noun দরকার। possibility অর্থ সম্ভাবনা।"},
+  {type:"Word Formation", base:"possible", answer:"possibly", wrong:["possibility","possible","impossible"], prompt:"Could you ______ arrive early?", rule:"possible → possibly.", bn:"Could-এর পরে possibly দিয়ে সম্ভাবনা বোঝানো হয়েছে। possibly অর্থ সম্ভবত।"},
+  {type:"Word Formation", base:"different", answer:"differently", wrong:["difference","different","differ"], prompt:"Please solve the problem ______.", rule:"different → differently.", bn:"solve কীভাবে করতে হবে তা বোঝাতে differently দরকার। differently অর্থ ভিন্নভাবে।"},
+  {type:"Word Formation", base:"improve", answer:"improvement", wrong:["improved","improving","impressive"], prompt:"Your English has shown great ______.", rule:"improve → improvement (noun).", bn:"great-এর পরে noun দরকার। improvement অর্থ উন্নতি।"},
+  {type:"Word Formation", base:"employ", answer:"employment", wrong:["employer","employee","employed"], prompt:"Many people are looking for ______.", rule:"employ → employment (noun).", bn:"for-এর পরে এখানে noun দরকার। employment অর্থ কর্মসংস্থান।"},
+  {type:"Word Formation", base:"employ", answer:"employee", wrong:["employment","employer","employable"], prompt:"An ______ works for an organization.", rule:"employ → employee (person).", bn:"employee হলো যে ব্যক্তি কোনো প্রতিষ্ঠান বা ব্যক্তির অধীনে কাজ করেন। employer হলো যিনি কাজ দেন।"},
+  {type:"Word Formation", base:"employ", answer:"employer", wrong:["employee","employment","employed"], prompt:"The ______ hired three workers.", rule:"employ → employer (person who hires).", bn:"কর্মী নিয়োগ করেন যিনি, তিনি employer। employee হলো নিয়োগপ্রাপ্ত কর্মী।"},
+  {type:"Word Formation", base:"know", answer:"knowledge", wrong:["knowledgeable","knowingly","known"], prompt:"Books increase our ______.", rule:"know → knowledge (noun).", bn:"our-এর পরে noun দরকার। knowledge অর্থ জ্ঞান।"},
+  {type:"Word Formation", base:"know", answer:"knowledgeable", wrong:["knowledge","knowingly","known"], prompt:"A ______ person can explain the topic well.", rule:"knowledge → knowledgeable.", bn:"person-এর আগে adjective দরকার। knowledgeable অর্থ জ্ঞানসম্পন্ন।"},
+  {type:"Word Formation", base:"believe", answer:"belief", wrong:["believable","believably","believing"], prompt:"Honest people value ______.", rule:"believe (verb) → belief (noun).", bn:"value-এর object হিসেবে noun দরকার। belief অর্থ বিশ্বাস।"},
+  {type:"Word Formation", base:"believe", answer:"believable", wrong:["belief","believably","believing"], prompt:"His story sounds ______.", rule:"believe → believable (adjective).", bn:"sounds-এর পরে adjective দরকার। believable অর্থ বিশ্বাসযোগ্য।"},
+  {type:"Word Formation", base:"arrive", answer:"arrival", wrong:["arrived","arriving","arrivable"], prompt:"We waited for the ______ of the train.", rule:"arrive → arrival (noun).", bn:"the-এর পরে noun দরকার। arrival অর্থ আগমন।"},
+  {type:"Word Formation", base:"refuse", answer:"refusal", wrong:["refusing","refusable","refused"], prompt:"His ______ surprised everyone.", rule:"refuse → refusal (noun).", bn:"His-এর পরে noun দরকার। refusal অর্থ প্রত্যাখ্যান।"},
+  {type:"Word Formation", base:"describe", answer:"description", wrong:["descriptive","descriptively","described"], prompt:"Write a short ______ of the picture.", rule:"describe → description (noun).", bn:"a short-এর পরে noun দরকার। description অর্থ বর্ণনা।"},
+  {type:"Word Formation", base:"describe", answer:"descriptive", wrong:["description","descriptively","describe"], prompt:"Use ______ words in your paragraph.", rule:"describe → descriptive (adjective).", bn:"words-এর আগে adjective দরকার। descriptive অর্থ বর্ণনামূলক।"},
+  {type:"Word Formation", base:"attend", answer:"attendance", wrong:["attentive","attending","attended"], prompt:"Regular class ______ is important.", rule:"attend → attendance (noun).", bn:"class-এর পরে noun দরকার। attendance অর্থ উপস্থিতি।"},
+  {type:"Word Formation", base:"attend", answer:"attentive", wrong:["attendance","attentively","attend"], prompt:"The students were ______ in class.", rule:"attentive (adjective).", bn:"were-এর পরে adjective দরকার। attentive অর্থ মনোযোগী।"},
+  {type:"Word Formation", base:"obey", answer:"obedient", wrong:["obedience","obediently","disobey"], prompt:"An ______ student follows the rules.", rule:"obey → obedient (adjective).", bn:"student-এর আগে adjective দরকার। obedient অর্থ বাধ্য বা অনুগত।"},
+  {type:"Word Formation", base:"obey", answer:"obedience", wrong:["obedient","obediently","disobedient"], prompt:"Parents appreciate ______.", rule:"obey → obedience (noun).", bn:"appreciate-এর object হিসেবে noun দরকার। obedience অর্থ আনুগত্য।"},
+  {type:"Word Formation", base:"serve", answer:"service", wrong:["servant","serving","serviced"], prompt:"The shop provides good ______.", rule:"serve → service (noun).", bn:"good-এর পরে noun দরকার। service অর্থ সেবা।"},
+  {type:"Word Formation", base:"serve", answer:"servant", wrong:["service","serving","serviced"], prompt:"The story describes a loyal ______.", rule:"serve → servant (person).", bn:"a loyal-এর পরে ব্যক্তি বোঝানো noun দরকার। servant অর্থ সেবক বা গৃহকর্মী; প্রসঙ্গ অনুযায়ী অর্থ বদলাতে পারে।"},
+  {type:"Word Formation", base:"compete", answer:"competition", wrong:["competitive","competitively","competitor"], prompt:"The school held a spelling ______.", rule:"compete → competition (noun).", bn:"a spelling-এর পরে noun দরকার। competition অর্থ প্রতিযোগিতা।"},
+  {type:"Word Formation", base:"compete", answer:"competitive", wrong:["competition","competitively","compete"], prompt:"The team is highly ______.", rule:"compete → competitive (adjective).", bn:"is highly-এর পরে adjective দরকার। competitive অর্থ প্রতিযোগিতামূলক।"},
+  {type:"Word Formation", base:"speak", answer:"speech", wrong:["speaker","speaking","spoken"], prompt:"Her ______ was clear and confident.", rule:"speak → speech (noun).", bn:"Her-এর পরে noun দরকার। speech অর্থ বক্তৃতা বা কথা বলার ধরন।"},
+  {type:"Word Formation", base:"speak", answer:"speaker", wrong:["speech","speaking","spoken"], prompt:"The ______ addressed the audience.", rule:"speak → speaker (person).", bn:"যিনি বক্তব্য দেন তিনি speaker।"},
+  {type:"Word Formation", base:"choose", answer:"choice", wrong:["chosen","choosing","choosy"], prompt:"You have a ______ to make.", rule:"choose → choice (noun).", bn:"a-এর পরে noun দরকার। choice অর্থ পছন্দ বা নির্বাচন।"},
+  {type:"Word Formation", base:"choose", answer:"chosen", wrong:["choice","choosing","choosy"], prompt:"Firoz was the ______ candidate.", rule:"choose → chosen (past participle used adjectivally).", bn:"candidate-এর আগে নির্বাচিত বোঝাতে chosen দরকার। chosen অর্থ নির্বাচিত।"},
+  {type:"Word Formation", base:"grow", answer:"growth", wrong:["growing","grown","grower"], prompt:"The ______ of plants needs care.", rule:"grow → growth (noun).", bn:"The-এর পরে noun দরকার। growth অর্থ বৃদ্ধি বা বেড়ে ওঠা।"},
+  {type:"Word Formation", base:"die", answer:"death", wrong:["dead","dying","died"], prompt:"The news of his ______ saddened everyone.", rule:"die → death (noun).", bn:"his-এর পরে noun দরকার। death অর্থ মৃত্যু।"},
+  {type:"Word Formation", base:"die", answer:"dead", wrong:["death","dying","died"], prompt:"The plant is ______ because it received no water.", rule:"die → dead (adjective).", bn:"is-এর পরে গাছটির অবস্থা বোঝাতে adjective দরকার। dead অর্থ মৃত বা প্রাণহীন।"},
+  {type:"Word Formation", base:"live", answer:"living", wrong:["life","lively","alive"], prompt:"A ______ language changes over time.", rule:"live → living (adjective).", bn:"language-এর আগে adjective দরকার। living language অর্থ জীবন্ত বা বর্তমানে ব্যবহৃত ভাষা।"},
+  {type:"Word Formation", base:"live", answer:"life", wrong:["living","lively","alive"], prompt:"Education can change your ______.", rule:"live → life (noun).", bn:"your-এর পরে noun দরকার। life অর্থ জীবন।"},
+  {type:"Word Formation", base:"true", answer:"truth", wrong:["truly","truthful","untrue"], prompt:"Always tell the ______.", rule:"true → truth (noun).", bn:"the-এর পরে noun দরকার। truth অর্থ সত্য।"},
+  {type:"Word Formation", base:"true", answer:"truthful", wrong:["truth","truly","truthfully"], prompt:"A ______ person does not lie.", rule:"truth → truthful (adjective).", bn:"person-এর আগে adjective দরকার। truthful অর্থ সত্যবাদী।"},
+  {type:"Word Formation", base:"wise", answer:"wisdom", wrong:["wisely","wiser","wiseful"], prompt:"Age does not always bring ______.", rule:"wise → wisdom (noun).", bn:"bring-এর object হিসেবে noun দরকার। wisdom অর্থ প্রজ্ঞা বা বিচক্ষণতা।"},
+  {type:"Word Formation", base:"wise", answer:"wisely", wrong:["wisdom","wise","wiser"], prompt:"Use your time ______.", rule:"wise → wisely (adverb).", bn:"Use কীভাবে করতে হবে তা বোঝাতে wisely দরকার। wisely অর্থ বিচক্ষণতার সঙ্গে।"},
+  {type:"Word Formation", base:"free", answer:"freedom", wrong:["freely","freeful","freement"], prompt:"Everyone values ______.", rule:"free → freedom (noun).", bn:"values-এর object হিসেবে noun দরকার। freedom অর্থ স্বাধীনতা।"},
+  {type:"Word Formation", base:"free", answer:"freely", wrong:["freedom","freeful","freedomly"], prompt:"The students spoke ______.", rule:"free → freely (adverb).", bn:"spoke কীভাবে—তা বোঝাতে freely দরকার। freely অর্থ স্বাধীনভাবে।"},
+  {type:"Word Formation", base:"strong", answer:"stronger", wrong:["strongest","strength","strongly"], prompt:"This rope is ______ than that one.", rule:"strong → stronger; than often signals comparative.", bn:"than থাকায় তুলনামূলক adjective দরকার। strong-এর comparative form stronger।"},
+  {type:"Word Formation", base:"small", answer:"smallest", wrong:["smaller","smallness","smallish"], prompt:"This is the ______ room in the house.", rule:"small → smallest; the + superlative.", bn:"the এবং তুলনার মধ্যে সবচেয়ে ছোট বোঝানো হয়েছে, তাই smallest সঠিক।"},
+  {type:"Word Formation", base:"good", answer:"better", wrong:["gooder","bestly","wellest"], prompt:"This answer is ______ than the first one.", rule:"good → better → best (irregular forms).", bn:"good-এর comparative form better, gooder নয়। than থাকায় better সঠিক।"},
+  {type:"Word Formation", base:"bad", answer:"worse", wrong:["badder","worstly","more bad"], prompt:"The weather is ______ than yesterday.", rule:"bad → worse → worst.", bn:"bad-এর comparative form worse। than থাকায় worse সঠিক।"},
+  {type:"Word Formation", base:"care", answer:"careless", wrong:["careful","carefully","carefulness"], prompt:"A ______ mistake can cause trouble.", rule:"care + -less = careless.", bn:"mistake-এর আগে adjective দরকার। careless অর্থ অসতর্ক।"},
+  {type:"Word Formation", base:"use", answer:"useless", wrong:["useful","usefully","usefulness"], prompt:"Without batteries, the device is ______.", rule:"use + -less = useless.", bn:"is-এর পরে adjective দরকার। useless অর্থ অকেজো বা অনুপযোগী।"},
+  {type:"Word Formation", base:"hope", answer:"hopeful", wrong:["hopeless","hopefully","hopefulness"], prompt:"We remain ______ about the future.", rule:"hope + -ful = hopeful.", bn:"remain-এর পরে adjective দরকার। hopeful অর্থ আশাবাদী।"},
+  {type:"Word Formation", base:"comfort", answer:"uncomfortable", wrong:["comfortably","comfort","comforting"], prompt:"The chair was hard and ______.", rule:"un- + comfortable = uncomfortable.", bn:"and-এর দুই পাশে সমান্তরাল adjective ব্যবহার করা হয়েছে। uncomfortable অর্থ অস্বস্তিকর।"},
+  {type:"Word Formation", base:"appear", answer:"appearance", wrong:["appearing","apparent","apparently"], prompt:"Her ______ changed after the journey.", rule:"appear → appearance (noun).", bn:"Her-এর পরে noun দরকার। appearance অর্থ চেহারা বা উপস্থিতি।"},
+  {type:"Word Formation", base:"appear", answer:"apparently", wrong:["appearance","apparent","appearing"], prompt:"______ , the shop is closed.", rule:"apparently (sentence adverb).", bn:"apparently অর্থ মনে হচ্ছে বা আপাতদৃষ্টিতে। এটি পুরো বাক্য সম্পর্কে বক্তার ধারণা প্রকাশ করে।"},
+  {type:"Word Formation", base:"explain", answer:"explanation", wrong:["explanatory","explained","explaining"], prompt:"The teacher gave a clear ______.", rule:"explain → explanation (noun).", bn:"a clear-এর পরে noun দরকার। explanation অর্থ ব্যাখ্যা।"},
+  {type:"Word Formation", base:"explain", answer:"explanatory", wrong:["explanation","explained","explain"], prompt:"The book contains ______ notes.", rule:"explain → explanatory (adjective).", bn:"notes-এর আগে adjective দরকার। explanatory অর্থ ব্যাখ্যামূলক।"},
+  {type:"Word Formation", base:"solve", answer:"solution", wrong:["solvable","solved","solving"], prompt:"We need a practical ______ to this problem.", rule:"solve → solution (noun).", bn:"a practical-এর পরে noun দরকার। solution অর্থ সমাধান।"},
+  {type:"Word Formation", base:"solve", answer:"solvable", wrong:["solution","solved","solver"], prompt:"This puzzle is ______.", rule:"solve → solvable (adjective).", bn:"is-এর পরে adjective দরকার। solvable অর্থ সমাধানযোগ্য।"},
+  {type:"Word Formation", base:"depend", answer:"dependence", wrong:["dependent","dependently","dependable"], prompt:"Children need some ______ on adults.", rule:"depend → dependence (noun).", bn:"some-এর পরে noun দরকার। dependence অর্থ নির্ভরশীলতা।"},
+  {type:"Word Formation", base:"depend", answer:"dependent", wrong:["dependence","dependently","dependable"], prompt:"The result is ______ on the weather.", rule:"dependent on is a standard expression.", bn:"dependent on অর্থ কোনো কিছুর ওপর নির্ভরশীল। এখানে adjective dependent সঠিক।"},
+  {type:"Word Formation", base:"depend", answer:"dependable", wrong:["dependence","dependent","dependably"], prompt:"We need a ______ friend.", rule:"depend → dependable (adjective).", bn:"friend-এর আগে adjective দরকার। dependable অর্থ নির্ভরযোগ্য।"},
+  {type:"Word Formation", base:"value", answer:"valuable", wrong:["valuation","valuably","valued"], prompt:"This is a ______ lesson.", rule:"value → valuable (adjective).", bn:"lesson-এর আগে adjective দরকার। valuable অর্থ মূল্যবান।"},
+  {type:"Word Formation", base:"value", answer:"valuable", wrong:["value","valuation","valuably"], prompt:"Time is extremely ______.", rule:"value → valuable.", bn:"is extremely-এর পরে adjective দরকার। valuable অর্থ মূল্যবান।"},
+  {type:"Word Formation", base:"reason", answer:"reasonable", wrong:["reasonably","reasoning","reasonless"], prompt:"That is a ______ suggestion.", rule:"reason → reasonable (adjective).", bn:"suggestion-এর আগে adjective দরকার। reasonable অর্থ যুক্তিসংগত।"},
+  {type:"Word Formation", base:"reason", answer:"reasonably", wrong:["reasonable","reasoning","reasonless"], prompt:"The price is ______ low.", rule:"reasonable → reasonably (adverb).", bn:"low adjective-কে modify করতে reasonably দরকার। reasonably low অর্থ মোটামুটি কম বা যুক্তিসংগতভাবে কম।"},
+  {type:"Word Formation", base:"memory", answer:"memorable", wrong:["memorably","memorize","memorization"], prompt:"It was a ______ day.", rule:"memory → memorable (adjective).", bn:"day-এর আগে adjective দরকার। memorable অর্থ স্মরণীয়।"},
+  {type:"Word Formation", base:"memory", answer:"memorize", wrong:["memorable","memorably","memory"], prompt:"Try to ______ these new words.", rule:"memorize is a verb.", bn:"Try to-এর পরে base-form verb দরকার। memorize অর্থ মুখস্থ করা।"},
+  {type:"Word Formation", base:"beauty", answer:"beautify", wrong:["beautiful","beautifully","beautician"], prompt:"They plan to ______ the garden.", rule:"beauty → beautify (verb).", bn:"to-এর পরে verb দরকার। beautify অর্থ সুন্দর করে তোলা।"},
+  {type:"Word Formation", base:"simple", answer:"simplicity", wrong:["simply","simplify","simpler"], prompt:"I like the ______ of this design.", rule:"simple → simplicity (noun).", bn:"the-এর পরে noun দরকার। simplicity অর্থ সরলতা।"},
+  {type:"Word Formation", base:"accurate", answer:"accuracy", wrong:["accurately","inaccurate","accurateness"], prompt:"Check the ______ of your answer.", rule:"accurate → accuracy (noun).", bn:"the-এর পরে noun দরকার। accuracy অর্থ নির্ভুলতা।"},
+  {type:"Word Formation", base:"accurate", answer:"accurately", wrong:["accuracy","accurate","inaccurateness"], prompt:"Copy the sentence ______.", rule:"accurate → accurately (adverb).", bn:"Copy কীভাবে করতে হবে তা বোঝাতে accurately দরকার। accurately অর্থ নির্ভুলভাবে।"},
+  {type:"Word Formation", base:"fluent", answer:"fluency", wrong:["fluently","influence","fluentness"], prompt:"Speaking practice improves ______.", rule:"fluent → fluency (noun).", bn:"improves-এর object হিসেবে noun দরকার। fluency অর্থ সাবলীলতা।"},
+  {type:"Word Formation", base:"fluent", answer:"fluently", wrong:["fluency","fluent","influently"], prompt:"She speaks English ______.", rule:"fluent → fluently (adverb).", bn:"speaks কীভাবে—তা বোঝাতে fluently দরকার। fluently অর্থ সাবলীলভাবে।"},
+  {type:"Word Formation", base:"polite", answer:"politely", wrong:["politeness","impolite","politer"], prompt:"Please speak ______ to everyone.", rule:"polite → politely.", bn:"speak কীভাবে করতে হবে তা বোঝাতে politely দরকার। politely অর্থ ভদ্রভাবে।"},
+  {type:"Word Formation", base:"polite", answer:"politeness", wrong:["politely","impolite","politer"], prompt:"Everyone appreciates ______.", rule:"polite → politeness (noun).", bn:"appreciates-এর object হিসেবে noun দরকার। politeness অর্থ ভদ্রতা।"},
+  {type:"Word Formation", base:"brave", answer:"bravery", wrong:["bravely","braver","bravest"], prompt:"The story celebrates her ______.", rule:"brave → bravery (noun).", bn:"her-এর পরে noun দরকার। bravery অর্থ সাহসিকতা।"},
+  {type:"Word Formation", base:"brave", answer:"bravely", wrong:["bravery","brave","bravest"], prompt:"The firefighter acted ______.", rule:"brave → bravely.", bn:"acted কীভাবে—তা বোঝাতে bravely দরকার। bravely অর্থ সাহসের সঙ্গে।"},
+  {type:"Word Formation", base:"lazy", answer:"laziness", wrong:["lazily","lazyful","lazier"], prompt:"His ______ prevented him from finishing the task.", rule:"lazy → laziness.", bn:"His-এর পরে noun দরকার। lazy-এর y পরিবর্তন করে i এবং -ness যোগ করলে laziness হয়।"},
+  {type:"Word Formation", base:"lazy", answer:"lazily", wrong:["laziness","lazy","lazier"], prompt:"The cat stretched ______.", rule:"lazy → lazily.", bn:"stretched কীভাবে—তা বোঝাতে lazily দরকার। lazily অর্থ অলসভাবে।"},
+  {type:"Word Formation", base:"weak", answer:"weakness", wrong:["weakly","weaken","weakest"], prompt:"Everyone has a strength and a ______.", rule:"weak → weakness (noun).", bn:"a strength and a-এর পরে noun দরকার। weakness অর্থ দুর্বলতা।"},
+  {type:"Word Formation", base:"weak", answer:"weaken", wrong:["weakness","weakly","weakest"], prompt:"Lack of sleep can ______ concentration.", rule:"weak → weaken (verb).", bn:"can-এর পরে base-form verb দরকার। weaken অর্থ দুর্বল করা।"},
+  {type:"Word Formation", base:"bright", answer:"brighten", wrong:["brightness","brightly","brightest"], prompt:"The sun began to ______ the room.", rule:"bright → brighten (verb).", bn:"to-এর পরে verb দরকার। brighten অর্থ উজ্জ্বল করা।"},
+  {type:"Word Formation", base:"bright", answer:"brightness", wrong:["brighten","brightly","brightest"], prompt:"The ______ of the screen can be adjusted.", rule:"bright → brightness (noun).", bn:"The-এর পরে noun দরকার। brightness অর্থ উজ্জ্বলতা।"},
+  {type:"Word Formation", base:"short", answer:"shorten", wrong:["shortness","shortly","shortest"], prompt:"Please ______ the paragraph.", rule:"short → shorten (verb).", bn:"Please-এর পরে নির্দেশমূলক base-form verb দরকার। shorten অর্থ ছোট করা।"},
+  {type:"Word Formation", base:"short", answer:"shortage", wrong:["shorten","shortly","shortness"], prompt:"There is a water ______ in the area.", rule:"short → shortage (noun).", bn:"a water-এর পরে noun দরকার। shortage অর্থ ঘাটতি।"},
+  {type:"Word Formation", base:"wide", answer:"widely", wrong:["width","widen","wider"], prompt:"English is ______ used around the world.", rule:"wide → widely (adverb).", bn:"used ক্রিয়াটিকে modify করতে widely দরকার। widely used অর্থ ব্যাপকভাবে ব্যবহৃত।"},
+  {type:"Word Formation", base:"deep", answer:"depth", wrong:["deeply","deepen","deepest"], prompt:"The ______ of the river is unknown.", rule:"deep → depth (noun).", bn:"The-এর পরে noun দরকার। depth অর্থ গভীরতা।"},
+  {type:"Word Formation", base:"deep", answer:"deepen", wrong:["depth","deeply","deepest"], prompt:"These discussions may ______ our understanding.", rule:"deep → deepen (verb).", bn:"may-এর পরে base-form verb দরকার। deepen অর্থ আরও গভীর করা বা বাড়ানো।"},
+  {type:"Word Formation", base:"high", answer:"height", wrong:["highly","heighten","higher"], prompt:"Measure the ______ of the building.", rule:"high → height (noun).", bn:"the-এর পরে noun দরকার। height অর্থ উচ্চতা।"},
+  {type:"Word Formation", base:"high", answer:"highly", wrong:["height","heighten","higher"], prompt:"She is ______ respected by her teachers.", rule:"high → highly (adverb).", bn:"respected-কে modify করতে highly দরকার। highly respected অর্থ অত্যন্ত সম্মানিত।"},
+  {type:"Word Formation", base:"strong", answer:"strengthen", wrong:["strongly","strength","strongest"], prompt:"Good habits ______ character.", rule:"strong → strengthen (verb).", bn:"বাক্যে habits subject এবং character object। তাই verb strengthen দরকার।"},
+  {type:"Word Formation", base:"sharp", answer:"sharpen", wrong:["sharpness","sharply","sharpest"], prompt:"Please ______ the pencil.", rule:"sharp → sharpen (verb).", bn:"Please-এর পরে base-form verb দরকার। sharpen অর্থ ধারালো করা।"},
+  {type:"Word Formation", base:"sharp", answer:"sharpness", wrong:["sharpen","sharply","sharpest"], prompt:"The ______ of the knife matters.", rule:"sharp → sharpness (noun).", bn:"The-এর পরে noun দরকার। sharpness অর্থ ধার।"},
+  {type:"Word Formation", base:"wide", answer:"widen", wrong:["width","widely","wide"], prompt:"The government will ______ the bridge.", rule:"wide → widen (verb).", bn:"will-এর পরে base-form verb দরকার। widen অর্থ প্রশস্ত করা।"},
+  {type:"Word Formation", base:"able", answer:"ability", wrong:["ably","disable","enable"], prompt:"Reading improves your ______ to learn.", rule:"able → ability (noun).", bn:"your-এর পরে noun দরকার। ability অর্থ যোগ্যতা বা সক্ষমতা।"},
+  {type:"Word Formation", base:"able", answer:"enable", wrong:["ability","disable","ably"], prompt:"Technology can ______ students to learn online.", rule:"en- + able = enable (verb).", bn:"can-এর পরে base-form verb দরকার। enable অর্থ সক্ষম করে তোলা।"},
+  {type:"Word Formation", base:"able", answer:"disable", wrong:["ability","enable","ably"], prompt:"A fault may ______ the device.", rule:"dis- + able = disable.", bn:"may-এর পরে verb দরকার। disable অর্থ অকার্যকর করা বা কাজ করতে অক্ষম করা।"},
+  {type:"Word Formation", base:"regular", answer:"regularly", wrong:["regularity","irregular","regularize"], prompt:"Firoz studies English ______.", rule:"regular → regularly (adverb).", bn:"studies কীভাবে বা কত নিয়মিত—তা বোঝাতে regularly দরকার। regularly অর্থ নিয়মিতভাবে।"},
+  {type:"Word Formation", base:"regular", answer:"regularity", wrong:["regularly","irregular","regularize"], prompt:"The ______ of his attendance improved.", rule:"regular → regularity (noun).", bn:"The-এর পরে noun দরকার। regularity অর্থ নিয়মিততা।"},
+  {type:"Word Formation", base:"certain", answer:"certainty", wrong:["certainly","uncertain","certify"], prompt:"I cannot say this with complete ______.", rule:"certain → certainty (noun).", bn:"complete-এর পরে noun দরকার। certainty অর্থ নিশ্চয়তা।"},
+  {type:"Word Formation", base:"certain", answer:"certainly", wrong:["certainty","uncertain","certify"], prompt:"I will ______ help you.", rule:"certain → certainly (adverb).", bn:"certainly দিয়ে নিশ্চয়তা প্রকাশ করা হয়েছে। certainly অর্থ অবশ্যই বা নিশ্চয়ই।"},
+  {type:"Word Formation", base:"safe", answer:"safety", wrong:["safely","unsafe","safeness"], prompt:"Road ______ is everyone's responsibility.", rule:"safe → safety (noun).", bn:"Road-এর পরে noun দরকার। safety অর্থ নিরাপত্তা।"},
+  {type:"Word Formation", base:"safe", answer:"safely", wrong:["safety","unsafe","safeness"], prompt:"Drive ______ in the rain.", rule:"safe → safely (adverb).", bn:"Drive কীভাবে করতে হবে তা বোঝাতে safely দরকার। safely অর্থ নিরাপদে।"},
+  {type:"Word Formation", base:"responsible", answer:"responsibility", wrong:["responsibly","irresponsible","responsibleness"], prompt:"Every student has a ______ to study.", rule:"responsible → responsibility (noun).", bn:"a-এর পরে noun দরকার। responsibility অর্থ দায়িত্ব।"},
+  {type:"Word Formation", base:"responsible", answer:"responsibly", wrong:["responsibility","responsible","irresponsible"], prompt:"Use the internet ______.", rule:"responsible → responsibly (adverb).", bn:"Use কীভাবে করতে হবে তা বোঝাতে responsibly দরকার। responsibly অর্থ দায়িত্বশীলভাবে।"},
+  {type:"Word Formation", base:"care", answer:"careless", wrong:["carefully","carefulness","care"], prompt:"A ______ driver may cause an accident.", rule:"care + -less = careless.", bn:"driver-এর আগে adjective দরকার। careless অর্থ অসতর্ক।"},
+  {type:"Word Formation", base:"act", answer:"activity", wrong:["active","actively","action"], prompt:"Physical ______ is good for health.", rule:"active → activity (noun).", bn:"Physical-এর পরে noun দরকার। activity অর্থ কার্যকলাপ।"},
+  {type:"Word Formation", base:"educate", answer:"educated", wrong:["education","educating","educator"], prompt:"An ______ person can think critically.", rule:"educate → educated (adjective).", bn:"person-এর আগে adjective দরকার। educated অর্থ শিক্ষিত।"},
+  {type:"Word Formation", base:"educate", answer:"educator", wrong:["education","educated","educational"], prompt:"An ______ helps learners gain knowledge.", rule:"educate → educator (person).", bn:"যিনি শিক্ষা দেন বা শিক্ষার কাজে যুক্ত থাকেন, তিনি educator।"},
+  {type:"Word Formation", base:"music", answer:"musical", wrong:["musically","musician","musicality"], prompt:"She has a ______ voice.", rule:"music → musical (adjective).", bn:"voice-এর আগে adjective দরকার। musical অর্থ সংগীত-সম্পর্কিত বা সুরেলা।"},
+  {type:"Word Formation", base:"music", answer:"musician", wrong:["musical","musically","music"], prompt:"The ______ played the instrument.", rule:"music → musician (person).", bn:"যিনি সংগীত করেন বা বাদ্যযন্ত্র বাজান, তিনি musician।"},
+  {type:"Word Formation", base:"art", answer:"artist", wrong:["artistic","artistically","artful"], prompt:"The ______ painted a beautiful scene.", rule:"art → artist (person).", bn:"যিনি শিল্পকর্ম তৈরি করেন তিনি artist, অর্থ শিল্পী।"},
+  {type:"Word Formation", base:"art", answer:"artistic", wrong:["artist","artistically","art"], prompt:"The room has an ______ design.", rule:"art → artistic (adjective).", bn:"design-এর আগে adjective দরকার। artistic অর্থ শৈল্পিক।"},
+  {type:"Word Formation", base:"science", answer:"scientist", wrong:["scientific","scientifically","science"], prompt:"A ______ studies the natural world.", rule:"science → scientist (person).", bn:"যিনি বিজ্ঞান নিয়ে গবেষণা বা অধ্যয়ন করেন, তিনি scientist।"},
+  {type:"Word Formation", base:"science", answer:"scientific", wrong:["scientist","scientifically","science"], prompt:"We need ______ evidence.", rule:"science → scientific (adjective).", bn:"evidence-এর আগে adjective দরকার। scientific অর্থ বৈজ্ঞানিক।"},
+  {type:"Word Formation", base:"history", answer:"historical", wrong:["historian","historically","historicize"], prompt:"The museum preserves ______ objects.", rule:"history → historical (adjective).", bn:"objects-এর আগে adjective দরকার। historical অর্থ ইতিহাস-সম্পর্কিত।"},
+  {type:"Word Formation", base:"history", answer:"historian", wrong:["historical","historically","history"], prompt:"A ______ studies past events.", rule:"history → historian (person).", bn:"যিনি ইতিহাস অধ্যয়ন করেন, তিনি historian বা ইতিহাসবিদ।"},
+  {type:"Word Formation", base:"economy", answer:"economic", wrong:["economically","economist","economize"], prompt:"The country faces ______ challenges.", rule:"economy → economic (adjective).", bn:"challenges-এর আগে adjective দরকার। economic অর্থ অর্থনীতি-সম্পর্কিত।"},
+  {type:"Word Formation", base:"economy", answer:"economist", wrong:["economic","economically","economize"], prompt:"An ______ studies how resources are used.", rule:"economy → economist (person).", bn:"যিনি অর্থনীতি নিয়ে অধ্যয়ন করেন, তিনি economist বা অর্থনীতিবিদ।"},
+  {type:"Word Formation", base:"politics", answer:"political", wrong:["politician","politically","politicize"], prompt:"They discussed a ______ issue.", rule:"politics → political (adjective).", bn:"issue-এর আগে adjective দরকার। political অর্থ রাজনীতি-সম্পর্কিত।"},
+  {type:"Word Formation", base:"politics", answer:"politician", wrong:["political","politically","politicize"], prompt:"The ______ spoke to the public.", rule:"politics → politician (person).", bn:"যিনি রাজনীতির সঙ্গে যুক্ত বা নির্বাচিত প্রতিনিধি, তিনি politician।"},
+  {type:"Word Formation", base:"photograph", answer:"photographer", wrong:["photographic","photography","photographed"], prompt:"The ______ took our picture.", rule:"photograph → photographer (person).", bn:"যিনি ছবি তোলেন তিনি photographer, অর্থ আলোকচিত্রী।"},
+  {type:"Word Formation", base:"photograph", answer:"photography", wrong:["photographer","photographic","photographed"], prompt:"She is interested in ______.", rule:"photograph → photography (activity/field).", bn:"in-এর পরে noun দরকার। photography অর্থ আলোকচিত্র বা ছবি তোলার শিল্প।"},
+  {type:"Word Formation", base:"invent", answer:"invention", wrong:["inventive","inventor","inventively"], prompt:"The telephone was an important ______.", rule:"invent → invention (noun).", bn:"an important-এর পরে noun দরকার। invention অর্থ আবিষ্কার।"},
+  {type:"Word Formation", base:"invent", answer:"inventor", wrong:["invention","inventive","inventively"], prompt:"An ______ creates something new.", rule:"invent → inventor (person).", bn:"যিনি নতুন কিছু আবিষ্কার করেন, তিনি inventor বা আবিষ্কারক।"},
+  {type:"Word Formation", base:"invent", answer:"inventive", wrong:["invention","inventor","inventively"], prompt:"She has an ______ mind.", rule:"invent → inventive (adjective).", bn:"mind-এর আগে adjective দরকার। inventive অর্থ উদ্ভাবনী ক্ষমতাসম্পন্ন।"},
+  {type:"Word Formation", base:"manage", answer:"management", wrong:["manager","manageable","managed"], prompt:"Good ______ is essential for a team.", rule:"manage → management (noun).", bn:"Good-এর পরে noun দরকার। management অর্থ পরিচালনা বা ব্যবস্থাপনা।"},
+  {type:"Word Formation", base:"manage", answer:"manager", wrong:["management","manageable","managed"], prompt:"The ______ organized the meeting.", rule:"manage → manager (person).", bn:"যিনি পরিচালনা করেন তিনি manager, অর্থ ব্যবস্থাপক।"},
+  {type:"Word Formation", base:"manage", answer:"manageable", wrong:["management","manager","managing"], prompt:"The task is difficult but ______.", rule:"manage → manageable (adjective).", bn:"but-এর দুই পাশে সমান্তরাল adjective রয়েছে। manageable অর্থ সামলানো সম্ভব এমন।"},
+  {type:"Word Formation", base:"comfort", answer:"comfortably", wrong:["comfortable","comfort","comforting"], prompt:"The family lives ______.", rule:"comfortable → comfortably.", bn:"lives কীভাবে—তা বোঝাতে comfortably দরকার। comfortably অর্থ আরামে।"},
+  {type:"Word Formation", base:"enjoy", answer:"enjoyment", wrong:["enjoyable","enjoyably","enjoyed"], prompt:"Reading gives me great ______.", rule:"enjoy → enjoyment (noun).", bn:"great-এর পরে noun দরকার। enjoyment অর্থ আনন্দ।"},
+  {type:"Word Formation", base:"enjoy", answer:"enjoyable", wrong:["enjoyment","enjoyably","enjoyed"], prompt:"We had an ______ evening.", rule:"enjoy → enjoyable (adjective).", bn:"evening-এর আগে adjective দরকার। enjoyable অর্থ উপভোগ্য।"},
+  {type:"Word Formation", base:"agree", answer:"agreement", wrong:["agreeable","agreeably","agreed"], prompt:"Both sides reached an ______.", rule:"agree → agreement (noun).", bn:"an-এর পরে noun দরকার। agreement অর্থ চুক্তি বা ঐকমত্য।"},
+  {type:"Word Formation", base:"agree", answer:"agreeable", wrong:["agreement","agreeably","disagree"], prompt:"The proposal seems ______.", rule:"agree → agreeable (adjective).", bn:"seems-এর পরে adjective দরকার। agreeable অর্থ গ্রহণযোগ্য বা মনোরম।"},
+  {type:"Word Formation", base:"argue", answer:"argument", wrong:["arguable","arguably","argued"], prompt:"They had a strong ______ about the issue.", rule:"argue → argument (noun).", bn:"a strong-এর পরে noun দরকার। argument অর্থ তর্ক বা যুক্তি।"},
+  {type:"Word Formation", base:"argue", answer:"arguably", wrong:["argument","arguable","argued"], prompt:"This is ______ the best solution.", rule:"arguable → arguably (adverb).", bn:"arguably দিয়ে একটি বক্তব্যকে যুক্তিসংগত মত হিসেবে উপস্থাপন করা হয়। অর্থ বলা যায় বা যুক্তি দেওয়া যায় যে।"},
+  {type:"Word Formation", base:"permit", answer:"permissible", wrong:["permission","permissibly","permitted"], prompt:"Such behaviour is not ______ here.", rule:"permit → permissible (adjective).", bn:"is not-এর পরে adjective দরকার। permissible অর্থ অনুমোদনযোগ্য।"},
+  {type:"Word Formation", base:"comfort", answer:"comforting", wrong:["comfort","comforted","comfortably"], prompt:"Her words were very ______.", rule:"comfort → comforting (adjective).", bn:"were very-এর পরে adjective দরকার। comforting অর্থ সান্ত্বনাদায়ক।"},
+  {type:"Word Formation", base:"interest", answer:"interesting", wrong:["interested","interestingly","interest"], prompt:"The lesson was very ______.", rule:"interesting describes the thing that causes interest.", bn:"lesson নিজে আগ্রহ সৃষ্টি করেছে, তাই interesting। interested সাধারণত আগ্রহ অনুভবকারী ব্যক্তিকে বোঝায়।"},
+  {type:"Word Formation", base:"interest", answer:"interested", wrong:["interesting","interestingly","interest"], prompt:"I am ______ in English grammar.", rule:"interested in = having an interest in something.", bn:"কোনো বিষয়ে আগ্রহ অনুভবকারী ব্যক্তিকে interested দিয়ে বোঝানো হয়। interested in একটি প্রচলিত গঠন।"},
+  {type:"Word Formation", base:"bore", answer:"boring", wrong:["bored","boredom","bore"], prompt:"The film was so ______ that we left early.", rule:"boring describes something that causes boredom.", bn:"film বিরক্তি সৃষ্টি করেছে, তাই boring। bored হলো বিরক্তি অনুভবকারী ব্যক্তির অবস্থা।"},
+  {type:"Word Formation", base:"bore", answer:"bored", wrong:["boring","boredom","bore"], prompt:"The students felt ______ during the long wait.", rule:"bored describes a person's feeling.", bn:"students বিরক্তি অনুভব করেছে, তাই bored সঠিক।"},
+  {type:"Word Formation", base:"excite", answer:"exciting", wrong:["excited","excitement","excitedly"], prompt:"The match was very ______.", rule:"exciting describes something that causes excitement.", bn:"match উত্তেজনা তৈরি করেছে, তাই exciting। excited হলো উত্তেজিত ব্যক্তির অনুভূতি।"},
+  {type:"Word Formation", base:"excite", answer:"excited", wrong:["exciting","excitement","excitedly"], prompt:"The children were ______ about the trip.", rule:"excited about = feeling enthusiasm.", bn:"children আনন্দ ও আগ্রহ অনুভব করেছে, তাই excited about সঠিক।"},
+  {type:"Word Formation", base:"tire", answer:"tiring", wrong:["tired","tiredness","tire"], prompt:"The journey was long and ______.", rule:"tiring describes something that causes tiredness.", bn:"journey ক্লান্তি সৃষ্টি করেছে, তাই tiring।"},
+  {type:"Word Formation", base:"tire", answer:"tired", wrong:["tiring","tiredness","tire"], prompt:"After the journey, we felt ______.", rule:"tired describes a person's state.", bn:"আমরা ক্লান্ত অনুভব করেছি, তাই tired সঠিক।"},
+  {type:"Word Formation", base:"amaze", answer:"amazing", wrong:["amazed","amazement","amazingly"], prompt:"It was an ______ discovery.", rule:"amazing describes something that causes amazement.", bn:"discovery বিস্ময় সৃষ্টি করেছে, তাই amazing।"},
+  {type:"Word Formation", base:"amaze", answer:"amazed", wrong:["amazing","amazement","amazingly"], prompt:"Firoz was ______ by the result.", rule:"amazed describes the person who feels surprise.", bn:"Firoz বিস্মিত হয়েছে, তাই amazed সঠিক।"}
+];
+
+const state = {
+  index: 0,
+  score: 0,
+  answered: 0,
+  questions: [],
+  history: [],
+  selected: [],
+  locked: [],
+  usedKeys: new Set(),
+  pool: []
+};
+
+const $ = id => document.getElementById(id);
+const LETTERS = ["A", "B", "C", "D"];
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function makeQuestion(item) {
+  const options = shuffle([
+    {text:item.answer, correct:true},
+    ...item.wrong.map(text => ({text, correct:false}))
+  ]);
+
+  return {
+    ...item,
+    options,
+    prompt: item.prompt || `Choose the correct word formed from "${item.base}".`,
+    bn: item.bn || "মূল শব্দের অর্থ ও বাক্যের গঠন বিবেচনা করুন।",
+    key: item.type + "|" + (item.prompt || item.base) + "|" + item.answer
+  };
+}
+
+function nextQuestionFromPool() {
+  if (!state.pool.length) {
+    state.pool = shuffle(BANK);
+    state.usedKeys.clear();
+  }
+
+  let item = state.pool.pop();
+  state.usedKeys.add(item.type + "|" + (item.prompt || item.base) + "|" + item.answer);
+  return makeQuestion(item);
+}
+
+function addVariation(q) {
+  // A varied question pool includes different examples and contexts.
+  // When the bank is exhausted, reuse valid rules with fresh option order.
+  return makeQuestion(q);
+}
+
+function newRun() {
+  state.index = 0;
+  state.score = 0;
+  state.answered = 0;
+  state.questions = [];
+  state.history = [];
+  state.selected = [];
+  state.locked = [];
+  state.pool = shuffle(BANK);
+  state.usedKeys.clear();
+
+  for (let i = 0; i < BANK.length; i++) {
+    state.questions.push(nextQuestionFromPool());
+  }
+
+  // Questions are drawn without repetition during this run.
+  // Further runs reshuffle the pool and options.
+  renderQuestion(false);
+  updateStats();
+}
+
+function ensureQuestion(index) {
+  while (state.questions.length <= index) {
+    state.questions.push(nextQuestionFromPool());
+  }
+}
+
+function renderQuestion(animate = true) {
+  $("completion").style.display = "none";
+  $("quizContent").style.display = "block";
+
+  ensureQuestion(state.index);
+  const q = state.questions[state.index];
+
+  const content = $("quizContent");
+  content.classList.remove("enter");
+  if (animate) {
+    void content.offsetWidth;
+    content.classList.add("enter");
+  }
+
+  $("questionCounter").textContent = `Question ${state.index + 1}`;
+  $("progressText").textContent = `${Math.round((state.index / Math.max(1, state.questions.length)) * 100)}% Complete`;
+  $("progressBar").style.width = `${Math.min(100, (state.index / Math.max(1, state.questions.length)) * 100)}%`;
+  $("topicTag").textContent = q.type;
+  $("question").textContent = q.prompt;
+  $("questionBn").textContent = q.bn;
+
+  const optionsBox = $("options");
+  optionsBox.replaceChildren();
+
+  q.options.forEach((opt, i) => {
+    const button = document.createElement("button");
+    button.className = "option";
+    button.type = "button";
+
+    const letter = document.createElement("span");
+    letter.className = "letter";
+    letter.textContent = LETTERS[i];
+
+    const label = document.createElement("span");
+    label.textContent = opt.text;
+
+    button.append(letter, label);
+    button.disabled = !!state.locked[state.index];
+
+    if (state.locked[state.index]) {
+      if (opt.correct) button.classList.add("correct");
+      if (state.selected[state.index] === i && !opt.correct) {
+        button.classList.add("wrong");
+      }
+    }
+
+    button.addEventListener("click", () => selectOption(i));
+    optionsBox.appendChild(button);
+  });
+
+  const feedback = $("feedback");
+  feedback.classList.remove("show");
+
+  if (state.locked[state.index]) {
+    showFeedback(q, state.selected[state.index]);
+  }
+
+  $("prevBtn").disabled = state.index === 0;
+  $("nextBtn").textContent =
+    state.index === state.questions.length - 1 ? "Next →" : "Next →";
+
+  updateStats();
+}
+
+function selectOption(optionIndex) {
+  if (state.locked[state.index]) return;
+
+  const q = state.questions[state.index];
+  const selected = q.options[optionIndex];
+
+  state.selected[state.index] = optionIndex;
+  state.locked[state.index] = true;
+  state.answered++;
+
+  if (selected.correct) state.score++;
+
+  showFeedback(q, optionIndex);
+
+  [...$("options").children].forEach((button, i) => {
+    button.disabled = true;
+    if (q.options[i].correct) button.classList.add("correct");
+    if (i === optionIndex && !selected.correct) button.classList.add("wrong");
+  });
+
+  updateStats();
+}
+
+function showFeedback(q, optionIndex) {
+  const chosen = q.options[optionIndex];
+  const correct = chosen && chosen.correct;
+
+  $("feedbackTitle").textContent = correct
+    ? "✓ Correct Answer!"
+    : "✗ Not Quite — Learn the Rule";
+
+  $("feedbackTitle").className = correct ? "correct-text" : "wrong-text";
+
+  const right = q.options.find(o => o.correct).text;
+
+  $("feedbackText").textContent =
+    `Correct Answer: ${right}\n\n` +
+    `বাংলা ব্যাখ্যা:\n${q.bn}\n\n` +
+    `Word Formation Rule:\n${q.rule}`;
+
+  $("feedback").classList.add("show");
+}
+
+function updateStats() {
+  $("answered").textContent = state.answered;
+  $("score").textContent = state.score;
+  $("accuracy").textContent = state.answered
+    ? Math.round(state.score / state.answered * 100) + "%"
+    : "0%";
+}
+
+function next() {
+  if (state.index < state.questions.length - 1) {
+    state.index++;
+    renderQuestion(true);
+    return;
+  }
+
+  // Continue indefinitely by generating another shuffled question set.
+  const oldLength = state.questions.length;
+  for (let i = 0; i < BANK.length; i++) {
+    state.questions.push(nextQuestionFromPool());
+  }
+
+  state.index = oldLength;
+  renderQuestion(true);
+}
+
+function previous() {
+  if (state.index > 0) {
+    state.index--;
+    renderQuestion(true);
+  }
+}
+
+$("nextBtn").addEventListener("click", next);
+$("prevBtn").addEventListener("click", previous);
+$("againBtn").addEventListener("click", newRun);
+
+newRun();
+</script>
 </body>
 </html>

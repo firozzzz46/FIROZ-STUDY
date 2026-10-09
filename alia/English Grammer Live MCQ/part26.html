@@ -1,128 +1,436 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon</title>
-
-    <!-- Google Fonts for Bengali & English -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Inter:wght@700;900&display=swap" rel="stylesheet">
-
-    <!-- Tailwind CSS -->
+    <title>PART 26 - Modifiers Practice Engine</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Times+New+Roman&display=swap" rel="stylesheet">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kalpurush&display=swap');
+        
         body {
-            font-family: 'Hind Siliguri', 'Inter', sans-serif;
-            background-color: #030712;
-            overflow: hidden;
+            font-family: 'Times New Roman', serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            min-height: 100vh;
         }
 
-        /* Gradient glowing animation on text */
-        .glow-text {
-            background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 50%, #38bdf8 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shine 6s linear infinite;
+        .bengali-text {
+            font-family: 'Kalpurush', sans-serif;
         }
 
-        @keyframes shine {
-            0% { background-position: 0% center; }
-            50% { background-position: 100% center; }
-            100% { background-position: 0% center; }
+        /* Glassmorphism card */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.08);
         }
 
-        /* Keyframes for initial entry: Floating in from below with opacity */
-        @keyframes floatIn {
-            0% {
-                opacity: 0;
-                transform: translateY(40px) scale(0.95);
-                filter: blur(8px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-                filter: blur(0);
-            }
+        /* Smooth transition container for question switching */
+        .question-transition {
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* Continuous subtle float effect once arrived */
-        @keyframes subtleFloat {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-8px);
-            }
+        .slide-enter {
+            opacity: 0;
+            transform: translateY(15px) scale(0.98);
         }
 
-        /* Animation class for Heading */
-        .animate-heading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards,
-                subtleFloat 6s ease-in-out 1.2s infinite;
-        }
-
-        /* Animation class for Subheading (staggered delay) */
-        .animate-subheading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards,
-                subtleFloat 6s ease-in-out 1.55s infinite;
-            opacity: 0; /* Hidden until animation kicks in */
-        }
-
-        /* Ambient background lighting */
-        .ambient-glow {
-            position: absolute;
-            width: 450px;
-            height: 450px;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(3, 7, 18, 0) 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            transition: left 0.4s ease-out, top 0.4s ease-out;
+        .slide-active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
         }
     </style>
 </head>
-<body class="min-h-screen flex items-center justify-center relative select-none px-4">
+<body class="text-slate-800 flex flex-col justify-between min-h-screen">
 
-    <!-- Ambient glow center element -->
-    <div id="glow" class="ambient-glow top-1/2 left-1/2"></div>
+    <header class="w-full py-5 px-6 glass-card border-b border-slate-200/60 sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="flex items-center space-x-3">
+                <div class="bg-indigo-600 text-white p-2.5 rounded-xl shadow-md">
+                    <i class="fa-solid fa-graduation-cap text-xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold tracking-tight text-slate-900">PART 26 - Modifiers Practice Engine</h1>
+                    <p class="text-sm text-slate-500 bengali-text">প্রি-মডিফায়ার ও পোস্ট-মডিফায়ারের ইনফিনিটি প্র্যাকটিস সিস্টেম</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-4 bg-slate-100/80 px-4 py-2 rounded-2xl border border-slate-200">
+                <div class="text-sm font-medium text-slate-600">
+                    Score: <span id="score-display" class="font-bold text-indigo-600 text-base">0</span>/<span id="total-attempted">0</span>
+                </div>
+                <div class="h-4 w-[1px] bg-slate-300"></div>
+                <div class="text-sm font-medium text-slate-600">
+                    Streak: <span id="streak-display" class="font-bold text-amber-500 text-base">🔥 0</span>
+                </div>
+            </div>
+        </div>
+    </header>
 
-    <!-- Centered minimal content with entry animations -->
-    <main class="text-center z-10 space-y-6 max-w-3xl mx-auto py-8 px-4">
+    <main class="w-full max-w-3xl mx-auto px-4 py-8 flex-grow flex flex-col justify-center">
         
-        <!-- Main English Title -->
-        <h1 class="animate-heading text-5xl sm:text-7xl md:text-8xl font-black tracking-tight glow-text font-['Inter'] drop-shadow-lg">
-            Coming Soon...
-        </h1>
+        <!-- Progress Bar & Category Tag -->
+        <div class="mb-4 flex items-center justify-between">
+            <span id="modifier-type-badge" class="px-3 py-1 bg-indigo-100 text-indigo-700 text-xs font-semibold rounded-full uppercase tracking-wider">
+                Pre-modifier
+            </span>
+            <span class="text-sm font-medium text-slate-500">Question <span id="current-q-num">1</span> of <span id="total-q-num">10</span></span>
+        </div>
+        <div class="w-full bg-slate-200 h-2 rounded-full mb-6 overflow-hidden">
+            <div id="progress-bar" class="bg-indigo-600 h-full w-0 transition-all duration-500 ease-out"></div>
+        </div>
 
-        <!-- Bengali Subheading -->
-        <p class="animate-subheading text-xl sm:text-3xl md:text-4xl font-semibold text-emerald-400/90 leading-relaxed tracking-wide drop-shadow">
-            ইনশাআল্লাহ, খুব শীঘ্রই ডাটা যোগ করা হবে।
-        </p>
+        <!-- Question Card -->
+        <div id="quiz-card" class="glass-card rounded-3xl p-6 sm:p-8 question-transition slide-enter">
+            <!-- Question text -->
+            <div class="mb-6">
+                <h2 id="question-text" class="text-lg sm:text-xl font-semibold text-slate-900 leading-relaxed mb-2" style="font-size: 19px;">
+                    Loading question...
+                </h2>
+                <p id="question-bengali" class="bengali-text text-slate-600 text-base italic">
+                    (প্রশ্ন লোড হচ্ছে...)
+                </p>
+            </div>
+
+            <!-- Options Grid -->
+            <div id="options-container" class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mb-6">
+                <!-- Dynamically injected options -->
+            </div>
+
+            <!-- Explanation Box (Hidden initially) -->
+            <div id="explanation-box" class="hidden bg-slate-50 border border-slate-200/80 rounded-2xl p-5 mb-6 transition-all duration-300">
+                <div class="flex items-center gap-2 mb-2">
+                    <i id="explanation-icon" class="fa-solid fa-circle-check text-emerald-500 text-lg"></i>
+                    <h3 id="explanation-title" class="font-bold text-slate-800 text-base">Correct!</h3>
+                </div>
+                <p id="explanation-text" class="bengali-text text-slate-700 text-base leading-relaxed">
+                    ব্যাখ্যা এখানে প্রদর্শিত হবে।
+                </p>
+            </div>
+
+            <!-- Controls / Navigation -->
+            <div class="flex items-center justify-between pt-4 border-t border-slate-200/60">
+                <button id="prev-btn" onclick="prevQuestion()" class="px-5 py-2.5 rounded-xl border border-slate-300 text-slate-700 font-medium hover:bg-slate-100 transition disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-2">
+                    <i class="fa-solid fa-arrow-left text-xs"></i> Previous
+                </button>
+                <button id="next-btn" onclick="nextQuestion()" class="px-6 py-2.5 rounded-xl bg-indigo-600 text-white font-medium hover:bg-indigo-700 shadow-md shadow-indigo-200 transition disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-2">
+                    Next <i class="fa-solid fa-arrow-right text-xs"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Completion View (Hidden initially) -->
+        <div id="completion-card" class="hidden glass-card rounded-3xl p-8 text-center question-transition slide-enter">
+            <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl shadow-inner">
+                <i class="fa-solid fa-award"></i>
+            </div>
+            <h2 class="text-2xl font-bold text-slate-900 mb-2">Practice Session Completed!</h2>
+            <p class="bengali-text text-slate-600 text-base mb-6">অভিনন্দন! আপনি সফলভাবে মডিফায়ার প্র্যাকটিস সম্পন্ন করেছেন।</p>
+            
+            <div class="bg-slate-100/80 p-5 rounded-2xl max-w-xs mx-auto mb-6 border border-slate-200">
+                <div class="text-sm text-slate-500 mb-1">Final Score</div>
+                <div id="final-score" class="text-3xl font-extrabold text-indigo-600">0/10</div>
+            </div>
+
+            <div class="flex justify-center gap-4">
+                <button onclick="restartQuiz()" class="px-6 py-3 rounded-xl bg-indigo-600 text-white font-medium hover:bg-indigo-700 shadow-md shadow-indigo-200 transition flex items-center gap-2">
+                    <i class="fa-solid fa-rotate-right"></i> Practice Infinite New Set
+                </button>
+            </div>
+        </div>
 
     </main>
 
+    <footer class="w-full py-4 text-center text-xs text-slate-500 border-t border-slate-200/60 glass-card">
+        <p>PART 26 - Modifiers Interactive Practice System | Designed with strict grammar rules & authorized names.</p>
+    </footer>
+
     <script>
-        const glow = document.getElementById('glow');
+        // Permitted names list strictly enforced
+        const allowedNames = ['Firoz', 'Fatiha', 'Fatema', 'Jui', 'Ema', 'Rupa', 'Moksed', 'Ferjousi', 'Jannati', 'Mini', 'Miraz', 'Mujahid', 'Milon', 'Hannan', 'Joba', 'Tanzila', 'Rina', 'Tania', 'Taslima'];
 
-        // Mouse move interactive glow background
-        window.addEventListener('mousemove', (e) => {
-            glow.style.left = e.clientX + 'px';
-            glow.style.top = e.clientY + 'px';
-        });
+        function getRandomName() {
+            return allowedNames[Math.floor(Math.random() * allowedNames.length)];
+        }
 
-        // Touch move interactive glow background for mobile screens
-        window.addEventListener('touchmove', (e) => {
-            if (e.touches.length > 0) {
-                glow.style.left = e.touches[0].clientX + 'px';
-                glow.style.top = e.touches[0].clientY + 'px';
+        // Question bank templates with dynamic generator engine
+        let currentQuestions = [];
+        let currentIndex = 0;
+        let score = 0;
+        let streak = 0;
+        let attemptedCount = 0;
+        let answeredCurrent = false;
+
+        function generateQuestions() {
+            const pool = [];
+            const name1 = getRandomName();
+            const name2 = getRandomName();
+
+            // 1. Pre-modifier with Adjective
+            pool.providers = true;
+            pool.push({
+                type: "Pre-modifier (Adjective)",
+                question: `${name1} bought a ___ (expensive/costly) car yesterday.`,
+                bengali: `(${name1} গতকাল একটি দামি গাড়ি কিনল।)`,
+                options: ["expensive", "cheaply", "heavily", "slowly"],
+                correct: "expensive",
+                explanation: `এখানে 'car' একটি নাউন। এর ঠিক পূর্বে একটি অ্যাডজেক্টিভ বসিয়ে নাউনটিকে প্রি-মডিফাই করতে হবে। তাই সঠিক উত্তর 'expensive'।`
+            });
+
+            // 2. Pre-modifier with Noun Adjective
+            pool.push({
+                type: "Noun as Adjective (Pre-modifier)",
+                question: `${name2} works at a ___ (college/colleges) library.`,
+                bengali: `(${name2} একটি কলেজ লাইব্রেরিতে কাজ করে।)`,
+                options: ["college", "colleges", "collegial", "collegian"],
+                correct: "college",
+                explanation: `এখানে 'library' নাউনটির পূর্বে আরেকটি নাউন 'college' বসে নাউন-অ্যাডজেক্টিভ হিসেবে কাজ করেছে এবং প্রি-মডিফাই করেছে।`
+            });
+
+            // 3. Present Participle Pre-modifier
+            pool.push({
+                type: "Present Participle (Pre-modifier)",
+                question: `The ___ (bark/barking) dog woke up ${name1} last night.`,
+                bengali: `(ঘেউ ঘেউ করা কুকুরটি গত রাতে ফিরোজকে জাগিয়ে দিয়েছিল।)`,
+                options: ["barking", "barked", "bark", "to bark"],
+                correct: "barking",
+                explanation: `এখানে 'dog' নাউনের পূর্বে প্রেজেন্ট পার্টিসিপল (verb + ing অর্থাৎ barking) বসে প্রি-মডিফায়ার হিসেবে কাজ করেছে।`
+            });
+
+            // 4. Past Participle Pre-modifier
+            pool.push({
+                type: "Past Participle (Pre-modifier)",
+                question: `${name2} repaired the ___ (break/broken) window.`,
+                bengali: `(${name2} ভাঙা জানালাটি মেরামত করল।)`,
+                options: ["broken", "breaking", "break", "broke"],
+                correct: "broken",
+                explanation: `এখানে 'window' নাউনের পূর্বে পাস্ট পার্টিসিপল (broken) বসে প্রি-মডিফায়ার হিসেবে কাজ করেছে।`
+            });
+
+            // 5. Possessive Pre-modifier
+            pool.push({
+                type: "Possessive (Pre-modifier)",
+                question: `${name1} has forgotten ___ (his/him) umbrella at home.`,
+                bengali: `(${name1} তার ছাতাটি বাড়িতে ফেলে এসেছে।)`,
+                options: ["his", "him", "he", "himself"],
+                correct: "his",
+                explanation: `এখানে 'umbrella' নাউনের পূর্বে পসেসিভ প্রোনাউন 'his' বসে প্রি-মডিফায়ার হিসেবে কাজ করেছে।`
+            });
+
+            // 6. Determiner Pre-modifier
+            pool.push({
+                type: "Determiner (Pre-modifier)",
+                question: `${name2} saw ___ (an/a) elephant in the safari park.`,
+                bengali: `(${name2} সাফারি পার্কে একটি হাতি দেখল।)`,
+                options: ["an", "a", "the", "some"],
+                correct: "an",
+                explanation: `এখানে 'elephant' নাউনের পূর্বে ভাওয়েল ধ্বনি থাকায় ডিটারমিনার বা আর্টিকেল হিসেবে 'an' বসেছে।`
+            });
+
+            // 7. Post-modifier with Prepositional Phrase
+            pool.push({
+                type: "Prepositional Phrase (Post-modifier)",
+                question: `The girl ___ (in the red dress / wears red) is ${name1}'s sister.`,
+                bengali: `(লাল পোশাক পরা মেয়েটি ফিরোজের বোন।)`,
+                options: ["in the red dress", "wears red dress", "dress in red", "wearing red"],
+                correct: "in the red dress",
+                explanation: `এখানে নাউন 'The girl'-এর ঠিক পরে একটি প্রিপজিশনাল ফ্রেজ (in the red dress) বসে পোস্ট-মডিফায়ার হিসেবে কাজ করেছে।`
+            });
+
+            // 8. Infinitive Phrase as Post-modifier
+            pool.push({
+                type: "Infinitive Phrase (Post-modifier)",
+                question: `${name2} went to the market ___ (to buy vegetables / bought vegetables).`,
+                bengali: `(${name2} শাকসবজি কিনতে বাজারে গেল।)`,
+                options: ["to buy vegetables", "bought vegetables", "for buy vegetables", "buying vegetables"],
+                correct: "to buy vegetables",
+                explanation: `এখানে উদ্দেশ্য প্রকাশ করতে ইনফিনিটিভ ফ্রেজ (to buy vegetables) পোস্ট-মডিফায়ার হিসেবে ব্যবহৃত হয়েছে।`
+            });
+
+            // 9. Appositive Post-modifier
+            pool.push({
+                type: "Appositive (Post-modifier)",
+                question: `${name1}, ___ (a brilliant student / brilliant student), secured GPA 5.`,
+                bengali: `(ফিরোজ, একজন মেধাবী শিক্ষার্থী, জিপিএ ৫ পেয়েছে।)`,
+                options: ["a brilliant student", "brilliant student is", "who brilliant student", "student brilliant"],
+                correct: "a brilliant student",
+                explanation: `এখানে কমা দিয়ে নাউনের পরিচয় প্রদানকারী অ্যাপোজিটিভ (a brilliant student) ব্যবহার করা হয়েছে যা পোস্ট-মডিফায়ারের কাজ করে।`
+            });
+
+            // 10. Relative Clause Post-modifier
+            pool.push({
+                type: "Relative Clause (Post-modifier)",
+                question: `I know the man ___ (who came here yesterday / came here yesterday).`,
+                bengali: `(আমি সেই লোকটিকে চিনি যে গতকাল এখানে এসেছিল।)`,
+                options: ["who came here yesterday", "came here yesterday", "whom came here", "whose came"],
+                correct: "who came here yesterday",
+                explanation: `এখানে 'the man' নাউনটিকে পোস্ট-মডিফাই করতে একটি রিলেটিভ ক্লজ (who came here yesterday) ব্যবহার করা হয়েছে।`
+            });
+
+            // Shuffle pool to keep it dynamic
+            return pool.sort(() => Math.random() - 0.5);
+        }
+
+        function initQuiz() {
+            currentQuestions = generateQuestions();
+            currentIndex = 0;
+            score = 0;
+            attemptedCount = 0;
+            streak = 0;
+            answeredCurrent = false;
+            updateScoreDisplay();
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            answeredCurrent = false;
+            const q = currentQuestions[currentIndex];
+            
+            // Update UI elements
+            document.getElementById('current-q-num').innerText = currentIndex + 1;
+            document.getElementById('total-q-num').innerText = currentQuestions.length;
+            document.getElementById('modifier-type-badge').innerText = q.type;
+            
+            // Progress bar
+            const progress = ((currentIndex) / currentQuestions.length) * 100;
+            document.getElementById('progress-bar').style.width = `${progress}%`;
+
+            // Question content with smooth transition class trigger
+            const card = document.getElementById('quiz-card');
+            card.classList.remove('slide-active');
+            card.classList.add('slide-enter');
+
+            setTimeout(() => {
+                document.getElementById('question-text').innerText = q.question;
+                document.getElementById('question-bengali').innerText = q.bengali;
+
+                // Render options
+                const optionsContainer = document.getElementById('options-container');
+                optionsContainer.innerHTML = '';
+                
+                // Shuffle options for randomness
+                const shuffledOpts = [...q.options].sort(() => Math.random() - 0.5);
+
+                shuffledOpts.forEach((opt) => {
+                    const btn = document.createElement('button');
+                    btn.className = "w-full text-left p-4 rounded-2xl border border-slate-200 bg-white/80 hover:bg-indigo-50/60 hover:border-indigo-300 transition-all font-medium text-slate-700 flex items-center justify-between group shadow-sm";
+                    btn.innerHTML = `<span>${opt}</span> <i class="fa-regular fa-circle text-slate-300 group-hover:text-indigo-600 transition"></i>`;
+                    btn.onclick = () => selectOption(opt, btn, q.correct);
+                    optionsContainer.appendChild(btn);
+                });
+
+                // Hide explanation
+                document.getElementById('explanation-box').classList.add('hidden');
+                document.getElementById('next-btn').disabled = true;
+                document.getElementById('prev-btn').disabled = currentIndex === 0;
+
+                card.classList.remove('slide-enter');
+                card.classList.add('slide-active');
+            }, 200);
+        }
+
+        function selectOption(selectedOpt, btnElement, correctOpt) {
+            if (answeredCurrent) return;
+            answeredCurrent = true;
+            attemptedCount++;
+
+            const allButtons = document.getElementById('options-container').getElementsByTagName('button');
+            const isCorrect = (selectedOpt === correctOpt);
+
+            if (isCorrect) {
+                score++;
+                streak++;
+                btnElement.className = "w-full text-left p-4 rounded-2xl border border-emerald-300 bg-emerald-50 text-emerald-800 font-medium flex items-center justify-between shadow-sm transition-all";
+                btnElement.querySelector('i').className = "fa-solid fa-circle-check text-emerald-600";
+            } else {
+                streak = 0;
+                btnElement.className = "w-full text-left p-4 rounded-2xl border border-rose-300 bg-rose-50 text-rose-800 font-medium flex items-center justify-between shadow-sm transition-all";
+                btnElement.querySelector('i').className = "fa-solid fa-circle-xmark text-rose-600";
+
+                // Highlight correct one
+                for (let b of allButtons) {
+                    if (b.innerText.trim().startsWith(correctOpt)) {
+                        b.className = "w-full text-left p-4 rounded-2xl border border-emerald-300 bg-emerald-50 text-emerald-800 font-medium flex items-center justify-between shadow-sm transition-all";
+                        b.querySelector('i').className = "fa-solid fa-circle-check text-emerald-600";
+                    }
+                }
             }
-        });
+
+            // Disable all buttons
+            for (let b of allButtons) {
+                b.disabled = true;
+            }
+
+            updateScoreDisplay();
+
+            // Show explanation
+            const expBox = document.getElementById('explanation-box');
+            const expIcon = document.getElementById('explanation-icon');
+            const expTitle = document.getElementById('explanation-title');
+            const expText = document.getElementById('explanation-text');
+
+            if (isCorrect) {
+                expIcon.className = "fa-solid fa-circle-check text-emerald-500 text-xl";
+                expTitle.innerText = "Correct! সঠিক উত্তর!";
+                expTitle.className = "font-bold text-emerald-800 text-base";
+            } else {
+                expIcon.className = "fa-solid fa-circle-xmark text-rose-500 text-xl";
+                expTitle.innerText = "Incorrect! ভুল উত্তর!";
+                expTitle.className = "font-bold text-rose-800 text-base";
+            }
+
+            expText.innerText = currentQuestions[currentIndex].explanation;
+            expBox.classList.remove('hidden');
+
+            // Enable next button
+            document.getElementById('next-btn').disabled = false;
+        }
+
+        function nextQuestion() {
+            if (currentIndex < currentQuestions.length - 1) {
+                currentIndex++;
+                loadQuestion();
+            } else {
+                showCompletion();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                loadQuestion();
+            }
+        }
+
+        function updateScoreDisplay() {
+            document.getElementById('score-display').innerText = score;
+            document.getElementById('total-attempted').innerText = attemptedCount;
+            document.getElementById('streak-display').innerText = `🔥 ${streak}`;
+        }
+
+        function showCompletion() {
+            document.getElementById('quiz-card').classList.add('hidden');
+            document.getElementById('completion-card').classList.remove('hidden');
+            document.getElementById('final-score').innerText = `${score} / ${currentQuestions.length}`;
+            document.getElementById('progress-bar').style.width = '100%';
+        }
+
+        function restartQuiz() {
+            document.getElementById('completion-card').classList.add('hidden');
+            document.getElementById('quiz-card').classList.remove('hidden');
+            initQuiz();
+        }
+
+        // Initialize on window load
+        window.onload = function () {
+            initQuiz();
+        };
     </script>
 </body>
 </html>
