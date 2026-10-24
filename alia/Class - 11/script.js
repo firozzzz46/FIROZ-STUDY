@@ -36,9 +36,10 @@ topics.forEach((topic, index) => {
 
     topic.addEventListener("click", () => {
 
-        const title = topic.querySelector("h3").textContent;
+        const title = topic.querySelector("h3").textContent.trim();
 
-        console.log("Selected:", title);
+        // সাবজেক্টের নাম অনুযায়ী ফোল্ডারের ভেতর প্রবেশ করবে
+        window.location.href = `${title}/index.html`;
 
     });
 

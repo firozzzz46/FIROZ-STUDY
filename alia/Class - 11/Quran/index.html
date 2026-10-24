@@ -1,0 +1,182 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Firoz Study - Alim 2028</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="app-container">
+
+    <header class="app-header">
+      <a class="brand" href="index.html">
+        <div class="brand-icon">
+          <i class="fa-solid fa-book-open"></i>
+        </div>
+        <div>
+          <h1 class="brand-title">Firoz Study</h1>
+          <p class="brand-subtitle">Alim 2028 · Personal Notes</p>
+        </div>
+      </a>
+
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark mode">
+        <i class="fa-solid fa-moon"></i>
+      </button>
+    </header>
+
+    <main class="main-content">
+      <section class="title-section">
+        <span class="eyebrow">YOUR LEARNING SPACE</span>
+        <h2 class="subject-title">Arabic First Paper</h2>
+        <p class="subject-desc">Explore your lessons and continue learning at your own pace.</p>
+      </section>
+
+      <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        <input type="search" id="searchInput" placeholder="Search lessons..." aria-label="Search lessons">
+      </div>
+
+      <section class="lessons-section">
+        <div class="section-header">
+          <div>
+            <span class="section-kicker">YOUR CONTENT</span>
+            <h3 class="section-title">All Lessons</h3>
+          </div>
+          <span class="chapter-count" id="chapterCount">0 Lessons</span>
+        </div>
+
+        
+        
+        
+        
+        
+        <!-- Add, remove or edit lesson cards here.
+             Replace each href with the actual lesson filename. -->
+
+        <div class="chapters-list" id="chaptersList">
+
+          <a class="lesson-card" href="lesson1.html">
+            <div class="lesson-info">
+              <div class="lesson-number"></div>
+              <div class="lesson-details">
+                <h4 class="lesson-title">Lesson 1</h4>
+                <p class="lesson-subtitle">Open this lesson to start studying.</p>
+              </div>
+            </div>
+            <span class="lesson-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+          </a>
+
+          
+          
+          
+          
+          
+          <a class="lesson-card" href="lesson2.html">
+            <div class="lesson-info">
+              <div class="lesson-number"></div>
+              <div class="lesson-details">
+                <h4 class="lesson-title">Lesson 2</h4>
+                <p class="lesson-subtitle">Read your notes and revise.</p>
+              </div>
+            </div>
+            <span class="lesson-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+          </a>
+
+          
+          
+          
+          
+          
+          <a class="lesson-card" href="lesson3.html">
+            <div class="lesson-info">
+              <div class="lesson-number"></div>
+              <div class="lesson-details">
+                <h4 class="lesson-title">Lesson 3</h4>
+                <p class="lesson-subtitle">Continue your learning.</p>
+              </div>
+            </div>
+            <span class="lesson-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+          </a>
+
+          
+          
+          
+          
+          
+          
+          <a class="lesson-card" href="lesson4.html">
+            <div class="lesson-info">
+              <div class="lesson-number"></div>
+              <div class="lesson-details">
+                <h4 class="lesson-title">Lesson 4</h4>
+                <p class="lesson-subtitle">Review your lesson notes.</p>
+              </div>
+            </div>
+            <span class="lesson-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+          </a>
+
+          
+          
+          
+          
+          
+          
+          <a class="lesson-card" href="lesson5.html">
+            <div class="lesson-info">
+              <div class="lesson-number"></div>
+              <div class="lesson-details">
+                <h4 class="lesson-title">Lesson 5</h4>
+                <p class="lesson-subtitle">Learn and practise.</p>
+              </div>
+            </div>
+            <span class="lesson-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+          </a>
+
+          
+          
+          
+          
+          
+          <a class="lesson-card" href="lesson6.html">
+            <div class="lesson-info">
+              <div class="lesson-number"></div>
+              <div class="lesson-details">
+                <h4 class="lesson-title">Lesson 6</h4>
+                <p class="lesson-subtitle">Read and revise your notes.</p>
+              </div>
+            </div>
+            <span class="lesson-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+          </a>
+
+        </div>
+
+        
+        
+        
+        
+        <div class="empty-state" id="emptyState" hidden>
+          <i class="fa-solid fa-book-open"></i>
+          <h4>No Lessons Found</h4>
+          <p>Try another lesson name or search term.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <i class="fa-solid fa-graduation-cap"></i>
+      <p> © Firoz Study · 2026</p>
+      <span>Learn · Practice · Succeed</span>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
