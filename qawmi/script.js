@@ -19,7 +19,7 @@ topics.forEach((topic, index) => {
         const title = topic.querySelector("h3").textContent.trim();
 
         if (title.includes("Jamate Ula") || title.includes("Miskat")) {
-             window.location.href = "Jamate Ula $ Miskat/index.html";
+             window.location.href = "Jamate-Ula-(Miskat)/index.html";
         }
     });
 });
