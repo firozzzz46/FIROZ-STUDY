@@ -1,128 +1,1476 @@
+
 <!DOCTYPE html>
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon</title>
+    <meta name="theme-color" content="#0d5c3a">
+    <title>ইসলামিক প্রশ্নোত্তর</title>
 
-    <!-- Google Fonts for Bengali & English -->
+    <!-- বাংলা ও আরবি ফন্ট -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Inter:wght@700;900&display=swap" rel="stylesheet">
-
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Serif+Bengali:wght@400;600;700&display=swap" rel="stylesheet">
 
     <style>
+        :root {
+            --primary: #0d5c3a;
+            --primary-dark: #084229;
+            --accent: #d4af37;
+            --question: #d32f2f;
+            --answer: #000000;
+            --text-dark: #1e293b;
+            --muted: #64748b;
+            --font-scale: 1;
+
+            --page-animation: 2.2s;
+            --item-animation: 1.8s;
+            --toolbar-animation: 2s;
+            --button-transition: 0.7s;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+            text-size-adjust: 100%;
+        }
+
         body {
-            font-family: 'Hind Siliguri', 'Inter', sans-serif;
-            background-color: #030712;
-            overflow: hidden;
+            margin: 0;
+            padding: 12px;
+            min-height: 100vh;
+            width: 100%;
+            font-family: 'Noto Serif Bengali', serif;
+            background: linear-gradient(
+                135deg,
+                #eef5f1 0%,
+                #f7f9f8 50%,
+                #eef3f0 100%
+            );
+            background-attachment: fixed;
+            color: var(--answer);
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* Gradient glowing animation on text */
-        .glow-text {
-            background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 50%, #38bdf8 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shine 6s linear infinite;
+        button {
+            font-family: inherit;
+            cursor: pointer;
+            touch-action: manipulation;
         }
 
-        @keyframes shine {
-            0% { background-position: 0% center; }
-            50% { background-position: 100% center; }
-            100% { background-position: 0% center; }
+        button:focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 3px;
         }
 
-        /* Keyframes for initial entry: Floating in from below with opacity */
-        @keyframes floatIn {
+        /* =========================
+           উপরের কন্ট্রোল বার
+        ========================= */
+
+        .sticky-toolbar {
+            position: sticky;
+            top: 8px;
+            z-index: 100;
+
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto 18px;
+            padding: 10px 14px;
+
+            border: 1px solid #e5d59b;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 6px 18px rgba(13, 92, 58, 0.09);
+
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+
+            animation: toolbarEnter var(--toolbar-animation)
+                cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        .font-control-panel,
+        .page-indicators {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .font-btn,
+        .nav-btn,
+        .page-number-btn {
+            min-height: 38px;
+            padding: 7px 12px;
+            border: 0;
+            border-radius: 9px;
+
+            background: linear-gradient(
+                135deg,
+                var(--primary),
+                var(--primary-dark)
+            );
+
+            color: #ffffff;
+            font-size: calc(15px * var(--font-scale));
+            font-weight: 700;
+
+            box-shadow: 0 3px 8px rgba(13, 92, 58, 0.15);
+
+            transition:
+                background var(--button-transition) ease,
+                color var(--button-transition) ease,
+                transform var(--button-transition)
+                    cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow var(--button-transition) ease;
+        }
+
+        .font-btn:hover,
+        .nav-btn:hover:not(:disabled),
+        .page-number-btn:hover {
+            background: var(--accent);
+            color: #111111;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(212, 175, 55, 0.25);
+        }
+
+        .page-number-btn.active {
+            background: var(--accent);
+            color: var(--primary-dark);
+            outline: 2px solid var(--primary);
+            outline-offset: -2px;
+        }
+
+        button:disabled {
+            opacity: 0.45;
+            cursor: not-allowed;
+            transform: none !important;
+            box-shadow: none;
+        }
+
+        /* =========================
+           মূল কনটেইনার
+        ========================= */
+
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 24px;
+
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            background: #ffffff;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+
+            animation: containerEnter 2.4s
+                cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        /* =========================
+           কিতাবের পরিচিতি
+        ========================= */
+
+        .book-header {
+            text-align: center;
+            padding-bottom: 16px;
+            margin-bottom: 22px;
+            border-bottom: 2px solid rgba(212, 175, 55, 0.5);
+        }
+
+        .book-label {
+            margin-bottom: 5px;
+            color: var(--primary);
+            font-family: 'Amiri', serif;
+            font-size: calc(30px * var(--font-scale));
+            font-weight: 700;
+            line-height: 1.7;
+
+            animation: textEnter 2.4s
+                cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+        }
+
+        .book-name {
+            color: var(--text-dark);
+            font-size: calc(24px * var(--font-scale));
+            font-weight: 700;
+
+            animation: textEnter 2.5s
+                cubic-bezier(0.16, 1, 0.3, 1) 0.5s both;
+        }
+
+        .book-year {
+            margin-top: 5px;
+            color: var(--muted);
+            font-size: calc(16px * var(--font-scale));
+
+            animation: textEnter 2.5s
+                cubic-bezier(0.16, 1, 0.3, 1) 0.7s both;
+        }
+
+        /* =========================
+           প্রধান শিরোনাম
+        ========================= */
+
+        .main-title {
+            margin: 0 0 22px;
+            text-align: center;
+            color: var(--primary);
+            font-size: calc(27px * var(--font-scale));
+
+            animation: textEnter 2.4s
+                cubic-bezier(0.16, 1, 0.3, 1) 0.8s both;
+        }
+
+        .main-title::after {
+            content: "";
+            display: block;
+            width: 85px;
+            height: 3px;
+            margin: 7px auto 0;
+            border-radius: 5px;
+
+            background: linear-gradient(
+                90deg,
+                transparent,
+                var(--accent),
+                transparent
+            );
+        }
+
+        /* =========================
+           প্রশ্নের পৃষ্ঠা
+        ========================= */
+
+        .question-group {
+            display: none;
+            width: 100%;
+            margin-bottom: 16px;
+            padding: 22px;
+
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            background: #ffffff;
+        }
+
+        .question-group.active-page {
+            display: block;
+
+            animation: pageEnter var(--page-animation)
+                cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        /* =========================
+           আরবি ইবারত
+        ========================= */
+
+        .ibarot {
+            width: 100%;
+            margin-bottom: 18px;
+            padding: 16px;
+
+            border-right: 5px solid var(--primary);
+            border-radius: 8px;
+            background: #f8faf9;
+
+            color: #0f2d24;
+            font-family: 'Amiri', serif;
+            font-size: calc(28px * var(--font-scale));
+            line-height: 1.9;
+            text-align: right;
+
+            overflow-wrap: anywhere;
+        }
+
+        .question-group.active-page .ibarot {
+            animation: arabicEnter 2s
+                cubic-bezier(0.16, 1, 0.3, 1) 0.25s both;
+        }
+
+        /* =========================
+           প্রশ্ন নম্বর
+        ========================= */
+
+        .section-number {
+            display: inline-block;
+            margin-bottom: 12px;
+            padding: 6px 16px;
+
+            border-radius: 20px;
+            background: linear-gradient(
+                135deg,
+                var(--primary),
+                var(--primary-dark)
+            );
+
+            color: #ffffff;
+            font-size: calc(17px * var(--font-scale));
+            font-weight: 700;
+
+            box-shadow: 0 3px 8px rgba(13, 92, 58, 0.12);
+        }
+
+        .question-group.active-page .section-number {
+            animation: numberEnter 2s
+                cubic-bezier(0.16, 1, 0.3, 1) 0.5s both;
+        }
+
+        /* =========================
+           প্রশ্ন ও উত্তর
+        ========================= */
+
+        .qa-item {
+            width: 100%;
+            margin-bottom: 12px;
+            padding: 14px 4px;
+            border-bottom: 1px dashed #e2e8f0;
+        }
+
+        .qa-item:last-child {
+            margin-bottom: 0;
+            border-bottom: none;
+        }
+
+        .sub-question {
+            margin: 0 0 8px;
+            color: var(--question);
+            font-size: calc(21px * var(--font-scale));
+            font-weight: 700;
+            line-height: 1.7;
+            overflow-wrap: anywhere;
+        }
+
+        .answer {
+            margin: 0;
+            color: var(--answer);
+            font-size: calc(19px * var(--font-scale));
+            line-height: 1.9;
+            text-align: justify;
+            white-space: pre-line;
+            overflow-wrap: anywhere;
+        }
+
+        /* প্রশ্নগুলো একটির পর একটি ধীরে দেখা যাবে */
+
+        .question-group.active-page .qa-item:nth-of-type(1) {
+            animation: answerEnter 1.9s
+                cubic-bezier(0.16, 1, 0.3, 1) 0.65s both;
+        }
+
+        .question-group.active-page .qa-item:nth-of-type(2) {
+            animation: answerEnter 2s
+                cubic-bezier(0.16, 1, 0.3, 1) 0.95s both;
+        }
+
+        .question-group.active-page .qa-item:nth-of-type(3) {
+            animation: answerEnter 2.1s
+                cubic-bezier(0.16, 1, 0.3, 1) 1.25s both;
+        }
+
+        .question-group.active-page .qa-item:nth-of-type(4) {
+            animation: answerEnter 2.2s
+                cubic-bezier(0.16, 1, 0.3, 1) 1.55s both;
+        }
+
+        /* =========================
+           নিচের পৃষ্ঠা নিয়ন্ত্রণ
+        ========================= */
+
+        .bottom-pagination {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+
+            margin-top: 22px;
+            padding-top: 16px;
+            border-top: 1px dashed #cbd5e1;
+
+            animation: textEnter 2.2s
+                cubic-bezier(0.16, 1, 0.3, 1) 0.8s both;
+        }
+
+        .page-status {
+            color: var(--primary);
+            font-size: calc(16px * var(--font-scale));
+            font-weight: 700;
+            text-align: center;
+        }
+
+        /* =========================
+           ধীর অ্যানিমেশন
+        ========================= */
+
+        @keyframes toolbarEnter {
             0% {
                 opacity: 0;
-                transform: translateY(40px) scale(0.95);
-                filter: blur(8px);
+                transform: translateY(-24px);
             }
+
             100% {
                 opacity: 1;
-                transform: translateY(0) scale(1);
-                filter: blur(0);
+                transform: translateY(0);
             }
         }
 
-        /* Continuous subtle float effect once arrived */
-        @keyframes subtleFloat {
-            0%, 100% {
-                transform: translateY(0px);
+        @keyframes containerEnter {
+            0% {
+                opacity: 0;
+                transform: translateY(25px);
             }
-            50% {
-                transform: translateY(-8px);
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
 
-        /* Animation class for Heading */
-        .animate-heading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards,
-                subtleFloat 6s ease-in-out 1.2s infinite;
+        @keyframes textEnter {
+            0% {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        /* Animation class for Subheading (staggered delay) */
-        .animate-subheading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards,
-                subtleFloat 6s ease-in-out 1.55s infinite;
-            opacity: 0; /* Hidden until animation kicks in */
+        @keyframes pageEnter {
+            0% {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        /* Ambient background lighting */
-        .ambient-glow {
-            position: absolute;
-            width: 450px;
-            height: 450px;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(3, 7, 18, 0) 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            transition: left 0.4s ease-out, top 0.4s ease-out;
+        @keyframes arabicEnter {
+            0% {
+                opacity: 0;
+                transform: translateX(22px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes numberEnter {
+            0% {
+                opacity: 0;
+                transform: translateX(-18px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes answerEnter {
+            0% {
+                opacity: 0;
+                transform: translateY(22px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* =========================
+           মোবাইল
+        ========================= */
+
+        @media screen and (max-width: 600px) {
+            body {
+                padding: 5px 4px;
+                background-attachment: scroll;
+            }
+
+            .sticky-toolbar {
+                top: 3px;
+                justify-content: center;
+                gap: 8px;
+                padding: 8px 5px;
+                margin-bottom: 10px;
+                border-radius: 10px;
+            }
+
+            .font-control-panel,
+            .page-indicators {
+                gap: 5px;
+            }
+
+            .font-btn,
+            .nav-btn,
+            .page-number-btn {
+                min-height: 38px;
+                padding: 6px 9px;
+                font-size: calc(14px * var(--font-scale));
+            }
+
+            .container {
+                width: 100%;
+                max-width: 100%;
+                padding: 14px 9px;
+                border-radius: 10px;
+            }
+
+            .book-header {
+                padding-bottom: 12px;
+                margin-bottom: 16px;
+            }
+
+            .book-label {
+                font-size: calc(27px * var(--font-scale));
+            }
+
+            .book-name {
+                font-size: calc(21px * var(--font-scale));
+            }
+
+            .book-year {
+                font-size: calc(14px * var(--font-scale));
+            }
+
+            .main-title {
+                margin-bottom: 17px;
+                font-size: calc(23px * var(--font-scale));
+            }
+
+            .question-group {
+                padding: 12px 8px;
+                margin-bottom: 12px;
+                border-radius: 9px;
+            }
+
+            .ibarot {
+                padding: 12px 9px;
+                margin-bottom: 14px;
+                font-size: calc(23px * var(--font-scale));
+                line-height: 1.9;
+            }
+
+            .section-number {
+                padding: 5px 13px;
+                font-size: calc(15px * var(--font-scale));
+            }
+
+            .qa-item {
+                padding: 12px 2px;
+                margin-bottom: 8px;
+            }
+
+            .sub-question {
+                margin-bottom: 6px;
+                font-size: calc(18px * var(--font-scale));
+                line-height: 1.75;
+            }
+
+            .answer {
+                font-size: calc(17px * var(--font-scale));
+                line-height: 1.8;
+                text-align: start;
+            }
+
+            .bottom-pagination {
+                justify-content: space-between;
+                gap: 8px;
+                margin-top: 16px;
+                padding-top: 12px;
+            }
+
+            .page-status {
+                font-size: calc(14px * var(--font-scale));
+            }
+        }
+
+        /* =========================
+           ছোট মোবাইল
+        ========================= */
+
+        @media screen and (max-width: 360px) {
+            body {
+                padding: 3px;
+            }
+
+            .sticky-toolbar {
+                gap: 5px;
+                padding: 6px 3px;
+            }
+
+            .font-control-panel,
+            .page-indicators {
+                gap: 4px;
+            }
+
+            .font-btn,
+            .page-number-btn {
+                min-height: 34px;
+                padding: 5px 7px;
+                font-size: calc(12px * var(--font-scale));
+            }
+
+            .container {
+                padding: 10px 6px;
+            }
+
+            .book-name {
+                font-size: calc(19px * var(--font-scale));
+            }
+
+            .question-group {
+                padding: 10px 6px;
+            }
+
+            .bottom-pagination .nav-btn {
+                padding: 6px 7px;
+                font-size: calc(12px * var(--font-scale));
+            }
+        }
+
+        /* =========================
+           ট্যাবলেট
+        ========================= */
+
+        @media screen and (min-width: 601px) and (max-width: 900px) {
+            body {
+                padding: 12px;
+            }
+
+            .container {
+                max-width: 850px;
+                padding: 22px;
+            }
+
+            .sticky-toolbar {
+                max-width: 850px;
+            }
+
+            .question-group {
+                padding: 20px;
+            }
+        }
+
+        /* =========================
+           কম্পিউটার ও ল্যাপটপ
+        ========================= */
+
+        @media screen and (min-width: 901px) {
+            body {
+                padding: 22px;
+            }
+
+            .container {
+                max-width: 1100px;
+                padding: 30px;
+            }
+
+            .sticky-toolbar {
+                max-width: 1100px;
+                padding: 12px 18px;
+            }
+
+            .question-group {
+                padding: 26px;
+                margin-bottom: 20px;
+            }
+
+            .ibarot {
+                padding: 20px;
+                font-size: calc(30px * var(--font-scale));
+            }
+
+            .sub-question {
+                font-size: calc(22px * var(--font-scale));
+            }
+
+            .answer {
+                font-size: calc(20px * var(--font-scale));
+                line-height: 1.9;
+            }
+
+            .qa-item {
+                padding: 18px 5px;
+            }
+        }
+
+        /* অ্যানিমেশন কম পছন্দ করেন এমন ব্যবহারকারীদের জন্য */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-delay: 0ms !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
         }
     </style>
 </head>
-<body class="min-h-screen flex items-center justify-center relative select-none px-4">
 
-    <!-- Ambient glow center element -->
-    <div id="glow" class="ambient-glow top-1/2 left-1/2"></div>
+<body>
 
-    <!-- Centered minimal content with entry animations -->
-    <main class="text-center z-10 space-y-6 max-w-3xl mx-auto py-8 px-4">
+    <!-- উপরের কন্ট্রোল বার -->
+    <nav class="sticky-toolbar" aria-label="লেখা ও পৃষ্ঠা নিয়ন্ত্রণ">
+
+        <div class="font-control-panel">
+            <button class="font-btn"
+                    type="button"
+                    onclick="changeFontSize(-0.1)"
+                    title="লেখা ছোট করুন">A−</button>
+
+            <button class="font-btn"
+                    type="button"
+                    onclick="resetFontSize()"
+                    title="মূল আকারে ফিরুন">Reset</button>
+
+            <button class="font-btn"
+                    type="button"
+                    onclick="changeFontSize(0.1)"
+                    title="লেখা বড় করুন">A+</button>
+        </div>
+
+        <div class="page-indicators" aria-label="পৃষ্ঠা নির্বাচন">
+            <button class="page-number-btn active"
+                    type="button" data-page="1"
+                    onclick="goToPage(1)">1</button>
+
+            <button class="page-number-btn"
+                    type="button" data-page="2"
+                    onclick="goToPage(2)">2</button>
+
+            <button class="page-number-btn"
+                    type="button" data-page="3"
+                    onclick="goToPage(3)">3</button>
+
+            <button class="page-number-btn"
+                    type="button" data-page="4"
+                    onclick="goToPage(4)">4</button>
+
+            <button class="page-number-btn"
+                    type="button" data-page="5"
+                    onclick="goToPage(5)">5</button>
+        </div>
+    </nav>
+
+    <!-- মূল কনটেইনার -->
+    <main class="container">
+
+        <header class="book-header">
+            <div class="book-label" dir="rtl" lang="ar">
+                بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+            </div>
+
+            <div class="book-name">
+                মিশকাত ১ম খণ্ড
+            </div>
+
+            <div class="book-year">
+                হিজরি সন: 1431
+            </div>
+        </header>
+
+        <h1 class="main-title">বোর্ড পরীক্ষার প্রশ্ন + উত্তর (তানজীম বোর্ড)</h1>
+
+
+
+
         
-        <!-- Main English Title -->
-        <h1 class="animate-heading text-5xl sm:text-7xl md:text-8xl font-black tracking-tight glow-text font-['Inter'] drop-shadow-lg">
-            Coming Soon...
-        </h1>
+        
+        
+        
+       <!-- পৃষ্ঠা ১ -->
+<section class="question-group active-page"
+         id="page-1"
+         aria-label="১ নম্বর প্রশ্ন">
 
-        <!-- Bengali Subheading -->
-        <p class="animate-subheading text-xl sm:text-3xl md:text-4xl font-semibold text-emerald-400/90 leading-relaxed tracking-wide drop-shadow">
-            ইনশাআল্লাহ, খুব শীঘ্রই ডাটা যোগ করা হবে।
+    <!-- আরবি হাদিস -->
+    <div class="ibarot" dir="rtl" lang="ar">
+        قَالَ رَسُولُ اللَّهِ ﷺ:
+        «إِنَّمَا الأَعْمَالُ بِالنِّيَّاتِ،
+        وَإِنَّمَا لِامْرِئٍ مَا نَوَى،
+        فَمَنْ كَانَتْ هِجْرَتُهُ إِلَى اللَّهِ وَرَسُولِهِ،
+        فَهِجْرَتُهُ إِلَى اللَّهِ وَرَسُولِهِ،
+        وَمَنْ كَانَتْ هِجْرَتُهُ إِلَى دُنْيَا يُصِيبُهَا
+        أَوِ امْرَأَةٍ يَتَزَوَّجُهَا،
+        فَهِجْرَتُهُ إِلَى مَا هَاجَرَ إِلَيْهِ».
+        (مُتَّفَقٌ عَلَيْهِ)
+    </div>
+
+    <div class="section-number">
+        ১ নং প্রশ্ন + উত্তর
+    </div>
+
+    <!-- A -->
+    <article class="qa-item">
+        <h2 class="sub-question">
+            ১ নং প্রশ্ন A: হাদিসের হরকত বিন্যাস ও অনুবাদ
+            (إعراب الحديث وترجمته)
+        </h2>
+
+        <p class="answer">
+            আল্লাহর রাসূল ﷺ বলেছেন, “নিশ্চয়ই সমস্ত আমল
+            নিয়তের ওপর নির্ভরশীল। আর প্রত্যেক ব্যক্তি তাই
+            পাবে, যার সে নিয়ত করবে। সুতরাং যার হিজরত
+            আল্লাহ ও তাঁর রাসূলের উদ্দেশ্যে হবে, তার হিজরত
+            আল্লাহ ও তাঁর রাসূলের দিকেই গণ্য হবে। আর যার
+            হিজরত পার্থিব কোনো সম্পদ অর্জনের উদ্দেশ্যে
+            কিংবা কোনো নারীকে বিবাহ করার উদ্দেশ্যে হবে,
+            তার হিজরত সেই উদ্দেশ্যেই গণ্য হবে, যার জন্য
+            সে হিজরত করেছে। (বুখারি ও মুসলিম)
         </p>
+    </article>
+
+    <!-- B -->
+    <article class="qa-item">
+        <h2 class="sub-question">
+            ১ নং প্রশ্ন B: রাবীর সংক্ষিপ্ত জীবনী
+            (نبذة من حياة الراوي)
+        </h2>
+
+        <p class="answer">
+            হাদিসটির বর্ণনাকারী হলেন আমিরুল মুমিনীন
+            হযরত ওমর ইবনুল খাত্তাব (রা.)।
+            <br><br>
+            ১. নাম ও বংশ: তাঁর নাম ওমর, উপাধি ফারুক
+            (সত্য-মিথ্যার প্রভেদকারী) এবং উপনাম আবু হাফস।
+            তিনি কুরাইশ বংশের বনু আদি শাখার সন্তান।
+            <br><br>
+            ২. ইসলাম গ্রহণ: নবুয়তের ষষ্ঠ বছরে তিনি
+            ইসলাম গ্রহণ করেন। তাঁর ইসলাম গ্রহণে
+            মুসলমানদের প্রকাশ্যে ইবাদতের সাহস বৃদ্ধি পায়।
+            <br><br>
+            ৩. খেলাফতকাল: হযরত আবু বকর (রা.)-এর
+            ইন্তেকালের পর ১৩ হিজরিতে তিনি দ্বিতীয়
+            খলিফা হন। তিনি প্রায় ১০ বছর ৫ মাস
+            খেলাফত পরিচালনা করেন।
+            <br><br>
+            ৪. অবদান: হিজরি সন প্রবর্তন, প্রশাসনিক
+            ব্যবস্থার উন্নয়ন এবং মুসলিম রাষ্ট্রের
+            বিস্তারে তাঁর গুরুত্বপূর্ণ অবদান রয়েছে।
+            <br><br>
+            ৫. ইন্তেকাল: ২৩ হিজরিতে তিনি শাহাদাত
+            বরণ করেন।
+        </p>
+    </article>
+
+    <!-- C -->
+    <article class="qa-item">
+        <h2 class="sub-question">
+            ১ নং প্রশ্ন C: কিতাব শুরুর কারণ ও
+            অধ্যায়বিহীন রাখার রহস্য
+            (سبب الافتتاح والعدم)
+        </h2>
+
+        <p class="answer">
+            ১. এই হাদিস দিয়ে কিতাব শুরু করার কারণ:
+            ইমাম বুখারি (রহ.) এই হাদিস দিয়ে
+            সহিহ বুখারি শুরু করেছেন, যাতে বোঝা যায়
+            যে দ্বীনি কাজের ভিত্তি হবে আল্লাহর
+            সন্তুষ্টি ও নিয়তের বিশুদ্ধতা (خلوص النية)।
+            এটি পুরো কিতাবের ভূমিকা হিসেবেও কাজ করে।
+            <br><br>
+            ২. নির্দিষ্ট অধ্যায়ের অধীনে না রাখার কারণ:
+            <br><br>
+            ক. হাদিসটি দ্বীনের গুরুত্বপূর্ণ মূলনীতি।
+            এর শিক্ষা শুধু নামাজ বা রোজার মধ্যে
+            সীমাবদ্ধ নয়; বরং বহু আমলের ক্ষেত্রে
+            প্রযোজ্য।
+            <br><br>
+            খ. এটি পুরো কিতাবের সাধারণ ভূমিকা
+            (مقدمة كبرى) হিসেবে এসেছে। তাই
+            একে কোনো একটি বিশেষ অধ্যায়ের
+            অধীনে সীমাবদ্ধ করা হয়নি।
+        </p>
+    </article>
+
+    <!-- D -->
+    <article class="qa-item">
+        <h2 class="sub-question">
+            ১ নং প্রশ্ন D: নিয়ত ও ইরাদার পার্থক্য
+            এবং بِالنِّيَّاتِ-এর বিশ্লেষণ
+            (الفرق ومتعلق النيات)
+        </h2>
+
+        <p class="answer">
+            ১. নিয়ত (نية) ও ইরাদা (إرادة)-এর পার্থক্য:
+            <br><br>
+            নিয়ত: কোনো কাজের উদ্দেশ্য বা সংকল্প।
+            ইবাদতের ক্ষেত্রে নিয়ত অত্যন্ত গুরুত্বপূর্ণ।
+            <br><br>
+            ইরাদা: সাধারণ ইচ্ছা বা আকাঙ্ক্ষা।
+            তা ভালো, মন্দ কিংবা সাধারণ দুনিয়াবি
+            কাজের ক্ষেত্রেও হতে পারে।
+            <br><br>
+            ২. بِالنِّيَّاتِ-এর সম্পর্ক (متعلق):
+            এখানে ب হরফে জারের সঙ্গে সম্পর্কিত
+            একটি উহ্য শব্দ রয়েছে বলে ব্যাখ্যা
+            করা হয়।
+            <br><br>
+            হানাফি আলেমদের ব্যাখ্যা:
+            আমলের গ্রহণযোগ্যতা ও সওয়াব নিয়তের
+            সঙ্গে সম্পর্কিত। তবে নামাজের মতো
+            ইবাদত সহিহ হওয়ার জন্যও শরিয়তের
+            বিধান অনুযায়ী নিয়ত প্রয়োজন।
+            <br><br>
+            শাফেয়ি আলেমদের ব্যাখ্যা:
+            এখানে উহ্য শব্দ تَصِحُّ (সহিহ হওয়া)
+            ধরে অর্থ করা হয়—আমল নিয়তের মাধ্যমে
+            সহিহ হয়।
+        </p>
+    </article>
+
+    <!-- E -->
+    <article class="qa-item">
+        <h2 class="sub-question">
+            ১ নং প্রশ্ন E: تَأْسِيس নাকি تَأْكِيد-এর বিশ্লেষণ
+            (التأسيس أم التأكيد)
+        </h2>
+
+        <p class="answer">
+            রাসূলুল্লাহ ﷺ-এর দুটি বাক্য হলো:
+            <br><br>
+            ১. إِنَّمَا الأَعْمَالُ بِالنِّيَّاتِ
+            <br>
+            অর্থ: নিশ্চয়ই আমল নিয়তের ওপর নির্ভরশীল।
+            <br><br>
+            ২. وَإِنَّمَا لِامْرِئٍ مَا نَوَى
+            <br>
+            অর্থ: প্রত্যেক ব্যক্তি তাই পাবে,
+            যার সে নিয়ত করেছে।
+            <br><br>
+            তাকিদ (التأكيد): দ্বিতীয় বাক্যটি
+            প্রথম বাক্যের অর্থকে জোরালো করে।
+            <br><br>
+            তাসিস (التأسيس): দ্বিতীয় বাক্যটি
+            প্রথম বাক্যের অতিরিক্ত একটি নতুন
+            অর্থ প্রকাশ করে।
+            <br><br>
+            অধিকাংশ মুহাক্কিক আলেমের ব্যাখ্যায়
+            দ্বিতীয় বাক্যটি নতুন অর্থ প্রকাশ করে।
+            কারণ প্রথম বাক্যে আমল ও নিয়তের
+            সম্পর্ক বোঝানো হয়েছে; আর দ্বিতীয়
+            বাক্যে নিয়ত অনুযায়ী প্রতিদানের বিষয়টি
+            বোঝানো হয়েছে।
+        </p>
+    </article>
+
+    <!-- F -->
+    <article class="qa-item">
+        <h2 class="sub-question">
+            ১ নং প্রশ্ন F: হিজরতের শাব্দিক,
+            পারিভাষিক অর্থ ও প্রকারভেদ
+            (معنى الهجرة وأقسامها)
+        </h2>
+
+        <p class="answer">
+            ১. শাব্দিক অর্থ (معنى لغوي):
+            হিজরত শব্দের অর্থ পরিত্যাগ করা,
+            দূরে সরে যাওয়া অথবা এক স্থান ছেড়ে
+            অন্য স্থানে চলে যাওয়া।
+            <br><br>
+            ২. পারিভাষিক অর্থ (معنى شرعي):
+            দ্বীন রক্ষার উদ্দেশ্যে শরিয়তের
+            বিধান অনুযায়ী কোনো স্থান ত্যাগ
+            করে অন্য স্থানে চলে যাওয়াকে
+            হিজরত বলা হয়।
+            <br><br>
+            ৩. হিজরতের প্রকারভেদ (أقسام الهجرة):
+            <br><br>
+            ক. হিজরতে মাকানি (الهجرة المكانية):
+            দ্বীন রক্ষার জন্য এক স্থান থেকে
+            অন্য স্থানে চলে যাওয়া।
+            <br><br>
+            খ. হিজরতে আমালি (الهجرة العملية):
+            আল্লাহর নিষিদ্ধ কাজ ও গুনাহ
+            পরিত্যাগ করা।
+            <br><br>
+            হাদিস:
+            المُهَاجِرُ مَنْ هَجَرَ مَا نَهَى اللَّهُ عَنْهُ
+            <br><br>
+            অর্থ: প্রকৃত মুহাজির সে, যে
+            আল্লাহর নিষিদ্ধ বিষয়গুলো বর্জন করে।
+            <br><br>
+            গ. হিজরতে কালবি (الهجرة القلبية):
+            অন্তরের কুপ্রবৃত্তি ও অন্যায়
+            প্রবণতা ত্যাগ করে আল্লাহর
+            আনুগত্যের দিকে ফিরে আসা।
+        </p>
+    </article>
+
+</section>
+
+
+
+
+
+
+        <!-- পৃষ্ঠা ২ -->
+        <section class="question-group"
+                 id="page-2" aria-label="২ নম্বর প্রশ্ন">
+
+            <div class="ibarot" dir="rtl" lang="ar">
+                عَنْ عَبْدِ اللَّهِ بْنِ عَمْرٍو قَالَ: قَالَ رَسُولُ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ: كَتَبَ اللَّهُ مَقَادِيرَ الْخَلَائِقِ قَبْلَ أَنْ يَخْلُقَ السَّمَاوَاتِ وَالْأَرْضَ بِخَمْسِينَ أَلْفَ سَنَةٍ، قَالَ: وَكَانَ عَرْشُهُ عَلَى الْمَاءِ.
+            </div>
+
+            <div class="section-number">২ নং প্রশ্ন + উত্তর...</div>
+
+            <article class="qa-item">
+                <h2 class="sub-question">২ নং প্রশ্ন A: تَرْجِمِ الْحَدِيثَ بَعْدَ تَزْيِينِهِ بِالْحَرَكَاتِ وَأَوْضِحْ قَوْلَهُ "وَكَانَ عَرْشُهُ عَلَى الْمَاءِ".</h2>
+                <p class="answer">
+                    <strong>১. ই'রাব ও হরকত বিন্যাস:</strong><br>
+                    «عَنْ عَبْدِ اللَّهِ بْنِ عَمْرٍو قَالَ: قَالَ رَسُولُ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ: كَتَبَ اللَّهُ مَقَادِيرَ الْخَلَائِقِ قَبْلَ أَنْ يَخْلُقَ السَّمَاوَاتِ وَالْأَرْضَ بِخَمْسِينَ أَلْفَ سَنَةٍ، قَالَ: وَكَانَ عَرْشُهُ عَلَى الْمَاءِ».<br><br>
+                    <strong>২. হাদিসের সহজ বাংলা অনুবাদ:</strong><br>
+                    হযরত আব্দুল্লাহ ইবনে আমর (রা.) থেকে বর্ণিত, তিনি বলেন, রসূলুল্লাহ (সা.) বলেছেন: "আল্লাহ তাআলা আসমান ও জমিন সৃষ্টির পঞ্চাশ হাজার বছর পূর্বে সমস্ত মাখলুকাত বা সৃষ্টির তকদীর (ভাগ্যলিপি) লিখে রেখেছেন। রসূলুল্লাহ (সা.) আরও বলেন, আর তখন তাঁর আরশ ছিল পানির ওপর।" (সহীহ মুসলিম)<br><br>
+                    <strong>৩. قَوْلُهُ "وَكَانَ عَرْشُهُ عَلَى الْمَاءِ" এর ব্যাখ্যা:</strong><br>
+                    * <strong>সৃষ্টির ধারাবাহিকতা:</strong> আসমান-জমিন সৃষ্টির পূর্বে মহান আল্লাহর দুটি মহিমান্বিত সৃষ্টি বিদ্যমান ছিল—পানি এবং আল্লাহর আরশ। এগুলো আসমান-জমিনের চেয়েও প্রাচীন।<br>
+                    * <strong>কলম ও তকদীর লিখন:</strong> আল্লাহ তাআলা যখন লওহে মাহফুজে সৃষ্টির তকদীর লেখার নির্দেশ দেন, তখন আল্লাহর আরশ পানির ওপরেই ছিল।<br>
+                    * <strong>আল্লাহর কুদরত:</strong> কোনো খুঁটি বা অবলম্বন ছাড়াই আরশ পানির ওপর বিদ্যমান থাকা মহান আল্লাহর একক ক্ষমতা ও সার্বভৌমত্বের এক অনন্য নিদর্শন।
+                </p>
+            </article>
+
+            <article class="qa-item">
+                <h2 class="sub-question">২ নং প্রশ্ন B: اكْتُبْ مَعْنَى الْقَدَرِ لُغَةً وَشَرْعًا.</h2>
+                <p class="answer">
+                    <strong>১. اَلْقَدَرُ لُغَةً (তকদীরের শাব্দিক অর্থ):</strong><br>
+                    কদর (الْقَدَرُ) শব্দের শাব্দিক অর্থ হলো:<br>
+                    * التَّقْدِيرُ (পরিমাপ করা বা পরিমিত করা / Measurement)<br>
+                    * الْحُكْمُ وَالْقَضَاءُ (ফয়সালা ও আদেশ / Decree)<br>
+                    * الْبَيَانُ (স্পষ্ট করা)<br><br>
+                    <strong>২. اَلْقَدَرُ شَرْعًا (তকদীরের পারিভাষিক অর্থ):</strong><br>
+                    শরীয়তের পরিভাষায়, আল্লাহ তাআলা মহাবিশ্ব সৃষ্টির অনাদিকাল পূর্বে লওহে মাহফুজে সৃষ্টির ভালো-মন্দ, লাভ-ক্ষতি, জীবন-মৃত্যু ও তাদের সমস্ত কর্মকাণ্ড যেভাবে নির্ধারণ করে রেখেছেন এবং যা নিখุทভাবে নির্ধারিত সময়ে বাস্তবে প্রকাশ পায়, তাকেই তকদীর (Divine Will and Decree) বলা হয়। ইমাম বায়হাকী (রহ.) বলেন, "তকদীর হলো সৃষ্টির ব্যাপারে আল্লাহর পূর্বজ্ঞান ও তার অমোঘ ফয়সালা।"
+                </p>
+            </article>
+
+            <article class="qa-item">
+                <h2 class="sub-question">২ নং প্রশ্ন C: مَا الاِخْتِلافُ بَيْنَ الْفِرَقِ الإِسْلَامِيَّةِ فِي هَذِهِ الْمَسْأَلَةِ إِثْبَاتًا وَنَفْيًا؟ بَيِّنِ الأَقْوَالَ بِالدَّلائِلِ.</h2>
+                <p class="answer">
+                    তকদীরের মাসআলায় মুসলিম উম্মাহর মধ্যে তিনটি প্রধান ধারা বা মতভেদ রয়েছে:<br><br>
+                    <strong>১. اَلْقَدَرِيَّةُ (কাদারিয়া সম্প্রদায় - তকদীর অস্বীকারকারী মতবাদ):</strong><br>
+                    তারা মানুষের স্বাধীন ইচ্ছাকে চূড়ান্ত মনে করে এবং তকদীরকে পুরোপুরি অস্বীকার করে (نفي القدر)। তাদের মতে, মানুষ নিজেই নিজের কর্মের স্রষ্টা, এখানে আল্লাহর কোনো পূর্বনির্ধারণ নেই।<br>
+                    <em>দলিল:</em> ﴿كُلُّ امْرِئٍ بِمَا كَسَبَ رَهِينٌ﴾ "প্রত্যেক ব্যক্তি তার কৃতকর্মের জন্য দায়ী।" (সূরা আত-তূর: ২১)।<br><br>
+                    <strong>২. اَلْجَبْرِيَّةُ (জাবারিয়া সম্প্রদায় - চরমপন্থী বাধ্যবাধকতায় বিশ্বাসী মতবাদ):</strong><br>
+                    কাদারিয়াদের সম্পূর্ণ বিপরীত। তাদের মতে, মানুষের কোনো স্বাধীন ইচ্ছা বা ক্ষমতা নেই; মানুষ বাতাসের সামনে গাছের পাতার মতো সম্পূর্ণ বাধ্য (Compelled)।<br>
+                    <em>দলিল:</em> ﴿وَمَا تَشَاءُونَ إِلَّا أَنْ يَشَاءَ اللَّهُ﴾ "আল্লাহর ইচ্ছা ছাড়া তোমরা কোনো ইচ্ছাই করতে পারো না।" (সূরা আদ-দাহর: ৩০)।<br><br>
+                    <strong>৩. أَهْلُ السُّنَّةِ وَالْجَمَاعَةِ (আহলে সুন্নাত ওয়াল জামায়াত - হানাফি ও মূলধারা):</strong><br>
+                    তারা মধ্যবর্তী ও ভারসাম্যপূর্ণ পথ অবলম্বন করেন। তাদের মতে, তকদীর সম্পূর্ণ সত্য এবং সমস্ত ভালো-মন্দ আল্লাহর পক্ষ থেকে নির্ধারিত। তবে আল্লাহ মানুষকে সীমিত স্বাধীন ইচ্ছা ও কর্ম সম্পাদনের ক্ষমতা (الكسب) দিয়েছেন, যার কারণে মানুষ সাওয়াব বা আজাবের অধিকারী হয়।<br>
+                    <em>দলিল:</em> ﴿إِنَّا كُلَّ شَيْءٍ خَلَقْنَاهُ بِقَدَرٍ﴾ "নিশ্চয়ই আমি প্রতিটি বস্তু পরিমিতরূপে সৃষ্টি করেছি।" (সূরা আল-ক্বামার: ৪৯)।
+                </p>
+            </article>
+
+            <article class="qa-item">
+                <h2 class="sub-question">২ নং প্রশ্ন D: رَجِّحْ قَوْلَ أَهْلِ الْحَقِّ مَعَ الْإِجَابَةِ عَنْ دَلَائِلِ الْمُخَالِفِينَ.</h2>
+                <p class="answer">
+                    <strong>১. أَهْلُ الْحَقِّ (আহলে সুন্নাত ওয়াল জামায়াত)-এর মতের শ্রেষ্ঠত্ব:</strong><br>
+                    আহলে সুন্নাত ওয়াল জামায়াতের মতটিই কুরআন, সুন্নাহ ও সুস্থ বিবেকের আলোকে একমাত্র সঠিক ও অগ্রগণ্য (راجح)। কারণ তারা আল্লাহর সর্বময় ক্ষমতা ও বান্দার দায়িত্বশীলতা—উভয় বিষয়ের মধ্যে চমৎকার সমন্বয় সাধন করেছে। মানুষ জড় পদার্থের মতো সম্পূর্ণ বাধ্যও নয়, আবার আল্লাহর ক্ষমতার বাইরে গিয়ে নিজের কর্মের স্বাধীন স্রষ্টাও নয়; বরং আল্লাহ কর্মের স্রষ্টা (خالق) এবং মানুষ কর্মের অর্জনকারী (كاسب)।<br><br>
+                    <strong>২. বিরোধীদের দলিলের জওয়াব ও খণ্ডন:</strong><br>
+                    * <strong>কাদারিয়াদের জওয়াব:</strong> তারা যে আয়াত ﴿كُلُّ امْرِئٍ بِمَا كَسَبَ رَهِينٌ﴾ পেশ করে, তার অর্থ মানুষ নিজের সীমিত ইচ্ছা ও ক্ষমতা দিয়ে কর্মের অর্জনকারী (كاسب)। তবে তাদের ভুল হলো তারা মনে করে এই ইচ্ছা আল্লাহর ইচ্ছার অধীন নয়। তকদীর অস্বীকার করার অর্থ আল্লাহর অসীম জ্ঞান ও কুদরতকে অস্বীকার করা, যা কুফরী।<br>
+                    * <strong>জাবারিয়াদের জওয়াব:</strong> তারা যে আয়াত ﴿وَمَا تَشَاءُونَ إِلَّا أَنْ يَشَاءَ اللَّهُ﴾ পেশ করে, তা আল্লাহর ইচ্ছার সার্বভৌমিকতা প্রমাণ করে। এর অর্থ এই নয় যে মানুষের কোনো নিজস্ব ইচ্ছাশক্তি নেই। মানুষের নিজস্ব সদিচ্ছা না থাকলে শরীয়তের আদেশ-নিষেধ ও জবাবদিহিতা সম্পূর্ণ অর্থহীন ও জুলুম হয়ে যেত, অথচ আল্লাহ সব ধরনের জুলুম থেকে পবিত্র।
+                </p>
+            </article>
+        </section>
+
+
+
+
+
+
+
+
+       <!-- পৃষ্ঠা ৩ -->
+    <section class="question-group"
+              id="page-3" aria-label="৩ নম্বর প্রশ্ন">
+
+        <div class="ibarot" dir="rtl" lang="ar">
+            وَعَنْ عَائِشَةَ قَالَتْ: كَانَ النَّبِيُّ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ يُقَبِّلُ بَعْضَ نِسَائِهِ ثُمَّ يُصَلِّي وَلَا يَتَوَضَّأُ. رَوَاهُ أَحْمَدُ وَأَبُو دَاوُدَ وَالتِّرْمِذِيُّ وَالنَّسَائِيُّ وَابْنُ مَاجَهْ.
+        </div>
+
+        <div class="section-number">৩ নং প্রশ্ন ও তার সমাধান</div>
+
+        <article class="qa-item">
+            <h2 class="sub-question">৩ নং প্রশ্ন A: اشْرَحِ الْحَدِيثَ الْمَذْكُورَ ثُمَّ اكْتُبْ نُبْذَةً مِنْ حَيَاتِ أُمِّ الْمُؤْمِنِينَ عَائِشَةَ</h2>
+            <p class="answer"><strong>১. শৰ্হুল হাদিস (হাদিসের সহজ ব্যাখ্যা):</strong> হাদিসের মূল পাঠ: হযরত আয়েশা (রা.) বলেন, "নবী করীম (সা.) তাঁর কোনো কোনো স্ত্রীকে চুম্বন করতেন, অতঃপর সালাত আদায় করতেন এবং নতুন করে ওজু করতেন না।"<br>
+            <strong>ব্যাখ্যা:</strong> এই হাদিসটি প্রমাণ করে যে, স্বামী কর্তৃক স্ত্রীকে চুম্বন করা বা স্বাভাবিকভাবে স্পর্শ করা ওজু ভঙ্গের কারণ নয়। এটি দাম্পত্য জীবনের পারস্পরিক ভালোবাসা ও কোমলতার বহিঃপ্রকাশ এবং এর দ্বারা পবিত্রতা নষ্ট হয় না। হানাফি মাজহাবের ফেকাহর ভিত্তি এই হাদিসের ওপর প্রতিষ্ঠিত।<br><br>
+            <strong>২. উম্মুল মুমিনীন হযরত আয়েশা (রা.)-এর সংক্ষিপ্ত জীবনী:</strong><br>
+            - <strong>নাম ও বংশ:</strong> আয়েশা বিনতে আবু বকর সিদ্দিক (عائشة بنت أبي بكر الصديق)। মাতা - উম্মে রুমান (রা.)। কুরাইশ বংশের বনু তাইম শাখার সন্তান।<br>
+            - <strong>লকব ও কুনিয়াত:</strong> রসূলুল্লাহ (সা.) তাকে 'হুমায়রা' (লালচে-ফর্সা) বলে ডাকতেন। তাঁর কুনিয়াত বা উপনাম 'উম্মু আব্দুল্লাহ'।<br>
+            - <strong>বিবাহ ও মর্যাদা:</strong> নবুয়তের ১০ম বর্ষে রসূলুল্লাহ (সা.)-এর সাথে তাঁর আকদ হয় এবং ২য় হিজরিতে মদিনায় উম্মুল মুমিনীন হিসেবে গৃহপ্রবেশ করেন। রসূলুল্লাহ (সা.)-এর স্ত্রীদের মধ্যে তিনি একমাত্র কুমারী ছিলেন এবং রসূলুল্লাহ (সা.) তাঁকে সর্বাধিক ভালোবাসতেন।<br>
+            - <strong>ইলমি অবদান:</strong> তিনি ইসলামের ইতিহাসের অন্যতম শ্রেষ্ঠ ফকীহ ও মুহাদ্দিস। রসূলুল্লাহ (সা.)-এর ব্যক্তিগত ও পারিবারিক জীবনের শরীয়তের বিধান মূলত তাঁর মাধ্যমেই উম্মত জানতে পেরেছে। নারী সাহাবিদের মধ্যে তিনি সর্বাধিক ২,২১০টি হাদিস বর্ণনা করেছেন।<br>
+            - <strong>ইন্তেকাল:</strong> ৫৮ হিজরির ১৭ই রমজান (মতান্তরে ৫৭ হিজরি) ৬৬ বছর বয়সে তিনি ইন্তেকাল করেন। হযরত আবু হুরায়রা (রা.) তাঁর জানাজার সালাত পড়ান এবং মদিনার জান্নাতুল বাকীতে তাঁকে দাফন করা হয়।</p>
+        </article>
+
+        <article class="qa-item">
+            <h2 class="sub-question">৩ নং প্রশ্ন B: بَيِّنِ اخْتِلافَ الأَئِمَّةِ الْكِرَامِ فِي انْتِقَاضِ الْوُضُوءِ وَعَدَمِهِ مِنْ مَسِّ الْمَرْأَةِ، وَقَدِّمِ الأَدِلَّةَ وَالْبَرَاهِينَ لِكُلِّ فَرِيقٍ، وَرَجِّحْ مَذْهَبَكَ بِالإِجَابَةِ عَنْ دَلائِلِ الْمُخَالِفِينَ</h2>
+            <p class="answer"><strong>১. ইমামগণের মতভেদ:</strong><br>
+            - <strong>মত-১ (ইমাম শাফেয়ী রহ.):</strong> স্বামী-স্ত্রী বা কোনো বেগানা (বিবাহযোগ্য) নারীকে স্পর্শ করলে পুরুষের ওজু ভেঙে যাবে, তা কামনাবশত হোক বা স্বাভাবিকভাবে হোক।<br>
+            - <strong>মত-২ (ইমাম মালেক ও ইমাম আহমদ রহ.):</strong> যদি স্পর্শের দ্বারা শাহওয়াত বা কামভাব (Sexual Desire) জাগ্রত হয়, তবে ওজু ভাঙবে, অন্যথায় ভাঙবে না।<br>
+            - <strong>মত-৩ (ইমাম আবু হানিফা রহ. ও হানাফি মাজহাব):</strong> নারীর শরীরের সাধারণ স্পর্শ বা চুম্বনে ওজু ভাঙবে না। তবে যদি 'মুবাশারাতুল ফাহিশাহ' (কাপড়বিহীন অবস্থায় কামোত্তেজক চরম আলিঙ্গন) হয়, তবেই কেবল ওজু ভাঙবে।<br><br>
+            <strong>২. উভয় পক্ষের দলিল:</strong><br>
+            - <strong>ইমাম শাফেয়ী (রহ.)-এর দলিল:</strong> কুরআনের আয়াত: ﴿أَوْ لَامَسْتُمُ النِّسَاءَ﴾ "অথবা তোমরা যদি নারীদের স্পর্শ করো।" (সূরা আল-মায়িদাহ: ৬)। শাফেয়ীদের মতে 'লামাসতুম' অর্থ সাধারণ স্পর্শ।<br>
+            - <strong>হানাফি মাজহাবের দলিল:</strong> উদ্দীপকের হাদিস, যেখানে রসূলুল্লাহ (সা.) স্ত্রীকে চুম্বন করে ওজু ছাড়াই সালাত পড়েছেন। অন্য হাদিসে এসেছে, হযরত আয়েশা (রা.) রাতে অন্ধকারে রসূলুল্লাহ (সা.)-এর সেজদার জায়গায় পা প্রসারিত করে রাখতেন এবং রসূলুল্লাহ (সা.) তাঁর পায়ে টোকা দিতেন, এতে ওজু ভাঙত না (সহীহ বুখারি)।<br><br>
+            <strong>৩. হানাফি মতের শ্রেষ্ঠত্ব ও বিরোধীদের জওয়াব:</strong><br>
+            হানাফি মাজহাবের মতটিই এখানে অগ্রগণ্য (রাজহ)। কারণ শাফেয়ীগণ কুরআনের যে আয়াত পেশ করেছেন, সেটির ব্যাখ্যায় হযরত আব্দুল্লাহ ইবনে আব্বাস (রা.) বলেছেন: "এখানে 'লামাসতুম' অর্থ আল-জিম্বা বা সহবাস।" (তাফসীরে তাবারী)। অর্থাৎ কুরআনে সহবাসের দ্বারা ওজু/গোসল ফরজ হওয়ার কথা বলা হয়েছে, সাধারণ ছোঁয়া নয়। তাছাড়া রসূলুল্লাহ (সা.)-এর আমল দ্বারা স্পষ্ট প্রমাণিত যে সাধারণ স্পর্শে ওজু নষ্ট হয় না।</p>
+        </article>
+
+        <article class="qa-item">
+            <h2 class="sub-question">৩ নং প্রশ্ন C: مَاذَا أَرَادَ الْمُصَنِّفُ بِذِكْرِ قَوْلِ الإِمَامِ التِّرْمِذِيِّ وَقَوْلِ الإِمَامِ أَبِي دَاوُدَ؟ أَوْضِحْ إِيضَاحًا تَامًّا ثُمَّ بَيِّنِ الْجَوَابَ عَنْهُ بَيَانًا شَافِيًا</h2>
+            <p class="answer"><strong>১. ইমাম তিরমিজি ও ইমাম আবু দাউদের মন্তব্য উল্লেখ করার উদ্দেশ্য:</strong><br>
+            মুসান্নিফ আল্লামা তাবরিজি (রহ.) এই মন্তব্যগুলো উল্লেখ করে মূলত হাদিসটির সনদের দুর্বলতা (Weakness in Chain) স্পষ্ট করতে চেয়েছেন।<br>
+            - <strong>ইমাম তিরমিজির মন্তব্য:</strong> হযরত আয়েশা (রা.) থেকে উরওয়াহ ও ইব্রাহিম তায়মীর সূত্রে এই হাদিসের যে সনদ বা ইবারত বর্ণিত হয়েছে, তা কোনোভাবেই সহীহ বা শুদ্ধ নয়।<br>
+            - <strong>ইমাম আবু দাউদের মন্তব্য:</strong> হাদিসটি 'মুরসাল' (যে হাদিসের সনদে সাহাবির নাম বাদ পড়ে তাবিঈ সরাসরি রসূলুল্লাহ সা. থেকে বর্ণনা করেন)। কারণ রাবী ইব্রাহিম তায়মী হযরত আয়েশা (রা.)-কে দেখেননি এবং তাঁর থেকে কোনো হাদিস শোনেননি (ইনকিতা)।<br>
+            সংক্ষেপে, মুসান্নিফ দেখাতে চেয়েছেন যে হানাফিদের দলিল হিসেবে পেশ করা এই হাদিসটি সনদের দিক থেকে জঈফ বা দুর্বল।<br><br>
+            <strong>২. হানাফি মাজহাবের পক্ষ থেকে চূড়ান্ত ও সন্তোষজনক জওয়াব (আল-জওয়াব আশ-শাফী):</strong><br>
+            মুহাদ্দিসিনে কেরাম ও হানাফি ওলামাগণ ইমাম তিরমিজি ও আবু দাউদের এই আপত্তির চমৎকার জওয়াব দিয়েছেন:<br>
+            - <strong>প্রথম জওয়াব (সনদের বহুত্ব):</strong> হাদিসটি কেবল এই একটি সনদে আসেনি। ইমাম দারা কুতনী, ইমাম বায়হাকী এবং ইবনে আবদিল বার (রহ.) এই হাদিসটি অন্যান্য শক্তিশালী ও মুত্তাসিল (ধারাবাহিক) সনদে বর্ণনা করেছেন, যেখানে কোনো ইনকিতা বা রাবী বাদ পড়ার ত্রুটি নেই।<br>
+            - <strong>দ্বিতীয় জওয়াব (হাদিসের মান):</strong> হাদিসের বর্ণনাকারী ফারকাদ আস-সাঞ্জী ও হাবীব ইবনে আবী ছাবিত। যদিও কেউ কেউ তাঁদের দুর্বল বলেছেন, কিন্তু ইমাম ইবনে জারীর এবং ইমাম জাইলায়ী (রহ.) প্রমাণ করেছেন যে তাবিঈ উরওয়াহ-এর সূত্রে বর্ণিত সনদটি হাসান (حَسَن) পর্যায়ের।<br>
+            - <strong>তৃতীয় জওয়াব (মুরসাল হাদিসের গ্রহণযোগ্যতা):</strong> হানাফি উসূল অনুযায়ী, খাইরুল কুরূনের (উত্তম যুগের) নির্ভরযোগ্য তাবিঈদের 'মুরসাল' হাদিস দলিল হিসেবে সম্পূর্ণ গ্রহণযোগ্য (حُجَّة)। অতএব, এই হাদিসের ওপর আমল করা এবং ফতোয়া দেওয়া সম্পূর্ণ সহীহ।</p>
+        </article>
+
+        <article class="qa-item">
+            <h2 class="sub-question">৩ নং প্রশ্ন D: অতিরিক্ত বা উপসংহারমূলক পর্যালোচনা</h2>
+            <p class="answer">ফিকহের মাসআলা ও দলিলের ক্ষেত্রে হানাফি মাজহাবের দলীলগুলো সামগ্রিক মূল্যায়নে অত্যন্ত শক্তিশালী এবং তা সাহাবিগণের আমল দ্বারা সমর্থিত। উপরোক্ত হাদিস এবং এর বিভিন্ন সনদের পর্যালোচনা থেকে প্রমাণিত হয় যে, সাধারণ স্পর্শ বা চুম্বনে ওজু ভাঙে না এবং এই সংক্রান্ত ইমামগণের ইখতিলাফ সত্ত্বেও হানাফি ফিকহ সম্পূর্ণ অকাট্য দলিল ও সুন্নাহর ওপর প্রতিষ্ঠিত।</p>
+        </article>
+    </section>
+
+
+
+
+
+
+        <!-- পৃষ্ঠা ৪ -->
+<section class="question-group" id="page-4" aria-label="৪ নম্বর প্রশ্ন">
+
+    <div class="ibarot" dir="rtl" lang="ar">
+        «عَنْ أَبِي هُرَيْرَةَ رَضِيَ اللَّهُ عَنْهُ قَالَ: قَالَ رَسُولُ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ: اَلْعَجْمَاءُ جُرْحُهَا جُبَارٌ، وَالْبِئْرُ جُبَارٌ، وَالْمَعْدِنُ جُبَارٌ، وَفِي الرِّكَازِ الْخُمُسُ».
+    </div>
+
+    <div class="section-number">৪ নং প্রশ্ন + উত্তর</div>
+
+    <article class="qa-item">
+        <h2 class="sub-question">◆ (A) شَكِّلْ وَتَرْجِمْ.</h2>
+        <div class="answer">
+            <p><strong>১. تَشْكِيلُ الْحَدِيثِ (হাদিসের হরকত বিন্যাস):</strong></p>
+            <p dir="rtl" lang="ar">«عَنْ أَبِي هُرَيْرَةَ رَضِيَ اللَّهُ عَنْهُ قَالَ: قَالَ رَسُولُ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ: اَلْعَجْمَاءُ جُرْحُهَا جُبَارٌ، وَالْبِئْرُ جُبَارٌ، وَالْمَعْدِنُ جُبَارٌ، وَفِي الرِّكَازِ الْخُمُسُ».</p>
+            
+            <p><strong>২. تَرْجَمَةُ الْحَدِيثِ (হাদিসের সহজ বাংলা অনুবাদ):</strong></p>
+            <p>হযরত আবু হুরায়রা (রা.) থেকে বর্ণিত, তিনি বলেন, রসূলুল্লাহ (সা.) বলেছেন: "পশু বা অবলা জন্তুর আঘাত বা জখম ব্যর্থ বা অকেজো (অর্থাৎ এর কোনো ক্ষতিপূরণ নেই), কূয়া (খোদাই করার সময় ধসে কেউ মারা গেলে তা) অকেজো, খনি (খননকালে কেউ মারা গেলে তাও) অকেজো বা দায়মুক্ত। আর রিকায বা মাটির নিচে প্রোথিত গুপ্তধনে এক-পঞ্চমাংশ (২০% রাজস্ব) ওয়াজিব।" (মুত্তাফাকুন আলাইহি - বুখারি ও মুসলিম)</p>
+        </div>
+    </article>
+
+    <article class="qa-item">
+        <h2 class="sub-question">◆ (B) هَلْ يَجِبُ الضَّمَانُ فِي جُرْحِ الْعَجْمَاءِ أَمْ لا؟ وَمَا الاِخْتِلافُ فِيهِ؟ بَيِّنْ أَقْوَالَ الْعُلَمَاءِ مَعَ أَدِلَّتِهِمْ.</h2>
+        <div class="answer">
+            <p>পশু বা অবলা জন্তু (العجماء) যদি কারও জানমালের ক্ষতি করে, তবে তার মালিকের ওপর ক্ষতিপূরণ (ضمان) ওয়াজিব হবে কি না, এ বিষয়ে ইমামদের মধ্যে কিছুটা বিবরণগত মতভেদ রয়েছে:</p>
+            
+            <p><strong>১. أَقْوَالُ الْعُلَمَاءِ (ওলামায়ে কেরামের মতামত):</strong></p>
+            <ul>
+                <li><strong>মত-১ (হাদিসের বাহ্যিক অর্থ ও ইমামগণের সাধারণ ঐক্য):</strong> যদি পশুটি নিজে নিজে বা আপন গতিতে গিয়ে কারও ক্ষতি করে এবং সেখানে মালিকের কোনো গাফিলতি বা নিয়ন্ত্রণ না থাকে, তবে সর্বসম্মতভাবে কোনো ক্ষতিপূরণ (ضمان) ওয়াজিব হবে না। হাদিসের মূল বক্তব্য এটাই।</li>
+                <li><strong>মত-২ (হানাফি মাজহাবের সুবিন্যস্ত ফয়সালা):</strong> যদি পশুর সাথে তার আরোহী (রাকিব), চালক (সায়িক) কিংবা টেনে নিয়ে যাওয়ার ব্যক্তি (কায়েদ) উপস্থিত থাকে এবং তার অবহেলা বা উস্কানির কারণে পশুটি ক্ষতি করে, তবে সেই ব্যক্তির ওপর ক্ষতিপূরণ (ضمان) ওয়াজিব হবে। আর যদি পশুটি রাতের বেলা গোয়ালঘর বা বেষ্টনী ভেঙে গিয়ে অন্যের ফসল নষ্ট করে এবং মালিকের অবহেলা প্রমাণিত হয়, তবে ক্ষতিপূরণ দিতে হবে।</li>
+            </ul>
+
+            <p><strong>২. أَدِلَّةُ الْمَذَاهِبِ (মাযহাবসমূহের দলিল):</strong></p>
+            <ul>
+                <li><strong>দায়মুক্তির দলিল (হানাফি ও জমহুর):</strong> উদ্দীপকের হাদিস: <span dir="rtl" lang="ar">«الْعَجْمَاءُ جُرْحُهَا جُبَارٌ»</span> (পশুর জখম বা আঘাত জরিমানা-মুক্ত)। যেহেতু পশুর নিজস্ব কোনো বুদ্ধি বা ইচ্ছা নেই, তাই তার আকস্মিক কর্মের দায় মানুষের ওপর চাপানো যায় না।</li>
+                <li><strong>ক্ষতিপূরণ ওয়াজিব হওয়ার দলিল (বিশেষ ক্ষেত্রে):</strong> আল্লাহর রসূল (সা.)-এর ফয়সালা: <span dir="rtl" lang="ar">«أَنَّ عَلَى أَهْلِ الْمَاشِيَةِ حِفْظَهَا بِاللَّيْلِ»</span> "নিশ্চয়ই গবাদি পশুর মালিকদের দায়িত্ব হলো রাতে তা হেফাজতে রাখা।" (মুয়াত্তা মালিক)। সুতরাং রাতে মালিকের অসতর্কতার কারণে ক্ষতি হলে মালিক দায়ী থাকবে।</li>
+            </ul>
+
+            <p><strong>সিদ্ধান্ত:</strong> হানাফি মাজহাব অনুযায়ী, মালিক বা চালকের অবহেলা ও নিয়ন্ত্রণ থাকলে ক্ষতিপূরণ ওয়াজিব হবে, অন্যথায় পশু একা গিয়ে ক্ষতি করলে তা সম্পূর্ণ 'জুবার' বা ক্ষমার্হ।</p>
+        </div>
+    </article>
+
+    <article class="qa-item">
+        <h2 class="sub-question">◆ (C) مَا الْمَعْدِنُ وَالرِّكَازُ لُغَةً وَاصْطِلاحًا؟ وَهَلْ يَجِبُ فِي الْمَعْدِنِ الْخُمُسُ وَمَا الاِخْتِلافُ فِيهِ؟ بَيِّنِ المَذَاهِبَ بِالأَدِلَّةِ النَّقْلِيَّةِ وَالْعَقْلِيَّةِ مَعَ تَرْجِيحِ الرَّاجِحِ عِنْدَكَ.</h2>
+        <div class="answer">
+            <p><strong>১. اَلْمَعْدِنُ وَالرِّكَازُ لُغَةً وَاصْطِلاحًا (শাব্দিক ও পারিভাষিক অর্থ):</strong></p>
+            <ul>
+                <li><strong>মা'দিন (المعدن):</strong>
+                    <ul>
+                        <li>শাব্দিক অর্থ: الإقامة (অবস্থান করা), উৎপত্তিস্থল বা খনি (Mine)।</li>
+                        <li>পারিভাষিক অর্থ: আল্লাহ তাআলা ভূগর্ভে প্রাকৃতিকভাবে যে সমস্ত মূল্যবান বস্তু (যেমন: সোনা, রূপা, লোহা ইত্যাদি) সৃষ্টি করে রেখেছেন।</li>
+                    </ul>
+                </li>
+                <li><strong>রিকায (الركاز):</strong>
+                    <ul>
+                        <li>শাব্দিক অর্থ: মাটির নিচে পুঁতে রাখা বস্তু (Buried Treasure)।</li>
+                        <li>পারিভাষিক অর্থ: প্রাক-ইসলামী যুগে বা জাহেলী আমলে কাফেরদের পুঁতে রাখা ধন-সম্পদ যা মাটির নিচে পাওয়া যায়।</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <p><strong>২. খনিতে খুমুস (১/৫ অংশ) ওয়াজিব হওয়া সংক্রান্ত মতভেদ:</strong></p>
+            <p>খনি থেকে আহরিত সম্পদে কতটুকু ট্যাক্স বা জাকাত দিতে হবে, এ নিয়ে ইমামদের মাঝে প্রসিদ্ধ মতভেদ রয়েছে:</p>
+            <ul>
+                <li><strong>মত-১ (হানাফি মাজহাব):</strong> খনি থেকে গলনযোগ্য ও শক্ত ধাতু (যেমন: সোনা, রূপা, লোহা, তামা) পাওয়া গেলে তাতে 'খুমুস' বা এক-পঞ্চমাংশ (২০%) আদায় করা ওয়াজিব।</li>
+                <li><strong>মত-২ (ইমাম শাফেয়ী রহ.):</strong> খনি থেকে উৎপাদিত সম্পদে খুমুস ওয়াজিব নয়, বরং সোনা-রূপা হলে তাতে সাধারণ জাকাতের মতো আড়াই শতাংশ (২.৫%) ওয়াজিব হবে। অন্যান্য ধাতুতে কোনো জাকাত নেই।</li>
+            </ul>
+
+            <p><strong>৩. الأَدِلَّةُ النَّقْلِيَّةُ وَالْعَقْلِيَّةُ (উদ্ধৃতিমূলক ও যৌক্তিক দলিল):</strong></p>
+            <ul>
+                <li><strong>হানাফি মাজহাবের উক্তিগত দলিল (النقلية):</strong> উদ্দীপকের হাদিসের সাধারণ শব্দ: <span dir="rtl" lang="ar">«وَفِي الرِّكَازِ الْخُمُسُ»</span>। হানাফি উসূল অনুযায়ী 'রিকায' শব্দটি খনি (المعدن) এবং গুপ্তধন (الكنز)—উভয় অর্থকেই শামিল করে। তাই খনিতেও এক-পঞ্চমাংশ ওয়াজিব।</li>
+                <li><strong>হানাফি মাজহাবের যৌক্তিক দলিল (العقلية):</strong> খনি ও গুপ্তধন—উভয়টিই কোনো রকম খাটাখাটনি বা দীর্ঘ ব্যবসা ছাড়াই মানুষ আল্লাহর পক্ষ থেকে সরাসরি লাভ করে। যেহেতু প্রাপ্তির মাধ্যম একই, তাই উভয়ের হুকুমও এক হবে অর্থাৎ ২০% রাষ্ট্রীয় কোষাগারে জমা দিতে হবে।</li>
+                <li><strong>শাফেয়ী মাজহাবের দলিল:</strong> তারা খনি ও রিকাযকে আলাদা গণ্য করেন এবং বলেন খনিতে কষ্ট করে খনন করতে হয়, তাই এতে সাধারণ জাকাত (২.৫%) প্রযোজ্য।</li>
+            </ul>
+
+            <p><strong>৪. تَرْجِيحُ الرَّاجِحِ (অগ্রগণ্য মত):</strong></p>
+            <p>ফিকহ ও হাদিসের সূক্ষ্ম বিচার বিশ্লেষণে <strong>হানাফি মাজহাবের মতটিই এখানে অগ্রগণ্য (راجح)</strong>। কারণ লোগাত বা আরবি ভাষার প্রসিদ্ধ ইমামগণ (যেমন ইবনুল আসীর) নিশ্চিত করেছেন যে, 'রিকায' অর্থ মাটির নিচে থাকা আল্লাহর সৃষ্ট খনিও হতে পারে। তাছাড়া সাধারণ জনগণের স্বার্থে খনিজ সম্পদের ওপর ২০% সরকারি কর বা খুমুস ধার্য করার হানাফি সিদ্ধান্তটি ইসলামী অর্থনীতিকে অধিক শক্তিশালী করে।</p>
+        </div>
+    </article>
+
+</section>
+
+
+
+
+
+
+
+        <!-- পৃষ্ঠা ৫ -->
+<section class="question-group" id="page-5" aria-label="৫ নম্বর প্রশ্ন">
+
+    <div class="ibarot" dir="rtl" lang="ar">
+        «عَنِ النُّعْمَانِ بْنِ بَشِيرٍ قَالَ: قَالَ رَسُولُ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ: اَلْحَلَالُ بَيِّنٌ وَالْحَرَامُ بَيِّنٌ وَبَيْنَهُمَا مُشْتَبِهَاتٌ لَا يَعْلَمُهُنَّ كَثِيرٌ مِنَ النَّاسِ، فَمَنِ اتَّقَى الشُّبُهَاتِ اسْتَبْرَأَ لِدِينِهِ وَعِرْضِهِ، وَمَنْ وَقَعَ فِي الشُّبُهَاتِ وَقَعَ فِي الْحَرَامِ، كَالرَّاعِي يَرْعَى حَوْلَ الْحِمَى يُوشِكُ أَنْ يَرْتَعَ فِيهِ، أَلَا وَإِنَّ لِكُلِّ مَلِكٍ حِمًى، أَلَا وَإِنَّ حِمَى اللَّهِ مَحَارِمُهُ، أَلَا وَإِنَّ فِي الْجَسَدِ مُضْغَةً إِذَا صَلَحَتْ صَلَحَ الْجَسَدُ كُلُّهُ وَإِذَا فَسَدَتْ فَسَدَ الْجَسَدُ كُلُّهُ أَلَا وَهِيَ الْقَلْبُ».
+    </div>
+
+    <div class="section-number">৫ নম্বর প্রশ্ন ও উত্তর</div>
+
+    <article class="qa-item">
+        <h2 class="sub-question">৫ নং প্রশ্ন A: زَيِّنِ الْحَدِيثَ بِالْحَرَكَاتِ ثُمَّ تَرْجِمْهُ مُوَضَّحًا.</h2>
+        <div class="answer">
+            <h3>১. إِعْرَابُ الْحَدِيثِ (হাদিসের হরকত বিন্যাস):</h3>
+            <p dir="rtl" lang="ar">«عَنِ النُّعْمَانِ بْنِ بَشِيرٍ قَالَ: قَالَ رَسُولُ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ: اَلْحَلَالُ بَيِّنٌ وَالْحَرَامُ بَيِّنٌ وَبَيْنَهُمَا مُشْتَبِهَاتٌ لَا يَعْلَمُهُنَّ كَثِيرٌ مِنَ النَّاسِ، فَمَنِ اتَّقَى الشُّبُهَاتِ اسْتَبْرَأَ لِدِينِهِ وَعِرْضِهِ، وَمَنْ وَقَعَ فِي الشُّبُهَاتِ وَقَعَ فِي الْحَرَامِ، كَالرَّاعِي يَرْعَى حَوْلَ الْحِمَى يُوشِكُ أَنْ يَرْتَعَ فِيهِ، أَلَا وَإِنَّ لِكُلِّ مَلِكٍ حِمًى، أَلَا وَإِنَّ حِمَى اللَّهِ مَحَارِمُهُ، أَلَا وَإِنَّ فِي الْجَسَدِ مُضْغَةً إِذَا صَلَحَتْ صَلَحَ الْجَسَدُ كُلُّهُ وَإِذَا فَسَدَتْ فَسَدَ الْجَسَدُ كُلُّهُ أَلَا وَهِيَ الْقَلْبُ».</p>
+
+            <h3>২. تَرْجَمَةُ الْحَدِيثِ (হাদিসের সহজ বাংলা অনুবাদ):</h3>
+            <p>হযরত নুমান ইবনে বশীর (রা.) থেকে বর্ণিত, তিনি বলেন, রসূলুল্লাহ (সা.) বলেছেন: "হালালও স্পষ্ট এবং হারামও স্পষ্ট। আর এ দুয়ের মাঝে কিছু সন্দেহজনক বিষয় রয়েছে, যা অনেক মানুষই জানে না। অতএব, যে ব্যক্তি সন্দেহজনক বিষয়গুলো থেকে বেঁচে থাকল, সে নিজের দ্বীন ও সম্মানকে নিষ্কলঙ্ক রাখল। আর যে ব্যক্তি সন্দেহজনক বিষয়ে লিপ্ত হলো, সে হারামে পতিত হলো। তার উদাহরণ সেই রাখালের মতো, যে সরকারি সংরক্ষিত চারণভূমির চারপাশে পশু চরায়, ফলে যেকোনো সময় তার পশু তার ভেতরে ঢুকে পড়ার আশঙ্কা থাকে। মনে রেখো, প্রত্যেক রাজারই একটি সংরক্ষিত সীমানা থাকে। আর আল্লাহর সংরক্ষিত সীমানা হলো তাঁর নিষিদ্ধ বিষয়সমূহ (হারাম কাজ)। জেনে রেখো, মানবদেহে একটি মাংসপিণ্ড রয়েছে; যখন তা সংশোধন হয়ে যায়, তখন পুরো শরীরই সংশোধন হয়ে যায়। আর যখন তা নষ্ট হয়ে যায়, তখন পুরো শরীরই নষ্ট হয়ে যায়। শুনে রেখো, তা হলো কলব বা অন্তর।" <em>(মুত্তাফাকুন আলাইহি - বুখারি ও মুসলিম)</em></p>
+
+            <h3>৩. تَوْضِيحُ الْحَدِيثِ (হাদিসের সংক্ষিপ্ত ব্যাখ্যা):</h3>
+            <p>এই হাদিসটি ইসলামের সামগ্রিক বিধি-বিধান ও আত্মশুদ্ধির মূল ভিত্তি। রসূলুল্লাহ (সা.) এখানে মানবীয় কর্মকাণ্ডকে তিন ভাগে ভাগ করেছেন: ক. স্পষ্ট হালাল (যেমন- রুটি, ফলমূল), খ. স্পষ্ট হারাম (যেমন- মদ, ব্যভিচার) এবং গ. অস্পষ্ট বা সন্দেহযুক্ত বিষয় (যার হালাল বা হারাম হওয়ার ব্যাপারে দলিলে অস্পষ্টতা থাকে)। মুমিনদের জন্য নিরাপদ পথ হলো সন্দেহযুক্ত বিষয় পরিহার করা, যেন অসতর্কতাবশত হারামে পা না পড়ে। আর এই বেঁচে থাকার চালিকাশক্তি হলো 'কলব' বা পবিত্র অন্তর।</p>
+        </div>
+    </article>
+
+    <article class="qa-item">
+        <h2 class="sub-question">৫ নং প্রশ্ন B: مَا هِيَ الْوُجُوهُ الَّتِي تَكُونُ الأَشْيَاءُ بِهَا مُشْتَبِهَاتٍ؟ بَيِّنْ بِالْوَضَاحَةِ.</h2>
+        <div class="answer">
+            <p>কোনো একটি বিষয় সাধারণ মানুষের কাছে 'মুশতাবিহ' বা সন্দেহযুক্ত (Doubtful Matters) মনে হওয়ার পেছনে প্রধানত ৪টি কারণ বা দিক (الْوُجُوهُ) থাকে। তা নিচে স্পষ্টভাবে উল্লেখ করা হলো:</p>
+            <ul>
+                <li><strong>১. تَعَارُضُ الأَدِلَّةِ (দলিলসমূহের আপাত বিরোধিতা):</strong> যখন কোনো বিষয়ের পক্ষে এবং বিপক্ষে দুটি শরীঈ দলিল এমনভাবে আমনে-সামনে চলে আসে, যার কারণে সাধারণ প্রজ্ঞায় কোনটি গ্রহণীয় তা নির্ধারণ করা কঠিন হয়ে পড়ে। (যেমন- এক হাদিসে একটি কাজের অনুমতি থাকা, অন্য হাদিসে নিষেধ থাকা)।</li>
+                <li><strong>২. اِخْتِلَافُ الْعُلَمَاءِ (ওলামায়ে কেরামের ফিকহি মতভেদ):</strong> কোনো আধুনিক মাসআলা বা সূক্ষ্ম বিষয়ে যখন নির্ভরযোগ্য মুজতাহিদ ইমামগণের মধ্যে হালাল বা হারাম হওয়া নিয়ে একাধিক মত তৈরি হয়, তখন সাধারণ মুসলমানদের কাছে বিষয়টি संदेहযুক্ত বা মুশতাবিহ মনে হয়।</li>
+                <li><strong>৩. اِشْتِبَاهُ الصِّفَاتِ أَوِ الْعِلَلِ (গুণাবলী বা কারণের সাদৃশ্যতা):</strong> কোনো একটি বস্তু বা লেনদেনের বাহ্যিক রূপ এমন হয়, যা দেখতে হালালের মতো হলেও তার ভেতরে হারামের কিছু বৈশিষ্ট্য বা সন্দেহজনক উপাদান মিশ্রিত থাকে। (যেমন- বর্তমান যুগের কিছু জটিল বাণিজ্যিক ও ব্যাংকিং লেনদেন)।</li>
+                <li><strong>৪. عَدَمُ النَّصِّ الْقَاطِعِ (সুস্পষ্ট ও চূড়ান্ত বর্ণনার অভাব):</strong> কুরআন বা সুন্নাহতে সরাসরি সেই বিষয়টি হালাল নাকি হারাম—সে সম্পর্কে কোনো স্পষ্ট ও অকাট্য টেক্সট (نص) না থাকা এবং কিয়াসের মাধ্যমে সিদ্ধান্তে পৌঁছাতে গভীর ইলমের প্রয়োজন হওয়া।</li>
+            </ul>
+            <p>হাদিসের বাক্য «لا يَعْلَمُهُنَّ كَثِيرٌ مِنَ النَّاسِ» প্রমাণ করে যে, এই সন্দেহগুলো সাধারণ মানুষের জন্য, কিন্তু গভীর ইলমের অধিকারী ওলামাগণ (Rasikhoon fil-Ilm) ইজতিহাদের মাধ্যমে এর সঠিক হুকুম জানতে পারেন।</p>
+        </div>
+    </article>
+
+    <article class="qa-item">
+        <h2 class="sub-question">৫ নং প্রশ্ন C: مَا الْفَرْقُ بَيْنَ الشُّبْهَةِ وَالْوَسْوَسَةِ؟</h2>
+        <div class="answer">
+            <p>শরীয়তের পরিভাষায় 'শুবহাহ' (সন্দেহ) এবং 'ওয়াসওয়াসা' (কুচিন্তা/খুতখুতানি)-এর মধ্যে সূক্ষ্ম ও মৌলিক পার্থক্য রয়েছে। পরীক্ষায় লেখার উপযোগী করে নিচে তা তুলে ধরা হলো:</p>
+            
+            <h3>১. শুবহাহ (الشُّبْهَةُ - Doubt):</h3>
+            <ul>
+                <li><strong>সংজ্ঞা:</strong> শুবহাহ হলো এমন বাস্তব সন্দেহ, যার পেছনে শরীয়তের কোনো না কোনো অস্পষ্ট দলিল, প্রমাণ বা যৌক্তিক কারণ বিদ্যমান থাকে।</li>
+                <li><strong>ভিত্তি:</strong> এর একটি বাহ্যিক ও বুদ্ধিবৃত্তিক ভিত্তি থাকে, যার কারণে মন দ্বিধাদ্বন্দ্বে ভোগে।</li>
+                <li><strong>শরীঈ হুকুম:</strong> দ্বীন ও আমল হেফাজতের জন্য শুবহাহ বা সন্দেহযুক্ত বিষয় বর্জন করা প্রশংসনীয় ও আবশ্যক (مطلوب شرعاً)।</li>
+            </ul>
+
+            <h3>২. ওয়াসওয়াসা (الْوَسْوَسَةُ - Misgiving/Obsession):</h3>
+            <ul>
+                <li><strong>সংজ্ঞা:</strong> ওয়াসওয়াসা হলো শয়তানের প্ররোচনা থেকে সৃষ্ট অহেতুক খুতখুতানি বা ভিত্তিহীন ধারণা, যার পেছনে কোনো শরীঈ বা যৌক্তিক প্রমাণ থাকে না।</li>
+                <li><strong>ভিত্তি:</strong> এর কোনো বাস্তব ভিত্তি নেই; এটি কেবল মনের অমূলক দ্বিধা বা শয়তানি প্ররোচনা।</li>
+                <li><strong>শরীঈ হুকুম:</strong> ওয়াসওয়াসাকে পাত্তা দেওয়া বা এর অনুসরণ করা শরীয়তে সম্পূর্ণ নিষিদ্ধ ও মাযমুম (গর্হিত)। ওয়াসওয়াসা থেকে বেঁচে থাকার জন্য তা উপেক্ষা করা (الإعراض عنها) আবশ্যক।</li>
+            </ul>
+        </div>
+    </article>
+
+</section>
+
+
+        
+
+
+
+
+        <!-- নিচের নেভিগেশন -->
+        <footer class="bottom-pagination">
+
+            <button class="nav-btn"
+                    id="prev-btn"
+                    type="button"
+                    onclick="prevPage()"
+                    disabled>« Previous</button>
+
+            <span class="page-status"
+                  id="page-status"
+                  aria-live="polite">পৃষ্ঠা ১ / ৫</span>
+
+            <button class="nav-btn"
+                    id="next-btn"
+                    type="button"
+                    onclick="nextPage()">Next »</button>
+
+        </footer>
 
     </main>
 
     <script>
-        const glow = document.getElementById('glow');
+        "use strict";
 
-        // Mouse move interactive glow background
-        window.addEventListener('mousemove', (e) => {
-            glow.style.left = e.clientX + 'px';
-            glow.style.top = e.clientY + 'px';
-        });
+        let currentPage = 1;
+        let currentScale = 1;
 
-        // Touch move interactive glow background for mobile screens
-        window.addEventListener('touchmove', (e) => {
-            if (e.touches.length > 0) {
-                glow.style.left = e.touches[0].clientX + 'px';
-                glow.style.top = e.touches[0].clientY + 'px';
+        const totalPages = 5;
+        const minScale = 0.7;
+        const maxScale = 1.6;
+
+        const banglaNumbers = ["০", "১", "২", "৩", "৪", "৫"];
+        const root = document.documentElement;
+
+        /* পৃষ্ঠা পরিবর্তন */
+        function updatePaginationUI() {
+            document.querySelectorAll(".question-group").forEach(
+                function (page) {
+                    page.classList.remove("active-page");
+                }
+            );
+
+            const activePage = document.getElementById(
+                "page-" + currentPage
+            );
+
+            if (activePage) {
+                activePage.classList.add("active-page");
+            }
+
+            document.querySelectorAll(".page-number-btn").forEach(
+                function (button) {
+                    const pageNumber = Number(button.dataset.page);
+                    const isActive = pageNumber === currentPage;
+
+                    button.classList.toggle("active", isActive);
+
+                    if (isActive) {
+                        button.setAttribute("aria-current", "page");
+                    } else {
+                        button.removeAttribute("aria-current");
+                    }
+                }
+            );
+
+            document.getElementById("prev-btn").disabled =
+                currentPage === 1;
+
+            document.getElementById("next-btn").disabled =
+                currentPage === totalPages;
+
+            document.getElementById("page-status").textContent =
+                "পৃষ্ঠা " + banglaNumbers[currentPage] +
+                " / " + banglaNumbers[totalPages];
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        }
+
+        /* নির্দিষ্ট পৃষ্ঠা */
+        function goToPage(page) {
+            if (
+                Number.isInteger(page) &&
+                page >= 1 &&
+                page <= totalPages
+            ) {
+                currentPage = page;
+                updatePaginationUI();
+            }
+        }
+
+        /* পরবর্তী পৃষ্ঠা */
+        function nextPage() {
+            if (currentPage < totalPages) {
+                goToPage(currentPage + 1);
+            }
+        }
+
+        /* পূর্ববর্তী পৃষ্ঠা */
+        function prevPage() {
+            if (currentPage > 1) {
+                goToPage(currentPage - 1);
+            }
+        }
+
+        /* ফন্ট ছোট-বড় */
+        function changeFontSize(delta) {
+            const newScale = Math.round(
+                (currentScale + delta) * 10
+            ) / 10;
+
+            if (newScale >= minScale && newScale <= maxScale) {
+                currentScale = newScale;
+
+                root.style.setProperty(
+                    "--font-scale",
+                    currentScale
+                );
+            }
+        }
+
+        /* ফন্টের মূল আকার */
+        function resetFontSize() {
+            currentScale = 1;
+
+            root.style.setProperty(
+                "--font-scale",
+                currentScale
+            );
+        }
+
+        /* কিবোর্ড দিয়ে পৃষ্ঠা পরিবর্তন */
+        document.addEventListener("keydown", function (event) {
+            const target = event.target;
+
+            if (
+                target instanceof HTMLElement &&
+                (
+                    target.isContentEditable ||
+                    ["INPUT", "TEXTAREA", "SELECT", "BUTTON"]
+                        .includes(target.tagName)
+                )
+            ) {
+                return;
+            }
+
+            if (event.key === "ArrowRight") {
+                nextPage();
+            } else if (event.key === "ArrowLeft") {
+                prevPage();
             }
         });
+
+        /* প্রথম পৃষ্ঠা চালু */
+        updatePaginationUI();
     </script>
+
 </body>
 </html>
