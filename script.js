@@ -24,20 +24,20 @@ topics.forEach((topic) => {
 
         if (title === "Qawmi Study") {
 
-            window.location.href = "../qawmi/index.html";
+            window.location.href = "./qawmi/index.html";
 
         }
 
         if (title === "Alia Study") {
 
-            window.location.href = "../alia/index.html";
+            window.location.href = "./alia/index.html";
 
         }
 
         
         if (title === "Other Study") {
 
-             window.location.href = "../others/index.html";
+             window.location.href = "./others/index.html";
 
         }
 
