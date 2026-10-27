@@ -1,128 +1,1306 @@
+
 <!DOCTYPE html>
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon</title>
+    <meta name="theme-color" content="#0d5c3a">
+    <title>ইসলামিক প্রশ্নোত্তর</title>
 
-    <!-- Google Fonts for Bengali & English -->
+    <!-- বাংলা ও আরবি ফন্ট -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Inter:wght@700;900&display=swap" rel="stylesheet">
-
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Serif+Bengali:wght@400;600;700&display=swap" rel="stylesheet">
 
     <style>
+        :root {
+            --primary: #0d5c3a;
+            --primary-dark: #084229;
+            --accent: #d4af37;
+            --question: #d32f2f;
+            --answer: #000000;
+            --text-dark: #1e293b;
+            --muted: #64748b;
+            --font-scale: 1;
+
+            --page-animation: 2.2s;
+            --item-animation: 1.8s;
+            --toolbar-animation: 2s;
+            --button-transition: 0.7s;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+            text-size-adjust: 100%;
+        }
+
         body {
-            font-family: 'Hind Siliguri', 'Inter', sans-serif;
-            background-color: #030712;
-            overflow: hidden;
+            margin: 0;
+            padding: 12px;
+            min-height: 100vh;
+            width: 100%;
+            font-family: 'Noto Serif Bengali', serif;
+            background: linear-gradient(
+                135deg,
+                #eef5f1 0%,
+                #f7f9f8 50%,
+                #eef3f0 100%
+            );
+            background-attachment: fixed;
+            color: var(--answer);
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* Gradient glowing animation on text */
-        .glow-text {
-            background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 50%, #38bdf8 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shine 6s linear infinite;
+        button {
+            font-family: inherit;
+            cursor: pointer;
+            touch-action: manipulation;
         }
 
-        @keyframes shine {
-            0% { background-position: 0% center; }
-            50% { background-position: 100% center; }
-            100% { background-position: 0% center; }
+        button:focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 3px;
         }
 
-        /* Keyframes for initial entry: Floating in from below with opacity */
-        @keyframes floatIn {
+        /* =========================
+           উপরের কন্ট্রোল বার
+        ========================= */
+
+        .sticky-toolbar {
+            position: sticky;
+            top: 8px;
+            z-index: 100;
+
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto 18px;
+            padding: 10px 14px;
+
+            border: 1px solid #e5d59b;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 6px 18px rgba(13, 92, 58, 0.09);
+
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+
+            animation: toolbarEnter var(--toolbar-animation)
+                cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        .font-control-panel,
+        .page-indicators {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .font-btn,
+        .nav-btn,
+        .page-number-btn {
+            min-height: 38px;
+            padding: 7px 12px;
+            border: 0;
+            border-radius: 9px;
+
+            background: linear-gradient(
+                135deg,
+                var(--primary),
+                var(--primary-dark)
+            );
+
+            color: #ffffff;
+            font-size: calc(15px * var(--font-scale));
+            font-weight: 700;
+
+            box-shadow: 0 3px 8px rgba(13, 92, 58, 0.15);
+
+            transition:
+                background var(--button-transition) ease,
+                color var(--button-transition) ease,
+                transform var(--button-transition)
+                    cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow var(--button-transition) ease;
+        }
+
+        .font-btn:hover,
+        .nav-btn:hover:not(:disabled),
+        .page-number-btn:hover {
+            background: var(--accent);
+            color: #111111;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(212, 175, 55, 0.25);
+        }
+
+        .page-number-btn.active {
+            background: var(--accent);
+            color: var(--primary-dark);
+            outline: 2px solid var(--primary);
+            outline-offset: -2px;
+        }
+
+        button:disabled {
+            opacity: 0.45;
+            cursor: not-allowed;
+            transform: none !important;
+            box-shadow: none;
+        }
+
+        /* =========================
+           মূল কনটেইনার
+        ========================= */
+
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 24px;
+
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            background: #ffffff;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+
+            animation: containerEnter 2.4s
+                cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        /* =========================
+           কিতাবের পরিচিতি
+        ========================= */
+
+        .book-header {
+            text-align: center;
+            padding-bottom: 16px;
+            margin-bottom: 22px;
+            border-bottom: 2px solid rgba(212, 175, 55, 0.5);
+        }
+
+        .book-label {
+            margin-bottom: 5px;
+            color: var(--primary);
+            font-family: 'Amiri', serif;
+            font-size: calc(30px * var(--font-scale));
+            font-weight: 700;
+            line-height: 1.7;
+
+            animation: textEnter 2.4s
+                cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+        }
+
+        .book-name {
+            color: var(--text-dark);
+            font-size: calc(24px * var(--font-scale));
+            font-weight: 700;
+
+            animation: textEnter 2.5s
+                cubic-bezier(0.16, 1, 0.3, 1) 0.5s both;
+        }
+
+        .book-year {
+            margin-top: 5px;
+            color: var(--muted);
+            font-size: calc(16px * var(--font-scale));
+
+            animation: textEnter 2.5s
+                cubic-bezier(0.16, 1, 0.3, 1) 0.7s both;
+        }
+
+        /* =========================
+           প্রধান শিরোনাম
+        ========================= */
+
+        .main-title {
+            margin: 0 0 22px;
+            text-align: center;
+            color: var(--primary);
+            font-size: calc(27px * var(--font-scale));
+
+            animation: textEnter 2.4s
+                cubic-bezier(0.16, 1, 0.3, 1) 0.8s both;
+        }
+
+        .main-title::after {
+            content: "";
+            display: block;
+            width: 85px;
+            height: 3px;
+            margin: 7px auto 0;
+            border-radius: 5px;
+
+            background: linear-gradient(
+                90deg,
+                transparent,
+                var(--accent),
+                transparent
+            );
+        }
+
+        /* =========================
+           প্রশ্নের পৃষ্ঠা
+        ========================= */
+
+        .question-group {
+            display: none;
+            width: 100%;
+            margin-bottom: 16px;
+            padding: 22px;
+
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            background: #ffffff;
+        }
+
+        .question-group.active-page {
+            display: block;
+
+            animation: pageEnter var(--page-animation)
+                cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        /* =========================
+           আরবি ইবারত
+        ========================= */
+
+        .ibarot {
+            width: 100%;
+            margin-bottom: 18px;
+            padding: 16px;
+
+            border-right: 5px solid var(--primary);
+            border-radius: 8px;
+            background: #f8faf9;
+
+            color: #0f2d24;
+            font-family: 'Amiri', serif;
+            font-size: calc(28px * var(--font-scale));
+            line-height: 1.9;
+            text-align: right;
+
+            overflow-wrap: anywhere;
+        }
+
+        .question-group.active-page .ibarot {
+            animation: arabicEnter 2s
+                cubic-bezier(0.16, 1, 0.3, 1) 0.25s both;
+        }
+
+        /* =========================
+           প্রশ্ন নম্বর
+        ========================= */
+
+        .section-number {
+            display: inline-block;
+            margin-bottom: 12px;
+            padding: 6px 16px;
+
+            border-radius: 20px;
+            background: linear-gradient(
+                135deg,
+                var(--primary),
+                var(--primary-dark)
+            );
+
+            color: #ffffff;
+            font-size: calc(17px * var(--font-scale));
+            font-weight: 700;
+
+            box-shadow: 0 3px 8px rgba(13, 92, 58, 0.12);
+        }
+
+        .question-group.active-page .section-number {
+            animation: numberEnter 2s
+                cubic-bezier(0.16, 1, 0.3, 1) 0.5s both;
+        }
+
+        /* =========================
+           প্রশ্ন ও উত্তর
+        ========================= */
+
+        .qa-item {
+            width: 100%;
+            margin-bottom: 12px;
+            padding: 14px 4px;
+            border-bottom: 1px dashed #e2e8f0;
+        }
+
+        .qa-item:last-child {
+            margin-bottom: 0;
+            border-bottom: none;
+        }
+
+        .sub-question {
+            margin: 0 0 8px;
+            color: var(--question);
+            font-size: calc(21px * var(--font-scale));
+            font-weight: 700;
+            line-height: 1.7;
+            overflow-wrap: anywhere;
+        }
+
+        .answer {
+            margin: 0;
+            color: var(--answer);
+            font-size: calc(19px * var(--font-scale));
+            line-height: 1.9;
+            text-align: justify;
+            white-space: pre-line;
+            overflow-wrap: anywhere;
+        }
+
+        /* প্রশ্নগুলো একটির পর একটি ধীরে দেখা যাবে */
+
+        .question-group.active-page .qa-item:nth-of-type(1) {
+            animation: answerEnter 1.9s
+                cubic-bezier(0.16, 1, 0.3, 1) 0.65s both;
+        }
+
+        .question-group.active-page .qa-item:nth-of-type(2) {
+            animation: answerEnter 2s
+                cubic-bezier(0.16, 1, 0.3, 1) 0.95s both;
+        }
+
+        .question-group.active-page .qa-item:nth-of-type(3) {
+            animation: answerEnter 2.1s
+                cubic-bezier(0.16, 1, 0.3, 1) 1.25s both;
+        }
+
+        .question-group.active-page .qa-item:nth-of-type(4) {
+            animation: answerEnter 2.2s
+                cubic-bezier(0.16, 1, 0.3, 1) 1.55s both;
+        }
+
+        /* =========================
+           নিচের পৃষ্ঠা নিয়ন্ত্রণ
+        ========================= */
+
+        .bottom-pagination {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+
+            margin-top: 22px;
+            padding-top: 16px;
+            border-top: 1px dashed #cbd5e1;
+
+            animation: textEnter 2.2s
+                cubic-bezier(0.16, 1, 0.3, 1) 0.8s both;
+        }
+
+        .page-status {
+            color: var(--primary);
+            font-size: calc(16px * var(--font-scale));
+            font-weight: 700;
+            text-align: center;
+        }
+
+        /* =========================
+           ধীর অ্যানিমেশন
+        ========================= */
+
+        @keyframes toolbarEnter {
             0% {
                 opacity: 0;
-                transform: translateY(40px) scale(0.95);
-                filter: blur(8px);
+                transform: translateY(-24px);
             }
+
             100% {
                 opacity: 1;
-                transform: translateY(0) scale(1);
-                filter: blur(0);
+                transform: translateY(0);
             }
         }
 
-        /* Continuous subtle float effect once arrived */
-        @keyframes subtleFloat {
-            0%, 100% {
-                transform: translateY(0px);
+        @keyframes containerEnter {
+            0% {
+                opacity: 0;
+                transform: translateY(25px);
             }
-            50% {
-                transform: translateY(-8px);
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
 
-        /* Animation class for Heading */
-        .animate-heading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards,
-                subtleFloat 6s ease-in-out 1.2s infinite;
+        @keyframes textEnter {
+            0% {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        /* Animation class for Subheading (staggered delay) */
-        .animate-subheading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards,
-                subtleFloat 6s ease-in-out 1.55s infinite;
-            opacity: 0; /* Hidden until animation kicks in */
+        @keyframes pageEnter {
+            0% {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        /* Ambient background lighting */
-        .ambient-glow {
-            position: absolute;
-            width: 450px;
-            height: 450px;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(3, 7, 18, 0) 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            transition: left 0.4s ease-out, top 0.4s ease-out;
+        @keyframes arabicEnter {
+            0% {
+                opacity: 0;
+                transform: translateX(22px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes numberEnter {
+            0% {
+                opacity: 0;
+                transform: translateX(-18px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes answerEnter {
+            0% {
+                opacity: 0;
+                transform: translateY(22px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* =========================
+           মোবাইল
+        ========================= */
+
+        @media screen and (max-width: 600px) {
+            body {
+                padding: 5px 4px;
+                background-attachment: scroll;
+            }
+
+            .sticky-toolbar {
+                top: 3px;
+                justify-content: center;
+                gap: 8px;
+                padding: 8px 5px;
+                margin-bottom: 10px;
+                border-radius: 10px;
+            }
+
+            .font-control-panel,
+            .page-indicators {
+                gap: 5px;
+            }
+
+            .font-btn,
+            .nav-btn,
+            .page-number-btn {
+                min-height: 38px;
+                padding: 6px 9px;
+                font-size: calc(14px * var(--font-scale));
+            }
+
+            .container {
+                width: 100%;
+                max-width: 100%;
+                padding: 14px 9px;
+                border-radius: 10px;
+            }
+
+            .book-header {
+                padding-bottom: 12px;
+                margin-bottom: 16px;
+            }
+
+            .book-label {
+                font-size: calc(27px * var(--font-scale));
+            }
+
+            .book-name {
+                font-size: calc(21px * var(--font-scale));
+            }
+
+            .book-year {
+                font-size: calc(14px * var(--font-scale));
+            }
+
+            .main-title {
+                margin-bottom: 17px;
+                font-size: calc(23px * var(--font-scale));
+            }
+
+            .question-group {
+                padding: 12px 8px;
+                margin-bottom: 12px;
+                border-radius: 9px;
+            }
+
+            .ibarot {
+                padding: 12px 9px;
+                margin-bottom: 14px;
+                font-size: calc(23px * var(--font-scale));
+                line-height: 1.9;
+            }
+
+            .section-number {
+                padding: 5px 13px;
+                font-size: calc(15px * var(--font-scale));
+            }
+
+            .qa-item {
+                padding: 12px 2px;
+                margin-bottom: 8px;
+            }
+
+            .sub-question {
+                margin-bottom: 6px;
+                font-size: calc(18px * var(--font-scale));
+                line-height: 1.75;
+            }
+
+            .answer {
+                font-size: calc(17px * var(--font-scale));
+                line-height: 1.8;
+                text-align: start;
+            }
+
+            .bottom-pagination {
+                justify-content: space-between;
+                gap: 8px;
+                margin-top: 16px;
+                padding-top: 12px;
+            }
+
+            .page-status {
+                font-size: calc(14px * var(--font-scale));
+            }
+        }
+
+        /* =========================
+           ছোট মোবাইল
+        ========================= */
+
+        @media screen and (max-width: 360px) {
+            body {
+                padding: 3px;
+            }
+
+            .sticky-toolbar {
+                gap: 5px;
+                padding: 6px 3px;
+            }
+
+            .font-control-panel,
+            .page-indicators {
+                gap: 4px;
+            }
+
+            .font-btn,
+            .page-number-btn {
+                min-height: 34px;
+                padding: 5px 7px;
+                font-size: calc(12px * var(--font-scale));
+            }
+
+            .container {
+                padding: 10px 6px;
+            }
+
+            .book-name {
+                font-size: calc(19px * var(--font-scale));
+            }
+
+            .question-group {
+                padding: 10px 6px;
+            }
+
+            .bottom-pagination .nav-btn {
+                padding: 6px 7px;
+                font-size: calc(12px * var(--font-scale));
+            }
+        }
+
+        /* =========================
+           ট্যাবলেট
+        ========================= */
+
+        @media screen and (min-width: 601px) and (max-width: 900px) {
+            body {
+                padding: 12px;
+            }
+
+            .container {
+                max-width: 850px;
+                padding: 22px;
+            }
+
+            .sticky-toolbar {
+                max-width: 850px;
+            }
+
+            .question-group {
+                padding: 20px;
+            }
+        }
+
+        /* =========================
+           কম্পিউটার ও ল্যাপটপ
+        ========================= */
+
+        @media screen and (min-width: 901px) {
+            body {
+                padding: 22px;
+            }
+
+            .container {
+                max-width: 1100px;
+                padding: 30px;
+            }
+
+            .sticky-toolbar {
+                max-width: 1100px;
+                padding: 12px 18px;
+            }
+
+            .question-group {
+                padding: 26px;
+                margin-bottom: 20px;
+            }
+
+            .ibarot {
+                padding: 20px;
+                font-size: calc(30px * var(--font-scale));
+            }
+
+            .sub-question {
+                font-size: calc(22px * var(--font-scale));
+            }
+
+            .answer {
+                font-size: calc(20px * var(--font-scale));
+                line-height: 1.9;
+            }
+
+            .qa-item {
+                padding: 18px 5px;
+            }
+        }
+
+        /* অ্যানিমেশন কম পছন্দ করেন এমন ব্যবহারকারীদের জন্য */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-delay: 0ms !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
         }
     </style>
 </head>
-<body class="min-h-screen flex items-center justify-center relative select-none px-4">
 
-    <!-- Ambient glow center element -->
-    <div id="glow" class="ambient-glow top-1/2 left-1/2"></div>
+<body>
 
-    <!-- Centered minimal content with entry animations -->
-    <main class="text-center z-10 space-y-6 max-w-3xl mx-auto py-8 px-4">
+    <!-- উপরের কন্ট্রোল বার -->
+    <nav class="sticky-toolbar" aria-label="লেখা ও পৃষ্ঠা নিয়ন্ত্রণ">
+
+        <div class="font-control-panel">
+            <button class="font-btn"
+                    type="button"
+                    onclick="changeFontSize(-0.1)"
+                    title="লেখা ছোট করুন">A−</button>
+
+            <button class="font-btn"
+                    type="button"
+                    onclick="resetFontSize()"
+                    title="মূল আকারে ফিরুন">Reset</button>
+
+            <button class="font-btn"
+                    type="button"
+                    onclick="changeFontSize(0.1)"
+                    title="লেখা বড় করুন">A+</button>
+        </div>
+
+        <div class="page-indicators" aria-label="পৃষ্ঠা নির্বাচন">
+            <button class="page-number-btn active"
+                    type="button" data-page="1"
+                    onclick="goToPage(1)">1</button>
+
+            <button class="page-number-btn"
+                    type="button" data-page="2"
+                    onclick="goToPage(2)">2</button>
+
+            <button class="page-number-btn"
+                    type="button" data-page="3"
+                    onclick="goToPage(3)">3</button>
+
+            <button class="page-number-btn"
+                    type="button" data-page="4"
+                    onclick="goToPage(4)">4</button>
+
+            <button class="page-number-btn"
+                    type="button" data-page="5"
+                    onclick="goToPage(5)">5</button>
+        </div>
+    </nav>
+
+    <!-- মূল কনটেইনার -->
+    <main class="container">
+
+        <header class="book-header">
+            <div class="book-label" dir="rtl" lang="ar">
+                بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+            </div>
+
+            <div class="book-name">
+                মিশকাত ১ম খণ্ড
+            </div>
+
+            <div class="book-year">
+                হিজরি সন: 1439
+            </div>
+        </header>
+
+        <h1 class="main-title">বোর্ড পরীক্ষার প্রশ্ন+উত্তর (তানজীম বোর্ড)</h1>
+
+
+
+
         
-        <!-- Main English Title -->
-        <h1 class="animate-heading text-5xl sm:text-7xl md:text-8xl font-black tracking-tight glow-text font-['Inter'] drop-shadow-lg">
-            Coming Soon...
-        </h1>
+        
+        
+        
+        <!-- পৃষ্ঠা ১ -->
+        <section class="question-group active-page"
+                 id="page-1" aria-label="১ নম্বর প্রশ্ন">
 
-        <!-- Bengali Subheading -->
-        <p class="animate-subheading text-xl sm:text-3xl md:text-4xl font-semibold text-emerald-400/90 leading-relaxed tracking-wide drop-shadow">
-            ইনশাআল্লাহ, খুব শীঘ্রই ডাটা যোগ করা হবে।
-        </p>
+            <div class="ibarot" dir="rtl" lang="ar">
+                وَكَانَ كِتَابُ الْمَصَابِيحِ الَّذِي صَنَّفَهُ الْإِمَامُ مُحْيِي السُّنَّةِ قَامِعُ الْبِدْعَةِ أَبُو مُحَمَّدٍ الْحُسَيْنُ بْنُ مَسْعُودٍ الْفَرَّاءُ الْبَغَوِيُّ رَفَعَ اللهُ دَرَجَتَهُ أَجْمَعَ كِتَابٍ صُنِّفَ فِي بَابِهِ وَأَضْبَطَ لِشَوَارِدِ الْأَحَادِيثِ وَأَوَابِدِهَا، وَلَمَّا سَلَكَ طَرِيقَ الِاخْتِصَارِ وَحَذَفَ الْأَسَانِيدَ تَكَلَّمَ فِيهِ بَعْضُ النُّقَّادِ، وَإِنْ كَانَ نَقْلُهُ وَهُوَ مِنَ الثِّقَاتِ كَالْإِسْنَادِ، لَكِنْ لَيْسَ مَا فِيهِ إِعْلَامٌ كَالْإِغْفَالِ.
+            </div>
+
+            <div class="section-number">১ নং প্রশ্ন + উত্তর...</div>
+
+            <article class="qa-item">
+                <h2 class="sub-question">১ নং প্রশ্ন A: العبارة المشكولة، الترجمة، وغرض المؤلف</h2>
+                <p class="answer">
+                    <strong>◆ شكل العبارة (হরকতযুক্ত ইবারত):</strong><br>
+                    وَكَانَ كِتَابُ الْمَصَابِيحِ الَّذِي صَنَّفَهُ الْإِمَامُ مُحْيِي السُّنَّةِ قَامِعُ الْبِدْعَةِ أَبُو مُحَمَّدٍ الْحُسَيْنُ بْنُ مَسْعُودٍ الْفَرَّاءُ الْبَغَوِيُّ رَفَعَ اللهُ دَرَجَتَهُ أَجْمَعَ كِتَابٍ صُنِّفَ فِي بَابِهِ وَأَضْبَطَ لِشَوَارِدِ الْأَحَادِيثِ وَأَوَابِدِهَا، وَلَمَّا سَلَكَ طَرِيقَ الِاخْتِصَارِ وَحَذَفَ الْأَسَانِيدَ تَكَلَّمَ فِيهِ بَعْضُ النُّقَّادِ، وَإِنْ كَانَ نَقْلُهُ وَهُوَ مِنَ الثِّقَاتِ كَالْإِسْنَادِ، لَكِنْ لَيْسَ مَا فِيهِ إِعْلَامٌ كَالْإِغْفَالِ.<br><br>
+                    <strong>◆ ترجمة العبارة (সহজ বাংলা অনুবাদ):</strong><br>
+                    এবং 'আল-মছাবীহ' কিতাবটি, যা সুন্নাতের পুনরুজ্জীবনকারী ও বিদআতের দমনকারী ইমাম আবু মুহাম্মদ আল-হুসাইন ইবনে মাসউদ আল-ফাল্লা আল-বাগাভী (আল্লাহ তাঁর মর্যাদা বৃদ্ধি করুন) সংকলন করেছেন, তা স্বীয় বিষয়ে সংকলিত কিতাবসমূহের মধ্যে সবচেয়ে তথ্যবহুল-ব্যাপক এবং দুর্লভ ও অপরিচিত হাদীসসমূহকে আয়ত্তে আনার ক্ষেত্রে সবচেয়ে সুসংহত। লেখক যখন সংক্ষিপ্তকরণের পথ অবলম্বন করলেন এবং সনদসমূহ (বর্ণনাসূত্র) বাদ দিলেন, তখন কোনো কোনো হাদীস-সমালোচক এ কিতাবের ওপর আপত্তি তুললেন। যদিও তাঁর হাদীস নকল করা সনদের মতোই নির্ভরযোগ্য, কারণ তিনি নির্ভরযোগ্য ইমামদের অন্তর্ভুক্ত; তথাপিও যে কিতাবে হাদীসের উৎস ও মান চিহ্নিত থাকে, তা চিহ্নিতহীন কিতাবের মতো নয়।<br><br>
+                    <strong>◆ غرض المؤلف (ইবারতটির দ্বারা গ্রন্থকারের মূল উদ্দেশ্য):</strong><br>
+                    খতিব তাবরিজী কর্তৃক লিখিত এই ইবারতটির মূল উদ্দেশ্য ৩টি:<br>
+                    ১. কিতাব ও লেখকের প্রশংসা: ইমাম বাগাভী এবং তাঁর সংকলিত 'মছাবীহুল সুন্নাহ' কিতাবের উচ্চ মর্যাদা ও শ্রেষ্ঠত্ব প্রমাণ করা。<br>
+                    ২. সমালোচনার কারণ ও খণ্ডন: কিতাবটিতে হাদীসের সনদ বা বর্ণনাসূত্র না থাকায় হাদীস বিশারদগণ যে আপত্তি তুলেছিলেন, তার কারণ ব্যাখ্যা করা। পাশাপাশি ইমাম বাগাভী নিজে বিশ্বস্ত হওয়ায় সনদ না থাকলেও কিতাবটি যে গ্রহণযোগ্য, তা স্পষ্ট করা。<br>
+                    ৩. মিশকাত সংকলনের যৌক্তিকতা: 'মছাবীহ' কিতাবটি উত্তম হওয়া সত্ত্বেও সনদ ও উৎসের বিবরণ না থাকায় সাধারণ মানুষের হাদীস চেনার ক্ষেত্রে যে অপূর্ণতা ছিল, তা দূর করতেই খতিব তাবরিজী 'মিশকাতুল মাসাবীহ' সংকলন করেছেন—এই মূল কারণ ও যৌক্তিকতা ফুটিয়ে তোলা।
+                </p>
+            </article>
+
+            <article class="qa-item">
+                <h2 class="sub-question">১ নং প্রশ্ন B: معنى المشكاة، وجه التسمية، وخصائص الكتاب</h2>
+                <p class="answer">
+                    <strong>◆ معنى المشكاة (মিশকাত শব্দের অর্থ):</strong><br>
+                    'المشكاة' শব্দটি আরবী। এর শাব্দিক অর্থ হলো—الْكُوَّةُ فِي الْحَائِطِ غَيْرُ النَّافِذَةِ অর্থাৎ দেয়ালের ভেতরের এমন তাক বা কুলুঙ্গি যা ওপারে দেদীপ্যমান বা আরপার দেখা যায় না, যার মধ্যে প্রদীপ রাখা হয়।<br><br>
+                    <strong>◆ وجه تسمية الكتاب (নামকরণের রহস্য ও সার্থকতা):</strong><br>
+                    ইমাম বাগাভীর মূল কিতাবের নাম ছিল 'مصابيح السنة' (সুন্নাহর প্রদীপসমূহ)। খতিব তাবরিজী যখন এই কিতাবের হাদীসগুলোর উৎস ও মান স্পষ্ট করে এবং অতিরিক্ত হাদীস যুক্ত করে একে পরিমার্জিত করেন, তখন তিনি এর নাম দেন 'مشكاة المصابيح' (প্রদীপাধার)।<br>
+                    যেমন একটি কুলুঙ্গি বা তাক প্রদীপকে বাতাস থেকে রক্ষা করে এবং তার আলোকে চারদিকে সুন্দরভাবে ছড়িয়ে দেয়, ঠিক তেমনি খতিব তাবরিজী তাঁর এই কিতাবের মাধ্যমে ইমাম বাগাভীর 'মছাবীহ' কিতাবের হাদীসগুলোকে (প্রদীপসমূহকে) বিন্যাস ও উৎসের বেড়াজালে সুরক্ষিত করেছেন এবং এর নূরকে আরও প্রস্ফুটিত করেছেন। এই চমৎকার রূপক সাদৃশ্যের কারণেই কিতাবটির নামকরণ করা হয়েছে 'মিশকাতুল মাসাবীহ'।<br><br>
+                    <strong>◆ خصائص المشكاة (মিশকাতুল মাসাবীহ কিতাবের ৪টি বৈশিষ্ট্য):</strong><br>
+                    ১. تخريج الأحاديث (হাদীসের উৎস ও মান নির্ধারণ): ইমাম বাগাভী তাঁর কিতাবে হাদীসটি কোন কিতাবের (যেমন: বুখারী, মুসলিম ইত্যাদি) তা উল্লেখ করেননি। খতিব তাবরিজী প্রতিটি হাদীসের শেষে তা কোন কিতাব থেকে নেওয়া হয়েছে এবং হাদীসটির মান (সহীহ, হাসান বা যয়ীফ) কী, তা স্পষ্টভাবে উল্লেখ করেছেন。<br>
+                    ২. حسن التبويب والترتيب (চমৎকার অধ্যায় বিন্যাস): কিতাবটিকে ফিকহী বিন্যাসে অত্যন্ত সুশৃঙ্খলভাবে সাজানো হয়েছে। প্রতিটি অধ্যায়কে (باب) আবার ৩টি অনুচ্ছেদে (فصل) ভাগ করা হয়েছে, যা পাঠকদের জন্য হাদীস খুঁজে পাওয়া সহজ করে দেয়。<br>
+                    ৩. الزيادات النافعة (উপকারী হাদীস সংযোজন): ইমাম বাগাভীর সংকলিত হাদীসগুলোর পাশাপাশি খতিব তাবরিজী প্রতিটি অধ্যায়ের ৩য় পরিচ্ছেদে সাহাবায়ে কেরাম ও তাবিঈগণের ফাতওয়া এবং প্রাসঙ্গিক আরও বহু গুরুত্বপূর্ণ হাদীস যুক্ত করেছেন。<br>
+                    ৪. جامعية الكتاب (সর্বজনীন গ্রহণযোগ্যতা): কিতাবটিতে আকীদা, ইবাদত, মুয়ামালাত (লেনদেন), আখলাক (চরিত্র) ও আদব সহ ইসলামের প্রায় সব বিষয়ের হাদীস সংবলিত করায় এটি মাদরাসা শিক্ষাক্রম ও সাধারণ জ্ঞানপিপাসুদের জন্য একটি পূর্ণাঙ্গ হাদীস বিশ্বকোষে পরিণত হয়েছে।
+                </p>
+            </article>
+
+            <article class="qa-item">
+                <h2 class="sub-question">১ নং প্রশ্ন C: عدد أحاديث المصابيح والمشكاة</h2>
+                <p class="answer">
+                    <strong>◆ عدد أحاديث المصابيح (মছাবীহ কিতাবের হাদীস সংখ্যা):</strong><br>
+                    ইমাম বাগাভী রচিত মূল কিতাব 'مصابيح السنة'-এ মোট হাদীসের সংখ্যা হলো ৪,৪৩৪টি (চার হাজার চারশত চৌত্রিশ)।<br><br>
+                    <strong>◆ عدد أحاديث المشكاة والزيادات (মিশকতে মোট হাদীস ও বর্ধিত সংখ্যা):</strong><br>
+                    খতিব তাবরিজী মূল কিতাবের সাথে আরও ১,৫১১টি (এক হাজার পাঁচশত এগারো) হাদীস বৃদ্ধি করেছেন।<br>
+                    ফলাফলস্বরূপ, 'مشكاة المصابيح' কিতাবের সর্বমোট হাদীস সংখ্যা দাঁড়িয়েছে ৫,৯৪৫টি (পাঁচ হাজার নয়শত পঁয়তাল্লিশ)।
+                </p>
+            </article>
+
+            <article class="qa-item">
+                <h2 class="sub-question">১ নং প্রশ্ন D: نبذة من حياة المؤلفين</h2>
+                <p class="answer">
+                    <strong>১. صاحب المصابيح (মছাবীহ কিতাবের লেখকের জীবনী):</strong><br>
+                    * الاسم والنسب (নাম ও বংশ): আবু মুহাম্মদ আল-হুসাইন ইবনে মাসউদ ইবেন মুহাম্মদ আল-ফাল্লা আল-বাগাভী।<br>
+                    * اللقب (উপাধি): محيي السنة (সুন্নাতের পুনরুজ্জীবনকারী) এবং قامع البدعة (বিদআতের দমনকারী)।<br>
+                    * الولادة (জন্ম): তিনি ৪৩৩ হিজরী মুতাবিক ১০৪১ খ্রিষ্টাব্দে খোরাসানের 'বাগান' নামক শহরে জন্মগ্রহণ করেন।<br>
+                    * المذهب (মাজহাব): তিনি ফিকহী শাস্ত্রে শাফেয়ী মাজহাবের অনুসারী এবং একজন শীর্ষস্থানীয় মুজতাহিদ ছিলেন।<br>
+                    * المصنفات (উল্লেখযোগ্য কিতাব): معالم التنزيل (তাফসীরে বাগাভী), شرح السنة, এবং مصابيح السنة。<br>
+                    * الوفاة (মৃত্যু): তিনি ৫১৬ হিজরী মুতাবিক ১১২২ খ্রিষ্টাব্দে মার্ভ নামক স্থানে ইন্তেকাল করেন。<br><br>
+                    <strong>২. صاحب المشكاة (মিশকাত কিতাবের লেখকের জীবনী):</strong><br>
+                    * الاسم والنسب (নাম ও বংশ): অলিউদ্দীন আবু আব্দুল্লাহ মুহাম্মদ ইবনে আব্দুল্লাহ খতিব তাবরিজী।<br>
+                    * اللقب (উপাধি): الخطيب التبريزي (খতিব তাবরিজী)।<br>
+                    * العلم والفضل (জ্ঞান ও গুণ): তিনি অষ্টম হিজরীর একজন প্রখ্যাত হাদীস বিশারদ, আরবী ব্যাকরণবিদ এবং সাহিত্যিক ছিলেন। তিনি যুগশ্রেষ্ঠ আলিম মীর সাইয়্যেদ শরীফ জুরজানী-এর উস্তাদ ছিলেন।<br>
+                    * أستاذه (প্রধান উস্তাদ): ইমাম আল্লামা শরফুদ্দীন আল-হুসাইন ইবনে মুহাম্মদ আত-তীবী। তাঁরই নির্দেশ ও তত্ত্বাবধানে তিনি মিশকাত কিতাবটি সমাপ্ত করেন।<br>
+                    * المصنفات (উল্লেখযোগ্য কিতাব): مشكاة المصابيح এবং الإكمال في أسماء الرجال。<br>
+                    * الوفاة (মৃত্যু): তিনি ৭৪১ হিজরী মুতাবিক ১৩৪০ খ্রিষ্টাব্দে ইন্তেকাল করেন।
+                </p>
+            </article>
+        </section>
+
+
+
+
+
+
+
+       <!-- পৃষ্ঠা ২ -->
+        <section class="question-group active-page"
+                 id="page-2" aria-label="২ নম্বর প্রশ্ন">
+
+            <div class="ibarot" dir="rtl" lang="ar">
+                عن ابي هريرة قال: قال رسول الله: احتج آدم وموسى عند ربهما فحج آدم موسى، قال موسى: انت آدم الذي خلقك الله بيده، ونفخ فيك من روحه، واسجد لك ملائكته، واسكنك في جنته، ثم اهبطت الناس بخطيئتك الى الارض، قال آدم: انت موسى الذي اصطفاك الله برسالته وبكلامه، واعطاك الالواح فيها تبيان كل شيء، وقربك نجيا، فبكم وجدت الله كتب التوراة قبل ان اخلق؟ قال موسى: باربعين عاما، قال آدم: فهل وجدت فيها: وعصى آدم ربه فغوى؟ قال: نعم، قال: اتلومني على ان عملت عملا كتبه الله علي ان اخمله قبل ان يخلقني باربعين سنة؟ قال رسول الله: فحج آدم موسى. (رواه مسلم)
+            </div>
+
+            <div class="section-number">২ নং প্রশ্ন + উত্তর...</div>
+
+            <article class="qa-item">
+                <h2 class="sub-question">২ নং প্রশ্ন A: ترجمة الرواية (হাদিসের অনুবাদ)</h2>
+                <p class="answer">
+                    হজরত আবু হুরায়রা (রা.) থেকে বর্ণিত, তিনি বলেন—রাসূলুল্লাহ (সা.) বলেছেন: আদম ও মুসা (আ.) তাঁদের রবের সামনে বিতর্ক করলেন। অতঃপর আদম (আ.) মুসা (আ.)-এর ওপর তর্কে জয়ী হলেন। মুসা (আ.) বললেন, "আপনিই কি সেই আদম, যাঁর হাত দিয়ে আল্লাহ আপনাকে সৃষ্টি করেছেন, নিজের রুহ ফুঁকেছেন, ফেরেশতাদের দিয়ে সেজদা করিয়েছেন এবং জান্নাতে বসবাস করতে দিয়েছেন? এরপর আপনি আপনার ভুলের কারণে মানবজাতিকে পৃথিবীতে নামিয়ে আনলেন?" আদম (আ.) বললেন, "তুমিই কি সেই মুসা, যাঁকে আল্লাহ তাঁর রিসালাত ও বাণীর মাধ্যমে মনোনীত করেছেন, সব বিষয়ের বিবরণ সংবলিত তাওরাত ফলক দান করেছেন এবং গোপনে কথোপকথনের জন্য নৈকট্য দান করেছেন? তুমি তাওরাতে আল্লাহ কর্তৃক আমাকে সৃষ্টির কত বছর পূর্বে তা লিখিত পেয়েছ?" মুসা (আ.) বললেন, "চল্লিশ বছর পূর্বে।" আদম (আ.) বললেন, "তাতে কি তুমি এই আয়াত পেয়েছ—'আদম তার রবের অবাধ্য হলো, ফলে সে পথভ্রষ্ট হলো'?" মুসা (আ.) বললেন, "হ্যাঁ।" আদম (আ.) বললেন, "তবে কি তুমি আমাকে এমন এক কাজের জন্য তিরস্কার করছ, যা আল্লাহ আমার সৃষ্টির চল্লিশ বছর পূর্বেই আমার ভাগ্যে লিখে রেখেছিলেন?" রাসূলুল্লাহ (সা.) বললেন: "এভাবে আদম (আ.) মুসা (আ.)-এর ওপর তর্কে জয়ী হলেন।" (মুসলিম)
+                </p>
+            </article>
+
+            <article class="qa-item">
+                <h2 class="sub-question">২ নং প্রশ্ন B: مكان وقوع المكالمة (কথোপকথনের স্থান)</h2>
+                <p class="answer">
+                    সাইয়িদিনা আদম (আ.) ও সাইয়িদিনা মুসা (আ.)-এর মধ্যকার এই কথোপকথন ও বিতর্কটি কোথায় সংঘটিত হয়েছিল—তা নিয়ে মুহাদ্দিসগণের একাধিক বিশুদ্ধ ব্যাখ্যা রয়েছে:<br><br>
+                    ১. عالم الأرواح (রূহের জগত): ইমাম কুরতুবী (রহ.)-এর মতে, মুসা (আ.) যখন আল্লাহর কাছে আরজি জানালেন যে তিনি আদম (আ.)-এর সাথে সাক্ষাৎ করতে চান, তখন আল্লাহ তাআলা বারজাখ বা রূহের জগতে তাঁদের উভয়ের রূহের মাঝে এই কথোপকথন ও বিতর্কের ব্যবস্থা করে দেন।<br><br>
+                    ২. بعد وفاة موسى (মুসা আলাইহিস সালামের ইন্তেকালের পর): কোনো কোনো মুহাদ্দিসের মতে, মুসা (আ.)-এর ইন্তেকালের পর যখন তাঁর রূহ আসমানে উন্নীত হয়, তখন আরশে ইলাহীর সন্নিকটে আদম (আ.)-এর সাথে তাঁর এই মোলাকাত ও বিতর্ক অনুষ্ঠিত হয়।<br><br>
+                    ৩. في المنام (স্বপ্নে দর্শন): এটি রাসূলুল্লাহ (সা.)-কে স্বপ্নে দেখানো হয়েছিল, যা নবীদের ক্ষেত্রে ওহী বা বাস্তব সত্য হিসেবে গণ্য।
+                </p>
+            </article>
+
+            <article class="qa-item">
+                <h2 class="sub-question">২ নং প্রশ্ন C: حكم الاحتجاج بالقدر بعد المعصية (গুনাহের পর তাকদিরের দোহাই দেওয়ার বিধান)</h2>
+                <p class="answer">
+                    সাধারণ মানুষের জন্য কোনো পাপ বা অপরাধ করার পর তাকদিরের দোহাই দিয়ে পার পাওয়ার চেষ্টা করা সম্পূর্ণ নাজায়েজ ও হারাম। এ বিষয়ে হানাফি মাজহাব ও জুমহুর উলামায়ে কেরামের বিস্তারিত ব্যাখ্যা নিম্নরূপ:<br><br>
+                    ১. শরিয়তের বিধান: কোনো ব্যক্তি ইচ্ছাকৃতভাবে গুনাহ করার পর যদি বলে—"আল্লাহ আমার ভাগ্যে লিখে রেখেছিলেন তাই আমি করেছি, সুতরাং আমাকে দোষ দেওয়া যাবে না"—তবে তা বাতিল ও কুফরি আকিদার অন্তর্ভুক্ত (জাবারিয়া সম্প্রদায়ের মত)। কারণ মানুষকে আল্লাহ তাআলা ভালো-মন্দ বাছাই করার ইখতিয়ার বা স্বাধীনতা দিয়েছেন।<br><br>
+                    ২. আদম (আ.)-এর দোহাই দেওয়ার কারণ: আদম (আ.) গুনাহের পক্ষে তাকদিরের দোহাই দেননি, বরং তিনি 'জান্নাত থেকে বের হওয়া এবং দুনিয়ায় আগমন'রূপ 'বিপদ বা মুসিবতের' ক্ষেত্রে তাকদিরের কথা বলেছেন। গুনাহের জন্য তিনি আগেই আল্লাহর কাছে তওবা করে ক্ষমা পেয়েছিলেন। মুসা (আ.) মূলত আদম (আ.)-কে দুনিয়ায় আসার কষ্ট ও মুসিবতের কারণ হিসেবে প্রশ্ন করেছিলেন, গুনাহের কারণে নয়।<br><br>
+                    ৩. সিদ্ধান্ত: মুসিবত বা বিপদের ক্ষেত্রে তাকদিরের দোহাই দেওয়া জায়েজ (যেমন: ব্যবসায় লস হলে বা কেউ মারা গেলে বলা—তাকদিরে ছিল)। কিন্তু শরিয়তের আদেশ অমান্য করা বা গুনাহের কাজে লিপ্ত হয়ে তাকদিরের দোহাই দেওয়া সম্পূর্ণ নাজায়েজ।
+                </p>
+            </article>
+
+            <article class="qa-item">
+                <h2 class="sub-question">২ নং প্রশ্ন D: الحكمة في المناظرة وانتخاب موسى عليه السلام (বিতর্কের হিকমত ও মুসা আলাইহিস সালামকে নির্বাচনের কারণ)</h2>
+                <p class="answer">
+                    <strong>১. الحكمة في المناظرة (বিতর্কের অন্তর্নিহিত হিকমত):</strong><br>
+                    - তাকদিরের প্রতি বিশ্বাস সুদৃঢ় করা: মানুষের ভালো-মন্দ, সুখ-দুঃখ সবকিছু আল্লাহর পূর্বনির্ধারিত পরিকল্পনার অধীন—এই বিশ্বাস উম্মতের মাঝে মজবুত করা।<br>
+                    - তওবার গুরুত্ব প্রকাশ: আদম (আ.) ভুল করার পর তওবা করেছিলেন এবং আল্লাহ তা ক্ষমা করেছিলেন। ক্ষমা পাওয়ার পর পূর্বের মিটে যাওয়া বিষয় নিয়ে কাউকে লজ্জিত করা অনুচিত—তা বোঝানো।<br>
+                    - সৃষ্টির রহস্য উন্মোচন: মানবজাতি যে দুনিয়াতেই খলিফা হিসেবে প্রেরিত হবে, তা জান্নাত সৃষ্টির পূর্বেই নির্ধারিত ছিল। গন্ধম খাওয়া কেবল একটা উসিলা মাত্র ছিল।<br><br>
+                    <strong>২. الحكمة في انتخاب موسى عليه السلام (মুসা আলাইহিস সালামকে নির্বাচনের কারণ):</strong><br>
+                    - স্বভাবগত বীরত্ব ও তেজস্বিতা: মুসা (আ.) অত্যন্ত তেজস্বী ও স্পষ্টভাষী নবী ছিলেন। উম্মতের কষ্ট লাঘবের বা মানবজাতির দুনিয়ায় আসার আদি কারণ জানার আগ্রহ তাঁর স্বভাবের সাথে সামঞ্জস্যপূর্ণ ছিল।<br>
+                    - কিতাবধারী হওয়া: মুসা (আ.)-এর কাছে তাওরাত কিতাব অবতীর্ণ হয়েছিল, যাতে সৃষ্টির পূর্বের তাকদিরের বিষয়াদি লিপিবদ্ধ ছিল। তাই কিতাবের উদ্ধৃতি দিয়ে তাঁর সাথে আলোচনা করা সবচেয়ে যুক্তিযুক্ত ছিল।<br>
+                    - আল্লাহর সাথে কথোপকথন (كليم الله): মুসা (আ.) আল্লাহর সাথে সরাসরি কথা বলতেন। তাই রূহের জগতে বা আল্লাহর দরবারে এই উচ্চাঙ্গের তাত্ত্বিক বিতর্কের যোগ্যতা ও অধিকার অন্য কারো চেয়ে তাঁরই সবচেয়ে বেশি ছিল।
+                </p>
+            </article>
+        </section>
+
+
+
+
+
+
+
+
+
+        <!-- পৃষ্ঠা ৩ -->
+        <section class="question-group active-page"
+                 id="page-3" aria-label="৩ নম্বর প্রশ্ন">
+
+            <div class="ibarot" dir="rtl" lang="ar">
+                عَنِ ابْنِ عُمَرَ قَالَ: سُئِلَ رَسُولُ اللَّهِ عَنِ الْمَاءِ يَكُونُ فِي الْفَلَاةِ مِنَ الْأَرْضِ وَمَا يَنُوبُهُ مِنَ الدَّوَابِّ وَالسِّبَاعِ فَقَالَ: «إِذَا كَانَ الْمَاءِ قُلَّتَيْنِ لَمْ يَحْمِلِ الْخَبَثَ»
+            </div>
+
+            <div class="section-number">৩ নং প্রশ্ন + উত্তর...</div>
+
+            <article class="qa-item">
+                <h2 class="sub-question">৩ নং প্রশ্ন A: تزين الحديث بالحركات والترجمة (হরকতসহ হাদিস ও অনুবাদ)</h2>
+                <p class="answer">
+                    <strong>১. الحركات والسكنات (হরকতসহ হাদিস):</strong><br>
+                    عَنِ ابْنِ عُمَرَ قَالَ: سُئِلَ رَسُولُ اللَّهِ عَنِ الْمَاءِ يَكُونُ فِي الْفَلَاةِ مِنَ الْأَرْضِ وَمَا يَنُوبُهُ مِنَ الدَّوَابِّ وَالسِّبَاعِ فَقَالَ: «إِذَا كَانَ الْمَاءِ قُلَّتَيْنِ لَمْ يَحْمِلِ الْخَبَثَ»<br><br>
+                    <strong>২. الترجمة (সহজ বাংলা অনুবাদ):</strong><br>
+                    হজরত ইবনে উমর (রা.) থেকে বর্ণিত, তিনি বলেন—রাসূলুল্লাহ (সা.)-কে বিস্তীর্ণ প্রান্তর বা মরুভূমির পানি এবং তাতে চতুষ্পদ জন্তু ও হিংস্র পশুর যাতায়াত বা পানি পান করা সম্পর্কে জিজ্ঞাসা করা হলে তিনি বললেন: "যখন পানি দুই কুল্লা পরিমাণ হয়, তখন তা অপবিত্রতা বহন করে না (অর্থাৎ অপবিত্র হয় না)।"
+                </p>
+            </article>
+
+            <article class="qa-item">
+                <h2 class="sub-question">৩ নং প্রশ্ন B: مسألة طهارة الماء ونجاسته ودلائل المذاهب (পানির পবিত্রতা-অপবিত্রতার মাসআলা ও মাজহাবসমূহের দলিল)</h2>
+                <p class="answer">
+                    স্থির বা আবদ্ধ পানিতে নাপাকি পড়লে তা পবিত্র থাকবে নাকি অপবিত্র হবে—এ বিষয়ে মুজতাহিদ ইমামগণের মাঝে দুটি মূল মতভেদ রয়েছে:<br><br>
+                    <strong>১. مذهب الشافعية والحنابلة (ইমাম শাফেয়ী ও ইমাম আহমাদ ইবনে হাম্বলের মত):</strong><br>
+                    তাঁদের মতে, পানির পরিমাণ যদি দুই কুল্লা (প্রায় ২৫০ লিটার বা ৫ মণের সমতুল্য) বা তার বেশি হয়, তবে তাতে নাপাকি পড়লেও পানি অপবিত্র হবে না; যতক্ষণ না পানির রং, স্বাদ বা গন্ধ পরিবর্তন হয়। আর যদি দুই কুল্লার কম হয়, তবে নাপাকি পড়ার সাথে সাথেই পানি অপবিত্র হয়ে যাবে—চাই পানির কোনো গুণ পরিবর্তন হোক বা না হোক।<br>
+                    - তাঁদের দলিল: উদ্দীপকে উল্লিখিত 'দুই কুল্লা' সংক্রান্ত হাদিস (إِذَا كَانَ الْمَاءِ قُلَّتَيْنِ لَمْ يَحْمِلِ الْخَبَثَ)। তাঁরা এর 'মাফহুমুল مخالفة' বা বিপরীত অর্থ দ্বারা দলিল নেন যে—দুই কুল্লার কম হলে তা অপবিত্রতা বহন করবে。<br><br>
+                    <strong>২. مذهب الحنفية والمالكية (ইমাম আবু হানিফা ও ইমাম মালিকের মত এবং হানাফি মাজহাবের চূড়ান্ত সিদ্ধান্ত):</strong><br>
+                    হানাফি মাজহাবের মতে, পানির পবিত্রতা বা অপবিত্রতা 'দুই কুল্লা' দ্বারা নির্ধারিত হয় না। বরং পানি কম হোক বা বেশি হোক, আবদ্ধ পানিতে নাপাকি পড়লে তা অপবিত্র হয়ে যায়। তবে পানির পরিমাণ যদি 'মা-এ কাছির' বা প্রভূত পানি (যেমন: বড় পুকুর, নদী, বা ১০×১০ হাত বড় হাউজ) হয়, তবে নাপাকি পড়ার পর যদি পানির রং, স্বাদ বা গন্ধের কোনো একটি পরিবর্তন না হয়, তবে তা পবিত্র থাকবে。<br>
+                    - হানাফি মাজহাবের প্রধান দলিল: রাসূলুল্লাহ (সা.) এর সাধারণ নির্দেশ: "তোমাদের কেউ যেন আবদ্ধ পানিতে প্রস্রাব না করে, অতঃপর তা দিয়ে অজু করে।" (বুখারি)। এখানে পানি দুই কুল্লা নাকি তার কম—তার কোনো পার্থক্য করা হয়নি।<br>
+                    - অন্য হাদিস: "পানিকে কোনো কিছুই অপবিত্র করতে পারে না, যতক্ষণ না তার ঘ্রাণ, স্বাদ বা রং পরিবর্তন হয়ে যায়।" (ইবনে মাজাহ)।<br><br>
+                    <strong>৩. الترجيح والأجوبة عن دلائل الشافعية (হানাফি মাজহাবের প্রাধান্য ও বিরোধীদের দলিলের জবাব):</strong><br>
+                    হানাফি মাজহাবই এখানে অধিক অগ্রগণ্য ও সতর্কতামূলক। ইমাম শাফেয়ী (রহ.)-এর দলিলের জবাবে হানাফি ফকিহগণ বলেন:<br>
+                    - প্রথমত: 'দুই কুল্লা' হাদিসটির সনদ ও মতন (মূল পাঠ) الاضطراب বা বৈপরীত্য দোষে দুষ্ট। কোনো বর্ণনায় দুই কুল্লা, কোনো বর্ণনায় তিন কুল্লা বা চল্লিশ কুল্কার কথাও এসেছে। আর মুদতারিব হাদিস দ্বারা শরিয়তের মৌলিক হুকুম সাব্যস্ত হয় না。<br>
+                    - দ্বিতীয়ত: 'কুল্লা' শব্দের অর্থ সুনির্দিষ্ট নয়। এর অর্থ মটকা বা পাত্র হতে পারে, আবার পাহাড়ের চূড়াও হতে পারে। আর আরবে বিভিন্ন আকারের মটকা প্রচলিত ছিল। পরিমাপ অস্পষ্ট হওয়ায় এর ওপর ভিত্তি করে সাধারণ বিধান দেওয়া যায় না。<br>
+                    - তৃতীয়ত: হাদিসের মাফহুম বা বিপরীত অর্থ (Concept of Opposition) হানাফি মাজহাবের নিকট দলিল হিসেবে গ্রহণযোগ্য নয়, বিশেষ করে যখন তা স্পষ্ট ও সাধারণ অর্থবোধক অন্য সহিহ হাদিসের বিরোধী হয়।
+                </p>
+            </article>
+
+            <article class="qa-item">
+                <h2 class="sub-question">৩ নং প্রশ্ন C: معاني الكلمات (শব্দার্থ)</h2>
+                <p class="answer">
+                    - الفلاة: বিস্তীর্ণ প্রান্তর, মরুভূমি বা জনমানবহীন প্রান্তর।<br>
+                    - ينوب: যাতায়াত করে, একের পর এক আসে বা পানি পান করার জন্য আগমন করে।<br>
+                    - الدواب: চতুষ্পদ জন্তু বা গৃহপালিত পশু (যেমন: উট, গরু, ছাগল ইত্যাদি)।<br>
+                    - السباع: হিংস্র প্রাণী বা মাংসাশী পশু (যেমন: বাঘ, সিংহ, নেকড়ে ইত্যাদি)।<br>
+                    - القلتين: দুটি বড় মটকা বা বিশাল পাত্র (একবচনে 'কুল্লাতুন')।<br>
+                    - الخبث: অপবিত্রতা, নাপাকি বা ময়লা-আবর্জনা।
+                </p>
+            </article>
+        </section>
+
+
+
+
+
+
+
+        <!-- পৃষ্ঠা ৪ -->
+        <section class="question-group active-page"
+                 id="page-4" aria-label="৪ নম্বর প্রশ্ন">
+
+            <div class="ibarot" dir="rtl" lang="ar">
+                عن انس قال: ذكروا النار والناقوس، فذكروا اليهود والنصارى، فأمر بلال ان يشفع الاذان وان يوتر الاقامة. (متفق عليه)
+            </div>
+
+            <div class="section-number">৪ নং প্রশ্ন + উত্তর...</div>
+
+            <article class="qa-item">
+                <h2 class="sub-question">৪ নং প্রশ্ন A: ترجمة الحديث وتوضيح مطلبه (হাদিসের অনুবাদ ও মূল উদ্দেশ্য)</h2>
+                <p class="answer">
+                    <strong>১. الترجمة (সহজ বাংলা অনুবাদ):</strong><br>
+                    হজরত আনাস (রা.) থেকে বর্ণিত, তিনি বলেন—সাহাবিগণ (নামাজের সময় হলে মানুষকে একত্রিত করার জন্য) আগুন জ্বালানো এবং ঘণ্টা বাজানোর কথা আলোচনা করলেন। অতঃপর তাঁরা ইহুদি ও খ্রিস্টানদের (ধর্মীয় রীতিনীতির) সাদৃশ্যের কথা উল্লেখ করলেন (এবং তা বাতিল করলেন)। এরপর বিলাল (রা.)-কে নির্দেশ দেওয়া হলো যেন তিনি আজানের শব্দগুলো জোড় (দুই বার করে) বলেন এবং ইকামতের শব্দগুলো বেজোড় (এক বার করে) বলেন। (বুখারি ও মুসলিম)<br><br>
+                    <strong>২. توضيح مطلبه (হাদিসের মূল উদ্দেশ্য):</strong><br>
+                    এই হাদিসের মূল উদ্দেশ্য হলো আজান ও ইকামতের সূচনা পর্ব এবং এর বাক্যসমূহের তারতিব বা নিয়ম বর্ণনা করা। ইসলামে ইবাদতের ক্ষেত্রে অমুসলিমদের (ইহুদি ও খ্রিস্টান) সাদৃশ্য গ্রহণ বর্জনীয় এবং ইসলামের নিজস্ব স্বতন্ত্র বৈশিষ্ট্য রয়েছে—তা এই হাদিস দ্বারা প্রমাণিত হয়। এছাড়া আজানের বাক্যগুলো জোড় সংখ্যায় এবং ইকামতের বাক্যগুলো সাধারণত বেজোড় সংখ্যায় উচ্চারণ করার আদেশও এর অন্যতম উদ্দেশ্য।
+                </p>
+            </article>
+
+            <article class="qa-item">
+                <h2 class="sub-question">৪ নং প্রশ্ন B: بدء الاذان وحجية الرؤيا (আজানের সূচনা ও স্বপ্নের শারয়ী মর্যাদা)</h2>
+                <p class="answer">
+                    <strong>১. متى وكيف بدأ الاذان (আজান কখন ও কীভাবে শুরু হয়):</strong><br>
+                    আজান হিজরতের প্রথম বর্ষে (১ম হিজরি) মদিনায় শরিয়তভুক্ত হয়। রাসুলুল্লাহ (সা.) ও সাহাবিগণ যখন মদিনায় একত্রিত হলেন, তখন নামাজের জন্য মানুষকে ডাকার একটি সহজ ও স্থায়ী মাধ্যম নিয়ে পরামর্শ সভা করলেন। কেউ আগুন জ্বালানো, কেউ শিঙা ফুঁকা এবং কেউ ঘণ্টা বাজানোর প্রস্তাব দিলেন। অমুসলিমদের সাথে মিল থাকায় রাসুলুল্লাহ (সা.) তা অপছন্দ করলেন। এরপর সাহাবি হজরত আবদুল্লাহ ইবনে জায়েদ (রা.) এবং ওমর (রা.) স্বপ্নে আজানের শব্দমালা শুনতে পান এবং রাসুলুল্লাহ (সা.)-কে জানালে তিনি তা আল্লাহর পক্ষ থেকে সত্য স্বপ্ন বলে স্বীকৃতি দেন এবং বিলাল (রা.)-কে আজান দেওয়ার নির্দেশ দেন。<br><br>
+                    <strong>২. هل الرؤيا حجة شرعية؟ (স্বপ্ন কি শারয়ী দলিল?):</strong><br>
+                    সাধারণ মানুষের বা কোনো অ-নবীর স্বপ্ন শরিয়তের স্বাধীন বা একক দলিল (حجة مستقلة) নয়। শরিয়তের কোনো হুকুম বা হালাল-হারাম কেবল স্বপ্নের মাধ্যমে সাব্যস্ত হতে পারে না。<br><br>
+                    <strong>৩. كيف شرع الاذان برؤيا الصحابة؟ (সাহাবিদের স্বপ্নের মাধ্যমে আজান প্রবর্তনের রহস্য):</strong><br>
+                    আজান মূলত সাহাবি আবদুল্লাহ ইবনে জায়েদ (রা.)-এর স্বপ্নের মাধ্যমে সাব্যস্ত বা শরিয়তভুক্ত হয়নি। বরং তাঁর স্বপ্নের বিবরণ শোনার পর রাসুলুল্লাহ (সা.) ওহীর মাধ্যমে নিশ্চিত হয়ে একে অনুমোদন দিয়েছেন (التقرير النبوي)। রাসুলুল্লাহ (সা.) বলেছিলেন—"এটি অবশ্যই সত্য স্বপ্ন।" নবীর এই সত্যায়ন ও ওহীর সমর্থনের ফলেই আজান শরিয়তের অংশ হয়েছে, কেবল সাহাবির স্বপ্নের কারণে নয়।
+                </p>
+            </article>
+
+            <article class="qa-item">
+                <h2 class="sub-question">৪ নং প্রশ্ন C: اختلاف الائمة في كلمات الاذان والاقامة (আজান ও ইকামতের বাক্যে ইমামগণের মতভেদ)</h2>
+                <p class="answer">
+                    আজান ও ইকামতের বাক্য কয়টি হবে—তা নিয়ে ফকিহগণের মাঝে কিছুটা মতভেদ রয়েছে:<br><br>
+                    <strong>১. مذهب الحنفية (হানাফি মাজহাব):</strong><br>
+                    - আজানের বাক্য: ১৫টি (আল্লাহু আকবার ৪ বার, শাহাদাতাইন ৪ বার, হাইয়া আলাস সালাহ-ফালাহ ৪ বার, আল্লাহু আকবার ২ বার, লা ইলাহা ইল্লাল্লাহ ১ বার)।<br>
+                    - ইকামতের বাক্য: ১৭টি (আজানের ১৫টি বাক্যের সাথে 'কাদ কামাতিস সালাহ' ২ বার যুক্ত হবে)। অর্থাৎ হানাফি মাজহাবে ইকামতও আজানের মতোই জোড় জোড় বাক্যবিশিষ্ট。<br>
+                    - দলিল: আবু মাহজুরা (রা.) বর্ণিত সহিহ হাদিস, যেখানে রাসুলুল্লাহ (সা.) তাঁকে আজানের ১৫টি এবং ইকামতের ১৭টি বাক্য শিক্ষা দিয়েছিলেন (তিরমিজি, আবু দাউদ)।<br><br>
+                    <strong>২. مذهب الشافعية والحنابلة (শাফেয়ী ও হাম্বলি মাজহাব):</strong><br>
+                    - আজানের বাক্য: ১৫টি (হানাফিদের মতো)। তবে শাফেয়ী মাজহাবে তারজীসহ ১৯টি।<br>
+                    - ইকামতের বাক্য: ১১টি (তাকবির ২ বার, শাহাদাতাইন ২ বার, হাইয়া আলাস সালাহ-ফালাহ ২ বার, কাদ কামাতিস সালাহ ২ বার, তাকবির ২ বার, লা ইলাহা ইল্লাল্লাহ ১ বার)। অর্থাৎ বাক্যগুলো এক একবার (وتر) করে।<br>
+                    - দলিল: উদ্দীপকে বর্ণিত আনাস (রা.)-এর হাদিস—"বিলালকে ইকামতের শব্দগুলো বেজোড় বলার নির্দেশ দেওয়া হয়েছিল।"<br><br>
+                    <strong>৩. হানাফি মাজহাবের পক্ষ থেকে জবাব:</strong><br>
+                    হাদিসে ইকামত বেজোড় বা এক একবার বলার অর্থ হলো—আজানের মতো টেনে টেনে দীর্ঘ না করে ইকামতের শব্দগুলো দ্রুত এক শ্বাসে মিলিয়ে পড়া। সংখ্যার দিক থেকে বেজোড় বা একক বোঝানো হয়নি। কারণ খোদ বিলাল (রা.)-এর ইকামতও জোড় জোড় ছিল বলে অন্য সহিহ রেওয়ায়েতে প্রমাণিত।
+                </p>
+            </article>
+
+            <article class="qa-item">
+                <h2 class="sub-question">৪ নং প্রশ্ন D: معنى الترجيع والاختلاف فيه (তারজী-এর অর্থ ও মতভেদ)</h2>
+                <p class="answer">
+                    <strong>১. معنى الترجيع (তারজী-এর অর্থ):</strong><br>
+                    আজান দেওয়ার সময় 'হাইয়া আলাস সালাহ' বলার পূর্বে দুই শাহাদাত (اشهد ان لا اله الا الله এবং اشهد ان محمدا رسول الله) উচ্চৈঃস্বরে বলার আগে নিজের মনে বা নিচু স্বরে একবার পাঠ করে নেওয়াকে 'তারজী' (الترجيع) বলা হয়。<br><br>
+                    <strong>২. الاختلاف في الترجيع ودلائلهم (তারজী বিষয়ে মতভেদ ও দলিল):</strong><br>
+                    - ইমাম শাফেয়ী ও ইমাম মালিক (রহ.)-এর মতে: আজানে তারজী করা সুন্নত। তাঁদের মতে তারজীসহ আজানের বাক্যসংখ্যা ১৯টি।<br>
+                    দলিল: আবু মাহজুরা (রা.)-কে মক্কা বিজয়ের পর রাসুলুল্লাহ (সা.) যে আজান শিখিয়েছিলেন, তাতে শাহাদাতাইনের বাক্যগুলো প্রথমে নিচু স্বরে ও পরে উচ্চ স্বরে বলার নির্দেশ ছিল (মুসলিম)।<br><br>
+                    - ইমাম আবু হানিফা (রহ.) ও হানাফি মাজহাবের মতে: আজানে তারজী করা সুন্নত নয়, বরং তা বর্জনীয়। আজানের বাক্য ১৫টিই。<br>
+                    দলিল: মদিনার স্থায়ী মুয়াজ্জিন হজরত বিলাল (রা.) আজীবন যে আজান দিয়েছেন এবং যা ইবনে জায়েদ (রা.) স্বপ্নে দেখেছিলেন, তাতে কোনো তারজী বা নিচু স্বরের পুনরাবৃত্তি ছিল না。<br><br>
+                    - হানাফিদের পক্ষ থেকে জবাব: আবু মাহজুরা (রা.) সদ্য মুসলিম হয়েছিলেন এবং তাঁর কণ্ঠ ছিল সুন্দর। রাসুলুল্লাহ (সা.) তাঁকে শেখানোর জন্য প্রথমে নিচু স্বরে বলিয়েছিলেন যেন তিনি শব্দগুলো নির্ভুলভাবে মুখস্থ করতে পারেন। ওটি আজানের স্থায়ী অংশ ছিল না, বরং শিক্ষাদানের একটি পদ্ধতি (التعليم) ছিল। অতএব, বিলালী আজানই শরিয়তের চূড়ান্ত ও অনুসরণীয় রূপ।
+                </p>
+            </article>
+        </section>
+
+
+
+
+
+
+
+        <!-- পৃষ্ঠা ৫ -->
+        <section class="question-group active-page"
+                 id="page-5" aria-label="৫ নম্বর প্রশ্ন">
+
+            <div class="ibarot" dir="rtl" lang="ar">
+                عَنْ أَبِي هُرَيْرَةَ أَنَّ النَّبِيَّ نَعَى لِلنَّاسِ النَّجَاشِيَّ فِي الْيَوْمِ الَّذِي مَاتَ فِيهِ، وَخَرَجَ بِهِمْ إِلَى الْمُصَلَّى فَصَفَّ بِهِمْ وَكَبَّرَ أَرْبَعَ تَكْبِيرَاتٍ.
+            </div>
+
+            <div class="section-number">৫ নং প্রশ্ন + উত্তর...</div>
+
+            <article class="qa-item">
+                <h2 class="sub-question">৫ নং প্রশ্ন A: تشكيل الرواية وترجمتها (হরকতসহ হাদিস ও অনুবাদ)</h2>
+                <p class="answer">
+                    <strong>১. الحركات والسكنات (হরকতসহ হাদিস):</strong><br>
+                    عَنْ أَبِي هُرَيْرَةَ أَنَّ النَّبِيَّ نَعَى لِلنَّاسِ النَّجَاشِيَّ فِي الْيَوْمِ الَّذِي مَاتَ فِيهِ، وَخَرَجَ بِهِمْ إِلَى الْمُصَلَّى فَصَفَّ بِهِمْ وَكَبَّرَ أَرْبَعَ تَكْبِيرَاتٍ.<br><br>
+                    <strong>২. الترجمة (সহজ বাংলা অনুবাদ):</strong><br>
+                    হজরত আবু হুরায়রা (রা.) থেকে বর্ণিত যে, নবী (সা.) লোকদের কাছে আবিসিনিয়ার রাজা নাজ্জাশীর মৃত্যুর সংবাদ শোনালেন—ঠিক যে দিনে তিনি মৃত্যুবরণ করেছিলেন। অতঃপর তিনি সাহাবিদের নিয়ে ঈদগাহে (নামাজের ময়দানে) বের হলেন, তাঁদের কাতার সোজা করালেন এবং চারবার তাকবির বললেন (তার জানাজার নামাজ আদায় করলেন)। (বুখারি ও মুসলিম)
+                </p>
+            </article>
+
+            <article class="qa-item">
+                <h2 class="sub-question">৫ নং প্রশ্ন B: ترجمة النجاشي (নাজ্জাশীর সংক্ষিপ্ত জীবনী)</h2>
+                <p class="answer">
+                    <strong>১. الاسم واللقب (নাম ও উপাধি):</strong> নাজ্জাশী (النجاشي) কোনো ব্যক্তির মূল নাম নয়, বরং এটি আবিসিনিয়ার (বর্তমান ইথিওপিয়া) রাজাদের সাধারণ উপাধি। রাসুলুল্লাহ (সা.)-এর সমসাময়িক সেই মহান রাজার মূল নাম ছিল 'আসহামা ইবনে আবজার' (أصحمة بن أبجر)।<br><br>
+                    <strong>২. الإسلام (ইসলাম গ্রহণ):</strong> মক্কায় কাফেরদের অত্যাচারের মুখে সাহাবিগণ যখন আবিসিনিয়ায় হিজরত করেন, তখন এই ন্যায়পরায়ণ রাজা তাঁদের আশ্রয় দেন। পরবর্তীতে জাফর ইবনে আবি তালিব (রা.)-এর মুখে সুরা মারিয়ামের তিলাওয়াত ও ইসলামের দাওয়াত শুনে তিনি ইসলাম গ্রহণ করেন।<br><br>
+                    <strong>৩. الوفاة (ইন্তেকাল):</strong> তিনি ৯ম হিজরির রজব মাসে আবিসিনিয়ায় ইন্তেকাল করেন। মদিনায় ওহীর মাধ্যমে রাসুলুল্লাহ (সা.) তাঁর মৃত্যুর খবর পান এবং সাহাবিদের নিয়ে তাঁর জানাজা পড়েন।
+                </p>
+            </article>
+
+            <article class="qa-item">
+                <h2 class="sub-question">৫ নং প্রশ্ন C: مسألة صلاة الجنازة على الغائب (গায়েবানা জানাজার মাসআলা ও ইমামগণের মতভেদ)</h2>
+                <p class="answer">
+                    অনুপস্থিত লাশের ওপর গায়েবানা জানাজা পড়া জায়েজ কি না—এ বিষয়ে ফকিহগণের মাঝে প্রসিদ্ধ মতভেদ রয়েছে:<br><br>
+                    <strong>১. مذهب الشافعية والحنابلة (ইমাম শাফেয়ী ও ইমাম আহমাদ ইবনে হাম্বলের মত):</strong><br>
+                    তাঁদের মতে, মৃত ব্যক্তি যে কোনো স্থানে থাকুক না কেন, তার গায়েবানা জানাজা পড়া সম্পূর্ণ জায়েজ এবং এটি একটি সুন্নাত আমল।<br>
+                    - তাঁদের দলিল: উদ্দীপকে বর্ণিত নাজ্জাশীর জানাজা সংক্রান্ত হাদিস। যেখানে রাসুলুল্লাহ (সা.) মদিনায় থেকে আবিসিনিয়ার রাজার জানাজা পড়েছিলেন。<br><br>
+                    <strong>২. مذهب الحنفية والمالكية (ইমাম আবু হানিফা ও ইমাম মালিকের মত এবং হানাফি মাজহাবের চূড়ান্ত সিদ্ধান্ত):</strong><br>
+                    হানাফি মাজহাবের মতে, সাধারণ মুসলমানদের জন্য গায়েবানা জানাজা পড়া জায়েজ নয়। জানাজা বৈধ হওয়ার জন্য লাশ সামনে উপস্থিত থাকা (حضور الميت) আবশ্যক।<br><br>
+                    - হানাফি মাজহাবের প্রাধান্য ও দলিলের জবাব: নাজ্জাশীর ঘটনাটি ছিল রাসুলুল্লাহ (সা.)-এর একটি অনন্য বৈশিষ্ট্য বা মোজেজা (خصوصية)। হজরত ইমরান ইবনে হুসাইন (রা.)-এর বর্ণনায় এসেছে যে, রাসুলুল্লাহ (সা.) যখন নামাজে দাঁড়ান, তখন আল্লাহ তাআলা মাঝখানের সমস্ত পর্দা সরিয়ে দেন এবং নাজ্জাশীর খাটিয়াটি সরাসরি রাসুলুল্লাহ (সা.)-এর চোখের সামনে তুলে ধরা হয়। ফলে রাসুলুল্লাহ (সা.)-এর জন্য লাশটি গায়েব ছিল না, বরং দৃশ্যমান উপস্থিত ছিল।<br>
+                    - অন্যান্য দলিল: রাসুলুল্লাহ (সা.)-এর জীবদ্দশায় বহু দূরবর্তী স্থানে বড় বড় সাহাবি ইন্তেকাল করেছেন, কিন্তু নাজ্জাশী ছাড়া অন্য কারো গায়েবানা জানাজা তিনি পড়েছেন বলে কোনো সহিহ প্রমাণ নেই। এমনকি খোলাফায়ে রাশেদীনের যুগেও এর কোনো প্রচলন ছিল না। অতএব, সাধারণ উম্মতের জন্য গায়েবানা জানাজা জায়েজ নয়।
+                </p>
+            </article>
+
+            <article class="qa-item">
+                <h2 class="sub-question">৫ নং প্রশ্ন D: عدد التكبيرات في صلاة الجنازة (জানাজার তাকবির সংখ্যা ও মতভেদ)</h2>
+                <p class="answer">
+                    জানাজার নামাজে মোট কয়টি তাকবির বলতে হবে—তা নিয়ে ইমামগণের মতামত নিম্নরূপ:<br><br>
+                    <strong>১. مذهب الأئمة الأربعة والجماهير (চার মাজহাব ও জুমহুর উলামার মত):</strong><br>
+                    ইমাম আবু হানিফা, শাফেয়ী, মালিক ও আহমাদ ইবনে হাম্বল (রহ.)—সবাই একমত যে জানাজার নামাজে মোট ৪টি তাকবির বলা সুন্নাত ও ওয়াজিব। ৪ তাকবিরের কম বা বেশি করা যাবে না।<br>
+                    - দলিল: উদ্দীপকের হাদিস—(وَكَبَّرَ أَرْبَعَ تَكْبِيرَاتٍ) অর্থাৎ রাসুলুল্লাহ (সা.) নাজ্জাশীর জানাজায় ৪টি তাকবির দিয়েছিলেন। ইন্তেকালের পূর্বে রাসুলুল্লাহ (সা.) ৪ তাকবিরের ওপরই স্থায়ী আমল নির্ধারণ করে গেছেন।<br><br>
+                    <strong>২. اقوال أخرى (অন্যান্য দুর্বল মত):</strong><br>
+                    কোনো কোনো সাহাবি থেকে ৫, ৭ বা ৯ তাকবিরের কথাও বর্ণিত আছে। তবে ফকিহগণের মতে, সেগুলো ইসলামের শুরুর দিকে ছিল, যা পরবর্তীতে ৪ তাকবিরের আমল দ্বারা রহিত (منسوخ) হয়ে গেছে। সুতরাং ৪ তাকবিরই চূড়ান্ত ও সর্বসম্মত সিদ্ধান্ত।
+                </p>
+            </article>
+
+            <article class="qa-item">
+                <h2 class="sub-question">৫ নং প্রশ্ন E: حكم قراءة سورة الفاتحة في صلاة الجنازة (জানাজায় সুরা ফাতিহা পাঠের বিধান)</h2>
+                <p class="answer">
+                    জানাজার নামাজে সুরা ফাতিহা তিলাওয়াত করা নিয়ে ইমামগণের মাঝে ইজতিহাদী মতভেদ রয়েছে:<br><br>
+                    <strong>১. مذهب الشافعية والحنابلة (শাফেয়ী ও হাম্বলি মাজহাব):</strong><br>
+                    তাঁদের মতে, জানাজার নামাজে প্রথম তাকবিরের পর সুরা ফাতিহা পড়া ফরজ বা ওয়াজিব। কারণ রাসুলুল্লাহ (সা.) বলেছেন—"সুরা ফাতিহা ছাড়া কোনো নামাজ হয় না।"<br><br>
+                    <strong>২. مذهب الحنفية والمالكية (হানাফি ও মালিকি মাজহাবের সিদ্ধান্ত):</strong><br>
+                    হানাফি মাজহাবের মতে, জানাজার নামাজে সুরা ফাতিহা বা অন্য কোনো সুরা কিরাত হিসেবে পড়া জায়েজ নেই। কারণ জানাজা মূলত নামাজ নয়, এটি মৃত ব্যক্তির জন্য একটি সম্মিলিত দুআ বা শাফাআত। তবে কেউ যদি কিরাত বা সুরার নিয়তে না পড়ে, বরং আল্লাহর প্রশংসামূলক 'দুআ'র নিয়তে সুরা ফাতিহা পাঠ করে, তবে তা জায়েজ হবে。<br>
+                    - হানাফিদের দলিল: হজরত আবদুল্লাহ ইবনে ওমর (রা.) বলেন—"জানাজার নামাজে কোনো কিরাত (সুরা পাঠ) নেই।" (মুসান্নাফে আব্দুর রাজ্জাক, সহিহ সনদ)। জানাজায় সানা, দরুদ শরিফ এবং মৃত ব্যক্তির জন্য দুআ করাই সুন্নাতসম্মত পদ্ধতি।
+                </p>
+            </article>
+        </section>
+
+
+        
+
+
+
+
+        <!-- নিচের নেভিগেশন -->
+        <footer class="bottom-pagination">
+
+            <button class="nav-btn"
+                    id="prev-btn"
+                    type="button"
+                    onclick="prevPage()"
+                    disabled>« Previous</button>
+
+            <span class="page-status"
+                  id="page-status"
+                  aria-live="polite">পৃষ্ঠা ১ / ৫</span>
+
+            <button class="nav-btn"
+                    id="next-btn"
+                    type="button"
+                    onclick="nextPage()">Next »</button>
+
+        </footer>
 
     </main>
 
     <script>
-        const glow = document.getElementById('glow');
+        "use strict";
 
-        // Mouse move interactive glow background
-        window.addEventListener('mousemove', (e) => {
-            glow.style.left = e.clientX + 'px';
-            glow.style.top = e.clientY + 'px';
-        });
+        let currentPage = 1;
+        let currentScale = 1;
 
-        // Touch move interactive glow background for mobile screens
-        window.addEventListener('touchmove', (e) => {
-            if (e.touches.length > 0) {
-                glow.style.left = e.touches[0].clientX + 'px';
-                glow.style.top = e.touches[0].clientY + 'px';
+        const totalPages = 5;
+        const minScale = 0.7;
+        const maxScale = 1.6;
+
+        const banglaNumbers = ["০", "১", "২", "৩", "৪", "৫"];
+        const root = document.documentElement;
+
+        /* পৃষ্ঠা পরিবর্তন */
+        function updatePaginationUI() {
+            document.querySelectorAll(".question-group").forEach(
+                function (page) {
+                    page.classList.remove("active-page");
+                }
+            );
+
+            const activePage = document.getElementById(
+                "page-" + currentPage
+            );
+
+            if (activePage) {
+                activePage.classList.add("active-page");
+            }
+
+            document.querySelectorAll(".page-number-btn").forEach(
+                function (button) {
+                    const pageNumber = Number(button.dataset.page);
+                    const isActive = pageNumber === currentPage;
+
+                    button.classList.toggle("active", isActive);
+
+                    if (isActive) {
+                        button.setAttribute("aria-current", "page");
+                    } else {
+                        button.removeAttribute("aria-current");
+                    }
+                }
+            );
+
+            document.getElementById("prev-btn").disabled =
+                currentPage === 1;
+
+            document.getElementById("next-btn").disabled =
+                currentPage === totalPages;
+
+            document.getElementById("page-status").textContent =
+                "পৃষ্ঠা " + banglaNumbers[currentPage] +
+                " / " + banglaNumbers[totalPages];
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        }
+
+        /* নির্দিষ্ট পৃষ্ঠা */
+        function goToPage(page) {
+            if (
+                Number.isInteger(page) &&
+                page >= 1 &&
+                page <= totalPages
+            ) {
+                currentPage = page;
+                updatePaginationUI();
+            }
+        }
+
+        /* পরবর্তী পৃষ্ঠা */
+        function nextPage() {
+            if (currentPage < totalPages) {
+                goToPage(currentPage + 1);
+            }
+        }
+
+        /* পূর্ববর্তী পৃষ্ঠা */
+        function prevPage() {
+            if (currentPage > 1) {
+                goToPage(currentPage - 1);
+            }
+        }
+
+        /* ফন্ট ছোট-বড় */
+        function changeFontSize(delta) {
+            const newScale = Math.round(
+                (currentScale + delta) * 10
+            ) / 10;
+
+            if (newScale >= minScale && newScale <= maxScale) {
+                currentScale = newScale;
+
+                root.style.setProperty(
+                    "--font-scale",
+                    currentScale
+                );
+            }
+        }
+
+        /* ফন্টের মূল আকার */
+        function resetFontSize() {
+            currentScale = 1;
+
+            root.style.setProperty(
+                "--font-scale",
+                currentScale
+            );
+        }
+
+        /* কিবোর্ড দিয়ে পৃষ্ঠা পরিবর্তন */
+        document.addEventListener("keydown", function (event) {
+            const target = event.target;
+
+            if (
+                target instanceof HTMLElement &&
+                (
+                    target.isContentEditable ||
+                    ["INPUT", "TEXTAREA", "SELECT", "BUTTON"]
+                        .includes(target.tagName)
+                )
+            ) {
+                return;
+            }
+
+            if (event.key === "ArrowRight") {
+                nextPage();
+            } else if (event.key === "ArrowLeft") {
+                prevPage();
             }
         });
+
+        /* প্রথম পৃষ্ঠা চালু */
+        updatePaginationUI();
     </script>
+
 </body>
 </html>
