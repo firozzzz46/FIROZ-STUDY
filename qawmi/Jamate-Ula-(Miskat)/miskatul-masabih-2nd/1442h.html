@@ -1,128 +1,389 @@
+
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Corona - Dark Cinematic Scene</title>
 
-    <!-- Google Fonts for Bengali & English -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Inter:wght@700;900&display=swap" rel="stylesheet">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap');
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+*{box-sizing:border-box;margin:0;padding:0}
 
-    <style>
-        body {
-            font-family: 'Hind Siliguri', 'Inter', sans-serif;
-            background-color: #030712;
-            overflow: hidden;
-        }
+body{
+    background:#030304;
+    color:white;
+    font-family:'Hind Siliguri',sans-serif;
+    overflow:hidden;
+}
 
-        /* Gradient glowing animation on text */
-        .glow-text {
-            background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 50%, #38bdf8 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shine 6s linear infinite;
-        }
+.scene{
+    position:relative;
+    width:100%;
+    height:100vh;
+    height:100dvh;
+    overflow:hidden;
+    isolation:isolate;
+    background:
+      radial-gradient(ellipse at 50% 75%,#501009 0%,transparent 45%),
+      linear-gradient(#03040a 5%,#16080b 60%,#030303);
+}
 
-        @keyframes shine {
-            0% { background-position: 0% center; }
-            50% { background-position: 100% center; }
-            100% { background-position: 0% center; }
-        }
+/* Blood moon */
+.moon{
+    position:absolute;
+    width:min(45vw,260px);
+    aspect-ratio:1;
+    border-radius:50%;
+    top:8%;
+    left:50%;
+    transform:translateX(-50%);
+    background:
+      radial-gradient(circle at 35% 30%,#ffb6a0,#d32617 45%,#430300 75%);
+    box-shadow:0 0 35px #ff170a,0 0 100px #a30908;
+    animation:moon 5s ease-in-out infinite alternate;
+    z-index:-2;
+}
 
-        /* Keyframes for initial entry: Floating in from below with opacity */
-        @keyframes floatIn {
-            0% {
-                opacity: 0;
-                transform: translateY(40px) scale(0.95);
-                filter: blur(8px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-                filter: blur(0);
-            }
-        }
+@keyframes moon{
+    to{filter:brightness(.55);box-shadow:0 0 70px #b00}
+}
 
-        /* Continuous subtle float effect once arrived */
-        @keyframes subtleFloat {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-8px);
-            }
-        }
+/* Fog layers */
+.fog{
+    position:absolute;
+    width:180%;
+    height:35%;
+    left:-40%;
+    bottom:0;
+    background:radial-gradient(ellipse,#a9a9a923,transparent 70%);
+    filter:blur(18px);
+    animation:fog 12s ease-in-out infinite alternate;
+    pointer-events:none;
+}
 
-        /* Animation class for Heading */
-        .animate-heading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards,
-                subtleFloat 6s ease-in-out 1.2s infinite;
-        }
+.fog.two{
+    bottom:17%;
+    animation-duration:17s;
+    animation-direction:alternate-reverse;
+    opacity:.5;
+}
 
-        /* Animation class for Subheading (staggered delay) */
-        .animate-subheading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards,
-                subtleFloat 6s ease-in-out 1.55s infinite;
-            opacity: 0; /* Hidden until animation kicks in */
-        }
+@keyframes fog{
+    from{transform:translateX(-12%) scale(1)}
+    to{transform:translateX(12%) scale(1.3)}
+}
 
-        /* Ambient background lighting */
-        .ambient-glow {
-            position: absolute;
-            width: 450px;
-            height: 450px;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(3, 7, 18, 0) 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            transition: left 0.4s ease-out, top 0.4s ease-out;
-        }
-    </style>
+/* Distant dragon silhouette */
+.dragon{
+    position:absolute;
+    top:12%;
+    left:-45%;
+    width:65%;
+    min-width:280px;
+    color:#090609;
+    font-size:clamp(150px,29vw,330px);
+    line-height:1;
+    filter:drop-shadow(0 0 10px #c11b0d);
+    animation:dragonFlight 15s ease-in-out infinite;
+    z-index:1;
+}
+
+@keyframes dragonFlight{
+    0%{transform:translateX(0) translateY(0) scale(.8)}
+    35%{transform:translateX(90vw) translateY(5vh) scale(1.05)}
+    50%{transform:translateX(90vw) translateY(5vh) scale(1.1)}
+    90%{transform:translateX(180vw) translateY(-4vh) scale(.8)}
+    100%{transform:translateX(180vw)}
+}
+
+/* Dragon fire */
+.fire{
+    position:absolute;
+    top:34%;
+    left:-30%;
+    width:180px;
+    height:50px;
+    opacity:0;
+    border-radius:50%;
+    background:linear-gradient(90deg,#ff1800,#ffb000,transparent);
+    filter:blur(8px);
+    transform:rotate(-15deg);
+    animation:fire 15s linear infinite;
+    z-index:2;
+}
+
+@keyframes fire{
+    0%,20%,100%{opacity:0;left:-30%}
+    28%{opacity:1;left:18%;width:200px}
+    34%{opacity:.9;left:42%;width:240px}
+    40%,45%{opacity:0;left:55%}
+}
+
+/* Massive serpent made from CSS curves */
+.snake{
+    position:absolute;
+    width:180px;
+    height:65%;
+    right:-100px;
+    bottom:-12%;
+    z-index:3;
+    animation:snakeRise 10s ease-in-out infinite;
+}
+
+.snake-body{
+    position:absolute;
+    right:20px;
+    bottom:0;
+    width:100px;
+    height:90%;
+    border-radius:50% 50% 20% 20%;
+    border:18px solid #11170e;
+    border-left-color:#52602a;
+    border-right-color:#050605;
+    transform:rotate(-13deg);
+    box-shadow:inset 0 0 20px #8e9a3c,0 0 25px #5e110b;
+}
+
+.snake-head{
+    position:absolute;
+    top:5%;
+    left:10px;
+    width:125px;
+    height:90px;
+    background:linear-gradient(145deg,#6b7934,#11150b 65%);
+    border:3px solid #252a13;
+    border-radius:60% 40% 25% 25%;
+    transform:rotate(-17deg);
+    box-shadow:0 0 25px #6d160b;
+}
+
+.snake-head:before{
+    content:"";
+    position:absolute;
+    top:57px;
+    left:18px;
+    width:90px;
+    height:15px;
+    background:#1c0303;
+    border-bottom:3px solid #f21c12;
+    border-radius:50%;
+}
+
+.eye{
+    position:absolute;
+    top:22px;
+    left:67px;
+    width:17px;
+    height:8px;
+    background:#ff1700;
+    border-radius:50%;
+    box-shadow:0 0 15px 5px #f10;
+    transform:rotate(-15deg);
+}
+
+@keyframes snakeRise{
+    0%,100%{transform:translate(100px,100px) rotate(8deg)}
+    45%,65%{transform:translate(-45px,-20px) rotate(-4deg)}
+}
+
+/* Coronavirus particles */
+.virus{
+    position:absolute;
+    color:#f52319;
+    font-size:clamp(36px,7vw,70px);
+    text-shadow:0 0 18px red;
+    animation:virus 8s ease-in-out infinite;
+    z-index:2;
+}
+
+.v1{left:8%;top:35%}
+.v2{right:18%;top:20%;animation-delay:-3s}
+.v3{left:15%;bottom:12%;animation-delay:-5s}
+
+@keyframes virus{
+    0%,100%{transform:translateY(0) rotate(0) scale(.8);opacity:.65}
+    50%{transform:translateY(-45px) rotate(180deg) scale(1.2);opacity:1}
+}
+
+/* Center text */
+.panel{
+    position:absolute;
+    z-index:5;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:min(92%,800px);
+    padding:clamp(22px,5vw,48px) 14px;
+    text-align:center;
+    background:linear-gradient(90deg,#080303c9,#170403e8,#080303c9);
+    border-top:1px solid #f53a2c85;
+    border-bottom:1px solid #f53a2c85;
+    box-shadow:0 0 45px #000;
+    animation:panelIn 2.5s ease both;
+}
+
+@keyframes panelIn{
+    from{opacity:0;filter:blur(12px);transform:translate(-50%,-45%) scale(.9)}
+    to{opacity:1;filter:blur(0);transform:translate(-50%,-50%) scale(1)}
+}
+
+.small-title{
+    color:#ff6b57;
+    font-size:clamp(12px,2.4vw,18px);
+    letter-spacing:3px;
+    margin-bottom:14px;
+    text-shadow:0 0 15px red;
+}
+
+h1{
+    font-size:clamp(24px,5.1vw,47px);
+    line-height:1.8;
+    text-shadow:0 2px 4px #000,0 0 15px #f20;
+    animation:flicker 7s infinite;
+}
+
+.year{
+    color:#ff392c;
+    font-size:1.2em;
+    text-shadow:0 0 20px #f10,0 0 40px #900;
+}
+
+@keyframes flicker{
+    0%,94%,100%{opacity:1}
+    95%{opacity:.55}
+    96%{opacity:1}
+    97%{opacity:.7}
+}
+
+/* Lightning */
+.lightning{
+    position:absolute;
+    inset:0;
+    z-index:8;
+    background:#ff3420;
+    opacity:0;
+    pointer-events:none;
+    animation:lightning 8s infinite;
+}
+
+@keyframes lightning{
+    0%,22%,24%,60%,62%,100%{opacity:0}
+    23%{opacity:.25}
+    23.3%{opacity:0}
+    61%{opacity:.18}
+    61.3%{opacity:0}
+}
+
+/* Floating embers */
+.ember{
+    position:absolute;
+    bottom:-10px;
+    width:3px;
+    height:3px;
+    background:#ff8a23;
+    border-radius:50%;
+    box-shadow:0 0 10px #f20;
+    animation:emberRise linear infinite;
+    pointer-events:none;
+}
+
+@keyframes emberRise{
+    from{transform:translateY(0);opacity:0}
+    15%{opacity:1}
+    to{transform:translateY(-110vh) translateX(70px);opacity:0}
+}
+
+/* Cinematic dark edges */
+.vignette{
+    position:absolute;
+    inset:0;
+    z-index:7;
+    pointer-events:none;
+    box-shadow:inset 0 0 100px 25px #000;
+}
+
+@media(max-width:600px){
+    .moon{top:13%;width:40vw}
+    .dragon{top:23%;font-size:180px}
+    .snake{right:-105px;width:145px}
+    .panel{width:94%;padding:24px 9px}
+    .small-title{letter-spacing:1.5px}
+    h1{line-height:1.85}
+}
+
+@media(prefers-reduced-motion:reduce){
+    *,*::before,*::after{
+        animation-duration:.01ms!important;
+        animation-iteration-count:1!important;
+    }
+}
+</style>
 </head>
-<body class="min-h-screen flex items-center justify-center relative select-none px-4">
 
-    <!-- Ambient glow center element -->
-    <div id="glow" class="ambient-glow top-1/2 left-1/2"></div>
+<body>
+<main class="scene">
 
-    <!-- Centered minimal content with entry animations -->
-    <main class="text-center z-10 space-y-6 max-w-3xl mx-auto py-8 px-4">
-        
-        <!-- Main English Title -->
-        <h1 class="animate-heading text-5xl sm:text-7xl md:text-8xl font-black tracking-tight glow-text font-['Inter'] drop-shadow-lg">
-            Coming Soon...
+    <div class="moon"></div>
+
+    <div class="dragon" aria-hidden="true">🐉</div>
+    <div class="fire"></div>
+
+    <div class="snake" aria-hidden="true">
+        <div class="snake-body"></div>
+        <div class="snake-head">
+            <div class="eye"></div>
+        </div>
+    </div>
+
+    <div class="virus v1">🦠</div>
+    <div class="virus v2">🦠</div>
+    <div class="virus v3">🦠</div>
+
+    <div class="fog"></div>
+    <div class="fog two"></div>
+
+    <section class="panel">
+        <div class="small-title">একটি ঐতিহাসিক ঘটনা</div>
+        <h1>
+            করোনা মহামারির কারণে
+            <br>
+            <span class="year">১৪৪১ হিজরি</span>
+            <br>
+            সনে তানযীম বোর্ডে
+            <br>
+            পরীক্ষা অনুষ্ঠিত হয়নি।
         </h1>
+    </section>
 
-        <!-- Bengali Subheading -->
-        <p class="animate-subheading text-xl sm:text-3xl md:text-4xl font-semibold text-emerald-400/90 leading-relaxed tracking-wide drop-shadow">
-            ইনশাআল্লাহ, খুব শীঘ্রই ডাটা যোগ করা হবে।
-        </p>
+    <div class="lightning"></div>
+    <div class="vignette"></div>
 
-    </main>
+</main>
 
-    <script>
-        const glow = document.getElementById('glow');
+<script>
+(() => {
+    const scene = document.querySelector('.scene');
 
-        // Mouse move interactive glow background
-        window.addEventListener('mousemove', (e) => {
-            glow.style.left = e.clientX + 'px';
-            glow.style.top = e.clientY + 'px';
-        });
+    for (let i = 0; i < 45; i++) {
+        const ember = document.createElement('span');
+        ember.className = 'ember';
 
-        // Touch move interactive glow background for mobile screens
-        window.addEventListener('touchmove', (e) => {
-            if (e.touches.length > 0) {
-                glow.style.left = e.touches[0].clientX + 'px';
-                glow.style.top = e.touches[0].clientY + 'px';
-            }
-        });
-    </script>
+        ember.style.left = Math.random() * 100 + '%';
+        ember.style.animationDuration =
+            (5 + Math.random() * 9) + 's';
+        ember.style.animationDelay =
+            (-Math.random() * 12) + 's';
+
+        const size = 2 + Math.random() * 4;
+        ember.style.width = size + 'px';
+        ember.style.height = size + 'px';
+
+        scene.appendChild(ember);
+    }
+})();
+</script>
+
 </body>
 </html>
