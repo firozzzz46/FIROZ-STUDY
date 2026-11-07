@@ -1,128 +1,1204 @@
+
 <!DOCTYPE html>
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon</title>
+    <meta name="theme-color" content="#0d5c3a">
+    <title>ইসলামিক প্রশ্নোত্তর</title>
 
-    <!-- Google Fonts for Bengali & English -->
+    <!-- বাংলা ও আরবি ফন্ট -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Inter:wght@700;900&display=swap" rel="stylesheet">
-
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Serif+Bengali:wght@400;600;700&display=swap" rel="stylesheet">
 
     <style>
+        :root {
+            --primary: #0d5c3a;
+            --primary-dark: #084229;
+            --accent: #d4af37;
+            --question: #d32f2f;
+            --answer: #000000;
+            --text-dark: #1e293b;
+            --muted: #64748b;
+            --font-scale: 1;
+
+            --page-animation: 2.2s;
+            --item-animation: 1.8s;
+            --toolbar-animation: 2s;
+            --button-transition: 0.7s;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+            text-size-adjust: 100%;
+        }
+
         body {
-            font-family: 'Hind Siliguri', 'Inter', sans-serif;
-            background-color: #030712;
-            overflow: hidden;
+            margin: 0;
+            padding: 12px;
+            min-height: 100vh;
+            width: 100%;
+            font-family: 'Noto Serif Bengali', serif;
+            background: linear-gradient(
+                135deg,
+                #eef5f1 0%,
+                #f7f9f8 50%,
+                #eef3f0 100%
+            );
+            background-attachment: fixed;
+            color: var(--answer);
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* Gradient glowing animation on text */
-        .glow-text {
-            background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 50%, #38bdf8 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shine 6s linear infinite;
+        button {
+            font-family: inherit;
+            cursor: pointer;
+            touch-action: manipulation;
         }
 
-        @keyframes shine {
-            0% { background-position: 0% center; }
-            50% { background-position: 100% center; }
-            100% { background-position: 0% center; }
+        button:focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 3px;
         }
 
-        /* Keyframes for initial entry: Floating in from below with opacity */
-        @keyframes floatIn {
+        /* =========================
+           উপরের কন্ট্রোল বার
+        ========================= */
+
+        .sticky-toolbar {
+            position: sticky;
+            top: 8px;
+            z-index: 100;
+
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto 18px;
+            padding: 10px 14px;
+
+            border: 1px solid #e5d59b;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 6px 18px rgba(13, 92, 58, 0.09);
+
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+
+            animation: toolbarEnter var(--toolbar-animation)
+                cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        .font-control-panel,
+        .page-indicators {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .font-btn,
+        .nav-btn,
+        .page-number-btn {
+            min-height: 38px;
+            padding: 7px 12px;
+            border: 0;
+            border-radius: 9px;
+
+            background: linear-gradient(
+                135deg,
+                var(--primary),
+                var(--primary-dark)
+            );
+
+            color: #ffffff;
+            font-size: calc(15px * var(--font-scale));
+            font-weight: 700;
+
+            box-shadow: 0 3px 8px rgba(13, 92, 58, 0.15);
+
+            transition:
+                background var(--button-transition) ease,
+                color var(--button-transition) ease,
+                transform var(--button-transition)
+                    cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow var(--button-transition) ease;
+        }
+
+        .font-btn:hover,
+        .nav-btn:hover:not(:disabled),
+        .page-number-btn:hover {
+            background: var(--accent);
+            color: #111111;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(212, 175, 55, 0.25);
+        }
+
+        .page-number-btn.active {
+            background: var(--accent);
+            color: var(--primary-dark);
+            outline: 2px solid var(--primary);
+            outline-offset: -2px;
+        }
+
+        button:disabled {
+            opacity: 0.45;
+            cursor: not-allowed;
+            transform: none !important;
+            box-shadow: none;
+        }
+
+        /* =========================
+           মূল কনটেইনার
+        ========================= */
+
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 24px;
+
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            background: #ffffff;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+
+            animation: containerEnter 2.4s
+                cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        /* =========================
+           কিতাবের পরিচিতি
+        ========================= */
+
+        .book-header {
+            text-align: center;
+            padding-bottom: 16px;
+            margin-bottom: 22px;
+            border-bottom: 2px solid rgba(212, 175, 55, 0.5);
+        }
+
+        .book-label {
+            margin-bottom: 5px;
+            color: var(--primary);
+            font-family: 'Amiri', serif;
+            font-size: calc(30px * var(--font-scale));
+            font-weight: 700;
+            line-height: 1.7;
+
+            animation: textEnter 2.4s
+                cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+        }
+
+        .book-name {
+            color: var(--text-dark);
+            font-size: calc(24px * var(--font-scale));
+            font-weight: 700;
+
+            animation: textEnter 2.5s
+                cubic-bezier(0.16, 1, 0.3, 1) 0.5s both;
+        }
+
+        .book-year {
+            margin-top: 5px;
+            color: var(--muted);
+            font-size: calc(16px * var(--font-scale));
+
+            animation: textEnter 2.5s
+                cubic-bezier(0.16, 1, 0.3, 1) 0.7s both;
+        }
+
+        /* =========================
+           প্রধান শিরোনাম
+        ========================= */
+
+        .main-title {
+            margin: 0 0 22px;
+            text-align: center;
+            color: var(--primary);
+            font-size: calc(27px * var(--font-scale));
+
+            animation: textEnter 2.4s
+                cubic-bezier(0.16, 1, 0.3, 1) 0.8s both;
+        }
+
+        .main-title::after {
+            content: "";
+            display: block;
+            width: 85px;
+            height: 3px;
+            margin: 7px auto 0;
+            border-radius: 5px;
+
+            background: linear-gradient(
+                90deg,
+                transparent,
+                var(--accent),
+                transparent
+            );
+        }
+
+        /* =========================
+           প্রশ্নের পৃষ্ঠা
+        ========================= */
+
+        .question-group {
+            display: none;
+            width: 100%;
+            margin-bottom: 16px;
+            padding: 22px;
+
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            background: #ffffff;
+        }
+
+        .question-group.active-page {
+            display: block;
+
+            animation: pageEnter var(--page-animation)
+                cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        /* =========================
+           আরবি ইবারত
+        ========================= */
+
+        .ibarot {
+            width: 100%;
+            margin-bottom: 18px;
+            padding: 16px;
+
+            border-right: 5px solid var(--primary);
+            border-radius: 8px;
+            background: #f8faf9;
+
+            color: #0f2d24;
+            font-family: 'Amiri', serif;
+            font-size: calc(28px * var(--font-scale));
+            line-height: 1.9;
+            text-align: right;
+
+            overflow-wrap: anywhere;
+        }
+
+        .question-group.active-page .ibarot {
+            animation: arabicEnter 2s
+                cubic-bezier(0.16, 1, 0.3, 1) 0.25s both;
+        }
+
+        /* =========================
+           প্রশ্ন নম্বর
+        ========================= */
+
+        .section-number {
+            display: inline-block;
+            margin-bottom: 12px;
+            padding: 6px 16px;
+
+            border-radius: 20px;
+            background: linear-gradient(
+                135deg,
+                var(--primary),
+                var(--primary-dark)
+            );
+
+            color: #ffffff;
+            font-size: calc(17px * var(--font-scale));
+            font-weight: 700;
+
+            box-shadow: 0 3px 8px rgba(13, 92, 58, 0.12);
+        }
+
+        .question-group.active-page .section-number {
+            animation: numberEnter 2s
+                cubic-bezier(0.16, 1, 0.3, 1) 0.5s both;
+        }
+
+        /* =========================
+           প্রশ্ন ও উত্তর
+        ========================= */
+
+        .qa-item {
+            width: 100%;
+            margin-bottom: 12px;
+            padding: 14px 4px;
+            border-bottom: 1px dashed #e2e8f0;
+        }
+
+        .qa-item:last-child {
+            margin-bottom: 0;
+            border-bottom: none;
+        }
+
+        .sub-question {
+            margin: 0 0 8px;
+            color: var(--question);
+            font-size: calc(21px * var(--font-scale));
+            font-weight: 700;
+            line-height: 1.7;
+            overflow-wrap: anywhere;
+        }
+
+        .answer {
+            margin: 0;
+            color: var(--answer);
+            font-size: calc(19px * var(--font-scale));
+            line-height: 1.9;
+            text-align: justify;
+            white-space: pre-line;
+            overflow-wrap: anywhere;
+        }
+
+        /* প্রশ্নগুলো একটির পর একটি ধীরে দেখা যাবে */
+
+        .question-group.active-page .qa-item:nth-of-type(1) {
+            animation: answerEnter 1.9s
+                cubic-bezier(0.16, 1, 0.3, 1) 0.65s both;
+        }
+
+        .question-group.active-page .qa-item:nth-of-type(2) {
+            animation: answerEnter 2s
+                cubic-bezier(0.16, 1, 0.3, 1) 0.95s both;
+        }
+
+        .question-group.active-page .qa-item:nth-of-type(3) {
+            animation: answerEnter 2.1s
+                cubic-bezier(0.16, 1, 0.3, 1) 1.25s both;
+        }
+
+        .question-group.active-page .qa-item:nth-of-type(4) {
+            animation: answerEnter 2.2s
+                cubic-bezier(0.16, 1, 0.3, 1) 1.55s both;
+        }
+
+        /* =========================
+           নিচের পৃষ্ঠা নিয়ন্ত্রণ
+        ========================= */
+
+        .bottom-pagination {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+
+            margin-top: 22px;
+            padding-top: 16px;
+            border-top: 1px dashed #cbd5e1;
+
+            animation: textEnter 2.2s
+                cubic-bezier(0.16, 1, 0.3, 1) 0.8s both;
+        }
+
+        .page-status {
+            color: var(--primary);
+            font-size: calc(16px * var(--font-scale));
+            font-weight: 700;
+            text-align: center;
+        }
+
+        /* =========================
+           ধীর অ্যানিমেশন
+        ========================= */
+
+        @keyframes toolbarEnter {
             0% {
                 opacity: 0;
-                transform: translateY(40px) scale(0.95);
-                filter: blur(8px);
+                transform: translateY(-24px);
             }
+
             100% {
                 opacity: 1;
-                transform: translateY(0) scale(1);
-                filter: blur(0);
+                transform: translateY(0);
             }
         }
 
-        /* Continuous subtle float effect once arrived */
-        @keyframes subtleFloat {
-            0%, 100% {
-                transform: translateY(0px);
+        @keyframes containerEnter {
+            0% {
+                opacity: 0;
+                transform: translateY(25px);
             }
-            50% {
-                transform: translateY(-8px);
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
 
-        /* Animation class for Heading */
-        .animate-heading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards,
-                subtleFloat 6s ease-in-out 1.2s infinite;
+        @keyframes textEnter {
+            0% {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        /* Animation class for Subheading (staggered delay) */
-        .animate-subheading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards,
-                subtleFloat 6s ease-in-out 1.55s infinite;
-            opacity: 0; /* Hidden until animation kicks in */
+        @keyframes pageEnter {
+            0% {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        /* Ambient background lighting */
-        .ambient-glow {
-            position: absolute;
-            width: 450px;
-            height: 450px;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(3, 7, 18, 0) 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            transition: left 0.4s ease-out, top 0.4s ease-out;
+        @keyframes arabicEnter {
+            0% {
+                opacity: 0;
+                transform: translateX(22px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes numberEnter {
+            0% {
+                opacity: 0;
+                transform: translateX(-18px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes answerEnter {
+            0% {
+                opacity: 0;
+                transform: translateY(22px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* =========================
+           মোবাইল
+        ========================= */
+
+        @media screen and (max-width: 600px) {
+            body {
+                padding: 5px 4px;
+                background-attachment: scroll;
+            }
+
+            .sticky-toolbar {
+                top: 3px;
+                justify-content: center;
+                gap: 8px;
+                padding: 8px 5px;
+                margin-bottom: 10px;
+                border-radius: 10px;
+            }
+
+            .font-control-panel,
+            .page-indicators {
+                gap: 5px;
+            }
+
+            .font-btn,
+            .nav-btn,
+            .page-number-btn {
+                min-height: 38px;
+                padding: 6px 9px;
+                font-size: calc(14px * var(--font-scale));
+            }
+
+            .container {
+                width: 100%;
+                max-width: 100%;
+                padding: 14px 9px;
+                border-radius: 10px;
+            }
+
+            .book-header {
+                padding-bottom: 12px;
+                margin-bottom: 16px;
+            }
+
+            .book-label {
+                font-size: calc(27px * var(--font-scale));
+            }
+
+            .book-name {
+                font-size: calc(21px * var(--font-scale));
+            }
+
+            .book-year {
+                font-size: calc(14px * var(--font-scale));
+            }
+
+            .main-title {
+                margin-bottom: 17px;
+                font-size: calc(23px * var(--font-scale));
+            }
+
+            .question-group {
+                padding: 12px 8px;
+                margin-bottom: 12px;
+                border-radius: 9px;
+            }
+
+            .ibarot {
+                padding: 12px 9px;
+                margin-bottom: 14px;
+                font-size: calc(23px * var(--font-scale));
+                line-height: 1.9;
+            }
+
+            .section-number {
+                padding: 5px 13px;
+                font-size: calc(15px * var(--font-scale));
+            }
+
+            .qa-item {
+                padding: 12px 2px;
+                margin-bottom: 8px;
+            }
+
+            .sub-question {
+                margin-bottom: 6px;
+                font-size: calc(18px * var(--font-scale));
+                line-height: 1.75;
+            }
+
+            .answer {
+                font-size: calc(17px * var(--font-scale));
+                line-height: 1.8;
+                text-align: start;
+            }
+
+            .bottom-pagination {
+                justify-content: space-between;
+                gap: 8px;
+                margin-top: 16px;
+                padding-top: 12px;
+            }
+
+            .page-status {
+                font-size: calc(14px * var(--font-scale));
+            }
+        }
+
+        /* =========================
+           ছোট মোবাইল
+        ========================= */
+
+        @media screen and (max-width: 360px) {
+            body {
+                padding: 3px;
+            }
+
+            .sticky-toolbar {
+                gap: 5px;
+                padding: 6px 3px;
+            }
+
+            .font-control-panel,
+            .page-indicators {
+                gap: 4px;
+            }
+
+            .font-btn,
+            .page-number-btn {
+                min-height: 34px;
+                padding: 5px 7px;
+                font-size: calc(12px * var(--font-scale));
+            }
+
+            .container {
+                padding: 10px 6px;
+            }
+
+            .book-name {
+                font-size: calc(19px * var(--font-scale));
+            }
+
+            .question-group {
+                padding: 10px 6px;
+            }
+
+            .bottom-pagination .nav-btn {
+                padding: 6px 7px;
+                font-size: calc(12px * var(--font-scale));
+            }
+        }
+
+        /* =========================
+           ট্যাবলেট
+        ========================= */
+
+        @media screen and (min-width: 601px) and (max-width: 900px) {
+            body {
+                padding: 12px;
+            }
+
+            .container {
+                max-width: 850px;
+                padding: 22px;
+            }
+
+            .sticky-toolbar {
+                max-width: 850px;
+            }
+
+            .question-group {
+                padding: 20px;
+            }
+        }
+
+        /* =========================
+           কম্পিউটার ও ল্যাপটপ
+        ========================= */
+
+        @media screen and (min-width: 901px) {
+            body {
+                padding: 22px;
+            }
+
+            .container {
+                max-width: 1100px;
+                padding: 30px;
+            }
+
+            .sticky-toolbar {
+                max-width: 1100px;
+                padding: 12px 18px;
+            }
+
+            .question-group {
+                padding: 26px;
+                margin-bottom: 20px;
+            }
+
+            .ibarot {
+                padding: 20px;
+                font-size: calc(30px * var(--font-scale));
+            }
+
+            .sub-question {
+                font-size: calc(22px * var(--font-scale));
+            }
+
+            .answer {
+                font-size: calc(20px * var(--font-scale));
+                line-height: 1.9;
+            }
+
+            .qa-item {
+                padding: 18px 5px;
+            }
+        }
+
+        /* অ্যানিমেশন কম পছন্দ করেন এমন ব্যবহারকারীদের জন্য */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-delay: 0ms !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
         }
     </style>
 </head>
-<body class="min-h-screen flex items-center justify-center relative select-none px-4">
 
-    <!-- Ambient glow center element -->
-    <div id="glow" class="ambient-glow top-1/2 left-1/2"></div>
+<body>
 
-    <!-- Centered minimal content with entry animations -->
-    <main class="text-center z-10 space-y-6 max-w-3xl mx-auto py-8 px-4">
+    <!-- উপরের কন্ট্রোল বার -->
+    <nav class="sticky-toolbar" aria-label="লেখা ও পৃষ্ঠা নিয়ন্ত্রণ">
+
+        <div class="font-control-panel">
+            <button class="font-btn"
+                    type="button"
+                    onclick="changeFontSize(-0.1)"
+                    title="লেখা ছোট করুন">A−</button>
+
+            <button class="font-btn"
+                    type="button"
+                    onclick="resetFontSize()"
+                    title="মূল আকারে ফিরুন">Reset</button>
+
+            <button class="font-btn"
+                    type="button"
+                    onclick="changeFontSize(0.1)"
+                    title="লেখা বড় করুন">A+</button>
+        </div>
+
+        <div class="page-indicators" aria-label="পৃষ্ঠা নির্বাচন">
+            <button class="page-number-btn active"
+                    type="button" data-page="1"
+                    onclick="goToPage(1)">1</button>
+
+            <button class="page-number-btn"
+                    type="button" data-page="2"
+                    onclick="goToPage(2)">2</button>
+
+            <button class="page-number-btn"
+                    type="button" data-page="3"
+                    onclick="goToPage(3)">3</button>
+
+            <button class="page-number-btn"
+                    type="button" data-page="4"
+                    onclick="goToPage(4)">4</button>
+        </div>
+    </nav>
+
+    <!-- মূল কনটেইনার -->
+    <main class="container">
+
+        <header class="book-header">
+            <div class="book-label" dir="rtl" lang="ar">
+                بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+            </div>
+
+            <div class="book-name">
+                তাফসীরে জালালাইন ২য় খণ্ড
+            </div>
+
+            <div class="book-year">
+                হিজরি সন: 1430
+            </div>
+        </header>
+
+        <h1 class="main-title">বোর্ড পরীক্ষার প্রশ্ন+উত্তর (তানজীম বোর্ড)</h1>
+
+
+
+
         
-        <!-- Main English Title -->
-        <h1 class="animate-heading text-5xl sm:text-7xl md:text-8xl font-black tracking-tight glow-text font-['Inter'] drop-shadow-lg">
-            Coming Soon...
-        </h1>
+        
+        
+        
+        <!-- পৃষ্ঠা ১ -->
+        <section class="question-group active-page"
+                 id="page-1" aria-label="১ নম্বর প্রশ্ন">
 
-        <!-- Bengali Subheading -->
-        <p class="animate-subheading text-xl sm:text-3xl md:text-4xl font-semibold text-emerald-400/90 leading-relaxed tracking-wide drop-shadow">
-            ইনশাআল্লাহ, খুব শীঘ্রই ডাটা যোগ করা হবে।
-        </p>
+            <div class="ibarot" dir="rtl" lang="ar">
+                فَلَمَّا بَلَغَا مَجْمَعَ بَيْنِهِمَا نَسِيَا حُوتَهُمَا فَاتَّخَذَ سَبِيلَهُ فِي الْبَحْرِ سَرَبًا * فَلَمَّا جَاوَزَا قَالَ لِفَتَاهُ آتِنَا غَدَاءَنَا لَقَدْ لَقِينَا مِنْ سَفَرِنَا هَذَا نَصَبًا
+            </div>
+
+            <div class="section-number">১ নং প্রশ্ন + উত্তর...</div>
+
+            <article class="qa-item">
+                <h2 class="sub-question">১ নং প্রশ্ন A: فسر الآيَتَيْنِ الْكَرِيمَتَيْنِ؟</h2>
+                <p class="answer">উত্তর: উদ্দীপকে উল্লেখিত আয়াতদ্বয়ের সংক্ষিপ্ত ও সুবিন্যস্ত তাফসীর নিচে দেওয়া হলো:<br><br>
+                ১. فَلَمَّا بَلَغَا مَجْمَعَ بَيْنِهِمَا: অর্থাৎ হযরত মূসা ও তাঁর সঙ্গী ইউশা ইবনে নূন যখন লোহিত সাগর ও পারস্য উপসাগরের মিলনস্থলে পৌঁছালেন।<br><br>
+                ২. نَسِيَا حُوتَهُمَا: তাঁরা দুজনে তাঁদের সাথে নেওয়া মৃত মাছটির কথা ভুলে গেলেন। ইউশা ইবনে নূন মাছটি জীবিত হয়ে পানিতে নেমে যাওয়ার দৃশ্য দেখেছিলেন, কিন্তু মূসা (আ.)-কে বলতে ভুলে গিয়েছিলেন। আর মূসা (আ.) নিদ্রামগ্ন থাকায় বিষয়টি তখন জানতে পারেননি।<br><br>
+                ৩. فَاتَّخَذَ سَبِيلَهُ فِي الْبَحْرِ سَرَبًا: মাছটি অলৌকিকভাবে জীবিত হয়ে সমুদ্রের পানির ওপর দিয়ে নিজের পথ তৈরি করে চলে যায়। আল্লাহ তাআলা মাছের যাওয়ার পথে পানিকে জমিয়ে শক্ত করে দেন, যা একটি সুড়ঙ্গের মতো রূপ নেয়।<br><br>
+                ৪. فَلَمَّا جَاوَزَا: যখন তাঁরা মিলনস্থল অতিক্রম করে পরবর্তী সকাল পর্যন্ত যাত্রা অব্যাহত রাখলেন।<br><br>
+                ৫. قَالَ لِفَتَاهُ آتِنَا غَدَاءَنَا: মূসা (আ.) তাঁর খাদেমকে বললেন, আমাদের দুপুরের বা সকালের খাবার দাও।<br><br>
+                ۶. لَقَدْ لَقِينَا مِنْ سَفَرِنَا هَذَا نَصَبًا: নির্দিষ্ট সীমানা অতিক্রম করার পর মূসা (আ.) প্রথমবার ক্লান্তি ও ক্ষুধা অনুভব করলেন। এর আগে অলৌকিকভাবে তাঁর কোনো ক্লান্তি আসেনি।</p>
+            </article>
+
+            <article class="qa-item">
+                <h2 class="sub-question">১ নং প্রশ্ন B: أَيْنَ مَجْمَعُ الْبَحْرَيْنِ؟</h2>
+                <p class="answer">উত্তর: 'মাজমাউল বাহরাইন' বা দুই সমুদ্রের মিলনস্থলের ভৌগোলিক অবস্থান নিয়ে মুফাসসিরগণের একাধিক মত রয়েছে:<br><br>
+                * প্রথম মত: এটি পারস্য উপসাগর ও লোহিত সাগরের মিলনস্থল। তাফসীরে জালালাইনে এই মতটিকে গ্রহণ করা হয়েছে।<br><br>
+                * দ্বিতীয় মত: এটি রোম সাগর ও আটলান্টিক মহাসাগরের সংযোগস্থল।<br><br>
+                * তৃতীয় মত: এটি জর্ডান নদী ও লোহিত সাগরের মধ্যবর্তী অঞ্চল।</p>
+            </article>
+
+            <article class="qa-item">
+                <h2 class="sub-question">১ নং প্রশ্ন C: لِمَ أَرْسَلَ اللَّهُ سُبْحَانَهُ وَتَعَالَى مُوسَى عَلَيْهِ السَّلَامُ إِلَى الْخَضِرِ مَعَ أَنَّهُ نَبِيٌّ مُرْسَلٌ أَجِبْ مُتَفَكَّرًا؟</h2>
+                <p class="answer">উত্তর: মূসা (আ.) ওলুল আজম নবী ও রাসুল হওয়া সত্ত্বেও আল্লাহ তাআলা তাঁকে খিজির (আ.)-এর কাছে পাঠানোর পেছনে গভীর হিকমত ও শিক্ষণীয় কারণ ছিল:<br><br>
+                ১. বিনয় ও নম্রতার শিক্ষা: মূসা (আ.)-কে যখন বনী ইসরাঈল জিজ্ঞাসা করেছিল, পৃথিবীতে সবচেয়ে বড় জ্ঞানী কে? তিনি উত্তর দিয়েছিলেন, আমি। আল্লাহ তাআলা চাইলেন তাঁর প্রিয় নবীকে এটি বোঝাতে যে, আল্লাহর জ্ঞানের কোনো শেষ নেই এবং তাঁর চেয়েও বেশি রহস্যময় জ্ঞানের অধিকারী বান্দা পৃথিবীতে আছেন।<br><br>
+                ২. বাতেনী ও তাকদীরের ইলম শিক্ষা: মূসা (আ.)-কে শরীয়তের প্রকাশ্য ইলম দেওয়া হয়েছিল। আর খিজির (আ.)-কে দেওয়া হয়েছিল সৃষ্টিজগতের অভ্যন্তরীণ রহস্য বা বাতেনী ইলম, যাকে ইলমে লাদুন্নী বলা হয়।<br><br>
+                ৩. ধৈর্য ও আনুগত্যের পরীক্ষা: একজন মহান রাসুল হয়েও অন্য একজন বিশেষ বান্দার অধীনে থেকে কীভাবে জ্ঞান অর্জন করতে হয়, তা উম্মতকে শিক্ষা দেওয়া।</p>
+            </article>
+
+            <article class="qa-item">
+                <h2 class="sub-question">১ নং প্রশ্ন D: لِمَ نَقَضَ مُوسَى عَلَيْهِ السَّلَامُ وَعْدَهُ بَعْدَ عَهْدِهِ بِالْخَضِرِ؟ بَيِّنُ بِالْوُضُوحِ؟</h2>
+                <p class="answer">উত্তর: মূসা (আ.) খিজির (আ.)-এর সাথে কোনো প্রশ্ন না করার অঙ্গীকার করা সত্ত্বেও মূলত দুটি কারণে প্রতিশ্রুতি রক্ষা করতে পারেননি:<br><br>
+                ১. শরীয়তের আত্মমর্যাদাবোধ (الأمر بالمعروف والنهي عن المنكر): মূসা (আ.) ছিলেন শরীয়তের ধারক ও বাহক। খিজির (আ.) যখন বাহ্যিকভাবে তিনটি আপত্তিকর কাজ করলেন (নৌকা ছিদ্র করা, নিষ্পাপ শিশু হত্যা করা এবং পারিশ্রমিক ছাড়া দেয়াল মেরামত করা), তখন মূসা (আ.)-এর ভেতরের নবীসুলভ ন্যায়বোধ ও শরীয়তের বিধান জারির তাড়না তাঁকে চুপ থাকতে দেয়নি। অন্যায় দেখে প্রতিবাদ করা নবীগণের সহজাত বৈশিষ্ট্য।<br><br>
+                ২. বিস্মৃতি বা ভুলে যাওয়া: প্রথমবার নৌকা ছিদ্র করার পর মূসা (আ.) নিজেই স্বীকার করেছিলেন যে, তিনি শর্তের কথা ভুলে গিয়েছিলেন। কুরআনের ভাষায়: لَا تُؤَاخِذْنِي بِمَا نَسِيتُ (আপনি আমার ভুলের জন্য আমাকে পাকড়াও করবেন না)।</p>
+            </article>
+
+            <article class="qa-item">
+                <h2 class="sub-question">১ নং প্রশ্ন E: هَلْ كَانَ الْخَضِرُ نَبِيًّا أَمْ وَلِيًّا؟ مَا هُوَ الرَّاجِحُ عِنْدَ الْمُفَسِرِ الْعَلَّامِ؟</h2>
+                <p class="answer">উত্তর: হযরত খিজির (আ.)-এর পরিচয় ও নবুওয়াত নিয়ে ওলামায়ে কেরামের মাঝে দুটি প্রসিদ্ধ মত রয়েছে:<br><br>
+                হযরত খিজির (আ.) নবী ছিলেন, নাকি ওলি ছিলেন—এ বিষয়ে আলেমদের মধ্যে মতভেদ রয়েছে। একদল আলেমের মতে, তিনি নবী ছিলেন। অপর একদল আলেমের মতে, তিনি আল্লাহর একজন বিশেষ ওলি ছিলেন, নবী ছিলেন না।<br><br>
+                দ্বিতীয় মতটি গ্রহণকারীদের কয়েকটি দলিল রয়েছে:<br><br>
+                ১. আল্লাহ তাআলা তাঁকে নিজের বিশেষ বান্দা হিসেবে উল্লেখ করেছেন। ইরশাদ হয়েছে:<br>
+                فَوَجَدَا عَبْدًا مِنْ عِبَادِنَا آتَيْنَاهُ رَحْمَةً مِنْ عِنْدِنَا وَعَلَّمْنَاهُ مِنْ لَدُنَّا عِلْمًا<br>
+                অর্থ: অতঃপর তাঁরা আমার বান্দাদের মধ্য থেকে এমন একজন বান্দাকে পেলেন, যাকে আমি আমার পক্ষ থেকে বিশেষ রহমত দান করেছিলাম এবং আমার পক্ষ থেকে বিশেষ জ্ঞান শিক্ষা দিয়েছিলাম। (সূরা কাহাফ: ৬৫)<br><br>
+                ২. আল্লাহর পক্ষ থেকে বিশেষ জ্ঞান ও ইলহাম লাভ করা নবুওয়াতের জন্য নির্দিষ্ট নয়। যেমন, হযরত মূসা (আ.)-এর মায়ের কাছে আল্লাহ তাআলা নির্দেশ পাঠিয়েছিলেন (সূরা কাসাস: ৭)। অনুরূপভাবে হযরত মরিয়ম (আ.)-এর কাছেও ফেরেশতা প্রেরণ করেছিলেন (সূরা মারইয়াম: ১৭)। অথচ তাঁরা নবী ছিলেন না।<br><br>
+                ৩. সুতরাং আল্লাহর পক্ষ থেকে বিশেষ জ্ঞান ও নির্দেশ লাভ করাই নবুওয়াতের অকাট্য প্রমাণ নয়। বরং তা ইলহাম ও বিশেষ রহমতের মাধ্যমেও হতে পারে।<br><br>
+                অতএব, এ মত অনুযায়ী হযরত খিজির (আ.) আল্লাহর একজন বিশেষ ওলি ছিলেন, নবী ছিলেন না।</p>
+            </article>
+        </section>
+
+
+
+
+
+
+        <!-- পৃষ্ঠা ২ -->
+        <section class="question-group"
+                 id="page-2" aria-label="২ নম্বর প্রশ্ন">
+
+            <div class="ibarot" dir="rtl" lang="ar">
+                يَا أَيُّهَا النَّبِيُّ إِنَّا أَحْلَلْنَا لَكَ أَزْوَاجَكَ اللَّاتِي آتَيْتَ أُجُورَهُنَّ وَمَا مَلَكَتْ يَمِينُكَ مِمَّا أَفَاءَ اللهُ عَلَيْكَ وَبَنَاتِ عَمِكَ وَبَنَاتِ عَمَّاتِكَ وَبَنَاتِ خَالِكَ وَبَنَاتِ خَالَاتِكَ اللَّاتِي هَاجَرْنَ مَعَكَ وَامْرَأَةً مُؤْمِنَةً إِنْ وَهَبَتْ نَفْسَهَا لِلنَّبِيِّ إِنْ أَرَادَ النَّبِيُّ أَنْ يَسْتَنْكِحَهَا خَالِصَةً لَكَ مِنْ دُونِ الْمُؤْمِنِينَ
+            </div>
+
+            <div class="section-number">২ নং প্রশ্ন + উত্তর...</div>
+
+            <article class="qa-item">
+                <h2 class="sub-question">২ নং প্রশ্ন A: فسرِ الآيَةَ الْكَرِيمَةَ حَقَّ التَّفْسِيرِ؟</h2>
+                <p class="answer">উত্তর: সূরা আহযাবের ৫০ নম্বর আয়াতে আল্লাহ তাআলা নবী করীম ﷺ-এর জন্য কোন কোন নারী বৈধ তা স্পষ্টভাবে বর্ণনা করেছেন। তাফসীরে জালালাইনের আলোকে এর যথাযথ তাফসীর নিচে দেওয়া হলো:<br><br>
+                ১. أَزْوَاجَكَ اللَّاتِي آتَيْتَ أُجُورَهُنَّ: অর্থাৎ যে স্ত্রীদের মোহরানা নবীজি আদায় করে দিয়েছেন, তাঁদের তাঁর জন্য হালাল করা হয়েছে।<br><br>
+                ২. وَمَا مَلَكَتْ يَمِينُكَ: যুদ্ধলব্ধ দাসী হিসেবে আল্লাহ তাআলা যে নারীদের নবীজিকে দান করেছেন (যেমন: হযরত মারিয়া কিবতিয়া ও জুওয়াইরিয়া), তাঁরা তাঁর জন্য বৈধ।<br><br>
+                ৩. আত্মীয়দের ভেতর বিবাহ: চাচার কন্যা, ফুফুর কন্যা, মামার কন্যা ও খালার কন্যাদের মধ্য থেকে শুধু তাঁদের বিবাহ করার অনুমতি দেওয়া হয়েছিল, যাঁরা মক্কা থেকে মদীনায় নবীজির সাথে হিজরত করেছিলেন। যারা হিজরত করেনি, তাদের বিবাহ করার অনুমতি ছিল না।<br><br>
+                ৪. وَامْرَأَةً مُؤْمِنَةً إِنْ وَهَبَتْ نَفْسَهَا: কোনো মুমিন নারী যদি মোহরানা ছাড়া নিজের সত্ত্বাকে নবীজির জন্য উৎসর্গ বা হেবা করতে চায়, তবে নবীজি চাইলে তাকে বিবাহ করতে পারতেন।</p>
+            </article>
+
+            <article class="qa-item">
+                <h2 class="sub-question">২ নং প্রশ্ন B: مَا الْمُرَادُ بِقَوْلِهِ تَعَالَى: خَالِصَةً لَكَ مِنْ دُونِ الْمُؤْمِنِينَ؟</h2>
+                <p class="answer">উত্তর: মহান আল্লাহর বাণী "خَالِصَةً لَكَ مِنْ دُونِ الْمُؤْمِنِينَ"-এর দ্বারা বোঝানো হয়েছে যে, মোহরানা ছাড়া এবং "হেবা" বা আত্মদানের মাধ্যমে বিবাহ বন্ধনে আবদ্ধ হওয়ার এই বিশেষ বিধানটি একমাত্র রাসুলুল্লাহ ﷺ-এর জন্যই সুনির্দিষ্ট ও বৈধ ছিল。<br><br>
+                উম্মতের অন্য কোনো মুমিন পুরুষের জন্য মোহরানা ছাড়া এবং ওলী ও সাক্ষী ব্যতীত কেবল হেবার মাধ্যমে বিবাহ করা শরীয়তে সম্পূর্ণ হারাম। এটি নবীজির একটি বিশেষ বৈশিষ্ট্য বা خصائص-এর অন্তর্ভুক্ত।</p>
+            </article>
+
+            <article class="qa-item">
+                <h2 class="sub-question">২ নং প্রশ্ন C: هَلْ كَانَ النِّكَاحُ حَلَالًا لِلنَّبِيِّ مَعَ بَقَاءِ الأَزْوَاجِ الْمُطَهَّرَاتِ غَيْرَهُنَّ ؟ مَا الْخِلَافُ فِيهِ؟ بَيْنَ مُوَضِحًا؟</h2>
+                <p class="answer">উত্তর: রাসুলুল্লাহ ﷺ-এর কাছে পবিত্র স্ত্রীগণের উপস্থিতিতে তাঁদের বাইরে অন্য নারীদের বিবাহ করা বৈধ ছিল কি না, তা নিয়ে মুফাসসির ও ফকীহগণের মাঝে মতভেদ রয়েছে। এর মূল কারণ সূরা আহযাবের ৫২ নম্বর আয়াত: لَا يَحِلُّ لَكَ النِّسَاءُ مِنْ بَعْدُ (এরপর আপনার জন্য আর কোনো নারী বৈধ নয়)। এ বিষয়ের খিলাফ বা মতভেদ নিচে স্পষ্ট করা হলো:<br><br>
+                ১. প্রথম মত (ইবনে আব্বাস ও জমহুর ওলামা): ৫২ নম্বর আয়াতের নিষেধাজ্ঞাটি পরবর্তীতে এই ৫০ নম্বর আয়াত (إِنَّا أَحْلَلْنَا لَكَ) দ্বারা মানসুখ বা রহিত হয়ে গিয়েছিল। সুতরাং ওফাত পর্যন্ত নবীজির জন্য নতুন বিবাহ করা হালাল বা বৈধ ছিল। তাফসীরে জালালাইনে এই মতটিকে প্রধান্য দেওয়া হয়েছে।<br><br>
+                ২. দ্বিতীয় মত (হযরত আয়েশা রা. এর মত): হযরত আয়েশা (রা.) বলেন, রাসুলুল্লাহ ﷺ-এর ওফাত হওয়ার পূর্বেই আল্লাহ তাআলা তাঁর জন্য নারীদের বিবাহ করার নিষেধাজ্ঞা তুলে নিয়ে হালাল করে দিয়েছিলেন।<br><br>
+                ৩. তৃতীয় মত (ইমাম শাফেয়ী র.-এর একটি মত): ৫২ নম্বর আয়াতের হুকুম বহাল ছিল। অর্থাৎ পবিত্র স্ত্রীগণ জীবিত থাকা অবস্থায় নবীজির জন্য অন্য কোনো নতুন নারী বিবাহ করা বৈধ ছিল না।</p>
+            </article>
+
+            <article class="qa-item">
+                <h2 class="sub-question">২ নং প্রশ্ন D: كَمْ كَانَتْ أَزْوَاجُ النَّبِيِّ ﷺ عِنْدَ ارْتِحَالِهِ مِنَ الدُّنْيَا؟ اكْتُبْ مَعَ الْأَسْمَاءِ؟</h2>
+                <p class="answer">উত্তর: রাসুলুল্লাহ ﷺ যখন এ নশ্বর পৃথিবী থেকে বিদায় (ওফাত) নেন, তখন তাঁর পবিত্র স্ত্রীগণের মধ্যে <strong>৯ জন স্ত্রী জীবিত ছিলেন</strong>। তাঁদের নাম নিচে দেওয়া হলো:<br><br>
+                ১. হযরত আয়েশা বিনতে আবু বকর (রা.)<br>
+                ২. হযরত হাফসা বিনতে উমর (রা.)<br>
+                ৩. হযরত উম্মে সালামা হিন্দ বিনতে আবি উমাইয়া (রা.)<br>
+                ৪. হযরত উম্মে হাবীবা রামলা বিনতে আবু সুফিয়ান (রা.)<br>
+                ৫. হযরত সওদা বিনতে জামআ (রা.)<br>
+                ৬. হযরত যয়নব বিনতে জাহশ (রা.)<br>
+                ৭. হযরত জুওয়াইরিয়া বিনতে হারেস (রা.)<br>
+                ৮. হযরত সাফিয়া বিনতে হুয়াই (রা.)<br>
+                ৯. হযরত মায়মূনা বিনতে হারেস (রা.)</p>
+            </article>
+
+            <div class="ibarot" dir="rtl" lang="ar" style="margin-top: 40px;">
+                إِنَّا فَتَحْنَا لَكَ فَتْحًا مُبِينًا * لِيَغْفِرَ لَكَ اللهُ مَا تَقَدَّمَ مِنْ ذَنْبِكَ وَمَا تَأَخَّرَ وَيُتِمَّ نِعْمَتَهُ عَلَيْكَ وَيَهْدِيَكَ صِرَاطًا مُسْتَقِيمًا
+            </div>
+
+            <article class="qa-item" style="margin-top: 30px;">
+                <h2 class="sub-question">২ নং প্রশ্ন E: فَسْرِ الْآيَتَيْنِ الْكَرِيمَتَيْنِ مَعَ بَيَانِ شَأْنِ النُّزُولِ؟</h2>
+                <p class="answer">উত্তর: সূরা আল-ফাতহের শুরুতে অবতীর্ণ এই আয়াতদ্বয়ের শানে নুযূল ও তাফসীর নিচে উপস্থাপন করা হলো:<br><br>
+                শানে নুযূল: ৬ষ্ঠ হিজরীর জিলকদ মাসে রাসুলুল্লাহ ﷺ চৌদ্দশত সাহাবীকে সাথে নিয়ে উমরার উদ্দেশ্যে মক্কার অভিমুখে যাত্রা করেন। কিন্তু কুরাইশরা তাঁদের মক্কায় প্রবেশ করতে বাধা দেয়। দীর্ঘ আলোচনার পর 'হুদায়বিয়া' নামক স্থানে একটি চুক্তি স্বাক্ষরিত হয়, যা বাহ্যিকভাবে মুসলমানদের বিপক্ষে ছিল। সাহাবীগণ অত্যন্ত বিষণ্ণ মনে মদীনায় ফিরে যাওয়ার পথে অবতীর্ণ হয়ে আল্লাহ তাআলা এই চুক্তিকে প্রকাশ্য বিজয় বলে ঘোষণা করেন।<br><br>
+                তাফসীর:<br>
+                ১. إِنَّا فَتَحْنَا لَكَ فَتْحًا مُبِينًا: অর্থাৎ নিশ্চয়ই আমি আপনার জন্য হুদায়বিয়ার সন্ধির মাধ্যমে একটি সুস্পষ্ট বিজয়ের ফয়সালা করে দিয়েছি।<br>
+                ২. لِيَغْفِرَ لَكَ اللهُ مَا تَقَدَّمَ مِنْ ذَنْبِكَ وَمَا تَأَخَّرَ: নবীগণ নিষ্পাপ (معصوم)। এখানে 'ذنب' (গুনাহ) বলতে নবীজির পূর্বের ও পরের এমন সব বিষয়কে বোঝানো হয়েছে যা উত্তম কাজের পরিপন্থী (خلاف الأولى)। এটি রাসুলুল্লাহ ﷺ-এর মর্যাদা বৃদ্ধির জন্য আল্লাহর একটি বিশেষ ঘোষণা।<br>
+                ৩. وَيُتِمَّ نِعْمَتَهُ عَلَيْكَ: এবং আল্লাহ মক্কা বিজয় ও ইসলামের প্রসারের মাধ্যমে আপনার প্রতি তাঁর দ্বীনি ও দুনিয়াবী নেয়ামত পরিপূর্ণ করবেন।<br>
+                ৪. وَيَهْدِيَكَ صِرَاطًا مُسْتَقِيمًا: এবং আপনাকে ইসলামের সত্য ও সরল পথে সর্বদা অবিচল রাখবেন।</p>
+            </article>
+
+            <article class="qa-item">
+                <h2 class="sub-question">২ নং প্রশ্ন F: مَتَى وَقَعَ صُلْحُ الحُدَيْبِيَةِ؟ وَكَمِ الْمَسَافَةُ بَيْنَ مَكَّةَ وَالحُدَيْبِيَةِ؟ ثُمَّ حَرِّرُ شَرَائِطَ الصُّلْحِ مُفَصَّلًا?</h2>
+                <p class="answer">উত্তর: হুদায়বিয়ার সন্ধির সময়কাল, দূরত্ব এবং এর শর্তসমূহ নিচে বিস্তারিতভাবে দেওয়া হলো:<br><br>
+                সংঘটিত হওয়ার সময়: হুদায়বিয়ার সন্ধি ৬ষ্ঠ হিজরীর জিলকদ মাসে (ইংরেজি ৬২৮ খ্রিষ্টাব্দে) সংঘটিত হয়।<br>
+                মক্কা থেকে দূরত্ব: মক্কা মুকাররমা থেকে হুদায়বিয়ার দূরত্ব আনুমানিক ২২ কিলোমিটার (১৪ মাইল)।<br><br>
+                সন্ধির শর্তসমূহ (شرائط الصلح):<br>
+                * আগামী ১০ বছর উভয় পক্ষ যুদ্ধ ও রক্তপাত বন্ধ রাখবে এবং পরস্পর শান্তিতে বসবাস করবে।<br>
+                * মুসলমানরা এই বছর উমরা না করেই মদীনায় ফিরে যাবেন।<br>
+                * আগামী বছর তাঁরা উমরার জন্য আসতে পারবেন এবং মাত্র ৩ দিন মক্কায় অবস্থান করতে পারবেন।<br>
+                * উমরার সময় মুসলমানরা তলোয়ার ব্যতীত অন্য কোনো অস্ত্র সাথে আনতে পারবেন না, আর তলোয়ারও খাপের ভেতরে রাখতে হবে।<br>
+                * মক্কার কোনো ব্যক্তি (নাবালক বা নারী) যদি অভিভাবকের অনুমতি ছাড়া মদীনায় আশ্রয় নেয়, তবে তাকে মক্কায় ফেরত দিতে হবে। কিন্তু মদীনার কোনো ব্যক্তি মক্কায় আশ্রয় নিলে কুরাইশরা তাকে ফেরত দেবে না।<br>
+                * আরবের যেকোনো গোত্র চাইলে মুসলমানদের সাথে বা কুরাইশদের সাথে চুক্তিবদ্ধ হতে পারবে।</p>
+            </article>
+
+            <article class="qa-item">
+                <h2 class="sub-question">২ নং প্রশ্ন G: كَيْفَ سَمَّى اللَّهُ تَعَالَى هَذَا الصُّلْحَ فَتْحًا مُبِينًا، وَالظَّاهِرُ أَنَّهُ كَانَ هَزِيمَةً لِلْمُسْلِمِينَ؟ بَيْنَ مُتَفَكَّرًا؟</h2>
+                <p class="answer">উত্তর: হুদায়বিয়ার সন্ধির শর্তগুলো বাহ্যিকভাবে মুসলমানদের জন্য অপমানজনক ও পরাজয়মূলক মনে হলেও আল্লাহ তাআলা একে দূরদর্শী হিকমতের কারণে 'ফাতহাম মুবীনা' বা সুস্পষ্ট বিজয় বলেছেন। এর কারণসমূহ নিচে বিশ্লেষণ করা হলো:<br><br>
+                ১. কুরাইশদের পক্ষ থেকে স্বীকৃতি: এই চুক্তির মাধ্যমে মক্কার কাফেররা ইসলামের রাজনৈতিক ও রাষ্ট্রীয় অস্তিত্বকে প্রথমবারের মতো আনুষ্ঠানিকভাবে স্বীকার করে নেয়।<br>
+                ২. নির্ভীক দ্বীন প্রচারের সুযোগ: যুদ্ধ বন্ধ থাকার ফলে কাফের ও মুসলমানদের মাঝে দীর্ঘদিনের সামাজিক দূরত্ব ও শত্রুতা দূর হয়। কাফেররা মুসলমানদের সাথে মন খুলে মেলামেশার সুযোগ পায় এবং ইসলামের সৌন্দর্য খুব কাছ থেকে দেখার সুযোগ লাভ করে।<br>
+                ৩. রেকর্ড সংখ্যক মানুষের ইসলাম গ্রহণ: ইসলামের ইতিহাসে হুদায়বিয়ার সন্ধি থেকে মক্কা বিজয় পর্যন্ত (মাত্র দুই বছর) যত মানুষ ইসলাম গ্রহণ করেছে, তা পূর্ববর্তী ১৯ বছরের সংখ্যার চেয়েও অনেক বেশি। হযরত খালেদ ইবনুল ওয়ালীদ ও আমর ইবনুল আসের মতো বীর যোদ্ধারা এই অন্তর্বর্তী সময়েই ইসলাম গ্রহণ করেন।<br>
+                ৪. মক্কা বিজয়ের পথ সুগম হওয়া: এই সন্ধির ফলেই পরবর্তীতে কুরাইশরা চুক্তি ভঙ্গ করলে রাসুলুল্লাহ ﷺ ১০,০০০ সাহাবীর বিশাল বাহিনী নিয়ে বিনা রক্তপাতে মক্কা বিজয় করতে সক্ষম হন। সুতরাং, হুদায়বিয়ার সন্ধিই ছিল মক্কা বিজয়ের মূল চাবিকাঠি।</p>
+            </article>
+        </section>
+
+
+
+        <!-- পৃষ্ঠা ৩ -->
+        <section class="question-group"
+                 id="page-3" aria-label="৩ নম্বর প্রশ্ন">
+
+            <div class="ibarot" dir="rtl" lang="ar">
+                إِنَّا فَتَحْنَا لَكَ فَتْحًا مُبِينًا * لِيَغْفِرَ لَكَ اللهُ مَا تَقَدَّمَ مِنْ ذَنْبِكَ وَمَا تَأَخَّرَ وَيُتِمَّ نِعْمَتَهُ عَلَيْكَ وَيَهْدِيَكَ صِرَاطًا مُسْتَقِيمًا
+            </div>
+
+            <div class="section-number">৩ নং প্রশ্ন + উত্তর...</div>
+
+            <article class="qa-item">
+                <h2 class="sub-question">৩ নং প্রশ্ন A: فَسْرِ الْآيَتَيْنِ الْكَرِيمَتَيْنِ مَعَ بَيَانِ شَأْنِ النُّزُولِ؟</h2>
+                <p class="answer">উত্তর: সূরা আল-ফাতহের শুরুতে অবতীর্ণ এই আয়াতদ্বয়ের শানে নুযূল ও তাফসীর নিচে উপস্থাপন করা হলো:<br><br>
+                শানে নুযূল: ৬ষ্ঠ হিজরীর জিলকদ মাসে রাসুলুল্লাহ ﷺ চৌদ্দশত সাহাবীকে সাথে নিয়ে উমরার উদ্দেশ্যে মক্কার অভিমুখে যাত্রা করেন। কিন্তু কুরাইশরা তাঁদের মক্কায় প্রবেশ করতে বাধা দেয়। দীর্ঘ আলোচনার পর 'হুদায়বিয়া' নামক স্থানে একটি চুক্তি স্বাক্ষরিত হয়, যা বাহ্যিকভাবে মুসলমানদের বিপক্ষে ছিল। সাহাবীগণ অত্যন্ত বিষণ্ণ মনে মদীনায় ফিরে যাওয়ার পথে অবতীর্ণ হয়ে আল্লাহ তাআলা এই চুক্তিকে প্রকাশ্য বিজয় বলে ঘোষণা করেন。<br><br>
+                তাফসীর:<br>
+                ১. إِنَّا فَتَحْنَا لَكَ فَتْحًا مُبِينًا: অর্থাৎ নিশ্চয়ই আমি আপনার জন্য হুদায়বিয়ার সন্ধির মাধ্যমে একটি সুস্পষ্ট বিজয়ের ফয়সালা করে দিয়েছি।<br>
+                ২. لِيَغْفِرَ لَكَ اللهُ مَا تَقَدَّمَ مِنْ ذَنْبِكَ وَمَا تَأَخَّرَ: নবীগণ নিষ্পাপ (معصوم)। এখানে 'ذنب' (গুনাহ) বলতে নবীজির পূর্বের ও পরের এমন সব বিষয়কে বোঝানো হয়েছে যা উত্তম কাজের পরিপন্থী (خلاف الأولى)। এটি রাসুলুল্লাহ ﷺ-এর মর্যাদা বৃদ্ধির জন্য আল্লাহর একটি বিশেষ ঘোষণা।<br>
+                ৩. وَيُتِمَّ نِعْمَتَهُ عَلَيْكَ: এবং আল্লাহ মক্কা বিজয় ও ইসলামের প্রসারের মাধ্যমে আপনার প্রতি তাঁর দ্বীনি ও দুনিয়াবী নেয়ামত পরিপূর্ণ করবেন।<br>
+                ৪. وَيَهْدِيَكَ صِرَاطًا مُسْتَقِيمًا: এবং আপনাকে ইসলামের সত্য ও সরল পথে সর্বদা অবিচল রাখবেন।</p>
+            </article>
+
+            <article class="qa-item">
+                <h2 class="sub-question">৩ নং প্রশ্ন B: مَتَى وَقَعَ صُلْحُ الحُدَيْبِيَةِ؟ وَكَمِ الْمَسَافَةُ بَيْنَ مَكَّةَ وَالحُدَيْبِيَةِ؟ ثُمَّ حَرِّرُ شَرَائِطَ الصُّلْحِ مُفَصَّلًا?</h2>
+                <p class="answer">উত্তর: হুদায়বিয়ার সন্ধির সময়কাল, দূরত্ব এবং এর শর্তসমূহ নিচে বিস্তারিতভাবে দেওয়া হলো:<br><br>
+                সংঘটিত হওয়ার সময়: হুদায়বিয়ার সন্ধি ৬ষ্ঠ হিজরীর জিলকদ মাসে (ইংরেজি ৬২৮ খ্রিষ্টাব্দে) সংঘটিত হয়।<br>
+                মক্কা থেকে দূরত্ব: মক্কা মুকাররমা থেকে হুদায়বিয়ার দূরত্ব আনুমানিক ২২ কিলোমিটার (১৪ মাইল)।<br><br>
+                সন্ধির শর্তসমূহ (شرائط الصلح):<br>
+                * আগামী ১০ বছর উভয় পক্ষ যুদ্ধ ও রক্তপাত বন্ধ রাখবে এবং পরস্পর শান্তিতে বসবাস করবে।<br>
+                * মুসলমানরা এই বছর উমরা না করেই মদীনায় ফিরে যাবেন।<br>
+                * আগামী বছর তাঁরা উমরার জন্য আসতে পারবেন এবং মাত্র ৩ দিন মক্কায় অবস্থান করতে পারবেন।<br>
+                * উমরার সময় মুসলমানরা তলোয়ার ব্যতীত অন্য কোনো অস্ত্র সাথে আনতে পারবেন না, আর তলোয়ারও খাপের ভেতরে রাখতে হবে।<br>
+                * মক্কার কোনো ব্যক্তি (নাবালক বা নারী) যদি অভিভাবকের অনুমতি ছাড়া মদীনায় আশ্রয় নেয়, তবে তাকে মক্কায় ফেরত দিতে হবে। কিন্তু মদীনার কোনো ব্যক্তি মক্কায় আশ্রয় নিলে কুরাইশরা তাকে ফেরত দেবে না।<br>
+                * আরবের যেকোনো গোত্র চাইলে মুসলমানদের সাথে বা কুরাইশদের সাথে চুক্তিবদ্ধ হতে পারবে।</p>
+            </article>
+
+            <article class="qa-item">
+                <h2 class="sub-question">৩ নং প্রশ্ন C: كَيْفَ سَمَّى اللَّهُ تَعَالَى هَذَا الصُّلْحَ فَتْحًا مُبِينًا، وَالظَّاهِرُ أَنَّهُ كَانَ هَزِيمَةً لِلْمُسْلِمِينَ؟ بَيْنَ مُتَفَكَّرًا؟</h2>
+                <p class="answer">উত্তর: হুদায়বিয়ার সন্ধির শর্তগুলো বাহ্যিকভাবে মুসলমানদের জন্য অপমানজনক ও পরাজয়মূলক মনে হলেও আল্লাহ তাআলা একে দূরদর্শী হিকমতের কারণে 'ফাতহাম মুবীনা' বা সুস্পষ্ট বিজয় বলেছেন। এর কারণসমূহ নিচে বিশ্লেষণ করা হলো:<br><br>
+                ১. কুরাইশদের পক্ষ থেকে স্বীকৃতি: এই চুক্তির মাধ্যমে মক্কার কাফেররা ইসলামের রাজনৈতিক ও রাষ্ট্রীয় অস্তিত্বকে প্রথমবারের মতো আনুষ্ঠানিকভাবে স্বীকার করে নেয়।<br>
+                ২. নির্ভীক দ্বীন প্রচারের সুযোগ: যুদ্ধ বন্ধ থাকার ফলে কাফের ও মুসলমানদের মাঝে দীর্ঘদিনের সামাজিক দূরত্ব ও শত্রুতা দূর হয়। কাফেররা মুসলমানদের সাথে মন খুলে মেলামেশার সুযোগ পায় এবং ইসলামের সৌন্দর্য খুব কাছ থেকে দেখার সুযোগ লাভ করে।<br>
+                ৩. রেকর্ড সংখ্যক মানুষের ইসলাম গ্রহণ: ইসলামের ইতিহাসে হুদায়বিয়ার সন্ধি থেকে মক্কা বিজয় পর্যন্ত (মাত্র দুই বছর) যত মানুষ ইসলাম গ্রহণ করেছে, তা পূর্ববর্তী ১৯ বছরের সংখ্যার চেয়েও অনেক বেশি। হযরত খালেদ ইবনুল ওয়ালীদ ও আমর ইবনুল আসের মতো বীর যোদ্ধারা এই অন্তর্বর্তী সময়েই ইসলাম গ্রহণ করেন।<br>
+                ৪. মক্কা বিজয়ের পথ সুগম হওয়া: এই সন্ধির ফলেই পরবর্তীতে কুরাইশরা চুক্তি ভঙ্গ করলে রাসুলুল্লাহ ﷺ ১০,০০০ সাহাবীর বিশাল বাহিনী নিয়ে বিনা রক্তপাতে মক্কা বিজয় করতে সক্ষম হন। সুতরাং, হুদায়বিয়ার সন্ধিই ছিল মক্কা বিজয়ের মূল চাবিকাঠি。</p>
+            </article>
+        </section>
+
+
+
+
+       <!-- পৃষ্ঠা ৪ -->
+        <section class="question-group"
+                 id="page-4" aria-label="৪ নম্বর প্রশ্ন">
+
+            <div class="ibarot" dir="rtl" lang="ar">
+                إِذَا جَاءَ نَصْرُ اللَّهِ وَالْفَتْحُ * وَرَأَيْتَ النَّاسَ يَدْخُلُونَ فِي دِينِ اللَّهِ أَفْوَاجًا * فَسَبِّحْ بِحَمْدِ رَبِّكَ وَاسْتَغْفِرْهُ إِنَّهُ كَانَ تَوَّابًا
+            </div>
+
+            <div class="section-number">৪ নং প্রশ্ন + উত্তর...</div>
+
+            <article class="qa-item">
+                <h2 class="sub-question">৪ নং প্রশ্ন A: فسِرْ سُورَةَ النَّصْرِ كَمَا فَسَّرَهَا الْمُفَسِّرُ الْعَلَّامُ؟</h2>
+                <p class="answer">উত্তর: তাফসীরে জালালাইনের আলোকে সূরা আন-নসরের শব্দভিত্তিক সুবিন্যস্ত তাফসীর নিচে দেওয়া হলো:<br><br>
+                ১. إِذَا جَاءَ نَصْرُ اللهِ: যখন আল্লাহর পক্ষ থেকে তাঁর দ্বীন ও নবীজির জন্য বিশেষ সাহায্য ও নুসরাত চলে এল。<br><br>
+                ২. وَالْفَتْحُ: এবং মক্কা মুকাররমার ঐতিহাসিক বিজয় অর্জিত হলো।<br><br>
+                ৩. وَرَأَيْتَ النَّاسَ يَدْخُلُونَ فِي دِينِ اللهِ أَفْوَاجًا: এবং আপনি দলে দলে ও দলে দলে মানুষকে আল্লাহর মনোনীত দ্বীন ইসলামে প্রবেশ করতে দেখলেন। এর আগে মানুষ এককভাবে ইসলাম গ্রহণ করত, মক্কা বিজয়ের পর বিভিন্ন গোত্র স্বেচ্ছায় দলে দলে ইসলামে দীক্ষিত হতে শুরু করে。<br><br>
+                ৪. فَسَبِّحْ بِحَمْدِ رَبِّكَ: অতএব আপনি আপনার রবের প্রশংসাসহ তাঁর পবিত্রতা ঘোষণা করুন। অর্থাৎ 'সুবহানাল্লাহি ওয়া বিহামদিহি' বলুন।<br><br>
+                ৫. وَاسْتَغْفِرْهُ: এবং তাঁর কাছে ক্ষমা প্রার্থনা করুন।<br><br>
+                ৬. إِنَّهُ كَانَ تَوَّابًا: নিশ্চয়ই আল্লাহ তাআলা তওবা কবুলকারী। নবীজির নিষ্পাপ হওয়া সত্ত্বেও উম্মতকে তওবা ও ইস্তিগফারের শিক্ষা দেওয়ার জন্য এই নির্দেশ দেওয়া হয়েছে।</p>
+            </article>
+
+            <article class="qa-item">
+                <h2 class="sub-question">৪ নং প্রশ্ন B: اكْتُبْ أَقْوَالَ الصَّحَابَةِ فِي تَفْسِيرِ سُورَةِ النَّصْرِ؟</h2>
+                <p class="answer">উত্তর: সূরা আন-নসরের অন্তর্নিহিত অর্থ ও তাফসীর নিয়ে সাহাবায়ে কেরামের মাঝে এক ঐতিহাসিক আলোচনা সংঘটিত হয়েছিল। হযরত উমর (রা.) যখন ইবনে আব্বাস (রা.)-এর কম বয়স হওয়া সত্ত্বেও বড় বড় বদরী সাহাবীদের মজলিশে স্থান দিতেন, তখন সাহাবীদের মাঝে গুঞ্জন তৈরি হয়। এর প্রেক্ষিতে হযরত উমর (রা.) এই সূরার মর্মার্থ জিজ্ঞেস করেন:<br><br>
+                * সাধারণ সাহাবীগণের বক্তব্য: অধিকাংশ সাহাবী বলেন, এই সূরায় আল্লাহ তাআলা আমাদের নির্দেশ দিয়েছেন যে, যখন আল্লাহর সাহায্য ও বিজয় আসবে, তখন আমরা যেন আল্লাহর প্রশংসা ও ইস্তিগফার করি।<br><br>
+                * হযরত ইবনে আব্বাস (রা.)-এর বক্তব্য: তিনি এই সূরার গভীর রহস্য উন্মوচন করে বলেন, هُوَ أَجَلُ رَسُولِ اللهِ صلى الله عليه وسلم أَعْلَمَهُ لَهُ অর্থাৎ, এটি মূলত রাসুলুল্লাহ ﷺ-এর ওফাত বা দুনিয়া থেকে বিদায় নেওয়ার সময় ঘনিয়ে আসার পূর্বাভাস। আল্লাহ তাআলা তাঁর নবীকে জানিয়ে দিয়েছেন যে, মক্কা বিজয় এবং মানুষের দলে দলে ইসলামে প্রবেশ করার অর্থই হলো আপনার দায়িত্ব পূর্ণ হয়েছে, এবার আপনি আল্লাহর সান্নিধ্যে আসার প্রস্তুতি নিন।<br><br>
+                * হযরত উমর (রা.)-এর সত্যায়ন: হযরত ইবনে আব্বাস (রা.)-এর এই গভীর তাফসীর শুনে হযরত উমর (রা.) বললেন, "তুমি এই সূরা থেকে যা বুঝেছ, আমিও তা ছাড়া অন্য কিছু বুঝি না।"</p>
+            </article>
+
+            <article class="qa-item">
+                <h2 class="sub-question">৪ নং প্রশ্ন C: كَيْفَ يَصِحُ عَطْفُ قَوْلِهِ تَعَالَى وَالْفَتْحُ) عَلَى نَصْرُ اللَّهِ؟ أَوْضِحْ إِيضَاحًا تَامَّا؟</h2>
+                <p class="answer">উত্তর: ব্যাকরণিক (نحوي) দৃষ্টিকোণ থেকে 'وَالْفَتْحُ' শব্দটিকে 'نَصْرُ اللَّهِ' এর ওপর আতফ বা সংযোজন করার যৌক্তিকতা ও বিশুদ্ধতার ব্যাখ্যা নিচে দেওয়া হলো:<br><br>
+                ১. আতফ-এর নিয়ম (عطف المسبب على السبب): আরবী ব্যাকরণে কোনো 'কারণ'-এর ওপর তার 'ফলাফল'-কে আতফ করা বৈধ। এখানে 'نَصْرُ اللهِ' (আল্লাহর সাহায্য) হলো কারণ (السبب) এবং 'الْفَتْحُ' (মক্কা বিজয়) হলো তার ফলাফল (المسبب)। আল্লাহর সাহায্য আসার কারণেই মক্কা বিজয় সম্ভব হয়েছিল। সুতরাং কারণের ওপর ফলাফলের আতফ সম্পূর্ণ সহীহ ও সাবলীল।<br><br>
+                ২. বিশেষের ওপর সাধারণের আতফ (عطف العام على الخاص): আল্লাহর সাহায্য একটি ব্যাপক ও সাধারণ বিষয়, যা জীবনের সব ক্ষেত্রেই নবীজি লাভ করেছেন। আর মক্কা বিজয় ছিল একটি বিশেষ ঘটনা। সুতরাং ব্যাপক বিষয়ের ওপর বিশেষ ঘটনাকে আতফ করে এর গুরুত্ব ফুটিয়ে তোলা হয়েছে।<br><br>
+                ৩. সময়ের অগ্র-পশ্চাৎ বিবেচনা (تغاير الزمانين): আল্লাহর সাহায্য প্রথমে এসেছে এবং তার ধারাবাহিকতায় মক্কা বিজয় পূর্ণতা পেয়েছে। শব্দ দুটির মাঝে এই অর্থগত ও সময়গত পার্থক্যের (مغايرة) কারণেই একটিকে অপরটির ওপর আতফ করা ব্যাকরণগতভাবে শতভাগ সঠিক হয়েছে।</p>
+            </article>
+        </section>
+
+
+        
+
+
+
+
+        <!-- নিচের নেভিগেশন -->
+        <footer class="bottom-pagination">
+
+            <button class="nav-btn"
+                    id="prev-btn"
+                    type="button"
+                    onclick="prevPage()"
+                    disabled>« Previous</button>
+
+            <span class="page-status"
+                  id="page-status"
+                  aria-live="polite">পৃষ্ঠা ১ / ৫</span>
+
+            <button class="nav-btn"
+                    id="next-btn"
+                    type="button"
+                    onclick="nextPage()">Next »</button>
+
+        </footer>
 
     </main>
 
     <script>
-        const glow = document.getElementById('glow');
+        "use strict";
 
-        // Mouse move interactive glow background
-        window.addEventListener('mousemove', (e) => {
-            glow.style.left = e.clientX + 'px';
-            glow.style.top = e.clientY + 'px';
-        });
+        let currentPage = 1;
+        let currentScale = 1;
 
-        // Touch move interactive glow background for mobile screens
-        window.addEventListener('touchmove', (e) => {
-            if (e.touches.length > 0) {
-                glow.style.left = e.touches[0].clientX + 'px';
-                glow.style.top = e.touches[0].clientY + 'px';
+        const totalPages = 5;
+        const minScale = 0.7;
+        const maxScale = 1.6;
+
+        const banglaNumbers = ["০", "১", "২", "৩", "৪", "৫"];
+        const root = document.documentElement;
+
+        /* পৃষ্ঠা পরিবর্তন */
+        function updatePaginationUI() {
+            document.querySelectorAll(".question-group").forEach(
+                function (page) {
+                    page.classList.remove("active-page");
+                }
+            );
+
+            const activePage = document.getElementById(
+                "page-" + currentPage
+            );
+
+            if (activePage) {
+                activePage.classList.add("active-page");
+            }
+
+            document.querySelectorAll(".page-number-btn").forEach(
+                function (button) {
+                    const pageNumber = Number(button.dataset.page);
+                    const isActive = pageNumber === currentPage;
+
+                    button.classList.toggle("active", isActive);
+
+                    if (isActive) {
+                        button.setAttribute("aria-current", "page");
+                    } else {
+                        button.removeAttribute("aria-current");
+                    }
+                }
+            );
+
+            document.getElementById("prev-btn").disabled =
+                currentPage === 1;
+
+            document.getElementById("next-btn").disabled =
+                currentPage === totalPages;
+
+            document.getElementById("page-status").textContent =
+                "পৃষ্ঠা " + banglaNumbers[currentPage] +
+                " / " + banglaNumbers[totalPages];
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        }
+
+        /* নির্দিষ্ট পৃষ্ঠা */
+        function goToPage(page) {
+            if (
+                Number.isInteger(page) &&
+                page >= 1 &&
+                page <= totalPages
+            ) {
+                currentPage = page;
+                updatePaginationUI();
+            }
+        }
+
+        /* পরবর্তী পৃষ্ঠা */
+        function nextPage() {
+            if (currentPage < totalPages) {
+                goToPage(currentPage + 1);
+            }
+        }
+
+        /* পূর্ববর্তী পৃষ্ঠা */
+        function prevPage() {
+            if (currentPage > 1) {
+                goToPage(currentPage - 1);
+            }
+        }
+
+        /* ফন্ট ছোট-বড় */
+        function changeFontSize(delta) {
+            const newScale = Math.round(
+                (currentScale + delta) * 10
+            ) / 10;
+
+            if (newScale >= minScale && newScale <= maxScale) {
+                currentScale = newScale;
+
+                root.style.setProperty(
+                    "--font-scale",
+                    currentScale
+                );
+            }
+        }
+
+        /* ফন্টের মূল আকার */
+        function resetFontSize() {
+            currentScale = 1;
+
+            root.style.setProperty(
+                "--font-scale",
+                currentScale
+            );
+        }
+
+        /* কিবোর্ড দিয়ে পৃষ্ঠা পরিবর্তন */
+        document.addEventListener("keydown", function (event) {
+            const target = event.target;
+
+            if (
+                target instanceof HTMLElement &&
+                (
+                    target.isContentEditable ||
+                    ["INPUT", "TEXTAREA", "SELECT", "BUTTON"]
+                        .includes(target.tagName)
+                )
+            ) {
+                return;
+            }
+
+            if (event.key === "ArrowRight") {
+                nextPage();
+            } else if (event.key === "ArrowLeft") {
+                prevPage();
             }
         });
+
+        /* প্রথম পৃষ্ঠা চালু */
+        updatePaginationUI();
     </script>
+
 </body>
 </html>
