@@ -64,6 +64,17 @@ body {
     animation: headerIn 1.1s cubic-bezier(.16,1,.3,1);
 }
 
+@keyframes headerIn {
+    from {
+        opacity: 0;
+        transform: translateY(-14px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .header h1 {
     font-size: clamp(25px, 5vw, 40px);
     letter-spacing: .5px;
@@ -635,7 +646,7 @@ body {
 
 
 /* =========================================================
-   1. NAME DATABASE
+1. NAME DATABASE
 ========================================================= */
 
 const names = [
@@ -662,7 +673,7 @@ const names = [
 
 
 /* =========================================================
-   2. QUESTION DATABASE
+2. QUESTION DATABASE
    These are rule-based templates.
 ========================================================= */
 
@@ -1344,7 +1355,7 @@ const templates = [
 
 
 /* =========================================================
-   3. EXTRA WORD DATABASE
+3. EXTRA WORD DATABASE
    Used to generate additional questions.
 ========================================================= */
 
@@ -1401,56 +1412,33 @@ const nouns = [
 
 
 /* =========================================================
-   4. RANDOM NAME
+4. RANDOM NAME
 ========================================================= */
 
 function randomName() {
-
-    return names[
-        Math.floor(Math.random() * names.length)
-    ];
-
+    return names[Math.floor(Math.random() * names.length)];
 }
 
 
 /* =========================================================
-   5. RANDOM ITEM
+5. RANDOM ITEM
 ========================================================= */
 
 function randomItem(array) {
-
-    return array[
-        Math.floor(Math.random() * array.length)
-    ];
-
+    return array[Math.floor(Math.random() * array.length)];
 }
 
 
 /* =========================================================
-   6. SHUFFLE
+6. SHUFFLE
 ========================================================= */
 
 function shuffle(array) {
-
     const result = [...array];
 
-    for (
-        let i = result.length - 1;
-        i > 0;
-        i--
-    ) {
-
-        const j =
-            Math.floor(Math.random() * (i + 1));
-
-        [
-            result[i],
-            result[j]
-        ] =
-        [
-            result[j],
-            result[i]
-        ];
+    for (let i = result.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [result[i], result[j]] = [result[j], result[i]];
     }
 
     return result;
@@ -1458,542 +1446,181 @@ function shuffle(array) {
 
 
 /* =========================================================
-   7. INFINITE GENERATOR
+7. INFINITE GENERATOR
 ========================================================= */
 
-function generateInfiniteQuestion() {
+function generateDynamicNounQuestion() {
+    const person = randomName();
+    const nounObj = randomItem(nouns);
+    const correctAnswer = nounObj.sound === "vowel" ? "an" : "a";
 
-    const item = randomItem(nouns);
-    const name = randomName();
-
-    /* ---------- A / AN ---------- */
-
-    if (Math.random() < .40) {
-
-        let answer;
-
-        if (item.sound === "vowel") {
-
-            answer = "an";
-
-        } else {
-
-            answer = "a";
-
-        }
-
-        const options =
-            answer === "a"
-                ? ["a", "an", "the", "some"]
-                : ["a", "an", "the", "any"];
-
-        return {
-
-            category: "Generated — A / An",
-
-            q:
-                `${name} bought ___ ${item.word}.`,
-
-            bn:
-                `${name} একটি ${item.bn} কিনেছে।`,
-
-            options: shuffle(options),
-
-            answer: answer,
-
-            explanation:
-                `<strong>Correct Answer: ${answer}</strong><br><br>` +
-
-                `${item.word} একটি singular countable noun। ` +
-
-                `এটি সাধারণভাবে ও প্রথমবার উল্লেখ করা হয়েছে। ` +
-
-                (item.sound === "vowel"
-                    ?
-                    `শব্দটির শুরু vowel sound দিয়ে হওয়ায় <strong>an</strong> হবে।`
-                    :
-                    `শব্দটির শুরু consonant sound দিয়ে হওয়ায় <strong>a</strong> হবে।`
-                )
-        };
-    }
-
-
-    /* ---------- THE ---------- */
-
-    if (Math.random() < .50) {
-
-        return {
-
-            category: "Generated — The",
-
-            q:
-                `I saw a ${item.word}. ___ ${item.word} was interesting.`,
-
-            bn:
-                `আমি একটি ${item.bn} দেখলাম। পরে একই ${item.bn}-এর কথা বলা হচ্ছে।`,
-
-            options:
-                shuffle([
-                    "A",
-                    "An",
-                    "The",
-                    "Some"
-                ]),
-
-            answer: "The",
-
-            explanation:
-                "<strong>Correct Answer: The</strong><br><br>" +
-
-                `প্রথমে <strong>a ${item.word}</strong> বলে ${item.bn}-টির কথা বলা হয়েছে। ` +
-
-                `পরের অংশে একই নির্দিষ্ট ${item.bn}-কে আবার বোঝানো হয়েছে। ` +
-
-                `তাই দ্বিতীয়বার <strong>The</strong> ব্যবহার হবে।`
-        };
-    }
-
-
-    /* ---------- MANY ---------- */
-
-    if (item.type === "countable") {
-
-        return {
-
-            category: "Generated — Quantifiers",
-
-            q:
-                `There are ___ ${item.word}s in the room.`,
-
-            bn:
-                `ঘরে অনেকগুলো ${item.bn} আছে।`,
-
-            options:
-                shuffle([
-                    "many",
-                    "much",
-                    "little",
-                    "a little"
-                ]),
-
-            answer: "many",
-
-            explanation:
-                "<strong>Correct Answer: many</strong><br><br>" +
-
-                `<strong>${item.word}s</strong> এখানে plural countable noun। ` +
-
-                `Plural countable noun-এর সংখ্যা বা পরিমাণ বোঝাতে <strong>many</strong> ব্যবহৃত হয়।`
-        };
-    }
-
-
-    /* ---------- FALLBACK ---------- */
+    const soundNote = nounObj.sound === "vowel"
+        ? `<strong>${nounObj.word}</strong> শব্দটি vowel sound দিয়ে শুরু হয়েছে বলে এর আগে <strong>an</strong> বসে।`
+        : `<strong>${nounObj.word}</strong> শব্দটি দেখতে vowel দিয়ে শুরু হলেও/থাকলেও এর উচ্চারণ consonant sound দিয়ে শুরু হওয়ায় এর আগে <strong>a</strong> বসে।`;
 
     return {
-
-        category: "Generated — Articles",
-
-        q:
-            `${name} saw ___ ${item.word}.`,
-
-        bn:
-            `${name} একটি ${item.bn} দেখেছে।`,
-
-        options:
-            shuffle([
-                item.sound === "vowel" ? "an" : "a",
-                item.sound === "vowel" ? "a" : "an",
-                "the",
-                "some"
-            ]),
-
-        answer:
-            item.sound === "vowel"
-                ? "an"
-                : "a",
-
+        category: "Indefinite Article — A / An (Dynamic)",
+        q: `${person} has ___ ${nounObj.word}.`,
+        bn: `${person}-এর একটি ${nounObj.bn} আছে।`,
+        options: shuffle(["a", "an", "the", "no article"]),
+        answer: correctAnswer,
         explanation:
-            "<strong>Article Rule</strong><br><br>" +
+            `<strong>Correct Answer: ${correctAnswer}</strong><br><br>` +
+            `এখানে <strong>${nounObj.word}</strong> একটি singular countable noun। ${soundNote}`
+    };
+}
 
-            `এখানে ${item.word} একটি singular countable noun। ` +
+function generateInfiniteQuestion() {
+    // প্রতি ৩টি প্রশ্নের ১টি nouns তালিকা থেকে নতুন করে তৈরি হবে, বাকিগুলো templates থেকে আসবে
+    if (Math.random() < 0.35) {
+        return generateDynamicNounQuestion();
+    }
 
-            `প্রথমবার সাধারণভাবে উল্লেখ করায় indefinite article ব্যবহার হবে। ` +
-
-            (
-                item.sound === "vowel"
-                    ?
-                    "শব্দটি vowel sound দিয়ে শুরু হওয়ায় <strong>an</strong> হবে।"
-                    :
-                    "শব্দটি consonant sound দিয়ে শুরু হওয়ায় <strong>a</strong> হবে।"
-            )
+    const base = randomItem(templates);
+    return {
+        category: base.category,
+        q: base.q,
+        bn: base.bn,
+        options: shuffle(base.options),
+        answer: base.answer,
+        explanation: base.explanation
     };
 }
 
 
 /* =========================================================
-   8. QUESTION ENGINE
+8. QUIZ STATE & RENDERING ENGINE
 ========================================================= */
 
-let questions = [...templates];
-
+const historyList = [];
 let currentIndex = 0;
-
 let score = 0;
+let answeredCount = 0;
 
-let answered = false;
+const questionContent = document.getElementById("questionContent");
+const categoryEl = document.getElementById("category");
+const questionEl = document.getElementById("question");
+const questionBanglaEl = document.getElementById("questionBangla");
+const optionsEl = document.getElementById("options");
+const explanationAreaEl = document.getElementById("explanationArea");
 
-let history = [];
+const questionCounterEl = document.getElementById("questionCounter");
+const scoreCounterEl = document.getElementById("scoreCounter");
+const scoreDisplayEl = document.getElementById("scoreDisplay");
+const progressBarEl = document.getElementById("progressBar");
 
+const previousBtn = document.getElementById("previousBtn");
+const nextBtn = document.getElementById("nextBtn");
 
-/* =========================================================
-   9. DOM
-========================================================= */
-
-const questionContent =
-    document.getElementById("questionContent");
-
-const category =
-    document.getElementById("category");
-
-const question =
-    document.getElementById("question");
-
-const questionBangla =
-    document.getElementById("questionBangla");
-
-const options =
-    document.getElementById("options");
-
-const explanationArea =
-    document.getElementById("explanationArea");
-
-const previousBtn =
-    document.getElementById("previousBtn");
-
-const nextBtn =
-    document.getElementById("nextBtn");
-
-const questionCounter =
-    document.getElementById("questionCounter");
-
-const scoreCounter =
-    document.getElementById("scoreCounter");
-
-const scoreDisplay =
-    document.getElementById("scoreDisplay");
-
-const progressBar =
-    document.getElementById("progressBar");
-
-
-/* =========================================================
-   10. ENSURE INFINITE QUESTIONS
-========================================================= */
-
-function ensureQuestionExists(index) {
-
-    while (questions.length <= index) {
-
-        questions.push(
-            generateInfiniteQuestion()
-        );
-
+function ensureQuestionAt(index) {
+    while (historyList.length <= index) {
+        historyList.push({
+            data: generateInfiniteQuestion(),
+            selectedOption: null,
+            isCorrect: null
+        });
     }
-
 }
 
+function updateStats() {
+    questionCounterEl.textContent = `Question ${currentIndex + 1}`;
+    scoreCounterEl.textContent = `Score: ${score}`;
+    scoreDisplayEl.textContent = `${score} / ${answeredCount}`;
 
-/* =========================================================
-   11. LOAD QUESTION
-========================================================= */
+    const percent = answeredCount === 0
+        ? 0
+        : Math.min(100, Math.round((score / answeredCount) * 100));
+    progressBarEl.style.width = `${percent}%`;
 
-function loadQuestion(direction = "next") {
-
-    ensureQuestionExists(currentIndex);
-
-    const data =
-        questions[currentIndex];
-
-
-    /* Reset animation */
-
-    questionContent.classList.remove(
-        "slide-next",
-        "slide-prev"
-    );
-
-    void questionContent.offsetWidth;
-
-
-    questionContent.classList.add(
-        direction === "prev"
-            ? "slide-prev"
-            : "slide-next"
-    );
-
-
-    /* Question */
-
-    category.textContent =
-        data.category;
-
-    question.textContent =
-        data.q;
-
-    questionBangla.textContent =
-        `(${data.bn})`;
-
-
-    /* Options */
-
-    options.innerHTML = "";
-
-    explanationArea.innerHTML = "";
-
-
-    answered = false;
-
-
-    data.options.forEach(optionText => {
-
-        const button =
-            document.createElement("button");
-
-        button.className = "option";
-
-        button.textContent =
-            optionText;
-
-        button.addEventListener(
-            "click",
-            () => checkAnswer(
-                button,
-                optionText,
-                data
-            )
-        );
-
-        options.appendChild(button);
-
-    });
-
-
-    /* Controls */
-
-    previousBtn.disabled =
-        currentIndex === 0;
-
-    nextBtn.textContent =
-        "Next →";
-
-
-    /* Progress */
-
-    questionCounter.textContent =
-        `Question ${currentIndex + 1}`;
-
-    scoreCounter.textContent =
-        `Score: ${score}`;
-
-    scoreDisplay.textContent =
-        `${score} / ${currentIndex + (answered ? 1 : 0)}`;
-
-
-    /*
-       Because the system is infinite,
-       progress is visualized within the current
-       practice sequence rather than as a fixed total.
-    */
-
-    const progress =
-        Math.min(
-            95,
-            ((currentIndex % 20) + 1) * 5
-        );
-
-    progressBar.style.width =
-        `${progress}%`;
-
+    previousBtn.disabled = currentIndex === 0;
 }
 
+function handleSelect(selectedOpt, clickedBtn) {
+    const item = historyList[currentIndex];
+    if (item.selectedOption !== null) return;
 
-/* =========================================================
-   12. CHECK ANSWER
-========================================================= */
+    item.selectedOption = selectedOpt;
+    item.isCorrect = selectedOpt === item.data.answer;
 
-function checkAnswer(
-    clickedButton,
-    selected,
-    data
-) {
-
-    if (answered) return;
-
-    answered = true;
-
-
-    const allButtons =
-        document.querySelectorAll(".option");
-
-
-    allButtons.forEach(button => {
-
-        button.disabled = true;
-
-        if (
-            button.textContent === data.answer
-        ) {
-
-            button.classList.add(
-                "reveal"
-            );
-
-        }
-
-    });
-
-
-    if (selected === data.answer) {
-
-        clickedButton.classList.remove(
-            "reveal"
-        );
-
-        clickedButton.classList.add(
-            "correct"
-        );
-
+    answeredCount++;
+    if (item.isCorrect) {
         score++;
-
-    } else {
-
-        clickedButton.classList.add(
-            "wrong"
-        );
-
     }
 
+    const allButtons = optionsEl.querySelectorAll(".option");
+    allButtons.forEach((btn) => {
+        btn.disabled = true;
+        const optText = btn.dataset.option;
 
-    /* Save answer history */
+        if (optText === item.data.answer) {
+            btn.classList.add(optText === selectedOpt ? "correct" : "reveal");
+        } else if (optText === selectedOpt) {
+            btn.classList.add("wrong");
+        }
+    });
 
-    history[currentIndex] = {
-
-        selected: selected,
-
-        correct: data.answer
-
-    };
-
-
-    /* Explanation */
-
-    explanationArea.innerHTML = `
-
-        <div class="explanation">
-
-            ${data.explanation}
-
-        </div>
-
-    `;
-
-
-    scoreCounter.textContent =
-        `Score: ${score}`;
-
-    scoreDisplay.textContent =
-        `${score} / ${currentIndex + 1}`;
-
-
-    nextBtn.textContent =
-        "Next →";
+    explanationAreaEl.innerHTML = `<div class="explanation">${item.data.explanation}</div>`;
+    updateStats();
 }
 
+function renderQuestion(direction = "next") {
+    ensureQuestionAt(currentIndex);
+    const item = historyList[currentIndex];
+    const qData = item.data;
 
-/* =========================================================
-   13. NEXT
-========================================================= */
+    questionContent.classList.remove("slide-next", "slide-prev");
+    void questionContent.offsetWidth;
+    questionContent.classList.add(direction === "prev" ? "slide-prev" : "slide-next");
 
-nextBtn.addEventListener(
-    "click",
-    () => {
+    categoryEl.textContent = qData.category;
+    questionEl.textContent = qData.q;
+    questionBanglaEl.textContent = qData.bn;
 
-        currentIndex++;
+    optionsEl.innerHTML = "";
+    explanationAreaEl.innerHTML = "";
 
-        ensureQuestionExists(
-            currentIndex
-        );
+    qData.options.forEach((opt) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "option";
+        btn.textContent = opt;
+        btn.dataset.option = opt;
 
-        loadQuestion("next");
+        if (item.selectedOption !== null) {
+            btn.disabled = true;
+            if (opt === qData.answer) {
+                btn.classList.add(opt === item.selectedOption ? "correct" : "reveal");
+            } else if (opt === item.selectedOption) {
+                btn.classList.add("wrong");
+            }
+        } else {
+            btn.addEventListener("click", () => handleSelect(opt, btn));
+        }
 
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
+        optionsEl.appendChild(btn);
+    });
 
+    if (item.selectedOption !== null) {
+        explanationAreaEl.innerHTML = `<div class="explanation">${qData.explanation}</div>`;
     }
-);
 
+    updateStats();
+}
 
-/* =========================================================
-   14. PREVIOUS
-========================================================= */
-
-previousBtn.addEventListener(
-    "click",
-    () => {
-
-        if (currentIndex <= 0)
-            return;
-
+previousBtn.addEventListener("click", () => {
+    if (currentIndex > 0) {
         currentIndex--;
-
-        loadQuestion("prev");
-
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-
+        renderQuestion("prev");
     }
-);
+});
 
+nextBtn.addEventListener("click", () => {
+    currentIndex++;
+    renderQuestion("next");
+});
 
-/* =========================================================
-   15. KEYBOARD CONTROL
-========================================================= */
-
-document.addEventListener(
-    "keydown",
-    event => {
-
-        if (
-            event.key === "ArrowRight"
-        ) {
-
-            nextBtn.click();
-
-        }
-
-        if (
-            event.key === "ArrowLeft"
-        ) {
-
-            previousBtn.click();
-
-        }
-
-    }
-);
-
-
-/* =========================================================
-   16. START
-========================================================= */
-
-loadQuestion("next");
-
+// প্রথম প্রশ্ন লোড করা
+renderQuestion("next");
 </script>
 
 </body>
