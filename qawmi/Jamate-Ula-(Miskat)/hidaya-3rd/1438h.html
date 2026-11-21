@@ -1,128 +1,1372 @@
+
 <!DOCTYPE html>
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon</title>
+    <meta name="theme-color" content="#0d5c3a">
+    <title>ইসলামিক প্রশ্নোত্তর</title>
 
-    <!-- Google Fonts for Bengali & English -->
+    <!-- বাংলা ও আরবি ফন্ট -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Inter:wght@700;900&display=swap" rel="stylesheet">
-
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Serif+Bengali:wght@400;600;700&display=swap" rel="stylesheet">
 
     <style>
+        :root {
+            --primary: #0d5c3a;
+            --primary-dark: #084229;
+            --accent: #d4af37;
+            --question: #d32f2f;
+            --answer: #000000;
+            --text-dark: #1e293b;
+            --muted: #64748b;
+            --font-scale: 1;
+
+            --page-animation: 2.2s;
+            --item-animation: 1.8s;
+            --toolbar-animation: 2s;
+            --button-transition: 0.7s;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+            text-size-adjust: 100%;
+        }
+
         body {
-            font-family: 'Hind Siliguri', 'Inter', sans-serif;
-            background-color: #030712;
-            overflow: hidden;
+            margin: 0;
+            padding: 12px;
+            min-height: 100vh;
+            width: 100%;
+            font-family: 'Noto Serif Bengali', serif;
+            background: linear-gradient(
+                135deg,
+                #eef5f1 0%,
+                #f7f9f8 50%,
+                #eef3f0 100%
+            );
+            background-attachment: fixed;
+            color: var(--answer);
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* Gradient glowing animation on text */
-        .glow-text {
-            background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 50%, #38bdf8 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shine 6s linear infinite;
+        button {
+            font-family: inherit;
+            cursor: pointer;
+            touch-action: manipulation;
         }
 
-        @keyframes shine {
-            0% { background-position: 0% center; }
-            50% { background-position: 100% center; }
-            100% { background-position: 0% center; }
+        button:focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 3px;
         }
 
-        /* Keyframes for initial entry: Floating in from below with opacity */
-        @keyframes floatIn {
+        /* =========================
+           উপরের কন্ট্রোল বার
+        ========================= */
+
+        .sticky-toolbar {
+            position: sticky;
+            top: 8px;
+            z-index: 100;
+
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto 18px;
+            padding: 10px 14px;
+
+            border: 1px solid #e5d59b;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 6px 18px rgba(13, 92, 58, 0.09);
+
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+
+            animation: toolbarEnter var(--toolbar-animation)
+                cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        .font-control-panel,
+        .page-indicators {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .font-btn,
+        .nav-btn,
+        .page-number-btn {
+            min-height: 38px;
+            padding: 7px 12px;
+            border: 0;
+            border-radius: 9px;
+
+            background: linear-gradient(
+                135deg,
+                var(--primary),
+                var(--primary-dark)
+            );
+
+            color: #ffffff;
+            font-size: calc(15px * var(--font-scale));
+            font-weight: 700;
+
+            box-shadow: 0 3px 8px rgba(13, 92, 58, 0.15);
+
+            transition:
+                background var(--button-transition) ease,
+                color var(--button-transition) ease,
+                transform var(--button-transition)
+                    cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow var(--button-transition) ease;
+        }
+
+        .font-btn:hover,
+        .nav-btn:hover:not(:disabled),
+        .page-number-btn:hover {
+            background: var(--accent);
+            color: #111111;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(212, 175, 55, 0.25);
+        }
+
+        .page-number-btn.active {
+            background: var(--accent);
+            color: var(--primary-dark);
+            outline: 2px solid var(--primary);
+            outline-offset: -2px;
+        }
+
+        button:disabled {
+            opacity: 0.45;
+            cursor: not-allowed;
+            transform: none !important;
+            box-shadow: none;
+        }
+
+        /* =========================
+           মূল কনটেইনার
+        ========================= */
+
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 24px;
+
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            background: #ffffff;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+
+            animation: containerEnter 2.4s
+                cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        /* =========================
+           কিতাবের পরিচিতি
+        ========================= */
+
+        .book-header {
+            text-align: center;
+            padding-bottom: 16px;
+            margin-bottom: 22px;
+            border-bottom: 2px solid rgba(212, 175, 55, 0.5);
+        }
+
+        .book-label {
+            margin-bottom: 5px;
+            color: var(--primary);
+            font-family: 'Amiri', serif;
+            font-size: calc(30px * var(--font-scale));
+            font-weight: 700;
+            line-height: 1.7;
+
+            animation: textEnter 2.4s
+                cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+        }
+
+        .book-name {
+            color: var(--text-dark);
+            font-size: calc(24px * var(--font-scale));
+            font-weight: 700;
+
+            animation: textEnter 2.5s
+                cubic-bezier(0.16, 1, 0.3, 1) 0.5s both;
+        }
+
+        .book-year {
+            margin-top: 5px;
+            color: var(--muted);
+            font-size: calc(16px * var(--font-scale));
+
+            animation: textEnter 2.5s
+                cubic-bezier(0.16, 1, 0.3, 1) 0.7s both;
+        }
+
+        /* =========================
+           প্রধান শিরোনাম
+        ========================= */
+
+        .main-title {
+            margin: 0 0 22px;
+            text-align: center;
+            color: var(--primary);
+            font-size: calc(27px * var(--font-scale));
+
+            animation: textEnter 2.4s
+                cubic-bezier(0.16, 1, 0.3, 1) 0.8s both;
+        }
+
+        .main-title::after {
+            content: "";
+            display: block;
+            width: 85px;
+            height: 3px;
+            margin: 7px auto 0;
+            border-radius: 5px;
+
+            background: linear-gradient(
+                90deg,
+                transparent,
+                var(--accent),
+                transparent
+            );
+        }
+
+        /* =========================
+           প্রশ্নের পৃষ্ঠা
+        ========================= */
+
+        .question-group {
+            display: none;
+            width: 100%;
+            margin-bottom: 16px;
+            padding: 22px;
+
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            background: #ffffff;
+        }
+
+        .question-group.active-page {
+            display: block;
+
+            animation: pageEnter var(--page-animation)
+                cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        /* =========================
+           আরবি ইবারত
+        ========================= */
+
+        .ibarot {
+            width: 100%;
+            margin-bottom: 18px;
+            padding: 16px;
+
+            border-right: 5px solid var(--primary);
+            border-radius: 8px;
+            background: #f8faf9;
+
+            color: #0f2d24;
+            font-family: 'Amiri', serif;
+            font-size: calc(28px * var(--font-scale));
+            line-height: 1.9;
+            text-align: right;
+
+            overflow-wrap: anywhere;
+        }
+
+        .question-group.active-page .ibarot {
+            animation: arabicEnter 2s
+                cubic-bezier(0.16, 1, 0.3, 1) 0.25s both;
+        }
+
+        /* =========================
+           প্রশ্ন নম্বর
+        ========================= */
+
+        .section-number {
+            display: inline-block;
+            margin-bottom: 12px;
+            padding: 6px 16px;
+
+            border-radius: 20px;
+            background: linear-gradient(
+                135deg,
+                var(--primary),
+                var(--primary-dark)
+            );
+
+            color: #ffffff;
+            font-size: calc(17px * var(--font-scale));
+            font-weight: 700;
+
+            box-shadow: 0 3px 8px rgba(13, 92, 58, 0.12);
+        }
+
+        .question-group.active-page .section-number {
+            animation: numberEnter 2s
+                cubic-bezier(0.16, 1, 0.3, 1) 0.5s both;
+        }
+
+        /* =========================
+           প্রশ্ন ও উত্তর
+        ========================= */
+
+        .qa-item {
+            width: 100%;
+            margin-bottom: 12px;
+            padding: 14px 4px;
+            border-bottom: 1px dashed #e2e8f0;
+        }
+
+        .qa-item:last-child {
+            margin-bottom: 0;
+            border-bottom: none;
+        }
+
+        .sub-question {
+            margin: 0 0 8px;
+            color: var(--question);
+            font-size: calc(21px * var(--font-scale));
+            font-weight: 700;
+            line-height: 1.7;
+            overflow-wrap: anywhere;
+        }
+
+        .answer {
+            margin: 0;
+            color: var(--answer);
+            font-size: calc(19px * var(--font-scale));
+            line-height: 1.9;
+            text-align: justify;
+            white-space: pre-line;
+            overflow-wrap: anywhere;
+        }
+
+        /* প্রশ্নগুলো একটির পর একটি ধীরে দেখা যাবে */
+
+        .question-group.active-page .qa-item:nth-of-type(1) {
+            animation: answerEnter 1.9s
+                cubic-bezier(0.16, 1, 0.3, 1) 0.65s both;
+        }
+
+        .question-group.active-page .qa-item:nth-of-type(2) {
+            animation: answerEnter 2s
+                cubic-bezier(0.16, 1, 0.3, 1) 0.95s both;
+        }
+
+        .question-group.active-page .qa-item:nth-of-type(3) {
+            animation: answerEnter 2.1s
+                cubic-bezier(0.16, 1, 0.3, 1) 1.25s both;
+        }
+
+        .question-group.active-page .qa-item:nth-of-type(4) {
+            animation: answerEnter 2.2s
+                cubic-bezier(0.16, 1, 0.3, 1) 1.55s both;
+        }
+
+        /* =========================
+           নিচের পৃষ্ঠা নিয়ন্ত্রণ
+        ========================= */
+
+        .bottom-pagination {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+
+            margin-top: 22px;
+            padding-top: 16px;
+            border-top: 1px dashed #cbd5e1;
+
+            animation: textEnter 2.2s
+                cubic-bezier(0.16, 1, 0.3, 1) 0.8s both;
+        }
+
+        .page-status {
+            color: var(--primary);
+            font-size: calc(16px * var(--font-scale));
+            font-weight: 700;
+            text-align: center;
+        }
+
+        /* =========================
+           ধীর অ্যানিমেশন
+        ========================= */
+
+        @keyframes toolbarEnter {
             0% {
                 opacity: 0;
-                transform: translateY(40px) scale(0.95);
-                filter: blur(8px);
+                transform: translateY(-24px);
             }
+
             100% {
                 opacity: 1;
-                transform: translateY(0) scale(1);
-                filter: blur(0);
+                transform: translateY(0);
             }
         }
 
-        /* Continuous subtle float effect once arrived */
-        @keyframes subtleFloat {
-            0%, 100% {
-                transform: translateY(0px);
+        @keyframes containerEnter {
+            0% {
+                opacity: 0;
+                transform: translateY(25px);
             }
-            50% {
-                transform: translateY(-8px);
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
 
-        /* Animation class for Heading */
-        .animate-heading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards,
-                subtleFloat 6s ease-in-out 1.2s infinite;
+        @keyframes textEnter {
+            0% {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        /* Animation class for Subheading (staggered delay) */
-        .animate-subheading {
-            animation: 
-                floatIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards,
-                subtleFloat 6s ease-in-out 1.55s infinite;
-            opacity: 0; /* Hidden until animation kicks in */
+        @keyframes pageEnter {
+            0% {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        /* Ambient background lighting */
-        .ambient-glow {
-            position: absolute;
-            width: 450px;
-            height: 450px;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(3, 7, 18, 0) 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            transition: left 0.4s ease-out, top 0.4s ease-out;
+        @keyframes arabicEnter {
+            0% {
+                opacity: 0;
+                transform: translateX(22px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes numberEnter {
+            0% {
+                opacity: 0;
+                transform: translateX(-18px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes answerEnter {
+            0% {
+                opacity: 0;
+                transform: translateY(22px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* =========================
+           মোবাইল
+        ========================= */
+
+        @media screen and (max-width: 600px) {
+            body {
+                padding: 5px 4px;
+                background-attachment: scroll;
+            }
+
+            .sticky-toolbar {
+                top: 3px;
+                justify-content: center;
+                gap: 8px;
+                padding: 8px 5px;
+                margin-bottom: 10px;
+                border-radius: 10px;
+            }
+
+            .font-control-panel,
+            .page-indicators {
+                gap: 5px;
+            }
+
+            .font-btn,
+            .nav-btn,
+            .page-number-btn {
+                min-height: 38px;
+                padding: 6px 9px;
+                font-size: calc(14px * var(--font-scale));
+            }
+
+            .container {
+                width: 100%;
+                max-width: 100%;
+                padding: 14px 9px;
+                border-radius: 10px;
+            }
+
+            .book-header {
+                padding-bottom: 12px;
+                margin-bottom: 16px;
+            }
+
+            .book-label {
+                font-size: calc(27px * var(--font-scale));
+            }
+
+            .book-name {
+                font-size: calc(21px * var(--font-scale));
+            }
+
+            .book-year {
+                font-size: calc(14px * var(--font-scale));
+            }
+
+            .main-title {
+                margin-bottom: 17px;
+                font-size: calc(23px * var(--font-scale));
+            }
+
+            .question-group {
+                padding: 12px 8px;
+                margin-bottom: 12px;
+                border-radius: 9px;
+            }
+
+            .ibarot {
+                padding: 12px 9px;
+                margin-bottom: 14px;
+                font-size: calc(23px * var(--font-scale));
+                line-height: 1.9;
+            }
+
+            .section-number {
+                padding: 5px 13px;
+                font-size: calc(15px * var(--font-scale));
+            }
+
+            .qa-item {
+                padding: 12px 2px;
+                margin-bottom: 8px;
+            }
+
+            .sub-question {
+                margin-bottom: 6px;
+                font-size: calc(18px * var(--font-scale));
+                line-height: 1.75;
+            }
+
+            .answer {
+                font-size: calc(17px * var(--font-scale));
+                line-height: 1.8;
+                text-align: start;
+            }
+
+            .bottom-pagination {
+                justify-content: space-between;
+                gap: 8px;
+                margin-top: 16px;
+                padding-top: 12px;
+            }
+
+            .page-status {
+                font-size: calc(14px * var(--font-scale));
+            }
+        }
+
+        /* =========================
+           ছোট মোবাইল
+        ========================= */
+
+        @media screen and (max-width: 360px) {
+            body {
+                padding: 3px;
+            }
+
+            .sticky-toolbar {
+                gap: 5px;
+                padding: 6px 3px;
+            }
+
+            .font-control-panel,
+            .page-indicators {
+                gap: 4px;
+            }
+
+            .font-btn,
+            .page-number-btn {
+                min-height: 34px;
+                padding: 5px 7px;
+                font-size: calc(12px * var(--font-scale));
+            }
+
+            .container {
+                padding: 10px 6px;
+            }
+
+            .book-name {
+                font-size: calc(19px * var(--font-scale));
+            }
+
+            .question-group {
+                padding: 10px 6px;
+            }
+
+            .bottom-pagination .nav-btn {
+                padding: 6px 7px;
+                font-size: calc(12px * var(--font-scale));
+            }
+        }
+
+        /* =========================
+           ট্যাবলেট
+        ========================= */
+
+        @media screen and (min-width: 601px) and (max-width: 900px) {
+            body {
+                padding: 12px;
+            }
+
+            .container {
+                max-width: 850px;
+                padding: 22px;
+            }
+
+            .sticky-toolbar {
+                max-width: 850px;
+            }
+
+            .question-group {
+                padding: 20px;
+            }
+        }
+
+        /* =========================
+           কম্পিউটার ও ল্যাপটপ
+        ========================= */
+
+        @media screen and (min-width: 901px) {
+            body {
+                padding: 22px;
+            }
+
+            .container {
+                max-width: 1100px;
+                padding: 30px;
+            }
+
+            .sticky-toolbar {
+                max-width: 1100px;
+                padding: 12px 18px;
+            }
+
+            .question-group {
+                padding: 26px;
+                margin-bottom: 20px;
+            }
+
+            .ibarot {
+                padding: 20px;
+                font-size: calc(30px * var(--font-scale));
+            }
+
+            .sub-question {
+                font-size: calc(22px * var(--font-scale));
+            }
+
+            .answer {
+                font-size: calc(20px * var(--font-scale));
+                line-height: 1.9;
+            }
+
+            .qa-item {
+                padding: 18px 5px;
+            }
+        }
+
+        /* অ্যানিমেশন কম পছন্দ করেন এমন ব্যবহারকারীদের জন্য */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-delay: 0ms !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
         }
     </style>
 </head>
-<body class="min-h-screen flex items-center justify-center relative select-none px-4">
 
-    <!-- Ambient glow center element -->
-    <div id="glow" class="ambient-glow top-1/2 left-1/2"></div>
+<body>
 
-    <!-- Centered minimal content with entry animations -->
-    <main class="text-center z-10 space-y-6 max-w-3xl mx-auto py-8 px-4">
+    <!-- উপরের কন্ট্রোল বার -->
+    <nav class="sticky-toolbar" aria-label="লেখা ও পৃষ্ঠা নিয়ন্ত্রণ">
+
+        <div class="font-control-panel">
+            <button class="font-btn"
+                    type="button"
+                    onclick="changeFontSize(-0.1)"
+                    title="লেখা ছোট করুন">A−</button>
+
+            <button class="font-btn"
+                    type="button"
+                    onclick="resetFontSize()"
+                    title="মূল আকারে ফিরুন">Reset</button>
+
+            <button class="font-btn"
+                    type="button"
+                    onclick="changeFontSize(0.1)"
+                    title="লেখা বড় করুন">A+</button>
+        </div>
+
+        <div class="page-indicators" aria-label="পৃষ্ঠা নির্বাচন">
+            <button class="page-number-btn active"
+                    type="button" data-page="1"
+                    onclick="goToPage(1)">1</button>
+
+            <button class="page-number-btn"
+                    type="button" data-page="2"
+                    onclick="goToPage(2)">2</button>
+
+            <button class="page-number-btn"
+                    type="button" data-page="3"
+                    onclick="goToPage(3)">3</button>
+
+            <button class="page-number-btn"
+                    type="button" data-page="4"
+                    onclick="goToPage(4)">4</button>
+
+            <button class="page-number-btn"
+                    type="button" data-page="5"
+                    onclick="goToPage(5)">5</button>
+        </div>
+    </nav>
+
+    <!-- মূল কনটেইনার -->
+    <main class="container">
+
+        <header class="book-header">
+            <div class="book-label" dir="rtl" lang="ar">
+                بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+            </div>
+
+            <div class="book-name">
+                হেদায়া ৩য় খণ্ড
+            </div>
+
+            <div class="book-year">
+                হিজরি সন: 1438
+            </div>
+        </header>
+
+        <h1 class="main-title">বোর্ড পরীক্ষার প্রশ্ন+উত্তর (তানজীম বোর্ড)</h1>
+
+
+
+
         
-        <!-- Main English Title -->
-        <h1 class="animate-heading text-5xl sm:text-7xl md:text-8xl font-black tracking-tight glow-text font-['Inter'] drop-shadow-lg">
-            Coming Soon...
-        </h1>
+        
+        
+        
+       <!-- পৃষ্ঠা ১ -->
+        <section class="question-group active-page"
+                 id="page-1" aria-label="১ নম্বর প্রশ্ন">
 
-        <!-- Bengali Subheading -->
-        <p class="animate-subheading text-xl sm:text-3xl md:text-4xl font-semibold text-emerald-400/90 leading-relaxed tracking-wide drop-shadow">
-            ইনশাআল্লাহ, খুব শীঘ্রই ডাটা যোগ করা হবে।
-        </p>
+            <div class="ibarot" dir="rtl" lang="ar">
+                قال: "من باع صبرة طعام، كل قفيز بدرهم، جاز البيع في قفيز واحد عند أبي حنيفة، إلا أن يسمى جملة قفزاتها. وقالا : يجوز في الوجهين. ومن باع قطيع غنم، كل شاة بدرهم، فسد البيع في جميعها عند أبي حنيفة".
+            </div>
+
+            <div class="section-number">১ নং প্রশ্ন + উত্তর</div>
+
+            <article class="qa-item">
+                <h2 class="sub-question">১ নং প্রশ্ন A: شكل العبارة، ثم اكتب صور المسائل المذكورة موضحاً.</h2>
+                <div class="answer">
+                    <p><strong>১. ইবারতের হরকত (إعراب):</strong></p>
+                    <p dir="rtl" lang="ar">قَالَ: "مَنْ بَاعَ صُبْرَةَ طَعَامٍ، كُلَّ قَفِيزٍ بِدِرْهَمٍ، جَازَ الْبَيْعُ فِي قَفِيزٍ وَاحِدٍ عِنْدَ أَبِي حَنِيفَةَ، إِلَّا أَنْ يُسَمِّيَ جُمْلَةَ قُفْزَانِهَا. وَقَالَا: يَجُوزُ فِي الْوَجْهَيْنِ. وَمَنْ بَاعَ قَطِيعَ غَنَمٍ، كُلَّ شَاةٍ بِدِرْهَمٍ، فَسَدَ الْبَيْعُ فِي جَمِيعِهَا عِنْدَ أَبِي حَنِيفَةَ".</p>
+
+                    <p><strong>২. উল্লিখিত মাসআলাগুলোর সূরত (صور المسائل):</strong></p>
+                    <p>এখানে তিনটি সূরত বা অবস্থার বর্ণনা দেওয়া হয়েছে:</p>
+                    <p>✯ <strong>প্রথম সূরত:</strong> কোনো ব্যক্তি এক স্তূপ খাদ্যশস্য (যেমন গম বা চাল) বিক্রি করার সময় মোট পরিমাণ উল্লেখ না করে বলল, "আমি এই স্তূপটি প্রতি কাফিয এক দিরহাম দরে বিক্রি করলাম।" এক্ষেত্রে ইমাম আবু হানিফা (রহ.)-এর মতে কেবল এক কাফিযের ক্ষেত্রে বিক্রয় সহিহ হবে, বাকিগুলোর ক্ষেত্রে ফাসিদ হবে। তবে ক্রেতার খিয়ার থাকবে।</p>
+                    <p>✯ <strong>দ্বিতীয় সূরত:</strong> বিক্রেতা স্তূপটি বিক্রি করার সময় মোট কাফিযের সংখ্যা উল্লেখ করে বলল, "এই স্তূপে ১০০ কাফিয খাদ্য আছে এবং আমি প্রতি কাফিয এক দিরহাম দরে বিক্রি করলাম।" এক্ষেত্রে সর্বসম্মতিক্রমে পুরো স্তূপের বিক্রয় বৈধ হবে।</p>
+                    <p>✯ <strong>তৃতীয় সূরত:</strong> কোনো ব্যক্তি এক পাল ছাগল (যার মোট সংখ্যা অজানা) বিক্রি করার সময় বলল, "আমি এই ছাগলের পালটি প্রতিটি ছাগল এক দিরহাম দরে বিক্রি করলাম।" এক্ষেত্রে ইমাম আবু হানিফা (রহ.)-এর মতে পুরো পালের বিক্রয়ই ফাসিদ হয়ে যাবে।</p>
+                </div>
+            </article>
+
+            <article class="qa-item">
+                <h2 class="sub-question">১ নং প্রশ্ন B: ماذا الاختلاف فيها بين المتنين في جواز البيع وعدمه بين بالدلائل والشواهد مفصلاً.</h2>
+                <div class="answer">
+                    <p><strong>১. মতভেদের বিবরণ (الاختلاف):</strong></p>
+                    <p>খাদ্যশস্যের স্তূপের মোট কাফিয উল্লেখ না করে প্রতি কাফিয এক দিরহাম দরে বিক্রি করলে বিক্রয় বৈধ হবে কি না—এ বিষয়ে ইমাম আবু হানিফা (রহ.) এবং সাহিবাইনের (ইমাম আবু ইউসুফ ও ইমাম মুহাম্মদ রহ.) মাঝে মতভেদ রয়েছে:</p>
+                    <p>✯ <strong>সাহিবাইনের মত:</strong> উভয় অবস্থাতেই (মোট সংখ্যা উল্লেখ করুক বা না করুক) পুরো স্তূপের বিক্রয় বৈধ।</p>
+                    <p>✯ <strong>ইমাম আবু হানিফা (রহ.)-এর মত:</strong> মোট সংখ্যা উল্লেখ না করলে কেবল এক কাফিযের ক্ষেত্রে বিক্রয় বৈধ হবে, পুরো স্তূপের ক্ষেত্রে নয়।</p>
+
+                    <p><strong>২. সাহিবাইনের দলিল (دلائل الصاحبين):</strong></p>
+                    <p>✯ <strong>মাপজোখের মাধ্যমে অজ্ঞতা দূর হওয়ার সুযোগ:</strong> চুক্তির সময় স্তূপের মোট পরিমাণ অজানা থাকলেও স্তূপটি উপস্থিত এবং মাপার উপযোগী। বিক্রয় মজলিসেই মেপে নেওয়ার মাধ্যমে পণ্যের পরিমাণ ও মূল্যের অজ্ঞতা দূর করা সম্ভব। যে অজ্ঞতা দূর করা সম্ভব, তা চুক্তির বৈধতায় বাধা দেয় না।</p>
+                    <p>✯ <strong>কিয়াস:</strong> এর দৃষ্টান্ত হলো, কোনো ব্যক্তি যদি বলে, "আমি এই স্তূপটি ১০০ দিরহামে বিক্রি করলাম", তবে বিক্রয় বৈধ হয়। এখানেও একইভাবে মাপার মাধ্যমে মূল্য নির্ধারণ সম্ভব বিধায় বিক্রয় বৈধ।</p>
+
+                    <p><strong>৩. ইমাম আবু হানিফা (রহ.)-এর দলিল (دلائل أبي حنيفة):</strong></p>
+                    <p>✯ <strong>স্থায়ী অজ্ঞতা (جهالة مفضية إلى المنازعة):</strong> বিক্রয় চুক্তি সহিহ হওয়ার জন্য মাবি (পণ্য) ও সামান (মূল্য) উভয়ই সুনির্দিষ্ট ও জ্ঞাত হওয়া শর্ত। এখানে চুক্তির সময় মোট কাফিয অজানা থাকায় মাবি ও সামান উভয়ই অজ্ঞাত থেকে যাচ্ছে।</p>
+                    <p>✯ <strong>ওজনযোগ্য ও পরিমাপযোগ্য পণ্যের পার্থক্য:</strong> স্তূপ মেপে নির্ধারণ করতে সময় ও শ্রমের প্রয়োজন হয়, যা তাৎক্ষণিক চুক্তির মজলিসে সর্বদা সম্ভব হয় না। ফলে ক্রেতা-বিক্রেতার মাঝে ঝগড়া সৃষ্টির আশঙ্কা থেকে যায়। তাই এক কাফিযের অতিরিক্ত অংশের বিক্রয় ফাসিদ হবে।</p>
+                </div>
+            </article>
+
+            <article class="qa-item">
+                <h2 class="sub-question">১ নং প্রশ্ন C: ماذا وجه الفرق بين المسألتين عند الإمام الأعظم، حيث جوز البيع في الأولى دون الثانية؟ ولماذا يجوز في قفيز واحد فقط دون الكل من غير تسمية جملة القفزان بين مدللاً.</h2>
+                <div class="answer">
+                    <p><strong>১. উভয় মাসআলার মাঝে পার্থক্যের কারণ (وجه الفرق بين المسألتين):</strong></p>
+                    <p>ইমাম আবু হানিফা (রহ.)-এর নিকট প্রথম মাসআলায় (খাদ্যশস্যের স্তূপ) এক কাফিযের বিক্রয় বৈধ, কিন্তু দ্বিতীয় মাসআলায় (ছাগলের পাল) একটি ছাগলের বিক্রয়ও বৈধ নয়। এর কারণ হলো:</p>
+                    <p>✯ প্রথম মাসআলায় খাদ্যশস্যের (صبرة) সব একক সমমানের (مثلي / متساوي الأجزاء)। এক কাফিযের সাথে অন্য কাফিযের কোনো গুণগত পার্থক্য নেই। তাই অনির্দিষ্টভাবে এক কাফিয বিক্রি করলেও ক্রেতা-বিক্রেতার মাঝে কোনো বিবাদ সৃষ্টি হবে না।</p>
+                    <p>✯ দ্বিতীয় মাসআলায় ছাগল হলো ভিন্ন ভিন্ন মানের প্রাণী (قيمي / متفاوت الآحاد)। প্রতিটি ছাগলের আকার, বয়স ও মূল্য ভিন্ন। মোট সংখ্যা উল্লেখ না করলে কোন ছাগলটি এক দিরহামে বিক্রি হলো তা অনির্দিষ্ট থেকে যায়, যা চরম বিবাদের জন্ম দেয়। তাই সবগুলোর বিক্রয়ই ফাসিদ।</p>
+
+                    <p><strong>২. মোট কাফিয উল্লেখ না করলে কেবল এক কাফিয বৈধ হওয়ার কারণ:</strong></p>
+                    <p>✯ বিক্রেতা যখন বলল "كل قفيز بدرهم" (প্রতি কাফিয এক দিরহাম), তখন এই বাক্যটি সর্বনিম্ন এক কাফিযকে অবশ্যই অন্তর্ভুক্ত করে।</p>
+                    <p>✯ এক কাফিযের মূল্য (এক দিরহাম) ও পরিমাণ (এক কাফিয) সম্পূর্ণ সুনির্দিষ্ট ও জ্ঞাত। এতে কোনো অজ্ঞতা নেই।</p>
+                    <p>✯ শরিয়তের মূলনীতি হলো, কোনো চুক্তির যতটুকু অংশ বৈধ হওয়ার যোগ্য, ততটুকু সহিহ ধরা হয় এবং অজ্ঞাত ও ফাসিদ অংশটুকু বাতিল করা হয়। তাই এক কাফিযের বিক্রয় সহিহ এবং অতিরিক্ত অংশের বিক্রয় ফাসিদ।</p>
+                </div>
+            </article>
+
+            <article class="qa-item">
+                <h2 class="sub-question">১ নং প্রশ্ন D: لماذا يثبت الخيار للمشتري في المسألة الأولى عنده؟ اكتب مفكراً.</h2>
+                <div class="answer">
+                    <p>ইমাম আবু হানিফা (রহ.)-এর মতে প্রথম মাসআলায় কেবল এক কাফিযের বিক্রয় সহিহ হওয়ার পর ক্রেতার জন্য খিয়ার (চুক্তি বহাল রাখা বা বাতিল করার এখতিয়ার) সাব্যস্ত হয়। এর যৌক্তিক কারণগুলো নিচে দেওয়া হলো:</p>
+                    <p>✯ <strong>তাফরিকুস সাফকাহ (تفريق الصفقة):</strong> ক্রেতা পুরো স্তূপটি একসাথে ক্রয় করার উদ্দেশ্যে চুক্তিতে আবদ্ধ হয়েছিল। কিন্তু শরয়ি কারণে চুক্তিটি বিভক্ত হয়ে কেবল এক কাফিযের মধ্যে সীমাবদ্ধ হয়ে গেছে। ক্রেতার ওপর চুক্তির এই বিভাজন (تفريق الصفقة) ক্ষতিকর হতে পারে।</p>
+                    <p>✯ <strong>ক্ষতি থেকে রক্ষা করা:</strong> ক্রেতার প্রয়োজন ছিল পুরো স্তূপের, সামান্য এক কাফিয তার কোনো কাজে নাও আসতে পারে। তাকে জোরপূর্বক এক কাফিয গ্রহণে বাধ্য করা হলে সে ক্ষতিগ্রস্ত হবে।</p>
+                    <p>✯ <strong>শরয়ি মূলনীতি:</strong> ইসলামী ফিকহের মূলনীতি হলো, ক্রেতার সম্মতি ছাড়া তার ওপর চুক্তির বিভাজন চাপিয়ে দেওয়া যায় না। তাই ক্রেতাকে খিয়ার দেওয়া হয়েছে—সে চাইলে এক কাফিয গ্রহণ করবে, আর না চাইলে পুরো চুক্তি বাতিল করে দেবে।</p>
+                </div>
+            </article>
+        </section>
+
+
+
+
+
+
+
+        <!-- পৃষ্ঠা ২ -->
+        <section class="question-group"
+                 id="page-2" aria-label="২ নম্বর প্রশ্ন">
+
+            <div class="ibarot" dir="rtl" lang="ar">
+                قال: "ومن اشترى امرأته على أنه بالخيار ثلاثة أيام لم يفسد النكاح، وإن وطئها، له أن يردها إلا إذا كانت بكراً".
+            </div>
+
+            <div class="section-number">২ নং প্রশ্ন + উত্তর</div>
+
+            <article class="qa-item">
+                <h2 class="sub-question">২ নং প্রশ্ন A: عرف الخيار لغة واصطلاحاً، ثم بين كم مدة له، وما الاختلاف فيها بين الأئمة الكرام مدللاً.</h2>
+                <div class="answer">
+                    <p><strong>১. খিয়ারের সংজ্ঞা (تعريف الخيار):</strong></p>
+                    <p>✯ <strong>আভিধানিক অর্থ (لغة):</strong> الخيار শব্দটি اختيار থেকে নির্গত, যার অর্থ পছন্দ করা, বাছাই করা বা এখতিয়ার গ্রহণ করা।</p>
+                    <p>✯ <strong>পারিভাষিক অর্থ (اصطلاحاً):</strong> চুক্তি সম্পন্নকারী দুই পক্ষের (ক্রেতা বা বিক্রেতা) জন্য নির্দিষ্ট মেয়াদের মধ্যে ক্রয়-বিক্রয় চুক্তিটি বহাল রাখা বা বাতিল করার শরয়ি অধিকারকে খিয়ার (খিয়ারে শর্ত) বলে।</p>
+
+                    <p><strong>২. খিয়ারের মেয়াদ ও ইমামগণের মতভেদ:</strong></p>
+                    <p>খিয়ারে শর্তের সর্বোচ্চ মেয়াদ কতদিন হতে পারে—এ বিষয়ে ইমামগণের মাঝে মতভেদ রয়েছে:</p>
+                    <p>✯ <strong>ইমাম আবু হানিফা, ইমাম শাফিঈ ও ইমাম যুফার (রহ.)-এর মত:</strong> খিয়ারে শর্তের সর্বোচ্চ মেয়াদ তিন দিন। তিন দিনের বেশি শর্ত করলে চুক্তি ফাসিদ হয়ে যাবে।</p>
+                    <p>✯ <strong>দলিল:</strong> হিব্বান ইবনে মুনকিয (রা.)-কে রাসুলুল্লাহ (সা.) বলেছিলেন:</p>
+                    <p dir="rtl" lang="ar">"إِذَا بَايَعْتَ فَقُلْ: لَا خِلَابَةَ، وَلِيَ الْخِيَارُ ثَلَاثَةَ أَيَّامٍ"</p>
+                    <p>অর্থ: "যখন তুমি ক্রয়-বিক্রয় করবে, তখন বলবে: কোনো প্রতারণা নেই, আর আমার জন্য তিন দিনের এখতিয়ার থাকবে।" (সুনানে ইবনে মাজাহ ও দারাকুতনি)</p>
+                    <p>এছাড়া খিয়ারে শর্ত মূলত কিয়াস পরিপন্থী একটি বিষয়, যা কেবল হাদিসের মাধ্যমে প্রমাণিত। তাই হাদিসে বর্ণিত তিন দিনের সীমা অতিক্রম করা বৈধ নয়।</p>
+                    <p>✯ <strong>সাহিবাইন (ইমাম আবু ইউসুফ ও ইমাম মুহাম্মদ রহ.)-এর মত:</strong> তিন দিনের বেশি যেকোনো নির্দিষ্ট মেয়াদের (যেমন এক মাস বা এক বছর) জন্য খিয়ারের শর্ত করা বৈধ, তবে মেয়াদটি সুনির্দিষ্ট হতে হবে।</p>
+                    <p>✯ <strong>দলিল:</strong> হাদিসে তিন দিনের কথা মূলত মানুষের সাধারণ প্রয়োজন ও সুবিধার ভিত্তিতে বলা হয়েছে। ক্রেতা বা বিক্রেতার যাচাই-বাছাইয়ের জন্য এর চেয়ে বেশি সময়ের প্রয়োজন হতে পারে। যেমন হযরত ইবনে উমর (রা.) দুই মাস পর্যন্ত খিয়ারের অনুমতি দিয়েছেন।</p>
+                </div>
+            </article>
+
+            <article class="qa-item">
+                <h2 class="sub-question">২ নং প্রশ্ন B: اكتب صورة المسألة المرقومة موضحاً.</h2>
+                <div class="answer">
+                    <p><strong>উল্লিখিত মাসআলাটির সূরত (صورة المسألة):</strong></p>
+                    <p>কোনো ব্যক্তি অন্য কারো মালিকানাধীন একজন দাসীকে বিবাহ করল। অতঃপর বিবাহ বলবৎ থাকা অবস্থায় স্বামী তার মালিকের কাছ থেকে উক্ত স্ত্রীকে (দাসীকে) নিজের জন্য "তিন দিনের খিয়ারে শর্তে" ক্রয় করল।</p>
+                    <p>এর শরয়ি হুকুমের তিনটি দিক রয়েছে:</p>
+                    <p><strong>১. বিবাহের বিধান:</strong> খিয়ারের শর্তে ক্রয় করার সাথে সাথে তাদের পূর্বের বিবাহ ভঙ্গ হবে না; বরং বিবাহ বহাল থাকবে।</p>
+                    <p><strong>২. সহবাসের বিধান:</strong> খিয়ারের মেয়াদ চলাকালীন স্বামী যদি উক্ত স্ত্রীর সাথে সহবাস করে, তবুও তার খিয়ার বাতিল হবে না এবং সে তাকে বিক্রেতার নিকট ফিরিয়ে দিতে পারবে।</p>
+                    <p><strong>৩. কুমারী হওয়ার বিধান:</strong> তবে উক্ত স্ত্রী যদি কুমারী (بكر) হয় এবং স্বামী তার সাথে সহবাস করে, তবে খিয়ার বাতিল হয়ে যাবে এবং স্বামী তাকে আর বিক্রেতার নিকট ফিরিয়ে দিতে পারবে না।</p>
+                </div>
+            </article>
+
+            <article class="qa-item">
+                <h2 class="sub-question">২ নং প্রশ্ন C: ماذا الاختلاف فيها بين الأئمة الكرام بين مبرهناً مفصلاً مع ترجيح الراجح عندك.</h2>
+                <div class="answer">
+                    <p><strong>১. মতভেদের বিবরণ (الاختلاف):</strong></p>
+                    <p>স্বামী নিজের স্ত্রীকে খিয়ারে শর্তে ক্রয় করলে তাদের বিবাহ ভঙ্গ হবে কি না এবং সহবাস করলে খিয়ার বাতিল হবে কি না—এ বিষয়ে ইমাম আবু হানিফা (রহ.) এবং সাহিবাইনের মাঝে মতভেদ রয়েছে:</p>
+                    <p>✯ <strong>ইমাম আবু হানিফা (রহ.)-এর মত:</strong> ক্রয় করার দ্বারা বিবাহ ভঙ্গ হবে না। যদি স্ত্রী সাইয়্যেবা (অকুমারী) হয়, তবে সহবাস করলেও খিয়ার বাতিল হবে না; বরং ফিরিয়ে দিতে পারবে। তবে কুমারী হলে সহবাসের দ্বারা খিয়ার বাতিল হয়ে যাবে।</p>
+                    <p>✯ <strong>সাহিবাইনের মত:</strong> ক্রয় করার সাথে সাথেই বিবাহ ফাসিদ (ভঙ্গ) হয়ে যাবে। আর সহবাস করলে স্ত্রী কুমারী হোক বা অকুমারী, সর্বাবস্থায় খিয়ার বাতিল হয়ে যাবে এবং সে তাকে আর ফিরিয়ে দিতে পারবে না।</p>
+
+                    <p><strong>২. সাহিবাইনের দলিল (دلائل الصاحبين):</strong></p>
+                    <p>✯ <strong>বিবাহ ভঙ্গ হওয়ার দলিল:</strong> খিয়ার কেবল ক্রেতার জন্য শর্ত করা হলে পণ্যের মালিকানা ক্রেতার দিকে স্থানান্তরিত হয়। আর মালিকানা (ملك اليمين) এবং বিবাহ (ملك النكاح) একই নারীর ক্ষেত্রে একত্র হতে পারে না। মালিকানা অধিক শক্তিশালী হওয়ায় তা বিবাহকে বাতিল করে দেয়।</p>
+                </div>
+            </article>
+        </section>
+
+
+
+
+
+
+
+      <!-- পৃষ্ঠা ৩ -->
+        <section class="question-group"
+                 id="page-3" aria-label="৩ নম্বর প্রশ্ন">
+
+            <div class="ibarot" dir="rtl" lang="ar">
+                ويجوز للمشتري أن يزيد للبائع في الثمن، ويجوز للبائع أن يزيد للمشتري في المبيع، ويجوز أن يحط عن الثمن، ويتعلق الاستحقاق بجميع ذلك
+            </div>
+
+            <div class="section-number">৩ নং প্রশ্ন + উত্তর</div>
+
+            <article class="qa-item">
+                <h2 class="sub-question">৩ নং প্রশ্ন A: عرف المرابحة والتولية والوضعية والمساومة.</h2>
+                <div class="answer">
+                    <p>ক্রয়মূল্যের সাথে বিক্রয়ের সম্পর্কের বিবেচনায় ক্রয়-বিক্রয় চার প্রকার। নিচে এদের পারিভাষিক সংজ্ঞা প্রদান করা হলো:</p>
+                    <p><strong>১. المرابحة:</strong></p>
+                    <p>বিক্রেতা যে মূল্যে পণ্যটি ক্রয় করেছে, ক্রেতাকে সেই ক্রয়মূল্য জানিয়ে তার ওপর নির্দিষ্ট পরিমাণ লাভ যোগ করে পণ্যটি বিক্রি করাকে المرابحة বলে।</p>
+                    <p><strong>২. التولية:</strong></p>
+                    <p>বিক্রেতা যে মূল্যে পণ্যটি ক্রয় করেছে, ক্রেতাকে সেই ক্রয়মূল্য জানিয়ে কোনো লাভ বা লোকসান ছাড়াই ঠিক সেই মূল্যে পণ্যটি বিক্রি করাকে التولية বলে।</p>
+                    <p><strong>৩. الوضيعة:</strong></p>
+                    <p>বিক্রেতা যে মূল্যে পণ্যটি ক্রয় করেছে, ক্রেতাকে সেই ক্রয়মূল্য জানিয়ে মূলধন থেকে নির্দিষ্ট পরিমাণ লোকসান বা মূল্য কমিয়ে পণ্যটি বিক্রি করাকে الوضيعة বলে।</p>
+                    <p><strong>৪. المساومة:</strong></p>
+                    <p>বিক্রেতা তার পূর্বের ক্রয়মূল্য গোপন রেখে বা উল্লেখ না করে ক্রেতার সাথে দর-কষাকষির মাধ্যমে যেকোনো মূল্যে পণ্যটি বিক্রি করাকে المساومة বলে।</p>
+                </div>
+            </article>
+
+            <article class="qa-item">
+                <h2 class="sub-question">৩ নং প্রশ্ন B: اشرح المسألة المذكورة بحيث ينكشف المرام.</h2>
+                <div class="answer">
+                    <p>উদ্দীপকে উল্লিখিত ইবারতটিতে চুক্তি সম্পন্ন হওয়ার পর মূল্য ও পণ্যের হ্রাস-বৃদ্ধি এবং এর সাথে সংশ্লিষ্ট মালিকানা দাবির (الاستحقاق) বিধান আলোচিত হয়েছে। নিচে মাসআলাটির পূর্ণ ব্যাখ্যা তুলে ধরা হলো:</p>
+                    <p><strong>১. ক্রেতা কর্তৃক মূল্য বৃদ্ধি:</strong></p>
+                    <p>ক্রয়-বিক্রয় চুক্তি সম্পন্ন হওয়ার পর ক্রেতা সন্তুষ্টচিত্তে বিক্রেতার জন্য নির্ধারিত মূল্যের চেয়ে কিছু টাকা বাড়িয়ে দিতে পারে। এটি শরিয়তসম্মত এবং মূল চুক্তির সাথে সংযুক্ত বলে গণ্য হবে। যেমন: ১০০ টাকায় কোনো পণ্য কেনার পর ক্রেতা স্বেচ্ছায় আরও ১০ টাকা বাড়িয়ে দিল; এমতাবস্থায় পণ্যটির মোট মূল্য ১১০ টাকা সাব্যস্ত হবে।</p>
+                    <p><strong>২. বিক্রেতা কর্তৃক পণ্য বৃদ্ধি:</strong></p>
+                    <p>চুক্তি সম্পন্ন হওয়ার পর বিক্রেতাও সন্তুষ্টচিত্তে ক্রেতার জন্য বিক্রীত পণ্যের পরিমাণ বাড়িয়ে দিতে পারে। এটিও জায়েজ এবং মূল পণ্যের অংশ হিসেবে গণ্য হবে। যেমন: এক কেজি চাল বিক্রির পর বিক্রেতা স্বেচ্ছায় আরও এক পোয়া চাল বাড়িয়ে দিল; ফলে ক্রেতা একই মূল্যে সোয়া কেজি চালের মালিক হবে। শর্ত হলো, মূল পণ্যটি চুক্তির সময় বিদ্যমান ও নির্দিষ্ট থাকতে হবে।</p>
+                    <p><strong>৩. বিক্রেতা কর্তৃক মূল্য হ্রাস:</strong></p>
+                    <p>বিক্রেতা চুক্তির পর ক্রেতার প্রতি অনুগ্রহ করে নির্ধারিত মূল্য থেকে কিছু অংশ কমিয়ে বা মাফ করে দিতে পারে। এটিও বৈধ এবং হ্রাস করার পর অবশিষ্ট অংশই প্রকৃত মূল্য হিসেবে ধর্তব্য হবে। যেমন: ১০০ টাকার মূল্যে বিক্রি করার পর বিক্রেতা ২০ টাকা কমিয়ে দিলে পণ্যের প্রকৃত মূল্য ৮০ টাকা সাব্যস্ত হবে।</p>
+                    <p><strong>৪. الاستحقاق বা মালিকানা দাবির বিধান:</strong></p>
+                    <p>উপরিউক্ত তিনটি ক্ষেত্রে (মূল্য বৃদ্ধি, পণ্য বৃদ্ধি এবং মূল্য হ্রাস) পরবর্তী সংযোজন বা বিয়োজন মূল চুক্তির অন্তর্ভুক্ত হয়ে যায়। ফলে পরবর্তীতে কোনো তৃতীয় ব্যক্তি এসে পণ্যটির প্রকৃত মালিকানা দাবি করলে (الاستحقاق) এবং তা প্রমাণিত হলে, হ্রাস-বৃদ্ধির পর যে চূড়ান্ত মূল্য বা পণ্য সাব্যস্ত হয়েছিল, ক্রেতা বিক্রেতার কাছ থেকে ঠিক সেই পরিমাণ অর্থই ফেরত পাবে।</p>
+                    <p>✯ <strong>মূল্য বৃদ্ধির ক্ষেত্রে:</strong> ক্রেতা মূল ১০০ টাকা ও বর্ধিত ১০ টাকা অর্থাৎ মোট ১১০ টাকাই ফেরত পাবে।</p>
+                    <p>✯ <strong>মূল্য হ্রাসের ক্ষেত্রে:</strong> ক্রেতা হ্রাসকৃত ৮০ টাকাই ফেরত পাবে, মূল ১০০ টাকা নয়।</p>
+                    <p>✯ <strong>পণ্য বৃদ্ধির ক্ষেত্রে:</strong> সম্পূর্ণ পণ্যটি অন্যের প্রমাণিত হলে ক্রেতা তার প্রদত্ত সম্পূর্ণ মূল্য ফেরত পাবে। আর যদি শুধু বর্ধিত অংশটুকু অন্যের প্রমাণিত হয়, তবে মোট পণ্যের অনুপাতে মূল্যের একটি অংশ ফেরত পাবে।</p>
+                </div>
+            </article>
+
+            <article class="qa-item">
+                <h2 class="sub-question">৩ নং প্রশ্ন C: فإن اطلع المشتري على خيانة في المرابحة أو التولية، فماذا يفعل؟</h2>
+                <div class="answer">
+                    <p>مرابحة এবং تولية উভয়টিই বিশ্বস্ততার ওপর ভিত্তি করে সম্পাদিত চুক্তি (بيوع الأمانة)। সুতরাং বিক্রেতা যদি ক্রয়মূল্য বলার ক্ষেত্রে মিথ্যা বা খেয়ানতের আশ্রয় নেয় এবং ক্রেতা পরবর্তীতে তা জানতে পারে, তবে ইমাম আবু হানিফা (রহ.)-এর মতে উভয় ক্ষেত্রে বিধান ভিন্ন হবে:</p>
+                    <p><strong>১. المرابحة-এর ক্ষেত্রে ক্রেতার করণীয়:</strong></p>
+                    <p>মুরাবাহা চুক্তিতে খেয়ানত প্রকাশ পেলে ক্রেতা ইমাম আবু হানিফা (রহ.)-এর মতে ইখতিয়ার (ঐচ্ছিক অধিকার) লাভ করবে। সে নিচের দুটি কাজের যেকোনো একটি করতে পারবে:</p>
+                    <p>✯ চাইলে সে সম্পূর্ণ চুক্তিটি বাতিল করে পণ্যটি বিক্রেতাকে ফেরত দিয়ে নিজের পূর্ণ অর্থ ফিরিয়ে নেবে।</p>
+                    <p>✯ অথবা চাইলে সে চুক্তিটি বহাল রাখবে এবং বিক্রেতার ঘোষিত মিথ্যা মূল্য অনুযায়ী পূর্ণ অর্থই পরিশোধ করবে; এক্ষেত্রে সে মূল্য থেকে খেয়ানতের অংশটুকু বাদ দিতে পারবে না।</p>
+                    <p><strong>২. التولية-এর ক্ষেত্রে ক্রেতার করণীয়:</strong></p>
+                    <p>তাওলিয়া চুক্তিতে খেয়ানত প্রকাশ পেলে ক্রেতার চুক্তি বাতিল করার কোনো অধিকার থাকবে না। বরং এক্ষেত্রে ক্রেতা মূল্য থেকে খেয়ানতকৃত অতিরিক্ত অংশটি বাদ দিয়ে বিক্রেতার প্রকৃত ক্রয়মূল্য পরিশোধ করবে এবং পণ্যটি নিজের কাছে রেখে দেবে।</p>
+                    <p><strong>দলীল ও যুক্তি:</strong></p>
+                    <p>مرابحة চুক্তিতে মূল চুক্তির ভিত্তি হলো লাভের ঘোষণা, আর মূল্য হলো শর্তসাপেক্ষ বিষয়। শর্ত নষ্ট হলে ক্রেতার কেবল চুক্তি বাতিলের অধিকার জন্মে, মূল্য কমানোর নয়। পক্ষান্তরে التولية চুক্তির মূল ভিত্তিই হলো বিক্রেতার প্রকৃত ক্রয়মূল্যে পণ্য হস্তান্তর করা। তাই খেয়ানতের অংশ বাদ দিলে চুক্তির মূল উদ্দেশ্যটিই ঠিক থাকে।</p>
+                </div>
+            </article>
+        </section>
+
+
+
+
+<!-- পৃষ্ঠা ৪ -->
+        <section class="question-group"
+                 id="page-4" aria-label="৪ নম্বর প্রশ্ন">
+
+            <div class="ibarot" dir="rtl" lang="ar">
+                এখানে আরবি ইবারত লিখুন...
+            </div>
+
+            <div class="section-number">৪ নং প্রশ্ন + উত্তর</div>
+
+            <article class="qa-item">
+                <h2 class="sub-question">৪ নং প্রশ্ন A: عرف السلم لغة واصطلاحاً، ثم بين ركنه وشرائطه.</h2>
+                <div class="answer">
+                    <p><strong>১. السلم-এর আভিধানিক অর্থ:</strong></p>
+                    <p>السلم শব্দটি التسليم বা السلف থেকে নির্গত। এর আভিধানিক অর্থ হলো আগাম প্রদান করা, হস্তান্তর করা বা ঋণ দেওয়া। হিজাজবাসীরা একে السلم এবং ইরাকবাসীরা একে السلف বলে থাকে।</p>
+
+                    <p><strong>২. السلم-এর পারিভাষিক সংজ্ঞা:</strong></p>
+                    <p>শরিয়তের পরিভাষায়, নগদ মূল্যের বিনিময়ে ভবিষ্যতে নির্ধারিত মেয়াদে প্রদেয় কোনো জিম্মায় থাকা (অনির্দিষ্ট ও বর্ণনাকৃত) পণ্য ক্রয়-বিক্রয় করাকে السلم বলে। একে بيع المفاليس বা নিঃস্বদের ক্রয়-বিক্রয়ও বলা হয়।</p>
+
+                    <p><strong>৩. السلم-এর রুকন:</strong></p>
+                    <p>السلم-এর রুকন হলো الإيجاب والقبول (প্রস্তাব ও গ্রহণ)। যা السلم, السلف বা البيع শব্দ দ্বারা সম্পন্ন হতে পারে।</p>
+
+                    <p><strong>৪. السلم-এর শর্তসমূহ:</strong></p>
+                    <p>ইমাম আবু হানিফা (রহ.)-এর মতে السلم সহিহ হওয়ার জন্য মোট সাতটি শর্ত রয়েছে, যা হাদিসে বর্ণিত হয়েছে:</p>
+                    <p>✯ পণ্যের শ্রেণি (الجنس) উল্লেখ করা। যেমন—গম বা যব।</p>
+                    <p>✯ পণ্যের ধরন বা প্রকৃতি (النوع) উল্লেখ করা। যেমন—সেচকৃত জমির ফসল নাকি বৃষ্টির পানির ফসল।</p>
+                    <p>✯ পণ্যের গুণাগুণ (الصفة) উল্লেখ করা। যেমন—উৎকৃষ্ট, মধ্যম বা নিম্নমানের।</p>
+                    <p>✯ পণ্যের পরিমাণ (القدر) উল্লেখ করা। যেমন—কত মণ বা কত কেজি।</p>
+                    <p>✯ মেয়াদ (الأجل) নির্ধারণ করা। ইমাম আবু হানিফা (রহ.)-এর মতে সর্বনিম্ন মেয়াদ এক মাস।</p>
+                    <p>✯ মূলধনের পরিমাণ (قدر رأس المال) জানা থাকা, যদি তা পরিমাপযোগ্য বা ওজনযোগ্য হয়।</p>
+                    <p>✯ পণ্য হস্তান্তরের স্থান (مكان الإيفاء) নির্ধারণ করা, যদি তা বহনযোগ্য এবং পরিবহন খরচসাপেক্ষ হয়।</p>
+                    <p>এছাড়াও চুক্তির মজলিসেই মূলধন হস্তগত করা (قبض رأس المال في المجلس) এবং মেয়াদ শুরু থেকে শেষ পর্যন্ত বাজারে উক্ত পণ্যের অস্তিত্ব থাকা (وجود المسلم فيه من وقت العقد إلى وقت المحل) আবশ্যক।</p>
+                </div>
+            </article>
+
+            <article class="qa-item">
+                <h2 class="sub-question">৪ নং প্রশ্ন B: اثبت مشروعية السلم بالكتاب والسنة وإجماع الأمة، ولا تنس ذكر مقتضى القياس فيه.</h2>
+                <div class="answer">
+                    <p>কুরআন, সুন্নাহ এবং উম্মতের ইজমা দ্বারা السلم-এর বৈধতা অকাট্যভাবে প্রমাণিত। নিচে দলিলসমূহ উল্লেখ করা হলো:</p>
+
+                    <p><strong>১. আল-কুরআনের দলিল:</strong></p>
+                    <p>আল্লাহ তাআলা ইরশাদ করেন:</p>
+                    <p dir="rtl" lang="ar">يَا أَيُّهَا الَّذِينَ آمَنُوا إِذَا تَدَايَنتُم بِدَيْنٍ إِلَىٰ أَجَلٍ مُّسَمًّى فَاكْتُبُوهُ</p>
+                    <p>অর্থ: হে মুমিনগণ! তোমরা যখন নির্দিষ্ট মেয়াদের জন্য পরস্পর ঋণের লেনদেন করো, তখন তা লিখে রাখো। (সূরা আল-বাকারা: ২৮২)</p>
+                    <p>হজরত আবদুল্লাহ ইবনে আব্বাস (রা.) বলেন, এই আয়াতটি السلم বা আগাম ক্রয়-বিক্রয়ের ব্যাপারেই অবতীর্ণ হয়েছে।</p>
+
+                    <p><strong>২. সুন্নাহর দলিল:</strong></p>
+                    <p>হজরত ইবনে আব্বাস (রা.) থেকে বর্ণিত, রাসুলুল্লাহ (সা.) মদিনায় আগমন করে দেখলেন, সেখানকার অধিবাসীরা এক বছর ও দুই বছরের মেয়াদে ফলের মধ্যে السلم করত। তখন তিনি ইরশাদ করলেন:</p>
+                    <p dir="rtl" lang="ar">مَنْ أَسْلَفَ فِي شَيْءٍ فَلْيُسْلِفْ فِي كَيْلٍ مَعْلُومٍ، وَوَزْنٍ مَعْلُومٍ، إِلَى أَجَلٍ مَعْلُومٍ</p>
+                    <p>অর্থ: যে ব্যক্তি কোনো বস্তুতে আগাম ক্রয়-বিক্রয় (সালাম) করবে, সে যেন নির্দিষ্ট পরিমাপে, নির্দিষ্ট ওজনে এবং নির্দিষ্ট মেয়াদে তা করে। (সহিহ বুখারি ও সহিহ মুসলিম)</p>
+
+                    <p><strong>৩. ইজমার দলিল:</strong></p>
+                    <p>সাহাবায়ে কেরাম (রা.) থেকে শুরু করে অদ্যাবধি সকল যুগের ফকিহগণ মানুষের প্রয়োজন ও কল্যাণের দিকে লক্ষ্য রেখে السلم জায়েজ হওয়ার ব্যাপারে ঐকমত্য পোষণ করেছেন।</p>
+
+                    <p><strong>৪. কিয়াসের চাহিদা (مقتضى القياس):</strong></p>
+                    <p>সাধারণ কিয়াস বা যুক্তির দাবি হলো السلم নাজায়েজ হওয়া। কারণ, এটি এমন বস্তুর বিক্রয় যা চুক্তির সময় বিক্রেতার নিকট বিদ্যমান থাকে না (بيع المعدوم)। হাদিসে নিজের কাছে নেই এমন বস্তু বিক্রি করতে নিষেধ করা হয়েছে। কিন্তু মানুষের জরুরি প্রয়োজন এবং কুরআন-সুন্নাহর স্পষ্ট নির্দেশের ভিত্তিতে কিয়াস পরিত্যাগ করে ইসতিহসান (الاستحسان) অনুযায়ী একে জায়েজ সাব্যস্ত করা হয়েছে।</p>
+                </div>
+            </article>
+
+            <article class="qa-item">
+                <h2 class="sub-question">৪ নং প্রশ্ন C: رب السلم، والمسلم إليه، ورأس المال، والمسلم فيه عرف المصطلحات المذكورة.</h2>
+                <div class="answer">
+                    <p>السلم চুক্তির সাথে সংশ্লিষ্ট চারটি মৌলিক পরিভাষার সংজ্ঞা নিচে দেওয়া হলো:</p>
+
+                    <p><strong>১. رب السلم:</strong></p>
+                    <p>السلم চুক্তিতে যে ব্যক্তি আগাম অর্থ বা মূলধন প্রদান করে পণ্য ক্রয় করে, অর্থাৎ ক্রেতাকে رب السلم বা المسلم বলা হয়।</p>
+
+                    <p><strong>২. المسلم إليه:</strong></p>
+                    <p>السلم চুক্তিতে যে ব্যক্তি আগাম মূলধন গ্রহণ করে এবং নির্দিষ্ট মেয়াদ শেষে ক্রেতাকে পণ্য সরবরাহ করার দায়িত্ব নেয়, অর্থাৎ বিক্রেতাকে المسلم إليه বলা হয়।</p>
+
+                    <p><strong>৩. رأس المال:</strong></p>
+                    <p>السلم চুক্তিতে ক্রেতা মজলিসে বিক্রেতাকে আগাম যে নগদ অর্থ বা বিনিময় মূল্য প্রদান করে, তাকে رأس المال বলে।</p>
+
+                    <p><strong>৪. المسلم فيه:</strong></p>
+                    <p>السلم চুক্তিতে বিক্রেতা নির্দিষ্ট মেয়াদ শেষে ক্রেতাকে যে বর্ণনাকৃত পণ্যটি সরবরাহ করার অঙ্গীকার করে, তাকে المسلم فيه বলে।</p>
+                </div>
+            </article>
+
+            <article class="qa-item">
+                <h2 class="sub-question">৪ নং প্রশ্ন D: قوله: "ولا يجوز السلم إلا مؤجلاً " أوضح المسألة إيضاحاً تاماً.</h2>
+                <div class="answer">
+                    <p>উদ্দীপকের ইবারতটিতে السلم চুক্তিতে মেয়াদ নির্ধারণের আবশ্যকতা বর্ণনা করা হয়েছে। হানাফি মাজহাব অনুযায়ী নগদ বা তৎক্ষণাৎ পণ্য প্রদানের শর্তে السلم জায়েজ নয়; বরং তা অবশ্যই মেয়াদি (مؤجل) হতে হবে।</p>
+
+                    <p><strong>১. হানাফি মাজহাবের মত ও যুক্তি:</strong></p>
+                    <p>ইমাম আবু হানিফা, ইমাম আবু ইউসুফ এবং ইমাম মুহাম্মদ (রহ.)-এর মতে السلم সহিহ হওয়ার জন্য মেয়াদ নির্ধারণ করা শর্ত। এর কারণসমূহ নিচে দেওয়া হলো:</p>
+                    <p>✯ নবী করিম (সা.) হাদিসে স্পষ্টভাবে বলেছেন: <span dir="rtl" lang="ar">إِلَى أَجَلٍ مَعْلُومٍ</span> (নির্দিষ্ট মেয়াদ পর্যন্ত)। এখানে মেয়াদের শর্ত যুক্ত করা হয়েছে।</p>
+                    <p>✯ السلم মূলত মানুষের প্রয়োজনে কিয়াসের বিপরীতে জায়েজ করা হয়েছে। আর এই প্রয়োজন তখনই পূরণ হয় যখন বিক্রেতা আগাম মূলধন নিয়ে চাষাবাদ বা ব্যবসার মাধ্যমে মেয়াদ শেষে পণ্য জোগাড় করার সুযোগ পায়। নগদ হলে বিক্রেতার কোনো উপকার থাকে না এবং তা أكل أموال الناس بالباطل বা অন্যায়ভাবে সম্পদ ভক্ষণের শামিল হয়।</p>
+                    <p>✯ নগদ শর্তে السلم করলে তা সাধারণ ক্রয়-বিক্রয়ের (البيع) অন্তর্ভুক্ত হয়ে যায়, যেখানে বিক্রেতার কাছে পণ্য বিদ্যমান থাকা শর্ত।</p>
+
+                    <p><strong>২. সর্বনিম্ন মেয়াদের পরিমাণ:</strong></p>
+                    <p>হানাফি মাজহাবের নির্ভরযোগ্য মত অনুযায়ী السلم-এর সর্বনিম্ন মেয়াদ হলো এক মাস। এর চেয়ে কম সময়ের জন্য السلم জায়েজ নয়।</p>
+
+                    <p><strong>৩. ইমাম শাফিঈ (রহ.)-এর মত:</strong></p>
+                    <p>ইমাম শাফিঈ (রহ.)-এর মতে নগদ শর্তেও السلم জায়েজ। তাঁর যুক্তি হলো, মেয়াদি অবস্থায় যখন তা জায়েজ, তখন নগদ অবস্থায় আরও বেশি জায়েজ হওয়া উচিত; কারণ নগদ লেনদেনে ধোঁকা বা অনিশ্চয়তা কম থাকে। তবে হাদিসের স্পষ্ট নির্দেশ এবং চুক্তির মূল উদ্দেশ্যের কারণে হানাফি মাজহাবের মতই অধিক শক্তিশালী।</p>
+                </div>
+            </article>
+
+            <article class="qa-item">
+                <h2 class="sub-question">৪ নং প্রশ্ন E: ما هي المرابحة المؤجلة؟ وما حكمها؟ بين وأوضح.</h2>
+                <div class="answer">
+                    <p><strong>১. المرابحة المؤجلة-এর পরিচয়:</strong></p>
+                    <p>বিক্রেতা কোনো পণ্যের প্রকৃত ক্রয়মূল্য ক্রেতাকে জানিয়ে তার ওপর নির্দিষ্ট পরিমাণ লাভ যোগ করে বাকিতে বা কিস্তিতে নির্দিষ্ট মেয়াদে মূল্য পরিশোধের শর্তে যে ক্রয়-বিক্রয় করে, তাকে المرابحة المؤجلة বা মেয়াদি মুরাবাহা বলে।</p>
+
+                    <p><strong>২. المرابحة المؤجلة-এর শরয়ি হুকুম:</strong></p>
+                    <p>ইসলামি শরিয়ত এবং হানাফি ফিকহ অনুযায়ী المرابحة المؤجلة সম্পূর্ণ জায়েজ ও বৈধ, যদি তাতে শরিয়ত নির্ধারিত শর্তসমূহ পূর্ণরূপে বজায় রাখা হয়।</p>
+
+                    <p><strong>৩. বৈধতার শর্তসমূহ:</strong></p>
+                    <p>✯ বিক্রেতাকে তার প্রকৃত ক্রয়মূল্য সত্যভাবে প্রকাশ করতে হবে; কোনো প্রকার মিথ্যা বা খেয়ানত করা যাবে না।</p>
+                    <p>✯ মূল ক্রয়মূল্য এবং অতিরিক্ত লাভ উভয়ই চুক্তির মজলিসে সুনির্দিষ্টভাবে নির্ধারিত হতে হবে।</p>
+                    <p>✯ মূল্য পরিশোধের মেয়াদ এবং কিস্তির পরিমাণ সুস্পষ্টভাবে নির্ধারিত থাকতে হবে, যাতে পরবর্তীতে কোনো ঝগড়ার সৃষ্টি না হয়।</p>
+                    <p>✯ বাকি বা মেয়াদের কারণে নগদ মূল্যের চেয়ে কিছু বেশি লাভ ধরা জায়েজ, তবে চুক্তির পর মেয়াদ বাড়িয়ে অতিরিক্ত অর্থ দাবি করা যাবে না; কারণ তা সুদ (الربا) হিসেবে গণ্য হবে।</p>
+                    <p>✯ পণ্যটি বিক্রেতার মালিকানা ও দখলে (قبض) আসার পরই কেবল তা মুরাবাহা হিসেবে বিক্রি করা যাবে।</p>
+                </div>
+            </article>
+        </section>
+
+
+
+
+       <!-- পৃষ্ঠা ৫ -->
+        <section class="question-group"
+                 id="page-5" aria-label="৫ নম্বর প্রশ্ন">
+
+            <div class="ibarot" dir="rtl" lang="ar">
+                قوله: العمرى جائزة للمعمر له حال حياته ولورثته من بعده، الخ
+            </div>
+
+            <div class="section-number">৫ নং প্রশ্ন + উত্তর</div>
+
+            <article class="qa-item">
+                <h2 class="sub-question">৫ নং প্রশ্ন A: بين صورة العمري والرقبي ممثلاً موضحاً.</h2>
+                <div class="answer">
+                    <p>ইসলামি ফিকহে দান বা হেবার দুটি বিশেষ রূপ হলো العمرى এবং الرقبى। নিচে উদাহরণসহ এদের সুরত বা বিবরণ দেওয়া হলো:</p>
+
+                    <p><strong>১. العمرى-এর সুরত ও উদাহরণ:</strong></p>
+                    <p>العمرى শব্দটি العمر (বয়স বা জীবনকাল) থেকে নির্গত। কোনো ব্যক্তি অপর কোনো ব্যক্তিকে নিজের কোনো ঘর বা জমি এই শর্তে দান করা যে, গ্রহীতা যতদিন জীবিত থাকবে ততদিন তা ভোগ করবে এবং গ্রহীতা মারা গেলে উক্ত সম্পত্তি দাতার কাছে বা দাতার ওয়ারিশদের কাছে ফিরে আসবে—একেই العمرى বলে।</p>
+                    <p>✯ <strong>উদাহরণ:</strong> জায়েদ বকরকে বলল, আমার এই ঘরটি তোমার জীবনকাল পর্যন্ত তোমাকে দান করলাম (<span dir="rtl" lang="ar">أعمرتك داري هذه</span>); তুমি মারা গেলে ঘরটি আবার আমার হয়ে যাবে।</p>
+
+                    <p><strong>২. الرقبى-এর সুরত ও উদাহরণ:</strong></p>
+                    <p>الرقبى শব্দটি المراقبة (অপেক্ষা করা বা লক্ষ্য রাখা) থেকে নির্গত। এর সুরত হলো, এক ব্যক্তি অপর ব্যক্তিকে নিজের কোনো সম্পত্তি এই শর্তে প্রদান করা যে, উভয়ের মধ্যে যে আগে মারা যাবে, জীবিত ব্যক্তিটি সেই সম্পত্তির স্থায়ী মালিক হবে। যেহেতু এক্ষেত্রে প্রত্যেকে অপরজনের মৃত্যুর অপেক্ষায় থাকে, তাই একে الرقبى বলা হয়।</p>
+                    <p>✯ <strong>উদাহরণ:</strong> জায়েদ বকরকে বলল, আমার এই বাড়িটি তোমার জন্য রুকবা করলাম (<span dir="rtl" lang="ar">أرقبتك داري هذه</span>); অর্থাৎ তুমি আগে মারা গেলে বাড়িটি আমার কাছে ফিরে আসবে, আর আমি আগে মারা গেলে বাড়িটি স্থায়ীভাবে তোমার হয়ে যাবে।</p>
+                </div>
+            </article>
+
+            <article class="qa-item">
+                <h2 class="sub-question">৫ নং প্রশ্ন B: ما الاختلاف بين الأئمة الكرام في حكم العمري والرقبي اكتب مدللاً مرجحاً.</h2>
+                <div class="answer">
+                    <p>العمرى এবং الرقبى-এর শরয়ি হুকুমের ব্যাপারে ফকিহগণের মাঝে মতভেদ রয়েছে। নিচে মতভেদ, দলিল এবং প্রাধান্যপ্রাপ্ত মত আলোচনা করা হলো:</p>
+
+                    <p><strong>প্রথমত: العمرى-এর হুকুম ও মতভেদ</strong></p>
+                    <p><strong>১. ইমাম মালিক (রহ.)-এর মত:</strong></p>
+                    <p>তাঁর মতে, العمرى দ্বারা গ্রহীতা কেবল সম্পত্তির ভোগাধিকার (المنفعة) লাভ করে, মূল সম্পত্তির মালিকানা নয়। সুতরাং গ্রহীতা মারা গেলে সম্পত্তিটি দাতা বা তার ওয়ারিশদের কাছে ফিরে যাবে।</p>
+                    <p>✯ <strong>দলিল:</strong> যেহেতু দাতা শর্ত সাপেক্ষে দান করেছে, তাই শর্ত অনুযায়ী মূল মালিকানা দাতারই থাকবে।</p>
+
+                    <p><strong>২. হানাফি মাজহাব ও অধিকাংশ ফকিহের মত:</strong></p>
+                    <p>ইমাম আবু হানিফা, ইমাম আবু ইউসুফ, ইমাম মুহাম্মদ এবং ইমাম শাফিঈ (রহ.)-এর মতে, العمرى সম্পূর্ণ জায়েজ এবং এর দ্বারা গ্রহীতা মূল সম্পত্তির স্থায়ী মালিক হয়ে যায়। আর দাতার ফেরত নেওয়ার শর্তটি বাতিল (باطل) বলে গণ্য হবে। ফলে গ্রহীতার মৃত্যুর পর সম্পত্তিটি তার ওয়ারিশদের মাঝে বণ্টিত হবে, দাতার কাছে ফিরে যাবে না।</p>
+                    <p>✯ <strong>হাদিসের দলিল:</strong> রাসুলুল্লাহ (সা.) ইরশাদ করেছেন:</p>
+                    <p dir="rtl" lang="ar">الْعُمْرَى جَائِزَةٌ لِأَهْلِهَا، وَالرُّقْبَى جَائِزَةٌ لِأَهْلِهَا</p>
+                    <p>অর্থ: উমরা তার গ্রহীতার জন্য বৈধ এবং রুকবা তার গ্রহীতার জন্য বৈধ। (সুনানে আবু দাউদ ও সুনানে তিরমিজি)</p>
+                    <p>অপর হাদিসে এসেছে:</p>
+                    <p dir="rtl" lang="ar">أَمْسِكُوا عَلَيْكُمْ أَمْوَالَكُمْ وَلَا تُفْسِدُوهَا، فَإِنَّهُ مَنْ أَعْمَرَ عُمْرَى فَهِيَ لِلَّذِي أُعْمِرَهَا حَيًّا وَمَيِّتًا وَلِعَقِبِهِ</p>
+                    <p>অর্থ: তোমরা তোমাদের সম্পদ নিজেদের কাছে রাখো এবং তা নষ্ট করো না। কেননা যে ব্যক্তি উমরা দান করবে, তা গ্রহীতার জীবদ্দশায়, মৃত্যুর পর এবং তার বংশধরদের জন্য সাব্যস্ত হয়ে যাবে। (সহিহ মুসলিম)</p>
+                    <p>✯ <strong>যুক্তিগত দলিল:</strong> দান (الهبة) এমন একটি চুক্তি যা ফাসিদ শর্তের কারণে বাতিল হয় না; বরং দানটি শুদ্ধ হয় এবং শর্তটি বাতিল হয়ে যায়।</p>
+
+                    <p><strong>দ্বিতীয়ত: الرقبى-এর হুকুম ও মতভেদ</strong></p>
+                    <p><strong>১. ইমাম আবু হানিফা এবং ইমাম মুহাম্মদ (রহ.)-এর মত:</strong></p>
+                    <p>তাঁদের মতে, الرقبى সম্পূর্ণ বাতিল (باطل) এবং এর দ্বারা কোনো মালিকানা সাব্যস্ত হয় না। বরং বস্তুটি দাতার কাছে আমানত বা ধার (عارية) হিসেবে গণ্য হবে।</p>
+                    <p>✯ <strong>দলিল:</strong> হজরত ইবনে আব্বাস (রা.) থেকে বর্ণিত, রাসুলুল্লাহ (সা.) বলেছেন:</p>
+                    <p dir="rtl" lang="ar">الْعُمْرَى جَائِزَةٌ وَالرُّقْبَى بَاطِلَةٌ</p>
+                    <p>অর্থ: উমরা বৈধ এবং রুকবা বাতিল। (সুনানে দারাকুতনি)</p>
+                    <p>✯ <strong>যুক্তিগত দলিল:</strong> الرقبى-এর মধ্যে মালিকানা হস্তান্তরকে একটি অনিশ্চিত বিষয়ের (মৃত্যু) সাথে ঝুলিয়ে রাখা হয়। এটি এক প্রকার জুয়া (القمار) ও অনিশ্চয়তার অন্তর্ভুক্ত, যা মালিকানা হস্তান্তরের ক্ষেত্রে অবৈধ।</p>
+
+                    <p><strong>২. ইমাম আবু ইউসুফ এবং ইমাম শাফিঈ (রহ.)-এর মত:</strong></p>
+                    <p>তাঁদের মতে, الرقبى-ও العمرى-এর মতোই জায়েজ। এর দ্বারা গ্রহীতা স্থায়ী মালিক হয়ে যাবে এবং শর্তটি বাতিল হবে।</p>
+                    <p>✯ <strong>দলিল:</strong> পূর্বোক্ত হাদিস: <span dir="rtl" lang="ar">الْعُمْرَى جَائِزَةٌ لِأَهْلِهَا، وَالرُّقْبَى جَائِزَةٌ لِأَهْلِهَا</span>।</p>
+
+                    <p><strong>প্রাধান্যপ্রাপ্ত মত (الترجيح):</strong></p>
+                    <p>العمرى-এর ক্ষেত্রে হানাফি মাজহাবের মতটিই অধিক শক্তিশালী ও প্রাধান্যপ্রাপ্ত; কারণ সহিহ মুসলিমের সুস্পষ্ট হাদিস দ্বারা তা প্রমাণিত। আর الرقبى-এর ক্ষেত্রে ইমাম আবু হানিফা ও ইমাম মুহাম্মদ (রহ.)-এর মতটিই মাজহাবের নির্ভরযোগ্য মত; কারণ মালিকানা হস্তান্তরকে অনিশ্চিত ঘটনার ওপর ঝুলিয়ে রাখা বৈধ নয়।</p>
+                </div>
+            </article>
+
+            <article class="qa-item">
+                <h2 class="sub-question">৫ নং প্রশ্ন C: عرف الاصطلاحات الآتية: 1. الإيجاب 2. النجش 3. بيع الاستصناع 4. تلقي الجلب 5. بيع الحاضر للبادي.</h2>
+                <div class="answer">
+                    <p>নিচে উল্লিখিত পাঁচটি ফিকহি পরিভাষার সংজ্ঞা প্রদান করা হলো:</p>
+
+                    <p><strong>১. الإيجاب:</strong></p>
+                    <p>ক্রয়-বিক্রয় বা যেকোনো চুক্তির ক্ষেত্রে দুজনের মধ্য থেকে প্রথম পক্ষ যে প্রস্তাবসূচক বাক্য উচ্চারণ করে, তাকে الإيجاب বলে। যেমন—বিক্রেতা বলল, আমি এই বইটি একশ টাকায় বিক্রি করলাম।</p>
+
+                    <p><strong>২. النجش:</strong></p>
+                    <p>কোনো ব্যক্তির নিজের পণ্য কেনার ইচ্ছা না থাকা সত্ত্বেও প্রকৃত ক্রেতাকে ধোঁকা দিয়ে পণ্যের দাম বাড়িয়ে দেওয়ার উদ্দেশ্যে বেশি দাম বলাকে النجش বলে। হাদিসে এ ধরনের প্রতারণামূলক কাজকে নিষেধ করা হয়েছে।</p>
+
+                    <p><strong>৩. بيع الاستصناع:</strong></p>
+                    <p>কোনো কারিগর বা প্রস্তুতকারককে তার নিজের উপকরণ দিয়ে নির্দিষ্ট গুণাগুণ ও পরিমাপ অনুযায়ী কোনো পণ্য তৈরি করে দেওয়ার ফরমায়েশ বা অর্ডার দেওয়াকে بيع الاستصناع বলে। যেমন—জুতা বা আসবাবপত্র তৈরির অর্ডার দেওয়া।</p>
+
+                    <p><strong>৪. تلقي الجلب:</strong></p>
+                    <p>বাইরের গ্রাম বা দূরবর্তী এলাকা থেকে ব্যবসায়ীরা শহরে পণ্য নিয়ে আসার পথে শহরের বাইরে গিয়ে তাদের সাথে সাক্ষাৎ করে বাজারদর জানার আগেই কম মূল্যে পণ্য কিনে নেওয়াকে تلقي الجلب বলে।</p>
+
+                    <p><strong>৫. بيع الحاضر للبادي:</strong></p>
+                    <p>শহরের কোনো স্থায়ী বাসিন্দা দালাল বা প্রতিনিধি হিসেবে গ্রাম থেকে আসা অজ্ঞ বিক্রেতার পণ্য নিজের জিম্মায় রেখে বাজারে কৃত্রিম সংকট তৈরি করে চড়া মূল্যে বিক্রি করে দেওয়াকে بيع الحاضر للبادي বলে।</p>
+                </div>
+            </article>
+        </section>
+
+
+        
+
+
+
+
+        <!-- নিচের নেভিগেশন -->
+        <footer class="bottom-pagination">
+
+            <button class="nav-btn"
+                    id="prev-btn"
+                    type="button"
+                    onclick="prevPage()"
+                    disabled>« Previous</button>
+
+            <span class="page-status"
+                  id="page-status"
+                  aria-live="polite">পৃষ্ঠা ১ / ৫</span>
+
+            <button class="nav-btn"
+                    id="next-btn"
+                    type="button"
+                    onclick="nextPage()">Next »</button>
+
+        </footer>
 
     </main>
 
     <script>
-        const glow = document.getElementById('glow');
+        "use strict";
 
-        // Mouse move interactive glow background
-        window.addEventListener('mousemove', (e) => {
-            glow.style.left = e.clientX + 'px';
-            glow.style.top = e.clientY + 'px';
-        });
+        let currentPage = 1;
+        let currentScale = 1;
 
-        // Touch move interactive glow background for mobile screens
-        window.addEventListener('touchmove', (e) => {
-            if (e.touches.length > 0) {
-                glow.style.left = e.touches[0].clientX + 'px';
-                glow.style.top = e.touches[0].clientY + 'px';
+        const totalPages = 5;
+        const minScale = 0.7;
+        const maxScale = 1.6;
+
+        const banglaNumbers = ["০", "১", "২", "৩", "৪", "৫"];
+        const root = document.documentElement;
+
+        /* পৃষ্ঠা পরিবর্তন */
+        function updatePaginationUI() {
+            document.querySelectorAll(".question-group").forEach(
+                function (page) {
+                    page.classList.remove("active-page");
+                }
+            );
+
+            const activePage = document.getElementById(
+                "page-" + currentPage
+            );
+
+            if (activePage) {
+                activePage.classList.add("active-page");
+            }
+
+            document.querySelectorAll(".page-number-btn").forEach(
+                function (button) {
+                    const pageNumber = Number(button.dataset.page);
+                    const isActive = pageNumber === currentPage;
+
+                    button.classList.toggle("active", isActive);
+
+                    if (isActive) {
+                        button.setAttribute("aria-current", "page");
+                    } else {
+                        button.removeAttribute("aria-current");
+                    }
+                }
+            );
+
+            document.getElementById("prev-btn").disabled =
+                currentPage === 1;
+
+            document.getElementById("next-btn").disabled =
+                currentPage === totalPages;
+
+            document.getElementById("page-status").textContent =
+                "পৃষ্ঠা " + banglaNumbers[currentPage] +
+                " / " + banglaNumbers[totalPages];
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        }
+
+        /* নির্দিষ্ট পৃষ্ঠা */
+        function goToPage(page) {
+            if (
+                Number.isInteger(page) &&
+                page >= 1 &&
+                page <= totalPages
+            ) {
+                currentPage = page;
+                updatePaginationUI();
+            }
+        }
+
+        /* পরবর্তী পৃষ্ঠা */
+        function nextPage() {
+            if (currentPage < totalPages) {
+                goToPage(currentPage + 1);
+            }
+        }
+
+        /* পূর্ববর্তী পৃষ্ঠা */
+        function prevPage() {
+            if (currentPage > 1) {
+                goToPage(currentPage - 1);
+            }
+        }
+
+        /* ফন্ট ছোট-বড় */
+        function changeFontSize(delta) {
+            const newScale = Math.round(
+                (currentScale + delta) * 10
+            ) / 10;
+
+            if (newScale >= minScale && newScale <= maxScale) {
+                currentScale = newScale;
+
+                root.style.setProperty(
+                    "--font-scale",
+                    currentScale
+                );
+            }
+        }
+
+        /* ফন্টের মূল আকার */
+        function resetFontSize() {
+            currentScale = 1;
+
+            root.style.setProperty(
+                "--font-scale",
+                currentScale
+            );
+        }
+
+        /* কিবোর্ড দিয়ে পৃষ্ঠা পরিবর্তন */
+        document.addEventListener("keydown", function (event) {
+            const target = event.target;
+
+            if (
+                target instanceof HTMLElement &&
+                (
+                    target.isContentEditable ||
+                    ["INPUT", "TEXTAREA", "SELECT", "BUTTON"]
+                        .includes(target.tagName)
+                )
+            ) {
+                return;
+            }
+
+            if (event.key === "ArrowRight") {
+                nextPage();
+            } else if (event.key === "ArrowLeft") {
+                prevPage();
             }
         });
+
+        /* প্রথম পৃষ্ঠা চালু */
+        updatePaginationUI();
     </script>
+
 </body>
 </html>
